@@ -114,7 +114,14 @@ tmp = function() {
 					'false': L('VALUE_FALSE')
 				}	
 			}
-		]
+		],
+		onSettingsChanged: function (propertyName, oldValue, newValue, object) {
+			switch (propertyName) {
+				case 'subCollections':
+				case 'subCollSeparator':
+					Core.ui.nodes.collections.update(model);
+			}
+		}
 	};
 
 	Core.addAddon(BookManagement);

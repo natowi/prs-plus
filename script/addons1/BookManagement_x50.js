@@ -1233,6 +1233,15 @@ tmp = function() {
 				case 'markAllBooks':
 					markAllBooks(newValue === 'read');
 					opt.markAllBooks = '';
+					break;
+				case 'addReadBooks':
+				case 'HideUnreadBooks':
+				case 'HideUnreadPeriodicals':
+				case 'HidePurchasedBooks':
+				case 'HideAddNewCollection':
+				case 'subCollections':
+				case 'subCollSeparator':
+					Core.ui.nodes.collections.update(model);
 			}
 		}
 	};
