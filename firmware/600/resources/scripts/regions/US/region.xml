@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK1" value="Are you sure you want to delete the bookmark?"/>
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK2" value="" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT1" value="Are you sure you want to delete the highlight?"/>
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT2" value="" />
+		<string id="DIALOGMSG_INFORM_NOHITS" value="No matches found." />
+		<string id="DIALOGMSG_INFORM_NOMOREHITS" value="Match not found." />
+		<string id="DIALOGMSG_CONFIRM_BACKWARDSEARCH" value="Do you want to continue searching from the end of the book?" />
+		<string id="DIALOGMSG_CONFIRM_FORWARDSEARCH" value="Do you want to continue searching from the beginning of the book?" />
+		<string id="STR_MSG_SEARCHING" value="Searching..."/>
+			<!-- commentViewer -->
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK1" value="Are you sure you want to delete the bookmark?"/>
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK2" value="" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT1" value="Are you sure you want to delete the highlight?"/>
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT2" value="" />
+			<!-- quit commentEditor -->
+		<string id="DIALOGMSG_CONFIRM_CMT_EDIT_QUIT" value="The comment will not be saved if you continue. Are you sure you want to continue?"/>
+			<!-- delete allMyNotes -->
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES1" value="All notes will be removed."/>
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES2" value="Are you sure you want to delete?" />
+
+			<!-- UI -->
+		<string id="KBOOK_UI_MYNOTE" value="Notes"/>
+
+	</assets>
+</document>
+

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<fsk xmlns="http://www.kinoma.com/Fsk/1">
+	<vm name="thumbnail" sync="true">
+		<extension href="[applicationPath]FskVectorGraphics"/>
+		<extension href="[applicationPath]FskBookUtil"/>
+	</vm>
+	<vm name="switcher" sync="false" alloc="737280,65536,65536,32768">
+		<extension href="[applicationPath]FskMobileMediaDevice"/>
+		<extension href="[applicationPath]switcher"/>
+	</vm>
+</fsk>

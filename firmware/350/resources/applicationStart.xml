@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" 
+  title="kBook" width="600" height="800" 
+		minWidth="600" minHeight="600" 
+		maxWidth="800" maxHeight="800">
+	<ebook xmlns="http://www.kinoma.com/fskin/1">
+		<variable id="STANDBY_STATE" value="1"/>
+		<variable id="STANDBY_IMAGE_PATH" value=""/>
+		<variable id="STANDBY_TEXT_VISIBLE" value="0"/>
+		<code>
+			<function id="doProcessing" params="value">
+				this.processing(value);
+			</function>
+			<function id="doProcessed" params="value">
+				this.processed(value);
+			</function>
+			<function id="doRotate" params="value">
+				this.rotate(value);
+			</function>
+			<function id="doTest" params="value">
+				this.test(value);
+			</function>
+			<function id="doUpdateWaveform" params="value">
+				this.updateWaveform(value);
+			</function>
+			<function id="doTestHardReset">
+				return ebook.testHardReset();
+			</function>
+			<function id="doTestDemoMode">
+				if( "testDemoMode" in ebook ){
+					return ebook.testDemoMode();
+				}else
+					return false;
+			</function>
+			<function id="doPerformHardReset">
+				ebookConfig.FactoryDefault(0);
+				this.post("kShutdown", true)
+			</function>
+			<function id="doPowerSwitchHold">
+				var value = this.getVariable("STANDBY_STATE")
+				if (value == 1) {
+					this.setVariable("STANDBY_STATE", 2)
+					this.post("kShutdownBySwitch", true)
+				}
+			</function>
+			<function id="doPowerSwitch">
+				var value = this.getVariable("STANDBY_STATE")
+				if (value == 1) {
+					this.setVariable("STANDBY_STATE", 0)
+					this.resetLight()
+					this.container.STANDBY_IMAGE.show(true)
+					this.container.STANDBY_IMAGE.enable(true)
+					this.setFlushUpdate()
+					this.post("kSuspend", true)
+				}
+				else if (value == 0){
+					this.setVariable("STANDBY_STATE", 1)
+					this.container.STANDBY_IMAGE.show(false)
+					this.container.STANDBY_IMAGE.enable(false)
+					this.setFlushUpdate()
+					this.post("kResume", true)
+				}
+				else
+					this.setVariable("STANDBY_STATE", 1)
+				BookUtil.removeButtonEvent(this.container.getWindow(), "kPowerSwitch")
+			</function>
+			<function id="canLight">
+				return this.getVariable("STANDBY_STATE") != 0
+			</function>
+		</code>
+		<parts>
+			<number key="kDate" poke="setDateTime" id="DATE_TIME"/>
+			<integer key="kBattery" peek="getBattery" id="BATTERY"/>
+			<integer key="kCharging" peek="getCharging" id="CHARGING"/>
+			<string key="kDeviceID" peek="getDeviceID" id="DEVICE_ID"/>
+			<string key="kFirmwareVersion" peek="getFirmwareVersion" id="FIRMWARE_VERSION"/>
+			<boolean key="kOrientation" peek="getOrientation" id="ORIENTATION"/>
+			<boolean key="kPower" peek="getPower" id="POWER"/>
+			<boolean key="kStoreStatus" peek="getStoreStatus" id="STORE_STATUS"/>
+			<string key="kBatteryState" peek="getBatteryState" id="BATTERY_STATE"/>
+			<string key="kWANState" peek="getWANState" id="WAN_STATE"/>
+			<integer key="kSignalStrength" id="SIGNAL_STRENGTH"/>
+			<boolean key="kWAN3G" id="NETWORK_3G"/>
+			<boolean key="kRoaming" id="NETWORK_ROAMING"/>
+			<string  key="kNetworkState" peek="getNetworkState" id="NETWORK_STATE"/>
+			<string  key="kNetworkDevice" peek="getCurrentNetworkDevice" id="NETWORK_DEVICE"/>
+			<boolean key="kClockRewind" peek="getClockRewind" poke="setClockRewind" id="CLOCK_REWIND"/>
+      <boolean key="kAdobeStatus" peek="getAdobeStatus" id="ADOBE_STATUS"/>
+      <string key="kWaveformVersion" peek="getWaveformVersion" id="WAVEFORM_VERSION"/>
+			<boolean key="kResume" do="doResume"/>
+			<boolean key="kSleep" do="doSleep"/>
+			<boolean key="kSuspend" do="doSuspend"/>
+			<boolean key="kTestMode" do="doTestMode"/>
+			<boolean key="kWakeup" do="doWakeup"/>
+	
+			<boolean key="0x00" do="doQuit"/>
+	
+			<boolean key="0x21" do="doMenu"/>
+			<boolean key="0x21-hold" do="doRoot"/>
+			
+			<boolean key="0x27" do="doCenter"/>
+			<boolean key="0x27-hold" do="doCenter"/>
+			<boolean key="kLeft" do="doLeft"/>
+			<boolean key="kRight" do="doRight"/>
+			<boolean key="kUp" do="doUp"/>
+			<boolean key="kDown" do="doDown"/>
+	
+			<boolean key="0x31" do="doPrevious"/>
+			<boolean key="0x31-hold" do="doFirst"/>
+			<boolean key="0x30" do="doNext"/>
+			<boolean key="0x30-hold" do="doLast"/>
+			
+			<boolean key="kPrevious" do="doPrevious"/>
+			<boolean key="kFirst" do="doFirst"/>
+			<boolean key="kNext" do="doNext"/>
+			<boolean key="kLast" do="doLast"/>
+			
+			<boolean key="0x42" do="doSize"/>
+			<boolean key="0x42-hold" do="doRotate"/>
+			
+			<boolean key="0x32" do="doMark"/>
+			<boolean key="0x32-hold" do="doMarkMenu"/>
+	
+			<string key="1" do="doDigit" />
+			<string key="2" do="doDigit" />
+			<string key="3" do="doDigit" />
+			<string key="4" do="doDigit" />
+			<string key="5" do="doDigit" />
+			<string key="6" do="doDigit" />
+			<string key="7" do="doDigit" />
+			<string key="8" do="doDigit" />
+			<string key="9" do="doDigit" />
+			<string key="0" do="doDigit" />
+
+			<string key="kHold1" do="doHold1"/>
+			<string key="kHold2" do="doHold2"/>
+			<string key="kHold3" do="doHold3"/>
+			<string key="kHold4" do="doHold4"/>
+			<string key="kHold5" do="doHold5"/>
+			<string key="kHold6" do="doHold6"/>
+			<string key="kHold7" do="doHold7"/>
+			<string key="kHold8" do="doHold8"/>
+			<string key="kHold9" do="doHold9"/>
+			<string key="kHold0" do="doHold0"/>
+			
+			<boolean key="0x41" do="doQuiet"/>
+			<boolean key="0x41-hold" do="doMute"/>
+			<boolean key="0x40" do="doLoud"/>
+			<!--boolean key="0x40-hold" do="doMute"/-->
+
+			<boolean key="0x02" do="doOption"/>
+			<boolean key="0x03" do="doSearch"/>
+			<boolean key="0x0c" do="doRoot"/>
+			<boolean key="0x15" do="doLight"/>
+
+			<checkBoolean key="kLight" can="canLight" do="doLight"/>
+			<boolean key="kVolumePlus" do="doLoud"/>
+			<boolean key="kVolumeMinus" do="doQuiet"/>
+			<boolean key="kVolumePlus-hold" do="doMute"/>
+			<boolean key="kVolumeMinus-hold" do="doMute"/>
+			<customHold key="kPowerSwitch" hold="doPowerSwitchHold" up="doPowerSwitch" holdTime="3000"/>
+			<boolean key="kWANSwitch" peek="getWANSwitchState" do="doWANSwitch" id="WAN_SWITCH"/>
+			
+			<boolean key="kSize" do="doSize"/>
+			<boolean key="kSize-hold" do="doSearch"/>			
+			<boolean key="kSearch" do="doSearch"/>
+			<boolean key="kOption" do="doOption"/>
+			<boolean key="kOption-hold" do="doMenu"/>
+
+			<boolean key="kMenu" do="doMenu"/>
+			<boolean key="kHome" do="doRoot"/>
+			<boolean key="kHome-hold" do="doRoot"/>			
+			<custom key="kPreviousCustom" hold="doPreviousHold" up="doPrevious"/>
+			<custom key="kNextCustom" hold="doNextHold" up="doNext"/>
+			<boolean key="kShutdown" do="doQuit"/>
+			<boolean key="kShutdownBySwitch" do="doShutdownBySwitch"/>
+			
+			<boolean key="kIdle" do="doIdle"/>
+
+		   <boolean key="kHomeState" id="KEY_HOME_STATE"/>
+		   <boolean key="kVolumePlusState" id="KEY_VOLUME_PLUS_STATE"/>
+		   <boolean key="kPreviousState" id="KEY_PREVIOUS_STATE"/>
+		   <boolean key="kNextState" id="KEY_NEXT_STATE"/>
+		   <boolean key="kSizeState" id="KEY_SIZE_STATE"/>
+
+			<error key="kNetworkError" peek="getNetworkError" id="NETWORK_ERROR" do="doNetworkError"/>
+			<error key="kBrowseError" peek="getBrowseError" id="BROWSE_ERROR" do="doBrowseError"/>
+			<error key="kDownloadError" peek="getDownloadError" id="DOWNLOAD_ERROR" do="doDownloadError"/>
+			<error key="kMSError" peek="getMSError" id="MS_ERROR" do="doMSError"/>
+			<error key="kSDError" peek="getSDError" id="SD_ERROR" do="doSDError"/>
+			<error key="kInternalError" peek="getInternalError" id="INTERNAL_ERROR" do="doInternalError"/>
+			<number key="kDetailedError" peek="getDetailedError" id="DETAILED_ERROR"/>
+
+	</parts>
+	</ebook>	
+	<code>
+		<function id="callScript" params="path">
+			if (FileSystem.getFileInfo(path)) {
+				var file = new Stream.File(path);
+				var code = file.toString();
+				file.close();
+				var f = prsp.compile("", code);				
+				f();
+				delete f;
+			}	
+		</function>	
+		<function id="initialized"><![CDATA[
+			USBDispatcher.doRegister(this.getWindow())
+			this.getDevice().doProcessed(100);
+			if (ebook && "delayLoadSettings" in ebook)
+				ebook.delayLoadSettings()
+		]]></function>
+		<function id="terminating">
+			this.getDevice().resetLight();
+			this.getDevice().resetOrientation();
+			this.getDevice().doProcessing(100);
+			USBDispatcher.doUnregister()
+			if ("delayTerminate" in ebookConfig)
+				ebookConfig.delayTerminate()
+		</function>
+	</code>
+	<view id="MAIN" href="scripts/main.xml" left="0" right="0" top="0" bottom="0"/>
+	
+	<assets>
+		<style font="Swis721 BT">
+			<style id="standbyText" halign="center" valign="top" top="7" left="30" bottom="13" right="30" size="22" style="bold" color="#FFFFFF"/>
+		</style>
+		<texture href="scripts/search.png">
+			<cutout id="standby_text-lt" x="184" y="0"  width="8"  height="8" />
+			<cutout id="standby_text-ct" x="192" y="0"  width="26" height="8" />
+			<cutout id="standby_text-rt" x="218" y="0"  width="8"  height="8" />
+			<cutout id="standby_text-lc" x="184" y="8"  width="8"  height="26"/>
+			<cutout id="standby_text-cc" x="192" y="34" width="5"  height="5" />
+			<cutout id="standby_text-rc" x="218" y="8"  width="8"  height="26"/>
+			<cutout id="standby_text-lb" x="184" y="34" width="8"  height="8" />
+			<cutout id="standby_text-cb" x="192" y="34" width="26" height="8" />
+			<cutout id="standby_text-rb" x="218" y="34" width="8"  height="8" />
+		</texture>
+		<skin id="standbyText" 
+			cutouts="standby_text-lc,standby_text-cc,standby_text-rc,
+					standby_text-lc,standby_text-cc,standby_text-rc,
+					standby_text-lb,standby_text-cb,standby_text-rb"
+			styles="standbyText,standbyText,standbyText,standbyText"/>
+	</assets>
+	<group id="STANDBY_IMAGE" left="0" right="0" top="0" bottom="0" active="false" visible="false">
+		<standbyImage left="0" right="0" top="0" bottom="0"/>
+		<standbyText skin="standbyText" active="false" left="30" right="30" top="0" height="0" value="fskin:/l/strings/STR_UI_MESSAGE_STANDBY"/>
+	</group>
+</document>

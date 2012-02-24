@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<model>
+		<code>
+			<function id="initialized">
+				this.container.PANEL.IMAGES.focus(true)
+				this.container.bubble("processing", 100)
+				var setting = this.container.getVariable("SLIDESHOW_SETTING")
+				if (-1 != setting.indexOf("ON")) {
+					this.container.PANEL.IMAGES.trigger("start")
+				}
+			</function>
+			<function id="terminating">
+				this.container.bubble("processed", 100)
+			</function>
+		</code>
+	</model>
+	<group id="PANEL" left="0" right="0" top="0" bottom="0">
+		<code>
+			<function id="doRoot">
+				this.IMAGES.end()
+				this.bubble("finishTest")
+			</function>
+		</code>
+		<sprite id="IMAGES" left="0" right="0" top="0" bottom="0">
+			<behave like="fileList"/>
+			<property id="mimeText" value="image/"/>
+			<code>
+				<function id="end">
+					if (this.timer) {
+						this.timer.cancel()
+						this.timer.close()
+					}
+				</function>
+			</code>
+			<script on="doNext">
+				if (this.fileIndex.value != -1)
+					this.trigger("nextFile")
+				else {
+					var index = this.colorIndex
+					index++
+					if (index >= this.colors.length)
+						index = 0
+					this.colorIndex = index
+				}
+				this.invalidate()
+			</script>
+			<script on="doPrevious"><![CDATA[
+				if (this.fileIndex.value != -1)
+					this.trigger("previousFile")
+				else {
+					var index = this.colorIndex
+					index--
+					if (index < 0)
+						index = this.colors.length - 1
+					this.colorIndex = index
+				}
+				this.invalidate()
+			]]></script>
+			<script on="doSize">
+				var value = this.imageSize
+				if (value == 0)
+					value = 1
+				else
+					value = 0
+				this.imageSize = value
+				this.invalidate()
+			</script>
+			<script on="initialized"><![CDATA[
+				var autoRunView = this.container.container.container.container
+				this.folder.value = autoRunView.getVariable("DATA_FOLDER") + "images/"
+				this.trigger("initializeFileList")
+				this.colorIndex = 0
+				this.colors = [0, 255, 171, 85]
+				this.imageSize = 0
+				this.timer = null
+			]]></script>
+			<script on="start"><![CDATA[
+				this.timer = new HardwareTimer()
+				this.timer.target = this
+				this.timer.func = this.trigger
+				this.timer.onCallback = function () {
+					this.func.call(this.target, "doNext")
+					this.schedule(3000)
+				}
+				this.timer.onClockChange = this.timer.onCallback;
+				this.timer.schedule(3000)
+			]]></script>
+	
+			<script on="draw" params="window, index, u, v, x, y, width, height"><![CDATA[
+				var setting = this.getVariable("SLIDESHOW_SETTING")
+				if (ebook && "setFlushUpdate" in ebook) {
+					if (-1 != setting.indexOf("GC"))
+						ebook.setFlushUpdate()
+					else if (-1 != setting.indexOf("GL"))
+						ebook.setFlushUpdate(1)
+				}
+
+				var colors = this.colors
+				var index = this.colorIndex
+				window.setPenColor(new Color.Gray(parseInt(colors[index])))
+				window.fillRectangle(this)
+
+				var files = this.files.value
+				var index = this.fileIndex.value
+				if (index != -1) {
+					var bitmap = new Bitmap(files[index])
+					if (bitmap) {
+						if (this.imageSize == 1) 
+							window.drawBitmap(bitmap, x, y, width - 100, height - 100)
+						else
+							window.drawBitmap(bitmap, x, y, width, height)
+						bitmap.close()
+					}
+				}
+			]]></script>
+		</sprite>
+	</group>
+</document>

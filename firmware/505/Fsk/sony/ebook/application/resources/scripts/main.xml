@@ -1,0 +1,1176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" href="x-id://model">
+	<assets>
+		<!-- PRS+ stuff -->
+		<import href="../prsp/prspAssets.xml"/>
+		
+		<texture href="kBookAssets.png">
+			<cutout id="whiteBox" x="630" y="0" width="70" height="70" columns="0" lines="0" />
+			<cutout id="blackBox" x="351" y="0" width="35" height="70" columns="0" lines="0" />
+			<cutout id="greyBox" x="500" y="75" width="35" height="70" columns="0" lines="0" />
+			<cutout id="greyLine" x="70" y="138" width="35" height="2" columns="0" lines="0" />
+			<cutout id="empty" x="0" y="0" width="0" height="0" />	
+		</texture>
+		
+		<style id="popupText" halign="left" valign="top" top="8" left="10" size="30" style="bold"/>
+		<style id="popupTextWhite" halign="left" valign="top" top="8" left="10" size="30" style="bold" color="#FFFFFF"/>
+		
+		<skin id="popup"
+			cutouts="blackBorder-tl,blackBorder-tc,blackBorder-tr,blackBorder-cl,whiteBox,blackBorder-cl,blackBorder-bl,blackBorder-bc,blackBorder-br"
+		/>
+		<skin id="popupText"
+			styles="popupText,popupText,popupText,popupText"
+			cutouts="empty,greyLine,empty,empty,whiteBox,empty,empty,greyLine,empty"
+		/>
+		<skin id="popupIndicator"
+			styles="popupText,popupText,popupText,popupText"
+			cutouts="empty,empty,empty,empty,greyBox,empty,empty,empty,empty"
+		/>
+		<skin id="popupIndicatorSel"
+			styles="popupTextWhite,popupTextWhite,popupTextWhite,popupTextWhite"
+			cutouts="empty,empty,empty,empty,blackBox,empty,empty,empty,empty"
+		/>
+		<!-- End of PRS+ stuff -->
+
+		<string id="infoTitles" value="Cover,Title,Author,Publisher,Category,eBook ID,Kind,Date,Size,Location,File,Digital Rights,Expires"/>
+		<string id="infoNames" value="AlbumArt,title,author,Publisher,Genre,connect:eBookID,mime,date,size,path,path,status,expiration"/>
+		<string id="infoFormats" value="thumbnail,string,string,string,string,string,mime,date,size,location,directory,drm,dateTime"/>
+	
+		<style font="Swis721 BT">
+			<style id="kbookBigTitle" halign="left" size="48" style="bold" color="#FFFFFF"/>
+			<style id="kbookSmallTitle" halign="left" size="36" style="bold" color="#FFFFFF"/>
+			
+			<style id="kbookVBigName" halign="left" valign="top" top="4" size="36" style="bold"/>
+			<style id="kbookVSmallName" halign="left" valign="top" top="4" size="24" style="bold"/>
+			<style id="kbookVComment" halign="right" valign="bottom" bottom="3" size="18" truncate="center"/>
+			<style id="kbookVTab" halign="right" right="7" size="36" style="bold"/>
+			<style id="kbookVMark" halign="right" right="7" size="36" style="bold" color="#FFFFFF"/>
+			<style id="kbookVExpiration" halign="right" valign="top" top="8" size="12"/>
+			<style id="kbookVExpirationBig" halign="right" valign="top" top="4" size="20"/>
+			
+			<style id="kbookHBigName" halign="left" valign="top" top="0" size="24" style="bold"/>
+			<style id="kbookHSmallName" halign="left" valign="top" top="2" size="18" style="bold"/>
+			<style id="kbookHComment" halign="right" valign="bottom" bottom="2" size="16" truncate="center"/>
+			<style id="kbookHTab" halign="right" right="10" size="28" style="bold"/>
+			<style id="kbookHMark" halign="right" right="10" size="28" style="bold" color="#FFFFFF"/>
+			<style id="kbookHExpiration" halign="right" valign="top" top="6"  size="12"/>
+			<style id="kbookHExpirationBig" halign="right" valign="top" top="0" size="20"/>
+			
+			<style id="kbookVName" halign="right" right="10" size="36" style="bold"/>
+			<style id="kbookVValue" halign="center" size="36" style="bold"/>
+			<style id="kbookVSelection" halign="center" size="36" style="bold" color="#FFFFFF"/>
+			<style id="kbookVUnit" halign="left" left="10" size="36" style="bold"/>
+			
+			<style id="kbookHName" halign="right" right="10" size="28" style="bold"/>
+			<style id="kbookHValue" halign="center" size="28" style="bold"/>
+			<style id="kbookHSelection" halign="center" size="28" style="bold" color="#FFFFFF"/>
+			<style id="kbookHUnit" halign="left" left="10" size="28" style="bold"/>
+			
+			<style id="label" size="22" style="bold" color="#FFFFFF" valign="top" top="2"/>
+			<style id="info-n" size="24" valign="top" top="7" bottom="7" halign="right" right="14" style="bold"/>
+			<style id="info-v" size="24" halign="left" top="9"/>
+			
+			<style id="kbookAbout" halign="left" left="10" top="10" right="10" bottom="10" size="18"/>
+			
+			<style id="kbookMessage" halign="center" valign="top" size="36" style="bold"/>
+		</style>
+		<style font="Courier10 BT">
+			<style id="time" size="22" style="bold" color="#FFFFFF"/>
+		</style>
+		<style font="Dutch801 Rm BT">
+			<style id="text" size="12"/>
+		</style>
+	
+		<texture href="kBookAssets.png">
+			<cutout id="logo" x="0" y="0" width="210" height="70" lines="0"/>
+
+			<cutout id="kbookHeader-l" x="420" y="0" width="70" height="70"/>
+			<cutout id="kbookHeader-c" x="490" y="0" width="70" height="70"/>
+			<cutout id="kbookHeader-r" x="560" y="0" width="70" height="70"/>
+			
+			<cutout id="kbookStatus-l" x="420" y="437" width="70" height="33"/>
+			<cutout id="kbookStatus-c" x="490" y="437" width="70" height="33"/>
+			<cutout id="kbookStatus-r" x="560" y="437" width="70" height="33"/>
+			
+			<cutout id="kbookInfo-l" x="0" y="70" width="0" height="360"/>
+			<cutout id="kbookInfo-c" x="0" y="70" width="50" height="360"/>
+			<cutout id="kbookInfo-r" x="0" y="70" width="0" height="360"/>
+			
+			<cutout id="kbookVMenu-l" x="0" y="70" width="70" height="70" columns="210"/>
+			<cutout id="kbookVMenu-c" x="70" y="70" width="70" height="70" columns="210"/>
+			<cutout id="kbookVMenu-r" x="140" y="70" width="70" height="70" columns="210"/>
+			<cutout id="kbookHMenu-l" x="0" y="280" width="70" height="50" columns="210"/>
+			<cutout id="kbookHMenu-c" x="70" y="280" width="70" height="50" columns="210"/>
+			<cutout id="kbookHMenu-r" x="140" y="280" width="70" height="50" columns="210"/>
+			<cutout id="kbookMenuStatus-l" x="0" y="437" width="70" height="33"/>
+			<cutout id="kbookMenuStatus-c" x="70" y="437" width="70" height="33"/>
+			<cutout id="kbookMenuStatus-r" x="140" y="437" width="70" height="33"/>
+			
+			<cutout id="kbookPage-lt" x="630" y="0" width="8" height="8" lines="140"/>
+			<cutout id="kbookPage-ct" x="638" y="0" width="120" height="8" lines="140"/>
+			<cutout id="kbookPage-rt" x="762" y="0" width="8" height="8" lines="140"/>
+			<cutout id="kbookPage-lm" x="630" y="8" width="8" height="124"/>
+			<cutout id="kbookPage-cm" x="638" y="8" width="124" height="124"/>
+			<cutout id="kbookPage-rm" x="762" y="8" width="8" height="124"/>
+			<cutout id="kbookPage-lb" x="630" y="132" width="8" height="8" lines="140"/>
+			<cutout id="kbookPage-cb" x="638" y="132" width="120" height="8" lines="140"/>
+			<cutout id="kbookPage-rb" x="762" y="132" width="8" height="8" lines="140"/>
+			<cutout id="kbookPageStatus-l" x="0" y="440" width="70" height="30"/>
+			<cutout id="kbookPageStatus-c" x="70" y="440" width="70" height="30"/>
+			<cutout id="kbookPageStatus-r" x="140" y="440" width="70" height="30"/>
+		
+			<cutout id="kbookVSetting-l" x="420" y="70" width="70" height="70"/>
+			<cutout id="kbookVSetting-c" x="490" y="70" width="0" height="70"/>
+			<cutout id="kbookVSetting-r" x="490" y="70" width="70" height="70"/>
+			<cutout id="kbookVField-l" x="420" y="140" width="10" height="70"/>
+			<cutout id="kbookVField-c" x="430" y="140" width="120" height="70"/>
+			<cutout id="kbookVField-r" x="550" y="140" width="10" height="70"/>
+			<cutout id="kbookHSetting-l" x="420" y="280" width="70" height="50"/>
+			<cutout id="kbookHSetting-c" x="490" y="280" width="0" height="50"/>
+			<cutout id="kbookHSetting-r" x="490" y="280" width="70" height="50"/>
+			<cutout id="kbookHField-l" x="420" y="330" width="10" height="50"/>
+			<cutout id="kbookHField-c" x="430" y="330" width="120" height="50"/>
+			<cutout id="kbookHField-r" x="550" y="330" width="10" height="50"/>
+			
+			<cutout id="kbookSong-l" x="560" y="70" width="0" height="360"/>
+			<cutout id="kbookSong-c" x="560" y="70" width="70" height="360"/>
+			<cutout id="kbookSong-r" x="560" y="70" width="0" height="360"/>
+
+			<cutout id="imageArrow-l" x="630" y="150" width="35" height="70"/>
+			<cutout id="imageArrow-r" x="735" y="150" width="35" height="70"/>
+			<cutout id="imageArrow-t" x="665" y="150" width="70" height="35"/>
+			<cutout id="imageArrow-b" x="665" y="185" width="70" height="35"/>
+
+			<cutout id="overlap-a" x="630" y="220" width="48" height="51"/>
+			<cutout id="kbookPage-a" x="630" y="280" width="35" height="35"/>
+
+			<cutout id="sl2-gt" x="0" y="0" width="0" height="0"/>
+			<cutout id="sl2-gm" x="0" y="0" width="0" height="0"/>
+			<cutout id="sl2-gb" x="0" y="0" width="0" height="0"/>
+			<cutout id="sl2-tv" x="0" y="0" width="0" height="0"/>
+			<cutout id="sl2-gl" x="700" y="280" width="20" height="20" lines="0"/>
+			<cutout id="sl2-gc" x="720" y="280" width="20" height="20" lines="0"/>
+			<cutout id="sl2-gr" x="740" y="280" width="20" height="20" lines="0"/>
+			<cutout id="sl2-th" x="760" y="280" width="20" height="20" lines="0"/>
+			
+			<cutout id="kBookSourceIcon-a" x="630" y="320" width="30" height="30"/>
+			<cutout id="kBookExpired-a" x="740" y="250" width="20" height="20"/>
+			<cutout id="kBookExpireLater-a" x="760" y="250" width="20" height="20"/>
+			<cutout id="batteryProgress-l" x="630" y="320" width="8" height="30"/>
+			<cutout id="batteryProgress-c" x="638" y="320" width="50" height="30"/>
+			<cutout id="batteryProgress-r" x="688" y="320" width="12" height="30"/>
+			<cutout id="volumeProgress-l" x="700" y="320" width="1" height="30"/>
+			<cutout id="volumeProgress-c" x="701" y="320" width="50" height="30"/>
+			<cutout id="volumeProgress-r" x="751" y="320" width="4" height="30"/>
+			<cutout id="batteryCheckBox-a" x="630" y="410" width="20" height="30" lines="0"/>
+			<cutout id="volumeCheckBox-a" x="700" y="410" width="20" height="30" lines="0"/>
+			<cutout id="blinkCheckBox-a" x="600" y="440" width="30" height="30" lines="0"/>
+			<cutout id="sizeIndicator-a" x="660" y="440" width="30" height="30"/>
+			<cutout id="halfPageIndicator-a" x="210" y="440" width="30" height="30"/>
+		</texture>
+		<texture href="kBookDefaultArt.png">
+			<cutout id="defaultArt" x="0" y="0"/>
+		</texture>
+		<texture href="kBookDefaultThumbnail.png">
+			<cutout id="defaultThumbnail" x="0" y="0"/>
+		</texture>
+		<texture href="kBookDisk.png">
+			<cutout id="diskSprite-a" x="0" y="0" width="140" height="140"/>
+			<cutout id="diskBackground-a" x="560" y="0" width="140" height="140"/>
+		</texture>
+		<texture href="kBookIcon.png">
+			<cutout id="kBookVIcon-a" x="0" y="0" width="70" height="70"/>
+			<cutout id="kBookHIcon-a" x="0" y="10" width="70" height="50" lines="70"/>
+			<cutout id="play-a" x="910" y="70" width="70" height="70" lines="0"/>
+			<cutout id="soft-reset-a" x="1820" y="70" width="70" height="70" lines="0"/>
+			<cutout id="hard-reset-a" x="1820" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-flash-a" x="2030" y="70" width="70" height="70" lines="0"/>
+			<cutout id="delete-book-a" x="2310" y="70" width="70" height="70" lines="0"/>
+			<cutout id="device-shutdown-a" x="2170" y="70" width="70" height="70" lines="0"/>
+		</texture>
+		<texture href="kBookLogos.png">
+			<cutout id="kBookLogos-a" x="0" y="0" width="210" height="70"/>
+		</texture>
+	
+		<skin id="label" 
+				styles="label"/>
+		<skin id="time" 
+				styles="time"/>
+		<skin id="title" 
+				styles="kbookBigTitle"/>
+		<skin id="title2"
+				styles="kbookSmallTitle"/>
+		<skin id="message" 
+				styles="kbookVBigName"/>
+				
+		<skin id="play" 
+				cutouts="play-a"/>
+		<skin id="soft-reset" 
+				cutouts="soft-reset-a"/>
+		<skin id="hard-reset" 
+				cutouts="hard-reset-a"/>
+		<skin id="format-flash" 
+				cutouts="format-flash-a"/>
+		<skin id="delete-book" 
+				cutouts="delete-book-a"/>
+		<skin id="device-shutdown" 
+				cutouts="device-shutdown-a"/>
+				
+		<skin id="kbookAbout" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kBookVIcon-a,kBookLogos-a"
+				styles="kbookBigTitle,kbookAbout"/>
+				
+		<skin id="kbookInfo" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kBookVIcon-a"
+				styles="kbookBigTitle,info-n,info-v"/>
+				
+		<skin id="kbookMenu" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookVMenu-l,kbookVMenu-c,kbookVMenu-r,kBookVIcon-a,kbookHMenu-l,kbookHMenu-c,kbookHMenu-r,kBookHIcon-a,logo,kBookSourceIcon-a,kBookExpireLater-a,kBookExpired-a"
+				styles="kbookBigTitle,kbookSmallTitle,kbookVBigName,kbookVSmallName,kbookVComment,kbookVTab,kbookVMark,kbookVExpiration,kbookVExpirationBig,kbookHBigName,kbookHSmallName,kbookHComment,kbookHTab,kbookHMark,kbookHExpiration,kbookHExpirationBig"/>
+		<skin id="kbookMenuIcon" 
+				cutouts="kBookVIcon-a,kBookHIcon-a"/>
+		<skin id="kbookMenuStatus" 
+				cutouts="kbookMenuStatus-l,kbookMenuStatus-c,kbookMenuStatus-r"/>
+				
+		<skin id="kbookPage"
+				cutouts="kbookPage-lt,kbookPage-ct,kbookPage-rt,kbookPage-lm,kbookPage-cm,kbookPage-rm,kbookPage-lb,kbookPage-cb,kbookPage-rb,kbookPage-a,overlap-a,diskSprite-a" 
+				styles="text,text,text,text"/>
+		<skin id="kbookPageStatus" 
+				cutouts="kbookPageStatus-l,kbookPageStatus-c,kbookPageStatus-r"/>
+				
+		<skin id="kbookReset" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="kbookFormatFlash" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="kbookDeleteBook" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="kbookDeviceShutdown" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+
+		<skin id="kbookSetting" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookVSetting-l,kbookVSetting-c,kbookVSetting-r,kBookVIcon-a,kbookVField-l,kbookVField-c,kbookVField-r,kbookHSetting-l,kbookHSetting-c,kbookHSetting-r,kBookHIcon-a,kbookHField-l,kbookHField-c,kbookHField-r,logo"
+				styles="kbookBigTitle,kbookVName,kbookVValue,kbookVSelection,kbookVUnit,kbookHName,kbookHValue,kbookHSelection,kbookHUnit"/>
+				
+		<skin id="kbookSong" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookSong-l,kbookSong-c,kbookSong-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="slider2" 
+				cutouts="sl2-gt,sl2-gm,sl2-gb,sl2-tv,sl2-gl,sl2-gc,sl2-gr,sl2-th"/>]
+				
+		<skin id="kbookStatus" 
+				cutouts="kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+				
+		<skin id="kbookImage" 
+				cutouts="imageArrow-l,imageArrow-r,imageArrow-t,imageArrow-b"/>
+				
+		<skin id="batteryProgress" 
+				cutouts="batteryProgress-l,batteryProgress-c,batteryProgress-r"/>
+		<skin id="volumeProgress" 
+				cutouts="volumeProgress-l,volumeProgress-c,volumeProgress-r"/>
+		<skin id="batteryCheckBox" 
+				cutouts="batteryCheckBox-a"/>
+		<skin id="volumeCheckBox" 
+				cutouts="volumeCheckBox-a"/>
+		<skin id="blinkCheckBox" 
+				cutouts="blinkCheckBox-a"/>
+		<skin id="sizeIndicator" 
+				cutouts="sizeIndicator-a"/>
+		<skin id="halfPageIndicator" 
+				cutouts="halfPageIndicator-a"/>
+				
+		<skin id="diskBackground" 
+				cutouts="diskBackground-a"/>
+		<skin id="diskSprite" 
+				cutouts="diskSprite-a"/>
+		<skin id="pageSprite"
+				cutouts="kbookPage-lt,kbookPage-ct,kbookPage-rt,kbookPage-lm,kbookPage-cm,kbookPage-rm,kbookPage-lb,kbookPage-cb,kbookPage-rb"/>
+				
+		<skin id="text" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv"
+				styles="kbookMessage,kbookMessage,kbookMessage,kbookMessage"/>
+	</assets>
+	<code>
+		<function id="afterModal" params="group">
+			group.show(false);
+			this.modal--;
+			if (this.modal &lt; 0)
+				debugger
+			if (!this.modal) {
+				this.focus(true);
+				
+				this.MENU_GROUP.MENU.enable(true);
+				this.PAGE_GROUP.PAGE.enable(true);
+				this.SONG_GROUP.SONG.enable(true);
+				this.PICTURE_GROUP.PICTURE.enable(true);
+				this.SETTING_GROUP.SETTING.enable(true);
+				this.INFO_GROUP.INFO.enable(true);
+				this.ABOUT_GROUP.ABOUT.enable(true);
+				this.AUTORUN_GROUP.AUTORUN.enable(true);
+				this.SOFT_RESET_GROUP.SOFT_RESET.enable(true);
+				this.HARD_RESET_GROUP.HARD_RESET.enable(true);
+				this.FORMAT_DEVICE_GROUP.FORMAT_DEVICE.enable(true);
+				this.DELETE_BOOK_GROUP.DELETE_BOOK.enable(true);
+				this.DEVICE_SHUTDOWN_GROUP.DEVICE_SHUTDOWN.enable(true);
+				
+				var target;
+				switch (this.getVariable("STATE")) {
+				case "MENU": target = this.MENU_GROUP.MENU; break;
+				case "PAGE": target = this.PAGE_GROUP.PAGE; break;
+				case "SONG": target = this.SONG_GROUP.SONG; break;
+				case "PICTURE": target = this.PICTURE_GROUP.PICTURE; break;
+				case "SETTING": target = this.SETTING_GROUP.SETTING; break;
+				case "INFO": target = this.INFO_GROUP.INFO; break;
+				case "ABOUT": target = this.ABOUT_GROUP.ABOUT; break;
+				case "AUTORUN": target = this.AUTORUN_GROUP.AUTORUN; break;
+				case "SOFT_RESET": target = this.SOFT_RESET_GROUP.SOFT_RESET; break;
+				case "HARD_RESET": target = this.HARD_RESET_GROUP.HARD_RESET; break;
+				case "FORMAT_DEVICE": target = this.FORMAT_DEVICE_GROUP.FORMAT_DEVICE; break;
+				case "DELETE_BOOK": target = this.DELETE_BOOK_GROUP.DELETE_BOOK; debugger; break;
+				case "DEVICE_SHUTDOWN": target = this.DEVICE_SHUTDOWN_GROUP.DEVICE_SHUTDOWN; break;
+				}
+				target.focus(true);
+			}
+			else if (this.FORMAT_GROUP.isShown())
+				this.FORMAT_GROUP.focus(true);
+			else if (this.DISK_GROUP.isShown())
+				this.DISK_GROUP.focus(true);
+			else if (this.SHUTDOWN_GROUP.isShown())
+				this.SHUTDOWN_GROUP.focus(true);
+			else if (this.LOW_BATTERY_GROUP.isShown())
+				this.LOW_BATTERY_GROUP.focus(true);
+			else if (this.INVALID_FORMAT_GROUP.isShown())
+				this.INVALID_FORMAT_GROUP.focus(true);
+			else if (this.GOTO_GROUP.isShown())
+				this.GOTO_GROUP.focus(true);
+		</function>
+		<function id="beforeModal" params="group">
+			if (!this.modal) {
+	trace("beforeModal: STATE=" + this.getVariable("STATE") + "\n");
+				this.focus(true);
+				this.MENU_GROUP.MENU.enable(false);
+				this.PAGE_GROUP.PAGE.enable(false);
+				this.SONG_GROUP.SONG.enable(false);
+				this.PICTURE_GROUP.PICTURE.enable(false);
+				this.SETTING_GROUP.SETTING.enable(false);
+				this.INFO_GROUP.INFO.enable(false);
+				this.ABOUT_GROUP.ABOUT.enable(false);
+				this.AUTORUN_GROUP.AUTORUN.enable(false);
+				this.SOFT_RESET_GROUP.SOFT_RESET.enable(false);
+				this.HARD_RESET_GROUP.HARD_RESET.enable(false);
+				this.FORMAT_DEVICE_GROUP.FORMAT_DEVICE.enable(false);
+				this.DELETE_BOOK_GROUP.DELETE_BOOK.enable(false);
+				this.DEVICE_SHUTDOWN_GROUP.DEVICE_SHUTDOWN.enable(false);
+			}
+			this.modal++;
+			trace("beforeModal: this.modal=" + this.modal + "\n");
+			group.show(true);
+			group.focus(true);
+		</function>
+		<function id="clearModal" params="">
+			var target=null;
+			if (this.modal>0) {
+			trace("CLEARMODAL called\n");
+				// Determine which, if any, modal UI group is currently shown.
+				// Clear modal when it is GOTO_GROUP only!
+				if (this.GOTO_GROUP.isShown()) {
+					target=this.GOTO_GROUP;
+					target.show(false);
+					this.modal--;
+					if (!this.modal) {
+						//this.focus(true);
+				
+						this.MENU_GROUP.MENU.enable(true);
+						this.PAGE_GROUP.PAGE.enable(true);
+						this.SONG_GROUP.SONG.enable(true);
+						this.PICTURE_GROUP.PICTURE.enable(true);
+						this.SETTING_GROUP.SETTING.enable(true);
+						this.INFO_GROUP.INFO.enable(true);
+						this.ABOUT_GROUP.ABOUT.enable(true);
+						this.AUTORUN_GROUP.AUTORUN.enable(true);
+						this.SOFT_RESET_GROUP.SOFT_RESET.enable(true);
+						this.HARD_RESET_GROUP.HARD_RESET.enable(true);
+						this.FORMAT_DEVICE_GROUP.FORMAT_DEVICE.enable(true);
+						this.DELETE_BOOK_GROUP.DELETE_BOOK.enable(true);
+						this.DEVICE_SHUTDOWN_GROUP.DEVICE_SHUTDOWN.enable(true);
+
+						switch (this.getVariable("STATE")) {
+						case "MENU": target = this.MENU_GROUP.MENU; break;
+						case "PAGE": target = this.PAGE_GROUP.PAGE; break;
+						case "SONG": target = this.SONG_GROUP.SONG; break;
+						case "PICTURE": target = this.PICTURE_GROUP.PICTURE; break;
+						case "SETTING": target = this.SETTING_GROUP.SETTING; break;
+						case "INFO": target = this.INFO_GROUP.INFO; break;
+						case "ABOUT": target = this.ABOUT_GROUP.ABOUT; break;
+						case "AUTORUN": target = this.AUTORUN_GROUP.AUTORUN; break;
+						case "SOFT_RESET": target = this.SOFT_RESET_GROUP.SOFT_RESET; break;
+						case "HARD_RESET": target = this.HARD_RESET_GROUP.HARD_RESET; break;
+						case "FORMAT_DEVICE": target = this.FORMAT_DEVICE_GROUP.FORMAT_DEVICE; break;
+						case "DELETE_BOOK": target = this.DELETE_BOOK_GROUP.DELETE_BOOK; break;
+						case "DEVICE_SHUTDOWN": target = this.DEVICE_SHUTDOWN_GROUP.DEVICE_SHUTDOWN; break;
+						}
+					} else {
+						target=null
+					}
+				}
+				if (target)
+					target.focus(true);
+				else if (this.FORMAT_GROUP.isShown())
+					this.FORMAT_GROUP.focus(true);
+				else if (this.DISK_GROUP.isShown())
+					this.DISK_GROUP.focus(true);
+				else if (this.SHUTDOWN_GROUP.isShown())
+					this.SHUTDOWN_GROUP.focus(true);
+				else if (this.LOW_BATTERY_GROUP.isShown())
+					this.LOW_BATTERY_GROUP.focus(true);
+				else if (this.INVALID_FORMAT_GROUP.isShown())
+					this.INVALID_FORMAT_GROUP.focus(true);
+				else if (this.GOTO_GROUP.isShown())
+					this.GOTO_GROUP.focus(true);
+			}
+		</function>
+		<function id="beginFullScreen">
+			this.STATUS_GROUP.show(false);
+		</function>
+		<function id="construct">
+			this.modal = 0;
+			this.state = undefined;
+			this.control = undefined;
+			this.volumeBlink = undefined;
+		</function>
+		<function id="doQuit">
+			this.timer = new Timer;
+			this.timer.onCallback  = this.doQuitCallback;
+			this.timer.device  = this.getDevice();
+			this.timer.window  = this.container.getWindow();
+			this.timer.schedule(2000);
+			this.timer.device.doProcessing(100);
+		</function>
+		<function id="doQuitCallback">
+			this.window.doQuit();
+		</function>
+		<function id="doResume">
+			this.getDevice().doneResume();
+			this.getModel().resume();
+			if (this.modal) {
+				if (this.FORMAT_GROUP.isShown())
+					this.FORMAT_GROUP.focus(true);
+				else if (this.DISK_GROUP.isShown())
+					this.DISK_GROUP.focus(true);
+				else if (this.SHUTDOWN_GROUP.isShown())
+					this.SHUTDOWN_GROUP.focus(true);
+				else if (this.LOW_BATTERY_GROUP.isShown())
+					this.LOW_BATTERY_GROUP.focus(true);
+				else if (this.INVALID_FORMAT_GROUP.isShown())
+					this.INVALID_FORMAT_GROUP.focus(true);
+				else if (this.GOTO_GROUP.isShown())
+					this.GOTO_GROUP.focus(true);
+			}
+		</function>
+		<function id="doSuspend">
+			this.getModel().suspend();
+			this.getDevice().doneSuspend();
+		</function>
+		<function id="endFullScreen">
+			this.STATUS_GROUP.show(true);
+		</function>
+		<function id="modelChanged">
+      arguments.callee.grammar.call(this);
+      var state = this.getVariable("STATE");
+      var target;
+      if (this.state != state) {
+      this.focus(true)
+      this.MENU_GROUP.show(false)
+      this.PAGE_GROUP.show(false)
+      this.SONG_GROUP.show(false)
+      this.PICTURE_GROUP.show(false)
+      this.SETTING_GROUP.show(false)
+      this.INFO_GROUP.show(false)
+      this.ABOUT_GROUP.show(false)
+      this.AUTORUN_GROUP.show(false)
+      this.SOFT_RESET_GROUP.show(false)
+      this.HARD_RESET_GROUP.show(false)
+      this.FORMAT_DEVICE_GROUP.show(false)
+      this.DELETE_BOOK_GROUP.show(false)
+      this.DEVICE_SHUTDOWN_GROUP.show(false)
+      switch(state) {
+      case "MENU":
+      this.MENU_GROUP.show(true)
+      target = this.MENU_GROUP.MENU
+      break
+      case "PAGE":
+      this.PAGE_GROUP.show(true)
+      target = this.PAGE_GROUP.PAGE
+      break
+      case "SONG":
+      this.SONG_GROUP.show(true)
+      target = this.SONG_GROUP.SONG
+      break
+      case "PICTURE":
+      this.PICTURE_GROUP.show(true)
+      target = this.PICTURE_GROUP.PICTURE
+      break
+      case "SETTING":
+      this.SETTING_GROUP.show(true)
+      target = this.SETTING_GROUP.SETTING
+      break
+      case "INFO":
+      this.INFO_GROUP.show(true)
+      target = this.INFO_GROUP.INFO
+      break
+      case "ABOUT":
+      this.ABOUT_GROUP.show(true)
+      target = this.ABOUT_GROUP.ABOUT
+      break
+      case "AUTORUN":
+      this.AUTORUN_GROUP.show(true)
+      target = this.AUTORUN_GROUP.AUTORUN;
+      break
+      case "SOFT_RESET":
+      this.SOFT_RESET_GROUP.show(true)
+      target = this.SOFT_RESET_GROUP.SOFT_RESET
+      break
+      case "HARD_RESET":
+      this.HARD_RESET_GROUP.show(true)
+      target = this.HARD_RESET_GROUP.HARD_RESET
+      break
+      case "FORMAT_DEVICE":
+      this.FORMAT_DEVICE_GROUP.show(true)
+      target = this.FORMAT_DEVICE_GROUP.FORMAT_DEVICE
+      break
+      case "DEVICE_SHUTDOWN":
+      this.DEVICE_SHUTDOWN_GROUP.show(true)
+      target = this.DEVICE_SHUTDOWN_GROUP.DEVICE_SHUTDOWN
+      break
+      case "DELETE_BOOK":
+      this.DELETE_BOOK_GROUP.show(true)
+      target = this.DELETE_BOOK_GROUP.DELETE_BOOK
+      break
+      }
+      this.state = state;
+      this.volumeVisibilityChanged();
+      if (target.isEnabled())
+      target.focus(true)
+      }
+    </function>
+		<function id="variableChanged" params="id, value"><![CDATA[
+			arguments.callee.grammar.call(this, id, value);
+			if (id == "DISK") {
+				if (value) {
+					this.beforeModal(this.DISK_GROUP);
+					this.DISK_GROUP.WAIT.startAnimation("WAIT");
+				}
+				else {
+					this.DISK_GROUP.WAIT.stopAnimation("WAIT");
+					this.afterModal(this.DISK_GROUP);
+				}
+			}
+			else if (id == "FORMAT") {
+				if (value) {
+					this.beforeModal(this.FORMAT_GROUP);
+				}
+				else {
+					this.afterModal(this.FORMAT_GROUP);
+				}
+			}
+			else if (id == "FORMAT_PERCENT") {
+				var sprite = this.FORMAT_GROUP.FORMAT;
+				var u = sprite.u + 1;
+				if (u > 3)
+					u = 0;
+				sprite.u = u;
+			}
+			else if (id == "PROGRESS") {
+				if (value) {
+					this.beforeModal(this.PROGRESS_GROUP);
+				}
+				else {
+					if (this.PROGRESS_GROUP.isShown()) {
+						this.afterModal(this.PROGRESS_GROUP);
+					}
+				}
+			}
+			else if (id == "PROGRESS_PERCENT") {
+				var sprite = this.PROGRESS_GROUP.PROGRESS;
+				var u = sprite.u + 1;
+				if (u > 3)
+					u = 0;
+				sprite.u = u;
+			}
+			else if (id == "VOLUME_BLINK") {
+				if (this.volumeBlink != value) {
+					this.volumeBlink = value;
+					this.volumeVisibilityChanged();
+				}
+			}
+			else if (id == "BATTERY") {
+				var power = this.getVariable("POWER");
+				if (!power) {
+					if (value == 0) {
+						this.beforeModal(this.SHUTDOWN_GROUP);
+						this.doQuit();
+					}
+					else if ((!this.batteryWarning) && (value <= 20)) {
+						this.batteryWarning = true;
+						this.setVariable("LOW_BATTERY", 1);
+					}
+				}
+			}
+			else if (id == "POWER") {
+				if (value) {
+					var lowBattery = this.getVariable("LOW_BATTERY");
+					if (lowBattery)
+						this.setVariable("LOW_BATTERY", 0);
+					this.batteryWarning = false;
+				}
+			}
+			else if (id == "LOW_BATTERY") {
+				if (value) {
+					this.beforeModal(this.LOW_BATTERY_GROUP);
+				}
+				else {
+					this.afterModal(this.LOW_BATTERY_GROUP);
+				}
+			}
+			else if (id == "INVALID_FORMAT") {
+				if (value) {
+					this.beforeModal(this.INVALID_FORMAT_GROUP);
+				}
+				else {
+					this.afterModal(this.INVALID_FORMAT_GROUP);
+				}
+			}
+			else if (id == "DEVICE_SHUTDOWN") {
+				if (value) {
+					this.beforeModal(this.SHUTDOWN_GROUP);
+					this.doQuit();
+				}
+			}
+		]]></function>
+		<function id="volumeVisibilityChanged">
+			this.STATUS_GROUP.VOLUME_GROUP.show((this.state == "SONG") || (this.control == 1) || (this.volumeBlink == 1));
+		</function>
+	</code>
+	<clock/>
+	
+	<group id="ABOUT_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<kbookAbout id="ABOUT" left="0" right="0" top="0" bottom="33">
+			<records>
+				<record><number name="kind" value="0"/><string name="text" value="Copyright &#169;2006-2008 Sony Corporation"/></record>
+				<record><number name="kind" value="1"/><string name="text" value="Adobe, the Adobe logo, Reader and PDF are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries."/></record>
+				<record><number name="kind" value="2"/><string name="text" value="MPEG Layer-3 audio coding technology and patents licensed by Fraunhofer IIS and Thomson. MPEG-4 AAC audio coding technology licensed by Fraunhofer IIS (www.iis.fraunhofer.de/amm/)."/></record>
+				<record><number name="kind" value="3"/><string name="text" value="Application software designed and implemented by Kinoma (www.kinoma.com). Portions Copyright &#169;2006,2007 Kinoma, Inc."/></record>
+				<record><number name="kind" value="-1"/><string name="text" value="Bitstream is a registered trademark, and Dutch, Font Fusion, and Swiss are trademarks, of Bitstream, Inc."/></record>
+				<record><number name="kind" value="-1"/><string name="text" value="Portions of this software are Copyright &#169;2005 The FreeType Project (www.freetype.org). All rights reserved."/></record>
+				<record><number name="kind" value="-1"/><string name="text" value="This software is based in part on the work of the Independent JPEG Group."/></record>
+			</records>
+			<code>
+				<function id="getKind">
+					return 25;
+				</function>
+				<function id="getTitle">
+					return "About";
+				</function>
+				<function id="getValue" params="record, field"><![CDATA[
+					var result = arguments.callee.grammar.call(this, record, field);
+					if ((record.kind == 0) && (field == "text")) {
+						var text = "Version: " + this.getVariable("FIRMWARE_VERSION") + "\n" 
+						text += "Device: " + this.getVariable("DEVICE_ID") + "\n";
+						if (this.getVariable("STORE_STATUS"))
+							text += "Authorized for the eBook Store.\n"
+						else
+							text += "Not authorized for the eBook Store.\n"
+						result = text + result;
+					}
+					else if ((record.kind == 1) && (field == "text")) {
+						var text = "\nThis device is not authorized for Adobe DRM protected content.\n";
+						if (this.getVariable("ADOBE_STATUS"))
+							text = "\nThis device is authorized for Adobe DRM protected content.\n";
+						result = result + text;
+					}
+					return result;
+				]]></function>
+				<function id="pageChanged">
+					var c = this.countPages();
+					var i = this.getPage() + 1;
+					if (!c) c++;
+					this.setVariable("ABOUT_INDEX_COUNT", i + " of " + c);
+				</function>
+			</code>
+		</kbookAbout>
+		<kbookStatus left="0" right="0" height="33" bottom="0"/>
+		<kbookLabel left="180" right="180" height="30" bottom="0" align="center" variable="ABOUT_INDEX_COUNT"/>
+	</group>
+	
+	<group id="INFO_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<kbookInfo id="INFO" left="0" right="0" top="0" bottom="33" split="200" href="x-id://infoData">
+			<code>
+				<function id="pageChanged">
+					if (this.isShown()) {
+						var c = this.countPages();
+						var i = this.getPage() + 1;
+						if (!c) c++;
+						this.setVariable("INFO_INDEX_COUNT", i + " of " + c);
+					}
+				</function>
+			</code>
+		</kbookInfo>
+		<kbookStatus left="0" right="0" height="33" bottom="0"/>
+		<kbookLabel left="210" right="210" height="30" bottom="0" align="center" variable="INFO_INDEX_COUNT"/>
+	</group>
+	
+	<group id="MENU_GROUP" left="0" right="0" top="0" bottom="0">
+		<kbookMenu id="MENU" left="0" right="0" top="0" bottom="30" href="x-id://tableData">
+			<code>
+				<function id="pageChanged">
+					if (this.isShown()) {
+						var c = this.countPages();
+						var i = this.getPage() + 1;
+						if (!c) c++;
+						this.setVariable("MENU_INDEX_COUNT", i + " of " + c);
+					}
+				</function>
+			</code>
+		</kbookMenu>
+		<kbookStatus skin="kbookMenuStatus" left="0" right="0" height="33" bottom="0"/>
+		<kbookLabel left="160" right="160" height="30" bottom="0" align="center" variable="MENU_INDEX_COUNT"/>
+	</group>
+	
+	<group id="PAGE_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<keys>
+			<key code="8" can="canGotoParent" do="doGotoParent"/>
+		</keys>
+		<code>
+			<function id="doDigit" params="part"><![CDATA[
+				var c = this.PAGE.countPages().toString().length - 1;
+				var s = "";
+				for (var i = 0; i < c; i++)
+					s += "_";
+				s += part.key.charAt(0);
+				this.setVariable("GOTO_VARIABLE", s);
+				var container = this.container;
+				container.beforeModal(container.GOTO_GROUP);
+			]]></function>
+		</code>
+		<kbookPage id="PAGE" left="0" right="0" top="0" bottom="30" href="x-id://bookData">
+			<code>
+				<function id="pageChanged">
+					if (this.isShown()) {
+						this.setVariable("BOOK_SIZE", this.getScale());
+						this.setVariable("BOOK_HALF_PAGE", this.getHalfPage());
+						var c = this.countPages();
+						var i = this.componentPages();
+						if (!c) c++;
+						this.setVariable("BOOK_INDEX_COUNT", i + " of " + c);
+					}
+				</function>
+			</code>
+		</kbookPage>
+		<kbookStatus skin="kbookPageStatus" left="0" right="0" height="30" bottom="0"/>
+		<kbookIndicator skin="sizeIndicator" left="90" bottom="0" variable="BOOK_SIZE"/>
+		<kbookIndicator skin="halfPageIndicator" left="120" height="30" bottom="0" variable="BOOK_HALF_PAGE"/>
+		<kbookLabel left="160" right="160" height="30" bottom="0" align="center" variable="BOOK_INDEX_COUNT"/>
+	</group>
+	
+	<group id="GOTO_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<code>
+			<function id="doDigit" params="part"><![CDATA[
+				var s = this.getVariable("GOTO_VARIABLE");
+				if (s.charAt(0) == "_") {
+					s = s.slice(1) + part.key.charAt(0);
+				}
+				else {
+					var c = s.length - 1;
+					var s = "";
+					for (var i = 0; i < c; i++)
+						s += "_";
+					s += part.key.charAt(0);
+				}
+				this.setVariable("GOTO_VARIABLE", s);
+			]]></function>
+			<function id="doCenter">
+				var s = this.getVariable("GOTO_VARIABLE");
+				s = s.replace(/_/g, "");
+				this.container.afterModal(this);
+				this.container.PAGE_GROUP.PAGE.bubble("doGoto", s);
+			</function>
+			<function id="doLeft"><![CDATA[
+				var s = this.getVariable("GOTO_VARIABLE");
+				var c = s.length;
+				s = "_" + s;
+				s = s.slice(0, c);
+				this.setVariable("GOTO_VARIABLE", s);
+			]]></function>
+			<function id="doMenu"><![CDATA[
+				this.container.afterModal(this);
+			]]></function>
+			<function id="doMarkMenu">
+				this.bubble("doBlink");
+			</function>
+			<function id="doRoot">
+				this.bubble("doBlink");
+			</function>
+		</code>
+		<background skin="diskBackground" left="0" right="0" top="0" bottom="30"/>
+		<group id="GROUP" width="140" height="140">
+			<sprite skin="diskSprite" u="127" left="0" right="0" top="0" bottom="0"  active="false"/>
+			<kbookLabel id="LB_MESSAGE" skin="message" left="0" right="0" top="20" height="50" align="center" text="PAGE"/>
+			<kbookLabel skin="message" left="-2" right="0" height="50" bottom="20" align="center" variable="GOTO_VARIABLE"/> <!-- temporary fix of #79 -->
+		</group>
+	</group>
+	
+	<group id="PICTURE_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<kbookImage id="PICTURE" left="0" right="0" top="0" bottom="33" active="true" href="x-id://imageData">
+			<code>
+				<function id="doFirst">
+					this.bubble("doGotoFirstPicture");
+				</function>
+				<function id="doLast">
+					this.bubble("doGotoLastPicture");
+				</function>
+				<function id="doNext">
+					this.bubble("doGotoNextPicture");
+				</function>
+				<function id="doPrevious">
+					this.bubble("doGotoPreviousPicture");
+				</function>
+			</code>
+		</kbookImage>
+		<kbookStatus left="0" right="0" height="33" bottom="0"/>
+		<kbookIndicator skin="sizeIndicator" left="90" bottom="0" variable="PICTURE_SIZE"/>
+		<kbookLabel left="210" right="210" height="30" bottom="0" align="center" variable="PICTURE_INDEX_COUNT"/>
+	</group>
+	
+	<group id="SETTING_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<kbookSetting id="SETTING" left="0" right="0" top="0" bottom="30" href="x-id://settingData">
+		</kbookSetting>
+		<kbookStatus left="0" right="0" height="33" bottom="0"/>
+		<kbookLabel id="LB_STATUS" left="210" right="210" height="30" bottom="0" align="center" text="1 of 1"/>
+	</group>
+	
+	<group id="SONG_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<panel skin="kbookSong" left="0" right="0" top="0" bottom="0"/>
+		<checkbox skin="play" left="0" width="70" top="0" height="70" variable="CONTROL" on="1" off="0"/>
+		<kbookLabel id="LB_TITLE" skin="title" left="70" right="0" top="0" height="70" align="left" text="Now Playing"/>
+		<movie id="SONG" left="0" width="0" top="0" height="0" volume="1" href="x-id://movieData">
+			<code>
+				<function id="doCenter">
+					var document = this.getDocument();
+					if (this.isPlaying()) {
+						this.stop();
+						document.control = 0;
+					}
+					else {
+						this.start();
+						document.control = 1;
+					}
+					document.volumeVisibilityChanged();
+				</function>
+				<function id="doLeft"><![CDATA[
+					var duration = this.getDuration();
+					var oldTime = this.getTime();
+					var newTime = oldTime - ((10 * duration) / 100);
+					if (newTime < 0)
+						newTime = 0;
+					if (newTime != oldTime)
+						this.setTime(newTime);
+					else
+						this.getModel().doLeft();
+				]]></function>
+				<function id="doFirst">
+					this.bubble("doGotoFirstSong");
+				</function>
+				<function id="doLast">
+					this.bubble("doGotoLastSong");
+				</function>
+				<function id="doNext">
+					this.bubble("doGotoNextSong");
+				</function>
+				<function id="doPrevious">
+					this.bubble("doGotoPreviousSong");
+				</function>
+				<function id="doRight"><![CDATA[
+					var duration = this.getDuration();
+					var oldTime = this.getTime();
+					var newTime = oldTime + ((10 * duration) / 100);
+					if (newTime > duration)
+						newTime = duration;
+					if (newTime != oldTime)
+						this.setTime(newTime);
+					else
+						this.getModel().doLeft();
+				]]></function>
+				<function id="finished">
+					this.bubble("doGotoNextSong");
+				</function>
+			</code>
+		</movie>
+		<image left="50" right="50" top="100" bottom="200" href="x-id://artData"/>
+		<kbookLabel left="0" right="0" height="35" bottom="150" align="center" variable="SONG"/>
+		<kbookLabel left="0" right="0" height="35" bottom="115" align="center" variable="ARTIST"/>
+		<kbookLabel left="0" right="0" height="35" bottom="80" align="center" variable="ALBUM"/>
+		<kbookLabel skin="time" align="center" left="10" width="140" height="40" bottom="40" variable="SONG_TIME"/>
+		<slider skin="slider2" axis="x" left="150" right="150" bottom="50" variable="SEEK"/>
+		<kbookLabel skin="time" align="center" width="140" right="10" height="40" bottom="40" variable="SONG_REST"/>
+		<kbookLabel left="210" right="210" height="30" bottom="0" align="center" variable="SONG_INDEX_COUNT"/>
+	</group>
+	
+	<group id="AUTORUN_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<kbookView id="AUTORUN" href="" left="0" right="0" top="0" bottom="0"/>
+	</group>
+	
+	<group id="SOFT_RESET_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<panel skin="kbookReset" left="0" right="0" top="0" bottom="0"/>
+		<sprite skin="soft-reset" left="0" width="70" top="0" height="70" active="false"/>
+		<kbookLabel id="LB_TITLE" skin="title" left="70" right="0" top="0" height="70" align="left" text="Restore Defaults"/>
+		<group id="SOFT_RESET" width="480" height="240">
+			<code>
+				<function id="doMark">
+					this.bubble("doSoftReset");
+				</function>
+			</code>
+			<sprite skin="diskSprite" width="140" top="0" height="140" u="9" active="false"/>
+			<kbookLabel id="LB_MESSAGE1" skin="message" left="0" right="0" top="140" height="50" align="center" text="Press MARK to restore"/>
+			<kbookLabel id="LB_MESSAGE2" skin="message" left="0" right="0" top="190" height="50" align="center" text="default settings."/>
+		</group>
+		<kbookLabel id="LB_STATUS" left="210" right="210" height="30" bottom="0" align="center" text="1 of 1"/>
+	</group>
+
+	<group id="FORMAT_DEVICE_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<panel skin="kbookFormatFlash" left="0" right="0" top="0" bottom="0"/>
+		<sprite skin="format-flash" left="0" width="70" top="0" height="70" active="false"/>
+		<kbookLabel id="LB_TITLE" skin="title2" left="70" right="0" top="0" height="70" align="left" text="Format Internal Memory"/>
+		<group id="FORMAT_DEVICE" width="480" height="240">
+			<code>
+				<function id="doMark">
+					this.bubble("doFormatFlash");
+				</function>
+			</code>
+			<sprite skin="diskSprite" width="140" top="0" height="140" u="11" active="false"/>
+			<kbookLabel id="LB_MESSAGE1" skin="message" left="0" right="0" top="140" height="50" align="center" text="Press MARK to format"/>
+			<kbookLabel id="LB_MESSAGE2" skin="message" left="0" right="0" top="190" height="50" align="center" text="internal memory."/>
+		</group>
+		<kbookLabel id="LB_STATUS" left="210" right="210" height="30" bottom="0" align="center" text="1 of 1"/>
+	</group>
+	
+	<group id="DELETE_BOOK_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<panel skin="kbookDeleteBook" left="0" right="0" top="0" bottom="0"/>
+		<sprite skin="delete-book" left="0" width="70" top="0" height="70" active="false"/>
+		<kbookLabel id="LB_TITLE" skin="title" left="70" right="0" top="0" height="70" align="left" text="Delete Book"/>
+		<group id="DELETE_BOOK" width="480" height="240">
+			<code>
+				<function id="doMark">
+					this.bubble("doDeleteBook");
+				</function>
+			</code>
+			<sprite skin="diskSprite" width="140" top="0" height="140" u="13" active="false"/>
+			<kbookLabel id="LB_MESSAGE1" skin="message" left="0" right="0" top="140" height="50" align="center" text="Press MARK to"/>
+			<kbookLabel id="LB_MESSAGE2" skin="message" left="0" right="0" top="190" height="50" align="center" text="delete book."/>
+		</group>
+		<kbookLabel id="LB_STATUS" left="210" right="210" height="30" bottom="0" align="center" text="1 of 1"/>
+	</group>
+	
+	<group id="DEVICE_SHUTDOWN_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<panel skin="kbookDeviceShutdown" left="0" right="0" top="0" bottom="0"/>
+		<sprite skin="device-shutdown" left="0" width="70" top="0" height="70" active="false"/>
+		<kbookLabel id="LB_TITLE" skin="title" left="70" right="0" top="0" height="70" align="left" text="Device Shutdown"/>
+		<group id="DEVICE_SHUTDOWN" width="480" height="240">
+			<code>
+				<function id="doMark">
+					this.bubble("doDeviceShutdown");
+				</function>
+			</code>
+			<sprite skin="diskSprite" width="140" top="0" height="140" u="12" active="false"/>
+			<kbookLabel id="LB_MESSAGE1" skin="message" left="0" right="0" top="140" height="50" align="center" text="Press MARK to shutdown"/>
+			<kbookLabel id="LB_MESSAGE2" skin="message" left="0" right="0" top="190" height="50" align="center" text="this device."/>
+		</group>
+		<kbookLabel id="LB_STATUS" left="210" right="210" height="30" bottom="0" align="center" text="1 of 1"/>
+	</group>
+
+	<group id="HARD_RESET_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<panel skin="kbookReset" left="0" right="0" top="0" bottom="0"/>
+		<sprite skin="hard-reset" left="0" width="70" top="0" height="70" active="false"/>
+		<kbookLabel id="RESET_ALL" skin="title" left="70" right="0" top="0" height="70" align="left" text="Reset All"/>
+		<group id="HARD_RESET" width="480" height="440">
+			<code>
+				<function id="doDigit" params="part"> 
+					var keyCode = part.key.charCodeAt(0);
+					if (keyCode == 53) /* 5 */
+						this.bubble("doHardReset");
+					else
+						this.getModel().doDigit(part);
+				</function>
+				<function id="doMenu">
+					this.bubble("doNoHardReset");
+				</function>
+			</code>
+			<sprite skin="diskSprite" width="140" top="0" height="140" u="6" active="false" canFocus="true"/>
+			<text id="HR_WARNING" active="false" left="0" right="0" top="140" height="300" value="Do you want to DELETE all content, restore all factory settings, and clear the DRM authorization state?&#13;&#13;Yes - Press 5&#13;No - Press MENU"/>
+		</group>
+		<kbookLabel id="LB_STATUS" left="210" right="210" height="30" bottom="0" align="center" text="1 of 1"/>
+	</group>
+	
+	<group id="LOW_BATTERY_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<code>
+			<function id="doCenter">
+				this.setVariable("LOW_BATTERY", 0);
+			</function>
+			<function id="doMarkMenu">
+				this.bubble("doBlink");
+			</function>
+			<function id="doMenu">
+				this.bubble("doBlink");
+			</function>
+			<function id="doRoot">
+				this.bubble("doBlink");
+			</function>
+		</code>
+		<background skin="diskBackground" left="0" right="0" top="0" bottom="0"/>
+		<sprite skin="diskSprite" width="140" height="140" u="5" active="false"/>
+		<kbookStatus left="0" right="0" height="33" bottom="0"/>
+		<kbookLabel id="LB_LOW_BATTERY" left="210" right="210" height="30" bottom="0" align="center" text="Low Battery!"/>
+	</group>
+	
+	<group id="SHUTDOWN_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<background skin="diskBackground" left="0" right="0" top="0" bottom="0"/>
+		<sprite skin="diskSprite" width="140" height="140" u="6" active="false"/>
+		<kbookStatus left="0" right="0" height="33" bottom="0"/>
+		<kbookLabel left="100" right="100" height="30" bottom="0" align="center" variable="SHUTDOWN_MSG"/>
+	</group>
+	
+	<group id="DISK_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<code>
+			<function id="doMarkMenu">
+				this.bubble("doBlink");
+			</function>
+			<function id="doMenu">
+				this.bubble("doBlink");
+			</function>
+			<function id="doRoot">
+				this.bubble("doBlink");
+			</function>
+		</code>
+		<background skin="diskBackground" left="0" right="0" top="0" bottom="0"/>
+		<sprite id="WAIT" skin="diskSprite" width="144" height="140" active="false"> <!-- temporary fix of #8 -->
+			<animation id="WAIT" duration="3" loop="true">
+				<frames>
+					<frame>
+						<setU u="0"/>
+					</frame>
+					<frame>
+						<setU u="1"/>
+					</frame>
+					<frame>
+						<setU u="2"/>
+					</frame>
+					<frame>
+						<setU u="3"/>
+					</frame>
+				</frames>
+			</animation>
+		</sprite>
+		<kbookStatus left="0" right="0" height="33" bottom="0"/>
+		<kbookLabel id="LB_LOADING" left="210" right="210" height="30" bottom="0" align="center" text="Loading..."/>
+	</group>
+	
+	<group id="FORMAT_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<background skin="diskBackground" left="0" right="0" top="0" bottom="0"/>
+		<sprite id="FORMAT" skin="diskSprite" width="144" height="140" active="false"> 
+		</sprite>
+		<kbookStatus left="0" right="0" height="33" bottom="0"/>
+		<kbookLabel id="LB_FORMATTING" left="210" right="210" height="30" bottom="0" align="center" text="Formatting..."/>
+	</group>
+	
+	<!-- This group is identical to FORMAT_GROUP in all but name, and they can eventually be collapsed into
+		one.  However, for now I'm keeping them separate in case we want to change the text of the label
+		in this group later. -->
+	<group id="PROGRESS_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<background skin="diskBackground" left="0" right="0" top="0" bottom="0"/>
+		<sprite id="PROGRESS" skin="diskSprite" width="144" height="140" active="false"> 
+		</sprite>
+		<kbookStatus left="0" right="0" height="33" bottom="0"/>
+		<kbookLabel id="LB_FORMATTING" left="210" right="210" height="30" bottom="0" align="center" text="Formatting..."/>
+	</group>
+	
+	<group id="STATUS_GROUP" left="0" right="0" top="0" bottom="0">
+		<kbookProgress skin="batteryProgress" left="0" width="70" height="30" bottom="0" variable="BATTERY"/>
+		<checkbox skin="batteryCheckBox" left="70" width="20" height="30" bottom="0" variable="POWER" on="1" off="0"/>
+		<checkbox skin="blinkCheckBox" width="30" right="104" height="30" bottom="0" variable="BLINK" on="1" off="0"/>
+		<group id="VOLUME_GROUP" width="75" right="0" height="30" bottom="0" visible="false">
+			<checkbox id="MUTE" skin="volumeCheckBox" width="20" right="55" height="30" bottom="0" variable="MUTE" on="1" off="0"/>
+			<kbookProgress id="VOLUME" skin="volumeProgress" width="55" right="0" height="30" bottom="0" variable="VOLUME"/>
+		</group>
+		<!-- PRS+ stuff -->
+		<kbookLabel id="prspTime" align="right" right="5" bottom="0" height="30" width="120" />
+		<!-- End of PRS+ stuff -->
+	</group>
+	
+	<!-- PRS+ stuff -->
+	<panel id="POPUP_MENU"  skin="popup" left="50" bottom="50" width="0" height="0"  visible="false">
+		<group id="innerGroup" left="6" right="6" top="6" bottom = "6">
+			<group id="panel10" left="0" right="0" height="1" bottom="1" >
+				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="0" />
+			</group>
+			<group id="panel9" left="0" right="0" height="1" bottom="1" >
+				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="9" />
+			</group>
+			<group id="panel8" left="0" right="0" height="1" bottom="1" >
+				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="8" />
+			</group>
+			<group id="panel7" left="0" right="0" height="1" bottom="1" >
+				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="7" />
+			</group>
+			<group id="panel6" left="0" right="0" height="1" bottom="1" >
+				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="6" />
+			</group>
+			<group id="panel5" left="0" right="0" height="1" bottom="1" >
+				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="5" />
+			</group>
+			<group id="panel4" left="0" right="0" height="1" bottom="1" >
+				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="4" />
+			</group>
+			<group id="panel3" left="0" right="0" height="1" bottom="1" >
+				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="3" />
+			</group>
+			<group id="panel2" left="0" right="0" height="1" bottom="1" >
+				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="2" />
+			</group>
+			<group id="panel1" left="0" right="0" height="1" bottom="1" >
+				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="1" />
+			</group>
+		</group>
+	</panel>
+	<!-- End of PRS+ stuff -->
+
+	<group id="INVALID_FORMAT_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<code>
+			<function id="doCenter">
+				this.setVariable("INVALID_FORMAT", 0);
+				this.bubble("doGotoFormatDevice");
+			</function>
+			<function id="doMarkMenu">
+				this.bubble("doBlink");
+			</function>
+			<function id="doMenu">
+				this.bubble("doBlink");
+			</function>
+			<function id="doRoot">
+				this.bubble("doBlink");
+			</function>
+		</code>
+		<background skin="diskBackground" left="0" right="0" top="0" bottom="0"/>
+		<sprite skin="diskSprite" width="140" height="140" u="5" active="false"/>
+		<kbookStatus left="0" right="0" height="33" bottom="0"/>
+		<kbookLabel id="LB_INVALID_FORMAT" left="210" right="210" height="30" bottom="0" align="center" text="Invalid Format!"/>
+	</group>
+
+	<group id="STANDBY_IMAGE" left="0" right="0" top="0" bottom="0" active="false" visible="false"/>
+</document>

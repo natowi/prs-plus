@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<style id="navigator-e" font="Arial" size="12" style="bold" halign="center" left="2" right="2">
+			<style id="navigator-d" color="#6D6D6D"/>
+			<style id="navigator-p"/>
+			<style id="navigator-s" background="#2094E8"/>
+		</style>
+		
+		<texture href="ktAssets.png">
+			<cutout id="backward_cutout" x="0" y="0" width="30" height="30"/>
+			<cutout id="forward_cutout" x="30" y="0" width="30" height="30"/>
+			<cutout id="new_cutout" x="65" y="5" width="20" height="20" lines="30"/>
+			<cutout id="clear_cutout" x="90" y="0" width="30" height="30"/>
+			<cutout id="previous_cutout" x="125" y="7" width="25" height="20" lines="30"/>
+			<cutout id="next_cutout" x="150" y="7" width="25" height="20" lines="30"/>
+			<cutout id="device_cutout" x="180" y="0" width="30" height="30"/>
+			<cutout id="search_cutout" x="210" y="0" width="30" height="30"/>
+			<cutout id="navigator_a" x="240" y="0" width="15" height="30" columns="35"/>
+			<cutout id="navigator_l" x="255" y="0" width="5" height="30"/>
+			<cutout id="navigator_c" x="260" y="0" width="10" height="30"/>
+			<cutout id="navigator_r" x="270" y="0" width="5" height="30"/>
+			<cutout id="list_cutout" x="360" y="0" width="30" height="30"/>
+			<cutout id="thumbnail_cutout" x="420" y="0" width="30" height="30"/>
+			<cutout id="preview_cutout" x="480" y="0" width="30" height="30"/>
+			<cutout id="zoom_out_cutout" x="545" y="5" width="20" height="20" lines="30"/>
+			<cutout id="zoom_in_cutout" x="575" y="5" width="20" height="20" lines="30"/>
+		</texture>
+		
+		<skin id="backward_skin" cutouts="backward_cutout"/>
+		<skin id="forward_skin" cutouts="forward_cutout"/>
+		<skin id="new_skin" cutouts="new_cutout"/>
+		<skin id="clear_skin" cutouts="clear_cutout"/>
+		<skin id="previous_skin" cutouts="previous_cutout"/>
+		<skin id="next_skin" cutouts="next_cutout"/>
+		<skin id="device_skin" cutouts="device_cutout"/>
+		<skin id="search_skin" cutouts="search_cutout"/>
+		<skin id="navigator" cutouts="navigator_a,navigator_l,navigator_c,navigator_r" 
+				styles="navigator-d,navigator-e,navigator-p,navigator-s"/>
+		<skin id="list_skin" cutouts="list_cutout"/>
+		<skin id="thumbnail_skin" cutouts="thumbnail_cutout"/>
+		<skin id="preview_skin" cutouts="preview_cutout"/>
+		<skin id="zoom_out_skin" cutouts="zoom_out_cutout"/>
+		<skin id="zoom_in_skin" cutouts="zoom_in_cutout"/>
+		
+	</assets>
+
+</document>

@@ -1,0 +1,34 @@
+Calendar_nt Changelog
+============
+Initial version: 2011-07-14
+2011-07-15 Ben Chenoweth - Fixed start-up script; resized "Today" button.
+2011-07-17 Ben Chenoweth - Improved layout and event icons; added "Anniversary"; increased event font size; changed event file-format; non-Touch cursor now moves.
+2011-07-17 Ben Chenoweth - Added settings popup panel; 'Week starts with' option (Sunday or Monday).
+2011-07-18 Ben Chenoweth - Fixed: "today" indicator missing in week-starts-Monday mode.
+2011-07-19 Ben Chenoweth - Relocated Edit button; enabled option text on Touch and event text; started event popup panel.
+2011-07-20 Ben Chenoweth - Event popup panel working (apart from changing description); delete event; fixed floating events.
+2011-07-20 Ben Chenoweth - Event popup panel working for non-Touch; few bug fixes.
+2011-07-22 Ben Chenoweth - Monthly/weekly events now work; changed event file format to include icon number; changed event popup panel to include icon; added more icons; weekend shaded slightly.
+2011-07-23 Mark Nord - auto-correct dat-file (insert icon-number); allow "#" as rem-character, some code optimisations
+2011-07-24 Ben Chenoweth - Various bug fixes; new weekly event now shows day of clicked date.
+2011-08-13 Ben Chenoweth - Added Western keyboard (for touch readers) for editing event descriptions.
+2011-08-13 Ben Chenoweth - Keyboard now works for non-touch readers.
+2011-08-20 Ben Chenoweth - Changed graphics file into 1 line and added more icons; keyboard in shifted form initially.
+2011-09-05 Ben Chenoweth - Added ability to scroll events textbox if there are more than 6 events on a particular day.
+2011-09-06 Ben Chenoweth - Changed order of precedence for event icon selection; show number of events in calendar (if more than one).
+2011-09-06 Ben Chenoweth - Fixed: events text box was not updating when adding new event.
+2011-09-08 Ben Chenoweth - Added OK and Cancel using physical buttons for non-touch on event editor.
+2011-09-08 Ben Chenoweth - Removed "Space" label; fixed error with event numbers.
+2011-09-08 Ben Chenoweth - Replaced "Shft", "unSh", "Back" with arrow symbols.
+2011-09-08 Ben Chenoweth - Replaced "U", "D" with arrow symbols.
+2011-09-09 Ben Chenoweth - Moved strings into variables to handle missing characters in the fonts on the 600.
+2011-09-09 Ben Chenoweth - Fix to get it working again!
+2011-09-09 Ben Chenoweth - Temporary fix for missing up/down arrows on 505.
+2011-09-14 Ben Chenoweth - Fix for today marker disappearing on Sundays when in 'week starts with Monday' mode; removed temporary fix for missing arrows.
+2011-09-23 Ben Chenoweth - Strings can now be translated; Prev/Next Month for 300 (but now there is no Prev/Next Year).
+2011-09-24 Ben Chenoweth - Minor changes to some label/button sizes to accommodate translation strings; moved year to title bar.
+2011-09-25 Ben Chenoweth - Non-touch: pressing mark for 'today' now moves to actual day.
+2011-09-27 Ben Chenoweth - Code-cleaning; separate changelog.
+2011-09-30 Ben Chenoweth - Code split: this version for non-touch readers; now uses customisable keyboard file.
+2011-11-02 Ben Chenoweth - Selected date (not today) used in new event popup.
+2011-11-03 Ben Chenoweth - Fixed floating events not appearing in event popup; fixed easter icon; fixed floating event day info in data file.

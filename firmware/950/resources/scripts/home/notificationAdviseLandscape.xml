@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<import href="ktAssets.xml"		/>
+		<import href="adviseAssets.xml"	/>
+	</assets>
+	<!-- Clone of notificationPeriodicalLandscape.xml w/ new delivery replaced -->
+	<group left="0" right="0" top="0" bottom="0">
+		
+		<!-- Continue Reading -->
+		<group right="8" top="1" bottom="3" width="460">
+			<view left="0" right="0" top="0" height="0" href="continueBookLandscapeHalf.xml">
+				<code>
+					<function id="initialized">
+						arguments.callee.grammar.call(this)
+			
+						var value = kbook.model.HOME_COVER_ORIG
+						var uri = ""
+							if( value == "CONTINUE_BOOK") 
+								uri = "continueBookLandscapeHalf.xml"
+							if( value == "CONTINUE_PERIODICAL") 
+								uri = "continuePeriodicalLandscapeHalf.xml"
+						var href= this.getURI()
+						if(  uri != href )
+							this.setURI( uri )
+					</function>
+				</code>
+			</view>
+			<kbookHotspot do="doGoToContinueReading" left="0" top="0" right="0" bottom="0" />
+		</group>
+		
+		<!-- Recommendations/Advise -->
+		<group id="BOOK_LIST" left="0" top="1" bottom="0" width="476">
+			<group left="8" width="476"	top="8" height="211" >
+				<fillBackground color="#FFFFFF"	left="0" right="0"	top="0" bottom="0"/>
+			</group>
+			<panel skin="advise-panel"		left="10" right="10"		top="8" height="211" active="true"/>
+			
+			<group id="THUMBNAIL_CONTAINER" left="50" right="50" top="65" bottom="4" clip="true">
+				<kbookMenuDetails id="THUMBNAIL_FREEHAND" left="0" right="0" top="0" height="150" href="x-id://menuHomeThumbnailAdviseData" >
+					<views>
+						<kbookViewStyleThumbnailMini name="thumbnail" skin="kbookViewStyleThumbnailMini" left="0" right="0" top="0" bottom="0" 
+											minWidth="120" minHeight="140" titleVisible="false" statusVisible="false" default="true" 
+											thumbnailMaxHeight="96" thumbnailMaxWidth="80" 
+											designSpacingHeight="5"	textSeparation="9" marginNameAndComment="-2" 
+											marginBottomHeight="0"	marginHeight="0" marginWidth="7" showEmptyGuide="false">
+						</kbookViewStyleThumbnailMini>
+					</views>
+				</kbookMenuDetails>
+			</group>
+			<view href="notificationAdviseHeader.xml"	left="8" right="9"	top="7"		height="60"/>
+			<view href="kbookMenuDetailsPaging.xml"		left="9" right="12" top="100"	height="60"/>
+			
+		</group>
+		
+	</group>
+	
+</document>

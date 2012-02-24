@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="Continue Reading" />
+		<string id="STR_NODE_TITLE_TOC" value="Table of Contents" />
+		<string id="STR_NODE_TITLE_INFO" value="Info" />
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="Delete Book" />
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="Collections" />
+		<string id="STR_NODE_TITLE_AUDIO" value="Audio" />
+		<string id="STR_NODE_TITLE_PICTURE" value="Pictures" />
+		<string id="STR_NODE_TITLE_SETTINGS" value="Settings" />
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="Date and Time" />
+		<string id="STR_NODE_TITLE_YEAR" value="Year" />
+		<string id="STR_NODE_TITLE_MONTH" value="Month" />
+		<string id="STR_NODE_TITLE_DATE" value="Day" />
+		<string id="STR_NODE_TITLE_HOUR" value="Hour" />
+		<string id="STR_NODE_TITLE_MINUTE" value="Minute" />
+		<string id="STR_UI_BUTTON_AM" value="AM" />
+		<string id="STR_UI_BUTTON_PM" value="PM" />
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="Device Lock" />
+		<string id="STR_NODE_TITLE_ENTERCODE" value="Enter Code" />
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="Slideshow" />
+		<string id="STR_NODE_TITLE_TURN" value="Turn" />
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="Slide Duration" />
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="Device Shutdown" />
+		<string id="STR_NODE_TITLE_ABOUT" value="About" />
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="Restore Defaults" />
+		<string id="STR_NODE_TITLE_CODE" value="Pass Code" />
+		<string id="#STR_NODE_TITLE_AUTORUN" value="autoRun" />
+		<string id="#STR_NODE_TITLE_HARDRESET" value="hardReset" />
+		<string id="STR_COUNTER_BOOKMARK_N" value=" bookmarks" />
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 bookmark" />
+		<string id="STR_COUNTER_BOOKMARK_0" value="No bookmarks" />
+		<string id="STR_COUNTER_ITEM_N" value=" items" />
+		<string id="STR_COUNTER_ITEM_1" value="1 item" />
+		<string id="STR_COUNTER_ITEM_0" value="No items" />
+		<string id="STR_COUNTER_BOOK_N" value=" books" />
+		<string id="STR_COUNTER_BOOK_1" value="1 book" />
+		<string id="STR_COUNTER_BOOK_0" value="No books" />
+		<string id="STR_COUNTER_COLLECTION_N" value=" collections" />
+		<string id="STR_COUNTER_COLLECTION_1" value="1 collection" />
+		<string id="STR_COUNTER_COLLECTION_0" value="No collections" />
+		<string id="STR_COUNTER_SONG_N" value=" songs" />
+		<string id="STR_COUNTER_SONG_1" value="1 song" />
+		<string id="STR_COUNTER_SONG_0" value="No songs" />
+		<string id="STR_COUNTER_PICTURE_N" value=" pictures" />
+		<string id="STR_COUNTER_PICTURE_1" value="1 picture" />
+		<string id="STR_COUNTER_PICTURE_0" value="No pictures" />
+		<string id="STR_COUNTER_SETTING_N" value=" settings" />
+		<string id="STR_COUNTER_SETTING_1" value="1 setting" />
+		<string id="STR_COUNTER_SETTING_0" value="0 setting" />
+		<string id="STR_UI_BUTTON_OK" value="OK" />
+		<string id="STR_UI_BUTTON_On" value="On" />
+		<string id="STR_UI_BUTTON_Off" value="Off" />
+		<string id="STR_UI_BUTTON_ABLE" value="On" />
+		<string id="STR_UI_BUTTON_DISABLE" value="Off" />
+		<string id="STR_UI_UNITNAME_SECONDS" value="seconds" />
+		<string id="STR_UI_UNITNAME_SIZEKB" value="KB" />
+		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
+		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
+		<string id="STR_UI_PARTS_PART" value="Part " />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Page " />
+		<string id="STR_UI_PARTS_OF" value=" of " />
+		<string id="STR_UI_PARTS_TOC_UNKNOWN" value="?" />
+		<string id="STR_UI_PARTS_VERSION" value="Version" />
+		<string id="STR_UI_PARTS_DEVICE" value="Device" />
+		<string id="STR_UI_GOTOPAGE" value="PAGE" />
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="Invalid Page!" />
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="Protected by Digital Rights Management" />
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="Page Error!" />
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="Invalid Format!" />
+		<string id="STR_UI_MESSAGE_FORMATTING" value="Loading..." />
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="Restricted" />
+		<string id="STR_UI_MESSAGE_DRMFULL" value="Full, viewable" />
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="Memory Card" />
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="Expired" />
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="Today" />
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="Shutting down..." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="This device is not yet authorized for Adobe DRM content." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZED_READ" value="This device is authorized for reading Adobe DRM content." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZED_PURCHASE" value="This device is authorized for reading and purchasing Adobe DRM content." />
+		<string id="STR_UI_MESSAGE_HARDRESET" value="Reset All" />
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="Do you want to DELETE all content, restore all factory settings, and clear the DRM authorization state?&#xA;&#xA;Yes - Press the &quot;OPTIONS&quot; button&#xA;No - Press the &quot;HOME&quot; button" />
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="Low Battery!" />
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="No Battery Power!" />
+		<string id="STR_UI_MESSAGE_LOADING" value="Loading..." />
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 of 1" />
+		<string id="STR_UI_FORMAT_RTF" value="Rich Text Format" />
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF" />
+		<string id="STR_UI_FORMAT_EPUB" value="EPUB document" />
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB Book" />
+		<string id="STR_UI_FORMAT_TXT" value="Plain text" />
+		<string id="STR_UI_MESSAGE_USBDONOT" value="Do not disconnect" />
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="USB connected" />
+		<string id="STR_UI_MESSAGE_LOCKED" value="Device locked" />
+		<string id="STR_UI_MESSAGE_CHARGING" value="Charging battery" />
+		<string id="STR_UI_MESSAGE_CHARGING_COMPLETE" value="Charging complete" />
+		<string id="STR_UI_MESSAGE_CHARGING_NOT_CHARGING" value="Charging stopped" />
+		<string id="STR_UI_USB_MODE_GUIDE_CHECK_CONNECTION" value="The Reader is unable to charge as no power supply is being detected. Please check that the charger is plugged in and switched on or that the USB cable is correctly connected." />
+		<string id="STR_UI_USB_MODE_GUIDE_TOO_HOT_COLD" value="The Reader is currently experiencing extreme temperatures and is unable to charge. Please return the Reader to normal room temperature and retry." />
+		<string id="STR_UI_USB_MODE_GUIDE_BROKEN_BAT" value="The rechargeable battery requires service.&#xA;Please contact customer support." />
+		<string id="STR_UI_USB_MODE_GUIDE_OTHER_ERRORS" value="Your Reader needs to be reset. To do this, insert a pin into the &quot;RESET&quot; button on the bottom and then slide and release the &quot;POWER&quot; switch. If you continue to see this message on-screen, please contact Sony Customer Support." />
+		<string id="STR_UI_USB_MODE_GUIDE" value="continue to see this message on-screen, please contact customer support." />
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value="------------------------------------------------------------------" />
+		<string id="STR_SORT_IGNOREARTICLES" value="a ,an ,the " />
+		<string id="infoTitles" value="Cover,Title,Title,Issue Date,Author,Publisher,Category,eBook ID,Format,Date,Size,Location,Path,Digital Rights,Expiration Date" />
+		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Menu Language" />
+		<string id="STR_UI_LANG" value="Language" />
+		<string id="STR_UI_LANG_EN" value="English" />
+		<string id="STR_UI_LANG_FR" value="Français" />
+		<string id="STR_UI_LANG_DE" value="Deutsch" />
+		<string id="STR_UI_LANG_NL" value="Nederlands" />
+		<string id="STR_UI_LANG_ES" value="Español" />
+		<string id="STR_UI_LANG_PT" value="Português" />
+		<string id="STR_UI_LANG_IT" value="Italiano" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="Choose your preferred language and select &quot;OK&quot;.&#xA;Note:  The device settings can be changed from the &quot;Settings&quot; menu at a later time." />
+		<string id="STR_UI_PARTS_DELIMITER" value="/" />
+		<string id="STR_UI_MESSAGE_DEMOMODE" value="(Demo Mode)" />
+		<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value="Demo Screensaver" />
+		<string id="STR_NODE_TITLE_OPTIONS" value="Options" />
+		<string id="STR_DEMO_TITLE" value="DEMO MODE" />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="Title: &quot;XXTITLEXX&quot;" />
+		<string id="STR_UI_DATE" value="Date" />
+		<string id="STR_UI_TIME" value="Time" />
+		<string id="STR_UI_BUTTON_12HR" value="12 hour" />
+		<string id="STR_UI_BUTTON_24HR" value="24 hour" />
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / " />
+		<string id="STR_UI_MESSAGE_NOBOOK" value="No book" />
+		<string id="STR_NODE_TITLE_BOOK" value="Books" />
+		<string id="STR_NODE_TITLE_SORTEDBYTITLE" value="by Title" />
+		<string id="STR_NODE_TITLE_SORTEDBYAUTHOR" value="by Author" />
+		<string id="STR_NODE_TITLE_SORTEDBYDATE" value="by Date" />
+		<string id="STR_NODE_TITLE_SORTEDBYORDER" value="by Added Order" />
+		<string id="STR_NODE_TITLE_ALLNOTES" value="All Notes" />
+		<string id="STR_NODE_TITLE_SORTEDBYCOMMENT" value="by Comment" />
+		<string id="STR_NODE_TITLE_SORTEDBYTYPE" value="by Type" />
+		<string id="STR_NODE_TITLE_SORTEDBYARTIST" value="by Artist" />
+		<string id="STR_NODE_TITLE_NEXTPAGE" value="Next Page" />
+		<string id="STR_NODE_TITLE_PAGETURNGESTURE" value="Page Turn Preference" />
+		<string id="STR_NODE_TITLE_ADVANCEDSETTINGS" value="Advanced Settings" />
+		<string id="STR_NODE_TITLE_TOUCHPANEL" value="Calibrate Touch Screen" />
+		<string id="STR_NODE_TITLE_CLEARKEYBOARDHISTORY" value="Clear Keyboard History" />
+		<string id="STR_NODE_TITLE_SEARCHRESULTS" value="Search Results" />
+		<string id="STR_COUNTER_NOTES_N" value=" notes" />
+		<string id="STR_COUNTER_NOTE_1" value="1 note" />
+		<string id="STR_COUNTER_NOTE_0" value="No notes" />
+		<string id="STR_NODE_TITLE_SORTEDBYPAGE" value="by Page" />
+		<string id="STR_NODE_TITLE_POWERMANAGEMENT" value="Power Management" />
+		<string id="STR_UI_MENU_SORT" value="Sort" />
+		<string id="STR_UI_MENU_BYORDER" value="by Added Order" />
+		<string id="STR_UI_MENU_BYTITLE" value="by Title" />
+		<string id="STR_UI_MENU_BYAUTHOR" value="by Author" />
+		<string id="STR_UI_MENU_BYDATE" value="by Date" />
+		<string id="STR_UI_MENU_VIEW" value="View" />
+		<string id="STR_UI_MENU_LIST" value="List" />
+		<string id="STR_UI_MENU_THUMBNAIL" value="Thumbnail" />
+		<string id="STR_UI_MENU_NOWPLAYING" value="Now Playing" />
+		<string id="STR_UI_MENU_RESUMELISTENING" value="Resume Playing" />
+		<string id="STR_NODE_TITLE_SORTEDBYTRACK" value="by Track" />
+		<string id="STR_UI_MENU_ORIENTATION" value="Orientation" />
+		<string id="STR_UI_MENU_SEARCHTITLE" value="Search" />
+		<string id="STR_UI_MENU_CLOSETHISBOOK" value="Return to List" />
+		<string id="STR_UI_MENU_GOTOPAGE" value="Go to Page" />
+		<string id="STR_UI_MENU_CREATEEDITNOTES" value="Create/Edit Notes" />
+		<string id="STR_UI_MENU_SHOWNOTES" value="Show Notes" />
+		<string id="STR_UI_MENU_HIDENOTES" value="Hide Notes" />
+		<string id="STR_UI_MENU_TABLEOFCONTENTS" value="Table of Contents" />
+		<string id="STR_UI_MENU_BOOKINFO" value="Info" />
+		<string id="STR_UI_MENU_DELETEBOOK" value="Delete Book" />
+		<string id="STR_UI_MENU_SEARCHAKEYWORD" value="Search" />
+		<string id="STR_UI_MENU_HISTORYJUMP" value="History" />
+		<string id="STR_UI_MENU_CLOSETHISMUSIC" value="Return to List" />
+		<string id="STR_UI_MENU_NOTES" value="Notes" />
+		<string id="STR_UI_MENU_DICTIONARY_LOOK_UP_HISTORY" value="Word Logs: Book" />
+		<string id="STR_UI_MENU_OFF" value="Off" />
+		<string id="STR_UI_MENU_SONG_1" value="One Song" />
+		<string id="STR_UI_MENU_SONG_ALL" value="All Songs" />
+		<string id="STR_UI_MENU_SHUFFLEON" value="Shuffle On" />
+		<string id="STR_UI_MENU_SHUFFLEOFF" value="Shuffle Off" />
+		<string id="STR_UI_MENU_CONTINUEREADING" value="Continue Reading" />
+		<string id="STR_UI_MENU_CLOSETHISPICTURE" value="Return to List" />
+		<string id="STR_UI_MENU_SLIDESHOWOFF" value="Slideshow Off" />
+		<string id="STR_UI_MENU_SLIDESHOWON" value="Slideshow On" />
+		<string id="STR_UI_MENU_BYARTIST" value="by Artist" />
+		<string id="STR_UI_MENU_BYPAGE" value="by Page" />
+		<string id="STR_UI_MENU_BYTYPE" value="by Type" />
+		<string id="STR_UI_MENU_BYCOMMENT" value="by Comment" />
+		<string id="STR_UI_MENU_DELETENOTES" value="Delete Notes" />
+		<string id="STR_UI_MESSAGE_RESET" value="Are you sure you want to restore the default settings?" />
+		<string id="STR_UI_MESSAGE_FORMATINTERNALMEMORY" value="Format Internal Memory" />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE" value="Are you sure you want to format the internal memory?&#xA;Warning: All content and notes will be deleted." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_MS" value="Are you sure you want to format the Memory Stick™ card?&#xA;Warning: All content and notes will be deleted." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_SD" value="Are you sure you want to format the SD card?&#xA;Warning: All content and notes will be deleted." />
+		<string id="STR_UI_MESSAGE_DELETEBOOK" value="Are you sure you want to &#xA;delete this book?" />
+		<string id="STR_UI_MESSAGE_DELETEBOOKERR" value="Unable to delete book. Tap &quot;OK&quot; to return to the book list." />
+		<string id="STR_UI_MESSAGE_DELETEHISTORICAL" value="Are you sure you want to clear the keyboard history?" />
+		<string id="STR_UI_MESSAGE_DEVICE_SHUTDOWN" value="Are you sure you want to completely power off (shutdown) the device?" />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONSTART" value="Tap &quot;Yes&quot; to start the touch screen calibration." />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONEND" value="Touch screen calibration completed." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_1" value="This setting is not available in demo mode." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_2" value="This feature is not available in demo mode." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_START" value="Using the stylus, tap on the center of the target." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_ERR" value="Calibration error detected. Please restart calibration process." />
+		<string id="STR_UI_BUTTON_YES" value="Yes" />
+		<string id="STR_UI_BUTTON_NO" value="No" />
+		<string id="STR_UI_BUTTON_ZOOMIN" value="Zoom In" />
+		<string id="STR_UI_BUTTON_PAGE_STYLE" value="Page Mode" />
+		<string id="STR_UI_BUTTON_SEARCH" value="Search" />
+		<string id="STR_UI_BUTTON_DONE" value="Done" />
+		<string id="STR_UI_BUTTON_GO" value="Go" />
+		<string id="STR_UI_BUTTON_ENTERPAGE" value="Enter Page #" />
+		<string id="STR_UI_BUTTON_NEW" value="New" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING" value="Dictionary" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING_l" value="dictionary" />
+		<string id="STR_DICTIONARY_US" value="New Oxford American Dictionary" />
+		<string id="STR_DICTIONARY_BRITISH" value="Oxford Dictionary of English" />
+		<string id="STR_DICTIONARY_EN_TO_FR" value="Oxford-Hachette French Dictionary (EN-FR)" />
+		<string id="STR_DICTIONARY_FR_TO_EN" value="Oxford-Hachette French Dictionary (FR-EN)" />
+		<string id="STR_DICTIONARY_EN_TO_GM" value="Collins English-German Dictionary" />
+		<string id="STR_DICTIONARY_GM_TO_EN" value="Collins German-English Dictionary" />
+		<string id="STR_DICTIONARY_EN_TO_SP" value="Oxford Spanish Dictionary (EN-ES)" />
+		<string id="STR_DICTIONARY_SP_TO_EN" value="Oxford Spanish Dictionary (ES-EN)" />
+		<string id="STR_DICTIONARY_EN_TO_IT" value="Collins English-Italian Dictionary" />
+		<string id="STR_DICTIONARY_IT_TO_EN" value="Collins Italian-English Dictionary" />
+		<string id="STR_DICTIONARY_EN_TO_DT" value="Van Dale Pocketwoordenboek Engels-Nederlands" />
+		<string id="STR_DICTIONARY_DT_TO_EN" value="Van Dale Pocketwoordenboek Nederlands-Engels" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_DICTIONARY" value="Choose your preferred default dictionary and select &quot;OK&quot;.&#xA;Note:  The device settings can be changed from the &quot;Settings&quot; menu at a later time.&#xA;" />
+		<string id="STR_DICTIONARY_NO" value="None" />
+		<string id="STR_NODE_TITLE_DATEANDTIMEFORMAT_SETTING" value="Date and Time Format" />
+		<string id="STR_UI_PARTS_MONTH" value="Month" />
+		<string id="STR_UI_PARTS_DAY" value="Day" />
+		<string id="STR_UI_PARTS_YEAR" value="Year" />
+		<string id="STR_UI_PARTS_HOUR" value="hour" />
+		<string id="STR_UI_MESSAGE_RESTARTING" value="Restarting..." />
+		<string id="STR_UI_NODE_TITLE_KEYBOARD" value="Keyboard" />
+		<string id="STR_UI_KEYBOARD_US" value="United States" />
+		<string id="STR_UI_KEYBOARD_UK" value="United Kingdom" />
+		<string id="STR_UI_KEYBOARD_FRENCH" value="French" />
+		<string id="STR_UI_KEYBOARD_GERMAN" value="German" />
+		<string id="STR_UI_KEYBOARD_NETHERLANDS" value="Dutch" />
+		<string id="STR_UI_KEYBOARD_CANADIAN_FRENCH" value="Canadian French" />
+		<string id="STR_UI_KEYBOARD_SPANISH" value="Spanish" />
+		<string id="STR_UI_KEYBOARD_ITALIAN" value="Italian" />
+		<string id="STR_UI_KEYBOARD_PORTUGUESE" value="Portuguese" />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP1" value="This page cannot be displayed." />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_CANNOT_EDIT" value="This drawing cannot be edited." />
+		<string id="DIALOGMSG_INFORM_SCR_CANNOT_EDIT" value="This memo cannot be edited." />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_FREEHAND" value="New Drawing" />
+		<string id="STR_UI_MENU_NEW_DRAWING" value="New Drawing" />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_TEXT" value="New Memo" />
+		<string id="STR_UI_MENU_NEW_MEMO" value="New Memo" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYFREEHAND" value="by Drawing" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYTEXT" value="by Keyboard" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_MS" value="Format Memory Stick™" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_SD" value="Format SD Card" />
+		<string id="STR_NODE_TITLE_FORMATDEVICE" value="Format Memory" />
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="Internal Memory" />
+		<string id="STR_UI_MESSAGE_LOCATION_MS" value="Memory Stick™" />
+		<string id="STR_UI_MESSAGE_LOCATION_SD" value="SD Card" />
+		<string id="STR_UI_FORMAT_INTERNAL_MEMORY" value="Formatting Internal Memory..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_MS" value="Formatting Memory Stick™..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_SD" value="Formatting SD Card..." />
+		<string id="STR_WARNING_FORMAT_1" value="Formatting..." />
+		<string id="STR_WARNING_FORMAT_2_MS" value="Do not remove the Memory Stick™ card." />
+		<string id="STR_WARNING_FORMAT_2_SD" value="Do not remove the SD card." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_1" value="Are you sure you want to delete the bookmark?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_2" value="Note: This page contains a bookmark in more than one text size. All bookmarks on this page will be removed if you proceed." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_1" value="Are you sure you want to delete the bookmark?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_2" value="Note: This page contains a bookmark with a note in more than one text size. All bookmarks and notes on this page will be removed if you proceed." />
+		<string id="STR_FORMAT_NO_MEMORY" value="No memory card is inserted." />
+		<string id="STR_FORMAT_WRITE_PROTECTED" value="Memory card write-protected" />
+		<string id="STR_FORMAT_NON_STANDARD" value="Memory card not supported" />
+		<string id="STR_NODE_TITLE_NOTEPAD_FREEHAND" value="Handwriting" />
+		<string id="STR_NODE_TITLE_NOTEPAD_TEXT" value="Text Memo" />
+		<string id="STR_NODE_TITLE_SORTEDBYCREATEDDATE" value="by Created Date" />
+		<string id="STR_NODE_TITLE_MORE_FULL" value="More Applications" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK1" value="Are you sure you want to delete the bookmark and associated note?" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT1" value="Are you sure you want to delete the highlight and associated note?" />
+		<string id="DIALOGMSG_INFORM_NOHITS" value="No matches found." />
+		<string id="DIALOGMSG_INFORM_NOMOREHITS" value="Match not found." />
+		<string id="DIALOGMSG_CONFIRM_BACKWARDSEARCH" value="Do you want to continue searching from the end of the content?" />
+		<string id="DIALOGMSG_CONFIRM_FORWARDSEARCH" value="Do you want to continue searching from the beginning of the content?" />
+		<string id="STR_MSG_SEARCHING" value="Searching..." />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK1" value="Are you sure you want to delete the bookmark and associated note?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT1" value="Are you sure you want to delete the highlight and associated note?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_EDIT_QUIT" value="The changes will not be saved. Continue anyway?" />
+		<string id="DIALOGMSG_CONFIRM_SCR_EDIT_QUIT" value="The changes will not be saved. Continue anyway?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES1" value="All notes will be removed." />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES2" value="Are you sure you want to delete?" />
+		<string id="KBOOK_UI_MYNOTE" value="Notes" />
+		<string id="STR_UI_KEYBOARD_SYMBOL" value="Symbols" />
+		<string id="STR_UI_KEYBOARD_SPACE" value="Space" />
+		<string id="STR_UI_KEYBOARD_ABC" value="Abc" />
+		<string id="STR_UI_KEYBOARD_RETURN" value="Return" />
+		<string id="STR_UI_COMMENTVIEWER_EDIT" value="Edit" />
+		<string id="STR_UI_COMMENTVIEWER_DELETE" value="Delete" />
+		<string id="STR_UI_AUDIO_REPEAT" value="Repeat" />
+		<string id="STR_NODE_TITLE_HOMEPERSONALIZATION" value="Customize Home Menu" />
+		<string id="STR_UI_PARTS_LEFT" value="LEFT" />
+		<string id="STR_UI_PARTS_RIGHT" value="RIGHT" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_FREEHAND" value="Delete Drawing" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_TEXT" value="Delete Memo" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND1" value="Are you sure you want to delete this drawing?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT1" value="Are you sure you want to delete this memo?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT1" value="The changes will not be saved. Continue anyway?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT1" value="The changes will not be saved. Continue anyway?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT1" value="The changes will not be saved. Continue anyway?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT1" value="The changes will not be saved. Continue anyway?" />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_RESULT" value="No entry found. Press XXBUTTONXX to enter a word manually or Press &quot;OPTIONS&quot; to select another dictionary." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_INPUT_KEYBOARD" value="Enter a word." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_HEADWORD" value="No entry found.&#xA;Please check the entered word." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SUPPORTED" value="Dictionary is disabled." />
+		<string id="STR_UI_DICTIONARY_ENTRIES_PAGE" value="Entries, P." />
+		<string id="STR_UI_DICTIONARY_ENTRY_PAGE" value="Entry, P." />
+		<string id="STR_COUNTER_DRAWING_N" value=" drawings" />
+		<string id="STR_COUNTER_DRAWING_1" value="1 drawing" />
+		<string id="STR_COUNTER_DRAWING_0" value="No drawings" />
+		<string id="STR_COUNTER_MEMO_N" value=" memos" />
+		<string id="STR_COUNTER_MEMO_1" value="1 memo" />
+		<string id="STR_COUNTER_MEMO_0" value="No memos" />
+		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="Exceptional internal memory state&#xA;Formatting." />
+		<string id="STR_HOME_TAB_HOME_V" value="Home" />
+		<string id="STR_HOME_TAB_HOME_H" value="Home" />
+		<string id="STR_HOME_TAB_STORE_V" value="Store" />
+		<string id="STR_HOME_TAB_STORE_H" value="Store" />
+		<string id="STR_HOME_TAB_APPLICATIONS_V" value="Applications" />
+		<string id="STR_HOME_TAB_APPLICATIONS_H" value="Apps" />
+		<string id="STR_HOME_TAB_SETTINGS_V" value="Settings" />
+		<string id="STR_HOME_TAB_SETTINGS_H" value="Settings" />
+		<string id="STR_NODE_TITLE_PERIODICALS" value="Periodicals" />
+		<string id="STR_NODE_TITLE_NEWDELIVERY" value="New Delivery" />
+		<string id="STR_NODE_TITLE_DICTIONARY" value="Dictionary" />
+		<string id="STR_HOME_SEEALL" value="See All" />
+		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Last read : " />
+		<string id="STR_COUNTER_PERIODICAL_N" value=" periodicals" />
+		<string id="STR_COUNTER_PERIODICAL_1" value="1 periodical" />
+		<string id="STR_COUNTER_PERIODICAL_0" value="No periodicals" />
+		<string id="STR_HOME_MESSAGE_ACCESSING" value="Accessing..." />
+		<string id="STR_UI_BUTTON_RETRY" value="Retry" />
+		<string id="STR_UI_MENU_DELETE_BOOKS" value="Delete Books" />
+		<string id="STR_UI_MENU_PROTECT_BOOKS" value="Protect Books" />
+		<string id="STR_UI_MENU_DELETE_ISSUES" value="Delete Issues" />
+		<string id="STR_UI_MENU_PROTECT_ISSUES" value="Protect Issues" />
+		<string id="STR_UI_MENU_DELETE_TEXTMEMOS" value="Delete Memos" />
+		<string id="STR_UI_MENU_PROTECT_TEXTMEMOS" value="Protect Memos" />
+		<string id="STR_UI_MENU_DELETE_HANDWRITINGS" value="Delete Drawings" />
+		<string id="STR_UI_MENU_PROTECT_HANDWRITINGS" value="Protect Drawings" />
+		<string id="STR_UI_MENU_DELETE_AUDIO" value="Delete Audio" />
+		<string id="STR_UI_MENU_PROTECT_AUDIO" value="Protect Audio" />
+		<string id="STR_UI_MENU_DELETE_PICTURES" value="Delete Pictures" />
+		<string id="STR_UI_MENU_PROTECT_PICTURES" value="Protect Pictures" />
+		<string id="STR_UI_MENU_EDIT_STANDBY_SCREEN" value="Select Standby Screen" />
+		<string id="STR_UI_MENU_MANAGE_SUBSCRIPTION" value="Manage Subscription" />
+		<string id="STR_UI_MENU_2PAGEVIEW" value="2 Page View" />
+		<string id="STR_UI_MENU_1PAGEVIEW" value="1 Page View" />
+		<string id="STR_UI_MENU_BYLATESTREAD" value="by Latest Read" />
+		<string id="STR_UI_MENU_BYISSUEDATE" value="by Issue Date" />
+		<string id="STR_UI_MENU_STORE_HOME" value="Store Home" />
+		<string id="STR_UI_MENU_MY_ACCOUNT" value="My Account" />
+		<string id="STR_UI_MENU_HELP_AND_SUPPORT" value="Help and Support" />
+		<string id="STR_UI_MENU_LEGALINFO" value="Legal Information" />
+		<string id="STR_UI_MENU_REFRESH_PAGE" value="Refresh Page" />
+		<string id="STR_UI_MENU_DELETEISSUE" value="Delete Issue" />
+		<string id="STR_UI_MENU_SELECT_ALL" value="Select All" />
+		<string id="STR_UI_MENU_UNSELECT_ALL" value="Unselect All" />
+		<string id="STR_UI_MENU_PROTECT_ALL" value="Protect All" />
+		<string id="STR_UI_MENU_UNPROTECT_ALL" value="Unprotect All" />
+		<string id="STR_UI_BUTTON_ISSUE_HOME" value="Front Page" />
+		<string id="STR_UI_BUTTON_PREVIOUS_SECTION" value="Section" />
+		<string id="STR_UI_BUTTON_NEXT_SECTION" value="Section" />
+		<string id="STR_UI_BUTTON_LAST_SECTION" value="Section" />
+		<string id="STR_UI_BUTTON_SECTION_HOME" value="Section Top" />
+		<string id="STR_UI_BUTTON_PREVIOUS_ARTICLE" value="Article" />
+		<string id="STR_UI_BUTTON_NEXT_ARTICLE" value="Article" />
+		<string id="STR_NODE_TITLE_FRONT_PAGE" value="Front Page" />
+		<string id="STR_NODE_TITLE_SECTION_HOME" value="XXSECTIONXX Section Top" />
+		<string id="STR_NODE_TITLE_SECTION_OTHERS" value="Other" />
+		<string id="STR_COUNTER_ARTICLE_N" value=" articles" />
+		<string id="STR_COUNTER_ARTICLE_1" value="1 article" />
+		<string id="STR_COUNTER_ARTICLE_0" value="No articles" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SECTION" value="XXSECTIONXX Section" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SEPARATE" value=":" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" / " />
+		<string id="STR_NODE_TITLE_DELETEISSUE" value="Delete Issue" />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEISSUE" value="Issue Title: &quot;XXTITLEXX&quot;" />
+		<string id="STR_UI_MESSAGE_DELETEISSUE" value="Are you sure you want to delete this issue?" />
+		<string id="STR_UI_MESSAGE_DELETEISSUEERR" value="Unable to delete issue. Tap &quot;OK&quot; to return to the issue list." />
+		<string id="STR_NODE_TITLE_SORTEDBY_LATESTREAD" value="by Latest Read" />
+		<string id="STR_NODE_TITLE_SORTEDBY_ISSUEDATE" value="by Issue Date" />
+		<string id="STR_MONTH_JANUARY" value="January" />
+		<string id="STR_MONTH_FEBRUARY" value="February" />
+		<string id="STR_MONTH_MARCH" value="March" />
+		<string id="STR_MONTH_APRIL" value="April" />
+		<string id="STR_MONTH_MAY" value="May" />
+		<string id="STR_MONTH_JUNE" value="June" />
+		<string id="STR_MONTH_JULY" value="July" />
+		<string id="STR_MONTH_AUGUST" value="August" />
+		<string id="STR_MONTH_SEPTEMBER" value="September" />
+		<string id="STR_MONTH_OCTOBER" value="October" />
+		<string id="STR_MONTH_NOVEMBER" value="November" />
+		<string id="STR_MONTH_DECEMBER" value="December" />
+		<string id="STR_DAY_MONDAY_FULL" value="Monday" />
+		<string id="STR_DAY_TUESDAY_FULL" value="Tuesday" />
+		<string id="STR_DAY_WEDNESDAY_FULL" value="Wednesday" />
+		<string id="STR_DAY_THURSDAY_FULL" value="Thursday" />
+		<string id="STR_DAY_FRIDAY_FULL" value="Friday" />
+		<string id="STR_DAY_SATURDAY_FULL" value="Saturday" />
+		<string id="STR_DAY_SUNDAY_FULL" value="Sunday" />
+		<string id="STR_DAY_MONDAY_ABB" value="Mon" />
+		<string id="STR_DAY_TUESDAY_ABB" value="Tue" />
+		<string id="STR_DAY_WEDNESDAY_ABB" value="Wed" />
+		<string id="STR_DAY_THURSDAY_ABB" value="Thu" />
+		<string id="STR_DAY_FRIDAY_ABB" value="Fri" />
+		<string id="STR_DAY_SATURDAY_ABB" value="Sat" />
+		<string id="STR_DAY_SUNDAY_ABB" value="Sun" />
+		<string id="STR_NODE_TITLE_UNREAD_BOOKS" value="Unread Books" />
+		<string id="STR_NODE_TITLE_UNREAD_PERIODICALS" value="Unread Periodicals" />
+		<string id="STR_NODE_TITLE_PURCHASED_BOOKS" value="Purchased Books" />
+		<string id="STR_UI_MENU_NEW_COLLECTION" value="New Collection" />
+		<string id="STR_UI_MENU_DELETE_COLLECTIONS" value="Delete Collections" />
+		<string id="STR_NODE_TITLE_ADD_NEW_COLLECTION" value="New Collection" />
+		<string id="STR_UI_KEYBOARD_COLLECTION_NAME" value="Collection name:" />
+		<string id="DIALOGMSG_COLLECTIONS_WHERE_TO_CREATE" value="Choose where to create a collection:" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_DEVICE" value="Internal Memory" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_MS" value="Memory Stick™" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_SD" value="SD Card" />
+		<string id="STR_NODE_TITLE_ADD_BOOKS" value="Add Books" />
+		<string id="STR_NODE_TITLE_SELECT_PERIODICAL" value="Select Periodical" />
+		<string id="STR_NODE_TITLE_ADD_ISSUES" value="Add Issues" />
+		<string id="STR_NODE_TITLE_SELECT_A_COLLECTION" value="Select a Collection" />
+		<string id="STR_NODE_TITLE_SORTEDBYFILENAME" value="by File Name" />
+		<string id="STR_UI_MENU_BYFILENAME" value="by File Name" />
+		<string id="STR_UI_MENU_TITLEONLYLIST" value="Title Only" />
+		<string id="STR_UI_MENU_ADDBOOKS" value="Books" />
+		<string id="STR_UI_MENU_ADDPERIODICALS" value="Periodicals" />
+		<string id="STR_UI_MENU_REMOVECONTENT" value="Remove Content" />
+		<string id="STR_NODE_TITLE_REMOVE_ITEMS" value="Remove Content" />
+		<string id="STR_NODE_TITLE_DELETE_COLLECTIONS" value="Delete Collections" />
+		<string id="STR_NODE_TITLE_DELETE_BOOKS" value="Delete Books" />
+		<string id="STR_NODE_TITLE_DELETE_ISSUES" value="Delete Issues" />
+		<string id="STR_NODE_TITLE_DELETE_AUDIO" value="Delete Audio" />
+		<string id="STR_NODE_TITLE_DELETE_PICTURES" value="Delete Pictures" />
+		<string id="STR_NODE_TITLE_DELETE_HANDWRITINGS" value="Delete Drawings" />
+		<string id="STR_NODE_TITLE_DELETE_TEXTMEMOS" value="Delete Memos" />
+		<string id="STR_NODE_TITLE_DELETE_NOTES" value="Delete Notes" />
+		<string id="STR_UI_MESSAGE_DELETE_MANUALLY_NORMAL" value="Are you sure you want to delete the selected item(s)?" />
+		<string id="STR_UI_MESSAGE_DELETE_MANUALLY_SELECTED_AS_STANDBY" value="Are you sure you want to delete the selected item(s) including pictures chosen for display on the standby screen?" />
+		<string id="STR_COUNTER_SELECTED" value=" selected" />
+		<string id="STR_COUNTER_PROTECTED" value=" protected" />
+		<string id="STR_NODE_TITLE_PROTECT_BOOKS" value="Protect Books" />
+		<string id="STR_NODE_TITLE_PROTECT_ISSUES" value="Protect Issues" />
+		<string id="STR_NODE_TITLE_PROTECT_AUDIO" value="Protect Audio" />
+		<string id="STR_NODE_TITLE_PROTECT_PICTURES" value="Protect Pictures" />
+		<string id="STR_NODE_TITLE_PROTECT_HANDWRITINGS" value="Protect Drawings" />
+		<string id="STR_NODE_TITLE_PROTECT_TEXTMEMOS" value="Protect Memos" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_BOOK" value="This book is protected. Are you sure you want to delete this book?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_ISSUE" value="Are you sure you want to delete this protected issue?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_MEMO" value="This memo is protected. Are you sure you want to delete this memo?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_DRAWING" value="This drawing is protected. Are you sure you want to delete this drawing?" />
+		<string id="STR_COUNTER_ISSUE_N" value=" issues" />
+		<string id="STR_COUNTER_ISSUE_1" value="1 issue" />
+		<string id="STR_COUNTER_ISSUE_0" value="No issues" />
+		<string id="STR_COUNTER_ISSUE_ALL" value="All issues" />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_MAIN" value="How many issues from this subscription do you want to store on your Reader?" />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_NOTE" value="Note: Older issues will be deleted unless they are protected." />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_CHECK" value="Delete extra issue(s) now." />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_NOW" value="Are you sure you want to delete the extra issue(s) now?" />
+		<string id="STR_UI_BUTTON_SAVE" value="Save" />
+		<string id="STR_UI_BUTTON_CANCEL" value="Cancel" />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_TOOLBAR" value="This feature is disabled because the &quot;Create/Edit&quot; notes toolbar is shown. Please close this toolbar to enable this feature." />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_FACING" value="This feature is disabled because you are in &quot;2 Page View&quot;. Please change to &quot;1 Page View&quot; to enable this feature." />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_TOOLBARFACING" value="This feature is disabled because you are in &quot;2 Page View&quot; and using the &quot;Create/Edit&quot; notes tool bar. Please change to &quot;1 Page View&quot; and close the tool bar to enable this feature." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SELECTED" value="No dictionary has been selected. Please go to the &quot;Settings&quot; tab and select your dictionary." />
+		<string id="STR_UI_BUTTON_OTHERS" value="Others" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_COMPLETE" value="Download Complete" />
+		<string id="STR_UI_ABOUT_FREESPACE" value="Available Space" />
+		<string id="STR_UI_ABOUT_DEVICEINFO" value="Device Information" />
+		<string id="STR_UI_PARTS_IMEI" value="IMEI" />
+		<string id="STR_UI_PARTS_ICCID" value="ICCID" />
+		<string id="STR_UI_PARTS_ADOBE_DRM_AUTH" value="Adobe DRM" />
+		<string id="STR_UI_ABOUT_LEGALINFO" value="Legal Information" />
+		<string id="STR_NODE_TITLE_WIRELESS_SLEEP_MODE" value="Wireless Standby" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_WIRELESS" value="&quot;Wireless Standby&quot; sets the wireless feature in standby mode when the network is idle for ten minutes. Turn &quot;On&quot; to increase battery life and turn &quot;Off&quot; to improve connection time." />
+		<string id="STR_UI_SETTING_DIC_EBOOKID" value="eBook ID: " />
+		<string id="STR_NODE_TITLE_TIMEZONE" value="Time Zone" />
+		<string id="STR_UI_SETTING_TZ_EST" value="Eastern Time" />
+		<string id="STR_UI_SETTING_TZ_CST" value="Central Time" />
+		<string id="STR_UI_SETTING_TZ_MST" value="Mountain Time" />
+		<string id="STR_UI_SETTING_TZ_PST" value="Pacific Time" />
+		<string id="STR_UI_SETTING_TZ_AKST" value="Alaskan Time" />
+		<string id="STR_UI_SETTING_TZ_HST" value="Hawaii-Aleutian Time" />
+		<string id="STR_UI_SETTING_SUMMERTIME_MSG" value="Daylight Saving Time" />
+		<string id="DIALOGMSG_INFORM_RESTART_TIMEZONE" value="Applying Time Zone setting..." />
+		<string id="DIALOGMSG_INFORM_RESTART_WIZARD" value="Applying settings..." />
+		<string id="DIALOGMSG_NOT_AVAILABLE_WHILE_DOWNLOADING" value="This feature is not available while downloading content. Please try again after the download is complete." />
+		<string id="STR_UI_SETTING_RANGE_HOUR" value="(00 - 23)" />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_1" value="The Reader Store cannot be accessed because the &quot;WIRELESS&quot; switch is turned off. Please turn it on and try again." />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_2" value="Unable to access the Reader Store. The Reader is not connected to either a valid Wi-Fi network or a mobile network. Please try accessing the Reader Store again when the device is connected to one of the above networks." />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_3" value="The Reader Store cannot be accessed because the &quot;Date and Time&quot; setting or &quot;Time Zone&quot; setting is incorrect. Please correct them from the &quot;Settings&quot; tab and try again." />
+		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_1" value="Your SIM card is not recognized. Please contact Sony Customer Support." />
+		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_3" value="The Reader cannot connect to a mobile network because it is locked by a PIN or PUK code. Please contact Sony Customer Support." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_1" value="Unable to download content because the &quot;WIRELESS&quot; switch on the Reader is in the &quot;OFF&quot; position." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_2" value="&#xA;To download content, slide the switch to the &quot;ON&quot; position and when connected to a network, go to &quot;Applications&quot; &gt; &quot;Purchased Content&quot; or &quot;Google Books&quot; if downloading public domain books." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_1" value="Unable to download content because the network connection is no longer active." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_2" value="&#xA;You can download content when the Reader is connected to a network by going to &quot;Applications&quot; &gt; &quot;Purchased Content&quot; or &quot;Google Books&quot; if downloading public domain books." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_1" value="Unable to download content because one or both of the &quot;Date and Time&quot; and &quot;Time Zone&quot; settings are incorrect." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_2" value="&#xA;To download content, please make any necessary corrections then go to &quot;Applications&quot; &gt; &quot;Purchased Content&quot; or &quot;Google Books&quot; if downloading public domain books." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_4_1" value="Unable to download content because there is not enough internal memory space." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_4_2" value="&#xA;Please delete unnecessary files then go to &quot;Applications&quot; &gt; &quot;Purchased Content&quot; or &quot;Google Books&quot; if downloading public domain books." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_5_1" value="A problem occurred while downloading." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_5_2" value="&#xA;You can try downloading again by going to &quot;Applications&quot; &gt; &quot;Purchased Content&quot; or &quot;Google Books&quot; if downloading public domain books." />
+		<string id="STR_UI_MESSAGE_NETWORK_OTHER_ERROR_1" value="An error occurred while accessing the wireless feature. Please shut down your Reader by pressing the &quot;RESET&quot; button at the bottom of the device and then turn the Reader back on by using the &quot;POWER&quot; switch." />
+		<string id="STR_UI_MESSAGE_NETWORK_DOWNLOAD_DELAY" value="Currently connecting to the network. Download will begin after connection is established." />
+		<string id="STR_UI_MESSAGE_NETWORK_OTHER_ERROR_3" value="An error occurred while accessing the wireless feature.&#xA;Please wait for the wireless status icon in the status bar to display &quot;STBY&quot;, then turn the WIRELESS switch off and then turn it back on again." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_1_MS" value="This Memory Stick™ card may have been damaged. Please try another Memory Stick™ card." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_1_SD" value="This SD card may have been damaged. Please try another SD card." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_2_MS" value="Due to a Memory Stick™ card error, your Reader profile cannot be saved to the device. Please try another Memory Stick™ card." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_2_SD" value="Due to an SD card error,  your Reader profile cannot be saved to the device. Please try another SD card." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_3_MS" value="The Memory Stick™ card is read-only and your Reader profile cannot be saved to the device. Please try another Memory Stick™ card." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_4_MS" value="Due to a Memory Stick™ card error, your Reader profile cannot be saved to the device. Please try another Memory Stick™ card." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_4_SD" value="Due to an SD card error, your Reader profile cannot be saved to the device. Please try another SD card." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_6_MS" value="The Memory Stick™ card needs to be formatted. Please go to the Settings tab and format the Memory Stick™ card." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_6_SD" value="The SD card needs to be formatted. Please go to the Settings tab and format the SD card." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_7" value="This file is corrupted and cannot be opened." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_8_MS" value="Because the Memory Stick™ card is locked, your Reader profile cannot be saved to the device. Please eject the Memory Stick™ card, unlock it and re-insert it." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_8_SD" value="Because the SD card is locked, your Reader profile cannot be saved to the device. Please eject the SD card, unlock it and re-insert it." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_9" value="No memory card is inserted." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_10" value="There is not enough free space available to save your Reader profile or a screenshot to the device. Please delete one or more files and try again." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_13_OPEN" value="The file cannot be opened. The file format is not supported." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_13_PLAY" value="The file cannot be played. The file format is not supported." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_16_17_MS" value="This Memory Stick™ card is protected. Please try another Memory Stick™ card." />
+		<string id="STR_UI_MESSAGE_DEAD_BATTERY_ERR_1" value="The Reader has detected an error with the battery and it can no longer be charged. The Reader will now shut down.  Please replace with the new dedicated  battery and turn on the &quot;POWER&quot; switch." />
+		<string id="STR_UI_MESSAGE_DEAD_BATTERY_ERR_2" value="If this message still appears after exchanging the battery, please contact Sony Customer Support." />
+		<string id="STR_UI_MESSAGE_BATTERY_REMOVED_ERR_1" value="The Reader has detected that the battery has been removed and will now shut down. Please insert the battery and turn on the &quot;POWER&quot; switch." />
+		<string id="STR_UI_MESSAGE_RECOMMEND_EPUB" value="The book you're trying to access cannot be opened on this device because of DRM issues. If you purchased this book previously, please download it from &quot;Applications&quot; &gt; &quot;Purchased Content&quot;.&#xA;Otherwise, you will need to purchase the book in order to access it." />
+		<string id="STR_UI_BUTTON_ENTER" value="Enter" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_POWERMANAGEMENT" value="When set &quot;On&quot;, the Reader enters sleep mode after 10 minutes of inactivity and powers off after 3 days of continuous sleep mode." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_PAGETURNGESTURE" value="Select your preferred method to turn pages. The arrow pointing left means that you swipe the touch screen to the left while the arrow pointing right means swiping the touch screen to the right." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_SLIDESHOW" value="Slide duration can be set to up to 60 seconds. The slideshow menu can be found by pressing &quot;OPTIONS&quot; within the Pictures application." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_DEVICELOCK" value="When device lock is set &quot;On&quot;, it is required to enter the pass code whenever the Reader is turned on. Be sure to turn off &quot;Device Lock&quot; before connecting to your computer." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_PERIODICALS" value="You have 0 periodicals on your Reader. Tap the &quot;Store&quot; tab to browse and purchase periodicals." />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_BROKENFILE" value="This drawing has become corrupted and cannot be opened." />
+		<string id="STR_UI_MENU_CHANG_TONE_CURVE" value="Adjust View" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_ORIGINAL" value="Original" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_PROMINENT" value="Saturated" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_DETAILED" value="Details" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_DARKER" value="Darker" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_LIGHTER" value="Brighter" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_CUSTOM" value="Custom" />
+		<string id="STR_UI_TEXT_TONE_CURVE_CONTRAST" value="Contrast" />
+		<string id="STR_UI_TEXT_TONE_CURVE_BRIGHTNESS" value="Brightness" />
+		<string id="STR_UI_BUTTON_TONE_CURVE_RESET" value="Restore" />
+		<string id="STR_UI_BUTTON_PAGE_LOCK" value="Lock" />
+		<string id="STR_UI_BUTTON_UNLOCK" value="Unlock" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_ORIGINAL" value="Original" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_MARGIN_CUT" value="Margin Cut" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_2COLUMN_SPLIT" value="2-Column Split" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_3COLUMN_SPLIT" value="3-Column Split" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_FULL_PAGE" value="Full Page" />
+		<string id="STR_UI_MESSAGE_STANDBY" value="Reader is in sleep mode. Slide and release the power switch to wake up." />
+		<string id="STR_UI_MESSAGE_PAGE_STYLE_CHANGE_TO_ORIGINAL" value="The &quot;Page Mode&quot; will be restored to &quot;Original&quot;." />
+		<string id="STR_UI_MESSAGE_PAGE_STYLE_CHANGE_WITH_TOOLBAR_DISPLAYED" value="The &quot;Create/Edit&quot; notes screen will be closed." />
+		<string id="STR_NODE_TITLE_GENERAL" value="General Settings" />
+		<string id="STR_NODE_TITLE_APPLICATIONS" value="Application Preferences" />
+		<string id="STR_NODE_TITLE_SYSTEM" value="System Management" />
+		<string id="STR_NODE_TITLE_INITIALIZATION" value="Initialization" />
+		<string id="STR_NODE_TITLE_ORIENTATIONTOROTATE" value="Screen Orientation" />
+		<string id="STR_UI_SETTING_ROTATETORIGHT" value="Rotate Right" />
+		<string id="STR_UI_SETTING_ROTATETOLEFT" value="Rotate Left" />
+		<string id="STR_NODE_TITLE_STANDBYSCREEN" value="Standby Screen" />
+		<string id="STR_UI_SETTING_SHOW_PICTURE" value="Show picture" />
+		<string id="STR_UI_SETTING_SHOW_MESSAGE" value="Show message" />
+		<string id="STR_UI_SETTING_STANDBY_GUIDE" value="By selecting &quot;On&quot; for &quot;Show picture&quot;, selected pictures are displayed in sleep mode.  When selecting &quot;On&quot; for &quot;Show message&quot;, messages about how to wake up the Reader are displayed." />
+		<string id="STR_UI_SETTING_PICTURE" value="Picture" />
+		<string id="STR_UI_SETTING_TEXT" value="Message" />
+		<string id="STR_UI_SETTING_ROTATETO" value="Rotate to " />
+		<string id="STR_UI_SETTING_ROTATETO_GUIDE" value="Select screen rotation direction when &quot;Orientation&quot; is selected in the &quot;OPTIONS&quot; menu." />
+		<string id="STR_UI_MESSAGE_COLLECTION_NAME_ALREADY_EXISTS" value="The specified collection name already exists. Please enter another name." />
+		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION" value="Are you sure you want to proceed? Actual content will remain undeleted." />
+		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION_CONTENT" value="Are you sure you want to proceed? Actual content will remain undeleted." />
+		<string id="DIALOGMSG_CONFIRM_DIRECTORY_CHANGE" value="The selected dictionary will be changed&#xA;From:&#xA;%CUR_DIC%&#xA;To:&#xA;%NEW_DIC%" />
+		<string id="DIALOG_CONFIRM_DICTIONARY_CHANGE_CURRENT_DIC" value="%CUR_DIC%" />
+		<string id="DIALOG_CONFIRM_DICTIONARY_CHANGE_NEW_DIC" value="%NEW_DIC%" />
+		<string id="STR_UI_PARTS_UNKNOWN" value="Unknown" />
+		<string id="DIALOGMSG_APPLYING_SETTINGS" value="Applying settings...&#xA;Please wait a moment." />
+		<string id="STR_UI_MENU_ADD" value="Add Content" />
+		<string id="STR_UI_MENU_RENAMECOLLECTION" value="Rename Collection" />
+		<string id="STR_UI_MENU_ADD_BOOKMARK" value="Add Bookmark" />
+		<string id="STR_UI_MENU_REMOVE_BOOKMARK" value="Remove Bookmark" />
+		<string id="STR_UI_MENU_GO_TO" value="Go to" />
+		<string id="STR_UI_MENU_PREVIOUS_VIEW" value="Previous View" />
+		<string id="STR_UI_MENU_SELECT_PAGE" value="Select Page" />
+		<string id="STR_UI_MENU_LIST" value="List" />
+		<string id="STR_UI_MENU_CREATE_EDIT" value="Create/Edit" />
+		<string id="STR_UI_MENU_HIDE" value="Hide" />
+		<string id="STR_UI_MENU_SHOW" value="Show " />
+		<string id="STR_UI_MENU_ADD_TO_COLLECTION" value="Add to Collection" />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS" value="Cannot select because the maximum of 99 pictures that can be selected on the Memory Stick™ card has been reached.&#xA;Please unselect a picture on the Memory Stick™ card and select this picture again.&#xA;" />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_SD" value="Cannot select because the maximum of 99 pictures that can be selected on the SD Card has been reached.&#xA;Please unselect a picture on the SD Card and select this picture again.&#xA;" />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_INTERNAL_MEMORY" value="Cannot select because the maximum of 99 pictures that can be selected on the Internal Memory has been reached.&#xA;Please unselect a picture on the Internal Memory and select this picture again.&#xA;" />
+		<string id="STR_UI_MESSAGE_THERE_IS_NO_ITEM_REFER_TO_UG" value="There are no items in this list. Please refer to the User Guide for information on how to add content." />
+		<string id="STR_UI_MESSAGE_THERE_IS_NO_ITEM" value="There are no items in this list." />
+		<string id="STR_NODE_TITLE_DICTIONARY_LOOK_UP_HISTORY" value="Word Logs: Dictionary" />
+		<string id="STR_NODE_TITLE_WORD_LOGS_BOOK" value="Word Logs: Book" />
+		<string id="STR_NODE_TITLE_WORD_LOGS_PERIODICAL" value="Word Logs: Periodical" />
+		<string id="STR_UI_MENU_WORD_LOGS_PERIODICAL" value="Word Logs: Periodical" />
+		<string id="STR_UI_MENU_DELETE_HISTORIES" value="Delete Word Logs" />
+		<string id="STR_NODE_TITLE_DELETE_HISTORIES" value="Delete Word Logs" />
+		<string id="STR_UI_MENU_SORT_SELECTED" value="Sort:" />
+		<string id="STR_UI_MENU_VIEW_SELECTED" value="View:" />
+		<string id="DIALOGMSG_WHETHER_SHOW_NOTES" value="This book is currently set to hide notes.&#xA;Do you want to display the notes?" />
+		<string id="STR_UI_MESSAGE_TO_CHANGE_DICTIONARY" value="Press &quot;OPTIONS&quot; to select another dictionary." />
+		<string id="STR_UI_MENU_CHANGE_DICTIONARY" value="Change Dictionary" />
+		<string id="STR_UI_MENU_VIEW_SEARCH_HISTORY" value="Word Logs: Dictionary" />
+		<string id="STR_UI_MESSAGE_NO_ENTRY_FOUND" value="No entry found." />
+		<string id="STR_UI_MESSAGE_NO_DEFINITION" value="No entry found. XXBUTTON1XX for manual search XXBUTTON2XX for search in another dictionary." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_SD" value="Cannot select because the maximum of 99 pictures that can be selected on each of the Memory Stick™ card and the SD Card has been reached." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_INTERNAL_MEMORY" value="Cannot select because the maximum of 99 pictures that can be selected on each of the Memory Stick™ card and the Internal Memory has been reached." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_SD_INTERNAL_MEMORY" value="Cannot select because the maximum of 99 pictures that can be selected on each of the SD Card and the Internal Memory has been reached." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_SD_INTERNAL_MEMORY" value="Cannot select because the maximum of 99 pictures that can be selected on each of the Memory Stick™ card, the SD Card and the Internal Memory has been reached." />
+		<string id="DIALOGMSG_DELETING" value="Deleting..." />
+		<string id="DIALOGMSG_REMOVING" value="Removing..." />
+		<string id="DIALOGMSG_ADDING" value="Adding..." />
+		<string id="STR_UI_BUTTON_STOP" value="Stop" />
+		<string id="STR_UI_MESSAGE_UNPROTECT_CONTENT" value="This content is protected. Unprotect the content before deletion." />
+		<string id="DIALOGMSG_NO_CONTENT_IN_COLLECTION_LOCATION" value="There is no content in the storage where the specified collection exists.&#xA;To add a content, the physical location of both content and collection must be the same." />
+		<string id="STR_UI_MENU_BOOKMARK" value="Bookmark" />
+		<string id="STR_UI_MENU_ADD_TO_LEFT" value="Add to Left" />
+		<string id="STR_UI_MENU_ADD_TO_RIGHT" value="Add to Right" />
+		<string id="STR_UI_MENU_REMOVE_FROM_LEFT" value="Remove from Left" />
+		<string id="STR_UI_MENU_REMOVE_FROM_RIGHT" value="Remove from Right" />
+		<string id="STR_NODE_TITLE_WIRELESS_POWER_MANAGEMENT" value="Wireless Controls" />
+		<string id="STR_UI_SETTING_WAN" value="Mobile Network" />
+		<string id="STR_UI_SETTING_LAN" value="Wi-Fi" />
+		<string id="STR_UI_SETTING_WIRELESS_STANDBY" value="Wireless Standby" />
+		<string id="DIALOGMSG_WIRELESS_POWER_MANAGEMENT" value="It is required that either &quot;Wi-Fi&quot; or &quot;Mobile Network&quot; be set to &quot;On&quot;.  If you wish to turn off both Wi-Fi and Mobile Network, slide the &quot;WIRELESS&quot; switch (at the bottom of the Reader) to the &quot;OFF&quot; position." />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_TWO_PAGE_VIEW" value="Two Page View" />
+		<string id="DIALOGMSG_CONNECTING_TO_NETWORK" value="Connecting to the network..." />
+		<string id="DIALOGMSG_LOADING_PAGE" value="Page loading..." />
+		<string id="DIALOGMSG_NETWORK_NOT_AVAILABLE" value="The Reader is not connected to a Wi-Fi or Mobile network. To configure a Wi-Fi network on the Reader, tap Settings &gt; Wi-Fi Network Settings, then select an available Wi-Fi network. To connect to a Mobile network you must be within range of a valid network. &#xA;&#xA;When the Reader is connected to either a Wi-Fi or Mobile network, press Retry to access the information you were trying to acquire." />
+		<string id="STR_UI_BUTTON_SETTING" value="Settings" />
+		<string id="DIALOGMSG_NO_WIFI_SETTING" value="A Wi-Fi network has not been configured on the device. Press &quot;Settings&quot; to go to the &quot;Wi-Fi Network Settings&quot; screen where an available network can be configured." />
+		<string id="DIALOGMSG_SW_SWITCH_OFF" value="Wi-Fi is currently turned off. Press &quot;Settings&quot; to go to the &quot;Wireless Controls&quot; screen. Set the Wi-Fi feature to on." />
+		<string id="DIALOGMSG_BROWSER_ONLY_WLAN" value="The Browser is available only when connected to a Wi-Fi network. To configure an available network, press the &quot;Settings&quot; button to go to the &quot;Wi-Fi Network Settings&quot; screen." />
+		<string id="DIALOGMSG_BROWSER_ONLY_WLAN_NO_WIFI_SET" value="The Browser is available only when connected to a Wi-Fi network. Currently, a Wi-Fi network is not configured on the device. To configure an available network, press the &quot;Settings&quot; button to go to the &quot;Wi-Fi Network Settings&quot; screen." />
+		<string id="DIALOGMSG_PLEASE_READ" value="Please read carefully before using the web browser." />
+		<string id="DIALOGMSG_BROWSER_INDEMNITY" value="Internet Browser User License Agreement&#xA; &#xA;Use of the Reader's limited Internet Browser requires Wi-Fi® access. Wi-Fi access may NOT be available at your location, free of charge, or free from interruption or disconnections. See your Wi-Fi provider for details.&#xA;The Internet Browser may not support all Wi-Fi access points or websites. Functionality and display capabilities may be limited. Sony makes no representations or warranties regarding the links to and/or the use of any websites or the availability of content at any such websites. &#xA;During use you must comply with all applicable laws and license restrictions. Browsing websites, accessing and/or downloading programs or data may result in viruses, loss of data, or other problems. Use of the Internet Browser is at your own risk.&#xA;THE INTERNET BROWSER IS SUPPLIED &quot;AS IS&quot; AND WE MAKE NO REPRESENTATIONS, CONDITIONS OR WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, THAT THE INTERNET BROWSER OR ANY WEBSITES WILL BE FIT FOR A PARTICULAR PURPOSE OR USE, OR TO THE QUALITY OF THE INTERNET BROWSER, OR OF THAT PURPOSE OR USE.&#xA;TO THE EXTENT ALLOWED BY APPLICABLE LAWS OR REGULATIONS, SONY ELECTRONICS INC. AND/OR ITS AFFILIATED COMPANIES DISCLAIM ANY AND ALL LIABILITY FOR ANY LOSS OR DAMAGE TO YOU, YOUR DEVICE OR SOFTWARE, YOUR DATA, OR TO ANY THIRD PARTY, OR FOR LOSS OR DAMAGE CAUSED BY THE USE OF THE INTERNET BROWSER, WHETHER OR NOT SUCH LOSS OR DAMAGE IS THE RESULT OF DIRECT OR INDIRECT, INCIDENTAL OR CONSEQUENTIAL USE OF THE INTERNET BROWSER.&#xA;When using the Internet Browser you agree to respect the intellectual property rights of others. See other terms and conditions of use in your user manual." />
+		<string id="STR_UI_BUTTON_ACCEPT" value="Accept" />
+		<string id="STR_UI_BUTTON_DENY" value="Decline" />
+		<string id="STR_NODE_TITLE_BOOKMARKS" value="Bookmarks" />
+		<string id="STR_UI_MENU_VIEW_BOOKMARKS" value="View Bookmarks" />
+		<string id="STR_UI_MENU_INPUT_URL" value="Input Address" />
+		<string id="STR_UI_MENU_PAGE_INFO" value="Page Info" />
+		<string id="DIALOGMSG_CANNOT_OPEN_UNSUPPORT_FILE" value="Cannot open this file." />
+		<string id="STR_UI_KEYBOARD_URL" value="Address:" />
+		<string id="DIALOGMSG_KEY_EMPTY" value="Encryption Key field is empty. Are you sure you want to finish setting?&#xA;" />
+		<string id="DIALOGMSG_KEY_INCORRECT" value="Encryption Key entered is incorrect for the selected security method. Are you sure you want to finish setting?" />
+		<string id="DIALOGMSG_NAME_ALREADY_USED" value="Connection Name entered is already in use. Please try entering another name." />
+		<string id="DIALOGMSG_ENCRYPTION_METHOD_CHANGED" value="Security method has been changed. It is recommended that a new Encryption Key is set." />
+		<string id="DIALOGMSG_MAX_ACCESS_POINTS" value="Maximum number of Wi-Fi Network configurations have been reached. Please delete unused access points and try again." />
+		<string id="DIALOGMSG_WIRELESS_SETTING_OFF" value="Cannot scan or connect to Wi-Fi network. The wireless setting is currently set to &quot;Off&quot;. Press &quot;OK&quot; to switch on Wi-Fi and continue. You can change this setting later from the &quot;Wireless Controls&quot; setting screen." />
+		<string id="DIALOGMSG_WIRELESS_SWITCH_OFF" value="Cannot scan or connect to Wi-Fi network. The device's &quot;WIRELESS&quot; switch is currently in the &quot;OFF&quot; position. Please slide the &quot;WIRELESS&quot; switch to the &quot;ON&quot; position then press &quot;OK&quot; to continue." />
+		<string id="STR_NODE_TITLE_WIRELESS_NETWORK_SETTINGS" value="Wi-Fi Network Settings" />
+		<string id="STR_NODE_TITLE_WIRELESS_LAN_SETTING" value="Wi-Fi Network Settings" />
+		<string id="STR_NODE_TITLE_NEW_ACCESS_POINT" value="Create New Connection" />
+		<string id="STR_NODE_TITLE_SCAN_AGAIN" value="Refresh Network List" />
+		<string id="STR_UI_SETTING_REGISTERED" value="Configured" />
+		<string id="STR_UI_SETTING_CONNECTING" value="Connecting..." />
+		<string id="STR_UI_SETTING_CONNECTED" value="Connected" />
+		<string id="STR_UI_SETTING_INVALID_SETTING" value="Invalid Configuration" />
+		<string id="STR_UI_MENU_DELETE_ACCESS_POINTS" value="Delete Wi-Fi Networks" />
+		<string id="STR_UI_MENU_CHANGE_ORDER" value="Change Order" />
+		<string id="STR_UI_MENU_TO_FIRST" value="Move to Top" />
+		<string id="STR_UI_MENU_TO_LAST" value="Move to Bottom" />
+		<string id="STR_UI_MENU_CONNECT_INFO" value="Connection Details" />
+		<string id="STR_UI_SETTING_SCANNING" value="Scanning..." />
+		<string id="STR_NODE_TITLE_WPS_PUSH_BUTTON" value="WPS Push-Button Configuration" />
+		<string id="STR_UI_SETTING_AUTO_REG" value="Automatic Setup" />
+		<string id="STR_NODE_TITLE_WPS_PIN_INPUT" value="WPS PIN Method" />
+		<string id="STR_UI_SETTING_MANUAL_REG" value="Manual Setup" />
+		<string id="STR_NODE_TITLE_MANUAL_INPUT" value="Manual Registration" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_REG_METHOD" value="Wireless LAN routers with the WPS push-button configuration feature make it easy to set-up a network. &quot;WPS PIN Method&quot; also makes it easy to set-up if you cannot use WPS push-button configuration. Please refer to the router manufacturer's instructions for more details." />
+		<string id="STR_UI_KEYBOARD_NAME" value="Connection Name:" />
+		<string id="STR_UI_KEYBOARD_BOOKMARK" value="Name:" />
+		<string id="STR_UI_KEYBOARD_SSID" value="SSID:" />
+		<string id="STR_NODE_TITLE_ENCRIPTION" value="Security Method" />
+		<string id="STR_UI_SETTING_NONE" value="None" />
+		<string id="STR_UI_SETTING_WEP_OPEN_SYSTEM" value="WEP (Open System)" />
+		<string id="STR_UI_SETTING_WEP_SHARED_KEY" value="WEP (Shared Key)" />
+		<string id="STR_UI_SETTING_WPA_PSK_TKIP" value="WPA-PSK (TKIP)" />
+		<string id="STR_UI_SETTING_WPA_PSK_AES" value="WPA-PSK (AES)" />
+		<string id="STR_UI_SETTING_WPA2_TKIP" value="WPA2-PSK (TKIP)" />
+		<string id="STR_UI_SETTING_WPA2_AES" value="WPA2-PSK (AES)" />
+		<string id="STR_UI_KEYBOARD_KEY" value="Encryption Key:" />
+		<string id="STR_NODE_TITLE_WLAN_ADVANCED" value="Wi-Fi Advanced Settings" />
+		<string id="STR_NODE_TITLE_IP_ADDRESS" value="IP Address" />
+		<string id="STR_NODE_TITLE_DNS" value="DNS" />
+		<string id="STR_NODE_TITLE_PROXY" value="Proxy" />
+		<string id="STR_UI_SETTING_AUTO" value="Auto" />
+		<string id="STR_UI_SETTING_MANUAL" value="Manual" />
+		<string id="STR_UI_BUTTON_AUTO" value="Auto" />
+		<string id="STR_UI_BUTTON_MANUAL" value="Manual" />
+		<string id="STR_UI_SETTING_SETTING" value="Setting" />
+		<string id="STR_UI_SETTING_IP_ADDRESS" value="IP Address" />
+		<string id="STR_UI_SETTING_SUBNET_MASK" value="Subnet Mask" />
+		<string id="STR_UI_SETTING_DEFAULT_GATEWAY" value="Default Gateway" />
+		<string id="STR_UI_SETTING_PRIMARY_DNS" value="Primary DNS" />
+		<string id="STR_UI_SETTING_SECONDARY_DNS" value="Secondary DNS" />
+		<string id="STR_UI_SETTING_PROXY_SERVER" value="Proxy Server" />
+		<string id="STR_UI_SETTING_ADDRESS" value="Address" />
+		<string id="STR_UI_SETTING_PORT" value="Port" />
+		<string id="DIALOGMSG_WLAN_REG_COMPLETE" value="Configuration is complete. Start connecting?" />
+		<string id="STR_UI_BUTTON_FINISH" value="Done" />
+		<string id="STR_UI_BUTTON_CONNECT" value="Connect" />
+		<string id="DIALOGMSG_CANNOT_CONNECT_NO_NETWORK" value="Cannot scan or connect to Wi-Fi network. No network is found." />
+		<string id="DIALOGMSG_GO_BACK_WEB_BROWSER" value="Do you want to go back to the Web Browser?" />
+		<string id="DIALOGMSG_DELETE_ACCESS_POINT" value="Are you sure you want to delete this Wi-Fi network?" />
+		<string id="STR_NODE_TITLE_MOVE_TO_FIRST" value="Move to Top" />
+		<string id="STR_NODE_TITLE_MOVE_TO_LAST" value="Move to Bottom" />
+		<string id="STR_NODE_TITLE_DELETE_ACCESS_POINTS" value="Delete Wi-Fi Networks" />
+		<string id="DIALOGMSG_PRESS_WPS_BUTTON" value="Please press the WPS button on your router within two minutes." />
+		<string id="DIALOGMSG_EXCHANGING_INFO_WITH_ACCESS_POINT" value="Please wait. The device is currently exchanging information with the router." />
+		<string id="STR_UI_BUTTON_EDIT_NAME" value="Edit Name" />
+		<string id="DIALOGMSG_ENTER_THIS_PIN_CODE" value="Please use the following PIN code for the wireless LAN router. Then press &quot;OK&quot; to proceed." />
+		<string id="DIALOGMSG_BOOKMARK_ADDED" value="Bookmark was added successfully." />
+		<string id="DIALOGMSG_BOOKMARK_LIST_FULL" value="Cannot add additional bookmarks because bookmark limit has been reached. Limit is 50 bookmarks. Please delete one or more bookmarks in order to add new bookmarks." />
+		<string id="STR_UI_BUTTON_BOOKMARKS" value="Bookmarks" />
+		<string id="STR_NODE_TITLE_SORTEDBYLASTACCESSDATE" value="by Last Access Date" />
+		<string id="STR_UI_MENU_EDIT_BOOKMARKS" value="Edit Bookmarks" />
+		<string id="STR_UI_MENU_DELETE_BOOKMARKS" value="Delete Bookmarks" />
+		<string id="STR_NODE_TITLE_EDIT_BOOKMARKS" value="Edit Bookmarks" />
+		<string id="STR_NODE_TITLE_NAME" value="Name" />
+		<string id="STR_NODE_TITLE_ADDRESS" value="Address" />
+		<string id="STR_UI_KEYBOARD_ADDRESS" value="Address:" />
+		<string id="STR_NODE_TITLE_DELETE_BOOKMARKS" value="Delete Bookmarks" />
+		<string id="DIALOGMSG_WEB_PAGE_UNAVAILABLE" value="The web page cannot be accessed. Please retry when the device is connected to a Wi-Fi network." />
+		<string id="DIALOGMSG_TURN_WIRELESS_SWITCH_ON" value="The web page cannot be accessed because the &quot;WIRELESS&quot; switch on the device is turned off. Please switch it to the &quot;ON&quot; position and try connecting again." />
+		<string id="STR_UI_PARTS_MAC_ADDRESS" value="MAC Address" />
+		<string id="STR_UI_MENU_BROWSE_HOME" value="Browse Home" />
+		<string id="DIALOGMSG_CONFIRM_WEB_BROWSE_EDIT_QUIT" value="The changes you made will not be accepted if you continue. Continue anyway?" />
+		<string id="STR_NODE_TITLE_NETWORK" value="Network" />
+		<string id="STR_NODE_TITLE_BROWSER" value="Browser" />
+		<string id="STR_NODE_TITLE_READING" value="Reference" />
+		<string id="STR_NODE_TITLE_MORE" value="Multimedia" />
+		<string id="STR_NODE_TITLE_GOOGLE_BOOKS" value="Google Books" />
+		<string id="STR_NODE_TITLE_PURCHASED" value="Purchased Content" />
+		<string id="STR_UI_MENU_ADD_TO_BOOKMARK" value="Add to Bookmarks" />
+		<string id="STR_NODE_TITLE_CHECK_UPDATES" value="Check for Updates" />
+		<string id="STR_UI_SETTING_CURRENT_VERSION" value="Current Version: " />
+		<string id="DIALOGMSG_CHECKING_NEW_SOFTWARE" value="Checking for latest system software update/s..." />
+		<string id="DIALOGMSG_WIRELESS_TURNED_OFF" value="The &quot;WIRELESS&quot; switch on the Reader is currently set to the &quot;OFF&quot; position. To enable the wireless function, slide the &quot;WIRELESS&quot; switch to the &quot;ON&quot; position." />
+		<string id="DIALOGMSG_CONNECT_TO_NETWORK" value="A Mobile or Wi-Fi network is currently not available. Please try connecting again when the Reader is in range of a valid network." />
+		<string id="DIALOGMSG_LATEST_VERSION_EXIST" value="System software is up to date.&#xA;" />
+		<string id="DIALOGMSG_NEW_SOFTWARE1" value="New system software (version " />
+		<string id="DIALOGMSG_NEW_SOFTWARE2" value=") is available for the Reader." />
+		<string id="STR_UI_BUTTON_DOWNLOAD_NOW" value="Download Now" />
+		<string id="STR_UI_BUTTON_LATER" value="Later" />
+		<string id="DIALOGMSG_DOWNLOADING" value="Device is downloading latest system software..." />
+		<string id="DIALOGMSG_NOT_ENOUGH_BATT_FOR_UPDATE" value="There is not enough battery power to update the system software. Please charge the battery then try again by tapping &quot;Settings&quot; &gt; &quot;System Management&quot;, and selecting &quot;Check for Updates&quot;." />
+		<string id="DIALOGMSG_NOT_ENOUGH_FREE_SPACE_FOR_UPDATE" value="There is not enough space available in the Reader's internal memory for the software update. Please delete unwanted content from the Reader's memory to make more space available. You can then try again by tapping &quot;Settings&quot; &gt; &quot;System Management&quot;, and selecting &quot;Check for Updates&quot;." />
+		<string id="DIALOGMSG_CANNOT_CONNECT_WIRELESS_LAN" value="Failed to connect to a valid Wi-Fi network. Please make sure that a valid Wi-Fi network is available and that the device's Wi-Fi setting is set to the On position. You can then check for available updates by tapping &quot;Settings&quot; &gt; &quot;System Management&quot;, and selecting &quot;Check for Updates&quot;." />
+		<string id="DIALOGMSG_DOWNLOAD_FAILED" value="A network error occurred during download. Please make sure you are connected to a network then try downloading again by tapping on &quot;Settings&quot;, &quot;System Management&quot;, then selecting &quot;Check for Updates&quot;." />
+		<string id="DIALOGMSG_UPDATE_EULA" value="Download complete. Please read the following License Agreement carefully before updating the system software. When you press the &quot;Accept&quot; button, the device will shut down, restart, and then begin the system software update process." />
+		<string id="DIALOGMSG_UPDATE_COMPLETE_SUCCESSFULLY" value="Update completed successfully." />
+		<string id="DIALOGMSG_UPDATE_ERROR" value="An error occurred during updating. Please try downloading again by tapping on &quot;Settings&quot;, &quot;System Management&quot;, then selecting &quot;Check for Updates&quot;." />
+		<string id="DIALOGMSG_PAGE_INFO" value="Page Information" />
+		<string id="DIALOGMSG_TITLE" value="Title:" />
+		<string id="DIALOGMSG_ADDRESS" value="Address:" />
+		<string id="DIALOGMSG_CERTIFICATE_INFO" value="Certificate Information:" />
+		<string id="DIALOGMSG_SERIAL_NUMBER" value="Serial Number:" />
+		<string id="DIALOGMSG_VALID_FROM" value="Valid from:" />
+		<string id="DIALOGMSG_VALID_TO" value="Valid to:" />
+		<string id="DIALOGMSG_ISSUED_BY" value="Issued by:" />
+		<string id="DIALOGMSG_ISSUED_TO" value="Issued to:" />
+		<string id="DIALOGMSG_THUMBPRINT" value="Thumbprint:" />
+		<string id="STR_UI_MENU_TAKE_SCREENSHOT" value="Capture Screenshot" />
+		<string id="DIALOGMSG_SCREENSHOT_SAVED" value="The screenshot was saved successfully. You can view screenshots within the &quot;Applications&quot; &gt; &quot;Pictures&quot; screen." />
+		<string id="DIALOGMSG_FILE_SYSTEM_ERROR" value="File system error occurred." />
+		<string id="STR_NODE_TITLE_SOFTWARE_DOWNLOADING" value="Software Downloading" />
+		<string id="DIALOGMSG_STOP_DOWNLOADING" value="Downloading will be interrupted. Continue anyway?" />
+		<string id="STR_UI_MESSAGE_WIFI_SETUP" value="Wi-Fi® Set-up" />
+		<string id="STR_UI_MESSAGE_WIFI_SETUP_EXPLANATIONS" value="Your Reader's Wi-Fi feature provides you with access to services that are not available through a 3G connection.&#xA;&#xA;Wi-Fi also provides a high speed connection to the Reader Store, allowing for faster browsing and downloading of content.&#xA;&#xA;For these reasons, we highly recommend you set up your Reader to connect to a wireless LAN router in your home and/or any Wi-Fi service to which you have access." />
+		<string id="STR_UI_BUTTON_CONTINUE_WIFI_SETUP" value="Continue with Wi-Fi set-up" />
+		<string id="STR_UI_BUTTON_REMIND_LATER" value="Remind me later" />
+		<string id="STR_UI_BUTTON_NEVER_SHOW" value="Don't show me this again" />
+		<string id="STR_UI_MESSAGE_WIFI_SETUP_NOTE" value="You can set up a Wi-Fi network at anytime by going to &quot;Settings&quot; &gt; &quot;Wi-Fi Network Settings&quot;." />
+		<string id="DIALOGMSG_PREPARING_UPDATE" value="The device will now shut down, restart, and then begin the system software update process." />
+		<string id="DIALOGMSG_SSID_INVALID_CHAR" value="Invalid character(s) entered. Allowable characters:&#xA;a-z, A-Z, 0-9, ! &quot; # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ { | } ~ `" />
+		<string id="DIALOGMSG_SSID_INVALID_LENGTH" value="SSID must be less than or equal to 32 characters long." />
+		<string id="DIALOGMSG_NAME_INVALID_LENGTH" value="Connection Name must be less than or equal to 64 characters long." />
+		<string id="DIALOGMSG_NAME_INVALID_CHAR" value="Invalid character(s) entered. Allowable characters:&#xA;a-z, A-Z, 0-9, ! &quot; # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ { | } ~ `" />
+		<string id="DIALOGMSG_KEY_LENGTH_WRONG1" value="The encryption key length is invalid. The correct key lengths are:&#xA;&#xA;hexadecimal: 10 or 26 digits&#xA;alphanumeric: 5 or 13 characters" />
+		<string id="DIALOGMSG_KEY_LENGTH_WRONG2" value="The encryption key length is invalid. The correct key lengths are:&#xA;&#xA;hexadecimal: 64 digits&#xA;alphanumeric: 8 - 63 characters" />
+		<string id="DIALOGMSG_WLAN_CONNECTION_FAILD" value="Failed to connect. Please check the following:&#xA;1. A Wi-Fi signal is available.&#xA;2. The device's &quot;WIRELESS&quot; switch is set to the &quot;ON&quot; position.&#xA;3. The &quot;Wi-Fi&quot;setting in the &quot;Settings&quot; &gt; &quot;Wireless Controls&quot; screen is set to &quot;On&quot;.&#xA;4. Reader connection settings for Wi-Fi are correctly set." />
+		<string id="DIALOGMSG_WPS_REG_FAILED" value="Failed to configure Wi-Fi network. Configuration process may have timed out." />
+		<string id="DIALOGMSG_WPS_REG_TIMEOUT" value="Failed to configure Wi-Fi network. Configuration process may have timed out or PIN code may have been entered incorrectly." />
+		<string id="DIALOGMSG_INPUT_PROXY_SERVER_ADD" value="Please input proxy server address." />
+		<string id="DIALOGMSG_ACCESS_POINT_NOT_SUPPORTED" value="Cannot connect to this Wi-Fi network because the security method for this network is not supported." />
+		<string id="DIALOGMSG_CHANGE_MADE_PLEASE_RECONNECT" value="The following change has been made to the Wi-Fi network. Please reconnect." />
+		<string id="STR_UI_MENU_DELETE" value="Delete Wi-Fi Network" />
+		<string id="STR_UI_WLAN_REG_METHOD" value="Method:" />
+		<string id="STR_UI_WLAN_REG_NAME" value="Connection name:" />
+		<string id="STR_UI_WLAN_REG_SSID" value="SSID:" />
+		<string id="STR_UI_WLAN_REG_ENCRYPTION_METHOD" value="Security Method:" />
+		<string id="STR_UI_WLAN_REG_KEY" value="Encryption Key:" />
+		<string id="STR_UI_WLAN_REG_IP_ADDRESS_SETTING" value="IP Address Setting:" />
+		<string id="STR_UI_WLAN_REG_IP_ADDRESS" value="IP Address:" />
+		<string id="STR_UI_WLAN_REG_SUBNET_MASK" value="Subnet mask:" />
+		<string id="STR_UI_WLAN_REG_DEFAULT_GATEWAY" value="Default Gateway:" />
+		<string id="STR_UI_WLAN_REG_DNS_SERVER_SETTING" value="DNS Setting:" />
+		<string id="STR_UI_WLAN_REG_PRIMARY_DNS_SERVER" value="Primary DNS Server:" />
+		<string id="STR_UI_WLAN_REG_SECONDARY_DNS_SERVER" value="Secondary DNS Server:" />
+		<string id="STR_UI_WLAN_REG_PROXY_SERVER" value="Proxy Server:" />
+		<string id="STR_UI_WLAN_REG_PROXY_SERVER_ADDRESS" value="Proxy Server Address:" />
+		<string id="STR_UI_WLAN_REG_PROXY_SERVER_PORT" value="Proxy Server Port:" />
+		<string id="STR_UI_WLAN_REG_ENCRYPTION" value="Encryption:" />
+		<string id="STR_UI_WLAN_REG_DNS_SETTING" value="DNS Setting:" />
+		<string id="STR_UI_WLAN_REG_ON" value="On" />
+		<string id="STR_UI_WLAN_REG_OFF" value="Off" />
+		<string id="DIALOGMSG_BACK_TO_BROWSER" value="Return to Browser?" />
+		<string id="DIALOGMSG_CONNECTION_INFO" value="Connection Information" />
+		<string id="DIALOGMSG_PROXY_SERVER_ADD_MAX255" value="Proxy server address must be less than or equal to 255 characters." />
+		<string id="DIALOGMSG_PROXY_INVALID_CHAR" value="Invalid character(s) entered. Please use only digits 0 through 9." />
+		<string id="DIALOGMSG_NOT_CERTIFY_BY_TRUSTED" value="This website's security certificate is not issued by a trusted authority.&#xA;&#xA;Communication with this site may not be secure; continuing is not recommended." />
+		<string id="DIALOGMSG_NOT_CERTIFY_BY_DIF_WEBSITE" value="This website's security certificate was issued for a different website.&#xA;&#xA;Communication with this site may not be secure; continuing is not recommended." />
+		<string id="DIALOGMSG_SECURITY_CERTIFICATE_EXPIRED" value="This website's security certificate has either expired or is not yet valid. Also, please make sure that the device's &quot;Date and Time&quot; settings are correct." />
+		<string id="DIALOGMSG_SECURITY_CERTIFICATE_HAS_PROBLEM" value="This website's security certificate has a problem.&#xA;&#xA;Communication with this site may not be secure; continuing is not recommended." />
+		<string id="DIALOGMSG_NOT_SUPPORTED_URL" value="Cannot display the following page because it is not supported." />
+		<string id="DIALOGMSG_WEB_NOT_SUPPORTED_FILE_FORMAT" value="Cannot open this file. The file format is not supported." />
+		<string id="DIALOGMSG_WEB_NONSECURE_TO_SECURE" value="Leaving the non-secure page to go to the secure page." />
+		<string id="DIALOGMSG_WEB_SECURE_TO_NONSECURE" value="Leaving the secure page to go to the non-secure page." />
+		<string id="DIALOGMSG_BROWSER_EXIT_UNEXPECTED_ERROR" value="An error accessing the website has occurred. You will be returned to the &quot;Home&quot; screen. Please try again." />
+		<string id="STR_UI_KEYBOARD_INPUT" value="Input value:" />
+		<string id="DIALOGMSG_USER_NAME" value="User Name:" />
+		<string id="DIALOGMSG_PASSWORD" value="Password:" />
+		<string id="DIALOGMSG_SIGN_IN_TO" value="Sign in to" />
+		<string id="DIALOGMSG_INPUT_IP_ADDRESS" value="Please input IP address, subnet mask and default gateway." />
+		<string id="DIALOGMSG_PORT_NUMBER_LARGER_MAX" value="Port must be equal to or less than 65535." />
+		<string id="DIALOGMSG_AP_NAME_CONNECTED" value="Connected: " />
+		<string id="STR_UI_MENU_STOP" value="Stop" />
+		<string id="DIALOGMSG_WEB_LEGAL_INFO" value="Legal Information" />
+		<string id="DIALOGMSG_REG_TIME_OUT" value="Failed to configure Wi-Fi network. Connection wait time has expired or WPS button for multiple wireless LAN routers may have been pushed." />
+		<string id="DIALOGMSG_NOT_CONNECTED_NETWORK" value="Device is not connected to a network." />
+		<string id="STR_UI_BUTTON_CONTINUE" value="Continue" />
+		<string id="STR_UI_BUTTON_VIEW_CERT" value="View Certificate" />
+		<string id="DIALOGMSG_IP_ADDRESS_SET_MANUAL" value="Note: if you wish to set the IP address setting to &quot;Manual&quot;, then you must also set the DNS server to &quot;Manual&quot; (if it is currently set to &quot;Auto&quot;) and then input the necessary DNS information." />
+		<string id="DIALOGMSG_INVALID_URL" value="Invalid web address. Please check the address and try again." />
+		<string id="DIALOGMSG_DNS_SET_AUTO" value="The next time the device attempts to connect to this Wi-Fi network, the DNS server will be set automatically. Also, if the &quot;IP Address&quot; is set to &quot;Manual&quot;, the setting will automatically be changed to &quot;Auto&quot;." />
+		<string id="DIALOGMSG_WPS_REG_FAILED2" value="Connection has been terminated. Please make sure that the device's &quot;WIRELESS&quot; switch is in the &quot;ON&quot; position and try connecting again." />
+		<string id="STR_NODE_TITLE_READER_STORE_NOTIFICATIONS" value="Reader Store Notifications" />
+		<string id="" value="Service Notifications" />
+		<string id="STR_UI_SETTING_DISPLAY" value="Display" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_READER_STORE_NOTIFI" value="You will automatically receive updates like book and periodical recommendations, special promotions and exclusive offers from Reader Store on your Reader's &quot;Home&quot; screen." />
+		<string id="DIALOGMSG_NO_SIM_CARD_HIGHLOAD_NETWORK" value="Cannot connect to a network. Please check the following: 1) The Reader is within a network service area. 2) Confirm you are using the SIM card provided with your Reader." />
+		<string id="DIALOGMSG_NETWORK_LOW_BATTERY" value="The network feature could not be turned on because remaining battery power is too low. Please charge the battery before attempting to connect again." />
+		<string id="DIALOGMSG_NO_CONNECTION_TO_READER_STORE" value="Cannot confirm connection to either the Internet or the Reader Store. Please check the following: 1) The connection settings between the device and the wireless LAN router. 2) The wireless network is running properly." />
+		<string id="DIALOGMSG_REQUIRE_USER_AUTHENTICATION" value="The wireless network the device is connected to requires user authentication. Please open the device's Browser by tapping &quot;Applications&quot;, then &quot;Browser&quot;. The Wi-Fi network provider's sign-on page will appear. You can enter your user ID and Password in the appropriate fields for authentication." />
+		<string id="STR_UI_REG_METHOD_AUTO" value="Automatic Setup (WPS Push-Button Configuration)" />
+		<string id="STR_UI_REG_METHOD_MANUAL" value="Manual Setup (WPS PIN Method)" />
+		<string id="DIALOGMSG_NO_WLAN_SETTINGS" value="Cannot connect to a network. The mobile network is currently set to &quot;Off&quot; and no Wi-Fi network is set-up on this device. Please set &quot;Mobile Network&quot; to the &quot;On&quot; position in the &quot;Wireless Controls&quot; screen or set up a Wi-Fi connection in the &quot;Wi-Fi Network Settings&quot; screen and try again." />
+		<string id="DIALOGMSG_GENERATING_PIN" value="Generating PIN code. Please wait..." />
+		<string id="STR_UI_KEYBOARD_GO" value="Go" />
+		<string id="DIALOGMSG_NETWORK_FEAT_OFF_BATT_LOW" value="The network feature is turned off because remaining battery power is too low. Please charge the battery before attempting to connect again." />
+		<string id="DIALOGMSG_URL_INVALID" value="Invalid web address. Please check the address and try again." />
+		<string id="STR_UI_MESSAGE_CONNECTED" value="Connected: " />
+		<string id="STR_UI_MESSAGE_CONNECTING" value="Connecting..." />
+		<string id="STR_UI_MESSAGE_STORE_NETWORK_OFF" value="Cannot connect to a network. The mobile network is currently set to &quot;Off&quot; and no Wi-Fi network is configured on this Reader. Please set &quot;Mobile Network&quot; to the &quot;On&quot; position in the &quot;Wireless Controls&quot; screen or configure a Wi-Fi connection in the &quot;Wi-Fi Network Settings&quot; screen." />
+		<string id="STR_UI_MESSAGE_LOWBATTERY2" value="Low Battery!&#xA;&#xA;The network features have been turned off to conserve power. Please charge the battery before attempting to connect again." />
+		<string id="STR_UI_MENU_CLOUD_SYNC" value="Page Sync" />
+		<string id="DIALOGMSG_LATEST_POSITION_ACCESS" value="You are in the latest position across all your devices." />
+		<string id="DIALOGMSG_GO_TO_LATEST_POSITION" value="You are currently on Page %current_page%. The last read position is %server_page% at %date%. Would you like to go to that page?" />
+		<string id="DIALOGMSG_NOT_SUPPORT_CLOUD_SYNC" value="This content does not support Synchronization." />
+		<string id="DIALOGMSG_SIGN_IN_FIRST" value="To use this feature, you need to Sign-in first." />
+		<string id="STR_UI_MESSAGE_RETRIEVING_PAGE_INFO" value="Retrieving page info..." />
+		<string id="STR_NODE_TITLE_SYNC" value="Page Sync" />
+		<string id="STR_UI_SETTING_SYNC" value="Sync" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_SYNC" value="The Page Sync function synchronizes reading-related information like bookmarks, notes, and current page across your compatible reading devices.&#xA;&#xA;Note: Handwritten notes and drawings cannot be synced." />
+		<string id="DIALOGMSG_EXCEED_BROWSER_MAX_NUMBER" value="The menu cannot be displayed because the maximum number of menu items the browser can show has been exceeded." />
+		<string id="DIALOGMSG_CANNOT_CONNECT_TO_NETWORK" value="Cannot connect to a network. Please check that either a valid Wi-Fi network is configured in the &quot;Wi-Fi Network Settings&quot; screen, or the &quot;Mobile Network&quot; is in the &quot;On&quot; position in the &quot;Wireless Controls&quot; screen. &#xA;&#xA;Note: If the link being accessed is for anything other than the Reader Store, it can only be accessed via Wi-Fi. " />
+		<string id="" value="The page cannot be displayed.&#xA;&#xA;A network error occurred. Please check the following settings: 1) The device's &quot;WIRELESS&quot; switch is in the &quot;ON&quot; position. 2) The &quot;Mobile Network&quot;/&quot;Wi-Fi&quot; network setting in the &quot;Wireless Controls&quot; screen is turned on." />
+		<string id="" value="The page cannot be displayed.&#xA;&#xA;DNS error occurred. Your request could not be processed because an error occurred contacting the DNS server. Please select the &quot;OPTIONS&quot; menu to go to the home page." />
+		<string id="" value="The page cannot be displayed.&#xA;&#xA;A network port error occurred. The network port is restricted. Please select the &quot;OPTIONS&quot; menu to go to the home page." />
+		<string id="" value="The page cannot be displayed.&#xA;&#xA;A security error occurred. This web site has a security problem.  Please select the &quot;OPTIONS&quot; menu to go to the home page." />
+		<string id="STR_NODE_TITLE_CONNECTION_NAME" value="Connection Name" />
+		<string id="STR_NODE_TITLE_SSID" value="SSID" />
+		<string id="STR_NODE_TITLE_KEY" value="Encryption Key" />
+		<string id="DIALOGMSG_SYNC_OFF" value="The Sync function is currently set to the &quot;Off&quot; position. To turn on Sync, tap the &quot;Settings&quot; button then on the next screen, tap &quot;On&quot;." />
+		<string id="STR_UI_SETTING_MOBILE" value="Mobile" />
+		<string id="DIALOGMSG_CANNOT_DOWNLOAD_CONTENT" value="Cannot download content. You can download this content only when the device is connected to a Wi-Fi network." />
+		<string id="DIALOGMSG_CANNOT_ACCESS_PAGE_NO_WIFI_CONNECTION" value="The page you are trying to access is available only when connected to a Wi-Fi network. To configure an available network, press the &quot;Settings&quot; button to go to the &quot;Wi-Fi Network Settings&quot; screen." />
+		<string id="DIALOGMSG_CANNOT_ACCESS_PAGE_NO_WIFI_CONFIGURE" value="The page you are trying to access is available only when connected to a Wi-Fi network. Currently, a Wi-Fi network is not configured on the device. To configure an available network, press the &quot;Settings&quot; button to go to the &quot;Wi-Fi Network Settings&quot; screen." />
+		<string id="DIALOGMSG_DOWNLOAD_FAILED_CONNECT_WIFI" value="Download failed. Please make sure you are connected to a Wi-Fi network then try downloading again by tapping on &quot;Settings&quot;, &quot;System Management&quot;, then selecting &quot;Check for Updates&quot;. It is necessary that the device is connected to a Wi-Fi network to download software." />
+		<string id="DIALOGMSG_DATE_AND_TIME_INCORRECT" value="The Reader is unable to connect because at least one of the following settings are incorrect: 1) &quot;Date and Time&quot; 2) &quot;Time Zone&quot;. You can make the correction within the &quot;Settings&quot; &gt; &quot;General Settings&quot; screen." />
+		<string id="DIALOGMSG_NO_NETWORK_CONNECTION_SET" value="Cannot connect to a network. Please check that at least one of the following settings are true:&#xA;&#xA;(1) A valid Wi-Fi network is configured in the &quot;Wi-Fi Network Settings&quot; screen.&#xA; &#xA;(2) The &quot;Mobile Network&quot; is in the &quot;On&quot; position in the &quot;Wireless Controls&quot; screen." />
+		<string id="DIALOGMSG_CANNOT_ACCESS_PAGE_WIRELESS_SW_OFF" value="The page cannot be accessed because the &quot;WIRELESS&quot; switch on the device is turned off. Please switch it to the &quot;ON&quot; position and try connecting again." />
+		<string id="DIALOGMSG_PAGE_UNAVAILABLE_CONNECT_WLAN" value="The page cannot be accessed. Please retry when the device is connected to a Wi-Fi network." />
+		<string id="DIALOGMSG_GO_BACK_TO_PAGE" value="Do you want to go back to the Browser?" />
+		<string id="STR_UI_BUTTON_SIGN_IN" value="Sign In" />
+		<string id="DIALOGMSG_LINK_UNAVAILABLE" value="Sorry, this link is currently unavailable." />
+		<string id="DIALOGMSG_SYNC_CANCEL" value="The action you are trying to perform will cancel the sync function. Do you want to continue? " />
+		<string id="STR_UI_BUTTON_SYNC" value="Sync" />
+		<string id="DIALOGMSG_WEB_JAVASCRIPT_BUSY" value="A script on this page may be busy. Do you want the script to continue processing the page?" />
+		<string id="DIALOGMSG_GO_BACK_BOOK" value="Do you want to go back to the book you were reading?" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_SECURITY_KEY" value="If the network you're connecting to requires a security key (also called a WEP/WPA key or network key) select “Encryption Key” to enter the information." />
+		<string id="DIALOGMSG_KEY_EMPTY_CONNECT" value="The required Encryption Key has not been entered.&#xA;&#xA;Please enter the Encryption Key." />
+		<string id="DIALOGMSG_KEY_INCORRECT_CONNECT" value="The encryption Key Entered is incorrect.&#xA;&#xA;Please enter the correct Encryption Key." />
+	</assets>
+</document>

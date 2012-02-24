@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?> 
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="კითხვის გაგრძელება" /> 
+		<string id="STR_NODE_TITLE_BEGIN" value="დასაწყისი" /> 
+		<string id="STR_NODE_TITLE_END" value="დასასრული" /> 
+		<string id="STR_NODE_TITLE_BOOKMARKS" value="სანიშნები" /> 
+		<string id="STR_NODE_TITLE_TOC" value="შინაარსი" /> 
+		<string id="STR_NODE_TITLE_HISTORY" value="ისტორია" /> 
+		<string id="STR_NODE_TITLE_INFO" value="ინფორმაცია" /> 
+		<string id="STR_NODE_TITLE_UTILITIES" value="უტილიტები" /> 
+		<string id="STR_NODE_TITLE_REMOVEALLBOOKMARKS" value="ყველა სანიშნეს წაშლა" /> 
+		<string id="STR_NODE_TITLE_CLEARHISTORY" value="ისტორიის წაშლა" /> 
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="წიგნის წაშლა" /> 
+		<string id="STR_NODE_TITLE_CONTINUEREADING" value="კითხვის გაგრძელება" /> 
+		<string id="STR_NODE_TITLE_BOOKSBYTITLE" value="წიგნები სათაურის მიხედვით" /> 
+		<string id="STR_NODE_TITLE_BOOKSBYAUTHOR" value="წიგნები ავტორის მიხედვით" /> 
+		<string id="STR_NODE_TITLE_BOOKSBYDATE" value="წიგნები თარიღის მიხედვით" /> 
+		<string id="STR_NODE_TITLE_TODAY" value="დღეს" /> 
+		<string id="STR_NODE_TITLE_EARLIERTHISWEEK" value="ამ კვირას" /> 
+		<string id="STR_NODE_TITLE_LASTWEEK" value="წინა კვირას" /> 
+		<string id="STR_NODE_TITLE_EARLIERTHISMONTH" value="ამ თვეში" /> 
+		<string id="STR_NODE_TITLE_LASTMONTH" value="წინა თვეში" /> 
+		<string id="STR_NODE_TITLE_EARLIERTHISQUARTER" value="ამ კვარტალში" /> 
+		<string id="STR_NODE_TITLE_LASTQUARTER" value="წინა კვარტალში" /> 
+		<string id="STR_NODE_TITLE_EARLIERTHISYEAR" value="წელს" /> 
+		<string id="STR_NODE_TITLE_LASTYEAR" value="შარშან" /> 
+		<string id="STR_NODE_TITLE_OLDER" value="უფრო ძველი" /> 
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="კოლექციები" /> 
+		<string id="STR_NODE_TITLE_ALLBOOKMARKS" value="ყველა სანიშნე" /> 
+		<string id="STR_NODE_TITLE_NOWPLAYING" value="ახლა იკვრება" /> 
+		<string id="STR_NODE_TITLE_AUDIO" value="აუდიო" /> 
+		<string id="STR_NODE_TITLE_PICTURE" value="სურათები" /> 
+		<string id="STR_NODE_TITLE_SETTINGS" value="პარამეტრები" /> 
+		<string id="STR_NODE_TITLE_ORIENTATION" value="ორიენტაცია" /> 
+		<string id="STR_NODE_COMMENT_HORIZONTAL" value="ჰორიზონტალური" /> 
+		<string id="STR_NODE_COMMENT_VERTICAL" value="ვერტიკალური" /> 
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="თარიღი და დრო" /> 
+		<string id="STR_NODE_TITLE_YEAR" value="წელი" /> 
+		<string id="STR_NODE_TITLE_MONTH" value="თვე" /> 
+		<string id="STR_NODE_TITLE_DATE" value="დღე" /> 
+		<string id="STR_NODE_TITLE_HOUR" value="საათი" /> 
+		<string id="STR_NODE_TITLE_MINUTE" value="წუთი" /> 
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="დაცვა პაროლით" /> 
+		<string id="STR_NODE_TITLE_ENTERCODE" value="კოდის შეყვანა" /> 
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="სლაიდ-შოუ" /> 
+		<string id="STR_NODE_TITLE_TURN" value="გადართვა" /> 
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="ინტერვალი" /> 
+		<string id="STR_NODE_TITLE_SLEEPMODE" value="ძილის რეჟიმი" /> 
+		<string id="STR_NODE_TITLE_ADBANCEDSETTINGS" value="გაფართოებული პარამეტრები" /> 
+		<string id="STR_NODE_TITLE_FORMATINTERNALMEMORY" value="შიდა მეხსიერების დაფორმატება" /> 
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="სისტემის გათიშვა" /> 
+		<string id="STR_NODE_TITLE_ABOUT" value="წიგნის შესახებ" /> 
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="საწყისი პარამეტრების აღდგენა" /> 
+		<string id="STR_NODE_TITLE_CODE" value="კოდი" /> 
+		<string id="#STR_NODE_TITLE_AUTORUN" value="ავტო-გაშვება" /> 
+		<string id="#STR_NODE_TITLE_HARDRESET" value="საწყისი პარამეტრების აღდგენა" /> 
+		<string id="STR_COUNTER_BOOKMARK_N" value="სანიშნე" /> 
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 სანიშნე" /> 
+		<string id="STR_COUNTER_BOOKMARK_0" value="ცარიელი" /> 
+		<string id="STR_COUNTER_ITEM_N" value="ელემენტი" /> 
+		<string id="STR_COUNTER_ITEM_1" value="1 ელემენტი" /> 
+		<string id="STR_COUNTER_ITEM_0" value="ცარიელი" /> 
+		<string id="STR_COUNTER_PAGE_N" value="გვერდი" /> 
+		<string id="STR_COUNTER_PAGE_1" value="1 გვერდი" /> 
+		<string id="STR_COUNTER_PAGE_0" value="ცარიელი" /> 
+		<string id="STR_COUNTER_UTILITIES_N" value="უტილიტა" /> 
+		<string id="STR_COUNTER_UTILITIES_1" value="1 უტილიტა" /> 
+		<string id="STR_COUNTER_UTILITIES_0" value="ცარიელი" /> 
+		<string id="STR_COUNTER_BOOK_N" value=" წიგნი" /> 
+		<string id="STR_COUNTER_BOOK_1" value="1 წიგნი" /> 
+		<string id="STR_COUNTER_BOOK_0" value="ცარიელი" /> 
+		<string id="STR_COUNTER_COLLECTION_N" value="კოლექცია" /> 
+		<string id="STR_COUNTER_COLLECTION_1" value="1 კოლექცია" /> 
+		<string id="STR_COUNTER_COLLECTION_0" value="ცარიელი" /> 
+		<string id="STR_COUNTER_SONG_N" value="სიმღერა" /> 
+		<string id="STR_COUNTER_SONG_1" value="1 სიმღერა" /> 
+		<string id="STR_COUNTER_SONG_0" value="ცარიელი" /> 
+		<string id="STR_COUNTER_NOSONG" value="ცარიელი" /> 
+		<string id="STR_COUNTER_PICTURE_N" value="სურათი" /> 
+		<string id="STR_COUNTER_PICTURE_1" value="1 სურათი" /> 
+		<string id="STR_COUNTER_PICTURE_0" value="ცარიელი" /> 
+		<string id="STR_COUNTER_SETTING_N" value="პარამეტრი" /> 
+		<string id="STR_COUNTER_SETTING_1" value="1 პარამეტრი" /> 
+		<string id="STR_COUNTER_SETTING_0" value="ცარიელი" /> 
+		<string id="STR_UI_BUTTON_OK" value="OK" /> 
+		<string id="STR_UI_BUTTON_On" value="ჩართვა" /> 
+		<string id="STR_UI_BUTTON_Off" value="გამორთვა" /> 
+		<string id="STR_UI_BUTTON_ABLE" value="ჩართვა" /> 
+		<string id="STR_UI_BUTTON_DISABLE" value="გამორთვა" /> 
+		<string id="STR_UI_UNITNAME_SECONDS" value="წამი" /> 
+		<string id="STR_UI_UNITNAME_SIZEKB" value="კბ" /> 
+		<string id="STR_UI_UNITNAME_SIZEMB" value="მბ" /> 
+		<string id="STR_UI_UNITNAME_SIZEGB" value="გბ" /> 
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" /> 
+		<string id="STR_UI_DELIMITER_POINT" value="." /> 
+		<string id="STR_UI_PARTS_PART" value="Part" /> 
+		<string id="STR_UI_PARTS_DIVIDER" value="-" /> 
+		<string id="STR_UI_PARTS_PAGE" value="Page" /> 
+		<string id="STR_UI_PARTS_OF" value="of" /> 
+		<string id="STR_UI_PARTS_UNKNOWN" value="?" /> 
+		<string id="STR_UI_PARTS_VERSION" value="ვერსია:" /> 
+		<string id="STR_UI_PARTS_DEVICE" value="მოწყობილობა:" /> 
+		<string id="STR_UI_GOTOPAGE" value="გვერდი" /> 
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="არასწორი გვერდი!" /> 
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="გვერდი არის დაცული!" /> 
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="შეცდომა!" /> 
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="არასწორი ფორმატი!" /> 
+		<string id="STR_UI_MESSAGE_FORMATTING" value="დაფორმატება..." /> 
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="აკრძალული" /> 
+		<string id="STR_UI_MESSAGE_DRMFULL" value="შევსებულია, დათვალიერება" /> 
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="მეხსიერების ბარათი" /> 
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="შიდა მეხსიერება" /> 
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="ამოიწურა" /> 
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="დღეს" /> 
+		<string id="STR_UI_MESSAGE_FORMATTINGINTERNALMEMORY" value="შიდა მეხსიერების დაფორმატება..." /> 
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="გათიშვა..." /> 
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDYES" value="არის ავტორიზირებული eBook Store-სთვის." /> 
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDNO" value="არ არის ავტორიზირებული eBook Store-სთვის." /> 
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDYES" value="წიგნი არის ავტორიზირებული Adobe DRM დაცული მასალისთვის." /> 
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="წიგნი არ არის ავტორიზირებული Adobe DRM დაცული მასალისთვის." /> 
+		<string id="STR_UI_MESSAGE_RESTOREDEFAULTSOPERATION" value="დააჭირეთ XXMARKXX (სანიშნე) საწყისი პარამეტრების აღსადგენად." /> 
+		<string id="STR_UI_MESSAGE_CLEARHISTORYOPERATION" value="დააჭირეთ XXMARKXX (სანიშნე) ისტორიის წასაშლელად" /> 
+		<string id="STR_UI_MESSAGE_FORMATOPERATION" value="დააჭირეთ XXMARKXX (სანიშნე) შიდა მეხსიერების დასაფორმატებლად." /> 
+		<string id="STR_UI_MESSAGE_DELETEBOOKOPERATION" value="დააჭჳრეთ XXMARKXX (სანიშნე) წიგნის წასაშლელად." /> 
+		<string id="STR_UI_MESSAGE_REMOVEALLBOOKMARKSOPERATION" value="დააჭირეთ XXMARKXX (სანიშნე) ყველა სანიშნეს წასაშლელად" /> 
+		<string id="STR_UI_MESSAGE_SHUTDOWNOPERATION" value="დააჭირეთ XXMARKXX (სანიშნე) მოწყობილობის გასათიშად." /> 
+		<string id="STR_UI_MESSAGE_HARDRESET" value="ყველა პარამეტრის ჩამოყრა" /> 
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="გინდათ წაშალოდ მთელი მასალა, აღადგინოთ საწყისი პარამეტრები და წაშალოთ DRM ავტორიზაცია?&#xA;&#xA;დიახ - დააჭირეთ პარამეტრების ღილაკს&#xA; არა - დააჭირეთ HOME (მთავარი მენიუ)"/> 
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="აკუმულატორი დამჯდარია!" /> 
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="აკუმულატორი დამჯდარია!" /> 
+		<string id="STR_UI_MESSAGE_LOADING" value="იტვირთება…" /> 
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 - 1" /> 
+		<string id="STR_UI_MESSAGE_CANNOTDELETEBOOK" value="შეუძლებელი არის წიგნის წაშლა." /> 
+		<string id="STR_UI_FORMAT_RTF" value="Rich Text ფორმატი" /> 
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF" /> 
+		<string id="STR_UI_FORMAT_EPUB" value="EPUB დოკუმენტი" /> 
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB წიგნი" /> 
+		<string id="STR_UI_FORMAT_TXT" value="უბრალო ტექსტი" /> 
+		<string id="STR_UI_TITLESORTLABEL1" value="0-9" /> 
+		<string id="STR_UI_TITLESORTLABEL2" value="A B C" /> 
+		<string id="STR_UI_TITLESORTLABEL3" value="D E F" /> 
+		<string id="STR_UI_TITLESORTLABEL4" value="G H I" /> 
+		<string id="STR_UI_TITLESORTLABEL5" value="J K L" /> 
+		<string id="STR_UI_TITLESORTLABEL6" value="M N O" /> 
+		<string id="STR_UI_TITLESORTLABEL7" value="P Q R S" /> 
+		<string id="STR_UI_TITLESORTLABEL8" value="T U V" /> 
+		<string id="STR_UI_TITLESORTLABEL9" value="W X Y Z" /> 
+		<string id="STR_UI_TITLESORTLABEL10" value="სხვა" /> 
+		<string id="STR_VAL_TITLESORTCRITERION1" value="9" /> 
+		<string id="STR_VAL_TITLESORTCRITERION2" value="C" /> 
+		<string id="STR_VAL_TITLESORTCRITERION3" value="F" /> 
+		<string id="STR_VAL_TITLESORTCRITERION4" value="I" /> 
+		<string id="STR_VAL_TITLESORTCRITERION5" value="L" /> 
+		<string id="STR_VAL_TITLESORTCRITERION6" value="O" /> 
+		<string id="STR_VAL_TITLESORTCRITERION7" value="S" /> 
+		<string id="STR_VAL_TITLESORTCRITERION8" value="V" /> 
+		<string id="STR_VAL_TITLESORTCRITERION9" value="Z" /> 
+		<string id="STR_UI_AUTHORSORTLABEL1" value="0-9" /> 
+		<string id="STR_UI_AUTHORSORTLABEL2" value="A B C" /> 
+		<string id="STR_UI_AUTHORSORTLABEL3" value="D E F" /> 
+		<string id="STR_UI_AUTHORSORTLABEL4" value="G H I" /> 
+		<string id="STR_UI_AUTHORSORTLABEL5" value="J K L" /> 
+		<string id="STR_UI_AUTHORSORTLABEL6" value="M N O" /> 
+		<string id="STR_UI_AUTHORSORTLABEL7" value="P Q R S" /> 
+		<string id="STR_UI_AUTHORSORTLABEL8" value="T U V" /> 
+		<string id="STR_UI_AUTHORSORTLABEL9" value="W X Y Z" /> 
+		<string id="STR_UI_AUTHORSORTLABEL10" value="სხვა" /> 
+		<string id="STR_VAL_AUTHORSORTCRITERION1" value="9" /> 
+		<string id="STR_VAL_AUTHORSORTCRITERION2" value="C" /> 
+		<string id="STR_VAL_AUTHORSORTCRITERION3" value="F" /> 
+		<string id="STR_VAL_AUTHORSORTCRITERION4" value="I" /> 
+		<string id="STR_VAL_AUTHORSORTCRITERION5" value="L" /> 
+		<string id="STR_VAL_AUTHORSORTCRITERION6" value="O" /> 
+		<string id="STR_VAL_AUTHORSORTCRITERION7" value="S" /> 
+		<string id="STR_VAL_AUTHORSORTCRITERION8" value="V" /> 
+		<string id="STR_VAL_AUTHORSORTCRITERION9" value="Z" /> 
+		<string id="STR_FORMAT_DATE" value="თვე/დღე/წელი" /> 
+		<string id="STR_UI_MESSAGE_USBDONOT" value="არ გამორთოთ USB" /> 
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="USB არის შეერთებული" /> 
+		<string id="STR_UI_MESSAGE_LOCKED" value="წიგნი დაბლოკილია" /> 
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,‘,’,“,”" /> 
+		<string id="STR_SORT_IGNOREARTICLES" value="a ,an ,the" /> 
+		<string id="infoTitles" value="გარეკანი,სათაური,ავტორი,გამომცემელი,კატეგორია,eBook ID,ტიპი,თარიღი,ზომა,ფაილი,უფლება,ვადის ამოწურვა" /> 
+		<string id="STR_UPDATE_SUCCESS" value="მიმდინარეობს სისტემის განახლება..." /> 
+		<string id="STR_UPDATE_FAIL" value="სისტემის განახლება ვერ მოხერხდა. კიდევ სცადეთ." /> 
+		<string id="STR_NODE_TITLE_PREVIOUS_VIEW" value="უკან" /> 
+		<string id="STR_NODE_TITLE_NEXT_VIEW" value="წინ" /> 
+		<string id="STR_NODE_TITLE_WELCOME" value="მოგესალმებით!" /> 
+		<string id="STR_UI_MESSAGE_WELCOME" value="სონი მოგესალმებათ. ის რაც ხელში გიჭირავთ&#xA; კითხვის მომავალია.რათა გამოსცადოთ ეს&#xA; შეეხეთ ეკრანს." /> 
+		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="მენიუს ენა" /> 
+		<string id="STR_UI_LANG" value="ენა" /> 
+		<string id="STR_UI_LANG_EN" value="ინგლისური" /> 
+		<string id="STR_UI_LANG_FR" value="ფრანგული" /> 
+		<string id="STR_UI_LANG_DE" value="გერმანული" /> 
+		<string id="STR_UI_LANG_NL" value="ჰოლანდიური" /> 
+		<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="აირჩიეთ თქვენთვის სასურველი ენა და დააჭირეთ ok-ს. ყურადღება: მოწყობილობის პარამეტრების შეცვლა შესაძლოა მთავარი მენიუდან." /> 
+		<string id="STR_UI_PARTS_DELIMITER" value="/" /> 
+		<string id="STR_UI_MESSAGE_DEMOMODE" value="(დემო-რეჟიმი)" /> 
+		<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value="დემო სქრინსეივერი" /> 
+		<string id="STR_NODE_TITLE_HOME" value="მთავარი მენიუ" /> 
+		<string id="STR_NODE_TITLE_OPTIONS" value="პარამეტრები" /> 
+		<string id="STR_UI_MESSAGE_DELETEALLBOOKMARKS" value="ეს წიგნი შეიცავს სანიშნეებს, გაკეთებულებს სხვა ზომის ფონტში და სხვა მოწყობილობაზე. დარწმუნებული ხარ, რომ გინდა წაშალო ყველა სანიშნი?" /> 
+		<string id="STR_DEMO_NOTAVAILABLE" value="ეს პარამეტრები არ არის ხელმისაწვდომი დემო რეჟიმში. დააჭირეთ XXRETURNXX(დაბრუნება) უკან დასაბრუნებლად." /> 
+		<string id="STR_DEMO_TITLE" value="დემო-რეჟიმი" /> 
+		<string id="STR_UI_MESSAGE_REMOVEBOOKMARKSOPERATION" value="დააჭირეთ XXMARKXX (სანიშნე) წიგნების წასაშლელად." /> 
+		<string id="STR_UI_MESSAGE_NOTE_BOOKMARKOPERATION" value="Note: This page contains a bookmark in more than one text size. All bookmarks on this page will be removed if you proceed." /> 
+		<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="სათაური: &quot;XXTITLEXX&quot;" /> 
+		<string id="STR_NODE_TITLE_REMOVEBOOKMARK" value="სანიშნის წაშლა" /> 
+		<string id="STR_UI_MESSAGE_MENURETURN" value="დააჭირეთ XXRETURNXX(დაბრუნება) უკან დასაბრუნებლად" /> 
+		<string id="STR_NODE_TITLE_DATE_TIME_FORMAT_SETTINGS" value="თარიღის და დროის ფორმატი" /> 
+		<string id="STR_UI_DATE" value="თარიღი" /> 
+		<string id="STR_UI_BUTTON_MMDDYY" value="თვე-დღე-წელი" /> 
+		<string id="STR_UI_BUTTON_DDMMYY" value="დღე-თვქ-წელი" /> 
+		<string id="STR_UI_TIME" value="დრო" /> 
+		<string id="STR_UI_BUTTON_12HR" value="12 საათი" /> 
+		<string id="STR_UI_BUTTON_24HR" value="24 საათი" /> 
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value="/" /> 
+		<string id="STR_UI_MESSAGE_NOTE_DELETE_ALL_CONTENTS" value="ყურადღება: ყველა წიგნი წაიშლება." /> 
+		<string id="STR_UI_MESSAGE_NOBOOK" value="ცარიელი" /> 
+		<string id="STR_NODE_TITLE_BOOK" value="წიგნები" /> 
+		<string id="STR_NODE_TITLE_SORTEDBYTITLE" value="დახარისხება სათაურის მიხედვით" /> 
+		<string id="STR_NODE_TITLE_SORTEDBYAUTHOR" value="დახარისხება ავტორის მიხედვით" /> 
+		<string id="STR_NODE_TITLE_SORTEDBYDATE" value="დახარისხება თარიღის მიხედვით" /> 
+		<string id="STR_NODE_TITLE_SORTEDBYORDER" value="დახარისხების თანმიმდევრობა" /> 
+		<string id="STR_NODE_TITLE_ALLNOTES" value="ყველა შენიშვნა" /> 
+		<string id="STR_NODE_TITLE_SORTEDBYCOMMENT" value="დახარისხება კომენტარის მიხედვით" /> 
+		<string id="STR_NODE_TITLE_SORTEDBYTYPE" value="დახარისხება ფაილის ტიპის მიხედვით" /> 
+		<string id="STR_NODE_TITLE_SORTEDBYARTIST" value="დახარისხება შემსრულებლის მიხედვით" /> 
+		<string id="STR_NODE_TITLE_NEXTPAGE" value="შემდეგი გვერდი" /> 
+		<string id="STR_NODE_TITLE_PAGETURNGESTURE" value="გადაფურცვლის ჟესტი" /> 
+		<string id="STR_NODE_TITLE_ADVANCEDSETTINGS" value="დამატებითი პარამეტრები" /> 
+		<string id="STR_NODE_TITLE_TOUCHPANEL" value="სენსორული ეკრანის პარამეტრები" /> 
+		<string id="STR_NODE_TITLE_CLEARKEYBOARDHISTORY" value="კლავიატურის ისტორიის წაშლა" /> 
+		<string id="STR_NODE_TITLE_SEARCHRESULTS" value="ძიების შედეგები" /> 
+		<string id="STR_COUNTER_NOTES_N" value="შენიშვნა" /> 
+		<string id="STR_COUNTER_NOTE_1" value="1 შენიშვნა" /> 
+		<string id="STR_COUNTER_NOTE_0" value="ცარიელი" /> 
+		<string id="STR_NODE_TITLE_SORTEDBYPAGE" value="დახარისხება გვერდის მიხედვით" /> 
+		<string id="STR_NODE_TITLE_POWERMANAGEMENT" value="ელკვების მართვა" /> 
+		<string id="STR_UI_MENU_SORT" value="დახარისხება" /> 
+		<string id="STR_UI_MENU_BYORDER" value="დახარისხება თანმიმდევრობის მიხედვით" /> 
+		<string id="STR_UI_MENU_BYTITLE" value="სათაურის მიხედვით" /> 
+		<string id="STR_UI_MENU_BYAUTHOR" value="ავტორის მიხედვით" /> 
+		<string id="STR_UI_MENU_BYDATE" value="თარიღის მიხედვით" /> 
+		<string id="STR_UI_MENU_VIEW" value="ხედი" /> 
+		<string id="STR_UI_MENU_LIST" value="სია" /> 
+		<string id="STR_UI_MENU_THUMBNAIL" value="Thumbnail" /> 
+		<string id="STR_UI_MENU_NOWPLAYING" value="ახლა იკვრება" /> 
+		<string id="STR_UI_MENU_ORIENTATION" value="ორიენტაცია" /> 
+		<string id="STR_UI_MENU_SEARCHTITLE" value="ძიება" /> 
+		<string id="STR_UI_MENU_CLOSETHISBOOK" value="დაბრუნება სიაში" /> 
+		<string id="STR_UI_MENU_GOTOPAGE" value="გადასვლა გვერდზე" /> 
+		<string id="STR_UI_MENU_CREATEEDITNOTES" value="შენიშვნების რედაქტირება" /> 
+		<string id="STR_UI_MENU_SHOWNOTES" value="შენიშვნის ჩვენება" /> 
+		<string id="STR_UI_MENU_HIDENOTES" value="შენიშვნის დამალვა" /> 
+		<string id="STR_UI_MENU_TABLEOFCONTENTS" value="სარჩევი" /> 
+		<string id="STR_UI_MENU_BOOKINFO" value="ინფორმაცია" /> 
+		<string id="STR_UI_MENU_DELETEBOOK" value="წიგნის წაშლა" /> 
+		<string id="STR_UI_MENU_SEARCHAKEYWORD" value="ძიება" /> 
+		<string id="STR_UI_MENU_HISTORYJUMP" value="ისტორია" /> 
+		<string id="STR_UI_MENU_CLOSETHISMUSIC" value="დაბრუნება სიაში" /> 
+		<string id="STR_UI_MENU_OFF" value="გათიშვა" /> 
+		<string id="STR_UI_MENU_SONG_1" value="1 სიმღერა" /> 
+		<string id="STR_UI_MENU_SONG_ALL" value="ყველა სიმღერა" /> 
+		<string id="STR_UI_MENU_SHUFFLEON" value="Shuffle On" /> 
+		<string id="STR_UI_MENU_SHUFFLEOFF" value="Shuffle Off" /> 
+		<string id="STR_UI_MENU_CONTINUEREADING" value="კითხვის გაგრძელება" /> 
+		<string id="STR_UI_MENU_CLOSETHISPICTURE" value="დაბრუნება სიაში" /> 
+		<string id="STR_UI_MENU_SLIDESHOWOFF" value="სლაიდ-შოუს გამორთვა" /> 
+		<string id="STR_UI_MENU_SLIDESHOWON" value="სლაის-შოუს ჩართვა" /> 
+		<string id="STR_UI_MENU_BYARTIST" value="შემსრულებლის მიხედვით" /> 
+		<string id="STR_UI_MENU_BYPAGE" value="გვერდის მიხედვით" /> 
+		<string id="STR_UI_MENU_BYTYPE" value="ფაილის ტიპის მიხედვით" /> 
+		<string id="STR_UI_MENU_BYCOMMENT" value="კომენტარის მიხედვით" /> 
+		<string id="STR_UI_MENU_DELETENOTES" value="შენიშვნების წაშლა" /> 
+		<string id="STR_UI_MESSAGE_RESET" value="დარწმუნებული ხარ, რომ გინდა ნაგულისხმევის აღდგენა?" /> 
+		<string id="STR_UI_MESSAGE_FORMATINTERNALMEMORY" value="შიდა მეხსიერების ფორმატირება" /> 
+		<string id="STR_UI_MESSAGE_FORMATDEVICE" value="დარწმუნებული ხარ, რომ გინდა დააფორმატო შიდა მეხსიერება?&#xA;გაფრთხილება: ყველა შიგთავსი და შენიშვნები წაიშლება." /> 
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_MS" value="დარწმუნებული ხარ, რომ გინდა დააფორმატო Memory Stick?&#xA;გაფრთხილება: ყველა შიგთავსი და შენიშვნები წაიშლება." /> 
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_SD" value="დარწმუნებული ხარ, რომ გინდა დააფორმატო SD კარტა?&#xA;გაფრთხილება: ყველა შიგთავსი და შენიშვნები წაიშლება." /> 
+		<string id="STR_UI_MESSAGE_DELETEBOOK" value="დარწმუნებული ხარ, რომ გინდა წაშალო ეს წიგნი?" /> 
+		<string id="STR_UI_MESSAGE_DELETEBOOKERR" value="შეუძლებელია ამ წიგნის წაშლა. დააჭირე ღილაკს OK წიგნების სიაში დასაბრუნებლად." /> 
+		<string id="STR_UI_MESSAGE_DELETEHISTORICAL" value="დარწმუნებული ხარ, რომ გინდა კლავიატურის ისტორიის წაშლა?" /> 
+		<string id="STR_UI_MESSAGE_DEVICE_SHUTDOWN" value="დარწმუნებული ხარ, რომ გინდა გამორთო მოწყობილობა?" /> 
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONSTART" value="Press Yes to start the touch screen calibration." /> 
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONEND" value="Touch screen calibration completed." /> 
+		<string id="STR_UI_MESSAGE_DEMO_MODE_1" value="ეს პარამეტრები არ არის ხელმისაწვდომი დემო რეჟიმში." /> 
+		<string id="STR_UI_MESSAGE_DEMO_MODE_2" value="ეს ფუნქცია არ არის ხელმისაწვდომი დემო რეჟიმში." /> 
+		<string id="STR_UI_MESSAGE_CALIBRATION_START" value="Using the stylus, tap on the center&#xA;of the target." /> 
+		<string id="STR_UI_MESSAGE_CALIBRATION_ERR" value="Calibration error detected.&#xA;Please restart calibration process." /> 
+		<string id="STR_UI_BUTTON_YES" value="დიახ" /> 
+		<string id="STR_UI_BUTTON_NO" value="არა" /> 
+		<string id="STR_UI_BUTTON_ZOOMIN" value="ეკრანზე გადიდება" /> 
+		<string id="STR_UI_BUTTON_SEARCH" value="ძიება" /> 
+		<string id="STR_UI_BUTTON_DONE" value="შესრულდა" /> 
+		<string id="STR_UI_BUTTON_GO" value="გადასვლა" /> 
+		<string id="STR_UI_BUTTON_ENTERPAGE" value="გვერდის ნომერი" /> 
+		<string id="STR_UI_BUTTON_NEW" value="ახალი" /> 
+		<string id="STR_UI_BUTTON_LIST" value="სია" /> 
+		<string id="STR_UI_SHORTCUT_HIGHLIGHT" value="გამოყოფა" /> 
+		<string id="STR_UI_SHORTCUT_SEARCH" value="ძიება" /> 
+		<string id="STR_UI_SHORTCUT_DICTIONARY" value="ლექსიკონი" /> 
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING" value="ლექსიკონი" /> 
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING_l" value="ლექსიკონი" /> 
+		<string id="STR_DICTIONARY_US" value="New Oxford American Dictionary" /> 
+		<string id="STR_DICTIONARY_BRITISH" value="Oxford Dictionary of English" /> 
+		<string id="STR_DICTIONARY_NO" value="ცარიელი" /> 
+		<string id="STR_NODE_TITLE_DATEANDTIMEFORMAT_SETTING" value="თარიღის და დროს ფორმატი" /> 
+		<string id="STR_UI_PARTS_MONTH" value="თვე" /> 
+		<string id="STR_UI_PARTS_DAY" value="დღე" /> 
+		<string id="STR_UI_PARTS_YEAR" value="წელი" /> 
+		<string id="STR_UI_PARTS_HOUR" value="საათი" /> 
+		<string id="STR_UI_MESSAGE_RESTARTING" value="მიმდინარეობს ჩატვირთვა..." /> 
+		<string id="STR_UI_NODE_TITLE_KEYBOARD" value="კლავიატურა" /> 
+		<string id="STR_UI_KEYBOARD_US" value="შეერთებული შტატები" /> 
+		<string id="STR_UI_KEYBOARD_UK" value="United Kingdom" /> 
+		<string id="STR_UI_KEYBOARD_FRENCH" value="ფრანგული" /> 
+		<string id="STR_UI_KEYBOARD_GERMAN" value="გერმანული" /> 
+		<string id="STR_UI_KEYBOARD_NETHERLANDS" value="ჰოლანდიური" /> 
+		<string id="STR_UI_BUTTON_DICTIONARY_LIST" value="სია" /> 
+		<string id="STR_UI_BUTTON_DICTIONARY_DETAIL" value="დეტალური" /> 
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP1" value="This page cannot be displayed." /> 
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP2" value="" /> 
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_CANNOT_EDIT" value="This drawing cannot be edited." /> 
+		<string id="DIALOGMSG_INFORM_SCR_CANNOT_EDIT" value="This memo cannot be edited." /> 
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_FREEHAND" value="ახალი ნახატი" /> 
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_TEXT" value="New Memo" /> 
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYFREEHAND" value="ნახატის მიხედვით" /> 
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYTEXT" value="ტექსტის მიხედვით" /> 
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_MS" value="Memory Stick-ის დაფორმატება" /> 
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_SD" value="SD კარტის დაფორმატება" /> 
+		<string id="STR_NODE_TITLE_FORMATDEVICE" value="მეხსიერების ფორმატირება" /> 
+		<string id="STR_NODE_TITLE_FORMAT_INTERNAL" value="შიდა მეხსიერება" /> 
+		<string id="STR_NODE_TITLE_FORMAT_MS" value="Memory Stick" /> 
+		<string id="STR_NODE_TITLE_FORMAT_SD" value="SD კარტა" /> 
+		<string id="STR_UI_FORMAT_INTERNAL_MEMORY" value="შიდა მეხსიერების დაფორმატება..." /> 
+		<string id="STR_UI_FORMAT_EXTERNAL_MS" value="Memory Stick-ის დაგორმატება..." /> 
+		<string id="STR_UI_FORMAT_EXTERNAL_SD" value="SD კარტის დაფორმატება..." /> 
+		<string id="STR_WARNING_FORMAT_1" value="დაფორმატება..." /> 
+		<string id="STR_WARNING_FORMAT_2_MS" value="არ ამოიღოთ Memory Stick." /> 
+		<string id="STR_WARNING_FORMAT_2_SD" value="არ ამოიღოთ SD კარტა." /> 
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_1" value="დარწმუნებული ხარ, რომ გინდა სანიშნის წაშლა?" /> 
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_2" value="Note: This page contains a bookmark in more than one text size. All bookmarks on this page will be removed if you proceed." /> 
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_1" value="დარწმუნებული ხარ, რომ გინდა სანიშნის წაშლა?" /> 
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_2" value="Note: This page contains a bookmark with a note in more than one text size. All bookmarks and notes on this page will be removed if you proceed." /> 
+		<string id="STR_FORMAT_NO_MEMORY" value="მეხსიერების კარტა არ არის მოწყობილობაში" /> 
+		<string id="STR_FORMAT_WRITE_PROTECTED" value="მეხსიერების კარტა არის დაბლოკილი" /> 
+		<string id="STR_FORMAT_NON_STANDARD" value="Memory card not supported" /> 
+		<string id="STR_NODE_TITLE_NOTEPAD_FREEHAND" value="ხელნაწერი" /> 
+		<string id="STR_NODE_TITLE_NOTEPAD_TEXT" value="Text Memo" /> 
+		<string id="STR_NODE_TITLE_SORTEDBYCREATEDDATE" value="დახარისხება შექმნის თარიღის მიხედვით" /> 
+		<string id="STR_NODE_TITLE_MORE" value="სხვა" /> 
+		<string id="STR_NODE_TITLE_MORE_FULL" value="დამატებითი პროგრამები" /> 
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK1" value="დარწმუნებული ხარ, რომ გინდა წაშალო სენიშნე შენიშვნასთან ერთად?" /> 
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK2" value="" /> 
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT1" value="დარწმუნებული ხარ, რომ გინდა წაშალო მონიშნული ტექსტი შენიშვნებთან ერთად?" /> 
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT2" value="" /> 
+		<string id="DIALOGMSG_INFORM_NOHITS" value="დამთხვევები არ მოიძებნა." /> 
+		<string id="DIALOGMSG_INFORM_NOMOREHITS" value="დამთხვევები არ მოიძებნა." /> 
+		<string id="DIALOGMSG_CONFIRM_BACKWARDSEARCH" value="გაგრძელდეს ძებნა წიგნის ბოლოდან?" /> 
+		<string id="DIALOGMSG_CONFIRM_FORWARDSEARCH" value="გაგრძელდეს ძებნა წიგნის დასაწყისიდან?" /> 
+		<string id="STR_MSG_SEARCHING" value="ძებნა..." /> 
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK1" value="დარწმუნებული ხარ, რომ გინდა წაშალო სენიშნე შენიშვნასთან ერთად?" /> 
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK2" value="" /> 
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT1" value="დარწმუნებული ხარ, რომ გინდა წაშალო მონიშნული ტექსტი შენიშვნებთან ერთად?" /> 
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT2" value="" /> 
+		<string id="DIALOGMSG_CONFIRM_CMT_EDIT_QUIT" value="გაგრძელების შემთხვევაში ცვლილებები იქნება დაკარგული.გავაგრძელო?" /> 
+		<string id="DIALOGMSG_CONFIRM_SCR_EDIT_QUIT" value="გაგრძელების შემთხვევაში ცვლილებები იქნება დაკარგული.გავაგრძელო?" /> 
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES1" value="ყველა შენიშვნა წაიშლება." /> 
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES2" value="დარწმუნებული ხარ, რომ გინდა წაშლა?" /> 
+		<string id="KBOOK_UI_MYNOTE" value="შენიშვნები" /> 
+		<string id="STR_UI_KEYBOARD_SYMBOL" value="სიმბოლოები" /> 
+		<string id="STR_UI_KEYBOARD_SPACE" value="Space" /> 
+		<string id="STR_UI_KEYBOARD_ABC" value="Abc" /> 
+		<string id="STR_UI_KEYBOARD_RETURN" value="დაბრუნება" /> 
+		<string id="STR_UI_COMMENTVIEWER_EDIT" value="რედაქტირება" /> 
+		<string id="STR_UI_COMMENTVIEWER_DELETE" value="წაშლა" /> 
+		<string id="STR_UI_AUDIO_REPEAT" value="გამეორება" /> 
+		<string id="STR_NODE_TITLE_HOMEPERSONALIZATION" value="მთავარი მენიუ" /> 
+		<string id="STR_UI_PARTS_LEFT" value="მარცხნივ" /> 
+		<string id="STR_UI_PARTS_RIGHT" value="მარჯვნივ" /> 
+		<string id="STR_UI_MENU_DELETENOTEPAD_FREEHAND" value="ნახატის წაშლა" /> 
+		<string id="STR_UI_MENU_DELETENOTEPAD_TEXT" value="შენიშვნის წაშლა" /> 
+		<string id="STR_UI_MENU_CLOSETHISNOTEPAD_FREEHAND" value="დაბრუნება სიაში" /> 
+		<string id="STR_UI_MENU_CLOSETHISNOTEPAD_TEXT" value="დაბრუნება სიაში" /> 
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND1" value="დარწმუნებული ხარ, რომ გინდა ნახატის წაშლა?" /> 
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND2" value="" /> 
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT1" value="დარწმუნებული ხარ, რომ გინდა შენიშვნის წაშლა?" /> 
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT2" value="" /> 
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT1" value="გაგრძელების შემთხვევაში ცვლილებები იქნება დაკარგული.გავაგრძელო?" /> 
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT2" value="" /> 
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT1" value="გაგრძელების შემთხვევაში ცვლილებები იქნება დაკარგული.გავაგრძელო?" /> 
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT2" value="" /> 
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT1" value="გაგრძელების შემთხვევაში ნახატი არ შეინახება.გავაგრძელო?" /> 
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT2" value="" /> 
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT1" value="გაგრძელების შემთხვევაში შენიშვნა იქნება დაკარგული.გავაგრძელო?" /> 
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT2" value="" /> 
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_RESULT" value="არ არის ნაპოვნი." /> 
+		<string id="STR_UI_MESSAGE_DICTIONARY_INPUT_KEYBOARD" value="ჭეიყვანეთ სიტყვა." /> 
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_HEADWORD" value="სიტყვა არ არის ნაპოვნი.&#xA;გთხოვთ გადაამოწმოთ." /> 
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SUPPORTED" value="ლექსიკონი არის გამორთული." /> 
+		<string id="STR_UI_DICTIONARY_ENTRIES_PAGE" value="შენატანები, გვ." /> 
+		<string id="STR_UI_DICTIONARY_ENTRY_PAGE" value="შენატანი, გვ." /> 
+		<string id="STR_COUNTER_DRAWING_N" value="ნახატი" /> 
+		<string id="STR_COUNTER_DRAWING_1" value="1 ნახატი" /> 
+		<string id="STR_COUNTER_DRAWING_0" value="ცარიელია" /> 
+		<string id="STR_COUNTER_MEMO_N" value="შენიშვნა" /> 
+		<string id="STR_COUNTER_MEMO_1" value="1 შენიშვნა" /> 
+		<string id="STR_COUNTER_MEMO_0" value="ცარიელი" /> 
+		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="შიდა მეხსიერების შეცდომა.&#xA;ვაფორმატებ." /> 
+	</assets>
+</document>

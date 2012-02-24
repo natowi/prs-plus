@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<group left="11" top="0" bottom="0" width="301">
+		<kbookIndicator		skin="applicationBigIcon"						right="9"	top="10"	value="6"	/>
+		<kbookLabel2Line	skin="title2lines" active="false"	left="4"	right="140" top="39"	height="70" align="right" textresource="STR_NODE_TITLE_GOOGLE_BOOKS"/>
+		<kbookHotspot		do="doGoGLib"						left="0"	right="0"	top="0" 	bottom="0"	/>
+	</group>
+	<group  left="314" top="0" bottom="0" width="301">
+		<kbookIndicator		skin="applicationBigIcon"						right="7" 	top="3"		value="0"	/><!--variable="FOURTH_ITEM_KIND"-->
+		<kbookLabel2Line	skin="title2lines" active="false"	left="4"	right="145"	top="37"	height="70" align="right" variable="FOURTH_ITEM_NAME"/>
+		<kbookHotspot		do="doGoToOpenBrowser"				left="0"	right="0"  	top="0" 	bottom="0"	/>
+	</group>
+	<group left="618" top="0" bottom="0" width="301">
+		<kbookIndicator		skin="applicationBigIcon"						right="9"  	top="10"	value="7"	/>
+		<kbookLabel2Line	skin="title2lines" active="false"	left="4"	right="140"	top="39"	height="70" align="right" textresource="STR_NODE_TITLE_PURCHASED"/>
+		<kbookHotspot	do="doGoToPurchasedContents"			left="0"	right="0"  	top="0" 	bottom="0"	/>
+	</group>
+</document>

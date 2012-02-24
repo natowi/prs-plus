@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="VIEW">
+	<group id="SETTING_GROUP" left="0" right="0" top="0" bottom="0" visible="false" active="false"/>
+	<group id="WPS_GROUP"     left="0" right="0" top="0" bottom="0" visible="false" active="false"/>
+	<group id="FW_UPDATE_GROUP"     left="0" right="0" top="0" bottom="0" visible="false" active="false"/>
+	<kbookOverlay id="OPTION_OVERLAY_SETTING_NETWORK"  left="0" right="0" top="0" bottom="30" visible="false"/>
+</document>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<keydatas xmlns="http://www.kinoma.com/fskin/1" skin="keyW_HBIG">
+	<set id="NUMBERS">
+		<key text="1" left=  "0" top=  "0" width="78" height="58"/>
+		<key text="2" left= "82" top=  "0" width="78" height="58"/>
+		<key text="3" left="164" top=  "0" width="78" height="58"/>
+		<key text="4" left=  "0" top= "62" width="78" height="58"/>
+		<key text="5" left= "82" top= "62" width="78" height="58"/>
+		<key text="6" left="164" top= "62" width="78" height="58"/>
+		<key text="7" left=  "0" top="124" width="78" height="58"/>
+		<key text="8" left= "82" top="124" width="78" height="58"/>
+		<key text="9" left="164" top="124" width="78" height="58"/>
+		<key text="0" left=  "0" top="186" width="78" height="58"/>
+		<key text="" textCode="8"	left="82" top="186" width= "160" height="58" skin="bsHBIG"/>
+	</set>
+</keydatas>
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<model>
+		<code>
+			<function id="initialized">
+				this.container.calibration.calibration.show(true)
+				this.container.calibration.focus(true)
+			</function>
+		</code>
+	</model>
+	<group id="calibration" left="0" right="0" top="0" bottom="0">
+		<code>
+			<function id="doFinishCalibration">
+				this.bubble("finishTest")
+			</function>
+			<function id="doRoot">
+				this.calibration.cancel()
+				this.bubble("finishTest")
+			</function>
+			<function id="doCancelCalibration"/>
+		</code>
+		<calibration id="calibration" doFinish="doFinishCalibration" left="0" right="0" top="0" bottom="0">
+			<point left="0" top="0" centerX="50" centerY="50" href="calibrationTop.png"/>
+			<point right="0" bottom="0" centerX="150" centerY="150" href="calibrationBottom.png"/>
+			<point right="35" top="35" href="confirmation30.png"/>
+			<point left="35" bottom="35" href="confirmation30.png"/>
+			<point width="30" height="30" href="confirmation30.png"/>
+		</calibration>
+	</group>
+</document>

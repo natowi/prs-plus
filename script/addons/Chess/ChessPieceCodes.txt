@@ -1,0 +1,15 @@
+0 = empty square
+
+17 = black pawn
+18 = black king
+19 = black knight
+20 = black bishop
+21 = black rook
+22 = black queen
+
+25 = white pawn
+26 = white king
+27 = white knight
+28 = white bishop
+29 = white rook
+30 = white queen

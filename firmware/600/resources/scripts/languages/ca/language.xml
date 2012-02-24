@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<language xmlns="http://www.kinoma.com/fskin/1">
+        <name>Catalan</name>
+        <txtWelcome>Hola de Sony. El que vostè té a les mans&#xA;es el futur de la lectura. Per gaudir&#xA;ara, toqueu en qualsevol lloc de la pantalla.</txtWelcome>
+        <txtGuideAreaLang>Tria el teu idioma preferit i seleccioneu OK.&#xA;Nota: La configuració del dispositiu es pot canviar des del menú Configuració, més endavant.</txtGuideAreaLang>
+        <txtCalibration1>Fent servir el llapis tàctil, toqueu el centre&#xA;de la creu.</txtCalibration1>
+        <txtCalibration2>Error de calibratge detectat.&#xA;Si us plau, reinicieu el procés de calibratge.</txtCalibration2>
+</language>
+

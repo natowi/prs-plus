@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+
+<!--
+Description: Install script's assets
+Author: kartu
+History:
+	2010-04-27 kartu - Added "system is up to date" screen
+					    Removed script version labels (as there is no "PRS+ script" any more)
+					    Removed "set into upgrade mode" (useless and confusing)
+	2010-09-07 kartu - Reduced piTextBig size to 26
+	2010-09-07 kartu - Fixed frozen UI on startup problem
+	2011-04-01 kartu - Added French localization
+
+-->
+
+<assets>
+	<style font="Swis721 BT">
+		<style id="piLabel" size="24" style="bold" halign="left" valign="bottom" />
+		<style id="piLabelBig" size="30" style="bold" halign="right" valign="bottom" />
+		<style id="piText" size="22" halign="left" valign="center"/>
+		<style id="piTextBig" size="26" halign="left" valign="bottom"/>
+		<style id="piRow" size="30" style="" halign="left" valign="center" />
+		<style id="piRowNum" size="30" style="bold" halign="center" valign="center" />
+		<style id="piConfirm" size="30" valign="center" halign="left" />
+		<style id="piStatus" size="20" color="#FFFFFF"/>
+		<style id="piTitle" size="34" style="bold" color="#FFFFFF"/>
+	</style>
+
+	<skin id="piLabel" styles="piLabel"/>
+	<skin id="piLabelBig" styles="piLabelBig"/>
+	<skin id="piText" styles="piText" />
+	<skin id="piTextBig" styles="piTextBig"/>
+	<skin id="piRow" styles="piRow" />
+	<skin id="piRowNum" styles="piRowNum" />
+	<skin id="piStatus" styles="piStatus" />
+	<skin id="piTitle" styles="piTitle" />
+
+	<texture href="piAssets.png">
+		<cutout id="piDummy" x="0" y="0" width="0" height="0"/>
+		<cutout id="piNum" x="0" y="0" width="35" height="70"/>
+		<cutout id="piLine" x="35" y="0" width="70" height="2" />
+		<cutout id="piVerticalLine" x="2" y="0" width="2" height="70" />
+		<cutout id="piDanger" x="160" y="20" width="100" height="100"/>
+		<cutout id="piDanger2" x="302" y="20" width="100" height="100"/>
+		<cutout id="piDontPoweroff" x="440" y="20" width="100" height="100"/>
+		<cutout id="piInfo" x="580" y="20" width="100" height="100"/>
+		<cutout id="piSkull" x="700" y="20" width="100" height="100"/>
+	</texture>
+
+	<skin id="piDanger" cutouts="piDanger" />
+	<skin id="piDanger2" cutouts="piDanger2" />
+	<skin id="piSkull" cutouts="piSkull" />
+	<skin id="piDontPoweroff" cutouts="piDontPoweroff" />
+	<skin id="piInfo" cutouts="piInfo" />
+
+
+	<skin id="piTextEdit"
+			cutouts="piDummy,piDummy,piDummy,piDummy,piDummy,piDummy,piDummy,piDummy,piDummy"
+			styles="piText,piText,piText,piText"
+	/>
+	<skin id="piLog"
+			cutouts="piDummy,piLine,piDummy,piVerticalLine,piDummy,piVerticalLine,piDummy,piLine,piDummy"
+			styles="piText,piText,piText,piText"
+	/>
+	<skin id="piWarning"
+		cutouts="piDummy,piDummy,piDummy,piDummy,piDummy,piDummy,piDummy,piDummy,piDummy"
+		styles="piTextBig,piTextBig,piTextBig,piTextBig"
+	/>
+	<skin id="piConfirm"
+		cutouts="piDummy,piDummy,piDummy,piDummy,piDummy,piDummy,piDummy,piDummy,piDummy"
+		styles="piConfirm,piConfirm,piConfirm,piConfirm"
+	/>
+	<skin id="piMenuRow"           cutouts="piDummy,piLine ,piNum, piDummy,piDummy,piDummy, piDummy,piLine ,piDummy" />
+	<skin id="piMenuRowBorderless" cutouts="piDummy,piDummy,piNum, piDummy,piDummy,piDummy, piDummy,piDummy,piDummy" />
+</assets>
+
+<code>
+	<function id="trace" params="message">
+		return;
+		var logfile = new Stream.File("b:/installer.log", 1, 0);
+		logfile.seek(logfile.bytesAvailable);
+		logfile.writeString(message + "\n");
+		logfile.close();
+	</function>
+
+	<function id="loadScript" params="path">
+		try {
+			var f = new Stream.File(path);
+			var fn = new Function("target", f.toString(), path, 1);
+			var result = fn(this);
+			delete fn;
+			return result;
+		} catch(e) {
+			this.trace("error running script " + path + ": " + e + "\n");
+		}
+	</function>
+
+	<function id="init">
+		var path = kbook.autoRunRoot.path;
+		var index = path.lastIndexOf('/');
+		if (index > 0) {
+			path = path.substring(0, index + 1);
+		}
+		var rootSlashIndex = path.indexOf('/', 1);
+		this.driveroot = path.substring(0, rootSlashIndex);
+		this.path = path;
+		path = path + "installer.js";
+		this.loadScript(path);
+	</function>
+
+	<function id="modelChanged">
+		kbook.target = this;
+		arguments.callee.grammar.call(this);
+		var state = this.getVariable("STATE");
+		var target;
+		if (this.state != state) {
+			this.focus(true)
+			this.AUTORUN_GROUP.show(false)
+			switch(state) {
+				case "AUTORUN":
+					this.init();
+					try {
+						kbook.model.container.beginFullScreen();
+					} catch (e) {
+					}
+					this.AUTORUN_GROUP.show(true);
+					target = this.AUTORUN_GROUP.AUTORUN.INFO;
+					// Fixes stale UI on startup problem
+					this.updateWindow();
+					break;
+			}
+			this.state = state;
+			if (target.isEnabled())	target.focus(true)
+		}
+	</function>
+
+	<function id="getUnusedFilename" params="path,ext">
+		// Finds filename that is not occupied, by appending  a number to the [path]
+		if (typeof ext == "undefined") {
+			ext = "";
+		}
+		var foundPath = path + ext;
+		var i = 0;
+		while (FileSystem.getFileInfo(foundPath)) {
+			foundPath = path + "." + i + ext;
+			i++;
+		}
+		return foundPath;
+	</function>
+
+	<!-- Logs message on the screen (for debug/errors) -->
+	<function id="log" params="msg">
+		var LOG = this.AUTORUN_GROUP.LOG;
+		LOG.setValue(LOG.getValue() +  msg + "\n");
+	</function>
+
+	<!-- Navigates from "from" view to "to" view -->
+	<function id="go" params="from,to">
+		try {
+			to = this.AUTORUN_GROUP.AUTORUN[to];
+			to.parentView = from;
+			this.currentView = to;
+			from.show(false);
+			to.show(true);
+		} catch (e) {
+			this.log("Error in go (from/to): (" + from + "/" + to + ") " + e)
+		}
+	</function>
+
+	<!-- Forces UI to redraw (needed, when one wants to update the screen in the middle of a function call) -->
+	<function id="updateWindow">
+		FskUI.Window.update.call(kbook.model.container.getWindow());
+	</function>
+
+	<function id="localize" params="key">
+		try {
+			if (!this.hasOwnProperty("strings")) {
+				return key;
+			}
+
+			var result = this.strings[key];
+			if (typeof result !== "undefined") {
+				return result;
+			} else {
+				return key;
+			}
+		} catch (e) {
+			this.log("Error in localize (" + key + "): " + e);
+			return key;
+		}
+	</function>
+
+	<!-- Takes a screenshot and saves it to IM -->
+	<function id="takeScreenshot">
+		try {
+			var savePath = this.getUnusedFilename(this.driveroot + "/prspi-screenshot", ".jpg");
+
+			var win = kbook.model.container.getWindow();
+			var bitmap = win.getBitmap();
+			var x,y,w,h;
+
+			var stream;
+			var msg1, msg2;
+			try {
+				stream = new Stream.File(savePath, 1);
+				bitmap.writeJPEG(stream);
+				stream.close();
+			} catch (ee) {
+				msg1 = this.localize("FAILED_TO_SAVE");
+				msg2 = ee;
+			}
+
+			var showSaveProgress = true;
+			if (showSaveProgress) {
+				var bounds = win.getBounds();
+				var width = bounds.width;
+				var height = bounds.height;
+
+				if(typeof msg1 === "undefined") {
+					msg1 = this.localize("SCREENSHOT_SAVED");
+					msg2 = savePath;
+				}
+
+				win.setTextStyle(1);
+				win.setTextSize(24);
+
+				var bounds1 = win.getTextBounds(msg1);
+				var bounds2 = win.getTextBounds(msg2);
+				var gap = 20;
+				w = Math.max(bounds1.width, bounds2.width) + gap*2;
+				h = bounds1.height + bounds2.height + gap*3;
+
+				x = Math.max(0, (width - w)/2);
+				y = Math.max(0, (height - h)/2);
+
+				win.beginDrawing();
+				win.setPenColor(Color.white);
+				win.fillRectangle(x, y, w, h);
+				win.setPenColor(Color.black);
+				win.frameRectangle(x, y, w, h);
+				win.frameRectangle(x+1, y+1, w-2, h-2);
+				win.drawText(msg1, x + gap, y + gap, bounds1.width, bounds1.height);
+				win.drawText(msg2, x + gap, y + gap*2 + bounds1.height, bounds2.width, bounds2.height);
+				win.endDrawing();
+
+				//win.invalidate(x, y, w, h);
+				this.log(""); // force screen redraw, it will delete message box
+			}
+		} catch (e) {
+			this.log("Error saving screenshot: " + e + " here is " + here);
+		}
+	</function>
+</code>
+
+<clock/>
+
+<group id="AUTORUN_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+	<panel skin="kbookReset" left="0" right="0" top="0" bottom="0"/>
+	<kbookLabel skin="piTitle" left="0" right="0" top="0" height="70" align="center" text="PRS+ @@@ Installer"/>
+	<kbookLabel id="status_" skin="piStatus" left="0" right="0" bottom="0" height="30" align="center" />
+	<text id="LOG" skin="piTextEdit" active="false"  left="10" right="10" top="230" bottom="40"/>
+
+	<code>
+		<function id="doMenu">
+			kbook.model.container.endFullScreen();
+			kbook.autoRunRoot.exitIf(kbook.model);
+		</function>
+		<function id="doMark">
+			kbook.target.takeScreenshot();
+		</function>
+	</code>
+
+	<!--======================================================================================================
+	|| Choose your language
+	========================================================================================================-->
+	<group id="CHOOSE_LANGUAGE" top="70" left="0" bottom="30" right="0">
+		<!-- No keyboard input is received without this element -->
+		<sprite skin="diskSprite" width="0" top="0" height="0" u="6" active="false" canFocus="true"/>
+		<kbookLabel skin="piLabelBig" right="0" top="20" left="0" height="50" align="center" text="Choose installer language" />
+		<kbookLabel skin="piText" right="0" top="80" left="0" height="30" align="center" text="(PRS+ supports more languages than the installer." />
+		<kbookLabel skin="piText" right="0" top="110" left="0" height="30" align="center" text="You can always change language via" />
+		<kbookLabel skin="piText" right="0" top="140" left="0" height="30" align="center" text="Settings menu." />
+		<kbookLabel skin="piText" right="0" top="170" left="0" height="30" align="center" text="English is the default PRS+ language)" />
+
+		<panel skin="piMenuRow" left="0" bottom="420" right="0" height="70" />
+		<kbookLabel skin="piRowNum" bottom="420" right="0" width="35" height="70" align="center" text="4" />
+		<kbookLabel skin="piRow" bottom="420" right="0" left="50" height="70" text="Català" />
+
+		<panel skin="piMenuRowBorderless" left="0" bottom="350" right="0" height="70" />
+		<kbookLabel skin="piRowNum" bottom="350" right="0" width="35" height="70" align="center" text="5" />
+		<kbookLabel skin="piRow" bottom="350" right="0" left="50" height="70" text="Deutsch" />
+
+		<panel skin="piMenuRow" left="0" bottom="280" right="0" height="70" />
+		<kbookLabel skin="piRowNum" bottom="280" right="0" width="35" height="70" align="center" text="6" />
+		<kbookLabel skin="piRow" bottom="280" right="0" left="50" height="70" text="English" />
+
+		<panel skin="piMenuRowBorderless" left="0" bottom="210" right="0" height="70" />
+		<kbookLabel skin="piRowNum" bottom="210" right="0" width="35" height="70" align="center" text="7" />
+		<kbookLabel skin="piRow" bottom="210" right="0" left="50" height="70" text="Español" />
+
+		<panel skin="piMenuRow" left="0" bottom="140" right="0" height="70" />
+		<kbookLabel skin="piRowNum" bottom="140" right="0" width="35" height="70" align="center" text="8" />
+		<kbookLabel skin="piRow" bottom="140" right="0" left="50" height="70" text="French" />
+
+		<panel skin="piMenuRowBorderless" left="0" bottom="70" right="0" height="70" />
+		<kbookLabel skin="piRowNum" bottom="70" right="0" width="35" height="70" align="center" text="9" />
+		<kbookLabel skin="piRow" bottom="70" right="0" left="50" height="70" text="Русский" />
+
+		<panel skin="piMenuRow" left="0" bottom="0" right="0" height="70" />
+		<kbookLabel skin="piRowNum" bottom="0" right="0" width="35" height="70" align="center" text="0" />
+		<kbookLabel skin="piRow" bottom="0" right="0" left="50" height="70" text="Exit" />
+
+		<code>
+			<function id="doDigit" params="part"><![CDATA[
+				var target = kbook.target;
+				var log = target.log;
+				var trace = target.trace;
+				try {
+					var strings;
+					if (part.key == "4") {
+						// Catalan
+						strings = target.loadScript(target.path + "languages/Catalan.js");
+					} else if (part.key == "5") {
+						// Deutsch
+						strings = target.loadScript(target.path + "languages/Deutsch.js");
+					} else if (part.key == "6") {
+						// English
+						strings = target.loadScript(target.path + "languages/English.js");
+					} else if (part.key == "7") {
+						// Spanish
+						strings = target.loadScript(target.path + "languages/Spanish.js");
+					} else if (part.key == "8") {
+						// French
+						strings = target.loadScript(target.path + "languages/French.js");
+					} else if (part.key == "9") {
+						// Russian
+						strings = target.loadScript(target.path + "languages/Russian.js");
+					} else if (part.key == "0") {
+						kbook.model.container.endFullScreen();
+						kbook.autoRunRoot.exitIf(kbook.model);						
+					}
+
+					if (strings) {
+						target.strings = strings;
+						target.AUTORUN_GROUP.status_.setValue(target.localize("STATUS_PRESS_MENU_TO_EXIT"));
+						var views = ["DISCLAIMER", "AUTORUN"];
+						for(var i = 0, n = views.length; i < n; i++) {
+							if(typeof target.AUTORUN_GROUP[views[i]].init === "function") {
+								try {
+									target.AUTORUN_GROUP[views[i]].init(strings);
+								} catch (e0) {
+									log("Error in " + views[i] + ".init(): " + e0);
+								}
+							}
+						}
+
+						target.AUTORUN_GROUP.CHOOSE_LANGUAGE.show(false);
+						target.AUTORUN_GROUP.DISCLAIMER.show(true);
+						target.AUTORUN_GROUP.DISCLAIMER.focus(true);
+					}
+				} catch (e) {
+					trace("error in doDigit: " + e);
+					log("error in doDigit: " + e);
+				}
+			]]></function>
+		</code>
+	</group>
+
+	<!--======================================================================================================
+	|| Disclaimer
+	========================================================================================================-->
+	<group id="DISCLAIMER" top="70" left="0" bottom="30" right="0" visible="false">
+		<sprite skin="piDanger2" top="270" left="10" height="100" width="100" active="false" canFocus="true"/>
+		<text id="warning" skin="piWarning" top="220" left="130" right="10" height="260" />
+
+		<panel skin="piMenuRow" left="0" right="0" bottom="140" height="70" />
+		<kbookLabel skin="piRowNum" bottom="140" right="0" width="35" height="70" align="center" text="8" />
+		<kbookLabel id="continue_" skin="piRow" bottom="140" right="0" left="50" height="70" />
+
+		<panel skin="piMenuRow" left="0" bottom="0" right="0" height="70" />
+		<kbookLabel skin="piRowNum" bottom="0" right="0" width="35" height="70" align="center" text="0" />
+		<kbookLabel id="exit" skin="piRow" bottom="0" right="0" left="50" height="70" />
+
+		<code>
+			<function id="init" params="strings">
+				var target = kbook.target;
+				this.warning.setValue(target.localize("DISCLAIMER"));
+				this.continue_.setValue(target.localize("MENU_CONTINUE"));
+				this.exit.setValue(target.localize("MENU_EXIT"));
+			</function>
+			<function id="doDigit" params="part">
+				var target = kbook.target;
+				var log = target.log;
+				try {
+					if(part.key == "8") {
+						this.show(false);
+						target.AUTORUN_GROUP.AUTORUN.show(true);
+						target.AUTORUN_GROUP.AUTORUN.focus(true);
+					} else if (part.key == "0") {
+						kbook.model.container.endFullScreen();
+						kbook.autoRunRoot.exitIf(kbook.model);
+					}
+				} catch (e) {
+					log("error in doDigit: " + e);
+				}
+			</function>
+		</code>
+	</group>
+
+
+	<!--======================================================================================================
+	|| AUTORUN
+	========================================================================================================-->
+	<group id="AUTORUN" top="70" left="0" bottom="30" right="0" visible="false">
+		<code>
+			<function id="init" params="strings"><![CDATA[
+				var target = kbook.target;
+				var log = target.log;
+				var views = ["VERSIONS", "UNSUPPORTED_FIRMWARE", "UNSUPPORTED_MODEL", "OK", "SYSTEM_UP_TO_DATE", "EXPERT", "CONFIRM", "WORKING"];
+				for(var i = 0, n = views.length; i < n; i++) {
+					try {
+						if(typeof this[views[i]].init === "function") {
+							this[views[i]].init(strings);
+						}
+					} catch (e0) {
+						log("Error in " + views[i] + ".init(): " + e0);
+					}
+				}
+			]]></function>
+			<function id="doMenu"><![CDATA[
+				// Show previous view, if available, exit if not
+				var target = kbook.target;
+				if (target.hasOwnProperty("currentView") && target.currentView.hasOwnProperty("parentView")) {
+					try {
+						target.AUTORUN_GROUP.status_.show(true);
+						target.currentView.show(false);
+						target.currentView.parentView.show(true);
+						target.currentView = target.currentView.parentView;
+					} catch (e) {
+						target.log("Error in currentview: " + e);
+					}
+				}  else {
+					kbook.model.container.endFullScreen();
+					kbook.autoRunRoot.exitIf(kbook.model);
+				}
+			]]></function>
+
+			<function id="doDigit" params="part">
+				// Dispatch key event to the active view, if any
+				var target = kbook.target;
+				var log = target.log;
+				try {
+					var currentView = target.currentView;
+					if(typeof currentView !== "undefined") {
+						var func = currentView["do" + part.key];
+						if(typeof func === "function") {
+							func.call(currentView);
+						}
+					} else {
+						log("Error: currentView is not defined");
+					}
+				} catch (e) {
+					log("error in doDigit: " + e);
+				}
+			</function>
+		</code>
+
+		<!-- No keyboard input is received without this element -->
+		<sprite skin="diskSprite" width="0" top="0" height="0" u="6" active="false" canFocus="true"/>
+
+		<!--======================================================================================================
+		|| Versions, visible on all screens except disclaimer
+		========================================================================================================-->
+		<group id="VERSIONS" width="600" top="0" height="170">
+				<kbookLabel skin="piLabelBig" left="125" top="5"	height="40" width="230" text="eBook Model:"/>
+				<kbookLabel skin="piTextBig"  left="365" top="5"	height="40" width="100"  text="-" id="ebookModel" />
+
+				<kbookLabel skin="piLabel" left="220" top="50" height="30" width="150" text="Installer"/>
+				<kbookLabel skin="piLabel" left="370" top="50" height="30" width="150" text="eBook"/>
+
+				<kbookLabel skin="piLabel" left="10" top="80"  height="30" width="200" align="right" text="Sony Firmware:"/>
+				<kbookLabel skin="piLabel" left="10" top="110"  height="30" width="200" align="right" text="PRS+ Firmware:"/>
+
+				<kbookLabel skin="piText" top="80"  left="220" height="30" width="140" text="-" id="installerFirmware" />
+				<kbookLabel skin="piText" top="110"  left="220" height="30" width="140" text="-" id="installerPRSPFirmware" />
+
+				<kbookLabel skin="piText" top="80"  left="370" height="30" width="300" text="-" id="ebookFirmware" />
+				<kbookLabel skin="piText" top="110"  left="370" height="30" width="300" text="-" id="ebookPRSPFirmware" />
+		</group>
+
+		<!--======================================================================================================
+		|| Unsupported Firmware
+		========================================================================================================-->
+		<group id="UNSUPPORTED_FIRMWARE" width="600" top="200" bottom="0" visible="false">
+			<sprite skin="piDanger2" top="50" left="10" height="100" width="100" active="false" canFocus="true"/>
+			<text id="warning" skin="piWarning" top="5" left="130" right="10" height="260" />
+
+			<!-- Install anyway -->
+			<panel skin="piMenuRow" left="0" bottom="140" right="0" height="70" />
+			<kbookLabel skin="piRowNum" bottom="140" right="0" width="35" height="70" align="center" text="8" />
+			<kbookLabel id="installAnyway" bottom="140" skin="piRow" right="0" left="50" height="70" />
+
+			<!--Expert options -->
+			<panel skin="piMenuRow" left="0" right="0" bottom="0" height="70" />
+			<kbookLabel skin="piRowNum" bottom="0" right="0" width="35" height="70" align="center" text="0" />
+			<kbookLabel id="expert" skin="piRow" bottom="0" right="0" left="50" height="70" />
+
+			<code>
+				<function id="init" params="strings">
+					var target = kbook.target;
+					this.warning.setValue(target.localize("UNSUPPORTED_FIRMWARE"));
+					this.installAnyway.setValue(target.localize("MENU_INSTALL_ANYWAY"));
+					this.expert.setValue(target.localize("MENU_EXPERT"));
+				</function>
+				<function id="do8">
+					kbook.target.actions.perform("installAnyway", this);
+				</function>
+				<function id="do0">
+					kbook.target.go(this, "EXPERT");
+				</function>
+			</code>
+		</group>
+
+		<!--======================================================================================================
+		|| Unsupported Model
+		========================================================================================================-->
+		<group id="UNSUPPORTED_MODEL" width="600" top="200" bottom="0" visible="false">
+			<sprite skin="piDanger2" top="0" left="10" width="100" height="100" active="false" canFocus="true"/>
+			<text id="warning" skin="piWarning" top="0" left="130" right="10" height="200"/>
+			<code>
+				<function id="init" params="strings">
+					this.warning.setValue(kbook.target.localize("UNSUPPORTED_MODEL"));
+				</function>
+			</code>
+		</group>
+
+		<!--======================================================================================================
+		|| OK
+		========================================================================================================-->
+		<group id="OK" width="600" top="200" bottom="0" visible="false">
+
+			<!-- Install / Update -->
+			<panel skin="piMenuRow" left="0" right="0" bottom="210" height="70" />
+			<kbookLabel skin="piRowNum" bottom="210" right="0" width="35" height="70" align="center" text="7" />
+			<kbookLabel  id="installUpdate" skin="piRow" bottom="210" right="0" left="50" height="70"/>
+
+			<!-- Expert -->
+			<panel skin="piMenuRow" left="0" right="0" bottom="70" height="70" />
+			<kbookLabel skin="piRowNum" bottom="70" right="0" width="35" height="70" align="center" text="9" />
+			<kbookLabel id="expert" skin="piRow" bottom="70" right="0" left="50" height="70" />
+
+			<code>
+				<function id="init" params="strings">
+					var target = kbook.target;
+					this.installUpdate.setValue(target.localize("MENU_INSTALL_UPDATE"));
+					this.expert.setValue(target.localize("MENU_EXPERT"));
+				</function>
+				<function id="do7">
+					kbook.target.actions.perform("installOrUpgrade", this);
+				</function>
+				<function id="do9">
+					kbook.target.go(this, "EXPERT");
+				</function>
+			</code>
+		</group>
+
+		<!--======================================================================================================
+		|| System is up to date
+		========================================================================================================-->
+		<group id="SYSTEM_UP_TO_DATE" width="600" top="200" bottom="0" visible="false">
+			<sprite skin="piInfo" top="30" left="10" height="100" width="100" active="false" canFocus="true"/>
+			<text  id="message" skin="piConfirm" top="50" left="120" right="10" height="200" />
+
+			<!-- Expert -->
+			<panel skin="piMenuRow" left="0" right="0" bottom="210" height="70" />
+			<kbookLabel skin="piRowNum" bottom="210" right="0" width="35" height="70" align="center" text="7" />
+			<kbookLabel id="exit" skin="piRow" bottom="210" right="0" left="50" height="70" />
+			
+			<panel skin="piMenuRow" left="0" right="0" bottom="70" height="70" />
+			<kbookLabel skin="piRowNum" bottom="70" right="0" width="35" height="70" align="center" text="9" />
+			<kbookLabel id="expert" skin="piRow" bottom="70" right="0" left="50" height="70" />
+
+			<code>
+				<function id="init" params="strings">
+					var target = kbook.target;
+					this.message.setValue(target.localize("SYSTEM_UP_TO_DATE"));
+					this.expert.setValue(target.localize("MENU_EXPERT"));
+					this.exit.setValue(target.localize("MENU_EXIT"));
+				</function>
+				<function id="do7">
+					this.bubble("doMenu");
+				</function>
+				<function id="do9">
+					kbook.target.go(this, "EXPERT");
+				</function>
+			</code>
+		</group>
+		
+		<!--======================================================================================================
+		|| Expert
+		========================================================================================================-->
+		<group id="EXPERT" width="600" top="170" bottom="0" visible="false">
+			<sprite skin="piSkull" top="0" left="10" width="100" height="100" active="false" canFocus="true"/>
+			<text id="warning" skin="piWarning" top="30" left="120" right="10" height="100"	/>
+
+			
+			<!-- Backup -->
+			<panel skin="piMenuRow" left="0" bottom="210"  right="0" height="70" />
+			<kbookLabel skin="piRowNum" bottom="210" right="0" width="35" height="70" align="center" text="7" />
+			<kbookLabel id="backup" skin="piRow" bottom="210" right="0" left="50" height="70" />
+
+			<!-- Force Flash PRS+ -->
+			<panel skin="piMenuRowBorderless" bottom="140" left="0" right="0" height="70" />
+			<kbookLabel skin="piRowNum" bottom="140" right="0" width="35" height="70" align="center" text="8" />
+			<kbookLabel id="forceFlash" skin="piRow" bottom="140" right="0" left="50" height="70" />
+
+			<!-- Force Flash Rootfs -->
+			<panel skin="piMenuRow" left="0" bottom="70" right="0" height="70" />
+			<kbookLabel skin="piRowNum" bottom="70" right="0" width="35" height="70" align="center" text="9" />
+			<kbookLabel id="forceFlashRoot" skin="piRow" bottom="70" right="0" left="50" height="70" />
+
+			<!-- Reboot -->
+			<panel skin="piMenuRowBorderless" bottom="0" left="0" right="0" height="70" />
+			<kbookLabel skin="piRowNum" bottom="0" right="0" width="35" height="70" align="center" text="0" />
+			<kbookLabel id="reboot" skin="piRow" bottom="0" right="0" left="50" height="70" />
+
+			<code>
+				<function id="init" params="strings">
+					var target = kbook.target;
+					this.warning.setValue(target.localize("MENU_EXPERT"));
+					this.backup.setValue(target.localize("MENU_BACKUP"));
+					this.forceFlash.setValue(target.localize("MENU_FORCE_FLASH"));
+					this.forceFlashRoot.setValue(target.localize("MENU_FORCE_FLASH_ROOT"));
+					this.reboot.setValue(target.localize("MENU_REBOOT"));
+				</function>
+				<function id="do7">
+					kbook.target.actions.perform("backup", this);
+				</function>
+				<function id="do8">
+					kbook.target.actions.perform("flashFsk", this);
+				</function>
+				<function id="do9">
+					kbook.target.actions.perform("flashRoot", this);
+				</function>
+				<function id="do0">
+					kbook.target.actions.perform("reboot", this);
+				</function>
+			</code>
+		</group>
+
+		<!--======================================================================================================
+		|| Confirm
+		========================================================================================================-->
+		<group id="CONFIRM" top="200" bottom="0" left="0" right="0" visible="false">
+			<sprite skin="piInfo" top="0" left="10" height="100" width="100" active="false" canFocus="true"/>
+			<text  id="confirmMessage" skin="piConfirm" top="0" left="120" right="10" height="200" />
+
+			<!-- Continue -->
+			<panel skin="piMenuRow" left="0" right="0" bottom="140" height="70" />
+			<kbookLabel skin="piRowNum" bottom="140" right="0" width="35" height="70" align="center" text="8" />
+			<kbookLabel id="continue_" skin="piRow" bottom="140" right="0" left="50" height="70" />
+
+			<!-- Back -->
+			<panel skin="piMenuRow" left="0" bottom="0" right="0" height="70" />
+			<kbookLabel skin="piRowNum" bottom="0" right="0" width="35" height="70" align="center" text="0" />
+			<kbookLabel id="back" skin="piRow" bottom="0" right="0" left="50" height="70" />
+
+			<code>
+				<function id="init" params="strings">
+					var target = kbook.target;
+					this.continue_.setValue(target.localize("MENU_CONTINUE"));
+					this.back.setValue(target.localize("MENU_BACK"));
+				</function>
+				<function id="do8">
+					try {
+						this.callback(this.action, this);
+					} catch (e) {
+						kbook.target.log("Error in confirm.continue: " + e);
+					}
+				</function>
+				<function id="do0">
+					kbook.target.AUTORUN_GROUP.AUTORUN.doMenu();
+				</function>
+			</code>
+		</group>
+
+		<!--======================================================================================================
+		|| Working
+		========================================================================================================-->
+		<group id="WORKING" top="200" bottom="0" left="0" right="0" visible="false">
+			<group id="DONT_POWEROFF" left="0" right="0" top="0" height="140">
+				<sprite skin="piDontPoweroff" top="0" left="10" height="100" width="100" active="false" />
+				<kbookLabel id="working" skin="piLabelBig" left="125" top="20" height="40" right="5" />
+			</group>
+
+			<group id="SUCCESS" left="0" right="0" top="0" height="140" visible="false">
+				<sprite skin="piInfo" top="0" left="10" height="100" width="100" active="false" />
+				<kbookLabel id="success" skin="piLabelBig" left="125" top="20" height="40" right="5" />
+			</group>
+
+			<group id="FAILED" left="0" right="0" top="0" height="140" visible="false">
+				<sprite skin="piDanger" top="0" left="10" height="100" width="100" active="false" />
+				<kbookLabel id="failed" skin="piLabelBig" left="125" top="20"	height="40" right="5" />
+			</group>
+
+			<kbookLabel id="log" skin="piLabel" left="0" right="0" top="90" height="40" align="center" />
+
+			<text id="LOG" skin="piLog" active="false" padding="10" paddingLeft="50" left="10" right="10" top="130" bottom="10" />
+
+			<code>
+				<function id="init" params="strings">
+					var target = kbook.target;
+					this.DONT_POWEROFF.working.setValue(target.localize("WORKING_DONTPOWEROFF"));
+					this.SUCCESS.success.setValue(target.localize("WORKING_SUCCESS"));
+					this.FAILED.failed.setValue(target.localize("WORKING_FAILED"));
+					this.log.setValue(target.localize("WORKING_LOG"));
+				</function>
+
+				<function id="reset">
+					this.LOG.setValue("");
+					this.DONT_POWEROFF.show(true);
+					this.SUCCESS.show(false);
+					this.FAILED.show(false);
+				</function>
+
+				<function id="print" params="message" >
+					this.LOG.setValue(this.LOG.getValue() + " " + message);
+					kbook.target.updateWindow();
+				</function>
+
+				<function id="println" params="message">
+					this.LOG.setValue(this.LOG.getValue() + " " + message + "\n");
+					kbook.target.updateWindow();
+				</function>
+			</code>
+		</group>
+
+	</group>
+
+</group>
+
+</document>

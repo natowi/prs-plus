@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<language xmlns="http://www.kinoma.com/fskin/1">
+	<name>Deutsch</name>
+	<txtWelcome>Herzlich Willkommen bei Sony!&#xA;Mit diesem Reader halten Sie die Zukunft&#xA;des Lesens in Ihren Händen.&#xA;Starten Sie Ihr persönliches Leseerlebnis,&#xA;indem Sie eine beliebige Stelle&#xA;des Bildschirms berühren.</txtWelcome>
+	<txtGuideAreaLang>Bestimmen Sie Ihre bevorzugte Sprache und wählen Sie OK. &#xA;Hinweis:  Die Geräteinstellungen können zu einem späteren Zeitpunkt vom Einstellungsmenü aus geändert werden.</txtGuideAreaLang>
+	<txtCalibration1>Tappen Sie mit dem Touchpen inmitten&#xA;auf das Ziel.</txtCalibration1>
+	<txtCalibration2>Abstimmungsfehler entdeckt.&#xA;Bitte Abstimmungsprozess erneut starten.</txtCalibration2>
+</language>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="MENU_HOME_GROUP_SUB" >
+	<group id="MENU_HOME_GROUP" left="0" right="0" top="0" bottom="0" >
+		<code>
+			<function id="onChangeTab" params="file">
+				var base=System.applyEnvironment("[homeScriptPath]")
+				this.MENU_HOME.VIEW.setURI("file://" + base + file)
+				//update full screen for removing ghost
+				this.getModel().fullScreenUpdate()
+			</function>
+		</code>
+		<group id="MENU_HOME" left="0" right="0" top="0" bottom="0" >
+			<code>
+				<function id="enable" params="enableIt">
+					arguments.callee.grammar.call(this, enableIt);
+					this.container.HOTSPOT.show(!enableIt);
+					this.container.HOTSPOT.enable(!enableIt);
+				</function>
+				<function id="doMenu">
+					this.bubble("doBlink");
+				</function>
+			</code>
+			<kbookTab id="TAB_V" orientation="V" skin="tab" alignment="center" left="0" right="0" height="75" bottom="30" active="true" visible="true">
+				<tabItem skin="tabIcon" text="fskin:/l/strings/STR_HOME_TAB_HOME_V" value="0" width="200" rightLineWidth="1" borderColor="#FF0A0A0A"/>
+				<!--tabItem skin="tabIcon" text="fskin:/l/strings/STR_HOME_TAB_STORE_V" value="1" width="149" rightLineWidth="1" borderColor="#FF0A0A0A"/-->
+				<tabItem skin="tabIcon" text="fskin:/l/strings/STR_HOME_TAB_APPLICATIONS_V" value="1" width="199" rightLineWidth="1" borderColor="#FF0A0A0A"/>
+				<tabItem skin="tabIcon" text="fskin:/l/strings/STR_HOME_TAB_SETTINGS_V" value="2" width="199" />
+			</kbookTab>
+			<kbookTab id="TAB_H" orientation="H" skin="tab_h" alignment="center" width="75" right="0" top="0" bottom="30" active="false" visible="false">
+				<tabItem skin="tabIcon" text="fskin:/l/strings/STR_HOME_TAB_HOME_H" value="0" height="190" bottomLineHeight="1" borderColor="#FF0A0A0A"/>
+				<!--tabItem skin="tabIcon" text="fskin:/l/strings/STR_HOME_TAB_STORE_H" value="1" height="142" bottomLineHeight="1" borderColor="#FF0A0A0A"/-->
+				<tabItem skin="tabIcon" text="fskin:/l/strings/STR_HOME_TAB_APPLICATIONS_H" value="1" height="189" bottomLineHeight="1" borderColor="#FF0A0A0A"/>
+				<tabItem skin="tabIcon" text="fskin:/l/strings/STR_HOME_TAB_SETTINGS_H" value="2" height="189" />
+			</kbookTab>
+			<kbookTabView id="VIEW" left="0" right="0" top="0" bottom="30"/>
+			<kbookStatus skin="kbookNoMarginStatus" left="0" right="0" height="30" bottom="0"/>
+			<kbookLabel skin="label-statusBar" clock="true" left="157" right="157" height="30" bottom="0" align="center" variable="HOME_INDEX_COUNT" active="true"/>
+		</group>
+		<group id="READER_TOP" left="0" right="0" top="0" bottom="0" visible="false">
+			<fillBackground color="white" left="0" right="0" top="0" bottom="0"/>
+			<button2icon id="BTN_READER_TOP" skin="keyW2" width="200" height="42" text="Dictionary" do="doBtnReaderTop"/>
+		</group>
+		<hotspot id="HOTSPOT" left="0" right="0" top="0" bottom="0" visible="false" active="false" do="doBlink"/><!--[workaround] can't be operated Home screen during modal is displaying-->
+	</group>
+</document>

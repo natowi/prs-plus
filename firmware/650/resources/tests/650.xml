@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<kbookMenuDetails id="MENU" left="0" right="0" top="0" bottom="30" icon="testIcon">
+		<records>
+			<record><number name="kind" value="1"/>	 <string name="name" value="Test Panel"/>		   <string name="comment" value=""/><number name="separator" value="0"/><string name="func" value=""/>							<string name="variable" value=""/>					<string name="file" value="images.xml"/>	  </record>
+			<record><number name="kind" value="7"/>	 <string name="name" value="Drawing with point"/>  <string name="comment" value=""/><number name="separator" value="0"/><string name="func" value=""/>							<string name="variable" value=""/>					<string name="file" value="tpdraw.xml"/>	  </record>
+			<record><number name="kind" value="6"/>	 <string name="name" value="Test TP Coordinate"/>  <string name="comment" value=""/><number name="separator" value="0"/><string name="func" value=""/>							<string name="variable" value=""/>					<string name="file" value="tpcoordinate.xml"/></record>
+			<record><number name="kind" value="2"/>	 <string name="name" value="Test All Keys"/>	   <string name="comment" value=""/><number name="separator" value="0"/><string name="func" value=""/>							<string name="variable" value="KEYCHECK"/>			<string name="file" value="keys650.xml"/>	  </record>
+			<record><number name="kind" value="8"/>	 <string name="name" value="Check Battery"/>	   <string name="comment" value=""/><number name="separator" value="0"/><string name="func" value="doBatteryTest"/>				<string name="variable" value="BATTERY_LEVEL"/>		<string name="file" value=""/>				  </record>
+			<record><number name="kind" value="16"/> <string name="name" value="Factory Initialize"/>  <string name="comment" value=""/><number name="separator" value="1"/><string name="func" value="doFactoryInitializeTest"/>	<string name="variable" value="FACTORYINIT_STATE"/>	<string name="file" value=""/>				  </record>
+			<record><number name="kind" value="13"/> <string name="name" value="Version confirmation"/> <string name="comment" value=""/><number name="separator" value="1"/><string name="func" value=""/>							<string name="variable" value=""/>					<string name="file" value="version.xml"/>	  </record>
+			<record><number name="kind" value="3"/>	 <string name="name" value="Update Waveform"/>	   <string name="comment" value=""/><number name="separator" value="0"/><string name="func" value="doUpdateWaveformTest"/>		<string name="variable" value="WAVEFORM"/>			<string name="file" value=""/>				  </record>
+			<record><number name="kind" value="4"/>	 <string name="name" value="Reset Device Lock"/>   <string name="comment" value=""/><number name="separator" value="0"/><string name="func" value="doResetDeviceLock"/>			<string name="variable" value="DEVICELOCK"/>		<string name="file" value=""/>				  </record>
+			<record><number name="kind" value="5"/>  <string name="name" value="Power Off"/>		   <string name="comment" value=""/><number name="separator" value="1"/><string name="func" value="doPowerOffTest"/>			<string name="variable" value="POWEROFF_STATE"/>	<string name="file" value=""/>				  </record>
+			<record><number name="kind" value="15"/> <string name="name" value="Log Extract"/>		   <string name="comment" value=""/><number name="separator" value=""/> <string name="func" value="doLogExtract"/>				<string name="variable" value="LOG_READ"/>			<string name="file" value=""/>				  </record>
+			<record><number name="kind" value="15"/> <string name="name" value="NAND Log Extract"/>	   <string name="comment" value=""/><number name="separator" value=""/> <string name="func" value="doNANDLogExtract"/>			<string name="variable" value="NAND_LOG_READ"/>		<string name="file" value=""/>				  </record>
+			<record><number name="kind" value="15"/> <string name="name" value="Self Log Extract"/>	   <string name="comment" value=""/><number name="separator" value=""/> <string name="func" value="doSelfLogExtract"/>			<string name="variable" value="SELF_LOG_READ"/>		<string name="file" value=""/>				  </record>
+			<record><number name="kind" value="15"/> <string name="name" value="Log Convert"/>		   <string name="comment" value=""/><number name="separator" value=""/> <string name="func" value="doLogConvert"/>				<string name="variable" value="LOG_CONVERT"/>		<string name="file" value=""/>				  </record>
+			<record><number name="kind" value="12"/> <string name="name" value="Calibration"/>		   <string name="comment" value=""/><number name="separator" value="1"/><string name="func" value=""/>							<string name="variable" value=""/>					<string name="file" value="calibration.xml"/> </record>
+			<record><number name="kind" value="11"/> <string name="name" value="Check Temperature"/>   <string name="comment" value=""/><number name="separator" value="0"/><string name="func" value="doTemperatureTest"/>			<string name="variable" value="TEMPERATURE_LEVEL"/>	<string name="file" value=""/>				  </record>
+			<record><number name="kind" value="14"/> <string name="name" value="Slideshow Setting"/>   <string name="comment" value=""/><number name="separator" value="0"/><string name="func" value="doSlideShowSetting"/>		<string name="variable" value="SLIDESHOW_SETTING"/>	<string name="file" value=""/>				  </record>
+			<record><number name="kind" value="10"/> <string name="name" value="Test Audio"/>		   <string name="comment" value=""/><number name="separator" value="0"/><string name="func" value=""/>							<string name="variable" value=""/>					<string name="file" value="audio.xml"/>		  </record>
+			<record><number name="kind" value="8"/>  <string name="name" value="Test Battery Life"/>   <string name="comment" value=""/><number name="separator" value="0"/><string name="func" value=""/>							<string name="variable" value="BATTERY_LIFE"/>		<string name="file" value="batterylife.xml"/> </record>
+			<record><number name="kind" value="3"/>	 <string name="name" value="Write VCOM"/>	   	   <string name="comment" value=""/><number name="separator" value="0"/><string name="func" value="doWriteVcomTest"/>			<string name="variable" value="VCOM_WRITE"/>		<string name="file" value=""/>				  </record>
+		</records>
+		<code>
+			<function id="getKind">
+				// now I set a value of about's kind.(temporary)
+				return 25;
+			</function>
+			<function id="getFirstChild">
+				return 0
+			</function>
+			<function id="getTitle">
+				return "Test Mode"
+			</function>
+			<function id="dataChanged">
+				this.pageChanged()
+			</function>
+			<function id="doRoot">
+				this.doCenter()
+			</function>
+			<function id="doOption">
+				this.doDown()
+			</function>
+			<function id="doSize">
+				this.doUp()
+			</function>
+			<function id="doMenu">
+				var model = kbook.model
+				kbook.autoRunRoot.exitIf(model)
+				model.container.clearModal()
+			</function>
+			<function id="variableChanged" params="id, value"><![CDATA[
+				var count = this.countRecords();
+				for (var i = 0; i < count; i++) {
+					var record = this.getRecord(i)
+					var variable = this.getValue(record, "variable")
+					if (variable) {
+						var value = this.getVariable(variable)
+						record.comment = value
+					}
+					if (id == variable)
+						this.dataChanged()
+					if (id == "MENU_FOCUS")
+						this.container.MENU.focus(true)
+				}
+			]]></function>
+			<function id="openRecord" params="index"><![CDATA[
+				var record = this.getRecord(index)
+				var file = this.getValue(record, "file")
+				if (file) {
+					this.container.bubble("startTest", this.mergeURI("tests/" + file))
+					return
+				}
+				var func = this.getValue(record, "func")
+				this.container.bubble(func)
+			]]></function>
+			<function id="pageChanged">
+				var c = this.countPages();
+				var i = this.getPage() + 1;
+				if (!c) c++;
+				this.setVariable("MENU_INDEX_COUNT", i + " of " + c);
+			</function>
+		</code>
+	</kbookMenuDetails>
+	<kbookStatus skin="kbookMenuStatus" left="0" right="0" height="33" bottom="0"/>
+	<kbookLabel left="210" right="210" height="30" bottom="0" align="center" variable="MENU_INDEX_COUNT"/>
+</document>

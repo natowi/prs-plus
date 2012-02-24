@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="VIEW" >
+
+	<group id="COLD_BOOT_WIZARD_GROUP" left="0" right="0" top="0" bottom="0" visible="false" href="x-id://coldBootWizardModel">
+		<code>
+			<function id="onModal">
+				if(this.getVariable("IS_COLDBOOT")== false)
+					this.bubble("DoNotShow");
+				else
+					this.bubble("nextPage")
+			</function>
+
+			<function id="onOK">
+				this.bubble("nextPage")
+			</function>
+
+			<function id="hideall">
+				var pageNum = 1;
+				var page;
+				while (page = this["PAGE" + pageNum]) {
+					page.show(false);
+					page.focus(false);
+					pageNum++;
+				}
+			</function>
+			<function id="showPage" params="pageNum">
+				this.hideall();
+				this.COLD_BOOT_WIZARD_STATUS.show(pageNum);
+				this.container.container.container.STATUS_GROUP.STATUS_GROUP_SUB.STATUS_GROUP.show(pageNum);
+				var page = this["PAGE" + pageNum];
+
+				if (pageNum == 1 || pageNum == 2) {
+					page.SETTING.dataChanged();
+					page.SETTING.pageChanged();
+				}
+				else if (pageNum == 3)
+					page.PANEL.SCROLL_SETTING.dataChanged();
+				else
+					debugger;
+
+				page.show(true);
+				page.focus(true);
+			</function>
+			<function id="doMenu">
+				this.bubble("previousPage");
+			</function>
+
+			<function id="doNext">
+				if ( "doNext" in this["PAGE" + this.getModel().PAGE_NUM] )
+					this["PAGE" + this.getModel().PAGE_NUM].doNext();
+				else
+					this.container.bubble("doBlink");
+			</function>
+			<function id="doPrevious">
+				if ( "doPrevious" in this["PAGE" + this.getModel().PAGE_NUM] )
+					this["PAGE" + this.getModel().PAGE_NUM].doPrevious();
+				else
+					this.container.bubble("doBlink");
+			</function>
+		</code>
+
+		<group id="PAGE1" left="0" right="0" top="0" bottom="30">
+		    <kbookSetting id="SETTING" left="0" right="0" top="0" bottom="3" visible="true" href="x-id://coldBootWizardSettingData">
+				<code>
+					<function id="pageChanged">
+						this.setVariable("SETTING_INDEX_COUNT", 1 + "fskin:/l/strings/STR_UI_PARTS_OF".idToString() + 1);
+					</function>
+				</code>
+			</kbookSetting>
+		</group>
+
+		<group id="PAGE2" left="0" right="0" top="0" visible="false" bottom="30">
+		    <kbookSetting id="SETTING" left="0" right="0" top="0" bottom="3" visible="true" href="x-id://coldBootWizardSettingData">
+				<code>
+					<function id="pageChanged">
+						this.setVariable("SETTING_INDEX_COUNT", 1 + "fskin:/l/strings/STR_UI_PARTS_OF".idToString() + 1);
+					</function>
+				</code>
+			</kbookSetting>
+
+			<!-- Back button -->
+			<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenu"/>
+		</group>
+
+		<group id="PAGE3" left="0" right="0" top="0" bottom="30" visible="false">
+			<code>
+				<function id="onOK">
+					var indexs = this.PANEL.SCROLL_SETTING.detailsView.getSelectedIndexs();
+					this.bubble("onApplyScrollSetting", indexs[0]);
+				</function>
+
+				<function id="doNext">
+					this.PANEL.SCROLL_SETTING.doNext();
+				</function>
+				<function id="doPrevious">
+					this.PANEL.SCROLL_SETTING.doPrevious();
+				</function>
+			</code>
+
+			<fillBackground color="white" left="0" right="0" top="0" bottom="0"/>
+			<group id="PANEL" left="0" right="0" top="0" bottom="210">
+				<kbookMenuDetails id="SCROLL_SETTING" left="0" right="0" top="0" bottom="0" bufferZone="20" href="x-id://scrollSettingData3">
+					<code>
+						<function id="pageChanged">
+							//if (this.isShown()) {
+								var c = this.countPages();
+								var i = this.getPage() + 1;
+								if (!c) c++;
+								this.setVariable("SETTING_INDEX_COUNT", i + "fskin:/l/strings/STR_UI_PARTS_OF".idToString() + c);
+							//}
+						</function>
+						<function id="doCheckContent" params="item">
+							var view = this.detailsView;
+							this.bubble("selectItem", view, item.index);
+						</function>
+					</code>
+					<views>
+						<viewStyleDetails id="detailsView" name="details" left="0" right="0" top="0" bottom="0" fixItemHeight="true" lineHeight="2" xSpacing="5" titleIconVisible="false" navbarSeparator="false" adjustTitleTextSizeMin="33" default="true" bottomLineVisible="true">
+							<fields>
+								<fieldCheckbox skin="radiobutton" type="multipleCheckbox" do="doCheckContent" can="canCheckBoxOfSetting" reaction="false" />
+							</fields>
+						</viewStyleDetails>
+					</views>
+				</kbookMenuDetails>
+				<kbookNavbar menu="SCROLL_SETTING" bottomLine="true" right="0" width="44" top="70" bottom="0" />
+			</group>
+			<button2icon id="OK" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_OK" width="206" height="42" bottom="157" do="onOK"/>
+			<kbookText skin="guideArea" active="false" left="20" right="20" height="100" bottom="20" value="fskin:/l/strings/STR_UI_MESSAGE_GUIDEAREA_DICTIONARY"/>
+
+			<!-- Back button -->
+			<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenu"/>
+		</group>
+
+		<group id="COLD_BOOT_WIZARD_STATUS" left="0" right="0" top="0" bottom="0" visible="false">
+			<kbookStatus left="0" right="0" height="33" bottom="0"/>
+			<kbookLabel skin="label-statusBar" clock="true" left="157" right="157" height="30" bottom="0" align="center" variable="SETTING_INDEX_COUNT" active="true"/>
+		</group>
+	</group>
+
+</document>

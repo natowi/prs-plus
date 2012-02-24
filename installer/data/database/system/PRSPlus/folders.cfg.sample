@@ -1,0 +1,7 @@
+#File format is:
+# <name> <tab character> <path>
+# lines starting with # symbol are ignored
+Internal Memory	/Data/database/media/books
+Internal Memory2	/Data/database/media/books
+MS Card	a:
+SD Card	b:

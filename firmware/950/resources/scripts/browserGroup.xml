@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="BROWSER_GROUP_SUB" >
+	<group id="BROWSER_GROUP" left="0" right="0" top="0" bottom="0" >
+		<code>
+			<function id="modelChanged"><![CDATA[
+				var p = this.container.container;
+				var state = p.container.getVariable("STATE");
+				if (!this.isShown() || p.container.state != state){
+					this.showBrowserSizeIndicator(false)
+					this.showSslIndicator(false)
+				}else if(this.BROWSER_OPEN.isShown() && !this.BLINDER.isShown()){
+					this.showBrowserSizeIndicator(true)
+					this.showSslIndicator(true)
+				}else if(this.BROWSER_OPEN.isShown() && this.BLINDER.isShown() && !this.getModel().getVariable("VAR_BROWSER_BLINDER"))//iValsun Marathon #657
+					this.hideBlinder()
+				arguments.callee.grammar.call(this)
+			]]></function>
+			<function id="doNext">
+				if( this.bubble("canBrowserForward") )
+					this.bubble("doBrowserForward")
+				else
+					this.bubble("doBlink")
+			</function>
+			<function id="doPrevious">
+				if( this.bubble("canBrowserBackward") )
+					this.bubble("doBrowserBackward")
+				else
+					this.bubble("doBlink")
+			</function>
+			<function id="doRoot">
+				if(this.canCloseKeyboard())
+					this.doHideKeyboard()	//only hide not blur focus
+				this.getModel().doRoot()
+			</function>
+			<!--function id="doSize">
+				if(this.KEYBOARD.isShown())
+					this.bubble("doBlink")
+				else
+					this.getModel().doSize()
+			</function>
+			<function id="doOption">
+				if(this.KEYBOARD.isShown())
+					this.bubble("doBlink")
+				else
+					this.getModel().doOption()
+			</function-->
+			<function id="doMenu"><![CDATA[
+				var kbdObj=this.KEYBOARD;
+				if(kbdObj.KEYLAYOUT.popup && kbdObj.KEYLAYOUT.popup.isShown())
+					kbdObj.KEYLAYOUT.popup.container.deletePopup();
+				else if(kbdObj.isShown())
+					this.doCloseKeyboard();
+				else
+					this.getModel().doMenu()
+			]]></function>
+			<function id="doEnterTextBox" params="oldstring, mode, type, context"><![CDATA[
+				if(this.bubble("isSrSilkSingleLine",mode)){
+					//single line input
+					var bottomY = type.y + type.h
+					this.doShowKeyboard(oldstring,mode,type,bottomY)
+				}else
+					//multi line input
+					this.bubble("doBrowserOpenMultiLineEditor", oldstring, context, type)
+			]]></function>
+			<function id="doShowKeyboard" params="str,mode,kbdType,bottomY"><![CDATA[
+				//for slide browser area
+				if(bottomY > this.KEYBOARD.getY()){
+					this.BROWSER_STORE.moveBy(0,-this.KEYBOARD.getHeight())
+					this.BROWSER_OPEN.moveBy(0,-this.KEYBOARD.getHeight())
+					this.getModel().setVariable("VAR_MOVE_BROWSER",true)
+				}
+				var keyboard = this.KEYBOARD; //getKeyboardObj();
+				this.container.container.container.KEYBOARD_POPUP_GROUP.initPopup(keyboard);
+				var settings = this.getVariable("keyboard")
+				var mask = this.bubble("isSrSilkPassword",mode)
+				keyboard.KEYLAYOUT.changeKeyboardType(settings);
+				keyboard.KEYLAYOUT.setType(kbdType.id ,kbdType.kind);
+				keyboard.initBuffer(str,"strModified",false,mask);
+				keyboard.show(true)
+				this.KEYBOARD_MODE.show(true) //The feedback of the key pushed when the software keyboard is continuously pushed is returned. 
+				this.enableOnScreenKeyboard(true)
+				var model = this.getModel()
+				model.setVariable("VAR_BROWSER_UPDATEBTN", false)
+				model.setVariable("VAR_BROWSER_UPDATEBTN", true)
+			]]></function>
+			<function id="canCloseKeyboard">
+				if(this.KEYBOARD.isShown())
+					return true
+				else
+					return false
+			</function>
+			<function id="doHideKeyboard">
+				if(this.getModel().getVariable("VAR_MOVE_BROWSER")){
+					this.BROWSER_STORE.moveBy(0,this.KEYBOARD.getHeight())
+					this.BROWSER_OPEN.moveBy(0,this.KEYBOARD.getHeight())
+					this.getModel().setVariable("VAR_MOVE_BROWSER",false)
+				}
+				this.KEYBOARD.show(false)
+				this.KEYBOARD_MODE.show(false)
+				this.container.container.container.KEYBOARD_POPUP_GROUP.deletePopup()
+			</function>
+			<function id="doCloseKeyboard">
+				this.bubble("doBrowserCloseKeyboard")
+				this.doHideKeyboard()
+			</function>
+			<function id="canEnterKeyboard">
+				var keyboard = this.KEYBOARD; //getKeyboardObj();
+				return keyboard.btnState;
+			</function>
+			<function id="doEnterKeyboard">
+				var keyboard = this.KEYBOARD; //getKeyboardObj();
+				var words = keyboard.getFieldString();
+				this.bubble("doBrowserInputToTextBox",words)
+				if(this.canCloseKeyboard())
+					this.doHideKeyboard()	//only hide not blur focus
+			</function>
+			<function id="canRight">
+				return true
+			</function>
+			<function id="canLeft">
+				return true
+			</function>
+			<function id="doSelChanged2" params="offset, length">
+				var model = this.getModel()
+				model.setVariable("VAR_BROWSER_UPDATEBTN", false)
+				model.setVariable("VAR_BROWSER_UPDATEBTN", true)
+			</function>
+			
+			<function id="variableChanged" params="id, value">
+				arguments.callee.grammar.call(this, id, value);
+				if (id == "OVERLAY") {
+					if(this.BROWSER_STORE.isShown() || this.BROWSER_OPEN.isShown()){
+						this.enableOnScreenKeyboard(value?false:true)
+					}
+				}else if(id == "BROWSER_UPDATE"){
+					this.doHideKeyboard()
+				}
+			</function>
+			<function id="enableOnScreenKeyboard" params="enableIt">
+				if(!enableIt)
+					this.container.container.container.KEYBOARD_POPUP_GROUP.deletePopup()
+				this.KEYBOARD.BTN_CLOSE.show(enableIt);
+				this.KEYBOARD.KEYLAYOUT.show(enableIt);
+				this.KEYBOARD.BTN_LEFT.show(enableIt);
+				this.KEYBOARD.BTN_RIGHT.show(enableIt);
+			</function>
+			<!-- blinder-->
+			<function id="showBlinder" params="store">
+				if(store){
+					var frontBlinder = this.BLINDER.INFO.STORE
+					var behindBlinder = this.BLINDER.INFO.OPEN
+				}else{
+					var frontBlinder = this.BLINDER.INFO.OPEN
+					var behindBlinder = this.BLINDER.INFO.STORE
+				}
+				this.BLINDER.show(true)
+				this.BLINDER.enable(true)
+				behindBlinder.show(false)
+				frontBlinder.show(true)
+				this.getModel().setVariable("VAR_BROWSER_BLINDER",true)
+			</function>
+			<function id="hideBlinder"><![CDATA[
+				this.BLINDER.enable(false)
+				if(this.BLINDER.isShown()){
+					this.bubble("doBrowserActivate")
+					this.BLINDER.show(false)
+					if(this.BROWSER_OPEN.isShown()){
+						this.showBrowserSizeIndicator(true);
+						this.showSslIndicator(true)
+					}
+				}else
+					this.getModel().setVariable("VAR_BROWSER_BLINDER",false)
+			]]></function>
+			
+			<function id="doSendKey" params="keycode, text, modifier"><![CDATA[
+				for(var i=0;i<text.length;i++){
+					var charcode = text.charCodeAt(i)
+					this.bubble("doBrowserSendKey",keycode, charcode, modifier)
+				}
+			]]></function>
+			<function id="doLeftKey"><![CDATA[
+				this.bubble("doBrowserSendKey",0x25,0,false)//0x25:<-:eCEVK_LEFT
+			]]></function>
+			<function id="doRightKey"><![CDATA[
+				this.bubble("doBrowserSendKey",0x27,0,false)//0x27:->:eCEVK_RIGHT
+			]]></function>
+			<function id="doStartMonoChromePage"><![CDATA[
+				if(!this.getModel().getVariable("OVERLAY") && !this.KEYBOARD.isShown() && !this.BLINDER.isShown() )//if overlay and OSK and Blinder are NOT showing
+					this.MONOCHROME.show(true)
+			]]></function>
+			<function id="doEndMonoChromePage">
+				this.MONOCHROME.show(false)
+			</function>
+			<function id="showBrowserSizeIndicator" params="showIt">
+				if(this.container.container.container.hasOwnProperty("STATUS_GROUP"))
+					this.container.container.container.STATUS_GROUP.STATUS_GROUP_SUB.STATUS_GROUP.showBrowserSizeIndicator(showIt);
+			</function>
+			<function id="showSslIndicator" params="showIt">
+				if(this.container.container.container.hasOwnProperty("STATUS_GROUP"))
+					this.container.container.container.STATUS_GROUP.STATUS_GROUP_SUB.STATUS_GROUP.showSslIndicator(showIt);
+			</function>
+		</code>
+		<kbookStatus skin="kbookNoMarginStatus" left="0" right="0" height="30" bottom="0"/>
+		<kbookLabel skin="label-statusBar" clock="true" left="157" right="157" height="30" bottom="0" align="center" variable="BROWSER_INDEX_COUNT" active="true"/>
+		<webviewexlib width="0" height="0"/>
+		<kbookWebviewex id="BROWSER_STORE" left="0" right="0" top="0" bottom="30" href="x-id://webviewexStoreData">
+			<code>
+				<function id="onEnterTextBox" params="oldstring, mode, kbdType, x,y,w,h, context"><![CDATA[
+					var id = this.bubble("getIdFromSrSilkKeyType",kbdType)
+					var kind = this.bubble("getKindFromSrSilkKeyType",kbdType,mode)
+					var type = {
+						x : x,
+						y : y,
+						w : w,
+						h : h,
+						id : id,
+						kind : kind
+					}
+					this.bubble("doEnterTextBox", oldstring, mode, type, context)
+				]]></function>
+				<function id="onLeaveTextBox" params="c">
+					if(this.bubble("canCloseKeyboard"))
+						this.bubble("doHideKeyboard")
+				</function>
+				<function id="onBadCertificate" params="url,certErrCode, context">
+					this.bubble("doBrowserBadCertificate",url,certErrCode, context)
+				</function>
+				<function id="onWindowAlert" params="message, context">
+					this.bubble("doBrowserAlert",context,message)
+				</function>
+				<function id="onWindowConfirm" params="message, context">
+					this.bubble("doBrowserConfirm",context,message)
+				</function>
+				<function id="onWindowPrompt" params="message, defmes, context">
+					this.bubble("doBrowserPrompt",context,message,defmes)
+				</function>
+				<function id="onPopupMenu" params="event, context">
+					this.bubble("doBrowserPopupMenu",event,context)
+				</function>
+				<function id="onHidePopupMenu" params="context">
+					this.bubble("doBrowserHidePopupMenu",context)
+				</function>
+				<function id="onNavigationStatusChanged" params="status">
+					this.bubble("doBrowserNavigationStatusChanged",status)
+				</function>
+				<function id="onUpdateBlinder" params="onOff">
+					if(onOff){
+						this.show(true)
+						this.enable(true)
+						this.container.BROWSER_OPEN.enable(false)
+						this.container.showBlinder(true)
+						this.container.BROWSER_OPEN.show(false)
+					}else
+						this.container.hideBlinder()
+				</function>
+				<function id="onStartMonoChromePage">
+					this.bubble("doStartMonoChromePage")
+				</function>
+				<function id="onEndMonoChromePage">
+					this.bubble("doEndMonoChromePage")
+				</function>
+				<function id="onUnavailableUrl">
+					this.bubble("doOpenBrowserUnavailableUrlWithoutWlan",true)
+				</function>
+				<function id="onBasicAuthentication" params="site, message, defuser, defpass, wasSaved, context" >
+					var strData = {
+						site : site,
+						message : message,
+						defuser : defuser,
+						defpass : defpass
+					}
+					this.bubble("doBrowserBasicAuthentication",strData, wasSaved, context)
+				</function>
+				<function id="onUnsupportedMimeType" params="url,mimetype" >
+					this.bubble("doBrowserUnsupportedMimeType",url,mimetype)
+				</function>
+				<function id="onUnsupportedScheme" params="url" >
+					this.bubble("doBrowserUnsupportedScheme",url)
+				</function>
+				<function id="onSecurityStatusChanged" params="status">
+					this.bubble("doBrowserSecurityStatusChanged",status)
+				</function>
+				<function id="onReboot">
+					if(this.isShown())
+						this.bubble("doBrowserEmergencyShutdown")
+				</function>
+				<function id="onRebootDone">
+					this.bubble("doStoreBrowserRebootDone")
+				</function>
+				<function id="onInvalidUrl" params="url">
+					this.bubble("doBrowserInvalidUrl",url)
+				</function>
+				<function id="onConfirmJavaScript" params="elapsedTime, context">
+					this.bubble("doConfirmJavaScript", elapsedTime, context)
+				</function>
+			</code>
+		</kbookWebviewex>
+		<kbookWebviewex id="BROWSER_OPEN" left="0" right="0" top="0" bottom="30" href="x-id://webviewexOpenData"> 
+			<code>
+				<function id="onEnterTextBox" params="oldstring, mode, kbdType, x,y,w,h, context"><![CDATA[
+					var id = this.bubble("getIdFromSrSilkKeyType",kbdType)
+					var kind = this.bubble("getKindFromSrSilkKeyType",kbdType,mode)
+					var type = {
+						x : x,
+						y : y,
+						w : w,
+						h : h,
+						id : id,
+						kind : kind
+					}
+					this.bubble("doEnterTextBox", oldstring, mode, type, context)
+				]]></function>
+				<function id="onLeaveTextBox" params="c">
+					if(this.bubble("canCloseKeyboard"))
+						this.bubble("doHideKeyboard")
+				</function>
+				<function id="onBadCertificate" params="url,certErrCode, context">
+					this.bubble("doBrowserBadCertificate",url,certErrCode, context)
+				</function>
+				<function id="onWindowAlert" params="message, context">
+					this.bubble("doBrowserAlert",context,message)
+				</function>
+				<function id="onWindowConfirm" params="message, context">
+					this.bubble("doBrowserConfirm",context,message)
+				</function>
+				<function id="onWindowPrompt" params="message, defmes, context">
+					this.bubble("doBrowserPrompt",context,message,defmes)
+				</function>
+				<function id="onPopupMenu" params="event, context">
+					this.bubble("doBrowserPopupMenu",event,context)
+				</function>
+				<function id="onHidePopupMenu" params="context">
+					this.bubble("doBrowserHidePopupMenu",context)
+				</function>
+				<function id="onNavigationStatusChanged" params="status">
+					this.bubble("doBrowserNavigationStatusChanged",status)
+				</function>
+				<function id="onUpdateBlinder" params="onOff">
+					if(onOff){
+						this.show(true)
+						this.enable(true)
+						this.container.BROWSER_STORE.enable(false)
+						this.container.showBlinder(false)
+						this.container.BROWSER_STORE.show(false)
+					}else
+						this.container.hideBlinder()
+				</function>
+				<function id="onStartMonoChromePage">
+					this.bubble("doStartMonoChromePage")
+				</function>
+				<function id="onEndMonoChromePage">
+					this.bubble("doEndMonoChromePage")
+				</function>
+				<function id="onUnavailableUrl">
+					this.bubble("doOpenBrowserUnavailableUrlWithoutWlan",false)
+				</function>
+				<function id="onBasicAuthentication" params="site, message, defuser, defpass, wasSaved, context" >
+					var strData = {
+						site : site,
+						message : message,
+						defuser : defuser,
+						defpass : defpass
+					}
+					this.bubble("doBrowserBasicAuthentication",strData, wasSaved, context)
+				</function>
+				<function id="onUnsupportedMimeType" params="url,mimetype" >
+					this.bubble("doBrowserUnsupportedMimeType",url,mimetype)
+				</function>
+				<function id="onUnsupportedScheme" params="url" >
+					this.bubble("doBrowserUnsupportedScheme",url)
+				</function>
+				<function id="onSecurityStatusChanged" params="status">
+					this.bubble("doBrowserSecurityStatusChanged",status)
+				</function>
+				<function id="onReboot">
+					if(this.isShown())
+						this.bubble("doBrowserEmergencyShutdown")
+				</function>
+				<function id="onRebootDone">
+					this.bubble("doOpenBrowserRebootDone")
+				</function>
+				<function id="onInvalidUrl" params="url">
+					this.bubble("doBrowserInvalidUrl",url)
+				</function>
+				<function id="onConfirmJavaScript" params="elapsedTime, context">
+					this.bubble("doConfirmJavaScript", elapsedTime, context)
+				</function>
+			</code>
+		</kbookWebviewex>
+		<!--MONOCHROME-->
+		<monochrome id="MONOCHROME" left="0" right="0" top="0" bottom="0" visible="false"/>
+		<!--KEYBOARD-->
+		<keyboard id="KEYBOARD" left="0" right="0" height="317" bottom="30" visible="false" do="doSendKey">
+			<panel skin="kbarea" left="0" right="0" top="0" height="61" active="true"/>
+			<scrollField skin="browserInput" id="KEYBUF" left="14" right="172" top="10" height="40" doSelectionChanged="doSelChanged2" variable="VAR_BROWSER_KEYBUF" visible="false" active="true"/>
+			<button2icon id="BTN_CLOSE" skin="keyClose" top="10" right="14" width="42" height="42">
+				<code>
+					<function id="click">
+						this.bubble("doCloseKeyboard");
+					</function>
+				</code>
+			</button2icon>
+			<button2icon id="BTN_LEFT" skin="keyLeft" top="10" left="14" width="42" height="42" variableUpdate="VAR_BROWSER_UPDATEBTN" can="canLeft">
+				<code>
+					<function id="click"><![CDATA[
+						this.container.container.doLeftKey()
+					]]></function>
+				</code>
+			</button2icon>
+			<button2icon id="BTN_RIGHT" skin="keyRight" top="10" left="62" width="42" height="42" variableUpdate="VAR_BROWSER_UPDATEBTN" can="canRight">
+				<code>
+					<function id="click"><![CDATA[
+						this.container.container.doRightKey()
+					]]></function>
+				</code>
+			</button2icon>
+
+			<keyLayout id="KEYLAYOUT" left="0" right="0" top="61" bottom="0" skin="keyW_H">
+				<code>
+					<function id="registerKey" params="key, bounds">
+						this.container.container.KEYBOARD_MODE.register(key, bounds)
+					</function>
+					<function id="unregisterKey" params="key">
+						this.container.container.KEYBOARD_MODE.unregister(key)
+					</function>
+				</code>
+			</keyLayout>
+		</keyboard>
+		<eInkPanelKeyboard id="KEYBOARD_MODE" left="0" right="0" top="0" bottom="0" visible="false"/>
+		<!-- KEYBOARD -->
+		<!-- BLINDER -->
+		<group id="BLINDER" left="0" right="0" top="0" bottom="30">
+			<code>
+				<function id="sizeBy" params="dx, dy">
+					arguments.callee.grammar.call(this, dx, dy)
+					//only when orientation is vertical,display information
+					if (dx > 0)
+						this.INFO.show(false);
+					else
+						this.INFO.show(true);
+				</function>
+			</code>
+			<fillBackground color="white" left="0" right="0" top="0" bottom="0"/>
+			<group id="INFO" width="0" height="0">
+				<group id="STORE" width="402" height="220">
+					<sprite skin="storeHome" top="0" left="0" width="400" height="100" active="false"/> 
+					<kbookText skin="storeHomeText" active="false" left="0" right="0" top="179" height="220" variable="BROWSER_STORE_BLINDER_MESSAGE"/>
+				</group>
+				<group id="OPEN" width="402" height="220">
+					<kbookText skin="storeHomeText" active="false" left="0" right="0" top="0" bottom="0" variable="BROWSER_BLINDER_MESSAGE" />
+				</group>
+			</group>
+		</group>
+		<!-- BLINDER -->
+	</group>
+	<kbookOverlay id="COMBOBOX_OVERLAY" left="0" right="0" top="0" bottom="30" visible="false" href="x-id://comboBoxOverlayModel">
+		<focusBounds skin="background" left="0" right="0" top="0" bottom="0" visible="true"/>
+		<optCloseBtn do="doBrowserCloseComboMenu"/>
+		<optMenuComboBox fixBottoms="" lineSkin="optSpaceSmall">
+			<optItemButton skin="dicMenuPrev" playing="prev"/>
+			<optItemRadioCombo variable="VAR_RADIO_SORT" playing="invisible"/>
+			<optItemButton skin="dicMenuNext" playing="next"/>
+		</optMenuComboBox>
+	</kbookOverlay>
+	
+	<!-- for Marathon2 -->
+	<captureView id="CAPTURE_VIEW_BROWSER" left="0" right="0" top="0" bottom="0" visible="false" doCapture="saveScreenShotOfBrowser"/>
+
+	<kbookOverlay id="OPTION_OVERLAY_WEBMARKS_LIST"  left="0" right="0" top="0" bottom="30" visible="false">
+		<focusBounds skin="background" left="0" right="0" top="0" bottom="0" variable="" visible="true"/>
+		<optCloseBtn do="doCloseOptMenu"/>
+		<optMenu>
+			<optItemButton skin="dicMenuPrev" playing="prev"/>
+			<optItemButton u="66" textresource="STR_UI_MENU_EDIT_BOOKMARKS"		do="doEditWebmark" playing="item"/>
+			<optItemButton u= "5" textresource="STR_UI_MENU_DELETE_BOOKMARKS"	do="doDeleteWebmarks" playing="item"/>
+			<optItemButton u= "6" textresource="STR_UI_MENU_NOWPLAYING"			do="doGoToNowPlaying" playing="audio"/>
+			<optItemButton u="54" textresource="STR_UI_MENU_RESUMELISTENING"	do="doResumeSong" playing="resume"/>
+			<optItemButton skin="dicMenuNext" playing="next"/>
+		</optMenu>
+	</kbookOverlay>
+	<kbookOverlay id="OPTION_OVERLAY_BROWSER_STORE"  left="0" right="0" top="0" bottom="30" visible="false">
+		<focusBounds skin="background" left="0" right="0" top="0" bottom="0" variable="" visible="true"/>
+		<optCloseBtn do="doCloseOptMenu"/>
+		<optMenu>
+			<optItemButton skin="dicMenuPrev" playing="prev"/>
+			<optItemButton u="24" textresource="STR_UI_MENU_STORE_HOME"			do="doBrowseStoreHomePage" />
+			<optItemButton u="25" textresource="STR_UI_MENU_MY_ACCOUNT"			do="doBrowseMyAccountPage" />
+			<optItemButton u="26" textresource="STR_UI_MENU_HELP_AND_SUPPORT"	do="doBrowseHelpPage" />
+			<optItemButton u= "4" textresource="STR_UI_MENU_LEGALINFO"			do="doBrowseLegalPage" />
+			<optItemButton u="27" textresource="STR_UI_MENU_REFRESH_PAGE"		do="doBrowserReload" />
+			<optItemButton u="10" textresource="STR_UI_MENU_CONTINUEREADING"	do="doGoToReading" playing="reading"/>
+			<optItemButton u= "6" textresource="STR_UI_MENU_NOWPLAYING"			do="doGoToNowPlaying" playing="audio"/>
+			<optItemButton u="54" textresource="STR_UI_MENU_RESUMELISTENING"	do="doResumeSong" playing="resume"/>
+			<optItemButton skin="dicMenuNext" playing="next"/>
+		</optMenu>
+	</kbookOverlay>
+	<kbookOverlay id="OPTION_OVERLAY_BROWSER_OPEN"  left="0" right="0" top="0" bottom="30" visible="false">
+		<focusBounds skin="background" left="0" right="0" top="0" bottom="0" variable="" visible="true"/>
+		<optCloseBtn do="doCloseOptMenu"/>
+		<optMenu>
+			<optItemButton skin="dicMenuPrev" playing="prev"/>
+			<optItemButton u="70" textresource="STR_UI_MENU_BROWSE_HOME"		do="doBrowserOpenHomePage" playing="openWebHome"/>
+			<optItemButton u="64" textresource="STR_UI_MENU_ADD_TO_BOOKMARK"	do="doBrowserAddWebmark" playing="openWebHome"/>
+			<optItemButton u="65" textresource="STR_UI_MENU_VIEW_BOOKMARKS"		do="doBrowserViewWebmark" playing="webmarks"/>
+			<optItemButton u="71" textresource="STR_UI_MENU_INPUT_URL"			do="doBrowserInputURL" />
+			<optItemButton u="27" textresource="STR_UI_MENU_REFRESH_PAGE"		do="doBrowserReload" />
+			<optItemButton u="80" textresource="STR_UI_MENU_STOP"				do="doBrowserStop" />
+			<optItemButton u="72" textresource="STR_UI_MENU_TAKE_SCREENSHOT"	do="doScreenShotOfBrowser" playing="screenshot"/>
+			<optItemButton u="73" textresource="STR_UI_MENU_PAGE_INFO"			do="doBrowserPageInfo" />
+			<optItemButton u="74" textresource="STR_UI_MENU_LEGALINFO"			do="doBrowserConfirmIndemnity" />
+			<optItemButton u="10" textresource="STR_UI_MENU_CONTINUEREADING"	do="doGoToReading" playing="reading"/>
+			<optItemButton u= "6" textresource="STR_UI_MENU_NOWPLAYING"			do="doGoToNowPlaying" playing="audio"/>
+			<optItemButton u="54" textresource="STR_UI_MENU_RESUMELISTENING"	do="doResumeSong" playing="resume"/>
+			<optItemButton skin="dicMenuNext" playing="next"/>
+		</optMenu>
+	</kbookOverlay>
+	
+	<kbookBrowserDialog id="BROWSER_DIALOG" ok="OK" cancel="NO" left="0" right="0" top="0" bottom="30" visible="false" >
+		<code>
+			<function id="textAreaSizeBy" params="w, h">
+				this.CONFIRMATION_DIALOG_AREA.moveBy(-w/2, -h/2);
+				this.CONFIRMATION_DIALOG_AREA.sizeBy(w, h);
+			</function>
+		</code>
+		<group id="CONFIRMATION_DIALOG_AREA" width="446" height="186">
+			<code>
+				<function id="initialized">
+					this.container.styles.push(this.OK_CANCEL_BUTTON);
+					this.container.styles.push(this.OK_BUTTON);
+					this.container.styles.push(this.INPUT_BUTTON);
+					this.container.styles.push(this.AUTH_BUTTON);
+					this.container.styles.push(this.CERTIFICATE_BUTTON);
+					this.container.styles.push(this.YESNO_BUTTON);
+					this.container.styles.push(this.CERTIFICATE_NO_BUTTON);
+				</function>
+			</code>
+			<kbookExpandableDialogText id="DIALOG" skin="text-dialog" active="false" variable="MSG" left="0" right="0" top="0" bottom="0" expandWidth="100" />
+			<group id="OK_CANCEL_BUTTON" left="0" right="0" top="0" bottom="0">
+				<button2icon id="OK" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_OK" bottom="13" right="183" width="155" height="42" do="doOK"  beforeClick="onMouseDown" afterClick="onMouseUp" />
+				<button2icon id="NO" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_CANCEL" bottom="13" right="13" width="155" height="42" do="doNO" />
+			</group>
+			<group id="OK_BUTTON" left="0" right="0" top="0" bottom="0">
+				<button2icon id="OK" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_OK" bottom="13" right="13" width="130" height="42" do="doOK"  beforeClick="onMouseDown" afterClick="onMouseUp" />
+			</group>
+			<group id="INPUT_BUTTON" left="0" right="0" top="0" bottom="0">
+				<group id="INPUT" left="25" right="21" bottom="77" height="40">
+					<panel id="AREA" skin="LineInputForBrowser" active="false" left="0" top="0" right="0" bottom="0"/>
+					<kbookLabel id="BUF" skin="LineInputForBrowser" active="false" left="0" top="0" right="0" bottom="0" variable="VAR_BROWSER_PROMPT"/>
+					<kbookHotspot do="doPopUpLineInputForPrompt" left="2" top="2" right="2" bottom="2" threshold="0xA8"/>
+				</group>
+				<button2icon id="OK" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_OK" bottom="13" right="183" width="155" height="42" do="doOK"  beforeClick="onMouseDown" afterClick="onMouseUp" />
+				<button2icon id="NO" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_CANCEL" bottom="13" right="13" width="155" height="42" do="doNO" />
+			</group>
+			<group id="AUTH_BUTTON" left="0" right="0" top="0" bottom="0">
+				<kbookLabel skin="AuthenticationCaption" left="25" right="25" bottom="205" height="40" variable="VAR_BROWSER_AUTH_REALM"/>
+				<kbookLabel skin="AuthenticationCaption" align="right" left="25" width="150" bottom="141" height="40" textresource="DIALOGMSG_USER_NAME"/>
+				<group id="USERNAME" left="185" right="21" bottom="141" height="40">
+					<panel id="AREA" skin="LineInputForBrowser" active="false" left="0" top="0" right="0" bottom="0"/>
+					<kbookLabel id="BUF" skin="LineInputForBrowser" active="false" left="0" top="0" right="0" bottom="0" variable="VAR_BROWSER_AUTH_USERNAME"/>
+					<kbookHotspot do="doPopUpInputUserNameForAuthentication" left="2" top="2" right="2" bottom="2" threshold="0xA8"/>
+				</group>
+				<kbookLabel skin="AuthenticationCaption" align="right" left="25" width="150" bottom="77" height="40" textresource="DIALOGMSG_PASSWORD"/>
+				<group id="PASSWORD" left="185" right="21" bottom="77" height="40">
+					<panel id="AREA" skin="LineInputForBrowser" active="false" left="0" top="0" right="0" bottom="0"/>
+					<kbookMaskedLabel id="BUF" skin="LineInputForBrowser" active="false" left="0" top="0" right="0" bottom="0" variable="VAR_BROWSER_AUTH_PASSWORD"/>
+					<kbookHotspot do="doPopUpInputPasswordForAuthentication" left="2" top="2" right="2" bottom="2" threshold="0xA8"/>
+				</group>
+				<button2icon id="OK" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_OK" bottom="13" right="183" width="155" height="42" do="doOK"  beforeClick="onMouseDown" afterClick="onMouseUp" />
+				<button2icon id="NO" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_CANCEL" bottom="13" right="13" width="155" height="42" do="doNO" />
+			</group>
+			<group id="CERTIFICATE_BUTTON" left="0" right="0" top="0" bottom="0">
+				<button2icon id="CERTIFICATE" skin="keyW" text="fskin:/l/strings/STR_UI_BUTTON_VIEW_CERT" bottom="107" right="21" left="21" height="42" do="doSomething"/>
+				<button2icon id="OK" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_CONTINUE" bottom="13" right="196" width="170" height="42" do="doOK"  beforeClick="onMouseDown" afterClick="onMouseUp" />
+				<button2icon id="NO" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_CANCEL" bottom="13" right="21" width="170" height="42" do="doNO" />
+			</group>
+			<group id="YESNO_BUTTON" left="0" right="0" top="0" bottom="0">
+				<button2icon id="OK" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_YES" bottom="13" right="158" width="130" height="42" do="doOK"  beforeClick="onMouseDown" afterClick="onMouseUp" />
+				<button2icon id="NO" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_NO" bottom="13" right="13" width="130" height="42" do="doNO" />
+			</group>
+			<group id="CERTIFICATE_NO_BUTTON" left="0" right="0" top="0" bottom="0">
+				<button2icon id="CERTIFICATE" skin="keyW" text="fskin:/l/strings/STR_UI_BUTTON_VIEW_CERT" bottom="107" right="21" left="21" height="42" do="doSomething"/>
+				<button2icon id="NO" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_CANCEL" bottom="13" right="21" width="170" height="42" do="doNO" />
+			</group>
+		</group>
+	</kbookBrowserDialog>
+	
+</document>

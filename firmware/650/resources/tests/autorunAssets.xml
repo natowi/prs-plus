@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+
+		<texture href="icon2.png">
+			<cutout id="testVIcon-a" x="0" y="0" width="70" height="70"/>
+			<cutout id="testHIcon-a" x="0" y="10" width="70" height="50" lines="70"/>
+		</texture>
+		<skin id="testIcon" 
+				cutouts="testVIcon-a,testHIcon-a"/>
+		<skin id="kbookMenuIcon" 
+				cutouts="testVIcon-a,testHIcon-a"/>
+
+		<texture href="PlayPause.png">
+			<cutout id="playPauseCutout" x="0" y="0" width="200" height="200"/>
+		</texture>
+		<skin id="playPauseSkin" cutouts="playPauseCutout"/>
+
+		<style id="keyStyle0" font="Swis721 BT" halign="center" size="24" style="bold">
+			<style id="keyStyle1" color="#FFFFFF"/>
+		</style>
+		<texture href="key.png">
+			<cutout id="keyCutout-l" x="0" y="0" width="10" height="50"/>
+			<cutout id="keyCutout-c" x="10" y="0" width="80" height="50"/>
+			<cutout id="keyCutout-r" x="90" y="0" width="10" height="50"/>
+		</texture>
+		<skin id="keySkin" styles="keyStyle0,keyStyle1"
+				cutouts="keyCutout-l,keyCutout-c,keyCutout-r"/>
+		<behavior id="key">
+			<script on="draw" params="window, index, u, v, x, y, width, height">
+				this.drawText(this.text.value, v, x, y, width, height)
+			</script>
+		</behavior>
+
+		<behavior id="frame">
+			<property id="variable"/>
+			<property id="on"/>
+			<property id="frame"/>
+			<script on="initialized">
+				if (this.variable.value)
+					this.frame.value = (this.on.value == this.getVariable(this.variable.value))
+			</script>
+			<script on="variableChanged" params="id, value">
+				if (id == this.variable.value) {
+					this.frame.value = (this.on.value == this.getVariable(this.variable.value))
+
+					var window = this.getWindow()
+					var bounds = new Rectangle(this)
+					bounds.inset(-3, -3)
+					window.invalidate(bounds)
+				}
+			</script>
+			<script on="draw" params="window, index, u, v, x, y, width, height">
+				if (this.frame.value) {
+					window.setPenColor(Color.black)
+					window.fillRectangle(x - 3, y - 3, 3, height + 6)
+					window.fillRectangle(x + width, y - 3, 3, height + 6)
+					window.fillRectangle(x - 3, y - 3, width + 6, 3)
+					window.fillRectangle(x - 3, y + height, width + 6, 3)
+				}
+			</script>
+		</behavior>
+
+		<style id="labelStyle0" font="Swis721 BT" halign="center" size="24" style="bold"/>
+		<skin id="labelSkin" styles="labelStyle0"/>
+		<behavior id="label">
+			<property id="text"/>			
+			<property id="variable"/>
+			<property id="frame"/>
+			<script on="initialized">
+				if (this.variable.value)
+					this.text.value = this.getVariable(this.variable.value)
+			</script>
+			<script on="variableChanged" params="id, value">
+				if (id == this.variable.value) {
+					this.text.value = value
+					this.invalidate()
+				}
+			</script>
+			<script on="draw" params="window, index, u, v, x, y, width, height">
+				if (this.frame.value) {
+					window.setPenColor(Color.black)
+					window.fillRectangle(x - 3, y - 3, 3, height + 6)
+					window.fillRectangle(x + width, y - 3, 3, height + 6)
+					window.fillRectangle(x - 3, y - 3, width + 6, 3)
+					window.fillRectangle(x - 3, y + height, width + 6, 3)
+					this.drawBackground(v, x, y, width, height)
+				}
+				this.drawText(this.text.value, v, x, y, width, height)
+			</script>
+		</behavior>
+
+		<behavior id="progress">
+			<property id="variable"/>
+			<property id="percent"/>
+			<script on="initialized">
+				if (this.variable.value)
+					this.percent.value = this.getVariable(this.variable.value)
+			</script>
+			<script on="variableChanged" params="id, value">
+				if (id == this.variable.value) {
+					this.percent.value = value
+					this.invalidate()
+				}
+			</script>
+			<script on="draw" params="window, index, u, v, x, y, width, height">
+				window.setPenColor(Color.black)
+				window.fillRectangle(x - 2, y - 2, 2, height + 4)
+				window.fillRectangle(x + width, y - 2, 2, height + 4)
+				window.fillRectangle(x - 2, y - 2, width + 4, 2)
+				window.fillRectangle(x - 2, y + height, width + 4, 2)
+				window.setPenColor(Color.white)
+				window.fillRectangle(this)
+				var rate = Number(this.percent.value) / 100 * (width - 4)
+				window.setPenColor(Color.black)
+				window.fillRectangle(x + 2, y + 2, rate, height - 4)
+			</script>
+		</behavior>
+
+		<behavior id="background">
+			<script on="draw" params="window, index, u, v, x, y, width, height">
+				window.setPenColor(Color.silver)
+				window.fillRectangle(x, y, width, height)
+			</script>
+		</behavior>
+
+		<behavior id="checkbox">
+			<property id="variable" value=""/>
+			<property id="on" value=""/>
+			<script on="initialized">
+				var value = this.getVariable(this.variable.value)
+				if (this.on.value == value)
+					this.v = 1
+				else
+					this.v = 0
+			</script>
+			<script on="mouseUp" params="event"> 
+				if (this.hitBounds(event.x, event.y))
+					this.trigger("select");
+			</script>
+			<script on="select">
+				this.setVariable(this.variable.value, this.on.value)
+			</script>
+			<script on="variableChanged" params="id, value">
+				if (this.variable.value == id) {
+					if (this.on.value == value)
+						this.v = 1
+					else
+						this.v = 0
+				} 
+			</script>
+		</behavior>
+
+		<behavior id="checkboxText">
+			<behave like="checkbox"/>
+			<property id="text" value=""/>			
+			<script on="draw" params="window, index, u, v, x, y, width, height">
+				this.drawText(this.text.value, v, x, y, width, this.getDefaultHeight())
+			</script>
+		</behavior>
+
+		<behavior id="fileList">
+			<property id="files"/>
+			<property id="fileIndex" value="-1"/>
+			<property id="folder"/>
+			<property id="mimeText"/>
+
+			<script on="nextFile">
+				var files = this.files.value
+				var length = files.length 
+				if (length) {
+					var index = this.fileIndex.value
+					index++
+					if (index >= length)
+						index = 0
+					this.fileIndex.value = index
+				}
+			</script>
+			<script on="previousFile"><![CDATA[
+				var files = this.files.value
+				var length = files.length 
+				if (length) {
+					var index = this.fileIndex.value
+					index--
+					if (index < 0)
+						index = length - 1
+					this.fileIndex.value = index
+				}
+			]]></script>
+			<script on="initializeFileList"><![CDATA[
+				if (this.files.value) return // already initialized
+				
+				this.files.value = new Array
+				// var folder = this.mergeURI(this.folder.value).slice(7)
+				var folder = this.folder.value;
+				var folderInfo = FileSystem.getFileInfo(folder)
+				if (folderInfo) {
+					var iterator = new FileSystem.Iterator(folder), item
+					try {
+						while (item = iterator.getNext()) {
+							var path = folder + item.path
+							var mime = FileSystem.getMIMEType(path)
+							if (!mime.indexOf(this.mimeText.value)) {
+								this.files.value.push(path)
+								trace( "file : " + folder + item.path + "\n" )
+							}
+						}
+					}
+					finally {
+						iterator.close()
+					}
+				}
+
+				if (this.files.value.length)
+					this.fileIndex.value = 0
+			]]></script>
+		</behavior>
+		
+		<behavior id="audio">
+			<behave like="fileList"/>
+			<property id="player"/>
+			<property id="timer"/>
+			<property id="stateVariable"/>
+			<property id="fileVariable"/>
+			<property id="volumeVariable"/>
+			<property id="progressVariable"/>
+
+			<script on="syncFileVariable">
+				var index = this.fileIndex.value
+				var files = this.files.value
+				if (index != -1) {
+					var file = files[index]
+					file = file.slice(file.lastIndexOf("/") + 1)
+					this.setVariable(this.fileVariable.value, file)
+				}
+			</script>
+			<script on="initializeAudio">
+				this.folder.value = this.container.getVariable("DATA_FOLDER") + "audio/"
+				this.trigger("initializeFileList")
+				this.trigger("syncFileVariable")
+			</script>
+			<script on="terminateAudio">
+				var player = this.player.value
+				var timer = this.timer.value
+				if (player) {
+					player.stop()
+					player.close()
+				}
+				if (timer) {
+					timer.cancel()
+					timer.close()
+				}
+				this.player.value = null
+				this.timer.value = null
+				this.setVariable(this.stateVariable.value, "PAUSE")
+				this.trigger("setProgress", 0)
+			</script>
+			<script on="startAudio">
+				var index = this.fileIndex.value
+				var files = this.files.value
+				if (index != -1) {
+					var player = this.player.value
+					if (!player)
+						player = new Media.Player.File(files[index], FileSystem.getMIMEType(files[index]))
+					var volume = Number(this.getVariable(this.volumeVariable.value))
+					player.setVolume(volume / 10);
+					player.func = this.trigger
+					player.target = this
+					player.onCallback = function () {
+						var duration = this.getDuration();
+						if (duration != undefined)
+							this.func.call(this.target, "setProgress", this.getTime() / duration * 100)
+					}						
+					player.setCallbackPeriod(1);
+					var duration = player.getDuration()
+					var time = player.getTime()
+
+					var timer = this.timer.value
+					if (!timer)
+						timer = new HardwareTimer()
+					timer.target = this
+					timer.func = this.trigger
+					timer.onCallback = function () {
+						this.func.call(this.target, "nextAudio")
+					}
+					timer.onClockChange = timer.onCallback
+					player.start()
+					timer.schedule((duration - time) * 1000)
+					this.player.value = player
+					this.timer.value = timer
+					this.setVariable(this.stateVariable.value, "PLAY")
+				}
+			</script>
+			<script on="stopAudio">
+				var player = this.player.value
+				var timer = this.timer.value
+				if (player)
+					player.stop()
+				if (timer)
+					timer.cancel()
+				this.setVariable(this.stateVariable.value, "PAUSE")
+			</script>
+			<script on="nextAudio">
+				var value = this.getVariable(this.stateVariable.value)
+				this.trigger("terminateAudio")
+				this.trigger("nextFile")
+				this.trigger("syncFileVariable")
+				if (value == "PLAY")
+					this.trigger("startAudio")
+			</script>
+			<script on="previousAudio">
+				var value = this.getVariable(this.stateVariable.value)
+				this.trigger("terminateAudio")
+				this.trigger("previousFile")
+				this.trigger("syncFileVariable")
+				if (value == "PLAY")
+					this.trigger("startAudio")
+			</script>
+			<script on="setProgress" params="value">
+				this.setVariable(this.progressVariable.value, value)
+			</script>
+			<script on="variableChanged" params="id, value">
+				if (this.volumeVariable.value == id) {
+					var player = this.player.value
+					if (player) {
+						var volume = Number(value)
+						player.setVolume(volume / 10);
+					}
+				}
+			</script>
+		</behavior>
+	</assets>
+</document>

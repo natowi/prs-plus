@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document id="DEVICE_HOME" xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<texture href="kBookDeviceHome.png">
+			<cutout id="shortcutContinue"		x= "0" y= "0" width="50" height="50"/>
+			<cutout id="shortcutBook"			x= "50" y= "0" width="50" height="50"/>
+			<cutout id="shortcutNewDelivery"	x= "100" y= "0" width="50" height="50"/>
+			<cutout id="appicationIcon"			x= "210" y= "0" width="90" height="80"/>
+			<cutout id="newIcon"				x= "150" y="0" width="60" height="60"/>
+			<cutout id="sl2-tv"					x="0" y="0" width="0" height="0"/>
+		</texture>
+		<style id="title20" color="#0A0A0A" halign="left" valign="center" top="0" size="22"/>
+		<style id="title" color="#0A0A0A" halign="left" valign="bottom" bottom="0" size="24"/>
+		<style id="comment" color="#3A3A3A" halign="left" valign="bottom" bottom="0" size="17"/>
+		<style id="itemCount" color="#0A0A0A" halign="left" valign="center" bottom="-4" size="16"/>
+		<style id="continueReadingTitle" color="#0A0A0A" halign="left" valign="top" top="0" size="36" nlines="2"/>
+		<style id="continueReadingTitle2line" color="#0A0A0A" halign="left" valign="top" top="0" size="30" nlines="2"/>
+		<style id="continueReadingTitle2up" color="#0A0A0A" halign="left" valign="bottom" top="0" size="28" nlines="2"/>
+		<style id="continueReadingAuthor" color="#3A3A3A" halign="left" valign="top" top="0" size="17"/>
+		<style id="continueReadingAuthorNewDelivery" color="#3A3A3A" halign="left" valign="top" top="0" size="17"/>
+		<style id="continueReadingAuthor2up" color="#3A3A3A" halign="left" valign="top" top="0" size="18"/>
+		<style id="continueReadingDate" color="#3A3A3A" halign="left" valign="top" top="0" size="17"/>
+		
+		<skin id="shortcutContinueButton" cutouts="shortcutContinue"/>
+		<skin id="shortcutBookButton" cutouts="shortcutBook"/>
+		<skin id="shortcutNewDeliveryButton" cutouts="shortcutNewDelivery"/>
+		<skin id="appicationIcon" cutouts="appicationIcon"/>
+		<skin id="newIcon" 	cutouts="newIcon"/>
+		<skin id="title" styles="title"/>
+		<skin id="comment" styles="comment"/>
+		<skin id="titleComment" styles="title,itemCount"/>
+		<skin id="titleComment20" styles="title20,itemCount"/>
+		
+		<skin id="continueReading" 
+			styles="title"/>
+		<skin id="continueReadingTitle" 
+			styles="continueReadingTitle"/>
+		<skin id="continueReadingTitle2up" 
+			styles="continueReadingTitle2up"/>
+		<skin id="continueReadingAuthor" 
+			styles="continueReadingAuthor"/>
+		<skin id="continueReadingAuthor2up" 
+			styles="continueReadingAuthor2up"/>
+		<skin id="continueReadingDate" 
+			styles="continueReadingDate"/>
+		<skin id="continueReadingComment" 
+			styles="comment"/>
+		<skin id="continueReadingBookAll" 
+			styles="continueReadingTitle, continueReadingTitle2line, continueReadingAuthor, continueReadingDate"/>
+		<skin id="continueReadingBookAllNewDelivery" 
+			styles="continueReadingTitle, continueReadingTitle2line, continueReadingAuthorNewDelivery, continueReadingDate"/>
+
+			
+	</assets>
+	<model>
+		<variable id="VAR_COVER" value=""/>
+	</model>
+	<code>
+		<function id="variableChanged" params="id, value">
+			arguments.callee.grammar.call(this, id, value);
+			if(id=="HOME_COVER"){
+				var model = this.model
+				//if( model.VAR_COVER != value){	//comment out( because to eject Memory Card )
+					var url
+					switch(value){
+						case "NOTIFICATION_PERIODICAL":
+						case "NOTIFICATION_BOOK":
+							url = "notificationPortrait.xml"
+							break
+						case "CONTINUE_PERIODICAL":
+							url = "continuePeriodicalPortrait.xml"
+							break
+						case "CONTINUE_BOOK":
+							url = "continueBookPortrait.xml"
+							break
+						default:
+							debugger
+							return
+					}
+					this.doChangeCover(url)
+					model.VAR_COVER = value
+				//}
+			}
+		</function>
+		<function id="doChangeCover" params="uri">
+			this.READER.COVER.setURI(uri)
+		</function>
+	</code>
+	<group id="READER" left="0" right="0" top="0" bottom="75">
+		<fillBackground color="white" left="0" right="0" top="0" bottom="0"/>
+		<!-- COVER -->
+		<view id="COVER" left="0" right="0" top="0" height="277"/>
+		
+		<fillBackground color="#646464" left="18" right="18" top="277" height="1"/>
+		<!-- Book List -->
+		<group left="5" right="5" top="278" height="279">
+			
+			<group left="0" right="0" top="5" height="60">
+				<sprite skin="shortcutBookButton" left="10" top="5" width="50" height="50" active="false"/>
+				<!--kbookLabel skin="title" left="70" right="0" top="5" height="30" align="left" variable="MIDDLE_ITEM_NAME"/>
+				<kbookLabel skin="comment" left="70" right="0" bottom="10" height="15" align="left" variable="MIDDLE_ITEM_COMMENT"/-->
+				<kbookLabel2Style skin="titleComment" active="false" bottom="18" height="31" left="70" right="6" align="left" variable="MIDDLE_ITEM_NAME_COMMENT" splitStr="||" splitWidth="6"/>
+				<kbookLabel skin="seeAll" left="0" right="68" top="18" height="20" align="right" textresource="STR_HOME_SEEALL"/>
+				<sprite skin="seeAll" right="32" top="9" width="35" height="35" active="false"/>
+				<kbookHotspot do="doGoToBooks" left="0" top="0" right="0" bottom="0" threshold="0xA8"/>
+			</group>
+			<kbookMenuDetails id="THUMBNAIL_FREEHAND" left="0" right="0" top="70" bottom="5" href="x-id://menuHomeThumbnailBookData">
+				<views>
+					<viewStyleThumbnail name="thumbnail" skin="kbookViewStyleThumbnailHome" left="0" right="0" top="0" bottom="0" minWidth="191" minHeight="200" titleVisible="false" statusVisible="false" default="true" designSpacingHeight="7" textSeparation="14" marginNameAndComment="0" marginHeight="0" marginWidth="7" showEmptyGuide="false">
+						<fields>
+							<fieldIcon skin="newIcon" type="fieldIcon" do="" can="canNewContentsInHome" xOffset="-16" yOffset="16"/>
+						</fields>
+					</viewStyleThumbnail>
+				</views>
+				<code>
+					<function id="doPrevious">
+						this.container.bubble("clearTestModeKeyCount");
+						this.bubble("doBlink")
+					</function>
+					<function id="doNext">
+						this.container.bubble("clearTestModeKeyCount");
+						this.bubble("doBlink")
+					</function>
+					<function id="doMenu">
+						this.container.bubble("clearTestModeKeyCount");
+						this.bubble("doBlink")
+					</function>
+				</code>
+			</kbookMenuDetails>
+		</group>
+		<fillBackground color="#646464" left="18" right="18" top="557" height="1"/>
+		<!-- Related Reading Application -->
+		<group left="0" right="0" top="558" bottom="0">
+			<group left="5" top="5" width="196" bottom="5">
+				<kbookIndicator skin="appicationIcon" top="5" variable="LEFT_ITEM_KIND"/>
+				<!--kbookLabel skin="title" active="false" top="100" height="30" left="5" right="5" align="center" variable="LEFT_ITEM_NAME"/>
+				<kbookLabel skin="comment" active="false" top="130" height="20" left="5" right="5" align="center" variable="LEFT_ITEM_COMMENT"/-->
+				<kbookLabel2Style skin="titleComment20" active="false" bottom="14" height="28" left="6" right="6" align="center" variable="LEFT_ITEM_NAME_COMMENT" splitStr="||" splitWidth="6"/>
+				<kbookHotspot do="doGoToPeriodicalList" left="0" top="0" right="0" bottom="0" threshold="0xB3"/>
+			</group>
+			<group left="202" top="5" width="196" bottom="5">
+				<kbookIndicator skin="appicationIcon" top="5" variable="CENTER_ITEM_KIND"/>
+				<!--kbookLabel skin="title" active="false" top="100" height="30" left="5" right="5" align="center" variable="CENTER_ITEM_NAME"/>
+				<kbookLabel skin="comment" active="false" top="130" height="20" left="5" right="5" align="center" variable="CENTER_ITEM_COMMENT"/-->
+				<kbookLabel2Style skin="titleComment20" active="false" bottom="14" height="28" left="6" right="6" align="center" variable="CENTER_ITEM_NAME_COMMENT" splitStr="||" splitWidth="6"/>
+				<kbookHotspot do="doGoToCollections" left="0" top="0" right="0" bottom="0" />
+			</group>
+			<group left="399" top="5" width="196" bottom="5">
+				<kbookIndicator skin="appicationIcon" top="5" variable="RIGHT_ITEM_KIND"/>
+				<!--kbookLabel skin="title" active="false" top="100" height="30" left="5" right="5" align="center" variable="RIGHT_ITEM_NAME"/>
+				<kbookLabel skin="comment" active="false" top="130" height="20" left="5" right="5" align="center" variable="RIGHT_ITEM_COMMENT"/-->
+				<kbookLabel2Style skin="titleComment20" active="false" bottom="14" height="28" left="6" right="6" align="center" variable="RIGHT_ITEM_NAME_COMMENT" splitStr="||" splitWidth="6"/>
+				<kbookHotspot do="doGoToAllNotes" left="0" top="0" right="0" bottom="0" />
+			</group>
+		</group>
+	</group>
+</document>

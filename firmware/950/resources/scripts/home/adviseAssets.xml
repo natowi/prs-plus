@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<texture href="adviseAssets.png">
+			<cutout id="advise-panel-lt" x="0"		y="0"	width="50" height="60"/>
+			<cutout id="advise-panel-ct" x="50"		y="0"	width="50" height="60"/>
+			<cutout id="advise-panel-rt" x="100"	y="0"	width="50" height="60"/>
+			<cutout id="advise-panel-lm" x="0"		y="60"	width="50" height="40"/>
+			<cutout id="advise-panel-cm" x="50"		y="60"	width="50" height="40"/>
+			<cutout id="advise-panel-rm" x="100"	y="60"	width="50" height="40"/>
+			<cutout id="advise-panel-lb" x="0"		y="100"	width="50" height="50"/>
+			<cutout id="advise-panel-cb" x="50"		y="100"	width="50" height="50"/>
+			<cutout id="advise-panel-rb" x="100"	y="100"	width="50" height="50"/>
+			
+
+			
+			<cutout id="advise-close_cutout"	x="100"	y="150"	width="50" height="50"/>
+			
+			<cutout id="radio-l"				x="100" y="350"	width="10" height="10" columns="10"/>
+			
+			<cutout id="advise-icon_cutout"		x="120" y="350"	width="32" height="32"/>
+			<cutout id="advise-prev_cutout"		x="0"	y="150"	width="50" height="60"/>
+			<cutout id="advise-next_cutout"		x="50"	y="150"	width="50" height="60"/>
+		</texture>
+		<style font="Arial" size="12" color="#FFFFFF" background="#000000">
+			<style id="control-e" left="25" halign="left">
+				<style id="control-d" color="#6D6D6D"/>
+				<style id="control-p" color="#F3B570"/>
+				<style id="control-s" color="#E87420"/>
+			</style>
+		</style>
+
+		<style id="advise-pg"	/>
+		<style id="advise-title" color="#050708" halign="left" valign="top" top="0" size="24"/>
+		
+		<skin id="advise-panel" 
+			cutouts="advise-panel-lt,advise-panel-ct,advise-panel-rt,advise-panel-lm,advise-panel-cm,advise-panel-rm,advise-panel-lb,advise-panel-cb,advise-panel-rb"/>
+		<skin id="advise-close"	cutouts="advise-close_cutout"	/>
+		<skin id="advise-pg" 
+				cutouts="radio-l"
+				styles="control-d,control-e,control-p,control-s"/>
+		<skin id="advise-icon"	cutouts="advise-icon_cutout"		/>
+		<skin id="advise-prev"	cutouts="advise-prev_cutout"		/>
+		<skin id="advise-next"	cutouts="advise-next_cutout"		/>
+		
+		<skin id="advise-title"	styles="advise-title"/>
+		
+	</assets>
+
+</document>

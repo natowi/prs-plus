@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="Verder lezen" />
+		<string id="STR_NODE_TITLE_TOC" value="Inhoudsopgave" />
+		<string id="STR_NODE_TITLE_INFO" value="Informatie" />
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="Wis boek" />
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="Collecties" />
+		<string id="STR_NODE_TITLE_AUDIO" value="Audio" />
+		<string id="STR_NODE_TITLE_PICTURE" value="Foto's" />
+		<string id="STR_NODE_TITLE_SETTINGS" value="Instellingen" />
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="Datum en tijd" />
+		<string id="STR_NODE_TITLE_YEAR" value="Jaar" />
+		<string id="STR_NODE_TITLE_MONTH" value="Maand" />
+		<string id="STR_NODE_TITLE_DATE" value="Dag" />
+		<string id="STR_NODE_TITLE_HOUR" value="Uur" />
+		<string id="STR_NODE_TITLE_MINUTE" value="Minuut" />
+		<string id="STR_UI_BUTTON_AM" value="AM" />
+		<string id="STR_UI_BUTTON_PM" value="PM" />
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="Vergrendeling" />
+		<string id="STR_NODE_TITLE_ENTERCODE" value="Code invoeren" />
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="Diavoorstelling" />
+		<string id="STR_NODE_TITLE_TURN" value="Activeren" />
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="Interval" />
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="Apparaat uitschakelen" />
+		<string id="STR_NODE_TITLE_ABOUT" value="Over reader" />
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="Instellingen herstellen" />
+		<string id="STR_NODE_TITLE_CODE" value="Wachtwoord" />
+		<string id="#STR_NODE_TITLE_AUTORUN" value="autoRun" />
+		<string id="#STR_NODE_TITLE_HARDRESET" value="Harde reset" />
+		<string id="STR_COUNTER_BOOKMARK_N" value=" bladwijzers" />
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 bladwijzer" />
+		<string id="STR_COUNTER_BOOKMARK_0" value="Geen bladwijzers" />
+		<string id="STR_COUNTER_ITEM_N" value=" items" />
+		<string id="STR_COUNTER_ITEM_1" value="1 item" />
+		<string id="STR_COUNTER_ITEM_0" value="Geen items" />
+		<string id="STR_COUNTER_BOOK_N" value=" boeken" />
+		<string id="STR_COUNTER_BOOK_1" value="1 boek" />
+		<string id="STR_COUNTER_BOOK_0" value="Geen boeken" />
+		<string id="STR_COUNTER_COLLECTION_N" value=" collecties" />
+		<string id="STR_COUNTER_COLLECTION_1" value="1 collectie" />
+		<string id="STR_COUNTER_COLLECTION_0" value="Geen collecties" />
+		<string id="STR_COUNTER_SONG_N" value=" nummers" />
+		<string id="STR_COUNTER_SONG_1" value="1 nummer" />
+		<string id="STR_COUNTER_SONG_0" value="Geen nummers" />
+		<string id="STR_COUNTER_PICTURE_N" value=" foto's" />
+		<string id="STR_COUNTER_PICTURE_1" value="1 foto" />
+		<string id="STR_COUNTER_PICTURE_0" value="Geen foto's" />
+		<string id="STR_COUNTER_SETTING_N" value=" instellingen" />
+		<string id="STR_COUNTER_SETTING_1" value="1 instelling" />
+		<string id="STR_COUNTER_SETTING_0" value="0 instellingen" />
+		<string id="STR_UI_BUTTON_OK" value="OK" />
+		<string id="STR_UI_BUTTON_On" value="Aan" />
+		<string id="STR_UI_BUTTON_Off" value="Uit" />
+		<string id="STR_UI_BUTTON_ABLE" value="Ja" />
+		<string id="STR_UI_BUTTON_DISABLE" value="Nee" />
+		<string id="STR_UI_UNITNAME_SECONDS" value="seconden" />
+		<string id="STR_UI_UNITNAME_SIZEKB" value="KB" />
+		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
+		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
+		<string id="STR_UI_PARTS_PART" value="Deel" />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Pag." />
+		<string id="STR_UI_PARTS_OF" value=" van " />
+		<string id="STR_UI_PARTS_TOC_UNKNOWN" value="?" />
+		<string id="STR_UI_PARTS_VERSION" value="Versie" />
+		<string id="STR_UI_PARTS_DEVICE" value="App." />
+		<string id="STR_UI_GOTOPAGE" value="PAG." />
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="Ongeldige pagina!" />
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="Beveiligd met digitale-rechtenbeheer" />
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="Paginafout!" />
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="Ongeldig formaat!" />
+		<string id="STR_UI_MESSAGE_FORMATTING" value="Laden..." />
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="Beperkt" />
+		<string id="STR_UI_MESSAGE_DRMFULL" value="Volledig, toegankelijk" />
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="Geheugenkaart" />
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="Verlopen" />
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="Vndg" />
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="Uitschakelen..." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="Dit apparaat is nog niet gemachtigd voor Adobe DRM inhoud." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZED_READ" value="Dit apparaat is gemachtigd voor het lezen van Adobe DRM inhoud." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZED_PURCHASE" value="Dit apparaat is gemachtigd voor het lezen en kopen van Adobe DRM inhoud." />
+		<string id="STR_UI_MESSAGE_HARDRESET" value="Alles resetten" />
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="Wilt u alle inhoud WISSEN, alle fabrieksinstellingen herstellen en de DRM-machtigingsstatus wissen?&#xA;&#xA;Ja - Druk op de “OPTIONS”-knop&#xA;Nee - Druk op de “HOOFDSCHERM”-knop" />
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="Batterij laag!" />
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="Batterij leeg!" />
+		<string id="STR_UI_MESSAGE_LOADING" value="Laden..." />
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 van 1" />
+		<string id="STR_UI_FORMAT_RTF" value="Rich Text Format" />
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF" />
+		<string id="STR_UI_FORMAT_EPUB" value="EPUB-document" />
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB Book" />
+		<string id="STR_UI_FORMAT_TXT" value="Platte t" />
+		<string id="STR_UI_MESSAGE_USBDONOT" value="Niet loskoppelen" />
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="USB verbonden" />
+		<string id="STR_UI_MESSAGE_LOCKED" value="Apparaat vergrendeld" />
+		<string id="STR_UI_MESSAGE_CHARGING" value="Batterij aan het laden" />
+		<string id="STR_UI_MESSAGE_CHARGING_COMPLETE" value="Laden voltooid" />
+		<string id="STR_UI_MESSAGE_CHARGING_NOT_CHARGING" value="Laden gestopt" />
+		<string id="STR_UI_USB_MODE_GUIDE_CHECK_CONNECTION" value="De reader kan niet laden aangezien er geen voeding gedetecteerd is. Gelieve na te gaan of de lader ingeplugd en ingeschakeld is, of dat de USB-kabel juist is aangesloten." />
+		<string id="STR_UI_USB_MODE_GUIDE_TOO_HOT_COLD" value="De reader gaat momenteel een extreme temperatuur tegemoet en kan niet laden. Gelieve de reader naar een normale kamertemperatuur terug te brengen en opnieuw te proberen." />
+		<string id="STR_UI_USB_MODE_GUIDE_BROKEN_BAT" value="De herlaadbare batterij vereist onderhoud.&#xA;Gelieve met de klantendienst contact op te nemen." />
+		<string id="STR_UI_USB_MODE_GUIDE_OTHER_ERRORS" value="Uw reader moet teruggesteld worden. Om dit te doen moet u een speld in het reset-gaatje steken en daarna de aan/uitschakelaar verschuiven en loslaten. Indien u dit bericht nog steeds op het scherm ziet, gelieve met de klantendienst contact op te nemen." />
+		<string id="STR_UI_USB_MODE_GUIDE" value="Gelieve de gebruikersgids te raadplegen." />
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,„,‘,’,“,”" />
+		<string id="STR_SORT_IGNOREARTICLES" value="een ,eene ,de ,het ,'s " />
+		<string id="infoTitles" value="Omslag,Titel,Titel,op datum uitg.,Auteur,Uitgeverij,Categorie,eBook ID,Soort,Datum,Grootte,Locatie,Pad,Digitale Rechten,Vervaldag" />
+		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Menutaal" />
+		<string id="STR_UI_LANG" value="Taal" />
+		<string id="STR_UI_LANG_EN" value="English" />
+		<string id="STR_UI_LANG_FR" value="Français" />
+		<string id="STR_UI_LANG_DE" value="Deutsch" />
+		<string id="STR_UI_LANG_NL" value="Nederlands" />
+		<string id="STR_UI_LANG_ES" value="Español" />
+		<string id="STR_UI_LANG_PT" value="Português" />
+		<string id="STR_UI_LANG_IT" value="Italiano" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="Kies uw gewenste taal en selecteer “Ok”.&#xA;Opmerking:  De instellingen van dit apparaat kunt u op een later tijdstip wijzigen vanuit het “Instellingen”-menu." />
+		<string id="STR_UI_PARTS_DELIMITER" value="/" />
+		<string id="STR_UI_MESSAGE_DEMOMODE" value="(Demostand)" />
+		<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value="Demo Screensaver" />
+		<string id="STR_NODE_TITLE_OPTIONS" value="Opties" />
+		<string id="STR_DEMO_TITLE" value="DEMOSTAND" />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="Titel: &quot;XXTITLEXX&quot;" />
+		<string id="STR_UI_DATE" value="Datum" />
+		<string id="STR_UI_TIME" value="Tijd" />
+		<string id="STR_UI_BUTTON_12HR" value="12 uur" />
+		<string id="STR_UI_BUTTON_24HR" value="24 uur" />
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / " />
+		<string id="STR_UI_MESSAGE_NOBOOK" value="Geen boek" />
+		<string id="STR_NODE_TITLE_BOOK" value="Boeken" />
+		<string id="STR_NODE_TITLE_SORTEDBYTITLE" value="op titel" />
+		<string id="STR_NODE_TITLE_SORTEDBYAUTHOR" value="op auteur" />
+		<string id="STR_NODE_TITLE_SORTEDBYDATE" value="op datum" />
+		<string id="STR_NODE_TITLE_SORTEDBYORDER" value="op toegevoegd" />
+		<string id="STR_NODE_TITLE_ALLNOTES" value="Alle notities" />
+		<string id="STR_NODE_TITLE_SORTEDBYCOMMENT" value="alfabetisch" />
+		<string id="STR_NODE_TITLE_SORTEDBYTYPE" value="op type" />
+		<string id="STR_NODE_TITLE_SORTEDBYARTIST" value="op artiest" />
+		<string id="STR_NODE_TITLE_NEXTPAGE" value="Volgende pagina" />
+		<string id="STR_NODE_TITLE_PAGETURNGESTURE" value="Bladomslag-voorkeur" />
+		<string id="STR_NODE_TITLE_ADVANCEDSETTINGS" value="Geavanc. instellingen" />
+		<string id="STR_NODE_TITLE_TOUCHPANEL" value="Calibreer touchscreen" />
+		<string id="STR_NODE_TITLE_CLEARKEYBOARDHISTORY" value="Wis toetsenbordhistorie" />
+		<string id="STR_NODE_TITLE_SEARCHRESULTS" value="Zoekresultaten" />
+		<string id="STR_COUNTER_NOTES_N" value=" notities" />
+		<string id="STR_COUNTER_NOTE_1" value="1 notitie" />
+		<string id="STR_COUNTER_NOTE_0" value="Geen notities" />
+		<string id="STR_NODE_TITLE_SORTEDBYPAGE" value="op pagina" />
+		<string id="STR_NODE_TITLE_POWERMANAGEMENT" value="Energiebeheer" />
+		<string id="STR_UI_MENU_SORT" value="Sorteren" />
+		<string id="STR_UI_MENU_BYORDER" value="op toevgevoegd" />
+		<string id="STR_UI_MENU_BYTITLE" value="op titel" />
+		<string id="STR_UI_MENU_BYAUTHOR" value="op auteur" />
+		<string id="STR_UI_MENU_BYDATE" value="op datum" />
+		<string id="STR_UI_MENU_VIEW" value="Weergave" />
+		<string id="STR_UI_MENU_LIST" value="Lijst" />
+		<string id="STR_UI_MENU_THUMBNAIL" value="Miniatuur" />
+		<string id="STR_UI_MENU_NOWPLAYING" value="Speelt nu" />
+		<string id="STR_UI_MENU_RESUMELISTENING" value="Afspelen hervatten" />
+		<string id="STR_NODE_TITLE_SORTEDBYTRACK" value="op track" />
+		<string id="STR_UI_MENU_ORIENTATION" value="Oriëntatie" />
+		<string id="STR_UI_MENU_SEARCHTITLE" value="Zoeken" />
+		<string id="STR_UI_MENU_CLOSETHISBOOK" value="Terug naar lijst" />
+		<string id="STR_UI_MENU_GOTOPAGE" value="Ga naar pagina" />
+		<string id="STR_UI_MENU_CREATEEDITNOTES" value="Notitie maken/bewerken" />
+		<string id="STR_UI_MENU_SHOWNOTES" value="Notities tonen" />
+		<string id="STR_UI_MENU_HIDENOTES" value="Notities verbergen" />
+		<string id="STR_UI_MENU_TABLEOFCONTENTS" value="Inhoudsopgave" />
+		<string id="STR_UI_MENU_BOOKINFO" value="Informatie" />
+		<string id="STR_UI_MENU_DELETEBOOK" value="Wis boek" />
+		<string id="STR_UI_MENU_SEARCHAKEYWORD" value="Zoeken" />
+		<string id="STR_UI_MENU_HISTORYJUMP" value="Historie" />
+		<string id="STR_UI_MENU_CLOSETHISMUSIC" value="Terug naar lijst" />
+		<string id="STR_UI_MENU_NOTES" value="Notities" />
+		<string id="STR_UI_MENU_DICTIONARY_LOOK_UP_HISTORY" value="Woord logboeken: boek" />
+		<string id="STR_UI_MENU_OFF" value="Uit" />
+		<string id="STR_UI_MENU_SONG_1" value="Één nummer" />
+		<string id="STR_UI_MENU_SONG_ALL" value="Alle nummers" />
+		<string id="STR_UI_MENU_SHUFFLEON" value="Shuffle aan" />
+		<string id="STR_UI_MENU_SHUFFLEOFF" value="Shuffle uit" />
+		<string id="STR_UI_MENU_CONTINUEREADING" value="Verder lezen" />
+		<string id="STR_UI_MENU_CLOSETHISPICTURE" value="Terug naar lijst" />
+		<string id="STR_UI_MENU_SLIDESHOWOFF" value="Diashow uit" />
+		<string id="STR_UI_MENU_SLIDESHOWON" value="Diashow aan" />
+		<string id="STR_UI_MENU_BYARTIST" value="op artiest" />
+		<string id="STR_UI_MENU_BYPAGE" value="op pagina" />
+		<string id="STR_UI_MENU_BYTYPE" value="op type" />
+		<string id="STR_UI_MENU_BYCOMMENT" value="alfabetisch" />
+		<string id="STR_UI_MENU_DELETENOTES" value="Wis notities" />
+		<string id="STR_UI_MESSAGE_RESET" value="Weet u zeker dat u de standaardinstellingen wilt herstellen?" />
+		<string id="STR_UI_MESSAGE_FORMATINTERNALMEMORY" value="Interne geheugen formatteren" />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE" value="Weet u zeker dat u het interne geheugen wilt formatteren?&#xA;Waarschuwing: alle inhoud en notities zullen worden verwijderd." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_MS" value="Weet u zeker dat u de Memory Stick™-kaart wilt formatteren?&#xA;Waarschuwing: alle inhoud en notities zullen worden verwijderd." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_SD" value="Weet u zeker dat u de SD-kaart wilt formatteren?&#xA;Waarschuwing: alle inhoud en notities zullen worden verwijderd." />
+		<string id="STR_UI_MESSAGE_DELETEBOOK" value="Weet u zeker dat u dit boek wilt verwijderen?" />
+		<string id="STR_UI_MESSAGE_DELETEBOOKERR" value="Verwijderen van boek mislukt. Raak “OK” aan om terug te gaan naar de boekenlijst." />
+		<string id="STR_UI_MESSAGE_DELETEHISTORICAL" value="Weet u zeker dat u de toetsenbordhistorie wilt wissen?" />
+		<string id="STR_UI_MESSAGE_DEVICE_SHUTDOWN" value="Weet u zeker dat u de voeding van het apparaat volledig wilt afsluiten (uitschakelen)? " />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONSTART" value="Raak “Ja” aan om te starten met de calibratie van het touchscreen." />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONEND" value="Touchscreencalibratie is voltooid." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_1" value="Deze instelling is niet beschikbaar in de demostand." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_2" value="Deze feature is niet beschikbaar in de demostand." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_START" value="Gebruik de touchpen om het midden van het doel aan te raken." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_ERR" value="Calibratiefout ontdekt. Gelieve het calibratieproces opnieuw te starten." />
+		<string id="STR_UI_BUTTON_YES" value="Ja" />
+		<string id="STR_UI_BUTTON_NO" value="Nee" />
+		<string id="STR_UI_BUTTON_ZOOMIN" value="Inzoomen" />
+		<string id="STR_UI_BUTTON_PAGE_STYLE" value="Pagina-modus" />
+		<string id="STR_UI_BUTTON_SEARCH" value="Zoeken" />
+		<string id="STR_UI_BUTTON_DONE" value="Gereed" />
+		<string id="STR_UI_BUTTON_GO" value="Ga" />
+		<string id="STR_UI_BUTTON_ENTERPAGE" value="Pagina # invoeren" />
+		<string id="STR_UI_BUTTON_NEW" value="Nieuw" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING" value="Woordenboek" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING_l" value="woordenboek" />
+		<string id="STR_DICTIONARY_US" value="New Oxford American Dictionary" />
+		<string id="STR_DICTIONARY_BRITISH" value="Oxford Dictionary of English" />
+		<string id="STR_DICTIONARY_EN_TO_FR" value="Oxford-Hachette French Dictionary (EN-FR)" />
+		<string id="STR_DICTIONARY_FR_TO_EN" value="Oxford-Hachette French Dictionary (FR-EN)" />
+		<string id="STR_DICTIONARY_EN_TO_GM" value="Collins English-German Dictionary" />
+		<string id="STR_DICTIONARY_GM_TO_EN" value="Collins German-English Dictionary" />
+		<string id="STR_DICTIONARY_EN_TO_SP" value="Oxford Spanish Dictionary (EN-ES)" />
+		<string id="STR_DICTIONARY_SP_TO_EN" value="Oxford Spanish Dictionary (ES-EN)" />
+		<string id="STR_DICTIONARY_EN_TO_IT" value="Collins English-Italian Dictionary" />
+		<string id="STR_DICTIONARY_IT_TO_EN" value="Collins Italian-English Dictionary" />
+		<string id="STR_DICTIONARY_EN_TO_DT" value="Van Dale Pocketwoordenboek Engels-Nederlands" />
+		<string id="STR_DICTIONARY_DT_TO_EN" value="Van Dale Pocketwoordenboek Nederlands-Engels" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_DICTIONARY" value="Kies uw gewenst standaardwoordenboek en selecteer “OK”.&#xA;Opmerking:  De instellingen van dit apparaat kunt u op een later tijdstip wijzigen vanuit het “Instellingen”-menu." />
+		<string id="STR_DICTIONARY_NO" value="Geen" />
+		<string id="STR_NODE_TITLE_DATEANDTIMEFORMAT_SETTING" value="Datum- en tijdsformaat" />
+		<string id="STR_UI_PARTS_MONTH" value="M" />
+		<string id="STR_UI_PARTS_DAY" value="D" />
+		<string id="STR_UI_PARTS_YEAR" value="J" />
+		<string id="STR_UI_PARTS_HOUR" value="Uur" />
+		<string id="STR_UI_MESSAGE_RESTARTING" value="Bezig met opnieuw opstarten..." />
+		<string id="STR_UI_NODE_TITLE_KEYBOARD" value="Toetsenbord" />
+		<string id="STR_UI_KEYBOARD_US" value="Verenigde Staten" />
+		<string id="STR_UI_KEYBOARD_UK" value="Ver. Konink." />
+		<string id="STR_UI_KEYBOARD_FRENCH" value="Frans" />
+		<string id="STR_UI_KEYBOARD_GERMAN" value="Duits" />
+		<string id="STR_UI_KEYBOARD_NETHERLANDS" value="Nederlands" />
+		<string id="STR_UI_KEYBOARD_CANADIAN_FRENCH" value="Canadees Frans" />
+		<string id="STR_UI_KEYBOARD_SPANISH" value="Spaans" />
+		<string id="STR_UI_KEYBOARD_ITALIAN" value="Italiaans" />
+		<string id="STR_UI_KEYBOARD_PORTUGUESE" value="Portugees" />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP1" value="De pagina kan niet worden weergegeven." />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_CANNOT_EDIT" value="Deze tekening kan niet worden bijgewerkt." />
+		<string id="DIALOGMSG_INFORM_SCR_CANNOT_EDIT" value="Deze notitie kan niet worden bijgewerkt." />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_FREEHAND" value="Nieuwe tekening" />
+		<string id="STR_UI_MENU_NEW_DRAWING" value="Nieuwe tekening" />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_TEXT" value="Nieuwe notitie" />
+		<string id="STR_UI_MENU_NEW_MEMO" value="Nieuwe notitie" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYFREEHAND" value="met tekening" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYTEXT" value="met toetsenbord" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_MS" value="Memory Stick™ formatteren" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_SD" value="SD-kaart formatteren" />
+		<string id="STR_NODE_TITLE_FORMATDEVICE" value="Geheugen formatteren" />
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="Intern geheugen" />
+		<string id="STR_UI_MESSAGE_LOCATION_MS" value="Memory Stick™" />
+		<string id="STR_UI_MESSAGE_LOCATION_SD" value="SD-kaart" />
+		<string id="STR_UI_FORMAT_INTERNAL_MEMORY" value="Formatteert intern geheugen..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_MS" value="Formatteert Memory Stick™..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_SD" value="Formatteert SD-kaart..." />
+		<string id="STR_WARNING_FORMAT_1" value="Aan het formatteren..." />
+		<string id="STR_WARNING_FORMAT_2_MS" value="Memory Stick™-kaart niet verwijderen." />
+		<string id="STR_WARNING_FORMAT_2_SD" value="SD-kaart niet verwijderen." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_1" value="Weet u zeker dat u deze bladwijzer wilt verwijderen?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_2" value="Opmerking: deze pagina bevat een bladwijzer met meer dan één tekstgrootte. Als u verder gaat worden alle bladwijzers op deze pagina verwijderd." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_1" value="Weet u zeker dat u de bladwijzer wilt verwijderen? " />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_2" value="Opmerking: deze pagina bevat een bladwijzer met een notitie in meer dan één tekstgrootte. Als u verder gaat worden alle bladwijzers en notities op deze pagina verwijderd." />
+		<string id="STR_FORMAT_NO_MEMORY" value="Geen geheugenkaart ingestoken" />
+		<string id="STR_FORMAT_WRITE_PROTECTED" value="Geheugenkaart beschermd tegen schrijven" />
+		<string id="STR_FORMAT_NON_STANDARD" value="Geheugenkaart niet ondersteund" />
+		<string id="STR_NODE_TITLE_NOTEPAD_FREEHAND" value="Handschrift" />
+		<string id="STR_NODE_TITLE_NOTEPAD_TEXT" value="Kladblok" />
+		<string id="STR_NODE_TITLE_SORTEDBYCREATEDDATE" value="op creatiedatum" />
+		<string id="STR_NODE_TITLE_MORE" value="Meer" />
+		<string id="STR_NODE_TITLE_MORE_FULL" value="Meer toepassingen" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK1" value="Weet u zeker dat u de bladwijzer met een notitie wilt verwijderen? " />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT1" value="Weet u zeker dat u de markering met een notitie wilt verwijderen?" />
+		<string id="DIALOGMSG_INFORM_NOHITS" value="Geen overeenkomsten gevonden." />
+		<string id="DIALOGMSG_INFORM_NOMOREHITS" value="Overeenkomst niet gevonden." />
+		<string id="DIALOGMSG_CONFIRM_BACKWARDSEARCH" value="Wilt u verder zoeken vanaf het einde van de inhoud?" />
+		<string id="DIALOGMSG_CONFIRM_FORWARDSEARCH" value="Wilt u verder zoeken vanaf het begin van de inhoud?" />
+		<string id="STR_MSG_SEARCHING" value="Zoeken..." />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK1" value="Weet u zeker dat u de bladwijzer met een notitie wilt verwijderen? " />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT1" value="Weet u zeker dat u de markering met een notitie wilt verwijderen?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_EDIT_QUIT" value="De veranderingen zullen niet worden opgeslagen. Toch verder gaan?" />
+		<string id="DIALOGMSG_CONFIRM_SCR_EDIT_QUIT" value="De veranderingen zullen niet worden opgeslagen. Toch verder gaan?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES1" value="Alle notities zullen worden verwijderd." />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES2" value="Weet u zeker dat u wilt verwijderen?" />
+		<string id="KBOOK_UI_MYNOTE" value="Notities" />
+		<string id="STR_UI_KEYBOARD_SYMBOL" value="Symbolen" />
+		<string id="STR_UI_KEYBOARD_SPACE" value="Spatie" />
+		<string id="STR_UI_KEYBOARD_ABC" value="Abc" />
+		<string id="STR_UI_KEYBOARD_RETURN" value="Return" />
+		<string id="STR_UI_COMMENTVIEWER_EDIT" value="Bewerken" />
+		<string id="STR_UI_COMMENTVIEWER_DELETE" value="Wissen" />
+		<string id="STR_UI_AUDIO_REPEAT" value="Herhalen" />
+		<string id="STR_NODE_TITLE_HOMEPERSONALIZATION" value="Pas Hoofdschermmenu aan" />
+		<string id="STR_UI_PARTS_LEFT" value="LINKS" />
+		<string id="STR_UI_PARTS_RIGHT" value="RECHTS" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_FREEHAND" value="Wis tekening" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_TEXT" value="Wis notitie" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND1" value="Weet u zeker dat u deze tekening wilt verwijderen?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT1" value="Weet u zeker dat u deze notite wilt verwijderen?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT1" value="De veranderingen zullen niet worden opgeslagen. Toch verder gaan?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT1" value="De veranderingen zullen niet worden opgeslagen. Toch verder gaan?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT1" value="De veranderingen zullen niet worden opgeslagen. Toch verder gaan?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT1" value="De veranderingen zullen niet worden opgeslagen. Toch verder gaan?" />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_RESULT" value="Geen trefwoord gevonden. Druk op XXBUTTONXX om een woord handmatig in te voeren of druk op “OPTIONS” om een ander woordenboek te selecteren." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_INPUT_KEYBOARD" value="Voer woord in." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_HEADWORD" value="Geen trefwoord gevonden.&#xA;Gelieve het ingevoerde woord na te kijken." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SUPPORTED" value="Woordenboek is inactief." />
+		<string id="STR_UI_DICTIONARY_ENTRIES_PAGE" value="Trefw., P." />
+		<string id="STR_UI_DICTIONARY_ENTRY_PAGE" value="Trefw., P." />
+		<string id="STR_COUNTER_DRAWING_N" value=" tekeningen" />
+		<string id="STR_COUNTER_DRAWING_1" value="1 tekening" />
+		<string id="STR_COUNTER_DRAWING_0" value="Geen tekening" />
+		<string id="STR_COUNTER_MEMO_N" value=" notities" />
+		<string id="STR_COUNTER_MEMO_1" value="1 notitie" />
+		<string id="STR_COUNTER_MEMO_0" value="Geen notities" />
+		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="Inhoud binnenin is ongeldig.&#xA;Bezig met formatteren." />
+		<string id="STR_HOME_TAB_HOME_V" value="Hoofdscherm" />
+		<string id="STR_HOME_TAB_HOME_H" value="Hoofd-&#xA;scherm" />
+		<string id="STR_HOME_TAB_STORE_V" value="Store" />
+		<string id="STR_HOME_TAB_STORE_H" value="Store" />
+		<string id="STR_HOME_TAB_APPLICATIONS_V" value="Toepassingen" />
+		<string id="STR_HOME_TAB_APPLICATIONS_H" value="Toe-&#xA;passingen" />
+		<string id="STR_HOME_TAB_SETTINGS_V" value="Instellingen" />
+		<string id="STR_HOME_TAB_SETTINGS_H" value="Instel-&#xA;lingen" />
+		<string id="STR_NODE_TITLE_PERIODICALS" value="Publicaties" />
+		<string id="STR_NODE_TITLE_NEWDELIVERY" value="Nieuwe levering" />
+		<string id="STR_NODE_TITLE_DICTIONARY" value="Woordenboek" />
+		<string id="STR_HOME_SEEALL" value="Alles zien" />
+		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Laatst gelezen:" />
+		<string id="STR_COUNTER_PERIODICAL_N" value=" publicaties" />
+		<string id="STR_COUNTER_PERIODICAL_1" value="1 publicatie" />
+		<string id="STR_COUNTER_PERIODICAL_0" value="Geen publicaties" />
+		<string id="STR_HOME_MESSAGE_ACCESSING" value="Benaderen..." />
+		<string id="STR_UI_BUTTON_RETRY" value="Opnieuw proberen" />
+		<string id="STR_UI_MENU_DELETE_BOOKS" value="Wis boeken" />
+		<string id="STR_UI_MENU_PROTECT_BOOKS" value="Beveilig boeken" />
+		<string id="STR_UI_MENU_DELETE_ISSUES" value="Wis publicaties" />
+		<string id="STR_UI_MENU_PROTECT_ISSUES" value="Beveilig publicaties" />
+		<string id="STR_UI_MENU_DELETE_TEXTMEMOS" value="Wis notities" />
+		<string id="STR_UI_MENU_PROTECT_TEXTMEMOS" value="Beveilig notities" />
+		<string id="STR_UI_MENU_DELETE_HANDWRITINGS" value="Wis tekeningen" />
+		<string id="STR_UI_MENU_PROTECT_HANDWRITINGS" value="Beveilig tekeningen" />
+		<string id="STR_UI_MENU_DELETE_AUDIO" value="Wis audio" />
+		<string id="STR_UI_MENU_PROTECT_AUDIO" value="Beveilig audio" />
+		<string id="STR_UI_MENU_DELETE_PICTURES" value="Wis foto's" />
+		<string id="STR_UI_MENU_PROTECT_PICTURES" value="Beveilig Foto's" />
+		<string id="STR_UI_MENU_EDIT_STANDBY_SCREEN" value="Standby-scherm selectie" />
+		<string id="STR_UI_MENU_MANAGE_SUBSCRIPTION" value="Abonnement beheren" />
+		<string id="STR_UI_MENU_2PAGEVIEW" value="2-pagina-weergave" />
+		<string id="STR_UI_MENU_1PAGEVIEW" value="1-pagina-weergave" />
+		<string id="STR_UI_MENU_BYLATESTREAD" value="op ltst gelez" />
+		<string id="STR_UI_MENU_BYISSUEDATE" value="op datum uitg." />
+		<string id="STR_UI_MENU_STORE_HOME" value="Winkel hoofdpagina" />
+		<string id="STR_UI_MENU_MY_ACCOUNT" value="Mijn account" />
+		<string id="STR_UI_MENU_HELP_AND_SUPPORT" value="Hulp en ondersteuning" />
+		<string id="STR_UI_MENU_LEGALINFO" value="Juridische informatie" />
+		<string id="STR_UI_MENU_REFRESH_PAGE" value="Pagina herladen" />
+		<string id="STR_UI_MENU_DELETEISSUE" value="Wis publicatie" />
+		<string id="STR_UI_MENU_SELECT_ALL" value="Alles selecteren" />
+		<string id="STR_UI_MENU_UNSELECT_ALL" value="Niets selecteren" />
+		<string id="STR_UI_MENU_PROTECT_ALL" value="Alles beveiligen" />
+		<string id="STR_UI_MENU_UNPROTECT_ALL" value="Niets beveiligen" />
+		<string id="STR_UI_BUTTON_ISSUE_HOME" value="Voorpagina" />
+		<string id="STR_UI_BUTTON_PREVIOUS_SECTION" value="Sectie" />
+		<string id="STR_UI_BUTTON_NEXT_SECTION" value="Sectie" />
+		<string id="STR_UI_BUTTON_LAST_SECTION" value="Sectie" />
+		<string id="STR_UI_BUTTON_SECTION_HOME" value="Bovenaan sectie" />
+		<string id="STR_UI_BUTTON_PREVIOUS_ARTICLE" value="Artikel" />
+		<string id="STR_UI_BUTTON_NEXT_ARTICLE" value="Artikel" />
+		<string id="STR_NODE_TITLE_FRONT_PAGE" value="Voorpagina" />
+		<string id="STR_NODE_TITLE_SECTION_HOME" value="Bovenaan sectie XXSECTIONXX" />
+		<string id="STR_NODE_TITLE_SECTION_OTHERS" value="Andere" />
+		<string id="STR_COUNTER_ARTICLE_N" value=" artikels" />
+		<string id="STR_COUNTER_ARTICLE_1" value="1 artikel" />
+		<string id="STR_COUNTER_ARTICLE_0" value="Geen artikels" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SECTION" value="XXSECTIONXX sectie" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SEPARATE" value=":" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" /" />
+		<string id="STR_NODE_TITLE_DELETEISSUE" value="Wis publicatie" />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEISSUE" value="Titel publicatie: &quot;XXTITLEXX&quot;" />
+		<string id="STR_UI_MESSAGE_DELETEISSUE" value="Weet u zeker dat u deze publicatie wilt verwijderen?" />
+		<string id="STR_UI_MESSAGE_DELETEISSUEERR" value="Verwijderen van publicatie mislukt. Raak “OK” aan om terug te gaan naar de publicatielijst." />
+		<string id="STR_NODE_TITLE_SORTEDBY_LATESTREAD" value="op lees datum" />
+		<string id="STR_NODE_TITLE_SORTEDBY_ISSUEDATE" value="op datum uitg." />
+		<string id="STR_MONTH_JANUARY" value="Januari" />
+		<string id="STR_MONTH_FEBRUARY" value="Februari" />
+		<string id="STR_MONTH_MARCH" value="Maart" />
+		<string id="STR_MONTH_APRIL" value="April" />
+		<string id="STR_MONTH_MAY" value="Mei" />
+		<string id="STR_MONTH_JUNE" value="Juni" />
+		<string id="STR_MONTH_JULY" value="Juli" />
+		<string id="STR_MONTH_AUGUST" value="Augustus" />
+		<string id="STR_MONTH_SEPTEMBER" value="September" />
+		<string id="STR_MONTH_OCTOBER" value="Oktober" />
+		<string id="STR_MONTH_NOVEMBER" value="November" />
+		<string id="STR_MONTH_DECEMBER" value="December" />
+		<string id="STR_DAY_MONDAY_FULL" value="Maandag" />
+		<string id="STR_DAY_TUESDAY_FULL" value="Dinsdag" />
+		<string id="STR_DAY_WEDNESDAY_FULL" value="Woensdag" />
+		<string id="STR_DAY_THURSDAY_FULL" value="Donderdag" />
+		<string id="STR_DAY_FRIDAY_FULL" value="Vrijdag" />
+		<string id="STR_DAY_SATURDAY_FULL" value="Zaterdag" />
+		<string id="STR_DAY_SUNDAY_FULL" value="Zondag" />
+		<string id="STR_DAY_MONDAY_ABB" value="Maa" />
+		<string id="STR_DAY_TUESDAY_ABB" value="Din" />
+		<string id="STR_DAY_WEDNESDAY_ABB" value="Woe" />
+		<string id="STR_DAY_THURSDAY_ABB" value="Don" />
+		<string id="STR_DAY_FRIDAY_ABB" value="Vri" />
+		<string id="STR_DAY_SATURDAY_ABB" value="Zat" />
+		<string id="STR_DAY_SUNDAY_ABB" value="Zon" />
+		<string id="STR_NODE_TITLE_UNREAD_BOOKS" value="Niet gelezen boeken" />
+		<string id="STR_NODE_TITLE_UNREAD_PERIODICALS" value="Nt gel.periodieken" />
+		<string id="STR_NODE_TITLE_PURCHASED_BOOKS" value="Gekochte boeken" />
+		<string id="STR_UI_MENU_NEW_COLLECTION" value="Nieuwe collectie" />
+		<string id="STR_UI_MENU_DELETE_COLLECTIONS" value="Wis collecties" />
+		<string id="STR_NODE_TITLE_ADD_NEW_COLLECTION" value="Nieuwe collectie" />
+		<string id="STR_UI_KEYBOARD_COLLECTION_NAME" value="Collectienaam:" />
+		<string id="DIALOGMSG_COLLECTIONS_WHERE_TO_CREATE" value="Kies waar u een collectie wilt aanmaken:" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_DEVICE" value="Intern geheugen" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_MS" value="Memory Stick™" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_SD" value="SD-kaart" />
+		<string id="STR_NODE_TITLE_ADD_BOOKS" value="Boeken toevoegen" />
+		<string id="STR_NODE_TITLE_SELECT_PERIODICAL" value="Periodieken selecteren" />
+		<string id="STR_NODE_TITLE_ADD_ISSUES" value="Publicaties toevoegen" />
+		<string id="STR_NODE_TITLE_SELECT_A_COLLECTION" value="Een collectie selecteren" />
+		<string id="STR_NODE_TITLE_SORTEDBYFILENAME" value="op bestandsnaam" />
+		<string id="STR_UI_MENU_BYFILENAME" value="op bestandsnm" />
+		<string id="STR_UI_MENU_TITLEONLYLIST" value="Enkel titel" />
+		<string id="STR_UI_MENU_ADDBOOKS" value="Boeken" />
+		<string id="STR_UI_MENU_ADDPERIODICALS" value="Periodieken" />
+		<string id="STR_UI_MENU_REMOVECONTENT" value="Verwijder inhoud" />
+		<string id="STR_NODE_TITLE_REMOVE_ITEMS" value="Verwijder inhoud" />
+		<string id="STR_NODE_TITLE_DELETE_COLLECTIONS" value="Wis collecties" />
+		<string id="STR_NODE_TITLE_DELETE_BOOKS" value="Wis boeken" />
+		<string id="STR_NODE_TITLE_DELETE_ISSUES" value="Wis publicaties" />
+		<string id="STR_NODE_TITLE_DELETE_AUDIO" value="Wis audio" />
+		<string id="STR_NODE_TITLE_DELETE_PICTURES" value="Wis foto's" />
+		<string id="STR_NODE_TITLE_DELETE_HANDWRITINGS" value="Wis tekeningen" />
+		<string id="STR_NODE_TITLE_DELETE_TEXTMEMOS" value="Wis notities" />
+		<string id="STR_NODE_TITLE_DELETE_NOTES" value="Wis notities" />
+		<string id="STR_UI_MESSAGE_DELETE_MANUALLY_NORMAL" value="Weet u zeker dat u de geselecteerde item(s) wilt verwijderen?" />
+		<string id="STR_UI_MESSAGE_DELETE_MANUALLY_SELECTED_AS_STANDBY" value="Weet u zeker dat u de geselecteerde item(s) wilt verwijderen, inclusief de voor de standby-stand opgegeven foto's?" />
+		<string id="STR_COUNTER_SELECTED" value=" geselecteerd" />
+		<string id="STR_COUNTER_PROTECTED" value=" beveiligd" />
+		<string id="STR_NODE_TITLE_PROTECT_BOOKS" value="Beveilig boeken" />
+		<string id="STR_NODE_TITLE_PROTECT_ISSUES" value="Beveilig publicaties" />
+		<string id="STR_NODE_TITLE_PROTECT_AUDIO" value="Beveilig Audio" />
+		<string id="STR_NODE_TITLE_PROTECT_PICTURES" value="Beveilig foto's" />
+		<string id="STR_NODE_TITLE_PROTECT_HANDWRITINGS" value="Beveilig tekeningen" />
+		<string id="STR_NODE_TITLE_PROTECT_TEXTMEMOS" value="Beveilig notities" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_BOOK" value="Dit boek is beveiligd. Weet u zeker dat u dit boek wilt verwijderen?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_ISSUE" value="Weet u zeker dat u deze beschermde publicatie wilt verwijderen?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_MEMO" value="Deze notitie is beveiligd. Weet u zeker dat u deze notitie wilt verwijderen?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_DRAWING" value="Deze tekening is beveiligd. Weet u zeker dat u deze tekening wilt verwijderen?" />
+		<string id="STR_COUNTER_ISSUE_N" value=" publicaties" />
+		<string id="STR_COUNTER_ISSUE_1" value="1 publicatie" />
+		<string id="STR_COUNTER_ISSUE_0" value="Geen publicaties" />
+		<string id="STR_COUNTER_ISSUE_ALL" value="Alle publicaties" />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_MAIN" value="Hoeveel publicaties van dit abonnement wilt u op uw reader bewaren?" />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_NOTE" value="Let op: beveiligde publicaties zijn niet inbegrepen in deze telling." />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_CHECK" value="Extra publicatie(s) nu verwijderen." />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_NOW" value="Weet u zeker dat u de extra publicatie(s) nu wilt verwijderen?" />
+		<string id="STR_UI_BUTTON_SAVE" value="Opslaan" />
+		<string id="STR_UI_BUTTON_CANCEL" value="Annuleren" />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_TOOLBAR" value="Deze toepassing is gedeactiveerd omdat de “Notitie maken/bewerken”-gereedschapsbalk weergegeven wordt. Gelieve deze gereedschapsbalk te sluiten om deze feature te activeren. " />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_FACING" value="Deze toepassing is gedeactiveerd omdat u gebruik maakt van “2-pagina-weergave”. Gelieve naar “1-pagina-weergave” over te schakelen om deze feature te activeren. " />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_TOOLBARFACING" value="Deze toepassing is gedeactiveerd omdat u gebruik maakt van “2-pagina-weergave” en de “Notitie maken/bewerken”-gereedschapsbalk. Gelieve naar “1-pagina-weergave” over te schakelen en de gereedschapsbalk te sluiten om deze feature te activeren. " />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SELECTED" value="Geen woordenboek werd geselecteerd. Gelieve naar de “Instellingen”-tab te gaan en uw woordenboek te selecteren." />
+		<string id="STR_UI_BUTTON_OTHERS" value="Andere" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_COMPLETE" value="Download voltooid" />
+		<string id="STR_UI_ABOUT_FREESPACE" value="Beschikbare ruimte" />
+		<string id="STR_UI_ABOUT_DEVICEINFO" value="Informatie apparaat" />
+		<string id="STR_UI_PARTS_IMEI" value="IMEI" />
+		<string id="STR_UI_PARTS_ICCID" value="ICCID" />
+		<string id="STR_UI_PARTS_ADOBE_DRM_AUTH" value="Adobe DRM" />
+		<string id="STR_UI_ABOUT_LEGALINFO" value="Juridische informatie" />
+		<string id="STR_NODE_TITLE_WIRELESS_SLEEP_MODE" value="Draadloze standby" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_WIRELESS" value="“Draadloze standby” plaatst de draadloze toepassin in “standby-stand” als het netwerk niet gebruikt wordt gedurende tien minuten. Zet dit “aan” om de levensduur van de batterij te vermeerderen en zet dit “uit” om verbindingstijden te verbeteren." />
+		<string id="STR_UI_SETTING_DIC_EBOOKID" value="eBook ID:" />
+		<string id="STR_NODE_TITLE_TIMEZONE" value="Tijdzone" />
+		<string id="STR_UI_SETTING_TZ_EST" value="Oostelijke tijd" />
+		<string id="STR_UI_SETTING_TZ_CST" value="Centrale tijd" />
+		<string id="STR_UI_SETTING_TZ_MST" value="Mountain tijd" />
+		<string id="STR_UI_SETTING_TZ_PST" value="Pacific tijd" />
+		<string id="STR_UI_SETTING_TZ_AKST" value="Alaskan tijd" />
+		<string id="STR_UI_SETTING_TZ_HST" value="Hawaii-Aleutian tijd" />
+		<string id="STR_UI_SETTING_SUMMERTIME_MSG" value="Daglicht besparingstijd" />
+		<string id="DIALOGMSG_INFORM_RESTART_TIMEZONE" value="Bezig met toepassen van tijdzone-instellingen..." />
+		<string id="DIALOGMSG_INFORM_RESTART_WIZARD" value="Bezig met toepassen van instellingen..." />
+		<string id="DIALOGMSG_NOT_AVAILABLE_WHILE_DOWNLOADING" value="Deze feature is niet beschikbaar tijdens het downloaden van content. Gelieve deze opnieuw te selecteren nadat de download voltooid is." />
+		<string id="STR_UI_SETTING_RANGE_HOUR" value="(00 - 23)" />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_1" value="Geen toegang mogelijk tot de Reader Store omdat de “WIRELESS” schakelaar uit is. Gelieve deze aan te zetten en opnieuw te proberen." />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_2" value="Kan geen toegang krijgen tot de Reader Store omdat het netwerk niet verbonden is. Gelieve opnieuw te proberen nadat u verbonden bent." />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_3" value="Kan geen toegang krijgen tot de Reader Store omdat de “datum- en tijd-” instellingen of “tijdzone-” instellingen niet juist zijn. Gelieve deze vanuit de “instellingen-” tab te verbeteren en opnieuw te proberen." />
+		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_1" value="Uw SIM wordt niet herkend. Gelieve uw reader uit te schakelen, de SIM-kaart opnieuw in te steken en uw reader opnieuw in te schakelen. Indien het probleem blijft aanslepen, gelieve met de Sony Customer Support contact op te nemen." />
+		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_3" value="Deze Sim-kaart is vergrendeld door een PIN of PUK code. Gelieve via een ander product te ontgrendelen en opnieuw te proberen, of met de Sony Customer Support contact op te nemen." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_1" value="De reader kon de inhoud niet downloaden omdat de “WIRELESS” schakelaar uit is." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_2" value="Gelieve deze aan te zetten en, eens dat u verbonden bent met het netwerk, kan u opnieuw beginnen downloaden vanaf uw “My Account” pagina in de Reader Store." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_1" value="De reader kon de inhoud niet downloaden omdat het netwerk niet verbonden is." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_2" value="Eens dat u verbonden bent met het netwerk, kan u opnieuw beginnen downloaden vanaf uw “My Account” pagina in de Reader Store." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_1" value="De reader kon zich niet verbinden omdat de “datum- en tijd-” instellingen of “tijdzone-” instellingen niet juist zijn." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_2" value="Gelieve deze vanuit de “instellingen”-tab te verbeteren en, eens dat u verbonden bent met het netwerk, kan u opnieuw beginnen downloaden vanaf uw “My Account” pagina in de Reader Store." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_4_1" value="De reader kon de inhoud niet downloaden omdat er niet genoeg vrije ruimte overblijft in het interne geheugen." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_4_2" value="U dient bestanden uit het interne geheugen te verwijderen om de nieuwe inhoud te kunnen downloaden. Eens u genoeg ruimte hebt vrijgemaakt kan u opnieuw downloaden vanaf uw “My Account” pagina in de Reader Store." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_5_1" value="De reader kon de inhoud niet downloaden." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_5_2" value="Gelieve opnieuw te proberen downloaden vanaf uw “My Account” pagina in de Reader Store.&#xA;(Foutcode: XXCODEXX)" />
+		<string id="STR_UI_MESSAGE_NETWORK_OTHER_ERROR_1" value="Er is een fout opgelopen tijdens de toenadering van de draadloze feature. Gelieve uw reader af te sluiten door op de “RESET” knop onderaan het toestel te drukken en de reader opnieuw in te schakelen." />
+		<string id="STR_UI_MESSAGE_NETWORK_DOWNLOAD_DELAY" value="De eader is verbinding aan het maken met het netwerk en zal daarna de download starten." />
+		<string id="STR_UI_MESSAGE_NETWORK_OTHER_ERROR_3" value="Er is een fout opgelopen tijdens de toenadering van de draadloze feature.&#xA;Gelieve te wachten tot het draadloze status-icoon in de statusbalk “STBY” weergeeft, vervolgens de WIRELESS-schakelaar uit te schakelen en deze opnieuw aan te zetten." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_1_MS" value="Deze Memory Stick™-kaart kan niet gebruikt worden. Gelieve een andere Memory Stick™-kaart te proberen." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_1_SD" value="Deze SD-kaart kan niet gebruikt worden. Gelieve een andere SD-kaart te proberen." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_2_MS" value="De reader kan uw leesdetails niet opslaan omwille van een Memory Stick™-kaartfout. Gelieve een andere Memory Stick™-kaart te proberen." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_2_SD" value="De reader kan uw leesdetails niet opslaan omwille van een SD-kaartfout. Gelieve een andere SD-kaart te proberen." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_3_MS" value="De Memory Stick™-kaart is read-only en de reader kan uw leesdetails niet opslaan. Gelieve een andere Memory Stick™-kaart te proberen." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_4_MS" value="De reader kan uw leesdetails niet opslaan omwille van een Memory Stick™-kaartfout. Gelieve een andere Memory Stick™-kaart te proberen." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_4_SD" value="De reader kan uw leesdetails niet opslaan omwille van een SD-kaartfout. Gelieve een andere SD-kaart te proberen." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_6_MS" value="De Memory Stick™-kaart moet geformatteerd worden. Gelieve naar de Instellingen-tab te gaan en de Memory Stick™-kaart te formatteren." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_6_SD" value="De SD-kaart moet geformatteerd worden. Gelieve naar de instellingen-tab te gaan en de SD-kaart te formatteren." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_7" value="Bestand is corrupt en kan niet worden geopend." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_8_MS" value="De reader kan uw leesdetails niet opslaan omdat de Memory Stick™-kaart vergrendeld is. Gelieve de Memory Stick™-kaart uit te werpen, deze te ontgrendelen en opnieuw in te steken." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_8_SD" value="De reader kan uw leesdetails niet opslaan omdat de SD-kaart vergrendeld is. Gelieve de SD-kaart uit te werpen, deze te ontgrendelen en opnieuw in te steken." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_9" value="Geen geheugenkaart ingestoken." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_10" value="Er is niet genoeg ruimte beschikbaar om uw leesdetails op te slaan. Gelieve een of meerdere bestanden te verwijderen en opnieuw te proberen." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_13_OPEN" value="Het bestand kan niet geopend worden omdat de gegevens incompatibel zijn." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_13_PLAY" value="Het bestand kan niet afgespeeld worden omdat de gegevens incompatibel zijn." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_16_17_MS" value="Deze Memory Stick™-kaart is beveiligd. Gelieve een andere Memory Stick™-kaart te proberen." />
+		<string id="STR_UI_MESSAGE_DEAD_BATTERY_ERR_1" value="De reader heeft een fout aan de batterij gedetecteerd en deze kan niet meer geladen worden. De reader zal nu afsluiten. Gelieve door een voor deze reader toegewijde nieuwe batterij te vervangen en de “POWER” schakelaar aan te schakelen." />
+		<string id="STR_UI_MESSAGE_DEAD_BATTERY_ERR_2" value="Gelieve met de Sony Customer Support contact op te nemen indien dit bericht nog steeds verschijnt nadat u de batterij hebt vervangen." />
+		<string id="STR_UI_MESSAGE_BATTERY_REMOVED_ERR_1" value="De reader heeft het weghalen van de batterij gedetecteerd en zal nu afsluiten. Gelieve de batterij in te steken en de “POWER” schakelaar aan te schakelen." />
+		<string id="STR_UI_MESSAGE_BATTERY_REMOVED_ERR_2" value="" />
+		<string id="STR_UI_MESSAGE_RECOMMEND_EPUB" value="Het boek kan niet geopend worden op dit toestel omwille van DRM-problemen. Indien u dit boek voordien hebt gekocht, gelieve deze vanaf uw “My Account”-pagina in de Reader Store opnieuw te downloaden." />
+		<string id="STR_UI_BUTTON_ENTER" value="Enter" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_POWERMANAGEMENT" value="Wanneer ingesteld op “Ja” zal de reader in slaapstand gaan na 10 minuten van inactiviteit en zal de stroom uitgaan na 2 dagen van continue slaapstand." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_PAGETURNGESTURE" value="Selecteer het gebaar om de pagina's om te slaan. De optie links betekent de vinger op de touchscreen naar links laten glijden terwijl de optie rechts impliceert de vinger naar rechts laten glijden." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_SLIDESHOW" value="De duur van de interval kan tot 60 seconden ingesteld worden. De diashow-menu kan teruggevonden worden door op &quot;OPTIONS&quot; te drukken in de foto's toepassing." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_DEVICELOCK" value="Wanneer de vergrendeling op “Ja” ingesteld is, moet men de pass-code invoeren telkens wanneer de reader ingeschakeld wordt. Zorg ervoor dat u de “Vergrendeling” uitschakelt voordien u deze aan uw computer aansluit." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_PERIODICALS" value="U hebt 0 periodieken op uw reader. Druk op de “Store”-tab om tussen periodieken rond te snuffelen en te kopen." />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_BROKENFILE" value="Deze tekening is beschadigd." />
+		<string id="STR_UI_MENU_CHANG_TONE_CURVE" value="Weergave aanpassen" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_ORIGINAL" value="Origineel" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_PROMINENT" value="Verzadigd" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_DETAILED" value="Details" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_DARKER" value="Donkerder" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_LIGHTER" value="Helderder" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_CUSTOM" value="Op maat" />
+		<string id="STR_UI_TEXT_TONE_CURVE_CONTRAST" value="Contrast" />
+		<string id="STR_UI_TEXT_TONE_CURVE_BRIGHTNESS" value="Helderheid" />
+		<string id="STR_UI_BUTTON_TONE_CURVE_RESET" value="Herstellen" />
+		<string id="STR_UI_BUTTON_PAGE_LOCK" value="Vergrend." />
+		<string id="STR_UI_BUTTON_UNLOCK" value="Ontgrend." />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_ORIGINAL" value="Origineel" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_MARGIN_CUT" value="Zonder marges" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_2COLUMN_SPLIT" value="2-kolommen indeling" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_3COLUMN_SPLIT" value="3-kolommen indeling" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_FULL_PAGE" value="Volledige pagina" />
+		<string id="STR_UI_MESSAGE_STANDBY" value="Reader is in slaapstand. Verschuif de aan/uitschakelaar en laat los om te wekken." />
+		<string id="STR_UI_MESSAGE_PAGE_STYLE_CHANGE_TO_ORIGINAL" value="De “Pagina-modus” zal naar “Origineel” worden hersteld." />
+		<string id="STR_UI_MESSAGE_PAGE_STYLE_CHANGE_WITH_TOOLBAR_DISPLAYED" value="Het “Notitie maken/bewerken”-scherm zal worden afgesloten." />
+		<string id="STR_NODE_TITLE_GENERAL" value="Algemene instellingen" />
+		<string id="STR_NODE_TITLE_APPLICATIONS" value="Applicatievoorkeuren" />
+		<string id="STR_NODE_TITLE_SYSTEM" value="Systeembeheer" />
+		<string id="STR_NODE_TITLE_INITIALIZATION" value="Initialisatie" />
+		<string id="STR_NODE_TITLE_ORIENTATIONTOROTATE" value="Scherm-oriëntatie" />
+		<string id="STR_UI_SETTING_ROTATETORIGHT" value="Roteer rechts" />
+		<string id="STR_UI_SETTING_ROTATETOLEFT" value="Roteer links" />
+		<string id="STR_NODE_TITLE_STANDBYSCREEN" value="Standby-scherm" />
+		<string id="STR_UI_SETTING_SHOW_PICTURE" value="Foto weergeven" />
+		<string id="STR_UI_SETTING_SHOW_MESSAGE" value="Bericht weergeven" />
+		<string id="STR_UI_SETTING_STANDBY_GUIDE" value="Door “Ja” te selecteren voor “Foto weergeven” zal de foto die u geselecteerd hebt weergegeven worden in de slaapstand. Door “Ja” te selecteren voor “Bericht weergeven” zullen de berichten weergegeven worden over hoe u de reader wakker maakt ." />
+		<string id="STR_UI_SETTING_PICTURE" value="Foto" />
+		<string id="STR_UI_SETTING_TEXT" value="Bericht" />
+		<string id="STR_UI_SETTING_ROTATETO" value="Roteren naar" />
+		<string id="STR_UI_SETTING_ROTATETO_GUIDE" value="Selecteer de schermrotatie-richting wanneer “Oriëntatie” geselecteerd is in het &quot;OPTIONS&quot;-menu." />
+		<string id="STR_UI_MESSAGE_COLLECTION_NAME_ALREADY_EXISTS" value="De gespecificeerde collectienaam bestaat reeds. Gelieve een andere naam in te voeren." />
+		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION" value="Weet u zeker dat u wilt voortgaan? De huidige inhoud zal onverwijderd blijven." />
+		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION_CONTENT" value="Weet u zeker dat u wilt voortgaan? De huidige inhoud zal onverwijderd blijven." />
+		<string id="DIALOGMSG_CONFIRM_DIRECTORY_CHANGE" value="Het geselecteerde woordenboek zal veranderen&#xA;Van:&#xA;%CUR_DIC%&#xA;Naar:&#xA;%NEW_DIC%" />
+		<string id="DIALOG_CONFIRM_DICTIONARY_CHANGE_CURRENT_DIC" value="%CUR_DIC%" />
+		<string id="DIALOG_CONFIRM_DICTIONARY_CHANGE_NEW_DIC" value="%NEW_DIC%" />
+		<string id="STR_UI_PARTS_UNKNOWN" value="Onbekend" />
+		<string id="DIALOGMSG_APPLYING_SETTINGS" value="Bezig met toepassen van instellingen...&#xA;Gelieve meerdere seconden te wachten." />
+		<string id="STR_UI_MENU_ADD" value="Inhoud toevoegen" />
+		<string id="STR_UI_MENU_RENAMECOLLECTION" value="Hernoem collectie" />
+		<string id="STR_UI_MENU_ADD_BOOKMARK" value="Voeg bladwijzer toe" />
+		<string id="STR_UI_MENU_REMOVE_BOOKMARK" value="Verwijder bladwijzer" />
+		<string id="STR_UI_MENU_GO_TO" value="Ga naar" />
+		<string id="STR_UI_MENU_PREVIOUS_VIEW" value="Vorige weergave" />
+		<string id="STR_UI_MENU_SELECT_PAGE" value="Pagina selecteren" />
+		<string id="STR_UI_MENU_LIST" value="Lijst" />
+		<string id="STR_UI_MENU_CREATE_EDIT" value="Aanmaken/bewerken" />
+		<string id="STR_UI_MENU_HIDE" value="Verbergen" />
+		<string id="STR_UI_MENU_SHOW" value="Weergeven" />
+		<string id="STR_UI_MENU_ADD_TO_COLLECTION" value="Toevoegen aan collectie" />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS" value="Kan niet selecteren omdat het maximum aantal van 99 foto's die geselecteerd kunnen worden op de Memory Stick™-kaart bereikt werd.&#xA;Gelieve een andere foto op de Memory Stick™-kaart te deselecteren en selecteer deze foto opnieuw." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_SD" value="Kan niet selecteren omdat het maximum aantal van 99 foto's die geselecteerd kunnen worden op de SD-kaart bereikt werd.&#xA;Gelieve een andere foto op de SD-kaart te deselecteren en selecteer deze foto opnieuw." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_INTERNAL_MEMORY" value="Kan niet selecteren omdat het maximum aantal van 99 foto's die geselecteerd kunnen worden op het interne geheugen bereikt werd. Gelieve een andere foto op het interne geheugen te deselecteren en selecteer deze foto opnieuw." />
+		<string id="STR_UI_MESSAGE_THERE_IS_NO_ITEM_REFER_TO_UG" value="Deze lijst bevat geen items. Gelieve, indien nodig, de gebruikershandleiding te raadplegen over hoe men inhoud toevoegt." />
+		<string id="STR_UI_MESSAGE_THERE_IS_NO_ITEM" value="Deze lijst bevat geen items." />
+		<string id="STR_NODE_TITLE_DICTIONARY_LOOK_UP_HISTORY" value="Woord logboeken: woordenboek" />
+		<string id="STR_NODE_TITLE_WORD_LOGS_BOOK" value="Woord logboeken: boek" />
+		<string id="STR_NODE_TITLE_WORD_LOGS_PERIODICAL" value="Woord logboeken: periodiek" />
+		<string id="STR_UI_MENU_WORD_LOGS_PERIODICAL" value="Woord logboeken: periodiek" />
+		<string id="STR_UI_MENU_DELETE_HISTORIES" value="Wis woord logboeken" />
+		<string id="STR_NODE_TITLE_DELETE_HISTORIES" value="Wis woord logboeken" />
+		<string id="STR_UI_MENU_SORT_SELECTED" value="Sorteer:" />
+		<string id="STR_UI_MENU_VIEW_SELECTED" value="Weergeven:" />
+		<string id="DIALOGMSG_WHETHER_SHOW_NOTES" value="Deze operatie is ongeldig omdat dit boek momenteel de notities verbergt.&#xA;Wilt u de notities weergeven?" />
+		<string id="STR_UI_MESSAGE_TO_CHANGE_DICTIONARY" value="Druk op &quot;OPTIONS&quot; om een ander woordenboek te selecteren." />
+		<string id="STR_UI_MENU_CHANGE_DICTIONARY" value="Woordenboek veranderen" />
+		<string id="STR_UI_MENU_VIEW_SEARCH_HISTORY" value="Woord logboeken: woordenb." />
+		<string id="STR_UI_MESSAGE_NO_ENTRY_FOUND" value="Geen trefwoord gevonden." />
+		<string id="STR_UI_MESSAGE_NO_DEFINITION" value="Geen trefwoord gevonden. XXBUTTON1XX om handmatig op te zoeken of XXBUTTON2XX om in een ander woordenboek op te zoeken." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_SD" value="Kan niet selecteren omdat het maximum aantal van 99 foto's die geselecteerd kunnen worden op elk van de Memory Stick™-kaart en de SD-kaart bereikt is.&#xA;" />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_INTERNAL_MEMORY" value="We are changing your suggestion slightly at the recommendation of our translator:&#xA;Kan niet selecteren omdat het maximum aantal van 99 foto's die geselecteerd kunnen worden op elk van de Memory Stick™-kaart en het interne geheugen bereikt is." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_SD_INTERNAL_MEMORY" value="Kan niet selecteren omdat het maximum aantal van 99 foto's die geselecteerd kunnen worden op elk van de SD-kaart en het interne geheugen bereikt is." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_SD_INTERNAL_MEMORY" value="Kan niet selecteren omdat het maximum aantal van 99 foto's die geselecteerd kunnen worden op elk van de Memory Stick™-kaart, SD-kaart en het interne geheugen bereikt is." />
+		<string id="DIALOGMSG_DELETING" value="Wissen..." />
+		<string id="DIALOGMSG_REMOVING" value="Verwijderen..." />
+		<string id="DIALOGMSG_ADDING" value="Toevoegen..." />
+		<string id="STR_UI_BUTTON_STOP" value="Stop" />
+		<string id="STR_UI_MESSAGE_UNPROTECT_CONTENT" value="Deze inhoud is beveiligd. Inhoud onbeveiligen alvorens verwijderen." />
+		<string id="DIALOGMSG_NO_CONTENT_IN_COLLECTION_LOCATION" value="Er is geen inhoud in de opslagruimte waar de gespecificeerde collectie bestaat.&#xA;Om inhoud toe te voegen, moeten de fysieke locatie van de inhoud en de collectie allebei dezelfde zijn." />
+	</assets>
+</document>

@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="DOCUMENT">
+
+<assets>
+	<import href="../AppAssets/AppAssets.xml"/>
+
+	<behavior id="sprite">
+		<script on="mouseUp" params="event">
+			if (this.hitBounds(event.x, event.y))
+				this.bubble("doNumKey",this);
+		</script>
+	</behavior>
+	<behavior id="gridSprite">
+		<script on="mouseUp" params="event">
+			if (this.hitBounds(event.x, event.y))
+				this.bubble("doGridClick",this);
+			</script>
+	</behavior>
+	<!--behavior id="iconSprite">
+	    <script on="mouseUp" params="event">
+			if (this.hitBounds(event.x, event.y))
+				this.bubble("exitQuit",this);
+	    </script>
+	</behavior-->	
+	
+	<style font="Swis721 BT">
+		<style id="sometext" size="16" style="" color="#000000"/>
+		<style id="digits" size="22" style="bold" color="#000000"/>
+		<style id="gameclock" size="22" style="bold" color="#000000"/>
+		<style id="copynote" size="14" style="italic" color="#707070"/>
+		<style id="touchText" size="12" style="bold" color="#000000"/>
+	</style>
+	
+<texture href="sudokuSkins/labels.png">
+	<cutout id="fDigit" x="0" y="0" width="44" height="44"/>
+	<cutout id="gCursor" x="0" y="80" width="44" height="44"/>
+	<cutout id="mCursor" x="44" y="190" width="188" height="45"/>
+
+	<cutout id="mMenu1" x="0" y="250" width="150" height="40"/>
+	<cutout id="mMenu2" x="150" y="250" width="150" height="40"/>
+	<cutout id="mMenu3" x="0" y="290" width="150" height="40"/>
+
+	<cutout id="mSubMenu1" x="0" y="330" width="120" height="88"/>
+	<cutout id="mSubMenu2" x="120" y="330" width="120" height="88"/>
+	<cutout id="mSubMenu3" x="240" y="330" width="120" height="44"/>
+
+	<cutout id="mSubCursor" x="250" y="190" width="22" height="22"/>
+
+	<cutout id="mAbort" x="285" y="215" with="31" height="31"/>
+
+	<cutout id="mOk" x="316" y="215" with="31" height="31"/>
+
+	<cutout id="bGround" x="390" y="190" width="100" height="100"/>
+
+	<cutout id="cCon" x="0" y="430" width="250" height="70"/>
+	
+	<cutout id="grid-tl" x="530" y="0" width="8" height="8"/>
+ 	<cutout id="grid-tm" x="538" y="0" width="150" height="8"/>
+	<cutout id="grid-tr" x="690" y="0" width="8" height="8"/> 	
+	<cutout id="grid-ml" x="530" y="8" width="8" height="150"/>	
+	<cutout id="grid-mm" x="538" y="8" width="150" height="150"/>
+	<cutout id="grid-mr" x="690" y="8" width="8" height="150"/>
+	<cutout id="grid-bl" x="530" y="160" width="8" height="8"/>
+	<cutout id="grid-bm" x="538" y="160" width="150" height="8"/>
+	<cutout id="grid-br" x="690" y="160" width="8" height="8"/>
+	
+</texture>
+
+<skin id="copynote"
+	styles="copynote"/>
+	
+<skin id="gameclock"
+	styles="gameclock"/>
+<skin id="sometext"
+	styles="sometext"/>
+
+<skin id="digits"
+	styles="digits"/>
+
+<skin id="gridCursor"
+	cutouts="gCursor"/>
+
+<skin id="allDigit"
+	cutouts="fDigit"
+	styles="digits"/>
+
+<skin id="menuCursor"
+	cutouts="mCursor"/>
+<skin id="subMenuCursor"
+	cutouts="mSubCursor"/>
+<skin id="subCursor"
+	cutouts="mSubCursor"/>
+
+<skin id="menuMenu1"
+	cutouts="mMenu1"/>
+<skin id="menuMenu3"
+	cutouts="mMenu3"/>
+<skin id="menuMenu2"
+	cutouts="mMenu2"/>
+<skin id="subMenul"
+	cutouts="mSubMenu1"/>
+<skin id="subMenu2"
+	cutouts="mSubMenu2"/>
+<skin id="subMenu3"
+	cutouts="mSubMenu3"/>
+
+<skin id="Abort"
+	cutouts="mAbort"/>
+
+<skin id="Ok"
+	cutouts="mOk"/>
+
+<skin id="bckGround"
+	cutouts="bGround"/>
+
+<skin id="cCon"
+	cutouts="cCon"/>
+
+<skin id="sudokuGrid"
+	cutouts="grid-tl,grid-tm,grid-tr,grid-ml,grid-mm,grid-mr,grid-bl,grid-bm,grid-br"/>
+	
+
+<skin id="touchText" styles="touchText"/>
+
+</assets>
+
+<code>
+    <function id="runJs" params="path,target">
+        try {
+            var f = new Stream.File(path);
+            var fn = new Function("target", f.toString());
+            fn(target);
+            delete fn;
+        }
+        catch(e)
+        {
+        }
+    </function>
+    <function id="loadScript">
+        if (!this.hasOwnProperty('_scriptLoaded'))
+            this._scriptLoaded = false;
+        if (!this._scriptLoaded)
+        {
+	   		if(kbook.autoRunRoot.path==undefined){
+				path = this.getBaseURI().slice(7);
+				kbook.model=this;
+			}else{
+				path = kbook.autoRunRoot.path;
+			}
+            var index = path.lastIndexOf('/');
+            if (index > 0)
+               path = path.substring(0, index + 1);
+            this.driveroot = path.substring(0,2);
+            var target = this.AUTORUN_GROUP.AUTORUN;
+            target.driveroot = this.driveroot;
+		    target.sudokuRoot = path;
+
+            this.runJs(path+"sudoku.js",target);
+        }
+        this._scriptLoaded = true;
+    </function>
+    <function id="modelChanged">
+		arguments.callee.grammar.call(this);
+        var state = this.getVariable("STATE");
+
+        var target;
+
+
+        if (this.state != state) {
+            this.focus(true)
+            this.AUTORUN_GROUP.show(false)
+            switch(state) {
+            case "AUTORUN":
+                this.loadScript();
+                this.AUTORUN_GROUP.show(true);
+                target = this.AUTORUN_GROUP.AUTORUN;
+                break;
+            }
+            this.state = state;
+            target.init();
+             if (target.isEnabled())
+                {
+
+                target.focus(true);
+
+                };
+        }
+    </function>
+    <!-- Menu-Functions -->
+ 	<function id="always">
+	 try {
+ 		this.AUTORUN_GROUP.AUTORUN.cCon.stopAnimation("cCon");
+ 		this.AUTORUN_GROUP.AUTORUN.cCon.show(false);
+		this.AUTORUN_GROUP.AUTORUN.bckGround.show(false);
+	 } catch(ignore) {};
+ 		return true;
+ 	</function>
+ 	<function id="doGameRandom">
+ 	 	this.AUTORUN_GROUP.AUTORUN.GameRandom();
+ 	</function>
+ 	<function id="doGameNext">
+ 	 	this.AUTORUN_GROUP.AUTORUN.GameNext();
+ 	</function>
+ 	<function id="doGameSelect">
+ 	 	this.AUTORUN_GROUP.AUTORUN.GameSelect();
+ 	</function>
+ 	<function id="doGameLoad">
+ 	 	this.AUTORUN_GROUP.AUTORUN.GameLoad();
+ 	</function>
+   	<function id="doExitQuit">
+	 	this.AUTORUN_GROUP.AUTORUN.exitQuit();
+	</function>
+ 	<function id="doGameSave">
+ 	 	this.AUTORUN_GROUP.AUTORUN.GameSave();
+ 	</function>
+</code>
+
+<group id="AUTORUN_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+	<panel skin="AppMainSkin" left="0" right="0" top="0" bottom="0"/>
+    <group id="AUTORUN" width="600" top="70" bottom="33">
+	   	<sprite id="appIcon" skin="kbookMenuIcon" left="0" width="70" top="-70" height="70" u="44" v="1"/> 
+	   	    <!--behave like="iconSprite"/>
+	    </sprite-->	   	  
+		<label id="appTitle" skin="title" left="70" right="0" top="-70" height="70" align="left" text="Sudoku"/>
+		<code>
+         <function id="doDigit" params="part">
+	         this.drawDigit(part.key)
+         </function>
+         <function id="doMenu">
+         	this.doMenuF();
+         </function>
+         <function id="doRoot">
+         	this.exitQuit();
+         </function>
+         <function id="doCenter">
+         	this.doCenterF();
+         </function>
+         <function id="doMark">
+	         this.doCenterF();
+         </function>
+         <function id="doLeft">
+         	this.moveCursor("left");
+         </function>
+	      <function id="doPrevious">
+         	this.moveCursor("left");
+         </function>
+         <function id="doRight">
+         	this.moveCursor("right");
+         </function>
+         <function id="doNext">
+         	this.moveCursor("right");
+         </function>
+         <function id="doUp">
+         	this.moveCursor("up");
+         </function>
+         <function id="doDown">
+        		this.moveCursor("down");
+         </function>
+		 <function id="doRoot">	this.doRoot();</function>
+      </code>
+		
+	  <panel skin="sudokuGrid" left="71" top="185" width="464" height="464"/>
+      <label id="copynote" skin="copynote" left="71" width="464" top="640" height="40" align="center" text="V2.1+ (c) Mikhail Sharonov, 2008, www.msh-tools.com/ebook"/>
+      <label id="numRecords" skin="digits" left="10" right="0" top="90" height="60" align="center" text=""/>
+      <label id="sometext" skin="sometext" left="10" right="0" top="113" height="60" align="center" text="total puzzles"/>
+
+      <label id="numCurrent" skin="digits" left="100" right="0" top="90" height="60" align="left" text=""/>
+      <label id="sometext1" skin="sometext" left="70" right="0" top="113" height="60" align="left" text="current puzzle"/>
+
+		<group id="nonTouch" width="600" top="0" bottom="0">
+			<!--   2010.12.21 Mark Nord	each <group> needs at least one focusable sprite to process keyboard-input -->
+			<sprite skin="menuMenu1" id="menuMenu0"  left="40" width="150" top="45" height="40" active="false" canFocus="true"/>
+			<sprite skin="menuMenu3" id="menuMenu2"  left="420" width="150" top="45" height="40" active="false"/>
+			<sprite skin="menuMenu2" id="menuMenu1"  left="225" width="150" top="45" height="40" active="false"/>
+
+			<sprite skin="subMenul" id="subMenu0"  left="70" width="120" top="90" height="88" active="false" />
+			<sprite skin="subMenu2" id="subMenu1"  left="255" width="120" top="90" height="88" active="false" />
+			<sprite skin="subMenu3" id="subMenu2"  left="430" width="120" top="90" height="44" active="false" />
+
+			<label id="currentNum" skin="sometext" left="120" right="0" top="114" height="60" align="left" text=""/>
+			<sprite skin="menuCursor" id="menuCursor"  left="206" width="188" top="45" height="45" active="false"/>
+			<sprite skin="subCursor" id="subCursor"  left="70" width="22" top="90" height="22" active="false"/>
+		</group>
+
+		<group id="Touch" width="600" top="0" bottom="0">
+			<menuBar id="MENUBAR" alignment="left" left="3" width="600" top="3" height="40">
+				<menu title="GAME">
+					<item title="Random" do="doGameRandom" can="always"/>
+					<item title="Next"   do="doGameNext" can="always" />
+					<item title="Select" do="doGameSelect" can="always" />
+					<item title="Load"   do="doGameLoad" can="always" />
+					<item title="Save" do="doGameSave" can="always"/>
+				</menu>
+				<menu title="LEVEL" >
+					<item title="Simple" do="doSelectLevel" can="always"/>
+					<item title="Easy"   do="doSelectLevel" can="always"/>
+					<item title="Medium" do="doSelectLevel" can="always"/>
+					<item title="Hard"   do="doSelectLevel" can="always"/>
+				</menu>
+				<!--menu title="EXIT" >
+					<item title="Quit" do="doExitQuit" can="always"/>
+					<item title="Save" do="doGameSave" can="always"/>
+				</menu-->
+			</menuBar>
+
+			<sprite skin="allDigit" id="key0"  left= "33" width="44" top="45" height="44" u="10" v="3" active="true">
+				<behave like="sprite"/>
+			</sprite>
+			<sprite skin="allDigit" id="key1"  left="83" width="44" top="45" height="44" u="1" v="3" active="true">
+				<behave like="sprite"/>
+			</sprite>
+			<sprite skin="allDigit" id="key2"  left="133" width="44" top="45" height="44" u="2" v="3" active="true">
+				<behave like="sprite"/>
+			</sprite>
+			<sprite skin="allDigit" id="key3"  left="183" width="44" top="45" height="44" u="3" v="3" active="true">
+				<behave like="sprite"/>
+			</sprite>
+			<sprite skin="allDigit" id="key4"  left="233" width="44" top="45" height="44" u="4" v="3" active="true">
+				<behave like="sprite"/>
+			</sprite>
+			<sprite skin="allDigit" id="key5"  left="283" width="44" top="45" height="44" u="5" v="3" active="true">
+				<behave like="sprite"/>
+			</sprite>
+			<sprite skin="allDigit" id="key6"  left="333" width="44" top="45" height="44" u="6" v="3" active="true">
+				<behave like="sprite"/>
+			</sprite>
+			<sprite skin="allDigit" id="key7"  left="383" width="44" top="45" height="44" u="7" v="3" active="true">
+				<behave like="sprite"/>
+			</sprite>
+			<sprite skin="allDigit" id="key8"  left="433" width="44" top="45" height="44" u="8" v="3" active="true">
+				<behave like="sprite"/>
+			</sprite>
+			<sprite skin="allDigit" id="key9"  left="483" width="44" top="45" height="44" u="9" v="3" active="true">
+				<behave like="sprite"/>
+			</sprite>
+			<panel id="cNum" skin="mpanel" top="100" width="150" height="55">
+				<label id="cNum" skin="digits" left="15" top="10" width="100" height="31" text="123"/>
+				<sprite skin="Abort" id = "keyA" right="8" top="9" width="31" height="31">
+					<behave like="sprite"/>
+				</sprite>
+				<sprite skin="Ok" id = "keyO" right="39" top="9" width="31" height="31">
+					<behave like="sprite"/>
+				</sprite>
+			</panel>
+		</group>
+
+	<sprite skin="gridCursor" id="gridCursor"  left="81" width="44" top="195" height="44" u="0" active="false" canFocus="true"/>
+
+	<sprite skin="allDigit" id="Digit00"  left="81" width="44" top="195" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit01"  left="131" width="44" top="195" height="44" u="0" v="0" active="true" >
+	 <behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit02"  left="181" width="44" top="195" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit03"  left="231" width="44" top="195" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit04"  left="281" width="44" top="195" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit05"  left="331" width="44" top="195" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit06"  left="381" width="44" top="195" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit07"  left="431" width="44" top="195" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit08"  left="481" width="44" top="195" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit10"  left="81" width="44" top="246" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit11"  left="131" width="44" top="245" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit12"  left="181" width="44" top="245" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit13"  left="231" width="44" top="245" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit14"  left="281" width="44" top="245" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit15"  left="331" width="44" top="245" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit16"  left="381" width="44" top="245" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit17"  left="431" width="44" top="245" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit18"  left="481" width="44" top="245" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit20"  left="81" width="44" top="295" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit21"  left="131" width="44" top="295" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit22"  left="181" width="44" top="295" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit23"  left="231" width="44" top="295" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit24"  left="281" width="44" top="295" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit25"  left="331" width="44" top="295" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit26"  left="381" width="44" top="295" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit27"  left="431" width="44" top="295" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit28"  left="481" width="44" top="295" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit30"  left="81" width="44" top="345" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit31"  left="131" width="44" top="345" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit32"  left="181" width="44" top="345" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit33"  left="231" width="44" top="345" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit34"  left="281" width="44" top="345" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit35"  left="331" width="44" top="345" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit36"  left="381" width="44" top="345" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit37"  left="431" width="44" top="345" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit38"  left="481" width="44" top="345" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit40"  left="81" width="44" top="395" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit41"  left="131" width="44" top="395" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit42"  left="181" width="44" top="395" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit43"  left="231" width="44" top="395" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit44"  left="281" width="44" top="395" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit45"  left="331" width="44" top="395" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit46"  left="381" width="44" top="395" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit47"  left="431" width="44" top="395" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit48"  left="481" width="44" top="395" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit50"  left="81" width="44" top="445" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit51"  left="131" width="44" top="445" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit52"  left="181" width="44" top="445" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit53"  left="231" width="44" top="445" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit54"  left="281" width="44" top="445" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit55"  left="331" width="44" top="445" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit56"  left="381" width="44" top="445" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit57"  left="431" width="44" top="445" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit58"  left="481" width="44" top="445" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit60"  left="81" width="44" top="495" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit61"  left="131" width="44" top="495" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit62"  left="181" width="44" top="495" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit63"  left="231" width="44" top="495" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit64"  left="281" width="44" top="495" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit65"  left="331" width="44" top="495" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit66"  left="381" width="44" top="495" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit67"  left="431" width="44" top="495" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit68"  left="481" width="44" top="495" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit70"  left="81" width="44" top="545" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit71"  left="131" width="44" top="545" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit72"  left="181" width="44" top="545" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit73"  left="231" width="44" top="545" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit74"  left="281" width="44" top="545" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit75"  left="331" width="44" top="545" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit76"  left="381" width="44" top="545" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit77"  left="431" width="44" top="545" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit78"  left="481" width="44" top="545" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit80"  left="81" width="44" top="595" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit81"  left="131" width="44" top="595" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit82"  left="181" width="44" top="595" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit83"  left="231" width="44" top="595" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit84"  left="281" width="44" top="595" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit85"  left="331" width="44" top="595" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit86"  left="381" width="44" top="595" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit87"  left="431" width="44" top="595" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	<sprite skin="allDigit" id="Digit88"  left="481" width="44" top="595" height="44" u="0" v="0" active="true" >
+		<behave like="gridSprite"/>
+	</sprite>
+	
+	<button id="btn_Exit" left="0" top="-70" height="70" width="70" active="true" visible="false" do="doRoot"/>
+
+		<background skin="bckGround" id="bckGround" left="0" right="0" top="0" bottom="0"/>
+
+		<sprite id="cCon" skin="cCon" width="250" height="70" active="false" canFocus="false">
+			<animation id="cCon" duration="1" loop="true">
+				<frames>
+					<frame>
+						<setU u="0"/>
+					</frame>
+					<frame>
+						<setU u="1"/>
+					</frame>
+				</frames>
+			</animation>
+		</sprite>
+
+		<label id='touchButtons4'   skin='touchText'    left='285' right='0' bottom='5' height='10' align='left' text='Quit'/>
+
+		<!--label id="clock1" skin="gameclock" width="100" right="4" height="30" bottom="-30" align="right" text="       "/-->
+		<label id="clock2" skin="gameclock" width="600"  height="30" bottom="0" align="left" text=""/>
+
+    </group>
+
+</group>
+
+</document>

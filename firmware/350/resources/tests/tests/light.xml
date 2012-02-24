@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<model>
+		<variable id="LIGHT_ONOFF" value="0"/>
+		<variable id="TENS_DIGIT" value="0"/>
+		<variable id="UNIT_DIGIT" value="0"/>
+		<variable id="FOCUS" value="0"/>
+		<code>
+			<function id="initialized">
+				this.container.CHECK_LIGHT.focus(true)
+			</function>
+		</code>
+	</model>
+	<group id="CHECK_LIGHT" left="0" right="0" top="0" bottom="0">
+		<code>
+			<function id="doMenu">
+				this.bubble("finishTest")
+			</function>
+			<function id="doNext">
+				this.doRight()
+			</function>
+			<function id="doPrevious">
+				this.doLeft()
+			</function>
+			<function id="doOption">
+				this.doDown()
+			</function>
+			<function id="doSize">
+				this.doUp()
+			</function>
+			<function id="doLeft"><![CDATA[
+				var focus = this.getVariable("FOCUS")
+				focus--
+				if (focus >= 0)
+					this.setVariable("FOCUS", focus)
+			]]></function>
+			<function id="doRight"><![CDATA[
+				var focus = this.getVariable("FOCUS")
+				focus++
+				if (focus < 3)
+					this.setVariable("FOCUS", focus)
+			]]></function>
+			<function id="doDown"><![CDATA[
+				var variable, limit
+				var focus = Number(this.getVariable("FOCUS"))
+				switch (focus) {
+					case 0:
+						variable = "LIGHT_ONOFF"
+						limit = 1
+						break
+					case 1:
+						variable = "TENS_DIGIT"
+						limit = 9
+						break
+					case 2:
+						variable = "UNIT_DIGIT"
+						limit = 9
+						break
+				}
+				var value = Number(this.getVariable(variable))
+				value++
+				if (value <= limit)
+					this.setVariable(variable, value)
+			]]></function>
+			<function id="doUp"><![CDATA[
+				var variable, limit
+				var focus = Number(this.getVariable("FOCUS"))
+				switch (focus) {
+					case 0:
+						variable = "LIGHT_ONOFF"
+						limit = 0
+						break
+					case 1:
+						variable = "TENS_DIGIT"
+						limit = 0
+						break
+					case 2:
+						variable = "UNIT_DIGIT"
+						limit = 0
+						break
+				}
+				var value = Number(this.getVariable(variable))
+				value--
+				if (value >= limit)
+					this.setVariable(variable, value)
+			]]></function>
+		</code>
+		<sprite id="LIGHT" left="0" right="0" top="0" bottom="0">
+			<script on="variableChanged" params="id, value"><![CDATA[
+				switch (id) {
+					case "LIGHT_ONOFF":
+						var onoff = this.getVariable("LIGHT_ONOFF")
+						if (ebook && "setLightPower" in ebook)
+							ebook.setLightPower(onoff)
+						trace("Light: " + (onoff == "1" ? "ON" : "OFF") + "\n")
+						this.setVariable("LIGHTCHECK", "Done")
+						break
+					case "TENS_DIGIT":
+					case "UNIT_DIGIT":
+						var tens = this.getVariable("TENS_DIGIT")
+						var unit = this.getVariable("UNIT_DIGIT")
+						if (ebook && "setLightBrightness" in ebook)
+							ebook.setLightBrightness((tens * 10) + (unit * 1))
+						trace("Brightness: " + ((tens * 10) + (unit * 1)) + "\n")
+						this.setVariable("LIGHTCHECK", "Done")
+						break
+				} 
+			]]></script>
+			<behave like="background"/>
+		</sprite>
+
+		<sprite id="POWER" left="100" width="100" top="100" height="50" skin="labelSkin">
+			<behave like="label"/>
+			<property id="text" value="Power"/>
+		</sprite>
+		<sprite id="POWERFRAME" left="100" width="100" top="150" height="100">
+			<behave like="frame"/>
+			<property id="variable" value="FOCUS"/>
+			<property id="on" value="0"/>
+		</sprite>
+		<sprite id="OFF" left="100" width="100" top="150" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="OFF"/>
+			<property id="variable" value="LIGHT_ONOFF"/>
+			<property id="on" value="0"/>
+		</sprite>
+		<sprite id="ON" left="100" width="100" top="200" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="ON"/>
+			<property id="variable" value="LIGHT_ONOFF"/>
+			<property id="on" value="1"/>
+		</sprite>
+		
+		<sprite id="BRIGHTNESS" left="300" width="200" top="100" height="50" skin="labelSkin">
+			<behave like="label"/>
+			<property id="text" value="Brightness"/>
+		</sprite>
+		<sprite id="BRIGHTNESSFRAME" left="300" width="100" top="150" height="500">
+			<behave like="frame"/>
+			<property id="variable" value="FOCUS"/>
+			<property id="on" value="1"/>
+		</sprite>
+		<sprite id="00" left="300" width="100" top="150" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="0"/>
+			<property id="variable" value="TENS_DIGIT"/>
+			<property id="on" value="0"/>
+		</sprite>
+		<sprite id="10" left="300" width="100" top="200" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="1"/>
+			<property id="variable" value="TENS_DIGIT"/>
+			<property id="on" value="1"/>
+		</sprite>
+		<sprite id="20" left="300" width="100" top="250" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="2"/>
+			<property id="variable" value="TENS_DIGIT"/>
+			<property id="on" value="2"/>
+		</sprite>
+		<sprite id="30" left="300" width="100" top="300" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="3"/>
+			<property id="variable" value="TENS_DIGIT"/>
+			<property id="on" value="3"/>
+		</sprite>
+		<sprite id="40" left="300" width="100" top="350" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="4"/>
+			<property id="variable" value="TENS_DIGIT"/>
+			<property id="on" value="4"/>
+		</sprite>
+		<sprite id="50" left="300" width="100" top="400" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="5"/>
+			<property id="variable" value="TENS_DIGIT"/>
+			<property id="on" value="5"/>
+		</sprite>
+		<sprite id="60" left="300" width="100" top="450" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="6"/>
+			<property id="variable" value="TENS_DIGIT"/>
+			<property id="on" value="6"/>
+		</sprite>
+		<sprite id="70" left="300" width="100" top="500" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="7"/>
+			<property id="variable" value="TENS_DIGIT"/>
+			<property id="on" value="7"/>
+		</sprite>
+		<sprite id="80" left="300" width="100" top="550" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="8"/>
+			<property id="variable" value="TENS_DIGIT"/>
+			<property id="on" value="8"/>
+		</sprite>
+		<sprite id="90" left="300" width="100" top="600" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="9"/>
+			<property id="variable" value="TENS_DIGIT"/>
+			<property id="on" value="9"/>
+		</sprite>
+
+		<sprite id="BRIGHTNESSFRAME" left="405" width="100" top="150" height="500">
+			<behave like="frame"/>
+			<property id="variable" value="FOCUS"/>
+			<property id="on" value="2"/>
+		</sprite>
+		<sprite id="0" left="405" width="100" top="150" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="0"/>
+			<property id="variable" value="UNIT_DIGIT"/>
+			<property id="on" value="0"/>
+		</sprite>
+		<sprite id="1" left="405" width="100" top="200" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="1"/>
+			<property id="variable" value="UNIT_DIGIT"/>
+			<property id="on" value="1"/>
+		</sprite>
+		<sprite id="2" left="405" width="100" top="250" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="2"/>
+			<property id="variable" value="UNIT_DIGIT"/>
+			<property id="on" value="2"/>
+		</sprite>
+		<sprite id="3" left="405" width="100" top="300" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="3"/>
+			<property id="variable" value="UNIT_DIGIT"/>
+			<property id="on" value="3"/>
+		</sprite>
+		<sprite id="4" left="405" width="100" top="350" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="4"/>
+			<property id="variable" value="UNIT_DIGIT"/>
+			<property id="on" value="4"/>
+		</sprite>
+		<sprite id="5" left="405" width="100" top="400" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="5"/>
+			<property id="variable" value="UNIT_DIGIT"/>
+			<property id="on" value="5"/>
+		</sprite>
+		<sprite id="6" left="405" width="100" top="450" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="6"/>
+			<property id="variable" value="UNIT_DIGIT"/>
+			<property id="on" value="6"/>
+		</sprite>
+		<sprite id="7" left="405" width="100" top="500" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="7"/>
+			<property id="variable" value="UNIT_DIGIT"/>
+			<property id="on" value="7"/>
+		</sprite>
+		<sprite id="8" left="405" width="100" top="550" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="8"/>
+			<property id="variable" value="UNIT_DIGIT"/>
+			<property id="on" value="8"/>
+		</sprite>
+		<sprite id="9" left="405" width="100" top="600" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="9"/>
+			<property id="variable" value="UNIT_DIGIT"/>
+			<property id="on" value="9"/>
+		</sprite>
+	</group>
+</document>

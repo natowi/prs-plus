@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<group left="10" top="0" bottom="0" width="191">
+		<kbookIndicator		skin="applicationBigIcon"									top="52"	value="6"/><!--variable="LEFT_ITEM_KIND"/-->
+		<kbookLabel2Line	skin="title2lines" active="false"	left="6"	right="6"	top="157"	height="70" align="center" textresource="STR_NODE_TITLE_GOOGLE_BOOKS"/>
+		<kbookHotspot		do="doGoGLib"						left="0"	right="0"	top="0"		bottom="0"/>
+	</group>
+	<group left="205" top="0" bottom="0" width="191">
+		<kbookIndicator		skin="applicationBigIcon"									top="52"	value="0"/><!--variable="FOURTH_ITEM_KIND"-->
+		<kbookLabel2Line	skin="title2lines" active="false"	left="6"	right="6"	top="157"	height="70" align="center" variable="FOURTH_ITEM_NAME"/>
+		<kbookHotspot		do="doGoToOpenBrowser"				left="0"	right="0"	top="0"		bottom="0" />
+	</group>
+	<group left="398" top="0" bottom="0" width="191">
+		<kbookIndicator		skin="applicationBigIcon"									top="52" value="7"/><!--variable="RIGHT_ITEM_KIND"/-->
+		<kbookLabel2Line	skin="title2lines" active="false"	left="6"	right="6"	top="157"	height="70" align="center" textresource="STR_NODE_TITLE_PURCHASED" />
+		<!--kbookLabel2Style	skin="titleComment"				left="6"	right="6" 	top="157"	height="28" active="false"	align="center" textresource="STR_NODE_TITLE_PURCHASED" splitStr=" " splitWidth="6"/-->
+		<kbookHotspot		do="doGoToPurchasedContents"		left="0"	right="0"	top="0"		bottom="0" />
+	</group>
+</document>

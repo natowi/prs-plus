@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+######################################################
+ !!! Attension !!!
+ Please Check Product side !!
+	Please see wiki.
+######################################################
+-->
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<skin id="antennaProgress" 
+				cutouts="null"/>
+		<skin id="Network3GCheckBox" 
+				cutouts="null"/>
+		<skin id="sslIndicator" 
+				cutouts="null"/>
+		<skin id="downloadProgress" 
+				cutouts="null"/>
+
+		<skin id="ap_protect"
+			cutouts="null"/>
+		<skin id="ap_signal"
+			cutouts="null"/>
+		
+		<skin id="wifiSettingButton"
+				 cutouts="null"/>
+
+		<texture href="kBookIcon.png">
+			<cutout id="kBookVIcon-a" x="0" y="0" width="70" height="70"/>
+			<cutout id="kBookHIcon-a" x="0" y="10" width="70" height="50" lines="70"/>
+			<cutout id="play-a" x="910" y="70" width="70" height="70" lines="0"/>
+			<cutout id="soft-reset-a" x="1820" y="70" width="70" height="70" lines="0"/>
+			<cutout id="hard-reset-a" x="1820" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-flash-a" x="2030" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-internal-a" x="3780" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-ms-a" x="3850" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-sd-a" x="3920" y="70" width="70" height="70" lines="0"/>
+			<cutout id="delete-book-a" x="3010" y="70" width="70" height="70" lines="0"/>
+			<cutout id="device-shutdown-a" x="2170" y="70" width="70" height="70" lines="0"/>
+			<cutout id="kBookNavIcon-a" x="0" y="210" width="30" height="30"/>
+			<cutout id="delete-historical-words-a" x="2800" y="70" width="70" height="70" lines="0"/>
+			<cutout id="display-calibration-a" x="2870" y="70" width="70" height="70" lines="0"/>
+			<cutout id="demo-mode-a" x="0" y="70" width="70" height="70" lines="0"/>
+			<cutout id="kBookVIconForListThumbnail" x="4" y="4" width="62" height="62"/>
+		</texture>
+
+		<texture href="options_items.png">
+			<cutout id="optItem-l" x= "0" y="0" width="67" height="58" columns="100"/>
+			<cutout id="optItem-c" x="67" y="0" width="10" height="58" columns="100"/>
+			<cutout id="optItem-r" x="77" y="0" width="22" height="58" columns="100"/>
+			
+			<!-- Optin change -->
+			<cutout id="dicMenuPrev-c" x= "67"  y= "0"  width="10" height="58"/>
+			<cutout id="dicMenuNext-c" x= "67"  y= "0"  width="10" height="58"/>
+			// temporary. multi delete
+			<cutout id="trash-a"			x="503" y= "0" width="55" height="58"/>
+		</texture>
+
+		<!-- tab bar -->
+		<texture href="kBookTab.png">
+			<cutout id="tab-l" x="0" y="0" width="30" height="75" columns="0"/>
+			<cutout id="tab-c" x="30" y="0" width="90" height="75" columns="0"/>
+			<cutout id="tab-r" x="120" y="0" width="29" height="75" columns="0"/>
+			<cutout id="tab" x="0" y="0" width="149" height="75" columns="0"/>
+			<cutout id="tab-l_h" x="301" y="0" width="75" height="60" lines="142" columns="0"/>
+			<cutout id="tab-c_h" x="301" y="30" width="75" height="90" lines="142" columns="0"/>
+			<cutout id="tab-r_h" x="301" y="120" width="75" height="22" lines="142" columns="0"/>
+			<cutout id="tab_h" x="301" y="0" width="75" height="142" lines="142" columns="0"/>
+			<cutout id="tabIcon" x="453" y="0" width="44" height="44"/>
+		</texture>
+
+		<texture href="kbookButtons.png">
+			<cutout id="icon_callPedia"	x="36" y="0" width="34" height="30"/>
+		</texture>
+
+		<texture href="kBookLogos.png">
+			<cutout id="kBookLogos-a" x="0" y="0" width="210" height="70"/>
+		</texture>
+
+		<texture href="defaultNotepadThumbnail.png">
+			<cutout id="defaultNotepadThumbnail"/>
+		</texture>
+
+		<texture href="defaultNotepadThumbnailDisable.png">
+			<cutout id="defaultNotepadThumbnail_disable"/>
+		</texture>
+
+		<texture href="kbookZoom.png">
+			<cutout id="pageStyle_normal"		x=   "0" y="0" width="144" height="144"/>
+			<cutout id="pageStyle_marginRemove"	x= "144" y="0" width="144" height="144"/>
+			<cutout id="pageStyle_splitPage2x2"	x= "288" y="0" width="144" height="144"/>
+			<cutout id="pageStyle_splitPage3x2"	x= "432" y="0" width="144" height="144"/>
+			<cutout id="pageStyle_fitPage"		x= "576" y="0" width="144" height="144"/>
+			<cutout id="pageStyle_2PageView"	x= "720" y="0" width="144" height="144"/>
+			<cutout id="splitPageIndicator-a" 	x="864" y="226" width="38" height="30"/>
+			<cutout id="zoomOrientationBtn"		x= "864" y="0" width= "80" height="42"/>
+			<cutout id="zoomFitHeightBtn"		x= "944" y="0" width= "80" height="42"/>
+			<cutout id="zoomFitWidthBtn"		x="1024" y="0" width= "80" height="42"/>
+			<cutout id="zoomLockBtn-l"			x="1104" y="0" width= "42" height="42"/>
+			<cutout id="zoomLockBtn-c"			x="1146" y="0" width= "30" height="42"/>
+			<cutout id="zoomLockBtn-r"			x="1176" y="0" width=  "8" height="42"/>
+			<cutout id="zoomUnlockBtn-l"		x="1184" y="0" width= "42" height="42"/>
+			<cutout id="zoomUnlockBtn-c"		x="1226" y="0" width= "30" height="42"/>
+			<cutout id="zoomUnlockBtn-r"		x="1256" y="0" width=  "8" height="42"/>
+
+			<cutout id="zoomIndicator-lt"		x="864" y="200" width= "2" height= "2"/>
+			<cutout id="zoomIndicator-ct"		x="866" y="200" width="22" height= "2"/>
+			<cutout id="zoomIndicator-rt"		x="888" y="200" width= "2" height= "2"/>
+			<cutout id="zoomIndicator-lm"		x="864" y="202" width= "2" height="22"/>
+			<cutout id="zoomIndicator-cm"		x="866" y="202" width="22" height="22"/>
+			<cutout id="zoomIndicator-rm"		x="888" y="202" width= "2" height="22"/>
+			<cutout id="zoomIndicator-lb"		x="864" y="224" width= "2" height= "2"/>
+			<cutout id="zoomIndicator-cb"		x="866" y="224" width="22" height= "2"/>
+			<cutout id="zoomIndicator-rb"		x="888" y="224" width= "2" height= "2"/>
+		</texture>
+
+		<skin id="multipage-text-dialog"
+				cutouts="dialog-lt,dialog-ct,dialog-rt,dialog-lc,dialog-cc,dialog-rc,dialog-lb,dialog-cb,dialog-rb" 
+				styles="kbookMultiDialogMessage,kbookMultiDialogMessage,kbookMultiDialogMessage,kbookMultiDialogMessage"/>
+
+	</assets>
+</document>

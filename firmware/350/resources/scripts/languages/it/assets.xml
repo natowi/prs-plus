@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="Continuare la lettura" />
+		<string id="STR_NODE_TITLE_TOC" value="Indice" />
+		<string id="STR_NODE_TITLE_INFO" value="Info" />
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="Eliminare Libro" />
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="Collezioni" />
+		<string id="STR_NODE_TITLE_AUDIO" value="Audio" />
+		<string id="STR_NODE_TITLE_PICTURE" value="Immagini" />
+		<string id="STR_NODE_TITLE_SETTINGS" value="Impostazioni" />
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="Data e Ora" />
+		<string id="STR_NODE_TITLE_YEAR" value="Anno" />
+		<string id="STR_NODE_TITLE_MONTH" value="Mese" />
+		<string id="STR_NODE_TITLE_DATE" value="Giorno" />
+		<string id="STR_NODE_TITLE_HOUR" value="Ore" />
+		<string id="STR_NODE_TITLE_MINUTE" value="Minuti" />
+		<string id="STR_UI_BUTTON_AM" value="a.m." />
+		<string id="STR_UI_BUTTON_PM" value="p.m." />
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="Blocco del dispositivo" />
+		<string id="STR_NODE_TITLE_ENTERCODE" value="Immettere il codice" />
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="Presentazione" />
+		<string id="STR_NODE_TITLE_TURN" value="Attivare" />
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="Durata vis. immag." />
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="Spegnimento del dispositivo" />
+		<string id="STR_NODE_TITLE_ABOUT" value="A proposito di" />
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="Ripristino default" />
+		<string id="STR_NODE_TITLE_CODE" value="Codice di accesso" />
+		<string id="#STR_NODE_TITLE_AUTORUN" value="autoRun" />
+		<string id="#STR_NODE_TITLE_HARDRESET" value="hardReset" />
+		<string id="STR_COUNTER_BOOKMARK_N" value=" segnalibri" />
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 segnalibro" />
+		<string id="STR_COUNTER_BOOKMARK_0" value="Nessun segnalibro" />
+		<string id="STR_COUNTER_ITEM_N" value=" elementi" />
+		<string id="STR_COUNTER_ITEM_1" value="1 elemento" />
+		<string id="STR_COUNTER_ITEM_0" value="Nessun elemento" />
+		<string id="STR_COUNTER_BOOK_N" value=" libri" />
+		<string id="STR_COUNTER_BOOK_1" value="1 libro" />
+		<string id="STR_COUNTER_BOOK_0" value="Nessun libro" />
+		<string id="STR_COUNTER_COLLECTION_N" value=" collezioni" />
+		<string id="STR_COUNTER_COLLECTION_1" value="1 collezione" />
+		<string id="STR_COUNTER_COLLECTION_0" value="Nessuna collezione" />
+		<string id="STR_COUNTER_SONG_N" value=" canzoni" />
+		<string id="STR_COUNTER_SONG_1" value="1 canzone" />
+		<string id="STR_COUNTER_SONG_0" value="Nessuna canzone" />
+		<string id="STR_COUNTER_PICTURE_N" value=" immagini" />
+		<string id="STR_COUNTER_PICTURE_1" value="1 immagine" />
+		<string id="STR_COUNTER_PICTURE_0" value="Nessuna immagine" />
+		<string id="STR_COUNTER_SETTING_N" value=" impostazioni" />
+		<string id="STR_COUNTER_SETTING_1" value="1 impostazione" />
+		<string id="STR_COUNTER_SETTING_0" value="0 impostazioni" />
+		<string id="STR_UI_BUTTON_OK" value="OK" />
+		<string id="STR_UI_BUTTON_On" value="Attiv." />
+		<string id="STR_UI_BUTTON_Off" value="Disattiv." />
+		<string id="STR_UI_BUTTON_ABLE" value="Sì" />
+		<string id="STR_UI_BUTTON_DISABLE" value="No" />
+		<string id="STR_UI_UNITNAME_SECONDS" value="secondi" />
+		<string id="STR_UI_UNITNAME_SIZEKB" value="KB" />
+		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
+		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
+		<string id="STR_UI_PARTS_PART" value="Parte" />
+		<string id="STR_UI_PARTS_DIVIDER" value=" -" />
+		<string id="STR_UI_PARTS_PAGE" value="Pagina" />
+		<string id="STR_UI_PARTS_OF" value=" di " />
+		<string id="STR_UI_PARTS_TOC_UNKNOWN" value="?" />
+		<string id="STR_UI_PARTS_VERSION" value="Versione" />
+		<string id="STR_UI_PARTS_DEVICE" value="Dispositivo" />
+		<string id="STR_UI_GOTOPAGE" value="PAGINA" />
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="Pagina non valida!" />
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="Protetto da Gestione dei diritti digitali" />
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="Errore pagina!" />
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="Formato non valido!" />
+		<string id="STR_UI_MESSAGE_FORMATTING" value="Caricamento in corso..." />
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="Limitato" />
+		<string id="STR_UI_MESSAGE_DRMFULL" value="Completo, consultabile" />
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="Scheda di memoria" />
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="Scaduto" />
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="Oggi" />
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="Spegnimento in corso..." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="Questo dispositivo non è ancora autorizzato per contenuti DRM Adobe." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZED_READ" value="Questo dispositivo è autorizzato per la lettura di contenuti DRM Adobe." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZED_PURCHASE" value="Questo dispositivo è autorizzato per la lettura e l'acquisto di contenuti DRM Adobe." />
+		<string id="STR_UI_MESSAGE_HARDRESET" value="Azzerare tutto" />
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="Desidera ELIMINARE tutto il contenuto, ripristinare tutte le impostazioni di fabbrica e cancellare lo stato di autorizzazione DRM?&#xA;&#xA;Sì - Premere il pulsante &quot;OPTIONS&quot;.&#xA;No - Premere il pulsante &quot;HOME&quot;." />
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="Batteria debole!" />
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="Batteria scarica!" />
+		<string id="STR_UI_MESSAGE_LOADING" value="Caricamento in corso..." />
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 di 1" />
+		<string id="STR_UI_FORMAT_RTF" value="Rich Text Format" />
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF" />
+		<string id="STR_UI_FORMAT_EPUB" value="Documento EPUB" />
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB Book" />
+		<string id="STR_UI_FORMAT_TXT" value="Testo semplice" />
+		<string id="STR_UI_MESSAGE_USBDONOT" value="Non scollegare" />
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="USB collegato" />
+		<string id="STR_UI_MESSAGE_LOCKED" value="Dispositivo bloccato" />
+		<string id="STR_UI_MESSAGE_CHARGING" value="Carica batteria in corso" />
+		<string id="STR_UI_MESSAGE_CHARGING_COMPLETE" value="Carica terminata" />
+		<string id="STR_UI_MESSAGE_CHARGING_NOT_CHARGING" value="Carica interrotta" />
+		<string id="STR_UI_USB_MODE_GUIDE_CHECK_CONNECTION" value="Il Reader non è in grado di caricare perché non è stata individuata alcuna fonte di alimentazione. Controllare che il caricatore sia collegato all'alimentazione e che sia acceso o che il cavo USB sia collegato correttamente." />
+		<string id="STR_UI_USB_MODE_GUIDE_TOO_HOT_COLD" value="Il Reader è attualmente sottoposto a condizioni di temperatura eccessive non è in grado di caricare. Riportare il Reader ad una temperatura ambiente normale e riprovare." />
+		<string id="STR_UI_USB_MODE_GUIDE_BROKEN_BAT" value="La batteria ricaricabile richiede assistenza. Rivolgersi al supporto clienti." />
+		<string id="STR_UI_USB_MODE_GUIDE_OTHER_ERRORS" value="Il Reader ha bisogno di essere azzerato. Per fare ciò, inserire uno spillo nel foro Reset e quindi spostare e rilasciare l'interruttore di alimentazione. Se si continua a vedere questo messaggio sullo schermo, rivolgersi al supporto clienti." />
+		<string id="STR_UI_USB_MODE_GUIDE" value="Consultare la Guida dell'utilizzatore." />
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,„,‘,’,“,”" />
+		<string id="STR_SORT_IGNOREARTICLES" value="un, uno, una, un', il, lo, la, l', i, gli, le" />
+		<string id="infoTitles" value="Copertina, Titolo, Titolo, Data pubb., Autore, Editore, Categoria, ID e-Book, Tipo, Data, Dimensioni, Ubicazione, Percorso, Diritti digitali, Data di scadenza" />
+		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Lingua del menu" />
+		<string id="STR_UI_LANG" value="Lingua" />
+		<string id="STR_UI_LANG_EN" value="English" />
+		<string id="STR_UI_LANG_FR" value="Français" />
+		<string id="STR_UI_LANG_DE" value="Deutsch" />
+		<string id="STR_UI_LANG_NL" value="Nederlands" />
+		<string id="STR_UI_LANG_ES" value="Español" />
+		<string id="STR_UI_LANG_PT" value="Português" />
+		<string id="STR_UI_LANG_IT" value="Italiano" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="Scegliere la lingua preferita e selezionare &quot;OK&quot;.&#xA;Nota:  Le impostazioni del dispositivo possono essere modificate in seguito dal menu &quot;Impostazioni&quot;." />
+		<string id="STR_UI_PARTS_DELIMITER" value="/" />
+		<string id="STR_UI_MESSAGE_DEMOMODE" value="(Modalità Demo)" />
+		<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value="Salvaschermo Demo" />
+		<string id="STR_NODE_TITLE_OPTIONS" value="Opzioni" />
+		<string id="STR_DEMO_TITLE" value="MODALITÀ DEMO" />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="Titolo: &quot;XXTITLEXX&quot;" />
+		<string id="STR_UI_DATE" value="Data" />
+		<string id="STR_UI_TIME" value="Ora" />
+		<string id="STR_UI_BUTTON_12HR" value="12 ore" />
+		<string id="STR_UI_BUTTON_24HR" value="24 ore" />
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / " />
+		<string id="STR_UI_MESSAGE_NOBOOK" value="Nessun libro" />
+		<string id="STR_NODE_TITLE_BOOK" value="Libri" />
+		<string id="STR_NODE_TITLE_SORTEDBYTITLE" value="per Titolo" />
+		<string id="STR_NODE_TITLE_SORTEDBYAUTHOR" value="per Autore" />
+		<string id="STR_NODE_TITLE_SORTEDBYDATE" value="per Data" />
+		<string id="STR_NODE_TITLE_SORTEDBYORDER" value="per Ordine Agg." />
+		<string id="STR_NODE_TITLE_ALLNOTES" value="Tutte le note" />
+		<string id="STR_NODE_TITLE_SORTEDBYCOMMENT" value="per Commento" />
+		<string id="STR_NODE_TITLE_SORTEDBYTYPE" value="per Tipo" />
+		<string id="STR_NODE_TITLE_SORTEDBYARTIST" value="per Artista" />
+		<string id="STR_NODE_TITLE_NEXTPAGE" value="Pagina successiva" />
+		<string id="STR_NODE_TITLE_PAGETURNGESTURE" value="Preferenza Cambio pagina" />
+		<string id="STR_NODE_TITLE_ADVANCEDSETTINGS" value="Impostazioni avanzate" />
+		<string id="STR_NODE_TITLE_TOUCHPANEL" value="Tarare lo schermo a sfioramento" />
+		<string id="STR_NODE_TITLE_CLEARKEYBOARDHISTORY" value="Cancellare la cronologia tastiera" />
+		<string id="STR_NODE_TITLE_SEARCHRESULTS" value="Risultati ricerca" />
+		<string id="STR_COUNTER_NOTES_N" value=" note" />
+		<string id="STR_COUNTER_NOTE_1" value="1 nota" />
+		<string id="STR_COUNTER_NOTE_0" value="Nessuna nota" />
+		<string id="STR_NODE_TITLE_SORTEDBYPAGE" value="per Pagina" />
+		<string id="STR_NODE_TITLE_POWERMANAGEMENT" value="Gestione dell'alimentazione" />
+		<string id="STR_UI_MENU_SORT" value="Ordinare" />
+		<string id="STR_UI_MENU_BYORDER" value="per Ordine Agg." />
+		<string id="STR_UI_MENU_BYTITLE" value="per Titolo" />
+		<string id="STR_UI_MENU_BYAUTHOR" value="per Autore" />
+		<string id="STR_UI_MENU_BYDATE" value="per Data" />
+		<string id="STR_UI_MENU_VIEW" value="Visualizzazione" />
+		<string id="STR_UI_MENU_LIST" value="Lista" />
+		<string id="STR_UI_MENU_THUMBNAIL" value="Miniatura" />
+		<string id="STR_UI_MENU_NOWPLAYING" value="Lettura in corso" />
+		<string id="STR_UI_MENU_RESUMELISTENING" value="Riprendere la Lettura" />
+		<string id="STR_NODE_TITLE_SORTEDBYTRACK" value="per Traccia" />
+		<string id="STR_UI_MENU_ORIENTATION" value="Orientamento" />
+		<string id="STR_UI_MENU_SEARCHTITLE" value="Ricerca" />
+		<string id="STR_UI_MENU_CLOSETHISBOOK" value="Ritornare alla Lista" />
+		<string id="STR_UI_MENU_GOTOPAGE" value="Andare alla Pagina" />
+		<string id="STR_UI_MENU_CREATEEDITNOTES" value="Creare/Modificare Note" />
+		<string id="STR_UI_MENU_SHOWNOTES" value="Visualizzare Note" />
+		<string id="STR_UI_MENU_HIDENOTES" value="Nascondere Note" />
+		<string id="STR_UI_MENU_TABLEOFCONTENTS" value="Indice" />
+		<string id="STR_UI_MENU_BOOKINFO" value="Info" />
+		<string id="STR_UI_MENU_DELETEBOOK" value="Eliminare Libro" />
+		<string id="STR_UI_MENU_SEARCHAKEYWORD" value="Ricerca" />
+		<string id="STR_UI_MENU_HISTORYJUMP" value="Cronologia" />
+		<string id="STR_UI_MENU_CLOSETHISMUSIC" value="Ritornare alla Lista" />
+		<string id="STR_UI_MENU_NOTES" value="Note" />
+		<string id="STR_UI_MENU_DICTIONARY_LOOK_UP_HISTORY" value="Registri parole: Libro" />
+		<string id="STR_UI_MENU_OFF" value="Disattivato" />
+		<string id="STR_UI_MENU_SONG_1" value="Una canzone" />
+		<string id="STR_UI_MENU_SONG_ALL" value="Tutte le canzoni" />
+		<string id="STR_UI_MENU_SHUFFLEON" value="Lettura casuale attivata" />
+		<string id="STR_UI_MENU_SHUFFLEOFF" value="Lettura casuale disattivata" />
+		<string id="STR_UI_MENU_CONTINUEREADING" value="Continuare la lettura" />
+		<string id="STR_UI_MENU_CLOSETHISPICTURE" value="Ritornare alla Lista" />
+		<string id="STR_UI_MENU_SLIDESHOWOFF" value="Presentazione disattiva" />
+		<string id="STR_UI_MENU_SLIDESHOWON" value="Presentazione attiva" />
+		<string id="STR_UI_MENU_BYARTIST" value="per Artista" />
+		<string id="STR_UI_MENU_BYPAGE" value="per Pagina" />
+		<string id="STR_UI_MENU_BYTYPE" value="per Tipo" />
+		<string id="STR_UI_MENU_BYCOMMENT" value="per Commento" />
+		<string id="STR_UI_MENU_DELETENOTES" value="Eliminare Note" />
+		<string id="STR_UI_MESSAGE_RESET" value="Si è sicuri di voler ripristinare le impostazioni di default?" />
+		<string id="STR_UI_MESSAGE_FORMATINTERNALMEMORY" value="Formattare la memoria interna" />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE" value="Si è sicuri di voler formattare la memoria interna?&#xA;Attenzione: Tutto il contenuto e tutte le note verranno eliminati." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_MS" value="Si è sicuri di voler formattare il Memory Stick™ la scheda?&#xA;Attenzione: Tutto il contenuto e tutte le note verranno eliminati." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_SD" value="Si è sicuri di voler formattare la scheda SD?&#xA;Attenzione: Tutto il contenuto e tutte le note verranno eliminati." />
+		<string id="STR_UI_MESSAGE_DELETEBOOK" value="Si è sicuri di voler eliminare questo libro?" />
+		<string id="STR_UI_MESSAGE_DELETEBOOKERR" value="Impossibile eliminare il libro. Toccare &quot;OK&quot; per ritornare alla lista dei libri." />
+		<string id="STR_UI_MESSAGE_DELETEHISTORICAL" value="Si è sicuri di voler cancellare la cronologia tastiera?" />
+		<string id="STR_UI_MESSAGE_DEVICE_SHUTDOWN" value="Si è sicuri di voler spegnere completamente il dispositivo?" />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONSTART" value="Toccare &quot;Sì&quot; per avviare la taratura dello schermo a sfioramento." />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONEND" value="Taratura dello schermo a sfioramento terminata." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_1" value="Questa impostazione non è disponibile nella modalità demo." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_2" value="Questa funzione non è disponibile nella modalità demo." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_START" value="Servendosi dello stilo, toccare il centro del target." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_ERR" value="Errore di taratura individuato. Riavviare il processo di taratura." />
+		<string id="STR_UI_BUTTON_YES" value="Sì" />
+		<string id="STR_UI_BUTTON_NO" value="No" />
+		<string id="STR_UI_BUTTON_ZOOMIN" value="Zoom avanti" />
+		<string id="STR_UI_BUTTON_PAGE_STYLE" value="Modalità Pagina" />
+		<string id="STR_UI_BUTTON_SEARCH" value="Ricerca" />
+		<string id="STR_UI_BUTTON_DONE" value="Fatto" />
+		<string id="STR_UI_BUTTON_GO" value="Andare a" />
+		<string id="STR_UI_BUTTON_ENTERPAGE" value="Immett. N. pagina" />
+		<string id="STR_UI_BUTTON_NEW" value="Nuovo" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING" value="Dizionario" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING_l" value="dizionario" />
+		<string id="STR_DICTIONARY_US" value="New Oxford American Dictionary" />
+		<string id="STR_DICTIONARY_BRITISH" value="Oxford Dictionary of English" />
+		<string id="STR_DICTIONARY_EN_TO_FR" value="Oxford-Hachette French Dictionary (EN-FR)" />
+		<string id="STR_DICTIONARY_FR_TO_EN" value="Oxford-Hachette French Dictionary (FR-EN)" />
+		<string id="STR_DICTIONARY_EN_TO_GM" value="Collins English-German Dictionary" />
+		<string id="STR_DICTIONARY_GM_TO_EN" value="Collins German-English Dictionary" />
+		<string id="STR_DICTIONARY_EN_TO_SP" value="Oxford Spanish Dictionary (EN-ES)" />
+		<string id="STR_DICTIONARY_SP_TO_EN" value="Oxford Spanish Dictionary (ES-EN)" />
+		<string id="STR_DICTIONARY_EN_TO_IT" value="Collins English-Italian Dictionary" />
+		<string id="STR_DICTIONARY_IT_TO_EN" value="Collins Italian-English Dictionary" />
+		<string id="STR_DICTIONARY_EN_TO_DT" value="Van Dale Pocketwoordenboek Engels-Nederlands" />
+		<string id="STR_DICTIONARY_DT_TO_EN" value="Van Dale Pocketwoordenboek Nederlands-Engels" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_DICTIONARY" value="Scegliere il dizionario di default preferito e selezionare &quot;OK&quot;.&#xA;Nota:  Le impostazioni del dispositivo possono essere modificate in seguito dal menu &quot;Impostazioni&quot;." />
+		<string id="STR_DICTIONARY_NO" value="Nessuno" />
+		<string id="STR_NODE_TITLE_DATEANDTIMEFORMAT_SETTING" value="Formato data e ora" />
+		<string id="STR_UI_PARTS_MONTH" value="M" />
+		<string id="STR_UI_PARTS_DAY" value="G" />
+		<string id="STR_UI_PARTS_YEAR" value="A" />
+		<string id="STR_UI_PARTS_HOUR" value="ore" />
+		<string id="STR_UI_MESSAGE_RESTARTING" value="Riavvio in corso..." />
+		<string id="STR_UI_NODE_TITLE_KEYBOARD" value="Tastiera" />
+		<string id="STR_UI_KEYBOARD_US" value="Stati Uniti" />
+		<string id="STR_UI_KEYBOARD_UK" value="Regno Unito" />
+		<string id="STR_UI_KEYBOARD_FRENCH" value="Francese" />
+		<string id="STR_UI_KEYBOARD_GERMAN" value="Tedesco" />
+		<string id="STR_UI_KEYBOARD_NETHERLANDS" value="Olandese" />
+		<string id="STR_UI_KEYBOARD_CANADIAN_FRENCH" value="Francese canadese" />
+		<string id="STR_UI_KEYBOARD_SPANISH" value="Spagnolo" />
+		<string id="STR_UI_KEYBOARD_ITALIAN" value="Italiano" />
+		<string id="STR_UI_KEYBOARD_PORTUGUESE" value="Portoghese" />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP1" value="Questa pagina non può essere visualizzata." />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_CANNOT_EDIT" value="Questo disegno non può essere modificato." />
+		<string id="DIALOGMSG_INFORM_SCR_CANNOT_EDIT" value="Questo appunto non può essere modificato." />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_FREEHAND" value="Nuovo Disegno" />
+		<string id="STR_UI_MENU_NEW_DRAWING" value="Nuovo Disegno" />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_TEXT" value="Nuovo Appunto" />
+		<string id="STR_UI_MENU_NEW_MEMO" value="Nuovo Appunto" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYFREEHAND" value="per Disegno" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYTEXT" value="per Tastiera" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_MS" value="Formattare il Memory Stick™" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_SD" value="Formattare la scheda SD" />
+		<string id="STR_NODE_TITLE_FORMATDEVICE" value="Formattare la memoria" />
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="Memoria interna" />
+		<string id="STR_UI_MESSAGE_LOCATION_MS" value="Memory Stick™" />
+		<string id="STR_UI_MESSAGE_LOCATION_SD" value="Scheda SD" />
+		<string id="STR_UI_FORMAT_INTERNAL_MEMORY" value="Form. memoria int. in corso..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_MS" value="Form. Memory Stick™in corso…" />
+		<string id="STR_UI_FORMAT_EXTERNAL_SD" value="Form. scheda SD in corso…" />
+		<string id="STR_WARNING_FORMAT_1" value="Formattazione in corso..." />
+		<string id="STR_WARNING_FORMAT_2_MS" value="Non rimuovere la Memory Stick™ la scheda." />
+		<string id="STR_WARNING_FORMAT_2_SD" value="Non rimuovere la scheda SD." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_1" value="Si è sicuri di voler eliminare il segnalibro?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_2" value="Nota: Questa pagina contiene un segnalibro in più di una dimensione di testo. Tutti i segnalibri in questa pagina verranno rimossi se si prosegue." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_1" value="Si è sicuri di voler eliminare il segnalibro?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_2" value="Nota: Questa pagina contiene un segnalibro con una nota in più di una dimensione di testo. Tutti i segnalibri e le note in questa pagina verranno rimossi se si prosegue." />
+		<string id="STR_FORMAT_NO_MEMORY" value="Nessuna scheda di memoria inserita." />
+		<string id="STR_FORMAT_WRITE_PROTECTED" value="Scheda di memoria protetta da scrittura" />
+		<string id="STR_FORMAT_NON_STANDARD" value="Scheda di memoria non supportata" />
+		<string id="STR_NODE_TITLE_NOTEPAD_FREEHAND" value="Scrittura a mano" />
+		<string id="STR_NODE_TITLE_NOTEPAD_TEXT" value="Appunti" />
+		<string id="STR_NODE_TITLE_SORTEDBYCREATEDDATE" value="per Data di creazione" />
+		<string id="STR_NODE_TITLE_MORE" value="" />
+		<string id="STR_NODE_TITLE_MORE_FULL" value="" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK1" value="Si è sicuri di voler eliminare il segnalibro con una nota?" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT1" value="Si è sicuri di voler eliminare l'evidenziatura con una nota?" />
+		<string id="DIALOGMSG_INFORM_NOHITS" value="Nessuna corrispondenza trovata" />
+		<string id="DIALOGMSG_INFORM_NOMOREHITS" value="Corrispondenza non trovata" />
+		<string id="DIALOGMSG_CONFIRM_BACKWARDSEARCH" value="Desidera continuare a cercare dalla fine del contenuto?" />
+		<string id="DIALOGMSG_CONFIRM_FORWARDSEARCH" value="Desidera continuare a cercare dall'inizio del contenuto?" />
+		<string id="STR_MSG_SEARCHING" value="Ricerca in corso..." />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK1" value="Si è sicuri di voler eliminare il segnalibro con una nota?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT1" value="Si è sicuri di voler eliminare l'evidenziatura con una nota?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_EDIT_QUIT" value="I cambiamenti non verranno salvati. Continua comunque?" />
+		<string id="DIALOGMSG_CONFIRM_SCR_EDIT_QUIT" value="I cambiamenti non verranno salvati. Continua comunque?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES1" value="Tutte le note saranno rimosse." />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES2" value="Si è sicuri di voler eliminare?" />
+		<string id="KBOOK_UI_MYNOTE" value="Note" />
+		<string id="STR_UI_KEYBOARD_SYMBOL" value="Simboli" />
+		<string id="STR_UI_KEYBOARD_SPACE" value="Spazio" />
+		<string id="STR_UI_KEYBOARD_ABC" value="Abc" />
+		<string id="STR_UI_KEYBOARD_RETURN" value="Indietro" />
+		<string id="STR_UI_COMMENTVIEWER_EDIT" value="Modificare" />
+		<string id="STR_UI_COMMENTVIEWER_DELETE" value="Eliminare" />
+		<string id="STR_UI_AUDIO_REPEAT" value="Ripetere" />
+		<string id="STR_NODE_TITLE_HOMEPERSONALIZATION" value="" />
+		<string id="STR_UI_PARTS_LEFT" value="" />
+		<string id="STR_UI_PARTS_RIGHT" value="" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_FREEHAND" value="Eliminare Disegno" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_TEXT" value="Eliminare Appunto" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND1" value="Si è sicuri di voler eliminare questo disegno?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT1" value="Si è sicuri di voler eliminare questo appunto?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT1" value="I cambiamenti non verranno salvati. Continua comunque?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT1" value="I cambiamenti non verranno salvati. Continua comunque?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT1" value="I cambiamenti non verranno salvati. Continua comunque?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT1" value="I cambiamenti non verranno salvati. Continua comunque?" />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_RESULT" value="Nessuna voce è stata trovata. Premere XXBUTTONXX per immettere una parola manualmente o Premere &quot;OPTIONS&quot; per selezionare un altro dizionario. " />
+		<string id="STR_UI_MESSAGE_DICTIONARY_INPUT_KEYBOARD" value="Immettere una parola." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_HEADWORD" value="Nessuna voce è stata trovata. &#xA;Controllare la parola immessa." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SUPPORTED" value="Il dizionario è disabilitato." />
+		<string id="STR_UI_DICTIONARY_ENTRIES_PAGE" value="Voci, P." />
+		<string id="STR_UI_DICTIONARY_ENTRY_PAGE" value="Voce, P." />
+		<string id="STR_COUNTER_DRAWING_N" value=" disegni" />
+		<string id="STR_COUNTER_DRAWING_1" value="1 disegno" />
+		<string id="STR_COUNTER_DRAWING_0" value="Nessun disegno" />
+		<string id="STR_COUNTER_MEMO_N" value=" appunti" />
+		<string id="STR_COUNTER_MEMO_1" value="1 appunto" />
+		<string id="STR_COUNTER_MEMO_0" value="Nessun appunto" />
+		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="Stato della memoria interna anormale&#xA;Formattazione in corso." />
+		<string id="STR_HOME_TAB_HOME_V" value="Home" />
+		<string id="STR_HOME_TAB_HOME_H" value="Home" />
+		<string id="STR_HOME_TAB_STORE_V" value="Negozio" />
+		<string id="STR_HOME_TAB_STORE_H" value="Negozio" />
+		<string id="STR_HOME_TAB_APPLICATIONS_V" value="Applicazioni" />
+		<string id="STR_HOME_TAB_APPLICATIONS_H" value="Appl" />
+		<string id="STR_HOME_TAB_SETTINGS_V" value="Impostazioni" />
+		<string id="STR_HOME_TAB_SETTINGS_H" value="Imposta-&#xA;zioni" />
+		<string id="STR_NODE_TITLE_PERIODICALS" value="Periodici" />
+		<string id="STR_NODE_TITLE_NEWDELIVERY" value="Nuova consegna" />
+		<string id="STR_NODE_TITLE_DICTIONARY" value="Dizionario" />
+		<string id="STR_HOME_SEEALL" value="Vedere tutto" />
+		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Lettura più recente:" />
+		<string id="STR_COUNTER_PERIODICAL_N" value=" periodici" />
+		<string id="STR_COUNTER_PERIODICAL_1" value="1 periodico" />
+		<string id="STR_COUNTER_PERIODICAL_0" value="Nessun periodico" />
+		<string id="STR_HOME_MESSAGE_ACCESSING" value="" />
+		<string id="STR_UI_BUTTON_RETRY" value="" />
+		<string id="STR_UI_MENU_DELETE_BOOKS" value="Eliminare Libri" />
+		<string id="STR_UI_MENU_PROTECT_BOOKS" value="Proteggere Libri" />
+		<string id="STR_UI_MENU_DELETE_ISSUES" value="Eliminare Pubblicazioni" />
+		<string id="STR_UI_MENU_PROTECT_ISSUES" value="Proteg.Pubblicazioni" />
+		<string id="STR_UI_MENU_DELETE_TEXTMEMOS" value="Eliminare Appunti" />
+		<string id="STR_UI_MENU_PROTECT_TEXTMEMOS" value="Proteggere Appunti" />
+		<string id="STR_UI_MENU_DELETE_HANDWRITINGS" value="Eliminare Disegni" />
+		<string id="STR_UI_MENU_PROTECT_HANDWRITINGS" value="Proteggere Disegni" />
+		<string id="STR_UI_MENU_DELETE_AUDIO" value="Eliminare Audio" />
+		<string id="STR_UI_MENU_PROTECT_AUDIO" value="Proteggere Audio" />
+		<string id="STR_UI_MENU_DELETE_PICTURES" value="Eliminare Immagini" />
+		<string id="STR_UI_MENU_PROTECT_PICTURES" value="Proteggere Immagini" />
+		<string id="STR_UI_MENU_EDIT_STANDBY_SCREEN" value="Sel.Schermata Attesa" />
+		<string id="STR_UI_MENU_MANAGE_SUBSCRIPTION" value="Gestire Abbonamento" />
+		<string id="STR_UI_MENU_2PAGEVIEW" value="Visualizzazione 2 pagine" />
+		<string id="STR_UI_MENU_1PAGEVIEW" value="Visualizzazione 1 pagina" />
+		<string id="STR_UI_MENU_BYLATESTREAD" value="per ult. Lettura" />
+		<string id="STR_UI_MENU_BYISSUEDATE" value="per Data pubb." />
+		<string id="STR_UI_MENU_STORE_HOME" value="" />
+		<string id="STR_UI_MENU_MY_ACCOUNT" value="" />
+		<string id="STR_UI_MENU_HELP_AND_SUPPORT" value="" />
+		<string id="STR_UI_MENU_LEGALINFO" value="" />
+		<string id="STR_UI_MENU_REFRESH_PAGE" value="" />
+		<string id="STR_UI_MENU_DELETEISSUE" value="Eliminare Pubblicazione" />
+		<string id="STR_UI_MENU_SELECT_ALL" value="Selezionare tutto" />
+		<string id="STR_UI_MENU_UNSELECT_ALL" value="Deselezionare tutto" />
+		<string id="STR_UI_MENU_PROTECT_ALL" value="Proteggere tutto" />
+		<string id="STR_UI_MENU_UNPROTECT_ALL" value="Togliere protezione tutto" />
+		<string id="STR_UI_BUTTON_ISSUE_HOME" value="Prima pagina" />
+		<string id="STR_UI_BUTTON_PREVIOUS_SECTION" value="Sezione" />
+		<string id="STR_UI_BUTTON_NEXT_SECTION" value="Sezione" />
+		<string id="STR_UI_BUTTON_LAST_SECTION" value="Sezione" />
+		<string id="STR_UI_BUTTON_SECTION_HOME" value="Inizio della sezione" />
+		<string id="STR_UI_BUTTON_PREVIOUS_ARTICLE" value="Articolo" />
+		<string id="STR_UI_BUTTON_NEXT_ARTICLE" value="Articolo" />
+		<string id="STR_NODE_TITLE_FRONT_PAGE" value="Prima pagina" />
+		<string id="STR_NODE_TITLE_SECTION_HOME" value="Inizio della sezione XXSECTIONXX" />
+		<string id="STR_NODE_TITLE_SECTION_OTHERS" value="Altro" />
+		<string id="STR_COUNTER_ARTICLE_N" value=" articoli" />
+		<string id="STR_COUNTER_ARTICLE_1" value="1 articolo" />
+		<string id="STR_COUNTER_ARTICLE_0" value="Nessun articolo" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SECTION" value="Sezione XXSECTIONXX" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SEPARATE" value=":" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" /" />
+		<string id="STR_NODE_TITLE_DELETEISSUE" value="Eliminare Pubblicazione" />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEISSUE" value="Titolo Pubblicazione: &quot;XXTITLEXX&quot;" />
+		<string id="STR_UI_MESSAGE_DELETEISSUE" value="Si è sicuri di voler eliminare questa pubblicazione?" />
+		<string id="STR_UI_MESSAGE_DELETEISSUEERR" value="Impossibile eliminare la pubblicazione. Toccare &quot;OK&quot; per ritornare alla lista delle pubblicazioni." />
+		<string id="STR_NODE_TITLE_SORTEDBY_LATESTREAD" value="per ult. Lettura" />
+		<string id="STR_NODE_TITLE_SORTEDBY_ISSUEDATE" value="per Data pubb." />
+		<string id="STR_MONTH_JANUARY" value="Gennaio" />
+		<string id="STR_MONTH_FEBRUARY" value="Febbraio" />
+		<string id="STR_MONTH_MARCH" value="Marzo" />
+		<string id="STR_MONTH_APRIL" value="Aprile" />
+		<string id="STR_MONTH_MAY" value="Maggio" />
+		<string id="STR_MONTH_JUNE" value="Giugno" />
+		<string id="STR_MONTH_JULY" value="Luglio" />
+		<string id="STR_MONTH_AUGUST" value="Agosto" />
+		<string id="STR_MONTH_SEPTEMBER" value="Settembre" />
+		<string id="STR_MONTH_OCTOBER" value="Ottobre" />
+		<string id="STR_MONTH_NOVEMBER" value="Novembre" />
+		<string id="STR_MONTH_DECEMBER" value="Dicembre" />
+		<string id="STR_DAY_MONDAY_FULL" value="Lunedì" />
+		<string id="STR_DAY_TUESDAY_FULL" value="Martedì" />
+		<string id="STR_DAY_WEDNESDAY_FULL" value="Mercoledì" />
+		<string id="STR_DAY_THURSDAY_FULL" value="Giovedì" />
+		<string id="STR_DAY_FRIDAY_FULL" value="Venerdì" />
+		<string id="STR_DAY_SATURDAY_FULL" value="Sabato" />
+		<string id="STR_DAY_SUNDAY_FULL" value="Domenica" />
+		<string id="STR_DAY_MONDAY_ABB" value="Lun" />
+		<string id="STR_DAY_TUESDAY_ABB" value="Mar" />
+		<string id="STR_DAY_WEDNESDAY_ABB" value="Mer" />
+		<string id="STR_DAY_THURSDAY_ABB" value="Gio" />
+		<string id="STR_DAY_FRIDAY_ABB" value="Ven" />
+		<string id="STR_DAY_SATURDAY_ABB" value="Sab" />
+		<string id="STR_DAY_SUNDAY_ABB" value="Dom" />
+		<string id="STR_NODE_TITLE_UNREAD_BOOKS" value="Libri non letti" />
+		<string id="STR_NODE_TITLE_UNREAD_PERIODICALS" value="Periodici non let." />
+		<string id="STR_NODE_TITLE_PURCHASED_BOOKS" value="Libri acquistati" />
+		<string id="STR_UI_MENU_NEW_COLLECTION" value="Nuova Collezione" />
+		<string id="STR_UI_MENU_DELETE_COLLECTIONS" value="Eliminare Collezioni" />
+		<string id="STR_NODE_TITLE_ADD_NEW_COLLECTION" value="Nuova Collezione" />
+		<string id="STR_UI_KEYBOARD_COLLECTION_NAME" value="Nome Collezione:" />
+		<string id="DIALOGMSG_COLLECTIONS_WHERE_TO_CREATE" value="Scegliere dove creare una Collezione:" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_DEVICE" value="Memoria interna" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_MS" value="Memory Stick™" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_SD" value="Scheda SD" />
+		<string id="STR_NODE_TITLE_ADD_BOOKS" value="Aggiungere Libri" />
+		<string id="STR_NODE_TITLE_SELECT_PERIODICAL" value="Selezionare Periodico" />
+		<string id="STR_NODE_TITLE_ADD_ISSUES" value="Aggiun.Pubblicazioni" />
+		<string id="STR_NODE_TITLE_SELECT_A_COLLECTION" value="Selezionare una Collezione" />
+		<string id="STR_NODE_TITLE_SORTEDBYFILENAME" value="per Nome di file" />
+		<string id="STR_UI_MENU_BYFILENAME" value="per Nome di file" />
+		<string id="STR_UI_MENU_TITLEONLYLIST" value="Solo Titolo" />
+		<string id="STR_UI_MENU_ADDBOOKS" value="Libri" />
+		<string id="STR_UI_MENU_ADDPERIODICALS" value="Periodici" />
+		<string id="STR_UI_MENU_REMOVECONTENT" value="Rimuovere Contenuto" />
+		<string id="STR_NODE_TITLE_REMOVE_ITEMS" value="Rimuovere Contenuto" />
+		<string id="STR_NODE_TITLE_DELETE_COLLECTIONS" value="Eliminare Collezioni" />
+		<string id="STR_NODE_TITLE_DELETE_BOOKS" value="Eliminare Libri" />
+		<string id="STR_NODE_TITLE_DELETE_ISSUES" value="Eliminare Pubblicazioni" />
+		<string id="STR_NODE_TITLE_DELETE_AUDIO" value="Eliminare Audio" />
+		<string id="STR_NODE_TITLE_DELETE_PICTURES" value="Eliminare Immagini" />
+		<string id="STR_NODE_TITLE_DELETE_HANDWRITINGS" value="Eliminare Disegni" />
+		<string id="STR_NODE_TITLE_DELETE_TEXTMEMOS" value="Eliminare Appunti" />
+		<string id="STR_NODE_TITLE_DELETE_NOTES" value="Eliminare Note" />
+		<string id="STR_UI_MESSAGE_DELETE_MANUALLY_NORMAL" value="Si è sicuri di voler eliminare l'elemento/gli elementi selezionato/i?" />
+		<string id="STR_UI_MESSAGE_DELETE_MANUALLY_SELECTED_AS_STANDBY" value="Si è sicuri di voler eliminare l'elemento/gli elementi selezionato/i comprese le immagini specificate per la schermata di attesa?" />
+		<string id="STR_COUNTER_SELECTED" value=" selezionato" />
+		<string id="STR_COUNTER_PROTECTED" value=" protetto" />
+		<string id="STR_NODE_TITLE_PROTECT_BOOKS" value="Proteggere Libri" />
+		<string id="STR_NODE_TITLE_PROTECT_ISSUES" value="Proteg.Pubblicazioni" />
+		<string id="STR_NODE_TITLE_PROTECT_AUDIO" value="Proteggere Audio" />
+		<string id="STR_NODE_TITLE_PROTECT_PICTURES" value="Proteggere Immagini" />
+		<string id="STR_NODE_TITLE_PROTECT_HANDWRITINGS" value="Proteggere Disegni" />
+		<string id="STR_NODE_TITLE_PROTECT_TEXTMEMOS" value="Proteggere Appunti" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_BOOK" value="Questo libro è protetto. Si è sicuri di voler eliminare questo libro?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_ISSUE" value="Si è sicuri di voler eliminare questa pubblicazione protetta?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_MEMO" value="Questo appunto è protetto. Si è sicuri di voler eliminare questo appunto?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_DRAWING" value="Questo disegno è protetto. Si è sicuri di voler eliminare questo disegno?" />
+		<string id="STR_COUNTER_ISSUE_N" value=" pubblicazioni" />
+		<string id="STR_COUNTER_ISSUE_1" value="1 pubblicazione" />
+		<string id="STR_COUNTER_ISSUE_0" value="Nessuna pubblicazione" />
+		<string id="STR_COUNTER_ISSUE_ALL" value="Tutte le pubblicazioni" />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_MAIN" value="Quante pubblicazioni di questo abbonamento si desidera tenere sul proprio Reader?" />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_NOTE" value="Nota: Le pubblicazioni protette non sono incluse in questo conteggio." />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_CHECK" value="Eliminare la/le pubblicazione/i extra ora." />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_NOW" value="Si è sicuri di voler eliminare la/le pubblicazione/i extra ora?" />
+		<string id="STR_UI_BUTTON_SAVE" value="Salvare" />
+		<string id="STR_UI_BUTTON_CANCEL" value="Annullare" />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_TOOLBAR" value="Questa funzione è disabilitata perché la barra degli strumenti &quot;Creare/Modificare Note&quot; è visualizzata. Chiudere questa barra degli strumenti per abilitare questa funzione." />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_FACING" value="Questa funzione è disabilitata perché ci si trova in &quot;Visualizzazione 2 pagine&quot;. Passare a &quot;Visualizzazione 1 pagina&quot; per abilitare questa funzione." />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_TOOLBARFACING" value="Questa funzione è disabilitata perché ci si trova in &quot;Visualizzazione 2 pagine&quot; e si sta usando la barra degli strumenti &quot;Creare/Modificare Note&quot;. Passare a &quot;Visualizzazione 1 pagina&quot; e chiudere questa barra degli strumenti per abilitare questa funzione." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SELECTED" value="Nessun dizionario è stato selezionato. Andare alla scheda &quot;Impostazioni&quot; e selezionare il dizionario." />
+		<string id="STR_UI_BUTTON_OTHERS" value="Altre" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_COMPLETE" value="" />
+		<string id="STR_UI_ABOUT_FREESPACE" value="Spazio disponibile" />
+		<string id="STR_UI_ABOUT_DEVICEINFO" value="Informazioni sul dispositivo" />
+		<string id="STR_UI_PARTS_IMEI" value="IMEI" />
+		<string id="STR_UI_PARTS_ICCID" value="ICCID" />
+		<string id="STR_UI_PARTS_ADOBE_DRM_AUTH" value="Adobe DRM " />
+		<string id="STR_UI_ABOUT_LEGALINFO" value="Informazioni legali" />
+		<string id="STR_NODE_TITLE_WIRELESS_SLEEP_MODE" value="Attesa senza fili" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_WIRELESS" value="" />
+		<string id="STR_UI_SETTING_DIC_EBOOKID" value="ID eBook:" />
+		<string id="STR_NODE_TITLE_TIMEZONE" value="Fuso orario" />
+		<string id="STR_UI_SETTING_TZ_EST" value="Ora dell'Est" />
+		<string id="STR_UI_SETTING_TZ_CST" value="Ora del Centro" />
+		<string id="STR_UI_SETTING_TZ_MST" value="Ora delle Montagne" />
+		<string id="STR_UI_SETTING_TZ_PST" value="Ora del Pacifico" />
+		<string id="STR_UI_SETTING_TZ_AKST" value="Ora dell'Alaska" />
+		<string id="STR_UI_SETTING_TZ_HST" value="Ora delle Hawaii-Aleutine" />
+		<string id="STR_UI_SETTING_SUMMERTIME_MSG" value="Ora legale" />
+		<string id="DIALOGMSG_INFORM_RESTART_TIMEZONE" value="Applicazione impostazione fuso orario in corso..." />
+		<string id="DIALOGMSG_INFORM_RESTART_WIZARD" value="Applicazione impostazioni in corso..." />
+		<string id="DIALOGMSG_NOT_AVAILABLE_WHILE_DOWNLOADING" value="" />
+		<string id="STR_UI_SETTING_RANGE_HOUR" value="(00 - 23)" />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_1" value="" />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_2" value="" />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_3" value="" />
+		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_1" value="" />
+		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_3" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_1" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_2" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_1" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_2" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_1" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_2" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_4_1" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_4_2" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_5_1" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_5_2" value="" />
+		<string id="STR_UI_MESSAGE_NETWORK_OTHER_ERROR_1" value="" />
+		<string id="STR_UI_MESSAGE_NETWORK_DOWNLOAD_DELAY" value="" />
+		<string id="STR_UI_MESSAGE_NETWORK_OTHER_ERROR_3" value="" />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_1_MS" value="Questa Memory Stick™ non può essere utilizzata. Provare un'altra Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_1_SD" value="Questa scheda SD non può essere utilizzata. Provare un'altra scheda SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_2_MS" value="A causa di un errore della Memory Stick™, il Reader non può salvare i dettagli della lettura. Provare un'altra Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_2_SD" value="A causa di un errore della scheda SD, il Reader non può salvare i dettagli della lettura. Provare un'altra scheda SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_3_MS" value="La Memory Stick™ è di sola lettura e il Reader non può salvare i dettagli della lettura. Provare un'altra Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_4_MS" value="A causa di un errore della Memory Stick™, il Reader non può salvare i dettagli della lettura. Provare un'altra Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_4_SD" value="A causa di un errore della scheda SD, il Reader non può salvare i dettagli della lettura. Provare un'altra scheda SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_6_MS" value="La Memory Stick™ deve essere formattata. Andare nel menù Impostazioni e formattare la Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_6_SD" value="La scheda SD deve essere formattata. Andare alla scheda Impostazioni e formattare la scheda SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_7" value="Questo file è alterato e non può essere aperto." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_8_MS" value="Poiché il Memory Stick™ la scheda è bloccato/a, il Reader non può salvare i dettagli della lettura. Estrarre il Memory Stick™ la scheda, sbloccarlo/a e reinserirlo/a." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_8_SD" value="Poiché la scheda SD è bloccata, il Reader non può salvare i dettagli della lettura. Estrarre la scheda SD, sbloccarla e reinserirla." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_9" value="Nessuna scheda di memoria inserita." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_10" value="Non c'è sufficiente spazio disponibile per poter salvare i dettagli della lettura. Eliminare uno o più file e riprovare." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_13_OPEN" value="Il file non può essere aperto perché i dati sono incompatibili." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_13_PLAY" value="Il file non può essere riprodotto perché i dati sono incompatibili." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_16_17_MS" value="Questo Memory Stick™ questa scheda è protetto/a. Provare un altro Memory Stick™ un'altra scheda." />
+		<string id="STR_UI_MESSAGE_DEAD_BATTERY_ERR_1" value="" />
+		<string id="STR_UI_MESSAGE_DEAD_BATTERY_ERR_2" value="" />
+		<string id="STR_UI_MESSAGE_BATTERY_REMOVED_ERR_1" value="" />
+		<string id="STR_UI_MESSAGE_BATTERY_REMOVED_ERR_2" value="" />
+		<string id="STR_UI_MESSAGE_RECOMMEND_EPUB" value="" />
+		<string id="STR_UI_BUTTON_ENTER" value="Immettere" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_POWERMANAGEMENT" value="Quando è impostato su &quot;Sì&quot;, il Reader entra nella modalità di riposo dopo 10 minuti di inattività e si spegne dopo 2 giorni in modalità di riposo continuo." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_PAGETURNGESTURE" value="Selezionare il gesto di avanzamento pagine. L'opzione sulla sinistra significa colpire lo schermo a sfioramento verso sinistra, mentre l'opzione sulla destra significa colpire lo schermo verso destra." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_SLIDESHOW" value="La durata della visualizzazione immagini può essere impostata fino a 60 secondi.&#xA;Il menu presentazione può essere trovato premendo &quot;OPTIONS&quot; nell'applicazione Immagini." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_DEVICELOCK" value="Quando il blocco del dispositivo è impostato su &quot;Sì&quot;, è necessario immettere il codice di accesso ogni volta che il Reader viene acceso. Accertarsi di disattivare &quot;Blocco del dispositivo&quot; prima del collegamento al computer." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_PERIODICALS" value="" />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_BROKENFILE" value="Questo disegno è danneggiato." />
+		<string id="STR_UI_MENU_CHANG_TONE_CURVE" value="Regolare Visualizzazione" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_ORIGINAL" value="Originale" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_PROMINENT" value="Saturo" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_DETAILED" value="Dettagli" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_DARKER" value="Più scuro" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_LIGHTER" value="Più chiaro" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_CUSTOM" value="Su misura" />
+		<string id="STR_UI_TEXT_TONE_CURVE_CONTRAST" value="Contrasto" />
+		<string id="STR_UI_TEXT_TONE_CURVE_BRIGHTNESS" value="Luminosità" />
+		<string id="STR_UI_BUTTON_TONE_CURVE_RESET" value="Ripristinare" />
+		<string id="STR_UI_BUTTON_PAGE_LOCK" value="Bloccare" />
+		<string id="STR_UI_BUTTON_UNLOCK" value="Sbloccare" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_ORIGINAL" value="Originale" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_MARGIN_CUT" value="Margini tagliati" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_2COLUMN_SPLIT" value="Divisione in 2 colonne" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_3COLUMN_SPLIT" value="Divisione in 3 colonne" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_FULL_PAGE" value="Pagina intera" />
+		<string id="STR_UI_MESSAGE_STANDBY" value="Il Reader si trova in modalità di riposo. Spostare e rilasciare l'interruttore di alimentazione per riattivarlo." />
+		<string id="STR_UI_MESSAGE_PAGE_STYLE_CHANGE_TO_ORIGINAL" value="La &quot;Modalità Pagina&quot; verrà ripristinata in &quot;Originale&quot;." />
+		<string id="STR_UI_MESSAGE_PAGE_STYLE_CHANGE_WITH_TOOLBAR_DISPLAYED" value="La schermata &quot;Creare/Modificare Note&quot; verrà chiusa." />
+		<string id="STR_NODE_TITLE_GENERAL" value="Impostazioni generali" />
+		<string id="STR_NODE_TITLE_APPLICATIONS" value="Preferenze Applicazioni" />
+		<string id="STR_NODE_TITLE_SYSTEM" value="Gestione del sistema" />
+		<string id="STR_NODE_TITLE_INITIALIZATION" value="Inizializzazione" />
+		<string id="STR_NODE_TITLE_ORIENTATIONTOROTATE" value="Orientamento schermata" />
+		<string id="STR_UI_SETTING_ROTATETORIGHT" value="Ruotare a destra" />
+		<string id="STR_UI_SETTING_ROTATETOLEFT" value="Ruotare a sinistra" />
+		<string id="STR_NODE_TITLE_STANDBYSCREEN" value="Schermata Attesa" />
+		<string id="STR_UI_SETTING_SHOW_PICTURE" value="Mostrare immagine" />
+		<string id="STR_UI_SETTING_SHOW_MESSAGE" value="Mostrare messag." />
+		<string id="STR_UI_SETTING_STANDBY_GUIDE" value="Selezionare &quot;Sì&quot; per &quot;Mostrare immagine&quot;, le immagini selezionate vengono visualizzate nella modalità di riposo. Quando si seleziona &quot;Sì&quot; per &quot;Mostrare messag.&quot;, vengono visualizzati i messaggi su come riattivare il Reader." />
+		<string id="STR_UI_SETTING_PICTURE" value="Immagine" />
+		<string id="STR_UI_SETTING_TEXT" value="Messaggio" />
+		<string id="STR_UI_SETTING_ROTATETO" value="Ruotare verso" />
+		<string id="STR_UI_SETTING_ROTATETO_GUIDE" value="Selezionare la direzione dell'orientamento della schermata quando &quot;Orientamento&quot; è selezionato nel menu &quot;OPTIONS&quot;." />
+		<string id="STR_UI_MESSAGE_COLLECTION_NAME_ALREADY_EXISTS" value="Il nome di collezione specificato esiste già. Immettere un altro nome." />
+		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION" value="Si è sicuri di voler procedere? Il contenuto effettivo non verrà eliminato." />
+		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION_CONTENT" value="Si è sicuri di voler procedere? Il contenuto effettivo non verrà eliminato." />
+		<string id="DIALOGMSG_CONFIRM_DIRECTORY_CHANGE" value="Il dizionario selezionato verrà modificato&#xA;Da:&#xA;%CUR_DIC%&#xA;In:&#xA;%NEW_DIC%" />
+		<string id="DIALOG_CONFIRM_DICTIONARY_CHANGE_CURRENT_DIC" value="%CUR_DIC%" />
+		<string id="DIALOG_CONFIRM_DICTIONARY_CHANGE_NEW_DIC" value="%NEW_DIC%" />
+		<string id="STR_UI_PARTS_UNKNOWN" value="Sconosciuto" />
+		<string id="DIALOGMSG_APPLYING_SETTINGS" value="Applicazione impostazioni in corso...&#xA;Attendere qualche secondo." />
+		<string id="STR_UI_MENU_ADD" value="Aggiungere Contenuto" />
+		<string id="STR_UI_MENU_RENAMECOLLECTION" value="Rinominare Collezione" />
+		<string id="STR_UI_MENU_ADD_BOOKMARK" value="Aggiungere Segnalibro" />
+		<string id="STR_UI_MENU_REMOVE_BOOKMARK" value="Rimuovere Segnalibro" />
+		<string id="STR_UI_MENU_GO_TO" value="Andare a" />
+		<string id="STR_UI_MENU_PREVIOUS_VIEW" value="Visualizz. precedente" />
+		<string id="STR_UI_MENU_SELECT_PAGE" value="Selezionare Pagina" />
+		<string id="STR_UI_MENU_LIST" value="Lista" />
+		<string id="STR_UI_MENU_CREATE_EDIT" value="Creare/Modificare" />
+		<string id="STR_UI_MENU_HIDE" value="Nascondere" />
+		<string id="STR_UI_MENU_SHOW" value="Mostrare" />
+		<string id="STR_UI_MENU_ADD_TO_COLLECTION" value="Aggiungere a Collezione" />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS" value="Non è possibile selezionare perché il massimo di 99 immagini che possono essere selezionate sulla Memory Stick™ è stato raggiunto.&#xA;Deselezionare un'altra immagine sulla Memory Stick™ e selezionare di nuovo questa immagine." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_SD" value="Non è possibile selezionare perché il massimo di 99 immagini che possono essere selezionate sulla Scheda SD è stato raggiunto.&#xA;Deselezionare un'altra immagine sulla Scheda SD e selezionare questa immagine di nuovo." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_INTERNAL_MEMORY" value="Non è possibile selezionare perché il massimo di 99 immagini che possono essere selezionate sulla Memoria interna è stato raggiunto.&#xA;Deselezionare un'altra immagine sulla Memoria interna e selezionare questa immagine di nuovo." />
+		<string id="STR_UI_MESSAGE_THERE_IS_NO_ITEM_REFER_TO_UG" value="Non c'è alcuna voce nella lista. Consultare la Guida dell'utilizzatore su come aggiungere un contenuto." />
+		<string id="STR_UI_MESSAGE_THERE_IS_NO_ITEM" value="Non c'è alcuna voce nella lista. " />
+		<string id="STR_NODE_TITLE_DICTIONARY_LOOK_UP_HISTORY" value="Reg. parole: Dizionario" />
+		<string id="STR_NODE_TITLE_WORD_LOGS_BOOK" value="Reg. parole: Libro" />
+		<string id="STR_NODE_TITLE_WORD_LOGS_PERIODICAL" value="Reg. parole: Periodico" />
+		<string id="STR_UI_MENU_WORD_LOGS_PERIODICAL" value="Reg. parole: Periodico" />
+		<string id="STR_UI_MENU_DELETE_HISTORIES" value="Eliminare Reg. parole" />
+		<string id="STR_NODE_TITLE_DELETE_HISTORIES" value="Eliminare Reg. parole" />
+		<string id="STR_UI_MENU_SORT_SELECTED" value="Ordinare:" />
+		<string id="STR_UI_MENU_VIEW_SELECTED" value="Visualizzazione:" />
+		<string id="DIALOGMSG_WHETHER_SHOW_NOTES" value="Questa operazione non è valida perché questo libro nasconde le note ora.&#xA;Desidera mostrare le note?" />
+		<string id="STR_UI_MESSAGE_TO_CHANGE_DICTIONARY" value="Premere &quot;OPTIONS&quot; per selezionare un altro dizionario." />
+		<string id="STR_UI_MENU_CHANGE_DICTIONARY" value="Cambiare dizionario" />
+		<string id="STR_UI_MENU_VIEW_SEARCH_HISTORY" value="Reg. parole: Dizionario" />
+		<string id="STR_UI_MESSAGE_NO_ENTRY_FOUND" value="Nessuna voce è stata trovata." />
+		<string id="STR_UI_MESSAGE_NO_DEFINITION" value="Nessuna voce è stata trovata. XXBUTTON1XX per manuale XXBUTTON2XX per ricerca in un altro dizionario." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_SD" value="Non è possibile selezionare perché il massimo di 99 immagini che possono essere selezionate sulla Memory Stick™ e sulla scheda SD è stato raggiunto." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_INTERNAL_MEMORY" value="Non è possibile selezionare perché il massimo di 99 immagini che possono essere selezionate sulla Memory Stick™ e sulla scheda SD è stato raggiunto." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_SD_INTERNAL_MEMORY" value="Non è possibile selezionare perché il massimo di 99 immagini che possono essere selezionate sulla scheda SD e sulla memoria interna è stato raggiunto." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_SD_INTERNAL_MEMORY" value="Non è possibile selezionare perché il massimo di 99 immagini che possono essere selezionate sulla Memory Stick™, sulla scheda SD e sulla memoria interna è stato raggiunto." />
+		<string id="DIALOGMSG_DELETING" value="Eliminazione in corso..." />
+		<string id="DIALOGMSG_REMOVING" value="Rimozione in corso..." />
+		<string id="DIALOGMSG_ADDING" value="Aggiunta in corso..." />
+		<string id="STR_UI_BUTTON_STOP" value="Interruzione" />
+		<string id="STR_UI_MESSAGE_UNPROTECT_CONTENT" value="Questo contenuto è protetto. Togliere la protezione del contenuto prima dell'eliminazione." />
+		<string id="DIALOGMSG_NO_CONTENT_IN_COLLECTION_LOCATION" value="Non c'è alcun contenuto nella memoria in cui è presente la collezione specificata.&#xA;Per aggiungere un contenuto, il luogo fisico di entrambi il contenuto e la collezione deve essere lo stesso." />
+	</assets>
+</document>

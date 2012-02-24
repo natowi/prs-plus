@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" href="x-id://model">
+	<assets>
+		<string id="infoTitles" value="Cover,Title,Author,Tool,Subject,Date,Size,Path"/>
+		<string id="infoNames" value="AlbumArt,title,author,Tool,Subject,date,size,path"/>
+		<string id="infoFormats" value="thumbnail,string,string,string,string,date,size,string"/>
+	
+		<style font="Swis721 BT">
+			<style id="text">
+				<style id="text-d"/>
+				<style id="text-p"/>
+				<style id="text-s"/>
+			</style>
+		
+			<style id="kbookBigTitle" halign="left" size="48" style="bold" color="#FFFFFF"/>
+			<style id="kbookSmallTitle" halign="left" size="36" style="bold" color="#FFFFFF"/>
+			
+			<style id="kbookVBigName" halign="left" valign="top" top="6" size="36" style="bold"/>
+			<style id="kbookVSmallName" halign="left" valign="top" top="4" size="24" style="bold"/>
+			<style id="kbookVComment" halign="right" valign="bottom" bottom="2" size="18"/>
+			<style id="kbookVTab" halign="right" right="7" size="36" style="bold"/>
+			<style id="kbookVMark" halign="right" right="7" size="36" style="bold" color="#FFFFFF"/>
+			
+			<style id="kbookHBigName" halign="left" valign="top" top="0" size="28" style="bold"/>
+			<style id="kbookHSmallName" halign="left" valign="top" top="2" size="18" style="bold"/>
+			<style id="kbookHComment" halign="right" valign="bottom" bottom="2" size="14"/>
+			<style id="kbookHTab" halign="right" right="10" size="28" style="bold"/>
+			<style id="kbookHMark" halign="right" right="10" size="28" style="bold" color="#FFFFFF"/>
+			
+			<style id="kbookVName" halign="right" right="10" size="36" style="bold"/>
+			<style id="kbookVValue" halign="center" size="36" style="bold"/>
+			<style id="kbookVSelection" halign="center" size="36" style="bold" color="#FFFFFF"/>
+			<style id="kbookVUnit" halign="left" left="10" size="36" style="bold"/>
+			
+			<style id="kbookHName" halign="right" right="10" size="28" style="bold"/>
+			<style id="kbookHValue" halign="center" size="28" style="bold"/>
+			<style id="kbookHSelection" halign="center" size="28" style="bold" color="#FFFFFF"/>
+			<style id="kbookHUnit" halign="left" left="10" size="28" style="bold"/>
+			
+			<style id="label" size="22" style="bold" color="#FFFFFF" valign="top"/>
+			<style id="datetime" size="18" top="3" style="bold" color="#FFFFFF"/>
+			<style id="info-n" size="24" valign="top" top="7" bottom="7" halign="right" right="14" style="bold"/>
+			<style id="info-v" size="24" top="9"/>
+			
+		</style>
+		
+		<texture href="kBookAssets.png">
+			<cutout id="logo" x="0" y="0" width="210" height="70" lines="0"/>
+
+			<cutout id="kbookHeader-l" x="420" y="0" width="70" height="70"/>
+			<cutout id="kbookHeader-c" x="490" y="0" width="70" height="70"/>
+			<cutout id="kbookHeader-r" x="560" y="0" width="70" height="70"/>
+			
+			<cutout id="kbookBody-l" x="0" y="70" width="70" height="70"/>
+			<cutout id="kbookBody-c" x="0" y="70" width="70" height="70"/>
+			<cutout id="kbookBody-r" x="0" y="70" width="70" height="70"/>
+
+			<cutout id="kbookStatus-l" x="420" y="437" width="70" height="33"/>
+			<cutout id="kbookStatus-c" x="490" y="437" width="70" height="33"/>
+			<cutout id="kbookStatus-r" x="560" y="437" width="70" height="33"/>
+			
+			<cutout id="batteryProgress-l" x="630" y="320" width="8" height="30"/>
+			<cutout id="batteryProgress-c" x="638" y="320" width="50" height="30"/>
+			<cutout id="batteryProgress-r" x="688" y="320" width="12" height="30"/>
+
+			<cutout id="batteryCheckBox-a" x="780" y="370" width="70" height="30" lines="0"/>
+		</texture>
+		<texture href="kBookDisk.png">
+			<cutout id="diskSprite-a" x="0" y="0" width="140" height="140"/>
+			<cutout id="diskBackground-a" x="560" y="0" width="140" height="140"/>
+		</texture>
+	
+		<skin id="label" 
+				styles="label"/>
+		<skin id="panel" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookBody-l,kbookBody-c,kbookBody-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+				
+		<skin id="batteryProgress" 
+				cutouts="batteryProgress-l,batteryProgress-c,batteryProgress-r"/>
+
+		<skin id="batteryCheckBox" cutouts="batteryCheckBox-a" />
+				
+		<skin id="diskBackground" 
+				cutouts="diskBackground-a"/>
+		<skin id="diskSprite" 
+				cutouts="diskSprite-a"/>
+		<skin id="logoSprite" 
+				cutouts="logo"/>
+	</assets>
+	<clock/>
+	<code>
+		<function id="connectChanged" params="value">
+			if (value) {
+				this.SPRITE.u = 7;
+				//this.LABEL.setValue("Do not disconnect");
+				this.LABEL.setValue("fskin:/l/strings/STR_UI_MESSAGE_USBDONOT".idToString());
+			}
+			else {
+				if (ebook.checkScreenLock(-1)) {
+					this.SPRITE.u = 8;
+					//this.LABEL.setValue("USB connected");
+					this.LABEL.setValue("fskin:/l/strings/STR_UI_MESSAGE_USBCONNECTED".idToString());
+				} else {
+					this.SPRITE.u = 5;
+					//this.LABEL.setValue("Device locked");
+					this.LABEL.setValue("fskin:/l/strings/STR_UI_MESSAGE_LOCKED".idToString());
+				}
+			}
+		</function>
+
+		<function id="chargeStatusChanged" params="value">
+			this.CHARGING = value;
+		</function>
+
+		<function id="doResume">
+			this.getDevice().doneResume();
+		</function>
+		<function id="doSuspend">
+			this.getDevice().doneSuspend();
+		</function>
+		<function id="initialized" params="id, value"><![CDATA[
+			arguments.callee.grammar.call(this, id, value);
+			this.connectChanged(this.getVariable("CONNECT"));
+			this.chargeStatusChanged(this.getVariable("CHARGING"));
+			this.focus(true);
+		]]></function>
+		<function id="variableChanged" params="id, value"><![CDATA[
+			arguments.callee.grammar.call(this, id, value);
+			if (id == "CONNECT") 
+				this.connectChanged(value);
+			else if (id == "BATTERY") {
+				var power = this.getVariable("POWER");
+				if (!power && !value){
+					var window = this.container.getWindow();
+					window.doQuit();
+				}
+			}else if (id == "CHARGING") {
+				this.chargeStatusChanged(value);
+			}
+		]]></function>
+	</code>
+
+	<model>
+		<variable id="CHARGING"/>
+	</model>
+
+	<localize path="./" kind="language"/>
+	<localize path="./" kind="region"/>
+
+	<panel left="0" right="0" top="0" bottom="0"/>
+	<background skin="diskBackground" left="0" right="0" top="70" bottom="30"/>
+	<sprite skin="logoSprite" left="0" width="210" top="0" height="70" active="false"/>
+	<sprite skin="logoSprite" width="140" right="0" top="0" height="70" u="1" active="false"/>
+	<sprite id="SPRITE" skin="diskSprite" width="140" height="140" active="false"/>
+	<label id="LABEL" left="0" right="0" height="30" bottom="0" align="center"/>
+	<storageIndicator skin="batteryCheckBox" left="0" bottom="0" variable="CHARGING"/>
+
+</document>

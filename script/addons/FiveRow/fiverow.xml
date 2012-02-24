@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="DOCUMENT">
+
+    <assets>
+        <import href="../AppAssets/AppAssets.xml"/>
+
+        <behavior id="gridSprite">
+            <script on="mouseUp" params="event">
+           		if (this.hitBounds(event.x, event.y))
+					this.bubble("doGridClick",this);
+            </script>
+        </behavior>
+		<!--behavior id="iconSprite">
+		    <script on="mouseUp" params="event">
+				if (this.hitBounds(event.x, event.y))
+					this.bubble("doRoot",this);
+		    </script>
+		</behavior-->	
+
+        <style font="Swis721 BT">
+            <style id="blacktext" size="28" style="" color="#000000"/>
+            <style id="boldtext" size="26" style="bold" color="#000000"/>
+            <style id="digits" size="18" style="" color="#FFFFFF"/>
+            <style id="blackdigits" size="18" style="bold" color="#000000"/>
+            <style id="versText" size="40" style="bold" color="#FFFFFF"/>
+            <style id="touchText" size="12" style="bold" color="#000000"/>
+            <style id="copyText" size="11" style="" color="#BBBBBB"/>
+        </style>
+
+        <skin id="3Buttons" cutouts="buttons"/>
+        <skin id="grid1Cursor" cutouts="g1Cursor"/>
+        <skin id="grid2Cursor" cutouts="g2Cursor"/>
+        <skin id="boldtext" 	styles="boldtext"/>
+        <skin id="digits" 	styles="digits"/>
+        <skin id="blackdigits" 	styles="blackdigits"/>
+        <skin id="blacktext" 	styles="blacktext"/>
+        <skin id="touchText" styles="touchText"/>
+        <skin id="copyText" styles="copyText"/>
+        <skin id="title" styles="versText"/>
+    </assets>
+
+    <code>
+        <function id="runJs" params="path,target">
+			try {
+				var f = new Stream.File(path);
+				var fn = new Function("target", f.toString());
+				fn(target);
+				delete fn;
+			}
+			catch(e)
+			{
+			}
+        </function>
+        <function id="loadScript">
+			if (!this.hasOwnProperty('_scriptLoaded'))
+				this._scriptLoaded = false;
+			if (!this._scriptLoaded)
+			{
+				if(kbook.autoRunRoot.path==undefined){
+					path = this.getBaseURI().slice(7);
+					kbook.model=this;
+				}else{
+					path = kbook.autoRunRoot.path;
+				}
+				var index = path.lastIndexOf('/');
+				if (index > 0)
+				   path = path.substring(0, index + 1);
+				this.driveroot = path.substring(0,2);
+				var target = this.AUTORUN_GROUP.AUTORUN;
+				target.driveroot = this.driveroot;
+				target.fiverowRoot = path;
+
+				this.runJs(path+"fiverow.js",target);
+
+			}
+			this._scriptLoaded = true;
+        </function>
+        <function id="modelChanged">
+			arguments.callee.grammar.call(this);
+			var state = this.getVariable("STATE");
+
+			var target;
+
+			if (this.state != state) {
+				this.focus(true)
+				this.AUTORUN_GROUP.show(false)
+				switch(state) {
+				case "AUTORUN":
+					this.loadScript();
+					this.AUTORUN_GROUP.show(true);
+					target = this.AUTORUN_GROUP.AUTORUN;
+					break;
+				}
+				this.state = state;
+				target.init();
+				if (target.isEnabled()) {
+
+					target.focus(true);
+
+				};
+			}
+        </function>
+    </code>
+
+    <group id="AUTORUN_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+        <panel skin="AppMainSkin" left="0" right="0" top="0" bottom="0"/>
+        <group id="AUTORUN" width="600" top="70" bottom="30">
+			<sprite id="appIcon" skin="kbookMenuIcon" left="0" width="70" top="-70" height="70" u="46" v="1"/> 
+	   	    	<!--behave like="iconSprite"/>
+		    </sprite-->	   	          
+            <label id="appTitle" skin="title" left="70" right="0" top="-70" height="70" align="left" text="Five in a Row"/>
+            <label id="copyright" skin="copyText" left="70" right="0" top="-20" height="20" align="left" text="(C) Ben Chenoweth 2010"/>
+
+            <code>
+                <function id="doMenu"> this.doCenterF();</function>
+                <function id="doCenter"> this.placeXO();</function>
+                <function id="doMark"> this.init();</function>
+                <function id="doLeft"> this.moveCursor("left");</function>
+                <function id="doPrevious"> this.moveCursor("left");</function>
+                <function id="doRight"> this.moveCursor("right");</function>
+                <function id="doNext"> this.moveCursor("right");</function>
+                <function id="doUp"> this.moveCursor("up");</function>
+                <function id="doDown"> this.moveCursor("down");</function>
+                <function id="doDigit" params="part"> this.newGame(part.key);</function>
+            </code>
+
+            <button id="BUTTON_ONE"		active="true" text="1 Player"    left="388" width="100" top="-57" height="45" do="doButtonClick"/>
+            <button id="BUTTON_TWO"		active="true" text="2 Players"   left="494" width="100" top="-57" height="45" do="doButtonClick"/>
+            <!--button id="BUTTON_EXT"		active="true" text="Quit"    left="530" width="60" top="-57" height="45" do="doButtonClick"/-->
+
+            <sprite skin="3Buttons" id="3Buttons0000"	left="25" width="50" top="10" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0001"	left="25" width="50" top="60" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0002"	left="25" width="50" top="110" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0003"	left="25" width="50" top="160" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0004"	left="25" width="50" top="210" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0005"	left="25" width="50" top="260" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0006"	left="25" width="50" top="310" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0007"	left="25" width="50" top="360" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0008"	left="25" width="50" top="410" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0009"	left="25" width="50" top="460" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0010" left="25" width="50" top="510" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0011" left="25" width="50" top="560" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0012" left="25" width="50" top="610" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+
+            <sprite skin="3Buttons" id="3Buttons0100"	left="75" width="50" top="10" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0101"	left="75" width="50" top="60" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0102"	left="75" width="50" top="110" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0103"	left="75" width="50" top="160" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0104"	left="75" width="50" top="210" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0105"	left="75" width="50" top="260" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0106"	left="75" width="50" top="310" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0107"	left="75" width="50" top="360" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0108"	left="75" width="50" top="410" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0109"	left="75" width="50" top="460" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0110" left="75" width="50" top="510" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0111" left="75" width="50" top="560" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0112" left="75" width="50" top="610" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+
+            <sprite skin="3Buttons" id="3Buttons0200"	left="125" width="50" top="10" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0201"	left="125" width="50" top="60" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0202"	left="125" width="50" top="110" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0203"	left="125" width="50" top="160" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0204"	left="125" width="50" top="210" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0205"	left="125" width="50" top="260" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0206"	left="125" width="50" top="310" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0207"	left="125" width="50" top="360" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0208"	left="125" width="50" top="410" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0209"	left="125" width="50" top="460" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0210" left="125" width="50" top="510" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0211" left="125" width="50" top="560" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0212" left="125" width="50" top="610" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+
+            <sprite skin="3Buttons" id="3Buttons0300"	left="175" width="50" top="10" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0301"	left="175" width="50" top="60" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0302"	left="175" width="50" top="110" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0303"	left="175" width="50" top="160" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0304"	left="175" width="50" top="210" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0305"	left="175" width="50" top="260" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0306"	left="175" width="50" top="310" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0307"	left="175" width="50" top="360" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0308"	left="175" width="50" top="410" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0309"	left="175" width="50" top="460" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0310" left="175" width="50" top="510" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0311" left="175" width="50" top="560" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0312" left="175" width="50" top="610" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+
+            <sprite skin="3Buttons" id="3Buttons0400"	left="225" width="50" top="10" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0401"	left="225" width="50" top="60" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0402"	left="225" width="50" top="110" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0403"	left="225" width="50" top="160" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0404"	left="225" width="50" top="210" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0405"	left="225" width="50" top="260" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0406"	left="225" width="50" top="310" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0407"	left="225" width="50" top="360" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0408"	left="225" width="50" top="410" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0409"	left="225" width="50" top="460" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0410" left="225" width="50" top="510" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0411" left="225" width="50" top="560" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0412" left="225" width="50" top="610" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+
+            <sprite skin="3Buttons" id="3Buttons0500"	left="275" width="50" top="10" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0501"	left="275" width="50" top="60" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0502"	left="275" width="50" top="110" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0503"	left="275" width="50" top="160" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0504"	left="275" width="50" top="210" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0505"	left="275" width="50" top="260" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0506"	left="275" width="50" top="310" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0507"	left="275" width="50" top="360" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0508"	left="275" width="50" top="410" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0509"	left="275" width="50" top="460" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0510" left="275" width="50" top="510" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0511" left="275" width="50" top="560" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0512" left="275" width="50" top="610" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+
+            <sprite skin="3Buttons" id="3Buttons0600"	left="325" width="50" top="10" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0601"	left="325" width="50" top="60" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0602"	left="325" width="50" top="110" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0603"	left="325" width="50" top="160" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0604"	left="325" width="50" top="210" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0605"	left="325" width="50" top="260" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0606"	left="325" width="50" top="310" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0607"	left="325" width="50" top="360" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0608"	left="325" width="50" top="410" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0609"	left="325" width="50" top="460" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0610" left="325" width="50" top="510" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0611" left="325" width="50" top="560" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0612" left="325" width="50" top="610" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+
+            <sprite skin="3Buttons" id="3Buttons0700"	left="375" width="50" top="10" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0701"	left="375" width="50" top="60" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0702"	left="375" width="50" top="110" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0703"	left="375" width="50" top="160" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0704"	left="375" width="50" top="210" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0705"	left="375" width="50" top="260" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0706"	left="375" width="50" top="310" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0707"	left="375" width="50" top="360" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0708"	left="375" width="50" top="410" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0709"	left="375" width="50" top="460" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0710" left="375" width="50" top="510" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0711" left="375" width="50" top="560" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0712" left="375" width="50" top="610" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+
+            <sprite skin="3Buttons" id="3Buttons0800"	left="425" width="50" top="10" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0801"	left="425" width="50" top="60" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0802"	left="425" width="50" top="110" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0803"	left="425" width="50" top="160" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0804"	left="425" width="50" top="210" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0805"	left="425" width="50" top="260" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0806"	left="425" width="50" top="310" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0807"	left="425" width="50" top="360" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0808"	left="425" width="50" top="410" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0809"	left="425" width="50" top="460" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0810" left="425" width="50" top="510" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0811" left="425" width="50" top="560" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0812" left="425" width="50" top="610" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+
+            <sprite skin="3Buttons" id="3Buttons0900"	left="475" width="50" top="10" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0901"	left="475" width="50" top="60" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0902"	left="475" width="50" top="110" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0903"	left="475" width="50" top="160" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0904"	left="475" width="50" top="210" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0905"	left="475" width="50" top="260" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0906"	left="475" width="50" top="310" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0907"	left="475" width="50" top="360" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0908"	left="475" width="50" top="410" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0909"	left="475" width="50" top="460" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0910" left="475" width="50" top="510" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0911" left="475" width="50" top="560" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons0912" left="475" width="50" top="610" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+
+            <sprite skin="3Buttons" id="3Buttons1000"	left="525" width="50" top="10" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons1001"	left="525" width="50" top="60" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons1002"	left="525" width="50" top="110" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons1003"	left="525" width="50" top="160" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons1004"	left="525" width="50" top="210" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons1005"	left="525" width="50" top="260" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons1006"	left="525" width="50" top="310" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons1007"	left="525" width="50" top="360" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons1008"	left="525" width="50" top="410" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons1009"	left="525" width="50" top="460" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons1010" left="525" width="50" top="510" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons1011" left="525" width="50" top="560" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+            <sprite skin="3Buttons" id="3Buttons1012" left="525" width="50" top="610" height="50" u="0" active="true" >
+                <behave like="gridSprite"/>
+            </sprite>
+
+            <sprite skin="grid1Cursor" id="grid1Cursor" left="40" width="50" top="45" height="50" u="0" active="false" canFocus="true"/>
+
+            <sprite skin="grid2Cursor" id="grid2Cursor" left="490" width="50" top="594" height="50" u="0" active="false" canFocus="true"/>
+
+            <label id="showTurn" skin="boldtext" left="0" right="0" top="650" height="60" align="center" text="Your turn..."/>
+
+            <label id="instr1" skin="digits" left="460" right="0" top="-64" height="20" align="left" text="For new game"/>
+            <label id="instr2" skin="digits" left="460" right="0" top="-44" height="20" align="left" text="   1: 1 Player"/>
+            <label id="instr3" skin="digits" left="460" right="0" top="-24" height="20" align="left" text="   2: 2 Players"/>
+            <label id="instr4" skin="blackdigits" right="10" top="668" width="200" height="20" align="right" text=""/>
+
+			<button id="btn_Exit" left="0" top="-70" height="70" width="70" active="true" visible="false" do="doRoot"/>
+        </group>
+    </group>
+</document>

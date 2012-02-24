@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="STATUS_GROUP_SUB" >
+	<group id="STATUS_GROUP" left="0" right="0" top="0" bottom="0">
+		<model>
+			<variable id="BOOK_SIZE"/>
+			<variable id="DIC_VIEW_SIZE"/>
+			<variable id="DIC_EDIT_SIZE"/>
+			<variable id="BOOK_HALF_PAGE"/>
+			<variable id="NOTEPAD_HALF_PAGE"/>
+			<variable id="BOOK_SPLIT_PAGE"/>
+			<variable id="BOOK_INDEX_COUNT"/>
+			<variable id="halfIndicatorIt"/>
+			<variable id="splitIndicatorIt"/>
+			<variable id="IndicatorDisable"/>
+			<variable id="saveItSizeIndicator"/>
+			<variable id="saveItSizeDicView"/>
+			<variable id="saveItSizeDicEdit"/>
+			<variable id="saveItHalfPage"/>
+			<variable id="saveItFreehandPage"/>
+			<variable id="saveItSplitPage"/>
+		</model>
+		<code>
+			<function id="showSslIndicator" params="showIt">
+			</function>
+			<function id="showNetwork3G" params="showIt">
+			</function>
+			<function id="showNetworkProgress" params="showIt">
+			</function>
+			<function id="showStatusMessageArea" params="showIt">
+			</function>
+			<function id="getNetworkProgressRight">
+				return this.sizeIndicator.getX()
+			</function>
+			<function id="showVolimeGroup" params="showIt">
+				this.VOLUME_GROUP.show(showIt);
+			</function>
+			<function id="showPlaying" params="showIt">
+				this.PLAYING.show(showIt);
+			</function>
+			<function id="showBookSizeIndicator" params="showIt">
+				this.sizeIndicator.show(showIt);
+			</function>
+			<function id="showDicViewSizeIndicator" params="showIt">
+				var it;
+				if (showIt) {
+					it = this.halfPageIndicator.isShown();
+					this.setVariable("halfIndicatorIt", it);
+					this.halfPageIndicator.show(false);
+					it = this.splitPageIndicator.isShown();
+					this.setVariable("splitIndicatorIt", it);
+					this.splitPageIndicator.show(false);
+				}
+				else {
+					it = this.getVariable("halfIndicatorIt");
+					this.halfPageIndicator.show(it);
+					it = this.getVariable("splitIndicatorIt");
+					this.splitPageIndicator.show(it);
+				}
+				this.sizeIndicatorDicView.show(showIt);
+			</function>
+			<function id="showDicEditSizeIndicator" params="showIt">
+				var it;
+				if (showIt) {
+					it = this.halfPageIndicator.isShown();
+					this.setVariable("halfIndicatorIt", it);
+					this.halfPageIndicator.show(false);
+					it = this.halfPageIndicator.isShown();
+					it = this.splitPageIndicator.isShown();
+					this.setVariable("splitIndicatorIt", it);
+					this.splitPageIndicator.show(false);
+				}
+				else {
+					it = this.getVariable("halfIndicatorIt");
+					this.halfPageIndicator.show(it);
+					it = this.getVariable("splitIndicatorIt");
+					this.splitPageIndicator.show(it);
+				}
+				this.sizeIndicatorDicEdit.show(showIt);
+			</function>
+			<function id="showHalfPageIndicator" params="showIt">
+				if (this.sizeIndicatorDicView.isShown() || this.sizeIndicatorDicEdit.isShown())
+					return;
+				var	disableIt = this.getVariable("IndicatorDisable");
+				if (disableIt)
+					return;
+				this.halfPageIndicator.show(showIt);
+			</function>
+			<function id="showHalfFreehandIndicator" params="showIt">
+				var	disableIt = this.getVariable("IndicatorDisable");
+				if (disableIt)
+					return;
+				this.halfFreehandIndicator.show(showIt);
+			</function>
+			<function id="showSplitPageIndicator" params="showIt">
+				if (this.sizeIndicatorDicView.isShown() || this.sizeIndicatorDicEdit.isShown())
+					return;
+				var	disableIt = this.getVariable("IndicatorDisable");
+				if (disableIt)
+					return;
+				this.splitPageIndicator.show(showIt);
+			</function>
+			<function id="showTestModeIndicator" params="showIt">
+				this.testModeIndicator.show(showIt);
+			</function>
+			<function id="disableIndicatorIcon" params="disableIt">
+				this.setVariable("IndicatorDisable", disableIt);
+				if (disableIt) {
+					// makes an icon disable.
+					this.setVariable("saveItSizeIndicator", this.sizeIndicator.isShown());
+					this.setVariable("saveItSizeDicView", this.sizeIndicatorDicView.isShown());
+					this.setVariable("saveItSizeDicEdit", this.sizeIndicatorDicEdit.isShown());
+					this.setVariable("saveItHalfPage", this.halfPageIndicator.isShown());
+					this.setVariable("saveItFreehandPage", this.halfFreehandIndicator.isShown());
+					this.setVariable("saveItSplitPage", this.splitPageIndicator.isShown());
+					this.sizeIndicator.show(false);
+					this.sizeIndicatorDicView.show(false);
+					this.sizeIndicatorDicEdit.show(false);
+					this.halfPageIndicator.show(false);
+					this.halfFreehandIndicator.show(false);
+					this.splitPageIndicator.show(false);
+				}
+				else {
+					// makes an icon enable.
+					var	showIt;
+					showIt = this.getVariable("saveItSizeIndicator");
+					this.sizeIndicator.show(showIt);
+					showIt = this.getVariable("saveItSizeDicView");
+					this.sizeIndicatorDicView.show(showIt);
+					showIt = this.getVariable("saveItSizeDicEdit");
+					this.sizeIndicatorDicEdit.show(showIt);
+					showIt = this.getVariable("saveItHalfPage");
+					this.halfPageIndicator.show(showIt);
+					showIt = this.getVariable("saveItFreehandPage");
+					this.halfFreehandIndicator.show(showIt);
+					showIt = this.getVariable("saveItSplitPage");
+					this.splitPageIndicator.show(showIt);
+				}
+			</function>
+			<function id="setBookSizeIndicator" params="scale">
+				this.setVariable("BOOK_SIZE", scale);
+			</function>
+			<function id="setDicViewSizeIndicator" params="scale">
+				this.setVariable("DIC_VIEW_SIZE", scale);
+			</function>
+			<function id="setDicEditSizeIndicator" params="scale">
+				this.setVariable("DIC_EDIT_SIZE", scale);
+			</function>
+			<function id="setHalfPageIndicator" params="position">
+				this.setVariable("BOOK_HALF_PAGE", position);
+			</function>
+			<function id="setHalfFreehandIndicator" params="position">
+				this.setVariable("NOTEPAD_HALF_PAGE", position);
+			</function>
+			<function id="setSplitPageIndicator" params="position">
+				this.setVariable("BOOK_SPLIT_PAGE", position);
+			</function>
+			<function id="setRegionMonochromeSize">
+						var size =this.sizeIndicatorDicView
+						this.MONOCHROME_SIZE.moveTo(size.getX(),size.getY())
+						this.MONOCHROME_SIZE.sizeTo(size.getWidth(),size.getHeight())
+			</function>
+		</code>
+
+		<kbookIndicator id="sizeIndicator" skin="sizeIndicator" left="1" bottom="0" variable="BOOK_SIZE" visible="false"/>
+		<kbookIndicator id="sizeIndicatorDicView" skin="sizeIndicator" left="1" bottom="0" variable="DIC_VIEW_SIZE" visible="false"/>
+		<kbookIndicator id="sizeIndicatorDicEdit" skin="sizeIndicator" left="1" bottom="0" variable="DIC_EDIT_SIZE" visible="false"/>
+		<kbookIndicator id="halfPageIndicator" skin="halfPageIndicator" left="31" height="30" bottom="0" variable="BOOK_HALF_PAGE" visible="false"/>
+		<kbookIndicator id="halfFreehandIndicator" skin="halfPageIndicator" left="31" height="30" bottom="0" variable="NOTEPAD_HALF_PAGE"/>
+		<kbookIndicator id="splitPageIndicator" skin="splitPageIndicator" left="31" height="30" bottom="0" variable="BOOK_SPLIT_PAGE" visible="false"/>
+
+		<checkbox skin="blinkCheckBox" width="24" right="142" height="30" bottom="0" variable="BLINK" on="1" off="0" active="false"/>
+		<group id="VOLUME_GROUP" width="75" right="100" height="30" bottom="0" visible="false">
+			<checkbox id="MUTE" skin="volumeCheckBox" width="20" right="130" height="30" bottom="0" variable="MUTE" on="1" off="0" active="false"/>
+			<kbookProgress id="VOLUME" skin="volumeProgress" width="43" right="87" height="30" bottom="0" variable="VOLUME"/>
+		</group>
+		<checkbox id="PLAYING" skin="nowPlayingCheckBox" width="24" left="74" height="30" bottom="0" variable="PLAYING" on="1" off="0" active="false"/>
+		<kbookIndicator id="BATTERY_LEVEL" skin="batteryProgress" width="58" right="0" height="30" bottom="0" variable="BATTERY_INDEX"/>
+		<label skin="label-testmode" id="testModeIndicator" text="Test Mode Available" left="0" right="0" height="30" top="0" visible="false" active="false"/>
+		<group id="AREA_MESSAGE" right="0" left="0" top="0" bottom="0" active="false">
+			<model>
+				<variable id="MESSAGE"/>
+			</model>
+			<kbookLabel id="MESSAGE" skin="label-statusBar" clock="true" left="157" right="157" height="30" bottom="0" align="center" variable="MESSAGE"/>
+		</group>
+		<monochrome id="MONOCHROME_LABEL" left="30" right="84" height="30" bottom="0" visible="false"/>
+		<monochrome id="MONOCHROME_SIZE" left="0" right="0" top="0" bottom="0" visible="false"/>
+		
+		<!-- PRS+ stuff --> 
+		<label id="prspTime" skin="label-statusBar" align="right" right="60" bottom="0" height="30" width="100" />
+		<!-- End of PRS+ stuff -->
+	</group>
+</document>

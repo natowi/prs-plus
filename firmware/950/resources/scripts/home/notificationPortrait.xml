@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+
+	<group left="0" right="0" top="0" bottom="0">
+		<!-- New Delivery -->
+		<group left="6" right="7" top="5" height="262">
+			<sprite skin="shortcutNewDeliveryButton" left="12" top="3" width="50" height="50" active="false"/>
+			<kbookLabel skin="title" active="false" left="70" right="0" top="13" height="30" textresource="STR_NODE_TITLE_NEWDELIVERY"/>
+			<!-- title -->
+			<kbookLogoImage left="45" width="320" top="113" height="51" align="left" href="x-id://notifiableLogoData"/>
+			<kbookLabel2Line skin="continueReadingTitle" active="false" top="59" height="90" left="45" width="320" align="left" variable="NOTIFICATION_LOGO"/>
+			<kbookLabel skin="continueReadingAuthor" active="false" top="170" height="30" left="45" right="226" align="left" variable="NOTIFICATION_PUBLICATION_DATE"/>
+			<!-- thumbnail -->
+			<kbookThumbnailImage skin="kbookHomeThumbnail" top="63" right="42" width="135" height="174" href="x-id://notifiableThumbnailData" />
+			<kbookHotspot do="doGoToNotification" left="0" top="0" right="0" bottom="0" />
+		</group>
+		<fillBackground color="#646464" left="18" right="18" top="272" height="1"/>
+		<!-- Continue Reading -->
+		<group left="6" right="7" top="286" height="60">
+			<sprite skin="shortcutContinueButton" left="12" top="3" width="50" height="50" active="false"/>
+			<kbookLabel skin="title" active="false" left="70" right="0" top="3" height="30" textresource="STR_NODE_TITLE_CONTINUEREADINGBOOK"/>
+			<kbookLabel skin="comment" active="false" bottom="3" height="20" left="70" right="42" align="left" variable="CONTINUE_COMMENT"/>
+			<kbookHotspot do="doGoToContinueReading" left="0" top="0" right="0" bottom="0" />
+		</group>
+	</group>
+</document>

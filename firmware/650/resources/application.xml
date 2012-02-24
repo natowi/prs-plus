@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<fsk xmlns="http://www.kinoma.com/Fsk/1">
+	<vm name="application">
+		<environment>
+			<variable name="drmXmlURI" value="[applicationPath]appDRM.xml"/>
+			
+			<!-- PRS+ stuff -->
+			<variable name="prspModel" value="650" />
+			<variable name="prspPath" value="/opt/sony/ebook/application/resources/prsp/" />
+			<variable name="prspVersionFile" value="[prspPath]prspfw.ver" />
+			<variable name="prspCoreFile" value="[prspPath]core.js" />
+			<variable name="prspAddonsFile" value="[prspPath]addons.js" />
+			<variable name="prspStartupFile" value="[prspPath]prsp.js"/>
+			<variable name="prspSettingsPath" value="/opt0/prsp/"/>
+			<variable name="prspAddonsPath" value="[prspPath]addons/"/>
+			<variable name="prspCorePath" value="[prspPath]"/>
+			<variable name="prspPublicPath" value="/Data/database/system/PRSPlus/"/>
+			<variable name="prspUserCSSPath" value="[prspPublicPath]epub/"/>
+			<variable name="userDictionaryPath" value="[prspPublicPath]dictionary/"/>
+			<variable name="prspSafeModeFile" value="/tmp/safemode"/>
+			<variable name="prspLogFile" value="/Data/prsp.log"/>			
+
+			<!-- PRS+ Beta related stuff -->
+			<variable name="prspBetaStartupFile" value="/Data/Beta/prsp.js"/>
+			<variable name="prspBetaUserConfig" value="/Data/Beta/user.config"/>						
+		</environment>
+
+		<extension href="[applicationPath]WindowsMediaPlayer" platform="win"/>
+		<extension href="[applicationPath]QTMLMediaPlayer" platform="win,mac"/>
+		<extension href="[applicationPath]FskFhGAACIntDec"/>
+		<extension href="[applicationPath]FskFhGMP3IntDec"/>
+		
+		<extension href="[applicationPath]fileserialize"/>
+		<extension href="[applicationPath]xdbLite"/>
+		<bytecode href="[applicationPath]FskCache"/>
+		<extension href="[applicationPath]FskVectorGraphics"/>
+		<extension href="[applicationPath]FskBookUtil"/>
+
+		<!--bytecode href="[schemaPath]cacheExtSchema"/-->
+		<extension href="[applicationPath]kbook"/>
+		<bytecode href="[applicationPath]application"/>
+		
+		<bytecode href="[applicationPath]svgEdit.xsb"/>
+		<extension href="[applicationPath]FskBBeBDictionary"/>
+		<bytecode href="[applicationPath]httpPatchWWAN"/>
+
+		<!-- PRS+ stuff -->
+		<bytecode href="[applicationPath]/resources/prsp/prsp"/>		
+		
+		<document href="applicationStart.xml"/>
+	</vm>
+</fsk>

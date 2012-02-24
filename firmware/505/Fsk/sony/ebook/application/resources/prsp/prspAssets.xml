@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="DOCUMENT">
+    <assets>
+        <texture href="prspAssets.png">			
+			<!-- CALENDAR SPRITES-->
+			<cutout id="selectcalsquare" x="0" y="0" width="70" height="70"/>
+			<cutout id="highlightcalsquare" x="70" y="0" width="70" height="70"/>
+			<cutout id="calendarsquare" x="140" y="0" width="70" height="70" columns="70"/>
+			<cutout id="transparentsquare" x="0" y="70" width="20" height="20" columns="20"/>
+			<!-- PRSP POPUP_MENU-->
+			<cutout id="blackBorder-tl" x="0" y="180" width="6" height="5"  columns="0" lines="0" />
+			<cutout id="blackBorder-tc" x="6" y="180" width="30" height="5"  columns="0" lines="0" />
+			<cutout id="blackBorder-tr" x="40" y="180" width="6" height="5"  columns="0" lines="0" />
+			<cutout id="blackBorder-cl" x="0" y="185" width="3" height="70"  columns="0" lines="0" />
+			<cutout id="blackBorder-bl" x="0" y="413" width="6" height="5"  columns="0" lines="0" />
+			<cutout id="blackBorder-bc" x="6" y="413" width="30" height="5"  columns="0" lines="0" />
+			<cutout id="blackBorder-br" x="40" y="413" width="6" height="5"  columns="0" lines="0" />
+        </texture>
+    </assets>	
+</document>

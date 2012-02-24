@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="Okumaya Devam" />
+		<string id="STR_NODE_TITLE_BEGIN" value="Başla" />
+		<string id="STR_NODE_TITLE_END" value="Son" />
+		<string id="STR_NODE_TITLE_BOOKMARKS" value="Sık Kullanılanlar" />
+		<string id="STR_NODE_TITLE_TOC" value="İçindekiler" />
+		<string id="STR_NODE_TITLE_HISTORY" value="Geçmiş" />
+		<string id="STR_NODE_TITLE_INFO" value="Bilgi" />
+		<string id="STR_NODE_TITLE_UTILITIES" value="Araçlar" />
+		<string id="STR_NODE_TITLE_REMOVEALLBOOKMARKS" value="Sık Kullanılanları Kaldır" />
+		<string id="STR_NODE_TITLE_CLEARHISTORY" value="Geçmişi Temizle" />
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="Kitabı Sil" />
+		<string id="STR_NODE_TITLE_CONTINUEREADING" value="Okumaya Devam" />
+		<string id="STR_NODE_TITLE_BOOKSBYTITLE" value="Kitap Başlığı" />
+		<string id="STR_NODE_TITLE_BOOKSBYAUTHOR" value="Kitap Yazarı" />
+		<string id="STR_NODE_TITLE_BOOKSBYDATE" value="Kitap Tarihi" />
+		<string id="STR_NODE_TITLE_TODAY" value="Bugün" />
+		<string id="STR_NODE_TITLE_EARLIERTHISWEEK" value="Bu Hafta Başında" />
+		<string id="STR_NODE_TITLE_LASTWEEK" value="Geçen Hafta" />
+		<string id="STR_NODE_TITLE_EARLIERTHISMONTH" value="Bu Ay Başında" />
+		<string id="STR_NODE_TITLE_LASTMONTH" value="Geçen Ay" />
+		<string id="STR_NODE_TITLE_EARLIERTHISQUARTER" value="Bu Üç Ay Başında" />
+		<string id="STR_NODE_TITLE_LASTQUARTER" value="Geçen Üç Ay" />
+		<string id="STR_NODE_TITLE_EARLIERTHISYEAR" value="Bu Yıl Başında" />
+		<string id="STR_NODE_TITLE_LASTYEAR" value="Geçen Yıl" />
+		<string id="STR_NODE_TITLE_OLDER" value="Daha Eski" />
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="Koleksiyonlar" />
+		<string id="STR_NODE_TITLE_ALLBOOKMARKS" value="Bütün Sık Kullanılanlar" />
+		<string id="STR_NODE_TITLE_NOWPLAYING" value="Şimdi Çalıyor" />
+		<string id="STR_NODE_TITLE_AUDIO" value="Müzikler" />
+		<string id="STR_NODE_TITLE_PICTURE" value="Resimler" />
+		<string id="STR_NODE_TITLE_SETTINGS" value="Ayarlar" />
+		<string id="STR_NODE_TITLE_ORIENTATION" value="Yönlendirme" />
+		<string id="STR_NODE_COMMENT_HORIZONTAL" value="Yatay" />
+		<string id="STR_NODE_COMMENT_VERTICAL" value="Dikey" />
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="Tarih ve Saat" />
+		<string id="STR_NODE_TITLE_YEAR" value="Yıl" />
+		<string id="STR_NODE_TITLE_MONTH" value="Ay" />
+		<string id="STR_NODE_TITLE_DATE" value="Gün" />
+		<string id="STR_NODE_TITLE_HOUR" value="Saat" />
+		<string id="STR_NODE_TITLE_MINUTE" value="Dakika" />
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="Cihazı Kitle" />
+		<string id="STR_NODE_TITLE_ENTERCODE" value="Kodu Gir" />
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="Slayt Gösterisi" />
+		<string id="STR_NODE_TITLE_TURN" value="Çevir" />
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="Slayt Süresi" />
+		<string id="STR_NODE_TITLE_SLEEPMODE" value="Uyku Modu" />
+		<string id="STR_NODE_TITLE_ADBANCEDSETTINGS" value="Gelişmiş Ayarlar" />
+		<string id="STR_NODE_TITLE_FORMATINTERNALMEMORY" value="Cihaz Hafızasını Biçimlendir" />
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="Cihazı Kapat" />
+		<string id="STR_NODE_TITLE_ABOUT" value="Hakkında" />
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="Varsayılan Ayarlar" />
+		<string id="STR_NODE_TITLE_CODE" value="Kod" />
+		<string id="#STR_NODE_TITLE_AUTORUN" value="otomatik çalıştır" />
+		<string id="#STR_NODE_TITLE_HARDRESET" value="donanım sıfırlama" />
+		<string id="STR_COUNTER_BOOKMARK_N" value=" sık kullanılan" />
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 sık kullanılan" />
+		<string id="STR_COUNTER_BOOKMARK_0" value="Sık kullanılan yok" />
+		<string id="STR_COUNTER_ITEM_N" value=" öğe" />
+		<string id="STR_COUNTER_ITEM_1" value="1 öğe" />
+		<string id="STR_COUNTER_ITEM_0" value="Öğe yok" />
+		<string id="STR_COUNTER_PAGE_N" value=" sayfa" />
+		<string id="STR_COUNTER_PAGE_1" value="1 sayfa" />
+		<string id="STR_COUNTER_PAGE_0" value="Sayfa yok" />
+		<string id="STR_COUNTER_UTILITIES_N" value=" araç" />
+		<string id="STR_COUNTER_UTILITIES_1" value="1 araç" />
+		<string id="STR_COUNTER_UTILITIES_0" value="Araç yok" />
+		<string id="STR_COUNTER_BOOK_N" value=" kitap" />
+		<string id="STR_COUNTER_BOOK_1" value="1 kitap" />
+		<string id="STR_COUNTER_BOOK_0" value="Kitap yok" />
+		<string id="STR_COUNTER_COLLECTION_N" value=" koleksiyon" />
+		<string id="STR_COUNTER_COLLECTION_1" value="1 koleksiyon" />
+		<string id="STR_COUNTER_COLLECTION_0" value="Koleksiyon yok" />
+		<string id="STR_COUNTER_SONG_N" value=" şarkı" />
+		<string id="STR_COUNTER_SONG_1" value="1 şarkı" />
+		<string id="STR_COUNTER_SONG_0" value="Şarkı yok" />
+		<string id="STR_COUNTER_NOSONG" value="Şarkı yok" />
+		<string id="STR_COUNTER_PICTURE_N" value=" resim" />
+		<string id="STR_COUNTER_PICTURE_1" value="1 resim" />
+		<string id="STR_COUNTER_PICTURE_0" value="Resim yok" />
+		<string id="STR_COUNTER_SETTING_N" value=" ayar" />
+		<string id="STR_COUNTER_SETTING_1" value="1 ayar" />
+		<string id="STR_COUNTER_SETTING_0" value="Ayar yok" />
+		<string id="STR_UI_BUTTON_OK" value="Tamam" />
+		<string id="STR_UI_BUTTON_On" value="Açık" />
+		<string id="STR_UI_BUTTON_Off" value="Kapalı" />
+		<string id="STR_UI_BUTTON_ABLE" value="Açık" />
+		<string id="STR_UI_BUTTON_DISABLE" value="Kapalı" />
+		<string id="STR_UI_UNITNAME_SECONDS" value="saniye" />
+		<string id="STR_UI_UNITNAME_SIZEKB" value="KB" />
+		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
+		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
+		<string id="STR_UI_DELIMITER_POINT" value="." />
+		<string id="STR_UI_PARTS_PART" value="Bölüm " />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Sayfa " />
+		<string id="STR_UI_PARTS_OF" value=" den/dan " />
+		<string id="STR_UI_PARTS_UNKNOWN" value="?" />
+		<string id="STR_UI_PARTS_VERSION" value="Versiyon: " />
+		<string id="STR_UI_PARTS_DEVICE" value="Cihaz: " />
+		<string id="STR_UI_GOTOPAGE" value="SAYFA" />
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="Sayfa Bulunamadı!" />
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="Korumalı Sayfa!" />
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="Sayfada Hata!" />
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="Format Bulunamadı!" />
+		<string id="STR_UI_MESSAGE_FORMATTING" value="Formatlanıyor..." />
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="Sınırlı" />
+		<string id="STR_UI_MESSAGE_DRMFULL" value="Tam, görünüm" />
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="Hafıza Kartı" />
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="Cihaz Hafızası" />
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="Süresi doldu" />
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="Bugün" />
+		<string id="STR_UI_MESSAGE_FORMATTINGINTERNALMEMORY" value="Cihaz Hafızası Biçimlendiriliyor..." />
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="Kapatılıyor..." />
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDYES" value="Ekitap Mağazası Yetkili." />
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDNO" value="Ekitap Mağazası Yetkili Değil." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDYES" value="Bu cihaz Adobe DRM korumalı içerik için yetkilidir." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="Bu cihaz Adobe DRM korumalı içerik için yetkili değildir." />
+		<string id="STR_UI_MESSAGE_RESTOREDEFAULTSOPERATION" value="Varsayılan ayarları geri yüklemek için XXMARKXX (Bookmark) butonuna basın." />
+		<string id="STR_UI_MESSAGE_CLEARHISTORYOPERATION" value="Geçmişi silmek için XXMARKXX (Bookmark) butonuna basın." />
+		<string id="STR_UI_MESSAGE_FORMATOPERATION" value="Cihaz hafızasını formatlamak için XXMARKXX (Bookmark) butonuna basın." />
+		<string id="STR_UI_MESSAGE_DELETEBOOKOPERATION" value="Kitap silmek için XXMARKXX (Bookmark) butonuna basın." />
+		<string id="STR_UI_MESSAGE_REMOVEALLBOOKMARKSOPERATION" value="Bütün Sık Kullanılanları kaldırmak için XXMARKXX (Bookmark) butonuna basın." />
+		<string id="STR_UI_MESSAGE_SHUTDOWNOPERATION" value="Cihazı kapatmak için XXMARKXX (Bookmark) butonuna basın." />
+		<string id="STR_UI_MESSAGE_HARDRESET" value="Tümünü Sıfırla" />
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="Tüm içeriği silmek, tüm fabrika ayarlarını geri yüklemek ve DRM yetkilerini silmek istiyor musunuz?&#xA;&#xA;Evet - OPTIONS butonuna basın&#xA;Hayır - HOME butonuna basın" />
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="Düşük Pil!" />
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="Pil Yok!" />
+		<string id="STR_UI_MESSAGE_LOADING" value="Yükleniyor..." />
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 de 1" />
+		<string id="STR_UI_MESSAGE_CANNOTDELETEBOOK" value="Kitap Silemezsiniz." />
+		<string id="STR_UI_FORMAT_RTF" value="Rich Text Format" />
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF" />
+		<string id="STR_UI_FORMAT_EPUB" value="EPUB dokümanı" />
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB Kitap" />
+		<string id="STR_UI_FORMAT_TXT" value="Düz metin" />
+		<string id="STR_UI_TITLESORTLABEL1" value="0-9" />
+		<string id="STR_UI_TITLESORTLABEL2" value="A B C" />
+		<string id="STR_UI_TITLESORTLABEL3" value="D E F" />
+		<string id="STR_UI_TITLESORTLABEL4" value="G H I" />
+		<string id="STR_UI_TITLESORTLABEL5" value="J K L" />
+		<string id="STR_UI_TITLESORTLABEL6" value="M N O" />
+		<string id="STR_UI_TITLESORTLABEL7" value="P Q R S" />
+		<string id="STR_UI_TITLESORTLABEL8" value="T U V" />
+		<string id="STR_UI_TITLESORTLABEL9" value="W X Y Z" />
+		<string id="STR_UI_TITLESORTLABEL10" value="Diğer" />
+		<string id="STR_VAL_TITLESORTCRITERION1" value="9" />
+		<string id="STR_VAL_TITLESORTCRITERION2" value="C" />
+		<string id="STR_VAL_TITLESORTCRITERION3" value="F" />
+		<string id="STR_VAL_TITLESORTCRITERION4" value="I" />
+		<string id="STR_VAL_TITLESORTCRITERION5" value="L" />
+		<string id="STR_VAL_TITLESORTCRITERION6" value="O" />
+		<string id="STR_VAL_TITLESORTCRITERION7" value="S" />
+		<string id="STR_VAL_TITLESORTCRITERION8" value="V" />
+		<string id="STR_VAL_TITLESORTCRITERION9" value="Z" />
+		<string id="STR_UI_AUTHORSORTLABEL1" value="0-9" />
+		<string id="STR_UI_AUTHORSORTLABEL2" value="A B C" />
+		<string id="STR_UI_AUTHORSORTLABEL3" value="D E F" />
+		<string id="STR_UI_AUTHORSORTLABEL4" value="G H I" />
+		<string id="STR_UI_AUTHORSORTLABEL5" value="J K L" />
+		<string id="STR_UI_AUTHORSORTLABEL6" value="M N O" />
+		<string id="STR_UI_AUTHORSORTLABEL7" value="P Q R S" />
+		<string id="STR_UI_AUTHORSORTLABEL8" value="T U V" />
+		<string id="STR_UI_AUTHORSORTLABEL9" value="W X Y Z" />
+		<string id="STR_UI_AUTHORSORTLABEL10" value="Diğer" />
+		<string id="STR_VAL_AUTHORSORTCRITERION1" value="9" />
+		<string id="STR_VAL_AUTHORSORTCRITERION2" value="C" />
+		<string id="STR_VAL_AUTHORSORTCRITERION3" value="F" />
+		<string id="STR_VAL_AUTHORSORTCRITERION4" value="I" />
+		<string id="STR_VAL_AUTHORSORTCRITERION5" value="L" />
+		<string id="STR_VAL_AUTHORSORTCRITERION6" value="O" />
+		<string id="STR_VAL_AUTHORSORTCRITERION7" value="S" />
+		<string id="STR_VAL_AUTHORSORTCRITERION8" value="V" />
+		<string id="STR_VAL_AUTHORSORTCRITERION9" value="Z" />
+		<string id="STR_FORMAT_DATE" value="DD/MM/YY" />
+		<string id="STR_UI_MESSAGE_USBDONOT" value="Bağlantısını kesmeyin" />
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="USB bağlı" />
+		<string id="STR_UI_MESSAGE_LOCKED" value="Cihaz kitli" />
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,‘,’,“,”" />
+		<string id="STR_SORT_IGNOREARTICLES" value="a ,an ,the " />
+		<string id="infoTitles" value="Kapak,Başlık,Yazar,Yayıncı,Kategori,eKitap ID,Tür,Tarih,Boyut,Yer,Yol,Digital Haklar,Son Kullanma Tarihi" />
+		<string id="STR_UPDATE_SUCCESS" value="Üretici yazılımı güncellemesi..." />
+		<string id="STR_UPDATE_FAIL" value="Üretici yazılımı başarı ile güncellenemedi. Lütfen tekrar deneyiniz" />
+		<string id="STR_NODE_TITLE_PREVIOUS_VIEW" value="Önceki Görünüm" />
+		<string id="STR_NODE_TITLE_NEXT_VIEW" value="Sonraki Görünüm" />
+		<string id="STR_NODE_TITLE_WELCOME" value="Hoşgeldiniz!" />
+		<string id="STR_UI_MESSAGE_WELCOME" value="Merhaba. Okumak için &#xA; elinizde tutun.&#xA; Okuma deneyimi yaşamak için şimdi ekrana dokunun." />
+		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Menü Dili" />
+		<string id="STR_UI_LANG" value="Dil" />
+		<string id="STR_UI_LANG_EN" value="İngilizce" />
+		<string id="STR_UI_LANG_FR" value="Fransızca" />
+		<string id="STR_UI_LANG_DE" value="Almanca" />
+		<string id="STR_UI_LANG_NL" value="Hollanda Dili" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="Tercih ettiğiniz dili belirleyip ve TAMAM ı seçiniz.&#xA;Not:  Daha sonra cihaz ayarlarını ayarlar menüsünden değiştirebilirsiniz." />
+		<string id="STR_UI_PARTS_DELIMITER" value="/" />
+		<string id="STR_UI_MESSAGE_DEMOMODE" value="(Demo Modu)" />
+		<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value="Ekran Koruyucu Demo" />
+		<string id="STR_NODE_TITLE_HOME" value="Ana Sayfa" />
+		<string id="STR_NODE_TITLE_OPTIONS" value="Seçenekler" />
+		<string id="STR_UI_MESSAGE_DELETEALLBOOKMARKS" value="Bu sayfa diğer font boyutları veya diğer cihazlar işaretli bazı imi (ler) içerir. Bu sayfadaki tüm sık kullanılanları silmek istediğinizden emin misiniz?" />
+		<string id="STR_DEMO_NOTAVAILABLE" value="Bu ayar demo modunda mevcut değildir. Daha önceki ekrana dönmek için  XXRETURNXX(Return) butonuna basınız." />
+		<string id="STR_DEMO_TITLE" value="DEMO MODE" />
+		<string id="STR_UI_MESSAGE_REMOVEBOOKMARKSOPERATION" value="Sık kullanılanları kaldırmak için XXMARKXX (Bookmark) butonuna basınız." />
+		<string id="STR_UI_MESSAGE_NOTE_BOOKMARKOPERATION" value="Not: Bu sayfa, birden fazla metin boyutunu bir yer imi içerir. Devam ederseniz, bu sayfadaki tüm yer imlerini silinecektir." />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="Başlık: &quot;XXTITLEXX&quot;" />
+		<string id="STR_NODE_TITLE_REMOVEBOOKMARK" value="Sık Kullanılanları Kaldır" />
+		<string id="STR_UI_MESSAGE_MENURETURN" value="Geri dönmek için XXRETURNXX(Return) butonuna basınız." />
+		<string id="STR_NODE_TITLE_DATE_TIME_FORMAT_SETTINGS" value="Tarih ve Saat Formatı" />
+		<string id="STR_UI_DATE" value="Tarih" />
+		<string id="STR_UI_BUTTON_MMDDYY" value="Ay-Gün-Yıl" />
+		<string id="STR_UI_BUTTON_DDMMYY" value="Gün-Ay-Yıl" />
+		<string id="STR_UI_TIME" value="Zaman" />
+		<string id="STR_UI_BUTTON_12HR" value="12 saat" />
+		<string id="STR_UI_BUTTON_24HR" value="24 saat" />
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / " />
+		<string id="STR_UI_MESSAGE_NOTE_DELETE_ALL_CONTENTS" value="Not: Tüm içerik silinecektir." />
+		<string id="STR_UI_MESSAGE_NOBOOK" value="Kitap yok" />
+		<string id="STR_NODE_TITLE_BOOK" value="Kitaplar" />
+		<string id="STR_NODE_TITLE_SORTEDBYTITLE" value="Başlığa Göre Sırala" />
+		<string id="STR_NODE_TITLE_SORTEDBYAUTHOR" value="Yazara Göre Sırala" />
+		<string id="STR_NODE_TITLE_SORTEDBYDATE" value="Tarihe Göre Sırala" />
+		<string id="STR_NODE_TITLE_SORTEDBYORDER" value="Siparişe Göre Sırala" />
+		<string id="STR_NODE_TITLE_ALLNOTES" value="Bütün Notlar" />
+		<string id="STR_NODE_TITLE_SORTEDBYCOMMENT" value="Yoruma Göre Sırala" />
+		<string id="STR_NODE_TITLE_SORTEDBYTYPE" value="Türe Göre Sırala" />
+		<string id="STR_NODE_TITLE_SORTEDBYARTIST" value="Sanatçıya Göre Sırala" />
+		<string id="STR_NODE_TITLE_NEXTPAGE" value="Sonraki Sayfa" />
+		<string id="STR_NODE_TITLE_PAGETURNGESTURE" value="El Hareketiyle Sayfa Değiştirmek" />
+		<string id="STR_NODE_TITLE_ADVANCEDSETTINGS" value="Gelişmiş Ayarlar" />
+		<string id="STR_NODE_TITLE_TOUCHPANEL" value="Dokunmatik Ekran Kalibrasyonu" />
+		<string id="STR_NODE_TITLE_CLEARKEYBOARDHISTORY" value="Klavye Geçmişini Sil" />
+		<string id="STR_NODE_TITLE_SEARCHRESULTS" value="Arama Sonuçları" />
+		<string id="STR_COUNTER_NOTES_N" value=" not" />
+		<string id="STR_COUNTER_NOTE_1" value="1 not" />
+		<string id="STR_COUNTER_NOTE_0" value="Not yok" />
+		<string id="STR_NODE_TITLE_SORTEDBYPAGE" value="Sayfaya Göre Sırala" />
+		<string id="STR_NODE_TITLE_POWERMANAGEMENT" value="Güç Yönetimi" />
+		<string id="STR_UI_MENU_SORT" value="Sırala" />
+		<string id="STR_UI_MENU_BYORDER" value="Siparişe Göre" />
+		<string id="STR_UI_MENU_BYTITLE" value="Başlığa Göre" />
+		<string id="STR_UI_MENU_BYAUTHOR" value="Yazara Göre" />
+		<string id="STR_UI_MENU_BYDATE" value="Tarihe Göre" />
+		<string id="STR_UI_MENU_VIEW" value="Görünüm" />
+		<string id="STR_UI_MENU_LIST" value="Liste" />
+		<string id="STR_UI_MENU_THUMBNAIL" value="Ön İzleme" />
+		<string id="STR_UI_MENU_NOWPLAYING" value="Şimdi Çalıyor" />
+		<string id="STR_UI_MENU_ORIENTATION" value="Yönlendirme" />
+		<string id="STR_UI_MENU_SEARCHTITLE" value="Ara" />
+		<string id="STR_UI_MENU_CLOSETHISBOOK" value="Listeye Dön" />
+		<string id="STR_UI_MENU_GOTOPAGE" value="Sayfaya Git" />
+		<string id="STR_UI_MENU_CREATEEDITNOTES" value="Oluştur/Notları Düzenle" />
+		<string id="STR_UI_MENU_SHOWNOTES" value="Notları Göster" />
+		<string id="STR_UI_MENU_HIDENOTES" value="Notları Gizle" />
+		<string id="STR_UI_MENU_TABLEOFCONTENTS" value="İçindekiler" />
+		<string id="STR_UI_MENU_BOOKINFO" value="Bilgi" />
+		<string id="STR_UI_MENU_DELETEBOOK" value="Kitap Sil" />
+		<string id="STR_UI_MENU_SEARCHAKEYWORD" value="Ara" />
+		<string id="STR_UI_MENU_HISTORYJUMP" value="Geçmiş" />
+		<string id="STR_UI_MENU_CLOSETHISMUSIC" value="Listeye Dön" />
+		<string id="STR_UI_MENU_OFF" value="Kapalı" />
+		<string id="STR_UI_MENU_SONG_1" value="1 Şarkı" />
+		<string id="STR_UI_MENU_SONG_ALL" value="Bütün Şarkılar" />
+		<string id="STR_UI_MENU_SHUFFLEON" value="Karıştır Açık" />
+		<string id="STR_UI_MENU_SHUFFLEOFF" value="Karıştır Kapalı" />
+		<string id="STR_UI_MENU_CONTINUEREADING" value="Okumaya Devam" />
+		<string id="STR_UI_MENU_CLOSETHISPICTURE" value="Listeye Dön" />
+		<string id="STR_UI_MENU_SLIDESHOWOFF" value="Slayt Gösterimi Kapalı" />
+		<string id="STR_UI_MENU_SLIDESHOWON" value="Slayt Gösterimi Açık" />
+		<string id="STR_UI_MENU_BYARTIST" value="Sanatçıya Göre" />
+		<string id="STR_UI_MENU_BYPAGE" value="Sayfaya Göre" />
+		<string id="STR_UI_MENU_BYTYPE" value="Türe Göre" />
+		<string id="STR_UI_MENU_BYCOMMENT" value="Yoruma Göre" />
+		<string id="STR_UI_MENU_DELETENOTES" value="Notları Sil" />
+		<string id="STR_UI_MESSAGE_RESET" value="Varsayılan ayarları geri yüklemek istediğiniz emin misiniz?" />
+		<string id="STR_UI_MESSAGE_FORMATINTERNALMEMORY" value="Cihaz Hafızasını Formatla" />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE" value="Cihaz hafızasını formatlamak istediğiniz emin misiniz?&#xA;Uyarı: Bütün içerik ve notlar silinecektir." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_MS" value="Memory Stick i formatlamak istediğinizden emin misiniz?&#xA;Uyarı: Bütün içerik ve notlar silinecektir." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_SD" value="SD Kart ı formatlamak istediğinizden emin misiniz?&#xA;Uyarı: Bütün içerik ve notlar silinecektir." />
+		<string id="STR_UI_MESSAGE_DELETEBOOK" value="Bu kitabı silmek istediğinizden emin misiniz?" />
+		<string id="STR_UI_MESSAGE_DELETEBOOKERR" value="Kitap silinemiyor.Kitap listesi dönmek için TAMAM tuşuna basın." />
+		<string id="STR_UI_MESSAGE_DELETEHISTORICAL" value="Klavye geçmişi temizlemek istediğiniz emin misiniz?" />
+		<string id="STR_UI_MESSAGE_DEVICE_SHUTDOWN" value="Cihazı kapatmak istediğinizden emin misiniz " />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONSTART" value="Dokunmatik ekran kalibrasyonu için Evet basınız." />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONEND" value="Dokunmatik ekran kalibrasyonu tamamlandı." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_1" value="Bu ayar, demo modunda mevcut değildir." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_2" value="Bu özellik, demo modunda mevcut değildir." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_START" value="&#xA; hedefin ortasına dokunun." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_ERR" value="Kalibrasyon hata algıladı.&#xA;Lütfen kalibrasyon işlemini baştan yapınız." />
+		<string id="STR_UI_BUTTON_YES" value="Evet" />
+		<string id="STR_UI_BUTTON_NO" value="Hayır" />
+		<string id="STR_UI_BUTTON_ZOOMIN" value="Büyüt" />
+		<string id="STR_UI_BUTTON_SEARCH" value="Ara" />
+		<string id="STR_UI_BUTTON_DONE" value="Tamam" />
+		<string id="STR_UI_BUTTON_GO" value="Git" />
+		<string id="STR_UI_BUTTON_ENTERPAGE" value="Sayfayı Gir #" />
+		<string id="STR_UI_BUTTON_NEW" value="Yeni" />
+		<string id="STR_UI_BUTTON_LIST" value="Liste" />
+		<string id="STR_UI_SHORTCUT_HIGHLIGHT" value="İşaretle" />
+		<string id="STR_UI_SHORTCUT_SEARCH" value="Ara" />
+		<string id="STR_UI_SHORTCUT_DICTIONARY" value="Sözlük" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING" value="Sözlük" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING_l" value="sözlük" />
+		<string id="STR_DICTIONARY_US" value="New Oxford American Dictionary" />
+		<string id="STR_DICTIONARY_BRITISH" value="Oxford Dictionary of English" />
+		<string id="STR_DICTIONARY_NO" value="Yok" />
+		<string id="STR_NODE_TITLE_DATEANDTIMEFORMAT_SETTING" value="Tarih ve Saat Formatı" />
+		<string id="STR_UI_PARTS_MONTH" value="Ay" />
+		<string id="STR_UI_PARTS_DAY" value="Gün" />
+		<string id="STR_UI_PARTS_YEAR" value="Yıl" />
+		<string id="STR_UI_PARTS_HOUR" value="Saat" />
+		<string id="STR_UI_MESSAGE_RESTARTING" value="Yeniden başlatılıyor..." />
+		<string id="STR_UI_NODE_TITLE_KEYBOARD" value="Klavye" />
+		<string id="STR_UI_KEYBOARD_US" value="United States" />
+		<string id="STR_UI_KEYBOARD_UK" value="United Kingdom" />
+		<string id="STR_UI_KEYBOARD_FRENCH" value="French" />
+		<string id="STR_UI_KEYBOARD_GERMAN" value="German" />
+		<string id="STR_UI_KEYBOARD_NETHERLANDS" value="Dutch" />
+		<string id="STR_UI_BUTTON_DICTIONARY_LIST" value="Liste" />
+		<string id="STR_UI_BUTTON_DICTIONARY_DETAIL" value="Ayrıntılı" />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP1" value="Bu sayfa görüntülenemiyor." />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP2" value="" />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_CANNOT_EDIT" value="Bu çizim değiştirilemiyor." />
+		<string id="DIALOGMSG_INFORM_SCR_CANNOT_EDIT" value="Bu notlar düzenlenemez." />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_FREEHAND" value="Yeni Çizim" />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_TEXT" value="Yeni Not" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYFREEHAND" value="Çizime Göre" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYTEXT" value="Klavyeye Göre" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_MS" value="Format Memory Stick" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_SD" value="Format SD Card" />
+		<string id="STR_NODE_TITLE_FORMATDEVICE" value="Format Memory" />
+		<string id="STR_NODE_TITLE_FORMAT_INTERNAL" value="Cihaz Hafızası" />
+		<string id="STR_NODE_TITLE_FORMAT_MS" value="Memory Stick" />
+		<string id="STR_NODE_TITLE_FORMAT_SD" value="SD Kart" />
+		<string id="STR_UI_FORMAT_INTERNAL_MEMORY" value="Cihaz Hafızası Formatlanıyor..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_MS" value="Memory Stick Formatlanıyor..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_SD" value="SD Kart Formatlanıyor..." />
+		<string id="STR_WARNING_FORMAT_1" value="Formatlanıyor..." />
+		<string id="STR_WARNING_FORMAT_2_MS" value="Memory Stick Çıkarmayın." />
+		<string id="STR_WARNING_FORMAT_2_SD" value="SD Kart Çıkarmayın." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_1" value="Sık kullanılanları silmek istediğinizden emin misiniz?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_2" value="Not: Bu sayfa, birden fazla metin boyutunu bir yer imi içerir. Devam ederseniz, bu sayfadaki tüm yer imlerini silinecektir." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_1" value="Sık kullanılanları silmek istediğinizden emin misiniz?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_2" value="Not: Bu sayfa, birden fazla metin boyutunu bir not ile bir yer imi içerir. Devam ederseniz, bu sayfadaki tüm yer imlerini ve notlar silinecektir." />
+		<string id="STR_FORMAT_NO_MEMORY" value="Hafıza kart takılı değil" />
+		<string id="STR_FORMAT_WRITE_PROTECTED" value="Hafıza kartı yazma korumalı" />
+		<string id="STR_FORMAT_NON_STANDARD" value="Hafıza kartı desteklenmiyor" />
+		<string id="STR_NODE_TITLE_NOTEPAD_FREEHAND" value="El Yazısı" />
+		<string id="STR_NODE_TITLE_NOTEPAD_TEXT" value="Metin Notu" />
+		<string id="STR_NODE_TITLE_SORTEDBYCREATEDDATE" value="Oluşturulma Tarihine Göre Sırala" />
+		<string id="STR_NODE_TITLE_MORE" value="Daha Fazla" />
+		<string id="STR_NODE_TITLE_MORE_FULL" value="Daha Fazla Uygulama" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK1" value="Bir not imini silmek istediğinizden emin misiniz?" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK2" value="" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT1" value="Bir not vurgusunu silmek istediğinizden emin misiniz?" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT2" value="" />
+		<string id="DIALOGMSG_INFORM_NOHITS" value="Eşleşme bulundu" />
+		<string id="DIALOGMSG_INFORM_NOMOREHITS" value="Eşleşme bulunamadı" />
+		<string id="DIALOGMSG_CONFIRM_BACKWARDSEARCH" value="Kitabın sonunda aramaya devam etmek istiyor musunuz?" />
+		<string id="DIALOGMSG_CONFIRM_FORWARDSEARCH" value="Kitabın başından itibaren aramaya devam etmek istiyor musunuz?" />
+		<string id="STR_MSG_SEARCHING" value="Aranıyor..." />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK1" value="Bir not imini silmek istediğinizden emin misiniz?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK2" value="" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT1" value="Bir not vurgusunu silmek istediğinizden emin misiniz?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_CMT_EDIT_QUIT" value="Devam ederseniz değişiklik kaydedilmez. Devam etmek istediğinizden emin misiniz?" />
+		<string id="DIALOGMSG_CONFIRM_SCR_EDIT_QUIT" value="Devam ederseniz değişiklik kaydedilmez. Devam etmek istediğinizden emin misiniz?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES1" value="All notes will be removed." />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES2" value="Tüm notlar silinecektir." />
+		<string id="KBOOK_UI_MYNOTE" value="Notlar" />
+		<string id="STR_UI_KEYBOARD_SYMBOL" value="Semboller" />
+		<string id="STR_UI_KEYBOARD_SPACE" value="Boşluk" />
+		<string id="STR_UI_KEYBOARD_ABC" value="Abc" />
+		<string id="STR_UI_KEYBOARD_RETURN" value="Geri" />
+		<string id="STR_UI_COMMENTVIEWER_EDIT" value="Düzenle" />
+		<string id="STR_UI_COMMENTVIEWER_DELETE" value="Sil" />
+		<string id="STR_UI_AUDIO_REPEAT" value="Tekrar" />
+		<string id="STR_NODE_TITLE_HOMEPERSONALIZATION" value="Ana Menüyü Özelleştir" />
+		<string id="STR_UI_PARTS_LEFT" value="SOL" />
+		<string id="STR_UI_PARTS_RIGHT" value="SAĞ" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_FREEHAND" value="Çizimi Sil" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_TEXT" value="Notu Sil" />
+		<string id="STR_UI_MENU_CLOSETHISNOTEPAD_FREEHAND" value="Listeye Geri Dön" />
+		<string id="STR_UI_MENU_CLOSETHISNOTEPAD_TEXT" value="Listeye Geri Dön" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND1" value="Bu çizim silmek istediğinizden emin misiniz?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND2" value="" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT1" value="Bu notu silmek istediğinizden emin misiniz?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT1" value="Devam ederseniz değişiklik kaydedilmez. Devam etmek istediğinizden emin misiniz?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT1" value="Devam ederseniz değişiklik kaydedilmez. Devam etmek istediğinizden emin misiniz?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT1" value="Devam ederseniz çizim kaydedilmez. Devam etmek istediğinizden emin misiniz?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT1" value="Eğer devam ederseniz not kaydedilmez. Devam etmek istediğinizden emin misiniz?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT2" value="" />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_RESULT" value="Tanım bulunamadı." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_INPUT_KEYBOARD" value="Bir kelime gir" />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_HEADWORD" value="Gİriş yok.&#xA;Girilen kelimeyi kontrol edin." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SUPPORTED" value="Sözlük etkin değil." />
+		<string id="STR_UI_DICTIONARY_ENTRIES_PAGE" value="Girdiler, P." />
+		<string id="STR_UI_DICTIONARY_ENTRY_PAGE" value="Girdi, P." />
+		<string id="STR_COUNTER_DRAWING_N" value=" çizim" />
+		<string id="STR_COUNTER_DRAWING_1" value="1 çizim" />
+		<string id="STR_COUNTER_DRAWING_0" value="Çizim yok." />
+		<string id="STR_COUNTER_MEMO_N" value=" not" />
+		<string id="STR_COUNTER_MEMO_1" value="1 not" />
+		<string id="STR_COUNTER_MEMO_0" value="Not yok." />
+		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="Olağanüstü dahili hafıza durumu&#xA;Biçimlendirme." />
+	</assets>
+</document>

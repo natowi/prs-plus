@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<model>
+		<variable id="FWVer" value="----------"/>
+		<variable id="PreContVer" value="----------"/>
+		<variable id="PreParVer" value="----------"/>
+		<variable id="eDicContVer" value="----------"/>
+		<variable id="InsVer" value="----------"/>
+
+		<code>
+			<function id="initialized">
+				this.container.VERSION_CHECK.focus(true)
+
+ 				try {
+					// Get Version Info
+					var versionData = System.applyEnvironment("[PRSVersion]");
+					this.container.VERSION_CHECK.FWVER.text.value = "Firmware version: " + versionData;
+
+					// Preload Partition Version Info
+					var stream = new Stream.File("/opt/sony/ebook/Preload/tmp/version");
+					var partitionVerData = stream.readLine();
+					stream.close();
+					this.container.VERSION_CHECK.PREPARVER.text.value= "Preload Partition version: " + partitionVerData;
+
+					// get Installer Version Info
+					stream = new Stream.File("/tmp/version_Data2");
+					var versionData2 = stream.readLine();
+					stream.close();
+					this.container.VERSION_CHECK.INSVER.text.value = "Installer Launcher version: " + versionData2;
+
+					// Get eDictionary Contents version
+					var stream = new Stream.File("/opt1/dict/tmp/version");
+					var eDictVersionData = stream.readLine();
+					stream.close();
+					this.container.VERSION_CHECK.CONVER.text.value= "eDictionary contents version: " + eDictVersionData;
+
+
+				}catch(e){
+				}
+				finally {
+					if (stream)
+						stream.close()
+ 				}
+ 
+			</function>
+		</code>
+	</model>
+
+	<group id="VERSION_CHECK" left="0" right="0" top="0" bottom="0">
+		<code>
+			<function id="doRoot">
+				this.bubble("finishTest")
+			</function>
+
+			<function id="start">
+				this.BACKGROUND.invalidate();
+			</function>
+
+			<function id="stop">
+				this.bubble("finishTest")
+			</function>
+
+		</code>
+
+
+		<sprite id="BACKGROUND" left="0" right="0" top="0" bottom="0">
+			<behave like="background"/>
+		</sprite>
+
+		<sprite id="FWVER" left="20" width="580" top="50" height="50" skin="labelSkin" >
+			<behave like="label" />
+			<property id="text" value="Firmware version: " />
+		</sprite>
+		<sprite id="PREVER" left="20" width="580" top="150" height="50" skin="labelSkin">
+			<behave like="label"/>
+			<property id="text" value="Preload contents version:" />
+		</sprite>
+		<sprite id="PREPARVER" left="20" width="580" top="250" height="50" skin="labelSkin">
+			<behave like="label"/>
+			<property id="text" value="Preload Partition version: " />
+		</sprite>
+		<sprite id="CONVER" left="20" width="580" top="350" height="50" skin="labelSkin">
+			<behave like="label"/>
+			<property id="text" value="eDictionary contents version: " />
+		</sprite>
+		<sprite id="INSVER" left="20" width="580" top="450" height="50" skin="labelSkin">
+			<behave like="label"/>
+			<property id="text" value="Installer Launcher version: " />
+		</sprite>
+
+	</group>
+</document>

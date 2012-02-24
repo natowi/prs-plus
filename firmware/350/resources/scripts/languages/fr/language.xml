@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<language xmlns="http://www.kinoma.com/fskin/1">
+	<name>Français</name>
+	<txtWelcome>Bonjour, Vous tenez entre vos mains le futur&#xA;de la lecture par Sony. Veuillez toucher&#xA;l’écran pour commencer cette expérience.</txtWelcome>
+	<txtGuideAreaLang>Choisissez la langue désirée et sélectionnez « OK ».&#xA;Remarque :  vous pourrez modifier les paramètres de l'appareil plus tard dans le menu « Paramètres ».</txtGuideAreaLang>
+	<txtCalibration1>À l’aide du stylet, tapez au&#xA;centre de la cible.</txtCalibration1>
+	<txtCalibration2>Erreur d’étalonnage détectée.&#xA;Veuillez relancer l’étalonnage.</txtCalibration2>
+</language>

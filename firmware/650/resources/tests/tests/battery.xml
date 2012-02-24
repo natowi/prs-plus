@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<model>
+		<variable id ="BATTERY_LEVEL"/>
+		<code>
+			<function id="initialized">
+				this.container.PANEL.BACKGROUND.focus(true)
+			</function>
+		</code>
+	</model>
+	<group id="PANEL" left="0" right="0" top="0" bottom="0">
+		<code>
+			<function id="doRoot">
+				this.bubble("finishTest")
+			</function>
+		</code>
+		<sprite id="BACKGROUND" left="0" right="0" top="0" bottom="0" canFocus="true">
+			<script on="mouseUp" params="event">
+				//ebook.getBattery
+				this.setVariable("BATTERY_LEVEL", Math.floor(Math.random() * 100))
+				this.setVariable("BATTERYCHECK", "Done")
+			</script>
+			<behave like="background"/>
+		</sprite>
+		<sprite id="BATTERY" width="300" height="50" top="320" skin="labelSkin">
+			<property id="text" value=""/>
+			<behave like="label"/>
+			<script on="variableChanged" params="id, value">
+				if (id == "BATTERY_LEVEL") {
+					this.text.value = value
+					this.invalidate()
+				}
+			</script>
+			<code>
+				<function id="hitBounds"/>
+			</code>
+		</sprite>
+	</group>
+</document>

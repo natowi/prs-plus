@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="Продолжить чтение" />
+		<string id="STR_NODE_TITLE_TOC" value="Содержание" />
+		<string id="STR_NODE_TITLE_INFO" value="Информация" />
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="Удалить книгу" />
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="Коллекции" />
+		<string id="STR_NODE_TITLE_AUDIO" value="Аудио" />
+		<string id="STR_NODE_TITLE_PICTURE" value="Фотографии" />
+		<string id="STR_NODE_TITLE_SETTINGS" value="Настройки" />
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="Дата и время" />
+		<string id="STR_NODE_TITLE_YEAR" value="Год" />
+		<string id="STR_NODE_TITLE_MONTH" value="Месяц" />
+		<string id="STR_NODE_TITLE_DATE" value="Число" />
+		<string id="STR_NODE_TITLE_HOUR" value="Час" />
+		<string id="STR_NODE_TITLE_MINUTE" value="Минуты" />
+		<string id="STR_UI_BUTTON_AM" value="AM" />
+		<string id="STR_UI_BUTTON_PM" value="PM" />
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="Защитить паролем" />
+		<string id="STR_NODE_TITLE_ENTERCODE" value="Введите код" />
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="Слайд-шоу" />
+		<string id="STR_NODE_TITLE_TURN" value="Переключить" />
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="Интервал" />
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="Полное отключение" />
+		<string id="STR_NODE_TITLE_ABOUT" value="Об устройстве" />
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="Сброс всех настроек" />
+		<string id="STR_NODE_TITLE_CODE" value="Код" />
+		<string id="#STR_NODE_TITLE_AUTORUN" value="autoRun" />
+		<string id="#STR_NODE_TITLE_HARDRESET" value="hardReset" />
+		<string id="STR_COUNTER_BOOKMARK_N" value=" закл." />
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 закладка" />
+		<string id="STR_COUNTER_BOOKMARK_0" value="Пусто" />
+		<string id="STR_COUNTER_ITEM_N" value=" элем." />
+		<string id="STR_COUNTER_ITEM_1" value="1 элемент" />
+		<string id="STR_COUNTER_ITEM_0" value="Пусто" />
+		<string id="STR_COUNTER_BOOK_N" value=" книг" />
+		<string id="STR_COUNTER_BOOK_1" value="1 книга" />
+		<string id="STR_COUNTER_BOOK_0" value="Пусто" />
+		<string id="STR_COUNTER_COLLECTION_N" value=" коллекц." />
+		<string id="STR_COUNTER_COLLECTION_1" value="1 коллекция" />
+		<string id="STR_COUNTER_COLLECTION_0" value="Пусто" />
+		<string id="STR_COUNTER_SONG_N" value=" треков" />
+		<string id="STR_COUNTER_SONG_1" value="1 трек" />
+		<string id="STR_COUNTER_SONG_0" value="Пусто" />
+		<string id="STR_COUNTER_PICTURE_N" value=" фото" />
+		<string id="STR_COUNTER_PICTURE_1" value="1 фото" />
+		<string id="STR_COUNTER_PICTURE_0" value="Пусто" />
+		<string id="STR_COUNTER_SETTING_N" value=" устан." />
+		<string id="STR_COUNTER_SETTING_1" value="1 установка" />
+		<string id="STR_COUNTER_SETTING_0" value="Пусто" />
+		<string id="STR_UI_BUTTON_OK" value="OK" />
+		<string id="STR_UI_BUTTON_On" value="Вкл." />
+		<string id="STR_UI_BUTTON_Off" value="Выкл." />
+		<string id="STR_UI_BUTTON_ABLE" value="Вкл." />
+		<string id="STR_UI_BUTTON_DISABLE" value="Выкл." />
+		<string id="STR_UI_UNITNAME_SECONDS" value="сек." />
+		<string id="STR_UI_UNITNAME_SIZEKB" value="КБ" />
+		<string id="STR_UI_UNITNAME_SIZEMB" value="МБ" />
+		<string id="STR_UI_UNITNAME_SIZEGB" value="ГБ" />
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
+		<string id="STR_UI_PARTS_PART" value="Часть" />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Стр." />
+		<string id="STR_UI_PARTS_OF" value=" из " />
+		<string id="STR_UI_PARTS_TOC_UNKNOWN" value="?" />
+		<string id="STR_UI_PARTS_VERSION" value="Версия:" />
+		<string id="STR_UI_PARTS_DEVICE" value="Устройство.:" />
+		<string id="STR_UI_GOTOPAGE" value="СТР." />
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="Страница запорчена!" />
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="Страница защищена!" />
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="Ошибка на странице!" />
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="Необходим формат!" />
+		<string id="STR_UI_MESSAGE_FORMATTING" value="Форматирую…" />
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="Запрещено" />
+		<string id="STR_UI_MESSAGE_DRMFULL" value="Заполнено, просмотр" />
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="Карта памяти" />
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="Истекло" />
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="Сегодня" />
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="Отключение…" />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="Устройсто не авторизовано для чтения  Adobe DRM." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZED_READ" value="Устройство авторизовано для чтения  Adobe DRM." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZED_PURCHASE" value="Устройсто авторизовано для чтения и покупки Adobe DRM." />
+		<string id="STR_UI_MESSAGE_HARDRESET" value="Полный сброс" />
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="Хотите ли вы УДАЛИТЬ все книги, восстановить установки по умолчанию и очистить авторизацию DRM?&#xA;&#xA;Да - нажмите &quot;OPTIONS&quot;&#xA;Нет - нажмите &quot;HOME&quot;(Домик)" />
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="Батарея почти разряжена!" />
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="Батарея полностью разряжена!" />
+		<string id="STR_UI_MESSAGE_LOADING" value="Загрузка…" />
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 из 1" />
+		<string id="STR_UI_FORMAT_RTF" value="Rich Text Format" />
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF" />
+		<string id="STR_UI_FORMAT_EPUB" value="EPUB-документ" />
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB Book" />
+		<string id="STR_UI_FORMAT_TXT" value="Текст" />
+		<string id="STR_UI_MESSAGE_USBDONOT" value="Не отключайте USB!" />
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="Подключение USB" />
+		<string id="STR_UI_MESSAGE_LOCKED" value="Ридер заблокирован" />
+		<string id="STR_UI_MESSAGE_CHARGING" value="Идет зарядка батареи" />
+		<string id="STR_UI_MESSAGE_CHARGING_COMPLETE" value="Батарея заряжена" />
+		<string id="STR_UI_MESSAGE_CHARGING_NOT_CHARGING" value="Зарядка остановлена" />
+		<string id="STR_UI_USB_MODE_GUIDE_CHECK_CONNECTION" value="Устройство не может заряжаться из-за отсутствия питания. Подключите сетевую зарядку или проверьте кабель." />
+		<string id="STR_UI_USB_MODE_GUIDE_TOO_HOT_COLD" value="Температура не подходит для зарядки устройства. Пожалуйста, заряжайте при комнатной температуре." />
+		<string id="STR_UI_USB_MODE_GUIDE_BROKEN_BAT" value="Аккумулятору требуется обслуживание.&#xA;Обратитесь в сервис-центр." />
+		<string id="STR_UI_USB_MODE_GUIDE_OTHER_ERRORS" value="Утройству необходим сброс. Вставьте скрепку в дырку Reset, затем включите ридер. Если это сообщение остается на экране, обратитесь в сервис-центр." />
+		<string id="STR_UI_USB_MODE_GUIDE" value="Если это сообщение остается на экране, обратитесь в сервис-центр." />
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value="------------------------------------------------------------------" />
+		<string id="STR_SORT_IGNOREARTICLES" value="a ,an ,the " />
+		<string id="infoTitles" value="Обложка,Название,Периодическое издание,Дата выхода,Автор,Издательство,Жанр,eBook ID,Формат,Дата,Размер файла,Раздел,Имя файла,Права,Истекает" />
+		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Язык меню" />
+		<string id="STR_UI_LANG" value="Язык" />
+		<string id="STR_UI_LANG_EN" value="English" />
+		<string id="STR_UI_LANG_FR" value="Français" />
+		<string id="STR_UI_LANG_DE" value="Deutsch" />
+		<string id="STR_UI_LANG_NL" value="Русский" />
+		<string id="STR_UI_LANG_ES" value="Español" />
+		<string id="STR_UI_LANG_PT" value="Português" />
+		<string id="STR_UI_LANG_IT" value="Italiano" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="Выберите язык и нажмите &quot;OK&quot;.&#xA;Внимание:  Установки можно позже поменять через меню." />
+		<string id="STR_UI_PARTS_DELIMITER" value="/" />
+		<string id="STR_UI_MESSAGE_DEMOMODE" value="(Демо-режим)" />
+		<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value="Демо заставка" />
+		<string id="STR_NODE_TITLE_OPTIONS" value="Настройки" />
+		<string id="STR_DEMO_TITLE" value="DEMO MODE" />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="Название: &quot;XXTITLEXX&quot;" />
+		<string id="STR_UI_DATE" value="Дата" />
+		<string id="STR_UI_TIME" value="Время" />
+		<string id="STR_UI_BUTTON_12HR" value="12 часов" />
+		<string id="STR_UI_BUTTON_24HR" value="24 часа" />
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / " />
+		<string id="STR_UI_MESSAGE_NOBOOK" value="Пусто" />
+		<string id="STR_NODE_TITLE_BOOK" value="Книги" />
+		<string id="STR_NODE_TITLE_SORTEDBYTITLE" value="По названию" />
+		<string id="STR_NODE_TITLE_SORTEDBYAUTHOR" value="По автору" />
+		<string id="STR_NODE_TITLE_SORTEDBYDATE" value="По времени загрузки" />
+		<string id="STR_NODE_TITLE_SORTEDBYORDER" value="Порядок сортировки" />
+		<string id="STR_NODE_TITLE_ALLNOTES" value="Блокнот" />
+		<string id="STR_NODE_TITLE_SORTEDBYCOMMENT" value="По комментарию" />
+		<string id="STR_NODE_TITLE_SORTEDBYTYPE" value="По типу" />
+		<string id="STR_NODE_TITLE_SORTEDBYARTIST" value="По исполнителю" />
+		<string id="STR_NODE_TITLE_NEXTPAGE" value="Следующая страница" />
+		<string id="STR_NODE_TITLE_PAGETURNGESTURE" value="Жест перелистывания" />
+		<string id="STR_NODE_TITLE_ADVANCEDSETTINGS" value="Дополн. установки" />
+		<string id="STR_NODE_TITLE_TOUCHPANEL" value="Настройка сенсорного экрана" />
+		<string id="STR_NODE_TITLE_CLEARKEYBOARDHISTORY" value="Очистить журнал клавиатуры" />
+		<string id="STR_NODE_TITLE_SEARCHRESULTS" value="Результаты поиска" />
+		<string id="STR_COUNTER_NOTES_N" value=" заметок" />
+		<string id="STR_COUNTER_NOTE_1" value="1 заметка" />
+		<string id="STR_COUNTER_NOTE_0" value="Пусто" />
+		<string id="STR_NODE_TITLE_SORTEDBYPAGE" value="По номеру страницы" />
+		<string id="STR_NODE_TITLE_POWERMANAGEMENT" value="Управление питанием" />
+		<string id="STR_UI_MENU_SORT" value="Упоряд." />
+		<string id="STR_UI_MENU_BYORDER" value="по порядку" />
+		<string id="STR_UI_MENU_BYTITLE" value="по названию" />
+		<string id="STR_UI_MENU_BYAUTHOR" value="по автору" />
+		<string id="STR_UI_MENU_BYDATE" value="по времени" />
+		<string id="STR_UI_MENU_VIEW" value="Показ" />
+		<string id="STR_UI_MENU_LIST" value="списком" />
+		<string id="STR_UI_MENU_THUMBNAIL" value="обложками" />
+		<string id="STR_UI_MENU_NOWPLAYING" value="Воспроизведение" />
+		<string id="STR_UI_MENU_RESUMELISTENING" value="Возобновить проигрывание" />
+		<string id="STR_NODE_TITLE_SORTEDBYTRACK" value="по треку" />
+		<string id="STR_UI_MENU_ORIENTATION" value="Ориентация" />
+		<string id="STR_UI_MENU_SEARCHTITLE" value="Поиск" />
+		<string id="STR_UI_MENU_CLOSETHISBOOK" value="Вернуться к списку" />
+		<string id="STR_UI_MENU_GOTOPAGE" value="На страницу" />
+		<string id="STR_UI_MENU_CREATEEDITNOTES" value="Редактировать заметки" />
+		<string id="STR_UI_MENU_SHOWNOTES" value="Показать заметки" />
+		<string id="STR_UI_MENU_HIDENOTES" value="Спрятать заметки" />
+		<string id="STR_UI_MENU_TABLEOFCONTENTS" value="Содержание" />
+		<string id="STR_UI_MENU_BOOKINFO" value="Информация" />
+		<string id="STR_UI_MENU_DELETEBOOK" value="Удалить книгу" />
+		<string id="STR_UI_MENU_SEARCHAKEYWORD" value="Поиск" />
+		<string id="STR_UI_MENU_HISTORYJUMP" value="Журнал" />
+		<string id="STR_UI_MENU_CLOSETHISMUSIC" value="Вернуться к списку" />
+		<string id="STR_UI_MENU_NOTES" value="Заметки" />
+		<string id="STR_UI_MENU_DICTIONARY_LOOK_UP_HISTORY" value="Архив: Книга" />
+		<string id="STR_UI_MENU_OFF" value="Откл." />
+		<string id="STR_UI_MENU_SONG_1" value="1 трек" />
+		<string id="STR_UI_MENU_SONG_ALL" value="Все треки" />
+		<string id="STR_UI_MENU_SHUFFLEON" value="Перемешивать" />
+		<string id="STR_UI_MENU_SHUFFLEOFF" value="Не перемешивать" />
+		<string id="STR_UI_MENU_CONTINUEREADING" value="Продолжить чтение" />
+		<string id="STR_UI_MENU_CLOSETHISPICTURE" value="Вернуться к списку" />
+		<string id="STR_UI_MENU_SLIDESHOWOFF" value="Откл. слайд-шоу" />
+		<string id="STR_UI_MENU_SLIDESHOWON" value="Вкл. слайд-шоу" />
+		<string id="STR_UI_MENU_BYARTIST" value="по исполнителю" />
+		<string id="STR_UI_MENU_BYPAGE" value="по номеру страницы" />
+		<string id="STR_UI_MENU_BYTYPE" value="по типу" />
+		<string id="STR_UI_MENU_BYCOMMENT" value="по комментарию" />
+		<string id="STR_UI_MENU_DELETENOTES" value="Удалить заметки" />
+		<string id="STR_UI_MESSAGE_RESET" value="Вы уверены, что хотите восстановить установки по умолчанию?" />
+		<string id="STR_UI_MESSAGE_FORMATINTERNALMEMORY" value="Форматирование" />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE" value="Вы уверены, что хотите отформатировать внутреннюю память?&#xA;Внимание: Вся информация и заметки будут удалены." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_MS" value="Вы уверены, что хотите отформатировать карту Memory Stick?&#xA;Внимание: Вся информация и заметки будут удалены." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_SD" value="Вы уверены, что хотите отформатировать карту SD?&#xA;Внимание: Вся информация и заметки будут удалены." />
+		<string id="STR_UI_MESSAGE_DELETEBOOK" value="Вы уверены, что хотите удалить эту книгу?" />
+		<string id="STR_UI_MESSAGE_DELETEBOOKERR" value="Не могу удалить книгу. Нажмите OK, чтобы вернуться к списку книг." />
+		<string id="STR_UI_MESSAGE_DELETEHISTORICAL" value="Вы уверены, что хотите очистить журнал клавиатуры?" />
+		<string id="STR_UI_MESSAGE_DEVICE_SHUTDOWN" value="Вы уверены, что хотите отключить устройство?" />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONSTART" value="Нажмите Да, чтобы начать настройку сенсорного экрана." />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONEND" value="Настройка сенсорного экрана завершена." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_1" value="Опция недоступна в демонстрационном режиме." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_2" value="Функция недоступна в демонстрационном режиме." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_START" value="Нажмите стилом в центр&#xA;цели." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_ERR" value="Ошибка настройки.&#xA;Начните с начала." />
+		<string id="STR_UI_BUTTON_YES" value="Да" />
+		<string id="STR_UI_BUTTON_NO" value="Нет" />
+		<string id="STR_UI_BUTTON_ZOOMIN" value="Приблизить" />
+		<string id="STR_UI_BUTTON_PAGE_STYLE" value="Формат страницы" />
+		<string id="STR_UI_BUTTON_SEARCH" value="Поиск" />
+		<string id="STR_UI_BUTTON_DONE" value="Готово" />
+		<string id="STR_UI_BUTTON_GO" value="Перейти" />
+		<string id="STR_UI_BUTTON_ENTERPAGE" value="Номер страницы" />
+		<string id="STR_UI_BUTTON_NEW" value="Новое" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING" value="Словарь" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING_l" value="словарь" />
+		<string id="STR_DICTIONARY_US" value="New Oxford American Dictionary" />
+		<string id="STR_DICTIONARY_BRITISH" value="Oxford Dictionary of English" />
+		<string id="STR_DICTIONARY_EN_TO_FR" value="Oxford-Hachette French Dictionary (EN-FR)" />
+		<string id="STR_DICTIONARY_FR_TO_EN" value="Oxford-Hachette French Dictionary (FR-EN)" />
+		<string id="STR_DICTIONARY_EN_TO_GM" value="Collins English-German Dictionary" />
+		<string id="STR_DICTIONARY_GM_TO_EN" value="Collins German-English Dictionary" />
+		<string id="STR_DICTIONARY_EN_TO_SP" value="Oxford Spanish Dictionary (EN-ES)" />
+		<string id="STR_DICTIONARY_SP_TO_EN" value="Oxford Spanish Dictionary (ES-EN)" />
+		<string id="STR_DICTIONARY_EN_TO_IT" value="Collins English-Italian Dictionary" />
+		<string id="STR_DICTIONARY_IT_TO_EN" value="Collins Italian-English Dictionary" />
+		<string id="STR_DICTIONARY_EN_TO_DT" value="Van Dale Pocketwoordenboek Engels-Nederlands" />
+		<string id="STR_DICTIONARY_DT_TO_EN" value="Van Dale Pocketwoordenboek Nederlands-Engels" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_DICTIONARY" value="Выберите словарь по умолчания и нажмите &quot;OK&quot;.&#xA;Внимание:  Установки можно позже поменять через меню." />
+		<string id="STR_DICTIONARY_NO" value="Нет словаря" />
+		<string id="STR_NODE_TITLE_DATEANDTIMEFORMAT_SETTING" value="Формат даты и времени" />
+		<string id="STR_UI_PARTS_MONTH" value="Месяц" />
+		<string id="STR_UI_PARTS_DAY" value="День" />
+		<string id="STR_UI_PARTS_YEAR" value="Год" />
+		<string id="STR_UI_PARTS_HOUR" value="час" />
+		<string id="STR_UI_MESSAGE_RESTARTING" value="Перезапуск..." />
+		<string id="STR_UI_NODE_TITLE_KEYBOARD" value="Клавиатура" />
+		<string id="STR_UI_KEYBOARD_US" value="США" />
+		<string id="STR_UI_KEYBOARD_UK" value="Великобритания" />
+		<string id="STR_UI_KEYBOARD_FRENCH" value="Французская" />
+		<string id="STR_UI_KEYBOARD_GERMAN" value="Немецкая" />
+		<string id="STR_UI_KEYBOARD_NETHERLANDS" value="Русская" />
+		<string id="STR_UI_KEYBOARD_CANADIAN_FRENCH" value="Франц. Канада" />
+		<string id="STR_UI_KEYBOARD_SPANISH" value="Испанская" />
+		<string id="STR_UI_KEYBOARD_ITALIAN" value="Итальянская" />
+		<string id="STR_UI_KEYBOARD_PORTUGUESE" value="Португальская" />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP1" value="Не могу показать эту страницу." />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_CANNOT_EDIT" value="Не могу редактировать этот рисунок." />
+		<string id="DIALOGMSG_INFORM_SCR_CANNOT_EDIT" value="Не могу редактировать это сообщение." />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_FREEHAND" value="Новый рисунок" />
+		<string id="STR_UI_MENU_NEW_DRAWING" value="Новый рисунок" />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_TEXT" value="Новая заметка" />
+		<string id="STR_UI_MENU_NEW_MEMO" value="Новая заметка" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYFREEHAND" value="пометкой" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYTEXT" value="текстом" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_MS" value="Форматировать Memory Stick" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_SD" value="Форматировать карту SD" />
+		<string id="STR_NODE_TITLE_FORMATDEVICE" value="Форматировать" />
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="Внутренняя память" />
+		<string id="STR_UI_MESSAGE_LOCATION_MS" value="Memory Stick™" />
+		<string id="STR_UI_MESSAGE_LOCATION_SD" value="карта SD" />
+		<string id="STR_UI_FORMAT_INTERNAL_MEMORY" value="Форматирую..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_MS" value="Форматирую..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_SD" value="Форматирую..." />
+		<string id="STR_WARNING_FORMAT_1" value="Форматирую..." />
+		<string id="STR_WARNING_FORMAT_2_MS" value="Не вынимайте Memory Stick." />
+		<string id="STR_WARNING_FORMAT_2_SD" value="Не вынимайте SD Card." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_1" value="Вы уверены, что хотите удалить закладку?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_2" value="На этой странице сохранена закладка в нескольких размерах шрифта. Все закладки на этой странице будут удалены." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_1" value="Вы уверены, что хотите удалить закладку?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_2" value="На этой странице сохранена закладка в нескольких размерах шрифта. Все закладки на этой странице будут удалены." />
+		<string id="STR_FORMAT_NO_MEMORY" value="Карта не вставлена" />
+		<string id="STR_FORMAT_WRITE_PROTECTED" value="Карта заблокирована" />
+		<string id="STR_FORMAT_NON_STANDARD" value="Карта не поддерживается" />
+		<string id="STR_NODE_TITLE_NOTEPAD_FREEHAND" value="Рисунки" />
+		<string id="STR_NODE_TITLE_NOTEPAD_TEXT" value="Заметки" />
+		<string id="STR_NODE_TITLE_SORTEDBYCREATEDDATE" value="Упорядочено по времени" />
+		<string id="STR_NODE_TITLE_MORE" value="Прочее" />
+		<string id="STR_NODE_TITLE_MORE_FULL" value="Дополн. приложения" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK1" value="Вы уверены, что хотите удалить закладку с заметкой?" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT1" value="Вы уверены, что хотите удалить выделение с заметкой?" />
+		<string id="DIALOGMSG_INFORM_NOHITS" value="Ничего не найдено." />
+		<string id="DIALOGMSG_INFORM_NOMOREHITS" value="Ничего не найдено." />
+		<string id="DIALOGMSG_CONFIRM_BACKWARDSEARCH" value="Продолжить поиск с конца книги?" />
+		<string id="DIALOGMSG_CONFIRM_FORWARDSEARCH" value="Продолжить поиск с начала книги?" />
+		<string id="STR_MSG_SEARCHING" value="Идет поиск..." />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK1" value="Вы уверены, что хотите удалить закладку с заметкой?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT1" value="Вы уверены, что хотите удалить выделение с заметкой?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_EDIT_QUIT" value="Если вы продолжите, изменения будут потеряны. Продолжить?" />
+		<string id="DIALOGMSG_CONFIRM_SCR_EDIT_QUIT" value="Если вы продолжите, изменения будут потеряны. Продолжить?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES1" value="Все заметки будут удалены." />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES2" value="Удалить заметки?" />
+		<string id="KBOOK_UI_MYNOTE" value="Заметки" />
+		<string id="STR_UI_KEYBOARD_SYMBOL" value="Символы" />
+		<string id="STR_UI_KEYBOARD_SPACE" value="Пробел" />
+		<string id="STR_UI_KEYBOARD_ABC" value="Abc" />
+		<string id="STR_UI_KEYBOARD_RETURN" value="Ввод" />
+		<string id="STR_UI_COMMENTVIEWER_EDIT" value="Редактировать" />
+		<string id="STR_UI_COMMENTVIEWER_DELETE" value="Удалить" />
+		<string id="STR_UI_AUDIO_REPEAT" value="Повтор" />
+		<string id="STR_NODE_TITLE_HOMEPERSONALIZATION" value="Главное меню" />
+		<string id="STR_UI_PARTS_LEFT" value="СЛЕВА" />
+		<string id="STR_UI_PARTS_RIGHT" value="СПРАВА" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_FREEHAND" value="Удалить рисунок" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_TEXT" value="Удалить заметку" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND1" value="Вы уверены, что хотите удалить рисунок?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT1" value="Вы уверены, что хотите удалить заметку?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT1" value="Если вы продолжите, изменения будут потеряны. Продолжить?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT1" value="Если вы продолжите, изменения будут потеряны. Продолжить?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT1" value="Если вы продолжите, рисунок не будет сохранен. Продолжить?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT1" value="Если вы продолжите, заметка не будет сохранена. Продолжить?" />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_RESULT" value="Слово не найдено. Чтобы попробовать другое слово, нажмите кнопку XXBUTTONXX." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_INPUT_KEYBOARD" value="Введите слово." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_HEADWORD" value="Слово не найдено.&#xA;Пожалуйста, перепроверьте." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SUPPORTED" value="Словарь отключен." />
+		<string id="STR_UI_DICTIONARY_ENTRIES_PAGE" value="Записи, стр." />
+		<string id="STR_UI_DICTIONARY_ENTRY_PAGE" value="Запись, стр." />
+		<string id="STR_COUNTER_DRAWING_N" value=" рисунков" />
+		<string id="STR_COUNTER_DRAWING_1" value="1 рисунок" />
+		<string id="STR_COUNTER_DRAWING_0" value="Пусто" />
+		<string id="STR_COUNTER_MEMO_N" value=" заметок" />
+		<string id="STR_COUNTER_MEMO_1" value="1 заметка" />
+		<string id="STR_COUNTER_MEMO_0" value="Пусто" />
+		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="Ошибка внутренней памяти&#xA;Форматирую." />
+		<string id="STR_HOME_TAB_HOME_V" value="Меню" />
+		<string id="STR_HOME_TAB_HOME_H" value="Меню" />
+		<string id="STR_HOME_TAB_STORE_V" value="Магазин" />
+		<string id="STR_HOME_TAB_STORE_H" value="Маг." />
+		<string id="STR_HOME_TAB_APPLICATIONS_V" value="Приложения" />
+		<string id="STR_HOME_TAB_APPLICATIONS_H" value="Прил." />
+		<string id="STR_HOME_TAB_SETTINGS_V" value="Настройки" />
+		<string id="STR_HOME_TAB_SETTINGS_H" value="Настр." />
+		<string id="STR_NODE_TITLE_PERIODICALS" value="Периодика" />
+		<string id="STR_NODE_TITLE_NEWDELIVERY" value="Свежее" />
+		<string id="STR_NODE_TITLE_DICTIONARY" value="Словарь" />
+		<string id="STR_HOME_SEEALL" value="Показать все" />
+		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Последнее чтение: " />
+		<string id="STR_COUNTER_PERIODICAL_N" value=" изданий" />
+		<string id="STR_COUNTER_PERIODICAL_1" value="1 издание" />
+		<string id="STR_COUNTER_PERIODICAL_0" value="Пусто" />
+		<string id="STR_HOME_MESSAGE_ACCESSING" value="Идет доступ..." />
+		<string id="STR_UI_BUTTON_RETRY" value="Повторить попытку" />
+		<string id="STR_UI_MENU_DELETE_BOOKS" value="Удалить книги" />
+		<string id="STR_UI_MENU_PROTECT_BOOKS" value="Защитить книги" />
+		<string id="STR_UI_MENU_DELETE_ISSUES" value="Удалить выпуски" />
+		<string id="STR_UI_MENU_PROTECT_ISSUES" value="Защитить выпуски" />
+		<string id="STR_UI_MENU_DELETE_TEXTMEMOS" value="Удалить заметки" />
+		<string id="STR_UI_MENU_PROTECT_TEXTMEMOS" value="Защитить заметки" />
+		<string id="STR_UI_MENU_DELETE_HANDWRITINGS" value="Удалить рисунки" />
+		<string id="STR_UI_MENU_PROTECT_HANDWRITINGS" value="Защитить рисунки" />
+		<string id="STR_UI_MENU_DELETE_AUDIO" value="Удалить треки" />
+		<string id="STR_UI_MENU_PROTECT_AUDIO" value="Защитить треки" />
+		<string id="STR_UI_MENU_DELETE_PICTURES" value="Удалить фото" />
+		<string id="STR_UI_MENU_PROTECT_PICTURES" value="Защитить фото" />
+		<string id="STR_UI_MENU_EDIT_STANDBY_SCREEN" value="Выбрать заставку для экрана" />
+		<string id="STR_UI_MENU_MANAGE_SUBSCRIPTION" value="Управление подпиской" />
+		<string id="STR_UI_MENU_2PAGEVIEW" value="2-странич. режим" />
+		<string id="STR_UI_MENU_1PAGEVIEW" value="1-странич. режим" />
+		<string id="STR_UI_MENU_BYLATESTREAD" value="по доступу" />
+		<string id="STR_UI_MENU_BYISSUEDATE" value="по дате выпуска" />
+		<string id="STR_UI_MENU_STORE_HOME" value="Главное меню магазина" />
+		<string id="STR_UI_MENU_MY_ACCOUNT" value="Учетная запись" />
+		<string id="STR_UI_MENU_HELP_AND_SUPPORT" value="Поддержка" />
+		<string id="STR_UI_MENU_LEGALINFO" value="Легальная информация" />
+		<string id="STR_UI_MENU_REFRESH_PAGE" value="Перегрузить страницу" />
+		<string id="STR_UI_MENU_DELETEISSUE" value="Удалить выпуск" />
+		<string id="STR_UI_MENU_SELECT_ALL" value="Выделить все" />
+		<string id="STR_UI_MENU_UNSELECT_ALL" value="Отмена выделения" />
+		<string id="STR_UI_MENU_PROTECT_ALL" value="Защитить все" />
+		<string id="STR_UI_MENU_UNPROTECT_ALL" value="Отмена защиты" />
+		<string id="STR_UI_BUTTON_ISSUE_HOME" value="Первая страница" />
+		<string id="STR_UI_BUTTON_PREVIOUS_SECTION" value="Раздел" />
+		<string id="STR_UI_BUTTON_NEXT_SECTION" value="Раздел" />
+		<string id="STR_UI_BUTTON_LAST_SECTION" value="Раздел" />
+		<string id="STR_UI_BUTTON_SECTION_HOME" value="Начало раздела" />
+		<string id="STR_UI_BUTTON_PREVIOUS_ARTICLE" value="Статья" />
+		<string id="STR_UI_BUTTON_NEXT_ARTICLE" value="Статья" />
+		<string id="STR_NODE_TITLE_FRONT_PAGE" value="Первая страница" />
+		<string id="STR_NODE_TITLE_SECTION_HOME" value="Начало раздела XXSECTIONXX" />
+		<string id="STR_NODE_TITLE_SECTION_OTHERS" value="Прочие" />
+		<string id="STR_COUNTER_ARTICLE_N" value=" статей" />
+		<string id="STR_COUNTER_ARTICLE_1" value="1 статья" />
+		<string id="STR_COUNTER_ARTICLE_0" value="Пусто" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SECTION" value="Заголовок XXSECTIONXX" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SEPARATE" value=":" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" / " />
+		<string id="STR_NODE_TITLE_DELETEISSUE" value="Удалить выпуск" />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEISSUE" value="Название выпуска: &quot;XXTITLEXX&quot;" />
+		<string id="STR_UI_MESSAGE_DELETEISSUE" value="Вы уверены, что хотите удалить этот выпуск?" />
+		<string id="STR_UI_MESSAGE_DELETEISSUEERR" value="Не могу удалить выпуск. Нажмите &quot;OK&quot; чтобы вернуться к списку выпусков." />
+		<string id="STR_NODE_TITLE_SORTEDBY_LATESTREAD" value="По времени доступа" />
+		<string id="STR_NODE_TITLE_SORTEDBY_ISSUEDATE" value="По дате выпуска" />
+		<string id="STR_MONTH_JANUARY" value="Январь" />
+		<string id="STR_MONTH_FEBRUARY" value="Февраль" />
+		<string id="STR_MONTH_MARCH" value="Март" />
+		<string id="STR_MONTH_APRIL" value="Апрель" />
+		<string id="STR_MONTH_MAY" value="Май" />
+		<string id="STR_MONTH_JUNE" value="Июнь" />
+		<string id="STR_MONTH_JULY" value="Июль" />
+		<string id="STR_MONTH_AUGUST" value="Август" />
+		<string id="STR_MONTH_SEPTEMBER" value="Сентябрь" />
+		<string id="STR_MONTH_OCTOBER" value="Октябрь" />
+		<string id="STR_MONTH_NOVEMBER" value="Ноябрь" />
+		<string id="STR_MONTH_DECEMBER" value="Декабрь" />
+		<string id="STR_DAY_MONDAY_FULL" value="Понедельник" />
+		<string id="STR_DAY_TUESDAY_FULL" value="Вторник" />
+		<string id="STR_DAY_WEDNESDAY_FULL" value="Среда" />
+		<string id="STR_DAY_THURSDAY_FULL" value="Четверг" />
+		<string id="STR_DAY_FRIDAY_FULL" value="Пятница" />
+		<string id="STR_DAY_SATURDAY_FULL" value="Суббота" />
+		<string id="STR_DAY_SUNDAY_FULL" value="Воскресенье" />
+		<string id="STR_DAY_MONDAY_ABB" value="Пон" />
+		<string id="STR_DAY_TUESDAY_ABB" value="Втр" />
+		<string id="STR_DAY_WEDNESDAY_ABB" value="Срд" />
+		<string id="STR_DAY_THURSDAY_ABB" value="Чтв" />
+		<string id="STR_DAY_FRIDAY_ABB" value="Птн" />
+		<string id="STR_DAY_SATURDAY_ABB" value="Суб" />
+		<string id="STR_DAY_SUNDAY_ABB" value="Вск" />
+		<string id="STR_NODE_TITLE_UNREAD_BOOKS" value="Непрочитанные книги" />
+		<string id="STR_NODE_TITLE_UNREAD_PERIODICALS" value="Непрочитанные издания" />
+		<string id="STR_NODE_TITLE_PURCHASED_BOOKS" value="Купленные книги" />
+		<string id="STR_UI_MENU_NEW_COLLECTION" value="Добавить коллекцию" />
+		<string id="STR_UI_MENU_DELETE_COLLECTIONS" value="Удалить коллекции" />
+		<string id="STR_NODE_TITLE_ADD_NEW_COLLECTION" value="Новая коллекция" />
+		<string id="STR_UI_KEYBOARD_COLLECTION_NAME" value="Имя коллекции:" />
+		<string id="DIALOGMSG_COLLECTIONS_WHERE_TO_CREATE" value="Где добавить коллекцию:" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_DEVICE" value="Внутренняя память" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_MS" value="Memory Stick™" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_SD" value="Карта SD" />
+		<string id="STR_NODE_TITLE_ADD_BOOKS" value="Добавить книги" />
+		<string id="STR_NODE_TITLE_SELECT_PERIODICAL" value="Выбрать периодику" />
+		<string id="STR_NODE_TITLE_ADD_ISSUES" value="Добавить номера" />
+		<string id="STR_NODE_TITLE_SELECT_A_COLLECTION" value="Выбор коллекции" />
+		<string id="STR_NODE_TITLE_SORTEDBYFILENAME" value="по имени файла" />
+		<string id="STR_UI_MENU_BYFILENAME" value="по имени файла" />
+		<string id="STR_UI_MENU_TITLEONLYLIST" value="только названиями" />
+		<string id="STR_UI_MENU_ADDBOOKS" value="Книги" />
+		<string id="STR_UI_MENU_ADDPERIODICALS" value="Периодика" />
+		<string id="STR_UI_MENU_REMOVECONTENT" value="Удалить файлы" />
+		<string id="STR_NODE_TITLE_REMOVE_ITEMS" value="Удаление" />
+		<string id="STR_NODE_TITLE_DELETE_COLLECTIONS" value="Удалить коллекции" />
+		<string id="STR_NODE_TITLE_DELETE_BOOKS" value="Удалить книги" />
+		<string id="STR_NODE_TITLE_DELETE_ISSUES" value="Удалить выпуски" />
+		<string id="STR_NODE_TITLE_DELETE_AUDIO" value="Удалить треки" />
+		<string id="STR_NODE_TITLE_DELETE_PICTURES" value="Удалить фото" />
+		<string id="STR_NODE_TITLE_DELETE_HANDWRITINGS" value="Удалить рисунки" />
+		<string id="STR_NODE_TITLE_DELETE_TEXTMEMOS" value="Удалить заметки" />
+		<string id="STR_NODE_TITLE_DELETE_NOTES" value="Удалить записки" />
+		<string id="STR_UI_MESSAGE_DELETE_MANUALLY_SELECTED_AS_STANDBY" value="Вы уверены, что хотите удалить выбранное для заставки?" />
+		<string id="STR_UI_MESSAGE_DELETE_MANUALLY_NORMAL" value="Вы уверены, что хотите удалить выделенное?" />
+		<string id="STR_COUNTER_SELECTED" value=" выделено" />
+		<string id="STR_COUNTER_PROTECTED" value=" защищено" />
+		<string id="STR_NODE_TITLE_PROTECT_BOOKS" value="Защитить книги" />
+		<string id="STR_NODE_TITLE_PROTECT_ISSUES" value="Защитить выпуски" />
+		<string id="STR_NODE_TITLE_PROTECT_AUDIO" value="Защитить треки" />
+		<string id="STR_NODE_TITLE_PROTECT_PICTURES" value="Защитить фото" />
+		<string id="STR_NODE_TITLE_PROTECT_HANDWRITINGS" value="Защитить рисунки" />
+		<string id="STR_NODE_TITLE_PROTECT_TEXTMEMOS" value="Защитить заметки" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_BOOK" value="Эта книга защищена.  Вы уверены, что хотите удалить эту книгу?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_ISSUE" value="Этот выпуск защищен.  Вы уверены, что хотите удалить этот выпуск?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_MEMO" value="Эта заметка защищена.  Вы уверены, что хотите удалить эту заметку" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_DRAWING" value="Этот рисунок защищен.  Вы уверены, что хотите удалить этот рисунок" />
+		<string id="STR_COUNTER_ISSUE_N" value=" выпусков" />
+		<string id="STR_COUNTER_ISSUE_1" value="1 выпуск" />
+		<string id="STR_COUNTER_ISSUE_0" value="Пусто" />
+		<string id="STR_COUNTER_ISSUE_ALL" value="Все выпуски" />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_MAIN" value="Сколько выпусков из этой подписки вы хотите сохранить на ридере?" />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_NOTE" value="Внимание: защищенные выпуски не включены в это число." />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_CHECK" value="Удалить лишние выпуски." />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_NOW" value="Вы уверены, что хотите сейчас удалить лишние выпуски?" />
+		<string id="STR_UI_BUTTON_SAVE" value="Сохранить" />
+		<string id="STR_UI_BUTTON_CANCEL" value="Отмена" />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_TOOLBAR" value="Эта опция отключена, потому что на дисплее тулабар &quot;Редактировать заметки&quot;. Чтобы включить эту опцию, закройте тулбар." />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_FACING" value="Эта опция отключена, потому что вы в &quot;2-страничном режиме&quot;. Перейдите в &quot;1-страничный режим&quot;." />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_TOOLBARFACING" value="Эта опция отключена, потому что вы в &quot;2-страничном режиме&quot; и открыли тулбар &quot;Редактировать заметки&quot;. Перейдите в &quot;1-страничный режим&quot; и закройте тулбар." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SELECTED" value="Словарь отключен. Выберите словать в меню &quot;Настройки&quot;." />
+		<string id="STR_UI_BUTTON_OTHERS" value="Прочее" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_COMPLETE" value="Загрузка завершена" />
+		<string id="STR_UI_ABOUT_FREESPACE" value="Свободная память" />
+		<string id="STR_UI_ABOUT_DEVICEINFO" value="Информация о ридере" />
+		<string id="STR_UI_PARTS_IMEI" value="IMEI" />
+		<string id="STR_UI_PARTS_ICCID" value="ICCID" />
+		<string id="STR_UI_PARTS_ADOBE_DRM_AUTH" value="Adobe DRM" />
+		<string id="STR_UI_ABOUT_LEGALINFO" value="Легальная информация" />
+		<string id="STR_NODE_TITLE_WIRELESS_SLEEP_MODE" value="Отключение мобильной связи" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_WIRELESS" value="&quot;Отключение мобильной связи&quot; переключает канал в режим &quot;Standby&quot;, после 10 минут бездействия.  &quot;Включите&quot; чтобы увеличить действие батареи, &quot;Выключите&quot;, чтобы ускорить соединение." />
+		<string id="STR_UI_SETTING_DIC_EBOOKID" value="eBook ID: " />
+		<string id="STR_NODE_TITLE_TIMEZONE" value="Часовой пояс" />
+		<string id="STR_UI_SETTING_TZ_EST" value="Eastern Time" />
+		<string id="STR_UI_SETTING_TZ_CST" value="Central Time" />
+		<string id="STR_UI_SETTING_TZ_MST" value="Mountain Time" />
+		<string id="STR_UI_SETTING_TZ_PST" value="Pacific Time" />
+		<string id="STR_UI_SETTING_TZ_AKST" value="Alaskan Time" />
+		<string id="STR_UI_SETTING_TZ_HST" value="Hawaii-Aleutian Time" />
+		<string id="STR_UI_SETTING_SUMMERTIME_MSG" value="Летнее время" />
+		<string id="DIALOGMSG_INFORM_RESTART_TIMEZONE" value="Установка часового пояса сохраняется..." />
+		<string id="DIALOGMSG_INFORM_RESTART_WIZARD" value="Установки сохраняются..." />
+		<string id="DIALOGMSG_NOT_AVAILABLE_WHILE_DOWNLOADING" value="Эта опция недоступна во время загрузки контента. Попробуйте после того, как загрузка будет завершена." />
+		<string id="STR_UI_SETTING_RANGE_HOUR" value="(00 - 23)" />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_1" value="Reader Store недоступен, потому что переключатель &quot;WIRELESS&quot; отключен. Включите и попробуйте опять." />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_2" value="Reader Store недоступен, потому что сетевое соединение отсутствует. Соединитесь и попробуйте опять." />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_3" value="Reader Store недоступен, потому что установки &quot;Дата и Время&quot; или &quot;Часовой пояс&quot; некорректные. Исправьте в меню &quot;Настройки&quot; и попробуйте опять." />
+		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_1" value="SIM карта не распознана. Отключите ридер, вставьте SIM карту и включите ридер. Если это не решит проблему, свяжитесь со службой поддержки." />
+		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_3" value="SIM карта заблокирована  PIN кодом или PUK кодом. Разблокируйте в телефоне или свяжитесь со службой поддержки Sony." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_1" value="Ридер не может загрузить контент, потому что переключатель &quot;WIRELESS&quot; отключен." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_2" value="Включите его, и когда связь возобновится, вы снова сможете загружать книги из Reader Store." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_1" value="Ридер не может загрузить контент из-за отсутствия мобильной связи." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_2" value="Когда связь возобновится, вы снова сможете загружать книги из Reader Store." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_1" value="Ридер не может выйти в сеть, потому что установки &quot;Дата и Время&quot; или &quot;Часовой пояс&quot; некорректные." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_2" value="Исправьте в меню &quot;Настройки&quot;, и когда связь возобновится, вы снова сможете загружать книги из Reader Store." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_4_1" value="Ридер не может загрузить контент, потому что внутренняя память переполнена." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_4_2" value="Чтобы загрузить новый контент, вам нужно почистить внутреннюю память. Когда вы освободите достаточно места, вы снова сможете загружать книги из Reader Store." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_5_1" value="Ридер не смог загрузить контент." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_5_2" value="Пожалуйста попробуйте загрузить снова со страницы &quot;Моя учетная запись&quot; онлайн-магазина Reader Store.&#xA;(Ошибка: XXCODEXX)" />
+		<string id="STR_UI_MESSAGE_NETWORK_OTHER_ERROR_1" value="Ошибка связи. Отключите ридер нажатием кнопки &quot;RESET&quot; на нижнем торце, и включите его заново." />
+		<string id="STR_UI_MESSAGE_NETWORK_DOWNLOAD_DELAY" value="По установлении связи, ридер начнет загрузку контента." />
+		<string id="STR_UI_MESSAGE_NETWORK_OTHER_ERROR_3" value="Ошибка связи.&#xA;После того, как иконка связи покажет &quot;STBY&quot;, выключите и включите переключатель WIRELESS." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_1_MS" value="Этот Memory Stick™ не читается. Попробуйте другую карту Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_1_SD" value="Эта карта SD не читается. Попробуйте другую карту SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_2_MS" value="Из-за ошибки карты Memory Stick™ ридер не может сохранить информацию. Попробуйте другую карту Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_2_SD" value="Из-за ошибки карты SD ридер не может сохранить информацию. Попробуйте другую карту SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_3_MS" value="Карта Memory Stick™ защищена, ридер не может сохранить информацию. Попробуйте другую карту Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_4_MS" value="Из-за ошибки карты Memory Stick™, ридер не может сохранить информацию. Попробуйте другую карту Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_4_SD" value="Из-за ошибки карты SD, ридер не может сохранить информацию. Попробуйте другую карту SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_6_MS" value="Карта Memory Stick™ требует форматирования. Отформатируйте Memory Stick™ из меню &quot;Настройки&quot;." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_6_SD" value="Карта SD требует форматирования. Отформатируйте SD из меню &quot;Настройки&quot;." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_7" value="Этот файл запорчен, не может быть открыт." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_8_MS" value="Карта Memory Stick™ заблокирована, ридер не может сохранить информацию. Вытащите карту, разблокируйте, и вставьте в ридер." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_8_SD" value="Карта SD заблокирована, ридер не может сохранить информацию. Вытащите карту, разблокируйте, и вставьте в ридер." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_9" value="Карта памяти отсутствует." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_10" value="Недостаточно места для сохранения информации. Удалите один-два файла, и попробуйте заново." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_13_OPEN" value="Формат данных в файле не совместим с его открытием." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_13_PLAY" value="Формат данных в файле не совместим с его воспроизведением." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_16_17_MS" value="Карта Memory Stick™ защищена. Попробуйте другую карту Memory Stick™." />
+		<string id="STR_UI_MESSAGE_DEAD_BATTERY_ERR_1" value="Ридер определил, что аккумулятор испорчен и не может заряжаться. Ридер отключается.  Замените аккумулятор и включите &quot;POWER&quot;." />
+		<string id="STR_UI_MESSAGE_DEAD_BATTERY_ERR_2" value="Если после замены аккумулятора это сообщение появится опять, свяжитесь со службой поддержки." />
+		<string id="STR_UI_MESSAGE_BATTERY_REMOVED_ERR_1" value="Ридер определил отсутствие аккумулятора. Ридер отключается.  Верните аккумулятор на место и включите &quot;POWER&quot;." />
+		<string id="STR_UI_MESSAGE_BATTERY_REMOVED_ERR_2" value="" />
+		<string id="STR_UI_MESSAGE_RECOMMEND_EPUB" value="На этом устройстве эта книга не может быть открыта из-за проблемы с DRM. Если вы покупали эту книгу ранее, пожалуйста перегрузите ее из онлайн-магазина Reader Store." />
+		<string id="STR_UI_BUTTON_ENTER" value="Ввод" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_POWERMANAGEMENT" value="&quot;Управление питанием&quot; помогает продлить работу аккумулятора.  Когда оно включено, ридер перейдет в режим сна через 10 минут бездействия, а через 3 суток сна полностью отключится." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_PAGETURNGESTURE" value="Выберите жест для перевода на следующую страницу. Опция слева листает, когда вы проводите пальцем справа налево. Опция справа листает, когда вы проводите пальцем слева направо." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_SLIDESHOW" value="Выберите длительность демонстрации слайда, до 60 секунд. Слайдшоу можно смотреть через меню &quot;Приложения&quot; подменю &quot;Фотографии&quot;." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_DEVICELOCK" value="Установите пароль для блокировки ридера. При включении ридера вы получите запрос на введение пароля.&#xA;Внимание: отключите блокировку перед подключением к компьютеру." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_PERIODICALS" value="На вашем ридере нет периодических изданий. Из меню &quot;Магазин&quot; можно подписаться на периодические издания." />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_BROKENFILE" value="Испорченный рисунок." />
+		<string id="STR_UI_MENU_CHANG_TONE_CURVE" value="Графика" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_ORIGINAL" value="По умолчанию" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_PROMINENT" value="Насыщенная" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_DETAILED" value="Детали" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_DARKER" value="Темнее" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_LIGHTER" value="Ярче" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_CUSTOM" value="Специальная" />
+		<string id="STR_UI_TEXT_TONE_CURVE_CONTRAST" value="Контраст" />
+		<string id="STR_UI_TEXT_TONE_CURVE_BRIGHTNESS" value="Яркость" />
+		<string id="STR_UI_BUTTON_TONE_CURVE_RESET" value="Сброс" />
+		<string id="STR_UI_BUTTON_PAGE_LOCK" value="Фиксировать" />
+		<string id="STR_UI_BUTTON_UNLOCK" value="Отменить" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_ORIGINAL" value="По умолчанию" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_MARGIN_CUT" value="Без полей" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_2COLUMN_SPLIT" value="В 2 колонки" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_3COLUMN_SPLIT" value="В 3 колонки" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_FULL_PAGE" value="Вся страница" />
+		<string id="STR_UI_MESSAGE_STANDBY" value="Устройство в дежурном режиме. Чтобы перевести его в режим чтения, используйте скользящий выключатель." />
+		<string id="STR_UI_MESSAGE_PAGE_STYLE_CHANGE_TO_ORIGINAL" value="&quot;Формат страницы&quot; переключается в &quot;По умолчанию&quot;." />
+		<string id="STR_UI_MESSAGE_PAGE_STYLE_CHANGE_WITH_TOOLBAR_DISPLAYED" value="&quot;Редактирования заметок&quot; отключается." />
+		<string id="STR_NODE_TITLE_GENERAL" value="Общие настройки" />
+		<string id="STR_NODE_TITLE_APPLICATIONS" value="Настройки приложений" />
+		<string id="STR_NODE_TITLE_SYSTEM" value="Системные функции" />
+		<string id="STR_NODE_TITLE_INITIALIZATION" value="Инициализация" />
+		<string id="STR_NODE_TITLE_ORIENTATIONTOROTATE" value="Направление поворота экрана" />
+		<string id="STR_UI_SETTING_ROTATETORIGHT" value="Вправо" />
+		<string id="STR_UI_SETTING_ROTATETOLEFT" value="Влево" />
+		<string id="STR_NODE_TITLE_STANDBYSCREEN" value="Заставка" />
+		<string id="STR_UI_SETTING_SHOW_PICTURE" value="Картинка" />
+		<string id="STR_UI_SETTING_SHOW_MESSAGE" value="Текстовое сообщение" />
+		<string id="STR_UI_SETTING_STANDBY_GUIDE" value="Показывать ли в дежурном режиме картинки и/или текстовое сообщение о том, как включить устройство." />
+		<string id="STR_UI_SETTING_PICTURE" value="Картинка" />
+		<string id="STR_UI_SETTING_TEXT" value="Сообщение" />
+		<string id="STR_UI_SETTING_ROTATETO" value="Поворот " />
+		<string id="STR_UI_SETTING_ROTATETO_GUIDE" value="Направление поворота экрана, при переключении &quot;Ориентация&quot; в меню &quot;OPTIONS&quot;." />
+		<string id="STR_UI_MESSAGE_COLLECTION_NAME_ALREADY_EXISTS" value="Имя коллекции уже существует.  Введите другое имя." />
+		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION" value="Вы уверены? При удалении коллекции содержимое сохраняется." />
+		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION_CONTENT" value="Вы уверены? При удалении коллекции содержимое сохраняется." />
+		<string id="DIALOGMSG_CONFIRM_DIRECTORY_CHANGE" value="Выбор словаря&#xA;Раньше:&#xA;%CUR_DIC%&#xA;Теперь:&#xA;%NEW_DIC%" />
+		<string id="DIALOG_CONFIRM_DICTIONARY_CHANGE_CURRENT_DIC" value="%CUR_DIC%" />
+		<string id="DIALOG_CONFIRM_DICTIONARY_CHANGE_NEW_DIC" value="%NEW_DIC%" />
+		<string id="STR_UI_PARTS_UNKNOWN" value="Неизв." />
+		<string id="DIALOGMSG_APPLYING_SETTINGS" value="Процесс пошел...&#xA;Подождите." />
+		<string id="STR_UI_MENU_ADD" value="Добавить файлы" />
+		<string id="STR_UI_MENU_RENAMECOLLECTION" value="Переименовать коллекцию" />
+		<string id="STR_UI_MENU_ADD_BOOKMARK" value="Добавить закладку" />
+		<string id="STR_UI_MENU_REMOVE_BOOKMARK" value="Удалить закладку" />
+		<string id="STR_UI_MENU_GO_TO" value="Перейти..." />
+		<string id="STR_UI_MENU_PREVIOUS_VIEW" value="Назад" />
+		<string id="STR_UI_MENU_SELECT_PAGE" value="Выбрать страницу" />
+		<string id="STR_UI_MENU_LIST" value="Список" />
+		<string id="STR_UI_MENU_CREATE_EDIT" value="Редактировать" />
+		<string id="STR_UI_MENU_HIDE" value="Спрятать" />
+		<string id="STR_UI_MENU_SHOW" value="Показать " />
+		<string id="STR_UI_MENU_ADD_TO_COLLECTION" value="Добавить в коллекцию" />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS" value="Можно выбрать не более 99 картинок на карте Memory Stick™.&#xA;Отмените выделение одной из картинок и попробуйте снова.&#xA;" />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_SD" value="Можно выбрать не более 99 картинок на карте SD.&#xA;Отмените выделение одной из картинок и попробуйте снова.&#xA;" />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_INTERNAL_MEMORY" value="Можно выбрать не более 99 картинок во внутренней памяти.&#xA;Отмените выделение одной из картинок и попробуйте снова.&#xA;" />
+		<string id="STR_UI_MESSAGE_THERE_IS_NO_ITEM_REFER_TO_UG" value="Этот список пуст. В &quot;Руководстве пользователя&quot; написано, как добавлять файлы." />
+		<string id="STR_UI_MESSAGE_THERE_IS_NO_ITEM" value="Этот список пуст." />
+		<string id="STR_NODE_TITLE_DICTIONARY_LOOK_UP_HISTORY" value="Архив: Словарь" />
+		<string id="STR_NODE_TITLE_WORD_LOGS_BOOK" value="Архив: Книга" />
+		<string id="STR_NODE_TITLE_WORD_LOGS_PERIODICAL" value="Архив: Периодика" />
+		<string id="STR_UI_MENU_WORD_LOGS_PERIODICAL" value="Архив: Периодика" />
+		<string id="STR_UI_MENU_DELETE_HISTORIES" value="Удалить архив" />
+		<string id="STR_NODE_TITLE_DELETE_HISTORIES" value="Удаление архива" />
+		<string id="STR_UI_MENU_SORT_SELECTED" value="Сорт:" />
+		<string id="STR_UI_MENU_VIEW_SELECTED" value="Просмотр:" />
+		<string id="DIALOGMSG_WHETHER_SHOW_NOTES" value="Заметки в этой книге спрятаны.&#xA;Показать заметки?" />
+		<string id="STR_UI_MESSAGE_TO_CHANGE_DICTIONARY" value="Нажмите &quot;OPTIONS&quot;, чтобы выбрать другой словарь." />
+		<string id="STR_UI_MENU_CHANGE_DICTIONARY" value="Изменить словарь" />
+		<string id="STR_UI_MENU_VIEW_SEARCH_HISTORY" value="Архив: Словарь" />
+		<string id="STR_UI_MESSAGE_NO_ENTRY_FOUND" value="Ничего не найдено." />
+		<string id="STR_UI_MESSAGE_NO_DEFINITION" value="Ничего не найдено. XXBUTTON1XX поиск в словаре XXBUTTON2XX поиск в другом словаре." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_SD" value="Вы уже выбрали максимальное количество картинок, 99, на картах Memory Stick™ и SD." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_INTERNAL_MEMORY" value="Вы уже выбрали максимальное количество картинок, 99, на карте Memory Stick™ и во внутренней памяти." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_SD_INTERNAL_MEMORY" value="Вы уже выбрали максимальное количество картинок, 99, на карте SD и во внутренней памяти." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_SD_INTERNAL_MEMORY" value="Вы уже выбрали максимальное количество картинок, 99, на картах и во внутренней памяти." />
+		<string id="DIALOGMSG_DELETING" value="Удаляю..." />
+		<string id="DIALOGMSG_REMOVING" value="Удаляю..." />
+		<string id="DIALOGMSG_ADDING" value="Добавляю..." />
+		<string id="STR_UI_BUTTON_STOP" value="Стоп" />
+		<string id="STR_UI_MESSAGE_UNPROTECT_CONTENT" value="Файл защищен. Снимите защиту перед удалением." />
+		<string id="DIALOGMSG_NO_CONTENT_IN_COLLECTION_LOCATION" value="В памяти, где находится указанная коллекция, нет файлов.&#xA;Файлы и коллекция должны находиться в одном разделе памяти." />
+		<string id="STR_UI_MENU_BOOKMARK" value="Закладка" />
+		<string id="STR_UI_MENU_ADD_TO_LEFT" value="Добавить слева" />
+		<string id="STR_UI_MENU_ADD_TO_RIGHT" value="Добавить справа" />
+		<string id="STR_UI_MENU_REMOVE_FROM_LEFT" value="Удалить слева" />
+		<string id="STR_UI_MENU_REMOVE_FROM_RIGHT" value="Удалить справа" />
+		<string id="STR_NODE_TITLE_WIRELESS_POWER_MANAGEMENT" value="Беспроводная связь" />
+		<string id="STR_UI_SETTING_WAN" value="Мобильная сеть" />
+		<string id="STR_UI_SETTING_LAN" value="Wi-Fi" />
+		<string id="STR_UI_SETTING_WIRELESS_STANDBY" value="Сеть в дежурном режиме" />
+		<string id="DIALOGMSG_WIRELESS_POWER_MANAGEMENT" value="Необходимо включить &quot;Wi-Fi&quot; или &quot;Мобильную сеть&quot;.  Если вы хотите отключить все виды беспроводной связи, воспользуйтесь переключателем &quot;WIRELESS&quot;." />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_TWO_PAGE_VIEW" value="2-странич. режим" />
+		<string id="DIALOGMSG_CONNECTING_TO_NETWORK" value="Идет соединение с сетью..." />
+		<string id="DIALOGMSG_LOADING_PAGE" value="Идет загрузка страницы..." />
+		<string id="DIALOGMSG_NETWORK_NOT_AVAILABLE" value="Устройство не соединено с беспроводной сетью. Идите в меню &quot;Настройки&quot; &gt; &quot;Настройки сетей Wi-Fi&quot;, выберите доступную сеть. Вы должны быть в пределах досягаемости мобильной сети. Когда устройство соединилось с сетью, нажмите &quot;Повторить попытку&quot;." />
+		<string id="STR_UI_BUTTON_SETTING" value="Настройки" />
+		<string id="DIALOGMSG_NO_WIFI_SETTING" value="Сеть Wi-Fi требует предварительной конфигурации. Идите в меню &quot;Настройки&quot; &gt; &quot;Настройки сетей Wi-Fi&quot;, выберите доступную сеть." />
+		<string id="DIALOGMSG_SW_SWITCH_OFF" value="В настоящий момент сеть Wi-Fi отключена. В меню &quot;Настройки&quot; выберите &quot;Беспроводная связь&quot; и включите Wi-Fi." />
+		<string id="DIALOGMSG_BROWSER_ONLY_WLAN" value="Навигатор работает только в подключенной сетью Wi-Fi.  В меню &quot;Настройки&quot; выберите &quot;Настройки сетей Wi-Fi&quot; чтобы подключиться к доступной сети." />
+		<string id="DIALOGMSG_BROWSER_ONLY_WLAN_NO_WIFI_SET" value="Навигатор работает только в подключенной сетью Wi-Fi.  Сеть Wi-Fi требует конфигурации. В меню &quot;Настройки&quot; выберите &quot;Настройки сетей Wi-Fi&quot; чтобы подключиться к доступной сети." />
+		<string id="DIALOGMSG_PLEASE_READ" value="Прежде, чем использовать навигатор, внимательно прочитайте." />
+		<string id="DIALOGMSG_BROWSER_INDEMNITY" value="Правила пользования навигатором интернета&#xA; &#xA;Использование навигатора интернета на этом устройстве требует доступа к сети Wi-Fi® . Сеть Wi-Fi в данном расположении может быть недоступна.  За деталями использования обращайтесь к провайдеру Wi-Fi.&#xA;The Internet Browser may not support all Wi-Fi access points or websites. Functionality and display capabilities may be limited. Sony makes no representations or warranties regarding the links to and/or the use of any websites or the availability of content at any such websites. &#xA;During use you must comply with all applicable laws and license restrictions. Browsing websites, accessing and/or downloading programs or data may result in viruses, loss of data, or other problems. Use of the Internet Browser is at your own risk.&#xA;THE INTERNET BROWSER IS SUPPLIED &quot;AS IS&quot; AND WE MAKE NO REPRESENTATIONS, CONDITIONS OR WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, THAT THE INTERNET BROWSER OR ANY WEBSITES WILL BE FIT FOR A PARTICULAR PURPOSE OR USE, OR TO THE QUALITY OF THE INTERNET BROWSER, OR OF THAT PURPOSE OR USE.&#xA;TO THE EXTENT ALLOWED BY APPLICABLE LAWS OR REGULATIONS, SONY ELECTRONICS INC. AND/OR ITS AFFILIATED COMPANIES DISCLAIM ANY AND ALL LIABILITY FOR ANY LOSS OR DAMAGE TO YOU, YOUR DEVICE OR SOFTWARE, YOUR DATA, OR TO ANY THIRD PARTY, OR FOR LOSS OR DAMAGE CAUSED BY THE USE OF THE INTERNET BROWSER, WHETHER OR NOT SUCH LOSS OR DAMAGE IS THE RESULT OF DIRECT OR INDIRECT, INCIDENTAL OR CONSEQUENTIAL USE OF THE INTERNET BROWSER.&#xA;When using the Internet Browser you agree to respect the intellectual property rights of others. See other terms and conditions of use in your user manual." />
+		<string id="STR_UI_BUTTON_ACCEPT" value="Принять" />
+		<string id="STR_UI_BUTTON_DENY" value="Отклонить" />
+		<string id="STR_NODE_TITLE_BOOKMARKS" value="Закладки" />
+		<string id="STR_UI_MENU_VIEW_BOOKMARKS" value="В закладки" />
+		<string id="STR_UI_MENU_INPUT_URL" value="Ввести адрес сайта (URL)" />
+		<string id="STR_UI_MENU_PAGE_INFO" value="Информация о странице" />
+		<string id="DIALOGMSG_CANNOT_OPEN_UNSUPPORT_FILE" value="Не могу открыть файл." />
+		<string id="STR_UI_KEYBOARD_URL" value="Адрес:" />
+		<string id="DIALOGMSG_KEY_EMPTY" value="Вы не ввели ключ шифрования. Продолжить?&#xA;" />
+		<string id="DIALOGMSG_KEY_INCORRECT" value="Для выбранного метода защиты ключ шифрования не подходит. Продолжить?" />
+		<string id="DIALOGMSG_NAME_ALREADY_USED" value="Выбранное имя коннекта уже занято. Введите другое имя." />
+		<string id="DIALOGMSG_ENCRYPTION_METHOD_CHANGED" value="Метод защиты изменен. Введите новый ключ шифрования." />
+		<string id="DIALOGMSG_MAX_ACCESS_POINTS" value="Максимум сохраняемых сетей достигнут. Удалите ненужные сети, и попробуйте еще раз." />
+		<string id="DIALOGMSG_WIRELESS_SETTING_OFF" value="Сеть Wi-Fi недоступна. Беспроводная связь отключена. Нажмите &quot;OK&quot;, чтобы включить Wi-Fi. Позже вы можете снова отключить ее из меню &quot;Беспроводная связь&quot;." />
+		<string id="DIALOGMSG_WIRELESS_SWITCH_OFF" value="Сеть Wi-Fi недоступна. Переключатель &quot;WIRELESS&quot; отключен. Включите его, затем нажмите &quot;OK&quot;." />
+		<string id="STR_NODE_TITLE_WIRELESS_NETWORK_SETTINGS" value="Установки сетей Wi-Fi" />
+		<string id="STR_NODE_TITLE_WIRELESS_LAN_SETTING" value="Установки сетей Wi-Fi" />
+		<string id="STR_NODE_TITLE_NEW_ACCESS_POINT" value="Добавить новую сеть" />
+		<string id="STR_NODE_TITLE_SCAN_AGAIN" value="Обновить список сетей" />
+		<string id="STR_UI_SETTING_REGISTERED" value="Сохранена" />
+		<string id="STR_UI_SETTING_CONNECTING" value="Идет подключение..." />
+		<string id="STR_UI_SETTING_CONNECTED" value="Подключена" />
+		<string id="STR_UI_SETTING_INVALID_SETTING" value="Конфигурация неверна" />
+		<string id="STR_UI_MENU_DELETE_ACCESS_POINTS" value="Удалить сети Wi-Fi" />
+		<string id="STR_UI_MENU_CHANGE_ORDER" value="Поменять порядок подключения" />
+		<string id="STR_UI_MENU_TO_FIRST" value="Наверх" />
+		<string id="STR_UI_MENU_TO_LAST" value="Вниз" />
+		<string id="STR_UI_MENU_CONNECT_INFO" value="Информация о сети" />
+		<string id="STR_UI_SETTING_SCANNING" value="Идет сканирование..." />
+		<string id="STR_NODE_TITLE_WPS_PUSH_BUTTON" value="Конфигурация WPS одной кнопкой" />
+		<string id="STR_UI_SETTING_AUTO_REG" value="Автоматическая установка" />
+		<string id="STR_NODE_TITLE_WPS_PIN_INPUT" value="Метод WPS PIN" />
+		<string id="STR_UI_SETTING_MANUAL_REG" value="Установка вручную" />
+		<string id="STR_NODE_TITLE_MANUAL_INPUT" value="Регистрация вручную" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_REG_METHOD" value="Роутеры с конфигурацией WPS одной кнопкой позволяют легко настроить сеть. Если конфигурация одной кнопкой недоступна, можно воспользоваться методом &quot;WPS PIN&quot;. Воспользуйтесь инструкцией от производителя роутера." />
+		<string id="STR_UI_KEYBOARD_NAME" value="Имя сети:" />
+		<string id="STR_UI_KEYBOARD_BOOKMARK" value="Имя:" />
+		<string id="STR_UI_KEYBOARD_SSID" value="SSID:" />
+		<string id="STR_NODE_TITLE_ENCRIPTION" value="Метод защиты" />
+		<string id="STR_UI_SETTING_NONE" value="Пусто" />
+		<string id="STR_UI_SETTING_WEP_OPEN_SYSTEM" value="WEP (Open System)" />
+		<string id="STR_UI_SETTING_WEP_SHARED_KEY" value="WEP (Shared Key)" />
+		<string id="STR_UI_SETTING_WPA_PSK_TKIP" value="WPA-PSK (TKIP)" />
+		<string id="STR_UI_SETTING_WPA_PSK_AES" value="WPA-PSK(AES)" />
+		<string id="STR_UI_SETTING_WPA2_TKIP" value="WPA2 (TKIP)" />
+		<string id="STR_UI_SETTING_WPA2_AES" value="WPA2 (AES)" />
+		<string id="STR_UI_KEYBOARD_KEY" value="Ключ шифрования:" />
+		<string id="STR_NODE_TITLE_WLAN_ADVANCED" value="Продвинутые установки Wi-Fi" />
+		<string id="STR_NODE_TITLE_IP_ADDRESS" value="Адрес IP" />
+		<string id="STR_NODE_TITLE_DNS" value="DNS" />
+		<string id="STR_NODE_TITLE_PROXY" value="Proxy" />
+		<string id="STR_UI_SETTING_AUTO" value="Авто" />
+		<string id="STR_UI_SETTING_MANUAL" value="Вручную" />
+		<string id="STR_UI_BUTTON_AUTO" value="Авто" />
+		<string id="STR_UI_BUTTON_MANUAL" value="Вручную" />
+		<string id="STR_UI_SETTING_SETTING" value="Установка" />
+		<string id="STR_UI_SETTING_IP_ADDRESS" value="Адрес IP" />
+		<string id="STR_UI_SETTING_SUBNET_MASK" value="Subnet Mask" />
+		<string id="STR_UI_SETTING_DEFAULT_GATEWAY" value="Шлюз по умолчанию" />
+		<string id="STR_UI_SETTING_PRIMARY_DNS" value="Первичный DNS" />
+		<string id="STR_UI_SETTING_SECONDARY_DNS" value="Вторичный DNS" />
+		<string id="STR_UI_SETTING_PROXY_SERVER" value="Proxy" />
+		<string id="STR_UI_SETTING_ADDRESS" value="Адрес" />
+		<string id="STR_UI_SETTING_PORT" value="Порт" />
+		<string id="DIALOGMSG_WLAN_REG_COMPLETE" value="Конфигурация завершена.  Соединиться с сетью?" />
+		<string id="STR_UI_BUTTON_FINISH" value="Готово" />
+		<string id="STR_UI_BUTTON_CONNECT" value="Соединиться" />
+		<string id="DIALOGMSG_CANNOT_CONNECT_NO_NETWORK" value="Сеть Wi-Fi не найдена." />
+		<string id="DIALOGMSG_GO_BACK_WEB_BROWSER" value="Вернуться к навигатору интернета?" />
+		<string id="DIALOGMSG_DELETE_ACCESS_POINT" value="Вы уверены, что хотите удалить эту сеть Wi-Fi?" />
+		<string id="STR_NODE_TITLE_MOVE_TO_FIRST" value="Наверх" />
+		<string id="STR_NODE_TITLE_MOVE_TO_LAST" value="Вниз" />
+		<string id="STR_NODE_TITLE_DELETE_ACCESS_POINTS" value="Удалить сети Wi-Fi" />
+		<string id="DIALOGMSG_PRESS_WPS_BUTTON" value="Нажмите кнопку WPS на роутере в течение двух минут." />
+		<string id="DIALOGMSG_EXCHANGING_INFO_WITH_ACCESS_POINT" value="Ждите. Идет обмен информацией с роутером." />
+		<string id="STR_UI_BUTTON_EDIT_NAME" value="Редактировать имя" />
+		<string id="DIALOGMSG_ENTER_THIS_PIN_CODE" value="Воспользуйтесь этим кодом PIN для роутера. Затем нажмите &quot;OK&quot;." />
+		<string id="DIALOGMSG_BOOKMARK_ADDED" value="Закладка сохранена." />
+		<string id="DIALOGMSG_BOOKMARK_LIST_FULL" value="Не могу добавить закладку.  Поддерживается сохранение не более 50 закладок. Удалите закладки, чтобы сохранять новые." />
+		<string id="STR_UI_BUTTON_BOOKMARKS" value="Закладки" />
+		<string id="STR_NODE_TITLE_SORTEDBYLASTACCESSDATE" value="по времени доступа" />
+		<string id="STR_UI_MENU_EDIT_BOOKMARKS" value="Редактировать закладки" />
+		<string id="STR_UI_MENU_DELETE_BOOKMARKS" value="Удалить закладки" />
+		<string id="STR_NODE_TITLE_EDIT_BOOKMARKS" value="Редактировать закладки" />
+		<string id="STR_NODE_TITLE_NAME" value="Имя" />
+		<string id="STR_NODE_TITLE_ADDRESS" value="Адрес" />
+		<string id="STR_UI_KEYBOARD_ADDRESS" value="Адрес:" />
+		<string id="STR_NODE_TITLE_DELETE_BOOKMARKS" value="Удалить закладки" />
+		<string id="DIALOGMSG_WEB_PAGE_UNAVAILABLE" value="Страница недоступна. Повторите попытку после соединения с сетью Wi-Fi." />
+		<string id="DIALOGMSG_TURN_WIRELESS_SWITCH_ON" value="Страница недоступна, т.к. переключатель &quot;WIRELESS&quot; отключен. Включите его и повторите попытку." />
+		<string id="STR_UI_PARTS_MAC_ADDRESS" value="Адрес MAC" />
+		<string id="STR_UI_MENU_BROWSE_HOME" value="Домой" />
+		<string id="DIALOGMSG_CONFIRM_WEB_BROWSE_EDIT_QUIT" value="Если вы продолжете, изменения не будут сохранены. Продолжить?" />
+		<string id="STR_NODE_TITLE_NETWORK" value="Сеть" />
+		<string id="STR_NODE_TITLE_BROWSER" value="Навигатор" />
+		<string id="STR_NODE_TITLE_READING" value="Справка" />
+		<string id="STR_NODE_TITLE_MORE" value="Мультимедия" />
+		<string id="STR_NODE_TITLE_GOOGLE_BOOKS" value="Google Books" />
+		<string id="STR_NODE_TITLE_PURCHASED" value="Покупки" />
+		<string id="STR_UI_MENU_ADD_TO_BOOKMARK" value="Добавить в закладки" />
+		<string id="STR_NODE_TITLE_CHECK_UPDATES" value="Проверить наличие новых версий" />
+		<string id="STR_UI_SETTING_CURRENT_VERSION" value="Текущая версия: " />
+		<string id="DIALOGMSG_CHECKING_NEW_SOFTWARE" value="Проверка наличия новых версий ПО..." />
+		<string id="DIALOGMSG_WIRELESS_TURNED_OFF" value="Переключатель &quot;WIRELESS&quot; отключен. Включите его, чтобы соединиться с сетью." />
+		<string id="DIALOGMSG_CONNECT_TO_NETWORK" value="Беспроводная связь недоступна в данной местности." />
+		<string id="DIALOGMSG_LATEST_VERSION_EXIST" value="ПО вашего устройства не требует обновления.&#xA;" />
+		<string id="DIALOGMSG_NEW_SOFTWARE1" value="Обнаружена новая версия ПО (вер. " />
+		<string id="DIALOGMSG_NEW_SOFTWARE2" value=")." />
+		<string id="STR_UI_BUTTON_DOWNLOAD_NOW" value="Загрузить" />
+		<string id="STR_UI_BUTTON_LATER" value="Отставить" />
+		<string id="DIALOGMSG_DOWNLOADING" value="Идет загрузка последней версии ПО..." />
+		<string id="DIALOGMSG_NOT_ENOUGH_BATT_FOR_UPDATE" value="Зарядите аккумулятор, затем в меню &quot;Настройки&quot; &gt; &quot;Системные функции&quot;, выберите &quot;Проверить наличие новых версий&quot;." />
+		<string id="DIALOGMSG_NOT_ENOUGH_FREE_SPACE_FOR_UPDATE" value="В памяти устройства нет достаточно места для пакета обновления. Высвободите место, затем в меню &quot;Настройки&quot; &gt; &quot;Системные функции&quot;, выберите &quot;Проверить наличие новых версий&quot;." />
+		<string id="DIALOGMSG_CANNOT_CONNECT_WIRELESS_LAN" value="Сеть Wi-Fi недоступна.  Найдите работающую точку Wi-Fi или включите переключатель. Затем в меню &quot;Настройки&quot; &gt; &quot;Системные функции&quot;, выберите &quot;Проверить наличие новых версий&quot;." />
+		<string id="DIALOGMSG_DOWNLOAD_FAILED" value="Ошибка связи в процессе загрузки. Убедитесь в наличии сети, затем в меню &quot;Настройки&quot; &gt; &quot;Системные функции&quot;, выберите &quot;Проверить наличие новых версий&quot;." />
+		<string id="DIALOGMSG_UPDATE_EULA" value="Загрузка обновления завершена. Внимательно ознакомьтесь с Лицензионным соглашением.  Когда вы нажмете кнопку &quot;Принять&quot; устройство перезапустится и начнет процесс установки обновления." />
+		<string id="DIALOGMSG_UPDATE_COMPLETE_SUCCESSFULLY" value="Обновление завершено успешно." />
+		<string id="DIALOGMSG_UPDATE_ERROR" value="Ошибка в процессе обновления. В меню &quot;Настройки&quot; &gt; &quot;Системные функции&quot;, выберите &quot;Проверить наличие новых версий&quot;." />
+		<string id="DIALOGMSG_PAGE_INFO" value="Информация о странице" />
+		<string id="DIALOGMSG_TITLE" value="Заголовок:" />
+		<string id="DIALOGMSG_ADDRESS" value="Адрес:" />
+		<string id="DIALOGMSG_CERTIFICATE_INFO" value="Сертификат:" />
+		<string id="DIALOGMSG_SERIAL_NUMBER" value="Серийный номер:" />
+		<string id="DIALOGMSG_VALID_FROM" value="Действителен с:" />
+		<string id="DIALOGMSG_VALID_TO" value="Действителен до:" />
+		<string id="DIALOGMSG_ISSUED_BY" value="Кем выдан:" />
+		<string id="DIALOGMSG_ISSUED_TO" value="Кому выдан:" />
+		<string id="DIALOGMSG_THUMBPRINT" value="Отпечаток пальца:" />
+		<string id="STR_UI_MENU_TAKE_SCREENSHOT" value="Сохранить скриншот" />
+		<string id="DIALOGMSG_SCREENSHOT_SAVED" value="Скриншот сохранен. Можете его увидеть в меню &quot;Приложения&quot; &gt; &quot;Фотографии&quot;." />
+		<string id="DIALOGMSG_FILE_SYSTEM_ERROR" value="Ошибка файловой системы." />
+		<string id="STR_NODE_TITLE_SOFTWARE_DOWNLOADING" value="Загрузка обновления" />
+		<string id="DIALOGMSG_STOP_DOWNLOADING" value="Прервать загрузку?" />
+		<string id="STR_UI_MESSAGE_WIFI_SETUP" value="Конфигурация Wi-Fi®" />
+		<string id="STR_UI_MESSAGE_WIFI_SETUP_EXPLANATIONS" value="Ваше устройство поддерживает сеть Wi-Fi, которая предоставляет доступ к сервисам, недоступным через сотовую связь.&#xA;&#xA;It also provides a high speed connection to the Reader Store, allowing for faster browsing and downloading of content.&#xA;&#xA;For these reasons, it is highly recommended you set up your device to connect to a wireless LAN router in your home and/or any Wi-Fi service to which you have access." />
+		<string id="STR_UI_BUTTON_CONTINUE_WIFI_SETUP" value="Продолжить конфигурацию Wi-Fi" />
+		<string id="STR_UI_BUTTON_REMIND_LATER" value="Напомнить мне позже" />
+		<string id="STR_UI_BUTTON_NEVER_SHOW" value="Не хочу больше видеть это сообщение" />
+		<string id="STR_UI_MESSAGE_WIFI_SETUP_NOTE" value="Сеть Wi-Fi можно настроить из меню &quot;Настройки&quot;." />
+		<string id="DIALOGMSG_PREPARING_UPDATE" value="Устройство будет перезагружено и начнет процесс установки нового ПО." />
+		<string id="DIALOGMSG_SSID_INVALID_CHAR" value="Только следующие символы разрешены:&#xA;a-z, A-Z, 0-9, ! &quot; # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ { | } ~ `" />
+		<string id="DIALOGMSG_SSID_INVALID_LENGTH" value="SSID должно быть не более 32 символов." />
+		<string id="DIALOGMSG_NAME_INVALID_LENGTH" value="Имя сети должно быть не длиннее 64 символов." />
+		<string id="DIALOGMSG_NAME_INVALID_CHAR" value="Только следующие символы разрешены:&#xA;a-z, A-Z, 0-9, ! &quot; # $ % &amp; ' ( ) * + , - . / : ; &lt; = &gt; ? @ [ \ ] ^ _ { | } ~ `" />
+		<string id="DIALOGMSG_KEY_LENGTH_WRONG1" value="Неверная длина шифровального ключа. Должно быть:&#xA; hexadecimal: от 10 до 26 цифр&#xA; ASCII: от 5 до 13 символов" />
+		<string id="DIALOGMSG_KEY_LENGTH_WRONG2" value="Неверная длина шифровального ключа. Должно быть::&#xA; hexadecimal: 64 цифр&#xA; ASCII: 8 - 63 символов" />
+		<string id="DIALOGMSG_WLAN_CONNECTION_FAILD" value="Соединение недоступно. Убедитесь, что:&#xA;1. Присутствует сигнал Wi-Fi.&#xA;2. Переключатель &quot;WIRELESS&quot; включен.&#xA;3. Установка &quot;Wi-Fi&quot; в меню &quot;Настройки&quot; &gt; &quot;Беспроводная связь&quot; включена.&#xA;4. Сеть Wi-Fi имеет правильную конфигурацию." />
+		<string id="DIALOGMSG_WPS_REG_FAILED" value="Сеть Wi-Fi недоступна. Процесс конфигурации не завершился в отведенное для этого время." />
+		<string id="DIALOGMSG_WPS_REG_TIMEOUT" value="Сеть Wi-Fi недоступна. Процесс конфигурации не завершился в отведенное для этого время или введен неверный код PIN." />
+		<string id="DIALOGMSG_INPUT_PROXY_SERVER_ADD" value="Введите адрес proxy." />
+		<string id="DIALOGMSG_ACCESS_POINT_NOT_SUPPORTED" value="Метод безопасности для этой сети не поддерживается." />
+		<string id="DIALOGMSG_CHANGE_MADE_PLEASE_RECONNECT" value="В установки сети Wi-Fi внесены следующие изменения. Просьба заново соединиться." />
+		<string id="STR_UI_MENU_DELETE" value="Удалить сеть Wi-Fi" />
+		<string id="STR_UI_WLAN_REG_METHOD" value="Метод:" />
+		<string id="STR_UI_WLAN_REG_NAME" value="Имя сети:" />
+		<string id="STR_UI_WLAN_REG_SSID" value="SSID:" />
+		<string id="STR_UI_WLAN_REG_ENCRYPTION_METHOD" value="Метод безопасности:" />
+		<string id="STR_UI_WLAN_REG_KEY" value="Ключ шифрования:" />
+		<string id="STR_UI_WLAN_REG_IP_ADDRESS_SETTING" value="Адрес IP:" />
+		<string id="STR_UI_WLAN_REG_IP_ADDRESS" value="Адрес IP:" />
+		<string id="STR_UI_WLAN_REG_SUBNET_MASK" value="Subnet mask:" />
+		<string id="STR_UI_WLAN_REG_DEFAULT_GATEWAY" value="Шлюз по умолчанию:" />
+		<string id="STR_UI_WLAN_REG_DNS_SERVER_SETTING" value="Установки DNS:" />
+		<string id="STR_UI_WLAN_REG_PRIMARY_DNS_SERVER" value="Первичный сервер DNS:" />
+		<string id="STR_UI_WLAN_REG_SECONDARY_DNS_SERVER" value="Вторичный сервер DNS:" />
+		<string id="STR_UI_WLAN_REG_PROXY_SERVER" value="Proxy:" />
+		<string id="STR_UI_WLAN_REG_PROXY_SERVER_ADDRESS" value="Адрес proxy:" />
+		<string id="STR_UI_WLAN_REG_PROXY_SERVER_PORT" value="Порт proxy:" />
+		<string id="STR_UI_WLAN_REG_ENCRYPTION" value="Метод шифрования:" />
+		<string id="STR_UI_WLAN_REG_DNS_SETTING" value="DNS:" />
+		<string id="STR_UI_WLAN_REG_ON" value="Вкл" />
+		<string id="STR_UI_WLAN_REG_OFF" value="Выкл" />
+		<string id="DIALOGMSG_BACK_TO_BROWSER" value="Вернуться к сетевому навигатору?" />
+		<string id="DIALOGMSG_CONNECTION_INFO" value="Информация о связи" />
+		<string id="DIALOGMSG_PROXY_SERVER_ADD_MAX255" value="Адрес proxy не может быть длиннее 255 символов." />
+		<string id="DIALOGMSG_PROXY_INVALID_CHAR" value="Пожалуйста, используйте только цифры 0 - 9." />
+		<string id="DIALOGMSG_NOT_CERTIFY_BY_TRUSTED" value="Сертификат этого сайта не выдан надежной организацией.&#xA;Связь может оказаться небезопасной; лучше не продолжать." />
+		<string id="DIALOGMSG_NOT_CERTIFY_BY_DIF_WEBSITE" value="Сертификат этого сайта не выдан на имя другого сайта.&#xA;Связь может оказаться небезопасной; лучше не продолжать." />
+		<string id="DIALOGMSG_SECURITY_CERTIFICATE_EXPIRED" value="Сертификат этого сайта не соответствует установкам времени на устройстве.  Проверьте установки &quot;Дата и время&quot;." />
+		<string id="DIALOGMSG_SECURITY_CERTIFICATE_HAS_PROBLEM" value="Проблема с сертификатом сайта. Связь может оказаться небезопасной; лучше не продолжать." />
+		<string id="DIALOGMSG_NOT_SUPPORTED_URL" value="Формат этой страницы не поддерживается." />
+		<string id="DIALOGMSG_WEB_NOT_SUPPORTED_FILE_FORMAT" value="Формат файла не поддерживается." />
+		<string id="DIALOGMSG_WEB_NONSECURE_TO_SECURE" value="Переход с незащищенной страницы на защищенную." />
+		<string id="DIALOGMSG_WEB_SECURE_TO_NONSECURE" value="Переход с защищенной страницы на незащищенную." />
+		<string id="DIALOGMSG_BROWSER_EXIT_UNEXPECTED_ERROR" value="Ошибка доступа к сайту. Навигатор возвращается на домашнюю страницу." />
+		<string id="STR_UI_KEYBOARD_INPUT" value="Ввод:" />
+		<string id="DIALOGMSG_USER_NAME" value="Имя пользователя:" />
+		<string id="DIALOGMSG_PASSWORD" value="Пароль:" />
+		<string id="DIALOGMSG_SIGN_IN_TO" value="Запишитесь в" />
+		<string id="DIALOGMSG_INPUT_IP_ADDRESS" value="Введите адрес IP, subnet mask и шлюз по умолчанию." />
+		<string id="DIALOGMSG_PORT_NUMBER_LARGER_MAX" value="Порт не может быть больше 65535." />
+		<string id="DIALOGMSG_AP_NAME_CONNECTED" value="Связь: " />
+		<string id="STR_UI_MENU_STOP" value="Стоп" />
+		<string id="DIALOGMSG_WEB_LEGAL_INFO" value="Юридическая информация" />
+		<string id="DIALOGMSG_REG_TIME_OUT" value="Конфигурация сети Wi-Fi не завершена. Либо вы не нажали кнопку WPS в отведенное время, либо нажали ее на нескольких роутерах." />
+		<string id="DIALOGMSG_NOT_CONNECTED_NETWORK" value="Соединения с сетью нет." />
+		<string id="STR_UI_BUTTON_CONTINUE" value="Продолжить" />
+		<string id="STR_UI_BUTTON_VIEW_CERT" value="Прочитать сертификат" />
+		<string id="DIALOGMSG_IP_ADDRESS_SET_MANUAL" value="Установите адрес IP для сервера DNS вручную в меню &quot;DNS&quot;, если в данный момент используется установка &quot;Авто&quot;." />
+		<string id="DIALOGMSG_INVALID_URL" value="Адрес не принят.  Попробуйте еще раз." />
+		<string id="DIALOGMSG_DNS_SET_AUTO" value="При следующем соединении с сетью Wi-Fi сервер DNS будет установлен автоматически. Если &quot;Адрес IP&quot; установлен в &quot;Вручную&quot;, эта установка будет изменена на &quot;Авто&quot;." />
+		<string id="DIALOGMSG_WPS_REG_FAILED2" value="Связь прервана. Убедитесь, что переключатель &quot;WIRELESS&quot; включен, и попробуйте еще раз." />
+		<string id="STR_NODE_TITLE_READER_STORE_NOTIFICATIONS" value="Сообщения из Магазина" />
+		<string id="" value="Сервисные сообщения" />
+		<string id="STR_UI_SETTING_DISPLAY" value="Дисплей" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_READER_STORE_NOTIFI" value="You will automatically receive updates like book and periodical recommendations, special promotions and exclusive offers from Reader Store on your Reader's &quot;Home&quot; screen." />
+		<string id="DIALOGMSG_NO_SIM_CARD_HIGHLOAD_NETWORK" value="Сеть недоступна. Проверьте, что устройство находится в зоне доступа сети.&#xA;Также проверьте, что вы используете правильную SIM карту." />
+		<string id="DIALOGMSG_NETWORK_LOW_BATTERY" value="Сетевая функция недоступна из-за низкого заряда батареи." />
+		<string id="DIALOGMSG_NO_CONNECTION_TO_READER_STORE" value="Сетевая связь с интернетом и Магазином недоступна. Проверьте: 1) Установки связи между устройством и роутером. 2) Присутствие беспроводной сети." />
+		<string id="DIALOGMSG_REQUIRE_USER_AUTHENTICATION" value="Сеть требует авторизации. Откройте интернет-навигатор и авторизуйтесь в сети." />
+		<string id="STR_UI_REG_METHOD_AUTO" value="Автоматическая установка (конфигурация WPS одной кнопкой)" />
+		<string id="STR_UI_REG_METHOD_MANUAL" value="Установка вручную (Метод WPS PIN)" />
+		<string id="DIALOGMSG_NO_WLAN_SETTINGS" value="Связь недоступна. Сотовая связь отключена, и сеть Wi-Fi не сконфигурирована. Включите &quot;Мобильную сеть&quot; в меню &quot;Беспроводная связь&quot; или подключитесь к сети Wi-Fi." />
+		<string id="DIALOGMSG_GENERATING_PIN" value="Идет генерация кода PIN..." />
+		<string id="STR_UI_KEYBOARD_GO" value="Go" />
+		<string id="DIALOGMSG_NETWORK_FEAT_OFF_BATT_LOW" value="Заряда аккумулятора недостаточно для соединения с сетью." />
+		<string id="DIALOGMSG_URL_INVALID" value="Непригодный URL. Проверьте и попробуйте еще раз." />
+		<string id="STR_UI_MESSAGE_CONNECTED" value="Соединение: " />
+		<string id="STR_UI_MESSAGE_CONNECTING" value="Идет соединение..." />
+		<string id="STR_UI_MESSAGE_STORE_NETWORK_OFF" value="Связь недоступна. Сотовая связь отключена, и сеть Wi-Fi не сконфигурирована. Включите &quot;Мобильную сеть&quot; в меню &quot;Беспроводная связь&quot; или подключитесь к сети Wi-Fi." />
+		<string id="STR_UI_MESSAGE_LOWBATTERY2" value="Батарея разряжена!&#xA;&#xA;Сетевые функции отключены для экономии энергии." />
+		<string id="STR_UI_MENU_CLOUD_SYNC" value="Page Sync" />
+		<string id="DIALOGMSG_LATEST_POSITION_ACCESS" value="Вы на текущей позиции на всех устройствах." />
+		<string id="DIALOGMSG_GO_TO_LATEST_POSITION" value="You are currently on Page 123. The last read position is 156 at 11:52 AM on June 23. Would you like to go to that page?" />
+		<string id="DIALOGMSG_NOT_SUPPORT_CLOUD_SYNC" value="Контент не поддерживает синхронизацию." />
+		<string id="DIALOGMSG_SIGN_IN_FIRST" value="Для этой функции вы должны авторизоваться." />
+		<string id="STR_UI_MESSAGE_RETRIEVING_PAGE_INFO" value="Получение информации о странице..." />
+		<string id="STR_NODE_TITLE_SYNC" value="Page Sync" />
+		<string id="STR_UI_SETTING_SYNC" value="Sync" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_SYNC" value="Функция Page Sync синхронизует информацию, такую как закладки, заметки и текущую страницу между вашими устройствами для чтения." />
+		<string id="DIALOGMSG_EXCEED_BROWSER_MAX_NUMBER" value="Это меню недоступно из-за переполнения." />
+		<string id="DIALOGMSG_CANNOT_CONNECT_TO_NETWORK" value="Сеть недоступна. Проверьте, что: (1) Переключатель &quot;WIRELESS&quot; включен. &#xA;&#xA;Доступна по крайней мере одна из функций:&#xA;&#xA;(2) Wi-Fi. &#xA;(3) Мобильная сеть. &#xA;&#xA;Внимание: через Мобильную сеть можно доступаться только к Магазину." />
+		<string id="" value="Страница недоступна.&#xA;&#xA;Сеть недоступна.  Проверьте, что: (1) Переключатель &quot;WIRELESS&quot; включен. &#xA;&#xA;Доступна по крайней мере одна из функций:&#xA;&#xA;(2) Wi-Fi. &#xA;(3) Мобильная сеть." />
+		<string id="" value="Страница недоступна.&#xA;&#xA;Ошибка DNS. Нажмите кнопку &quot;OPTIONS&quot; и перейдите на Домашнюю страницу." />
+		<string id="" value="Страница недоступна.&#xA;&#xA;Закрытый сетевой порт. Нажмите кнопку &quot;OPTIONS&quot; и перейдите на Домашнюю страницу." />
+		<string id="" value="Страница недоступна.&#xA;&#xA;Ошибка безопасности.  Нажмите кнопку &quot;OPTIONS&quot; и перейдите на Домашнюю страницу." />
+		<string id="STR_NODE_TITLE_CONNECTION_NAME" value="Имя сети" />
+		<string id="STR_NODE_TITLE_SSID" value="SSID" />
+		<string id="STR_NODE_TITLE_KEY" value="Ключ шифрования" />
+		<string id="DIALOGMSG_SYNC_OFF" value="Функция Sync отключена. Чтобы включить функцию Sync идите в меню &quot;Настройки&quot; &gt; &quot;Настройки приложений&quot; &gt;  &quot;Page Sync&quot;." />
+		<string id="STR_UI_SETTING_MOBILE" value="Мобильная" />
+		<string id="DIALOGMSG_CANNOT_DOWNLOAD_CONTENT" value="Вы можете загрузить этот контент только через Wi-Fi." />
+		<string id="DIALOGMSG_CANNOT_ACCESS_PAGE_NO_WIFI_CONNECTION" value="Эта страница доступна только через Wi-Fi." />
+		<string id="DIALOGMSG_CANNOT_ACCESS_PAGE_NO_WIFI_CONFIGURE" value="Эта страница доступна только через Wi-Fi.  Сеть Wi-Fi на устройстве должна быть сконфигурирована." />
+		<string id="DIALOGMSG_DOWNLOAD_FAILED_CONNECT_WIFI" value="Загрузка не удалась.  Убедитесь, что сеть Wi-Fi  подключена.  В меню &quot;Настройки&quot; &gt; &quot;Системные функции&quot;, выберите &quot;Проверить наличие новых версий&quot;." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_FOR_A2" value="В памяти нет свободного места для того, чтоб сохранить профиль или скриншот на устройстве." />
+		<string id="DIALOGMSG_DATE_AND_TIME_INCORRECT" value="Соединение недоступно, из-за неправильных установок &quot;Дата и время&quot; и/или &quot;Часовой пояс&quot;." />
+		<string id="DIALOGMSG_NO_NETWORK_CONNECTION_SET" value="Сеть недоступна. Проверьте, что: (1) Переключатель &quot;WIRELESS&quot; включен. &#xA;&#xA;Доступна по крайней мере одна из функций:&#xA;&#xA;(2) Wi-Fi. &#xA;(3) Мобильная сеть. &#xA;&#xA;Внимание: через Мобильную сеть можно доступаться только к Магазину." />
+		<string id="DIALOGMSG_CANNOT_ACCESS_PAGE_WIRELESS_SW_OFF" value="Страница недоступна, потому что переключатель &quot;WIRELESS&quot; отключен." />
+		<string id="DIALOGMSG_PAGE_UNAVAILABLE_CONNECT_WLAN" value="Страница недоступна, устройство должно быть подключено к сети Wi-Fi." />
+		<string id="DIALOGMSG_GO_BACK_TO_PAGE" value="Вы хотите вернуться в интернет-навигатор?" />
+		<string id="STR_UI_BUTTON_SIGN_IN" value="Записаться" />
+		<string id="" value="Этот линк сейчас недоступен." />
+		<string id="" value="Функция синхронизации будет прервана.  Продолжить? " />
+		<string id="" value="Функция синхронизации будет отменена." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_1_A2" value="Контент недоступен, потому что переключатель &quot;WIRELESS&quot; отключен." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_2_A2" value="Подключитесь в сети, затем выберите меню &quot;Приложения&quot; &gt; &quot;Покупки&quot;." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_2_A2" value="Чтобы получить доступ к контенту, подключитесь к сети, затем выберите меню &quot;Приложения&quot; &gt; &quot;Покупки&quot;." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_1_A2" value="Контент недоступен, из-за неправильных установок &quot;Дата и время&quot; и/или &quot;Часовой пояс&quot;." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_2_A2" value="Чтобы получить доступ к контенту, скорректируйте все, что необходимо, затем выберите меню &quot;Приложения&quot; &gt; &quot;Покупки&quot;." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_4_2_A2" value="Чтобы получить доступ к контенту, удалите ненужные файлы, затем выберите меню &quot;Приложения&quot; &gt; &quot;Покупки&quot;." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_5_2_A2" value="Чтобы получить доступ к контенту, выберите меню &quot;Приложения&quot; &gt; &quot;Покупки&quot;." />
+		<string id="STR_UI_MESSAGE_RECOMMEND_EPUB_A2" value="Эта книга не может быть открыта на данном устройстве из-за проблем с DRM. Если вы купили ее раньше, загрузите ее из меню &quot;Приложения&quot; &gt; &quot;Покупки&quot;. В противном случае вам следует купить эту книгу." />
+	</assets>
+</document>

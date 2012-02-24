@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Calculator  |  PRS-505 version  |  by Mark Nord
+	 History: 
+	   2010-06-05 Mark Nord - initial release - public beta 
+	   2010-07-19 Mark Nord - topbar icon 
+	   2010-08-17 Mark Nord - buttons clickable
+	   2010-12-05 Mark Nord - appTitle appIcon configurable form starter, 
+	   						  button->index calculation device-independent
+	   						  gridCursor only shown on PRS-300/505
+	   2011-03-24 Mark Nord - Most Assets move to ../AppAssets/AppAssets.xml
+	   2011-06-02 Mark Nord - tapping on the icon in the topbar closes the app						  
+	   -->
+
+<document xmlns="http://www.kinoma.com/fskin/1" id="DOCUMENT">
+<assets>
+ 	<import href="../AppAssets/AppAssets.xml"/>
+	<!--behavior id="iconSprite">
+	    <script on="mouseUp" params="event">
+		if (this.hitBounds(event.x, event.y))
+			this.bubble("exitApp",this);
+	    </script>
+	</behavior-->	   
+	 
+	<style font="Swis721 BT">
+	<style id="digits" size="42" style="bold" color="#000000"/>
+	<style id="memory" size="22" style="bold" color="#000000"/>
+	<style id="clock" size="22" style="bold" color="#FFFFFF"/>
+	<style id="label-l" size="14" style="bold" color="#000000" halign="left"/>
+	<style id="label-n" size="14" style="normal" color="#000000" halign="left"/>
+	</style>
+	
+	<skin id="memory" 
+		styles="memory"/>
+	<skin id="digits" 
+		styles="digits"/>	
+	<skin id="clock" 
+		styles="clock"/>
+		
+</assets>
+	<code>
+		 <function id="runJs" params="path,target">
+        try {
+            var f = new Stream.File(path);          
+            var fn = new Function("target", f.toString());
+            fn(target);
+            delete fn;
+        }
+        catch(e)
+        {
+        }
+    </function>
+    <function id="loadScript">
+        if (!this.hasOwnProperty('_scriptLoaded'))
+            this._scriptLoaded = false;
+        if (!this._scriptLoaded)
+        {
+			if(kbook.autoRunRoot.path==undefined){
+				var path = this.getBaseURI().slice(7); 		
+				kbook.model = this;
+			}else{
+				var path = kbook.autoRunRoot.path;
+			}
+            var index = path.lastIndexOf('/');
+            if (index > 0)
+               path = path.substring(0, index + 1);
+            this.driveroot = path.substring(0,2);
+			// PRS 600 uses this this.driveroot = "/Data/test"; 
+            var target = this.AUTORUN_GROUP.AUTORUN;
+		    
+            this.runJs(path+"calculator.js",target);
+        }
+        this._scriptLoaded = true;
+    </function>
+    <function id="modelChanged">
+		arguments.callee.grammar.call(this);
+        var state = this.getVariable("STATE");
+        
+        var target;
+
+        if (this.state != state) {
+            this.focus(true)
+            this.AUTORUN_GROUP.show(false)
+            switch(state) {
+            case "AUTORUN":
+                this.loadScript();
+                this.AUTORUN_GROUP.show(true);
+                target = this.AUTORUN_GROUP.AUTORUN;
+                break;
+            }
+            this.state = state;
+            target.init();
+             if (target.isEnabled())
+                {
+                target.focus(true);
+                };
+        }         
+    </function>
+
+ </code>
+ <model>
+ 		<variable id="BASIS" value="dec"/>
+ 		<variable id="TRIG" value="deg"/>
+ </model>
+
+<group id="AUTORUN_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+	<panel skin="AppMainSkin" left="0" right="0" top="0" bottom="0"/> 
+    <group id="AUTORUN" width="600" top="70" bottom="30">
+		 <code>
+            <function id="doDigit" params="part">                           
+	           this.digitF(part.key)		 
+            </function>          
+
+            <function id="doHoldCenter">
+               this.doNextF();
+            </function>
+
+            <function id="doMenu">
+              this.exitApp();
+            </function>
+
+            <function id="doRoot"> // emergency exit for PRS-600
+              this.exitApp();
+            </function>
+
+            <function id="doCenter">
+             this.doCenterF();
+            </function>
+                       
+            <function id="doLeft">
+         	   this.moveCursor("left");
+            </function>
+
+	       <function id="doPrevious">
+         	   this.doPreviousF();
+            </function>
+
+            <function id="doRight">
+          	  this.moveCursor("right");
+            </function>
+
+            <function id="doNext">
+        	    this.doNextF();
+            </function>
+
+            <function id="doUp">
+         	   this.moveCursor("up");
+            </function>
+            
+            <function id="doDown">
+         	   this.moveCursor("down");
+            </function>
+
+        </code>
+    <sprite id="appIcon" skin="kbookMenuIcon" left="0" width="70" top="-70" height="70" u="0" v="1"/>   
+    	<!--behave like="iconSprite"/>
+    </sprite-->
+    <label id="appTitle" skin="title" left="70" right="0" top="-70" height="70" align="left" text="Calculator"/>
+	<panel skin="panel" left="38" right="38" top="55" height="42"/>
+ 	<label id="CalculatorLabel" skin="digits" align="right" visible="true" left="40" right="40" top="55" height="40"></label>
+
+    <group visible="true" width="160" left="0" top="95" height="30">
+ 	   	<radio id="RBUTTON_HEX" variable="BASIS" on="hex" active="true" text="HEX" left="040" width="55" top="0" height="30" do="setNumberBase"/>
+    	<radio id="RBUTTON_DEC" variable="BASIS" on="dec" active="true" text="DEC" left="100" width="55" top="0" height="30" do="setNumberBase"/>
+	    <radio id="RBUTTON_BIN" variable="BASIS" on="bin" active="true" text="BIN" left="160" width="55" top="0" height="30" do="setNumberBase"/>  
+    </group>
+    <group id="TRIGM" visible="true" width="600" left="0" top="95" height="30">
+ 	   	<radio id="RBUTTON_DEG" variable="TRIG" on="deg" active="true" text="DEG" left="400" width="55" top="0" height="30" do="setTrigmeth"/>
+    	<radio id="RBUTTON_RAD" variable="TRIG" on="rad" active="true" text="RAD" left="460" width="55" top="0" height="30" do="setTrigmeth"/>
+	    <radio id="RBUTTON_GRAD" variable="TRIG" on="grad" active="true" text="GRAD" left="520" width="65" top="0" height="30" do="setTrigmeth"/>  
+    </group>
+
+	<button id="BUTTON_M3C"		active="true" text="C"   left="040" width="57" bottom="420" height="50" do="doButtonClick"/>
+	<panel skin="panel" left="100" width="170" bottom="435" height="30"/>
+	 <label id="Meminput3" skin="memory" align="right" visible="true" left="102" width="165" bottom="437" height="30"/>   	
+    <button id="BUTTON_M3+"	active="true" text="M+"  left="280" width="57" bottom="420" height="50" do="doButtonClick"/>		
+    <button id="BUTTON_M3-"	active="true" text="M-"  left="340" width="57" bottom="420" height="50" do="doButtonClick"/>		
+    <button id="BUTTON_M3R"	active="true" text="MR"  left="400" width="57" bottom="420" height="50" do="doButtonClick"/>
+    <button id="BUTTON_OFF"	active="true" text="OFF" left="520" width="57" bottom="420" height="50" do="doMenu"/> 
+
+	<button id="BUTTON_M2C"		active="true" text="C"   left="040" width="57" bottom="370" height="50" do="doButtonClick"/>
+	<panel skin="panel" left="100" width="170" bottom="385" height="30"/>
+	 <label id="Meminput2" skin="memory" align="right" visible="true" left="102" width="165" bottom="387" height="30"/>   	
+    <button id="BUTTON_M2+"	active="true" text="M+" left="280" width="57" bottom="370" height="50" do="doButtonClick"/>		
+    <button id="BUTTON_M2-"	active="true" text="M-"  left="340" width="57" bottom="370" height="50" do="doButtonClick"/>		
+    <button id="BUTTON_M2R"	active="true" text="MR" left="400" width="57" bottom="370" height="50" do="doButtonClick"/>
+
+	<button id="BUTTON_M1C"		active="true" text="C"   left="040" width="57" bottom="320" height="50" do="doButtonClick"/>
+	<panel skin="panel" left="100" width="170" bottom="335" height="30"/>
+ 	 <label id="Meminput1" skin="memory" align="right"  visible="true" left="102" width="165" bottom="337" height="30"/>   	
+    <button id="BUTTON_M1+"	active="true" text="M+" left="280" width="57" bottom="320" height="50" do="doButtonClick"/>		
+    <button id="BUTTON_M1-"	active="true" text="M-"  left="340" width="57" bottom="320" height="50" do="doButtonClick"/>		    
+    <button id="BUTTON_M1R"	active="true" text="MR" left="400" width="57" bottom="320" height="50" do="doButtonClick"/>
+    <button id="BUTTON_AC"	active="true" text="AC" left="520" width="57" bottom="320" height="50" do="doButtonClick"/> 
+
+	<button id="BUTTON_PI"		active="true" text="π"    left="040" width="57" bottom="270" height="50" do="doButtonClick"/>
+   	<button id="BUTTON_LN"		active="true" text="ln"   left="100" width="57" bottom="270" height="50" do="doButtonClick"/>
+   	<button id="BUTTON_EexpX"	active="true" text="e^x"  left="160" width="57" bottom="270" height="50" do="doButtonClick"/>   	
+	<button id="BUTTON_LOG" 	active="true" text="log"  left="220" width="57" bottom="270" height="50" do="doButtonClick"/>
+    <button id="BUTTON_10expX"	active="true" text="10^x" left="280" width="60" bottom="270" height="50" do="doButtonClick"/>		
+    <button id="BUTTON_LOG2"	active="true" text="log2" left="340" width="57" bottom="270" height="50" do="doButtonClick"/>
+    <button id="BUTTON_2expX"	active="true" text="2^x"  left="400" width="57" bottom="270" height="50" do="doButtonClick"/>    		
+    <button id="BUTTON_%"		active="true" text="%"    left="460" width="57" bottom="270" height="50" do="doButtonClick"/>    		
+    <button id="BUTTON_CLR"		active="true" text="C"    left="520" width="57" bottom="270" height="50" do="doPreviousF"/> 
+      
+	<button id="BUTTON_SIN"		active="true" text="sin" left="040" width="57" bottom="220" height="50" do="doButtonClick"/>
+   	<button id="BUTTON_COS"		active="true" text="cos" left="100" width="57" bottom="220" height="50" do="doButtonClick"/>
+   	<button id="BUTTON_TAN"		active="true" text="tan" left="160" width="57" bottom="220" height="50" do="doButtonClick"/>   	
+	<button id="BUTTON_7" 		active="true" text="7"   left="220" width="57" bottom="220" height="50" do="digitF"/>
+    <button id="BUTTON_8" 		active="true" text="8"   left="280" width="57" bottom="220" height="50" do="digitF"/>		
+    <button id="BUTTON_9" 		active="true" text="9"   left="340" width="57" bottom="220" height="50" do="digitF"/>
+    <button id="BUTTON_div"		active="true" text="÷"   left="400" width="57" bottom="220" height="50" do="doButtonClick"/>    		
+    <button id="BUTTON_sqrt"	active="true" text="√"   left="460" width="57" bottom="220" height="50" do="doButtonClick"/> 
+    <button id="BUTTON_sqr"		active="true" text="x²"  left="520" width="57" bottom="220" height="50" do="doButtonClick"/> 
+	
+   	<button id="BUTTON_ASIN"	active="true" text="asin" left="040" width="57" bottom="170" height="50" do="doButtonClick"/>
+   	<button id="BUTTON_ACOS"	active="true" text="acos" left="100" width="57" bottom="170" height="50" do="doButtonClick"/>
+   	<button id="BUTTON_ATAN"	active="true" text="atan" left="160" width="57" bottom="170" height="50" do="doButtonClick"/>   	
+	<button id="BUTTON_4" 		active="true" text="4"   left="220" width="57" bottom="170" height="50" do="digitF"/>
+    <button id="BUTTON_5" 		active="true" text="5"   left="280" width="57" bottom="170" height="50" do="digitF"/>		
+    <button id="BUTTON_6" 		active="true" text="6"   left="340" width="57" bottom="170" height="50" do="digitF"/>		
+    <button id="BUTTON_x" 		active="true" text="x"   left="400" width="57" bottom="170" height="50" do="doButtonClick"/>    		
+    <button id="BUTTON_1divx"	active="true" text="1/x" left="460" width="57" bottom="170" height="50" do="doButtonClick"/> 
+    <button id="BUTTON_xexpy" 	active="true" text="x^y" left="520" width="57" bottom="170" height="50" do="doButtonClick"/> 
+	
+   	<button id="BUTTON_EE"		active="true" text="EE"  left="040" width="57" bottom="120" height="50" do="doButtonClick"/>
+   	<button id="BUTTON_N!"		active="true" text="n!"  left="100" width="57" bottom="120" height="50" do="doButtonClick"/>
+   	<button id="BUTTON_M0D"		active="true" text="Mod" left="160" width="57" bottom="120" height="50" do="doButtonClick"/>   	
+   	<button id="BUTTON_1" 		active="true" text="1"   left="220" width="57" bottom="120" height="50" do="digitF"/>
+    <button id="BUTTON_2" 		active="true" text="2"   left="280" width="57" bottom="120" height="50" do="digitF"/>		
+    <button id="BUTTON_3" 		active="true" text="3"   left="340" width="57" bottom="120" height="50" do="digitF"/>	
+    <button id="BUTTON_-"		active="true" text="-"   left="400" width="57" bottom="120" height="50" do="doButtonClick"/>    			
+    <button id="BUTTON_("		active="true" text="("   left="460" width="57" bottom="120" height="50" do="doButtonClick"/>
+    <button id="BUTTON_)"		active="true" text=")"   left="520" width="57" bottom="120" height="50" do="doButtonClick"/>
+
+   	<button id="BUTTON_AND"		active="true" text="And" left="040" width="57" bottom="70" height="50" do="doButtonClick"/>
+   	<button id="BUTTON_OR"		active="true" text="Or"  left="100" width="57" bottom="70" height="50" do="doButtonClick"/>
+   	<button id="BUTTON_XOR"		active="true" text="Xor" left="160" width="57" bottom="70" height="50" do="doButtonClick"/>   	
+   	<button id="BUTTON_0" 		active="true" text="0"   left="220" width="57" bottom="70" height="50" do="digitF"/>
+    <button id="BUTTON_KOMMA" 	active="true" text="."   left="280" width="57" bottom="70" height="50" do="doButtonClick"/>		
+    <button id="BUTTON_PL_MIN" 	active="true" text="+/-" left="340" width="57" bottom="70" height="50" do="doButtonClick"/>		
+   	<button id="BUTTON_PLUS"	active="true" text="+"   left="400" width="57" bottom="70" height="50" do="doButtonClick"/>    
+   	<button id="BUTTON_GLEICH" 	active="true" text="="   left="460" width="115" bottom="70" height="50" do="doNextF"/>    
+
+   	<button id="BUTTON_NOT"		active="true"  text="Not" left="040" width="57" bottom="20" height="50" do="doButtonClick"/>
+   	<button id="BUTTON_LSH"		active="true"  text="Lsh" left="100" width="57" bottom="20" height="50" do="doButtonClick"/>
+   	<button id="BUTTON_RSH"		active="true"  text="Rsh" left="160" width="57" bottom="20" height="50" do="doButtonClick"/>
+   	<button id="BUTTON_A" 		active="false" text="A"   left="220" width="57" bottom="20" height="50" do="digitF"/>
+    <button id="BUTTON_B" 		active="false" text="B"   left="280" width="57" bottom="20" height="50" do="digitF"/>		
+    <button id="BUTTON_C" 		active="false" text="C"   left="340" width="57" bottom="20" height="50" do="digitF"/>		
+   	<button id="BUTTON_D" 		active="false" text="D"   left="400" width="57" bottom="20" height="50" do="digitF"/>       			
+	<button id="BUTTON_E" 		active="false" text="E"   left="460" width="57" bottom="20" height="50" do="digitF"/>		
+    <button id="BUTTON_F" 		active="false" text="F"   left="520" width="57" bottom="20" height="50" do="digitF"/>		
+   	
+	<sprite skin="gridCursor" id="gridCursor"  left="522" width="90" top="605" height="100" u="0" active="false" canFocus="true" visible="false"/>
+
+	<button id="btn_Exit" left="0" top="-70" height="70" width="70" active="true" visible="false" do="doRoot"/>
+	<!--label id="clock1" skin="clock" width="100" right="4" height="30" bottom="-30" align="right" text=""/-->
+   </group>
+</group>
+
+
+</document>

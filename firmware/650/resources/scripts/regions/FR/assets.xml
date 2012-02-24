@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="name" value="France"/>
+		<string id="defaultLanguage" value="fr"/>
+		<string id="languages" value="all"/>
+
+		<string id="format_date_short" value="$dd$/$MM$/$yyyy$"/>
+		<string id="format_date_long" value="$ddd$, $dd$ $MMM$ $yyyy$"/>
+		<string id="format_time" value="$hh$:$mm$:$ss$"/>
+
+		<string id="storeType" value="external"/>
+		<string id="internetURI" value="http://campaign.odw.sony-europe.com/staticcontent/flashprojects/ame/EBL_FR.xml"/>
+		<string id="customerSupportURI" value="http://support.sony-europe.com/eBook/PRS"/>
+		<string id="updateNoticeURI" value="http://support.sony-europe.com/eBook/AutoUpdate/update-notice-info.xml"/>
+	</assets>
+</document>

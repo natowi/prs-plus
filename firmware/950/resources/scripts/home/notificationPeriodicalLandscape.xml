@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<group left="0" right="0" top="0" bottom="0">
+		<!-- New Delivery -->
+		<group left="8" top="1" bottom="3" width="463">
+			<sprite skin="shortcutNewDeliveryButton" left="5" top="3" width="50" height="50" active="false"/>
+			<kbookLabel skin="title" active="false" left="63" right="0" top="13" height="30" textresource="STR_NODE_TITLE_NEWDELIVERY"/>
+			<!-- title -->
+			<kbookLogoImage width="226" right="150" top="97" height="36" align="right" href="x-id://notifiableLogoData"/>
+			<kbookLabel2Line skin="continueReadingTitle2up" active="false" top="55" height="70" width="226" right="150" align="right" variable="NOTIFICATION_LOGO"/>
+			<kbookLabel skin="continueReadingAuthor2up" active="false" top="140" height="30" left="33" right="150" align="right" variable="NOTIFICATION_PUBLICATION_DATE"/>
+			<!-- thumbnail -->
+			<kbookThumbnailImage skin="kbookHomeThumbnail" top="58" right="25" width="105" height="136" href="x-id://notifiableThumbnailData" />
+			<kbookHotspot do="doGoToNotification" left="0" top="0" right="0" bottom="0" />
+		</group>
+		<fillBackground color="#646464" left="475" top="7" bottom="7" width="1"/>
+		<!-- Continue Reading -->
+		<group left="478" top="1" bottom="3" width="463">
+			<sprite skin="shortcutContinueButton" left="5" top="3" width="50" height="50" active="false"/>
+			<kbookLabel skin="title" active="false" left="63" right="0" top="13" height="30" textresource="STR_NODE_TITLE_CONTINUEREADINGBOOK"/>
+			<!-- title -->
+			<kbookLogoImage width="226" right="150" top="97" height="36" align="right" href="x-id://continueLogoData"/>
+			<kbookLabel2Line skin="continueReadingTitle2up" active="false" top="55" height="70" width="226" right="150" align="right" variable="CONTINUE_LOGO"/>
+			<kbookLabel skin="continueReadingAuthor2up" active="false" top="140" height="30" left="33" right="150" align="right" variable="CONTINUE_PUBLICATION_DATE"/>
+			<!-- Date-->
+			<kbookLabel skin="continueReadingDate" active="false" left="33" top="171" height="30" right="150" align="right" variable="CONTINUE_DATE"/>
+			<!-- thumbnail -->
+			<kbookThumbnailImage skin="kbookHomeThumbnail" top="58" right="25" width="105" height="136" href="x-id://continueThumbnailData" />
+			<kbookHotspot do="doGoToContinueReading" left="0" top="0" right="0" bottom="0" />
+		</group>
+	</group>
+</document>

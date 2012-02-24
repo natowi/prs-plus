@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" href="x-id://model">
+	<assets>
+		<style font="Swis721 BT">
+			<style id="text">
+				<style id="text-d"/>
+				<style id="text-p"/>
+				<style id="text-s"/>
+			</style>
+		
+			<style id="kbookBigTitle" halign="left" size="48" style="bold" color="#FFFFFF"/>
+			<style id="kbookSmallTitle" halign="left" size="36" style="bold" color="#FFFFFF"/>
+			
+			<style id="kbookVBigName" halign="left" valign="top" top="6" size="36" style="bold"/>
+			<style id="kbookVSmallName" halign="left" valign="top" top="4" size="24" style="bold"/>
+			<style id="kbookVComment" halign="right" valign="bottom" bottom="2" size="18"/>
+			<style id="kbookVTab" halign="right" right="7" size="36" style="bold"/>
+			<style id="kbookVMark" halign="right" right="7" size="36" style="bold" color="#FFFFFF"/>
+			
+			<style id="kbookHBigName" halign="left" valign="top" top="0" size="28" style="bold"/>
+			<style id="kbookHSmallName" halign="left" valign="top" top="2" size="18" style="bold"/>
+			<style id="kbookHComment" halign="right" valign="bottom" bottom="2" size="14"/>
+			<style id="kbookHTab" halign="right" right="10" size="28" style="bold"/>
+			<style id="kbookHMark" halign="right" right="10" size="28" style="bold" color="#FFFFFF"/>
+			
+			<style id="kbookVName" halign="right" right="10" size="36" style="bold"/>
+			<style id="kbookVValue" halign="center" size="36" style="bold"/>
+			<style id="kbookVSelection" halign="center" size="36" style="bold" color="#FFFFFF"/>
+			<style id="kbookVUnit" halign="left" left="10" size="36" style="bold"/>
+			
+			<style id="kbookHName" halign="right" right="10" size="28" style="bold"/>
+			<style id="kbookHValue" halign="center" size="28" style="bold"/>
+			<style id="kbookHSelection" halign="center" size="28" style="bold" color="#FFFFFF"/>
+			<style id="kbookHUnit" halign="left" left="10" size="28" style="bold"/>
+			
+			<style id="label" size="22" style="bold" color="#FFFFFF" valign="top"/>
+			<style id="label-statusBar" size="21" style="bold" color="#FFFFFF" valign="top"/>
+			<style id="label-usbStatus" size="18" style="bold" color="#FFFFFF" valign="top"/>
+			<style id="label-chargeStatus" size="24" style="bold" valign="top"/>
+			<style id="datetime" size="18" top="3" style="bold" color="#FFFFFF"/>
+			<style id="info-n" size="24" valign="top" top="7" bottom="7" halign="right" right="14" style="bold"/>
+			<style id="info-v" size="24" top="9"/>
+			<style id="kbookGuideInFrame" halign="left" left="10" top="10" size="18" color="#3A3A3A"/>
+
+		</style>
+		
+		<texture href="kBookAssets.png">
+			<cutout id="logo" x="0" y="0" width="210" height="70" lines="0"/>
+
+			<cutout id="kbookHeader-l" x="420" y="0" width="70" height="70"/>
+			<cutout id="kbookHeader-c" x="490" y="0" width="70" height="70"/>
+			<cutout id="kbookHeader-r" x="560" y="0" width="70" height="70"/>
+			
+			<cutout id="kbookBody-l" x="0" y="70" width="70" height="70"/>
+			<cutout id="kbookBody-c" x="0" y="70" width="70" height="70"/>
+			<cutout id="kbookBody-r" x="0" y="70" width="70" height="70"/>
+
+			<cutout id="kbookStatus-l" x="420" y="437" width="70" height="33"/>
+			<cutout id="kbookStatus-c" x="490" y="437" width="70" height="33"/>
+			<cutout id="kbookStatus-r" x="560" y="437" width="70" height="33"/>
+			
+			<cutout id="batteryProgress-l" x="630" y="320" width="8" height="30"/>
+			<cutout id="batteryProgress-c" x="638" y="320" width="50" height="30"/>
+			<cutout id="batteryProgress-r" x="688" y="320" width="12" height="30"/>
+
+			<cutout id="batteryCheckBox-a" x="784" y="370" width="156" height="64"/>
+			<cutout id="sl2-tv" x="0" y="0" width="0" height="0"/>
+			<cutout id="usbDoNot-a" x="1072" y="201" width="198" height="68"/>
+			<cutout id="usbConnect-a" x="1270" y="201" width="142" height="68"/>
+			<cutout id="usbLocked-a" x="1412" y="201" width="198" height="68"/>
+		</texture>
+		<texture href="kBookDisk.png">
+			<cutout id="diskSprite-a" x="0" y="0" width="140" height="140"/>
+			<cutout id="diskBackground-a" x="560" y="0" width="140" height="140"/>
+		</texture>
+		<texture href="kbookButtons.png">
+			<cutout id="opt_frame_gray-lt" 		x="1856" y="413" width="22" height="8" lines="40"/>
+			<cutout id="opt_frame_gray-ct" 		x="1878" y="413" width="6" height="8" lines="40"/>
+			<cutout id="opt_frame_gray-rt" 		x="1884" y="413" width="22" height="8" lines="40"/>
+			<cutout id="opt_frame_gray-lm" 		x="1856" y="421" width="22" height="24" lines="40"/>
+			<cutout id="opt_frame_gray-cm"		x="1878" y="421" width="6" height="24" lines="40"/>
+			<cutout id="opt_frame_gray-rm"		x="1884" y="421" width="22" height="24" lines="40"/>
+			<cutout id="opt_frame_gray-lb"		x="1856" y="445" width="22" height="8" lines="40"/>
+			<cutout id="opt_frame_gray-cb"		x="1878" y="445" width="6" height="8" lines="40"/>
+			<cutout id="opt_frame_gray-rb"		x="1884" y="445" width="22" height="8" lines="40"/>
+		</texture>
+
+		<skin id="label" 
+				styles="label"/>
+		<skin id="label-statusBar"
+				styles="label-statusBar"/>
+		<skin id="label-usbStatus"
+				styles="label-usbStatus"/>
+		<skin id="label-chargeStatus"
+				styles="label-chargeStatus"/>
+		<skin id="panelHeader" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv"/>
+		<skin id="panel" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,kbookBody-l,kbookBody-c,kbookBody-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+				
+		<skin id="batteryProgress" 
+				cutouts="batteryProgress-l,batteryProgress-c,batteryProgress-r"/>
+
+		<skin id="batteryCheckBox" cutouts="batteryCheckBox-a" />
+				
+		<skin id="diskBackground" 
+				cutouts="diskBackground-a"/>
+		<skin id="diskSprite" 
+				cutouts="diskSprite-a"/>
+		<skin id="logoSprite" 
+				cutouts="logo"/>
+		<skin id="usbDoNot" 
+				cutouts="usbDoNot-a"/>
+		<skin id="usbConnect" 
+				cutouts="usbConnect-a"/>
+		<skin id="usbLocked" 
+				cutouts="usbLocked-a"/>
+		<skin id="guideArea"
+			cutouts="opt_frame_gray-lt,opt_frame_gray-ct,opt_frame_gray-rt,opt_frame_gray-lm,opt_frame_gray-cm,opt_frame_gray-rm,opt_frame_gray-lb,opt_frame_gray-cb,opt_frame_gray-rb"
+			styles="kbookGuideInFrame, kbookGuideInFrame, kbookGuideInFrame, kbookGuideInFrame"/>
+	</assets>
+	<clock/>
+	<code>
+		<function id="connectChanged" params="value">
+			if (value) {
+				this.USB.USB_DONOT.show(true);
+				this.USB.USB_CONNECT.show(false);
+				this.USB.USB_LOCKED.show(false);
+			}
+			else {
+				if (ebook.checkScreenLock(-1)) {
+					this.USB.USB_DONOT.show(false);
+					this.USB.USB_CONNECT.show(true);
+					this.USB.USB_LOCKED.show(false);
+				} else {
+					this.USB.USB_DONOT.show(false);
+					this.USB.USB_CONNECT.show(false);
+					this.USB.USB_LOCKED.show(true);
+				}
+			}
+		</function>
+
+		<function id="chargeStatusFirstSet" params="value">
+			if (value != 0) {
+				this.chargeStatusChanged(value);
+				return;
+			}
+			this.chargeTimer = new HardwareTimer();
+			this.chargeTimer.target = this;
+			this.chargeTimer.onCallback = this.timerCallback;
+			this.chargeTimer.onClockChange = this.timerCallback;
+			this.chargeTimer.schedule(60000);
+
+			this.chargeStatusChanged(-1);
+		</function>
+		<function id="timerCallback">
+			this.target.chargeTimer = null;
+			this.target.chargeStatusChanged(this.target.getVariable("CHARGING"));
+		</function>
+
+		<function id="chargeStatusChanged" params="value">
+			if (this.SPRITE.isShown())
+				return;
+			var chargingIcon = value;
+			switch (value) {
+			case -1:	// Not Charging was notified first
+				this.CHARGING_LABEL.show(false);
+				this.CHARGING_ICON.show(false);
+				this.CHARGING_GUIDE.show(false);
+				return;
+			case 0:		// Not Charging
+				this.CHARGING_LABEL.setValue("fskin:/l/strings/STR_UI_MESSAGE_CHARGING_NOT_CHARGING".idToString());
+				this.CHARGING_GUIDE.setValue("fskin:/l/strings/STR_UI_USB_MODE_GUIDE_CHECK_CONNECTION".idToString());
+				this.CHARGING_GUIDE.show(true);
+				break;
+			case 1:		// Charging
+				this.CHARGING_LABEL.setValue("fskin:/l/strings/STR_UI_MESSAGE_CHARGING".idToString());
+				this.CHARGING_GUIDE.show(false);
+				break;
+			case 2:		// Full Chargeing
+				this.CHARGING_LABEL.setValue("fskin:/l/strings/STR_UI_MESSAGE_CHARGING_COMPLETE".idToString());
+				this.CHARGING_GUIDE.show(false);
+				break;
+			case 3:		// Too Hot or Too Cold
+				this.CHARGING_LABEL.setValue("fskin:/l/strings/STR_UI_MESSAGE_CHARGING_NOT_CHARGING".idToString());
+				this.CHARGING_GUIDE.setValue("fskin:/l/strings/STR_UI_USB_MODE_GUIDE_TOO_HOT_COLD".idToString());
+				chargingIcon = 0;
+				this.CHARGING_GUIDE.show(true);
+				break;
+			case 4:		// Other Charging Error (include Dead Battery or No Battery)
+				this.CHARGING_LABEL.setValue("fskin:/l/strings/STR_UI_MESSAGE_CHARGING_NOT_CHARGING".idToString());
+				this.CHARGING_GUIDE.setValue("fskin:/l/strings/STR_UI_USB_MODE_GUIDE_OTHER_ERRORS".idToString());
+				chargingIcon = 0;
+				this.CHARGING_GUIDE.show(true);
+				break;
+			}
+			if (this.chargeTimer) {
+				this.chargeTimer.cancel();
+				this.chargeTimer.close();
+				this.chargeTimer = null;
+			}
+			this.CHARGING_ICON.setValue(chargingIcon);
+			this.CHARGING_LABEL.show(true);
+			this.CHARGING_ICON.show(true);
+		</function>
+
+		<function id="doResume">
+			this.getDevice().doneResume();
+		</function>
+		<function id="doSuspend">
+			this.getDevice().doneSuspend();
+		</function>
+		<function id="doEndConnect">
+			this.USB.show(false);
+			this.CHARGING_LABEL.show(false);
+			this.CHARGING_ICON.show(false);
+			this.CHARGING_GUIDE.show(false);
+			this.SPRITE.show(true);
+			this.LABEL.show(true);
+			ebook.logInteger(101, 9, 1);
+			this.timer = new HardwareTimer();
+			this.timer.onCallback = this.doEndConnectCallback;
+			this.timer.onClockChange = this.doEndConnectCallback;
+			this.timer.schedule(1000);
+		</function>
+		<function id="doEndConnectCallback">
+			ebook.logInteger(101, 9, 2);
+			USBDispatcher.doDisconnected();
+		</function>
+		<function id="initialized" params="id, value"><![CDATA[
+			arguments.callee.grammar.call(this, id, value);
+			this.connectChanged(this.getVariable("CONNECT"));
+			this.chargeStatusFirstSet(this.getVariable("CHARGING"));
+			this.focus(true);
+			USBDispatcher.setDisconnectedHook(this, this.doEndConnect)
+		]]></function>
+		<function id="variableChanged" params="id, value"><![CDATA[
+			arguments.callee.grammar.call(this, id, value);
+			if (id == "CONNECT") 
+				this.connectChanged(value);
+			else if (id == "BATTERY") {
+				/*
+				var charge = this.getVariable("CHARGING");
+				if (!charge && !value){
+					var window = this.container.getWindow();
+					ebook.logInteger(101, 2, 2);
+					window.doQuit();
+				}
+				*/
+			}else if (id == "CHARGING") {
+				this.chargeStatusChanged(value);
+			}
+		]]></function>
+	</code>
+
+	<localize path="./" kind="language"/>
+	<localize path="./" kind="region"/>
+
+	<panel left="0" right="0" top="0" bottom="0"/>
+	<panel id="USB" skin="panelHeader" left="0" right="0" top="0" height="68">
+		<sprite skin="logoSprite" left="0" width="210" top="0" bottom="0" active="false"/>
+		<group id="USB_DONOT" left="110" right="0" top="0" bottom="0">
+			<label skin="label-usbStatus" left="0" right="198" height="22" top="34" align="right" text="fskin:/l/strings/STR_UI_MESSAGE_USBDONOT" active="false"/>
+			<button skin="usbDoNot" right="0" width="198" top="0" bottom="0" active="false" visible="true"/>
+		</group>
+		<group id="USB_CONNECT" left="110" right="0" top="0" bottom="0">
+			<label skin="label-usbStatus" left="0" right="142" height="22" top="34" align="right" text="fskin:/l/strings/STR_UI_MESSAGE_USBCONNECTED" active="false"/>
+			<button skin="usbConnect" right="0" width="142" active="false" visible="true"/>
+		</group>
+		<group id="USB_LOCKED" left="110" right="0" top="0" bottom="0">
+			<label skin="label-usbStatus" left="0" right="100" height="22" top="34" align="right" text="fskin:/l/strings/STR_UI_MESSAGE_LOCKED" active="false"/>
+			<button skin="usbLocked" right="0" width="100" top="0" bottom="0" active="false" visible="true"/>
+		</group>
+	</panel>
+
+	<label id="CHARGING_LABEL" skin="label-chargeStatus" left="0" right="0" top="374" height="30" align="center"/>
+	<storageIndicator id="CHARGING_ICON" skin="batteryCheckBox" top="426" align="center"/>
+	<text id="CHARGING_GUIDE" skin="guideArea" active="false" left="20" right="20" height="131" bottom="50"/>
+
+	<sprite id="SPRITE" skin="diskSprite" width="140" height="140" u="3" active="false" visible="false"/>
+	<label id="LABEL" skin="label-statusBar" left="109" right="109" height="30" bottom="0" align="center" text="fskin:/l/strings/STR_UI_MESSAGE_LOADING" visible="false"/>
+</document>

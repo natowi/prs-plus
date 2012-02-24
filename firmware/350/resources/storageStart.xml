@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" 
+		title="kBook" width="600" height="800" 
+		minWidth="600" minHeight="800" 
+		maxWidth="600" maxHeight="800">
+	<ebook xmlns="http://www.kinoma.com/fskin/1">
+		<variable id="fakeConnect" value=""/>
+		<code>
+			<function id="doConnect">
+				this.setVariable("CONNECT", true)
+			</function>
+			<function id="doDisconnect">
+				this.setVariable("CONNECT", false)
+			</function>
+			<function id="doProcessing" params="value">
+				this.processing(value);
+			</function>
+			<function id="doProcessed" params="value">
+				this.processed(value);
+			</function>
+			<function id="getConnect">
+				return this.fakeConnect.value;
+			</function>
+			<function id="setConnect" params="value">
+				this.fakeConnect.value = value;
+			</function>
+			<function id="doQuit">
+				this.timer = new HardwareTimer();
+				this.timer.onCallback = this.doQuitCallback;
+				this.timer.onClockChange = this.doQuitCallback;
+				this.timer.window  = this.container.getWindow();
+				this.timer.schedule(2000);
+			</function>
+			<function id="doQuitCallback">
+				this.window.doQuit();
+			</function>
+		</code>
+		<parts>
+			<boolean key="kConnect" peek="getConnect" poke="setConnect" id="CONNECT"/>
+
+			<integer key="kBattery" peek="getBattery" id="BATTERY"/>
+			<integer key="kCharging" peek="getCharging" id="CHARGING"/>
+			<boolean key="kPower" peek="getPower" id="POWER"/>
+			<boolean key="kResume" do="doResume"/>
+			<boolean key="kSuspend" do="doSuspend"/>
+			<!--boolean key="kShutdown" do="doQuit"/-->
+		</parts>
+	</ebook>	
+	<code>
+		<function id="doResume">
+			this.getDevice().doneResume();
+		</function>
+		<function id="doSleep">
+			this.getDevice().doneSleep();
+		</function>
+		<function id="doSuspend">
+			this.getDevice().doneSuspend();
+		</function>
+		<function id="doWakeup">
+			this.getDevice().doneWakeup();
+		</function>
+		<function id="initialized"><![CDATA[
+			if (ebook && "pm" in ebook)
+				ebook.pm.doStateChange(ebook.pm.usbRun);
+			USBDispatcher.doRegister(this.getWindow())
+		]]></function>
+		<function id="terminating">
+			USBDispatcher.doUnregister()
+			this.getDevice().doProcessed(100);
+		</function>
+	</code>
+	<view id="MAIN" href="scripts/mainStorage.xml" left="0" right="0" top="0" bottom="0"/>
+</document>

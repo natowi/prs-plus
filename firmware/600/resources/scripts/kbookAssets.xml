@@ -1,0 +1,1289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="infoTitles" value="Cover,Title,Author,Publisher,Category,eBook ID,Kind,Date,Size,Location,Path,Digital Rights,Expiration Date"/>
+		<string id="infoNames" value="AlbumArt,title,author,Publisher,Genre,connect:eBookID,mime,date,size,path,path,status,expiration"/>
+		<string id="infoFormats" value="thumbnail,string,string,string,string,string,mime,date,size,location,directory,drm,dateTime"/>
+	
+		<style font="Swis721 BT">
+			<style id="kbookVNavbarAlpha-e" size="20" style="bold">
+				<style id="kbookVNavbarAlpha-d" color="#6D6D6D" style="plain"/>
+			</style>
+			<style id="kbookHNavbarAlpha-e" size="16" style="bold">
+				<style id="kbookHNavbarAlpha-d" color="#6D6D6D" style="plain"/>
+			</style>
+			<style id="kbookBigTitle" halign="left" size="42" style="bold" color="#FFFFFF" truncate="center"/>
+			<style id="kbookSmallTitle" halign="left" size="36" style="bold" color="#FFFFFF" truncate="center"/>
+			<style id="kbookSortType" halign="right" valign="bottom" right="10" bottom="10" size="18" style="bold" color="#FFFFFF"/>
+			
+			<style id="kbookVBigName" halign="left" valign="top" top="4" size="36" style="bold" truncate="center"/>
+			<style id="kbookVSmallName" halign="left" valign="top" top="4" size="28" style="bold" truncate="center"/>
+			<style id="kbookVComment" halign="right" valign="bottom" bottom="3" size="18" truncate="center"/>
+			<style id="kbookVTab" halign="right" right="7" size="36" style="bold"/>
+			<style id="kbookVMark" halign="right" right="7" size="36" style="bold" color="#FFFFFF"/>
+			<style id="kbookVExpiration" halign="right" valign="top" top="8" size="12"/>
+			<style id="kbookVExpirationBig" halign="right" valign="top" top="4" size="20"/>
+			<style id="kbookVThumbName" halign="center" valign="top" top="0" size="16" style="bold" truncate="center" />
+			<style id="kbookVThumbComment" halign="center" valign="top" top="0" size="13" style="bold" truncate="center" />
+			<style id="kbookVExpirationThumb" halign="left" valign="center" top="0" size="12" style="bold"/>
+			<style id="kbookVExpirationBigThumb" halign="left" valign="center" top="0" size="20" style="bold"/>
+			<style id="kbookHBigName" halign="left" valign="top" top="0" size="24" style="bold" truncate="center"/>
+			<style id="kbookHSmallName" halign="left" valign="top" top="2" size="18" style="bold" truncate="center"/>
+			<style id="kbookHComment" halign="right" valign="bottom" bottom="2" size="16" truncate="center"/>
+			<style id="kbookHTab" halign="right" right="10" size="28" style="bold"/>
+			<style id="kbookHMark" halign="right" right="10" size="28" style="bold" color="#FFFFFF"/>
+			<style id="kbookHExpiration" halign="right" valign="top" top="6"  size="12"/>
+			<style id="kbookHExpirationBig" halign="right" valign="top" top="0" size="20"/>
+			<style id="kbookHThumbName" halign="center" valign="top" top="0" size="16" style="bold" truncate="center" />
+			<style id="kbookHThumbComment" halign="center" valign="top" top="0" size="13" style="bold" truncate="center" />
+			<style id="kbookHExpirationThumb" halign="left" valign="center" top="0" size="12" style="bold"/>
+			<style id="kbookHExpirationBigThumb" halign="left" valign="center" top="0" size="20" style="bold"/>
+			
+			<style id="kbookHomeName" halign="left" valign="top" top="4" size="26" style="bold" truncate="center"/>
+			<style id="kbookHomeComment" halign="left" valign="top" bottom="3" size="18" truncate="center"/>
+
+			<style id="kbookVName" halign="right" right="10" size="36" style="bold"/>
+			<style id="kbookVValue" halign="center" size="36" style="bold"/>
+			<style id="kbookVSelection" halign="center" size="36" style="bold" color="#FFFFFF"/>
+			<style id="kbookVUnit" halign="left" left="10" size="36" style="bold"/>
+			
+			<style id="kbookHName" halign="right" right="10" size="28" style="bold"/>
+			<style id="kbookHValue" halign="center" size="28" style="bold"/>
+			<style id="kbookHSelection" halign="center" size="28" style="bold" color="#FFFFFF"/>
+			<style id="kbookHUnit" halign="left" left="10" size="28" style="bold"/>
+			
+			<style id="label" size="22" style="bold" color="#FFFFFF" valign="top" top="2"/>
+			<style id="label-black" size="22" style="bold" color="#000000" valign="top" top="2"/>
+			<style id="label-pageNo" size="16" style="bold" color="#000000" halign="center" valign="center" top="2"/>
+			<style id="label-dicPageNo" size="15" style="bold" color="#000000" halign="right" valign="center" top="2"/>
+			<style id="label-dicTitle" size="24" style="bold" color="#000000" halign="right" valign="center" top="2"/>
+			<style id="label-dictionary" size="32" style="bold" color="#000000" valign="top" top="2"/>
+			<style id="info-n" size="24" valign="top" top="7" bottom="7" halign="right" right="14" style="bold"/>
+			<style id="info-v" size="24" halign="left" top="9"/>
+			
+			<style id="kbookAbout" halign="left" left="10" top="10" right="10" bottom="10" size="18"/>
+			
+			<style id="kbookMessage" halign="center" valign="top" size="36" style="bold"/>
+			<style id="kbookDialogMessage" halign="left" size="22" style="bold" color="#000000" valign="center" top="25" bottom="50" right="25" left="25" />
+			<style id="kbookAlertMessage-s" halign="left" size="22" style="bold" color="#000000" valign="center" top="50" bottom="90" right="10" left="150" />
+
+			<style id="label-song" size="32" style="bold" color="#FFFFFF" valign="top" top="2"/>
+			<style id="settingsMessage" halign="left" valign="top" top="0" size="30" style="bold" truncate="center"/>
+			<style id="settingsMessageCenter" halign="center" valign="top" top="0" size="30" style="bold" truncate="center"/>
+			<style id="kbookToolbar" size="21" halign="left" left="6" style="bold" color="#000000">
+				<style id="kbookToolbar-i" color="#FFFFFF"/>
+			</style>
+			<style id="delete_bookmarks" halign="left" valign="top" top="0" size="26" style="bold"/>
+			<style id="delete_bookmarks_note" halign="left" valign="top" top="0" size="22" style="bold"/>
+
+			<style id="kbookWelcome" halign="center" valign="top" size="24" style="bold"/>
+			<style id="kbookGuide" halign="left" left="10" top="10" right="10" bottom="5" size="24"/>
+
+			<style id="kbookDialogMessageCenter" halign="cnter" valign="top" top="0" size="22" style="bold"/>
+			<style id="kbookDialogMessageLeft" halign="left" valign="top" top="0" size="17" style="bold"/>
+
+			<style id="settingsMessageCenter_gray" halign="center" valign="top" top="0" size="30" style="bold" truncate="center" color="#888888" />
+
+			<style id="kbookVUnit_s" halign="left" left="10" size="28" style="bold"/>
+			<style id="kbookHUnit_s" halign="left" left="10" size="18" style="bold"/>
+		</style>
+		<style font="Courier10 BT">
+			<style id="time" size="22" style="bold" color="#FFFFFF"/>
+		</style>
+		<style font="Dutch801 Rm BT">
+			<style id="text" size="12"/>
+			<style id="text-e" size="12">
+				<style id="text-d" background="#A0A0A0"/>
+				<style id="text-p" background="#C0C0C0"/>
+				<style id="text-si" color="#FFFFFF" background="#FFFFFF"/>
+				<style id="text-s"/>
+			</style>
+		</style>
+		<style id="jumpBar-e" halign="center" color="#303030" left="10" right="10">
+			<style id="jumpBar-d" style="bold" color="#404040"/>
+			<style id="jumpBar-p"/>
+			<style id="jumpBar-s"/>
+		</style>
+		
+		<style id="searchInput-e" font="Swis721 BT" size="24" halign="left" valign="bottom" left="7" top="4" right="7" bottom="2"  color="#000000" background="#FFFFFF">
+			<style id="searchInput-d"/>
+			<style id="searchInput-p"/>
+			<style id="searchInput-s" background="#808080"/>
+		</style>
+		<style id="dictionaryInput-e" font="Swis721 BT" size="24" halign="left" valign="bottom" left="7" top="4" right="7" bottom="2"  color="#000000" background="#FFFFFF">
+			<style id="dictionaryInput-d"/>
+			<style id="dictionaryInput-p"/>
+			<style id="dictionaryInput-s" background="#808080"/>
+		</style>
+
+		<style id="cmtInput-e" font="Swis721 BT" size="22" halign="left" left="25" top="25" right="25" bottom="70"  color="#000000" background="#FFFFFF">
+			<style id="cmtInput-d"/>
+			<style id="cmtInput-p"/>
+			<style id="cmtInput-s" background="#808080"/>
+		</style>
+		
+		<style id="zoomBtn-e" font="Swis721 BT" color="#000000" style="bold" valign="center"  halign="left" bottom="1" left="41" size="22">
+			<style id="zoomBtn-d" color="#999999"/>
+			<style id="zoomBtn-p" color="#000000"/>
+			<style id="zoomBtn-s" color="#FFFFFF"/>
+		</style>
+		
+		<style id="keyW_H-e" font="Swis721 BT" color="#000000" style="bold" valign="center" halign="center" right="3" size="34">
+			<style id="keyW_H-d" color="#999999"/>
+			<style id="keyW_H-p" color="#000000"/>
+			<style id="keyW_H-s" color="#FFFFFF"/>
+		</style>
+		<style id="keyG_H-e" font="Swis721 BT" color="#000000" style="bold" valign="center" halign="center" right="3" size="34">
+			<style id="keyG_H-d" color="#999999"/>
+			<style id="keyG_H-p" color="#000000"/>
+			<style id="keyG_H-s" color="#FFFFFF"/>
+			<style id="keyG_H-e2" color="#FFFFFF"/>
+			<style id="keyG_H-d2" color="#999999"/>
+			<style id="keyG_H-p2" color="#000000"/>
+			<style id="keyG_H-s2" color="#FFFFFF"/>
+		</style>
+		<style id="keyW_HBIG-e" font="Swis721 BT" color="#000000" style="bold" valign="center" halign="center" right="3" size="38">
+			<style id="keyW_HBIG-d" color="#999999"/> 
+			<style id="keyW_HBIG-p" color="#000000"/> 
+			<style id="keyW_HBIG-s" color="#FFFFFF"/> 
+		</style> 
+		<style id="keyG_HBIG-e" font="Swis721 BT" color="#000000" style="bold" valign="center" halign="center" right="3" size="38">
+			<style id="keyG_HBIG-d" color="#999999"/> 
+			<style id="keyG_HBIG-p" color="#000000"/> 
+			<style id="keyG_HBIG-s" color="#FFFFFF"/> 
+			<style id="keyG_HBIG-e2" color="#FFFFFF"/> 
+			<style id="keyG_HBIG-d2" color="#999999"/> 
+			<style id="keyG_HBIG-p2" color="#000000"/> 
+			<style id="keyG_HBIG-s2" color="#FFFFFF"/> 
+		</style> 
+		<style id="keyW_HSMALL-e" font="Swis721 BT" color="#000000" style="bold" valign="center" halign="center" right="3" size="25"> 
+			<style id="keyW_HSMALL-d" color="#999999"/> 
+			<style id="keyW_HSMALL-p" color="#000000"/> 
+			<style id="keyW_HSMALL-s" color="#FFFFFF"/> 
+		</style> 
+		<style id="keyG_HSMALL-e" font="Swis721 BT" color="#000000" style="bold" valign="center" halign="center" right="3" size="25"> 
+			<style id="keyG_HSMALL-d" color="#999999"/> 
+			<style id="keyG_HSMALL-p" color="#000000"/> 
+			<style id="keyG_HSMALL-s" color="#FFFFFF"/> 
+			<style id="keyG_HSMALL-e2" color="#FFFFFF"/> 
+			<style id="keyG_HSMALL-d2" color="#999999"/> 
+			<style id="keyG_HSMALL-p2" color="#000000"/> 
+			<style id="keyG_HSMALL-s2" color="#FFFFFF"/> 
+		</style> 
+
+		<style id="keyDirect-e" font="Swis721 BT" color="#000000" style="bold" valign="center" halign="center" size="22">
+			<style id="keyDirect-d" color="#999999"/>
+			<style id="keyDirect-p" color="#000000"/>
+			<style id="keyDirect-s" color="#FFFFFF"/>
+		</style>
+		<style id="keyW-e" font="Swis721 BT" color="#000000" style="bold" valign="center" halign="center" right="3" size="25">
+			<style id="keyW-d" color="#999999"/>
+			<style id="keyW-p" color="#000000"/>
+			<style id="keyW-s" color="#FFFFFF"/>
+		</style>
+		<style id="keyWs-e" font="Swis721 BT" color="#000000" style="bold" valign="center" halign="center" right="3" size="20">
+			<style id="keyWs-d" color="#999999"/>
+			<style id="keyWs-p" color="#000000"/>
+			<style id="keyWs-s" color="#FFFFFF"/>
+		</style>
+		<style id="keyG-e" font="Swis721 BT" color="#000000" style="bold" valign="center" halign="center" right="3" size="25">
+			<style id="keyG-d" color="#999999"/>
+			<style id="keyG-p" color="#000000"/>
+			<style id="keyG-s" color="#FFFFFF"/>
+			
+			<style id="keyG-e2" color="#FFFFFF"/>
+			<style id="keyG-d2" color="#999999"/>
+			<style id="keyG-p2" color="#000000"/>
+			<style id="keyG-s2" color="#FFFFFF"/>
+		</style>
+		<style id="fontSize-e" font="Swis721 BT" color="#000000" style="bold" valign="center" halign="center" size="28">
+			<style id="fontSize-d" color="#FFFFFF"/>
+			<style id="fontSize-p" color="#000000"/>
+			<style id="fontSize-s" color="#FFFFFF"/>
+		</style>
+		
+		<style id="search_bf-e" halign="center">
+			<style id="search_bf-d" color="#6D6D6D"/>
+			<style id="search_bf-p" color="#F3B570"/>
+			<style id="search_bf-s" color="#E87420"/>
+		</style>
+		<style id="optItem-e" font="Swis721 BT" color="#000000" style="bold" left="68" halign="left" size="32">
+			<style id="optItem-d" color="#7F7F7F"/>
+			<style id="optItem-p" color="#000000"/>
+			<style id="optItem-s" color="#FFFFFF"/>
+		</style>
+		<style id="optRadioItem-e" font="Swis721 BT" color="#000000" style="bold" left="40" halign="left" size="32">
+			<style id="optRadioItem-d" color="#7F7F7F"/>
+			<style id="optRadioItem-p" color="#000000"/>
+			<style id="optRadioItem-s" color="#FFFFFF"/>
+		</style>
+		<style id="optRadio-e" font="Swis721 BT" color="#000000" style="bold" left="40" halign="left" size="32">
+			<style id="optRadio-d" color="#7F7F7F"/>
+			<style id="optRadio-p" color="#000000"/>
+			<style id="optRadio-s" color="#FFFFFF"/>
+		</style>
+		<style id="opt_labelItem-e" font="Swis721 BT" color="#000000" style="bold" left="16" halign="left" size="31">
+		</style>
+		<style id="opt_item_stat-e" font="Swis721 BT" color="#000000" style="bold" left="23" halign="left" size="24">
+			<style id="opt_item_stat-d" color="#7F7F7F"/>
+			<style id="opt_item_stat-p" color="#000000"/>
+			<style id="opt_item_stat-s" color="#FFFFFF"/>
+		</style>
+		
+		<style id="candidate-e" font="Swis721 BT" color="#000000" style="bold" left="6" right="6" top="0" bottom="2" halign="center" valign="bottom" size="24">
+			<style id="candidate-d" color="#7F7F7F"/>
+			<style id="candidate-p" color="#000000"/>
+			<style id="candidate-s" color="#FFFFFF"/>
+		</style>
+		<style id="direct-text-e" font="Swis721 BT" size="38" valign="top" halign="left" left="7" top="2" right="7" >
+			<style id="direct-text-d" color="#6D6D6D" background="#00000000"/>
+			<style id="direct-text-p"/>
+			<style id="direct-text-s" background="#808080"/>
+		</style>
+
+		<style id="notepad-text-e" font="Swis721 BT" color="#000000" size="36" valign="top" halign="left" left="16" top="16" right="16" bottom="16">
+			<style id="notepad-text-d"/>
+			<style id="notepad-text-p"/>
+			<style id="notepad-text-s" background="#808080"/>
+		</style>
+
+		<style id="kbookDialog-b" background="#7f000000"/>
+
+		<style id="dic_viewer_text-e" font="Swis721 BT" color="#000000" size="36" valign="center" halign="center" left="16" top="16" right="16" bottom="16">
+			<style id="dic_viewer_text-d" color="#000000"/>
+			<style id="dic_viewer_text-p" color="#000000"/>
+			<style id="dic_viewer_text-s" color="#000000"/>
+		</style>
+
+		<style id="dic_popup_text-e" font="Swis721 BT" color="#000000" size="24" valign="center" halign="center" left="16" top="16" right="16" bottom="16">
+			<style id="dic_popup_text-d" color="#000000"/>
+			<style id="dic_popup_text-p" color="#000000"/>
+			<style id="dic_popup_text-s" color="#000000"/>
+		</style>
+
+		<style id="popupKeyboard-e" font="Swis721 BT" color="#000000" style="plain" valign="top" halign="left" right="0" size="34">
+			<style id="popupKeyboard-d" color="#000000"/>
+			<style id="popupKeyboard-p" color="#000000"/>
+			<style id="popupKeyboard-s" color="#000000"/>
+		</style>-->
+
+		<style id="formatErrorMessage" halign="left" valign="top" top="0" size="22" style="bold"/>
+
+		<style id="optShortcutItem-e" font="Swis721 BT" color="#000000" style="bold" left="68" halign="left" size="28">
+			<style id="optShortcutItem-d" color="#7F7F7F"/>
+			<style id="optShortcutItem-p" color="#000000"/>
+			<style id="optShortcutItem-s" color="#FFFFFF"/>
+		</style>
+
+		<style id="history_bf-e" halign="center">
+			<style id="history_bf-d" color="#6D6D6D"/>
+			<style id="history_bf-p" color="#F3B570"/>
+			<style id="history_bf-s" color="#E87420"/>
+		</style>
+
+		<texture href="kBookAssets.png">
+			<cutout id="null" x="0" y="0" width="0" height="0"/>
+
+			<cutout id="logo" x="0" y="0" width="210" height="70" lines="0"/>
+
+			<cutout id="kbookHeader-l" x="420" y="0" width="70" height="70"/>
+			<cutout id="kbookHeader-c" x="490" y="0" width="70" height="70"/>
+			<cutout id="kbookHeader-r" x="560" y="0" width="70" height="70"/>
+			
+			<cutout id="kbookStatus-l" x="420" y="437" width="70" height="33"/>
+			<cutout id="kbookStatus-c" x="490" y="437" width="70" height="33"/>
+			<cutout id="kbookStatus-r" x="560" y="437" width="70" height="33"/>
+			
+			<cutout id="kbookInfo-l" x="0" y="70" width="0" height="360"/>
+			<cutout id="kbookInfo-c" x="0" y="70" width="50" height="360"/>
+			<cutout id="kbookInfo-r" x="0" y="70" width="0" height="360"/>
+			
+			<cutout id="kbookVMenu-l" x="0" y="70" width="70" height="70" columns="210"/>
+			<cutout id="kbookVMenu-c" x="70" y="70" width="60" height="70" columns="210"/>
+			<cutout id="kbookVMenu-r" x="130" y="70" width="20" height="70" columns="210"/>
+			<cutout id="kbookHMenu-l" x="0" y="280" width="70" height="50" columns="210"/>
+			<cutout id="kbookHMenu-c" x="70" y="280" width="60" height="50" columns="210"/>
+			<cutout id="kbookHMenu-r" x="130" y="280" width="20" height="50" columns="210"/>
+			<cutout id="kbookMenuStatus-l" x="420" y="437" width="70" height="33"/>
+			<cutout id="kbookMenuStatus-c" x="490" y="437" width="70" height="33"/>
+			<cutout id="kbookMenuStatus-r" x="560" y="437" width="70" height="33"/>
+			
+			<cutout id="menu_close-a"		x="900" y="0" width="41" height="41"/>
+			<cutout id="button_back-a"		x="953" y="0" width="61" height="61"/>
+
+			<!-- bookmark skin -->
+			<cutout id="bm-a" x="780" y="0" width="35" height="35" columns="40"/>
+			<cutout id="bm-b" x="780" y="105" width="35" height="35" columns="40"/>
+
+			<cutout id="p-lt" x="630" y="0" width="8" height="8" lines="140"/>
+			<cutout id="p-ct" x="638" y="0" width="120" height="8" lines="140"/>
+			<cutout id="p-rt" x="762" y="0" width="8" height="8" lines="140"/>
+			<cutout id="p-lm" x="630" y="8" width="8" height="124"/>
+			<cutout id="p-cm" x="638" y="8" width="124" height="124"/>
+			<cutout id="p-rm" x="762" y="8" width="8" height="124"/>
+			<cutout id="p-lb" x="630" y="132" width="8" height="8" lines="140"/>
+			<cutout id="p-cb" x="638" y="132" width="120" height="8" lines="140"/>
+			<cutout id="p-rb" x="762" y="132" width="8" height="8" lines="140"/>
+
+			<cutout id="p2-lt" x="636" y="0" width="2" height="8" lines="140"/>
+			<cutout id="p2-rt" x="768" y="0" width="2" height="8" lines="140"/>
+			<cutout id="p2-lm" x="636" y="8" width="2" height="124"/>
+			<cutout id="p2-rm" x="768" y="8" width="2" height="124"/>
+			<cutout id="p2-lb" x="636" y="132" width="2" height="8" lines="140"/>
+			<cutout id="p2-rb" x="768" y="132" width="2" height="8" lines="140"/>
+
+			<cutout id="kbookPage-lt" x="630" y="0" width="8" height="8" lines="140"/>
+			<cutout id="kbookPage-ct" x="638" y="0" width="120" height="8" lines="140"/>
+			<cutout id="kbookPage-rt" x="762" y="0" width="8" height="8" lines="140"/>
+			<cutout id="kbookPage-lm" x="630" y="8" width="8" height="124"/>
+			<cutout id="kbookPage-cm" x="638" y="8" width="124" height="124"/>
+			<cutout id="kbookPage-rm" x="762" y="8" width="8" height="124"/>
+			<cutout id="kbookPage-lb" x="630" y="132" width="8" height="8" lines="140"/>
+			<cutout id="kbookPage-cb" x="638" y="132" width="120" height="8" lines="140"/>
+			<cutout id="kbookPage-rb" x="762" y="132" width="8" height="8" lines="140"/>
+			<cutout id="kbookPageStatus-l" x="0" y="440" width="70" height="30"/>
+			<cutout id="kbookPageStatus-c" x="70" y="440" width="70" height="30"/>
+			<cutout id="kbookPageStatus-r" x="140" y="440" width="70" height="30"/>
+			<cutout id="kbookPageCommentLink" x="823" y="304" width="11" height="11"/>
+			<cutout id="kbookPageCommentBookmark-a" x="820" y="285" width="35" height="35"/>
+			<cutout id="kbookPageCommentBookmark-b" x="820" y="298" width="35" height="35"/>
+		
+			<cutout id="kbookVSetting-l" x="420" y="70" width="70" height="70"/>
+			<cutout id="kbookVSetting-c" x="490" y="70" width="0" height="70"/>
+			<cutout id="kbookVSetting-r" x="490" y="70" width="70" height="70"/>
+			<cutout id="kbookVSetting2-l" x="140" y="70" width="70" height="70"/>
+			<cutout id="kbookVSetting2-c" x="210" y="70" width="0" height="70"/>
+			<cutout id="kbookVSetting2-r" x="210" y="70" width="70" height="70"/>
+			<cutout id="_kbookVField-l" x="420" y="140" width="10" height="70"/>
+			<cutout id="_kbookVField-c" x="430" y="140" width="120" height="70"/>
+			<cutout id="_kbookVField-r" x="550" y="140" width="10" height="70"/>
+			<cutout id="kbookHSetting-l" x="420" y="280" width="70" height="50"/>
+			<cutout id="kbookHSetting-c" x="490" y="280" width="0" height="50"/>
+			<cutout id="kbookHSetting-r" x="490" y="280" width="70" height="50"/>
+			<cutout id="kbookHSetting2-l" x="140" y="280" width="70" height="50"/>
+			<cutout id="kbookHSetting2-c" x="210" y="280" width="0" height="50"/>
+			<cutout id="kbookHSetting2-r" x="210" y="280" width="70" height="50"/>
+			<cutout id="_kbookHField-l" x="420" y="330" width="10" height="50"/>
+			<cutout id="_kbookHField-c" x="430" y="330" width="120" height="50"/>
+			<cutout id="_kbookHField-r" x="550" y="330" width="10" height="50"/>
+			
+			<cutout id="kbookSong-l" x="560" y="70" width="0" height="360"/>
+			<cutout id="kbookSong-c" x="560" y="70" width="70" height="360"/>
+			<cutout id="kbookSong-r" x="560" y="70" width="0" height="360"/>
+
+			<cutout id="imageArrow-l" x="630" y="150" width="35" height="70"/>
+			<cutout id="imageArrow-r" x="735" y="150" width="35" height="70"/>
+			<cutout id="imageArrow-t" x="665" y="150" width="70" height="35"/>
+			<cutout id="imageArrow-b" x="665" y="185" width="70" height="35"/>
+
+			<cutout id="overlap-a" x="630" y="220" width="48" height="51"/>
+
+			<cutout id="sl2-gt" x="0" y="0" width="0" height="0"/>
+			<cutout id="sl2-gm" x="0" y="0" width="0" height="0"/>
+			<cutout id="sl2-gb" x="0" y="0" width="0" height="0"/>
+			<cutout id="sl2-tv" x="0" y="0" width="0" height="0"/>
+			<cutout id="sl2-gl" x="700" y="280" width="20" height="20" lines="0"/>
+			<cutout id="sl2-gc" x="720" y="280" width="20" height="20" lines="0"/>
+			<cutout id="sl2-gr" x="740" y="280" width="20" height="20" lines="0"/>
+			<cutout id="sl2-th" x="760" y="280" width="20" height="20" lines="0"/>
+			
+			<cutout id="kBookSourceIcon-a" x="630" y="320" width="30" height="30"/>
+			<cutout id="kBookExpired-a" x="740" y="250" width="20" height="20"/>
+			<cutout id="kBookExpireLater-a" x="760" y="250" width="20" height="20"/>
+			<cutout id="batteryProgress-l" x="630" y="320" width="8" height="30"/>
+			<cutout id="batteryProgress-c" x="638" y="320" width="50" height="30"/>
+			<cutout id="batteryProgress-r" x="688" y="320" width="12" height="30"/>
+			<cutout id="volumeProgress-l" x="700" y="320" width="1" height="30"/>
+			<cutout id="volumeProgress-c" x="701" y="320" width="50" height="30"/>
+			<cutout id="volumeProgress-r" x="751" y="320" width="4" height="30"/>
+			<cutout id="batteryCheckBox-a" x="630" y="410" width="20" height="30" lines="0"/>
+			<cutout id="volumeCheckBox-a" x="700" y="410" width="20" height="30" lines="0"/>
+			<cutout id="blinkCheckBox-a" x="600" y="440" width="30" height="30" lines="0"/>
+			<cutout id="sizeIndicator-a" x="660" y="440" width="30" height="30"/>
+			<cutout id="halfPageIndicator-a" x="210" y="440" width="30" height="30"/>
+			<cutout id="thumbnailFrame-lt" x="820" y="210" width="1" height="1"/>
+			<cutout id="thumbnailFrame-ct" x="830" y="210" width="10" height="1"/>
+			<cutout id="thumbnailFrame-rt" x="847" y="210" width="3" height="3"/>
+			<cutout id="thumbnailFrame-lc" x="820" y="220" width="1" height="10"/>
+			<cutout id="thumbnailFrame-rc" x="847" y="220" width="3" height="10"/>
+			<cutout id="thumbnailFrame-lb" x="820" y="237" width="3" height="3"/>
+			<cutout id="thumbnailFrame-cb" x="830" y="237" width="10" height="3"/>
+			<cutout id="thumbnailFrame-rb" x="847" y="237" width="3" height="3"/>
+			<cutout id="kbookExpired-back" x="850" y="210" width="10" height="23"/>
+			<cutout id="kBookExpiredThumb-a" x="740" y="250" width="20" height="20"/>
+			<cutout id="kBookExpireLaterThumb-a" x="760" y="250" width="20" height="20"/>
+			<cutout id="kbookSourceIconThumb-a" x="630" y="325" width="30" height="20"/>
+			<cutout id="freehandSymbol-a" x="820" y="340" width="24" height="24"/>
+		</texture>
+		<texture href="kBookDefaultArt.png">
+			<cutout id="defaultArt" x="0" y="0"/>
+		</texture>
+		<texture href="kBookDefaultThumbnail.png">
+			<cutout id="defaultThumbnail" x="0" y="0"/>
+		</texture>
+		<texture href="kBookDisk.png">
+			<cutout id="diskSprite-a" x="0" y="0" width="140" height="140"/>
+			<cutout id="diskBackground-a" x="560" y="0" width="140" height="140"/>
+		</texture>
+		<texture href="kBookHome.png">
+			<cutout id="kbookHomeIconsLarge-a" x="0" y="0" width="140" height="140"/>
+			<cutout id="kbookHomeIconsSmall-a" x="1260" y="0" width="80" height="80" lines="140"/>
+			<cutout id="kbookHomeItem-lt" x="1270" y="85" width="10" height="10"/>
+			<cutout id="kbookHomeItem-ct" x="1280" y="85" width="30" height="10"/>
+			<cutout id="kbookHomeItem-rt" x="1310" y="85" width="10" height="10"/>
+			<cutout id="kbookHomeItem-lm" x="1270" y="95" width="10" height="30"/>
+			<cutout id="kbookHomeItem-cm" x="1280" y="95" width="30" height="30"/>
+			<cutout id="kbookHomeItem-rm" x="1310" y="95" width="10" height="30"/>
+			<cutout id="kbookHomeItem-lb" x="1270" y="125" width="10" height="10"/>
+			<cutout id="kbookHomeItem-cb" x="1280" y="125" width="30" height="10"/>
+			<cutout id="kbookHomeItem-rb" x="1310" y="125" width="10" height="10"/>
+		</texture>
+		<texture href="kBookIcon.png">
+			<cutout id="kBookVIcon-a" x="0" y="0" width="70" height="70"/>
+			<cutout id="kBookHIcon-a" x="0" y="10" width="70" height="50" lines="70"/>
+			<cutout id="play-a" x="910" y="70" width="70" height="70" lines="0"/>
+			<cutout id="soft-reset-a" x="1820" y="70" width="70" height="70" lines="0"/>
+			<cutout id="hard-reset-a" x="1820" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-flash-a" x="2030" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-internal-a" x="3780" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-ms-a" x="3850" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-sd-a" x="3920" y="70" width="70" height="70" lines="0"/>
+			<cutout id="delete-book-a" x="3010" y="70" width="70" height="70" lines="0"/>
+			<cutout id="device-shutdown-a" x="2170" y="70" width="70" height="70" lines="0"/>
+			<cutout id="kBookNavIcon-a" x="0" y="210" width="30" height="30"/>
+			<cutout id="delete-historical-words-a" x="2800" y="70" width="70" height="70" lines="0"/>
+			<cutout id="display-calibration-a" x="2870" y="70" width="70" height="70" lines="0"/>
+			<cutout id="demo-mode-a" x="0" y="70" width="70" height="70" lines="0"/>
+		</texture>
+		<texture href="kBookLogos.png">
+			<cutout id="kBookLogos-a" x="0" y="0" width="210" height="70"/>
+		</texture>
+		<texture href="kBookPlay.png">
+			<cutout id="play-check" x="0" y="0" width="114" height="42" />
+		</texture>
+
+		<texture href="options_items.png">
+				<!-- fontsize-menu-->
+			<cutout id="fontSizeL-l" 	x="370" y="233" width="9" height="53" columns="24"/>
+			<cutout id="fontSizeL-c" 	x="379" y="233" width="7" height="53" columns="24"/>
+			<cutout id="fontSizeL-r" 	x="386" y="233" width="8" height="53" columns="24"/>
+			<cutout id="fontSizeC-l" 	x="419" y="233" width="8" height="53" columns="24"/>
+			<cutout id="fontSizeC-c" 	x="427" y="233" width="8" height="53" columns="24"/>
+			<cutout id="fontSizeC-r" 	x="435" y="233" width="8" height="53" columns="24"/>
+			<cutout id="fontSizeR-l" 	x="468" y="233" width="7" height="53" columns="24"/>
+			<cutout id="fontSizeR-c" 	x="475" y="233" width="4" height="53" columns="24"/>
+			<cutout id="fontSizeR-r" 	x="479" y="233" width="13" height="53" columns="24"/>
+			<cutout id="fontIconS-a"	x="757" y="433" width="18" height="23"/>
+			<cutout id="fontIconM-a"	x="794" y="433" width="22" height="23"/>
+			<cutout id="fontIconL-a"	x="1098" y="233" width="16" height="23"/>
+			<cutout id="fontIconXL-a"	x="1131" y="233" width="38" height="23"/>
+			<cutout id="fontIconXXL-a"	x="1208" y="233" width="56" height="23"/>
+			
+			<cutout id="histLeftIcon-a"		x="1187" y="326" width="66" height="26"/>
+			<cutout id="histRightIcon-a"	x="1254" y="326" width="66" height="26"/>
+
+			<cutout id="fontClose-a"		x="702" y="233" width="50" height="50"/>
+			<cutout id="zoomBtn-l" 			x="753" y="233" width="46" height="50"/>
+			<cutout id="zoomBtn-c" 			x="799" y="233" width="8" height="50"/>
+			<cutout id="zoomBtn-r" 			x="807" y="233" width="8" height="50"/>
+				<!-- jumpbar -->
+			<cutout id="jumpBarL-a"				x="517" y="394"  width="40" height="37"/>
+			<cutout id="jumpBarC-a"				x="517" y="431"  width="40" height= "8"/>
+			<cutout id="jumpBarR-a"				x="517" y="439"  width="40" height="37"/>
+			<cutout id="jumpBarIndex-a"			x="517" y="476"  width="40" height="33"/>
+			
+			<cutout id="jumpBar2T-a"			x="517" y="233"  width="37" height="40"/>
+			<cutout id="jumpBar2C-a"			x="554" y="233"  width= "8" height="40"/>
+			<cutout id="jumpBar2B-a"			x="562" y="233"  width="37" height="40"/>
+			<cutout id="jumpBar2Index-a"		x="599" y="233"  width="33" height="40"/>
+				<!-- option menu-->
+			<cutout id="optSpaceBig-l"			x= "307" y="436" width="25" height="8"/>
+			<cutout id="optSpaceBig-c"			x= "332" y="436" width="8" height="8"/>
+			<cutout id="optSpaceBig-r"			x= "340" y="436" width="29" height="8"/>
+			<cutout id="optSpaceSmall-l"		x="1217" y="433" width="76" height="2"/>
+			<cutout id="optSpaceSmall-c"		x="1293" y="433" width="8" height="2"/>
+			<cutout id="optSpaceSmall-r"		x="1301" y="433" width="19" height="2"/>
+			<cutout id="optSpaceSmall2-l"		x="1221" y="431" width="72" height="2"/>
+			<cutout id="optSpaceSmall2-c"		x="1293" y="431" width="8" height="2"/>
+			<cutout id="optSpaceSmall2-r"		x="1301" y="431" width="19" height="2"/>
+			<cutout id="optClose-a"				x="816" y="233" width="42" height="42"/>
+			<cutout id="opt_frame-lt" 			x="198" y="434" width="8" height="8" lines="24"/>
+			<cutout id="opt_frame-ct" 			x="206" y="434" width="8" height="8" lines="24"/>
+			<cutout id="opt_frame-rt" 			x="214" y="434" width="8" height="8" lines="24"/>
+			<cutout id="opt_frame-lm" 			x="198" y="442" width="8" height="8" lines="24"/>
+			<cutout id="opt_frame-cm"			x="206" y="442" width="8" height="8" lines="24"/>
+			<cutout id="opt_frame-rm"			x="214" y="442" width="8" height="8" lines="24"/>
+			<cutout id="opt_frame-lb"			x="198" y="450" width="8" height="8" lines="24"/>
+			<cutout id="opt_frame-cb"			x="206" y="450" width="8" height="8" lines="24"/>
+			<cutout id="opt_frame-rb"			x="214" y="450" width="8" height="8" lines="24"/>
+			
+			<cutout id="optGoToPage-l"			x=  "0" y= "0" width="67" height="58"/>
+			<cutout id="optGoToPage-c"			x= "67" y= "0" width="10" height="58"/>
+			<cutout id="optGoToPage-r"			x= "77" y= "0" width="22" height="58"/>
+			<cutout id="optEditNotes-l"			x="100" y= "0" width="67" height="58"/>
+			<cutout id="optEditNotes-c"			x="167" y= "0" width="10" height="58"/>
+			<cutout id="optEditNotes-r"			x="177" y= "0" width="22" height="58"/>
+			<cutout id="optShowHideNotes-l"		x="200" y= "0" width="67" height="58"/>
+			<cutout id="optShowHideNotes-c"		x="267" y= "0" width="10" height="58"/>
+			<cutout id="optShowHideNotes-r"		x="277" y= "0" width="22" height="58"/>
+			<cutout id="optTOC-l"				x="300" y= "0" width="67" height="58"/>
+			<cutout id="optTOC-c"				x="367" y= "0" width="10" height="58"/>
+			<cutout id="optTOC-r"				x="377" y= "0" width="22" height="58"/>
+			<cutout id="optBookInfo-l"			x="400" y= "0" width="67" height="58"/>
+			<cutout id="optBookInfo-c"			x="467" y= "0" width="10" height="58"/>
+			<cutout id="optBookInfo-r"			x="477" y= "0" width="22" height="58"/>
+			<cutout id="optDelBook-l"			x="500" y= "0" width="67" height="58"/>
+			<cutout id="optDelBook-c"			x="567" y= "0" width="10" height="58"/>
+			<cutout id="optDelBook-r"			x="577" y= "0" width="22" height="58"/>
+			<cutout id="optNowPlaying-l"		x="600" y= "0" width="67" height="58"/>
+			<cutout id="optNowPlaying-c"		x="667" y= "0" width="10" height="58"/>
+			<cutout id="optNowPlaying-r"		x="677" y= "0" width="22" height="58"/>
+			<cutout id="optDelAllMyNotes-l"		x="700" y= "0" width="67" height="58"/>
+			<cutout id="optDelAllMyNotes-c"		x="767" y= "0" width="10" height="58"/>
+			<cutout id="optDelAllMyNotes-r"		x="777" y= "0" width="22" height="58"/>
+			<cutout id="optSlideshowOnOff-l"	x="800" y= "0" width="67" height="58"/>
+			<cutout id="optSlideshowOnOff-c"	x="867" y= "0" width="10" height="58"/>
+			<cutout id="optSlideshowOnOff-r"	x="877" y= "0" width="22" height="58"/>
+			<cutout id="optShuffleOnOff-l"		x="900" y= "0" width="67" height="58"/>
+			<cutout id="optShuffleOnOff-c"		x="967" y= "0" width="10" height="58"/>
+			<cutout id="optShuffleOnOff-r"		x="977" y= "0" width="22" height="58"/>
+			<cutout id="optGoToReading-l"		x="1000" y= "0" width="67" height="58"/>
+			<cutout id="optGoToReading-c"		x="1067" y= "0" width="10" height="58"/>
+			<cutout id="optGoToReading-r"		x="1077" y= "0" width="22" height="58"/>
+			<cutout id="optOrientation-l"		x="1100" y= "0" width="67" height="58"/>
+			<cutout id="optOrientation-c"		x="1167" y= "0" width="10" height="58"/>
+			<cutout id="optOrientation-r"		x="1177" y= "0" width="22" height="58"/>
+			<cutout id="optDelNotepad-l"		x="1200" y= "0" width="67" height="58"/>
+			<cutout id="optDelNotepad-c"		x="1267" y= "0" width="10" height="58"/>
+			<cutout id="optDelNotepad-r"		x="1277" y= "0" width="22" height="58"/>
+			<cutout id="optHighlight-l"			x="1300" y= "0" width="67" height="58"/>
+			<cutout id="optHighlight-c"			x="1367" y= "0" width="10" height="58"/>
+			<cutout id="optHighlight-r"			x="1377" y= "0" width="22" height="58"/>
+			<cutout id="optSearch-l"			x="1400" y= "0" width="67" height="58"/>
+			<cutout id="optSearch-c"			x="1467" y= "0" width="10" height="58"/>
+			<cutout id="optSearch-r"			x="1477" y= "0" width="22" height="58"/>
+			<cutout id="optDictionary-l"		x="1500" y= "0" width="67" height="58"/>
+			<cutout id="optDictionary-c"		x="1567" y= "0" width="10" height="58"/>
+			<cutout id="optDictionary-r"		x="1577" y= "0" width="22" height="58"/>
+			<cutout id="optFreehand-l"			x="1600" y= "0" width="67" height="58"/>
+			<cutout id="optFreehand-c"			x="1667" y= "0" width="10" height="58"/>
+			<cutout id="optFreehand-r"			x="1677" y= "0" width="22" height="58"/>
+			<cutout id="optKeyboard-l"			x="1700" y= "0" width="67" height="58"/>
+			<cutout id="optKeyboard-c"			x="1767" y= "0" width="10" height="58"/>
+			<cutout id="optKeyboard-r"			x="1777" y= "0" width="22" height="58"/>
+			<cutout id="optCloseBook-l"			x="1800" y= "0" width="67" height="58"/>
+			<cutout id="optCloseBook-c"			x="1867" y= "0" width="10" height="58"/>
+			<cutout id="optCloseBook-r"			x="1877" y= "0" width="22" height="58"/>
+			<cutout id="optHistory-l"			x="1900" y= "0" width="67" height="58"/>
+			<cutout id="optHistory-c"			x="1967" y= "0" width="10" height="58"/>
+			<cutout id="optHistory-r"			x="1977" y= "0" width="22" height="58"/>
+
+			<cutout id="optRadio-l"				x="1320" y= "176" width="44" height="58" columns="60"/>
+			<cutout id="optRadio-c"				x="1364" y= "176" width= "8" height="58" columns="60"/>
+			<cutout id="optRadio-r"				x="1372" y= "176" width= "8" height="58" columns="60"/>
+			<!--cutout id="optRadioDetails-l"		x="1200" y= "468" width="78" height="58" columns="99"/>
+			<cutout id="optRadioDetails-c"		x="1278" y= "468" width="13" height="58" columns="99"/>
+			<cutout id="optRadioDetails-r"		x="1291" y= "468" width= "8" height="58" columns="99"/>
+			<cutout id="optRadioThumbnail-l"	x="1400" y= "468" width="78" height="58" columns="99"/>
+			<cutout id="optRadioThumbnail-c"	x="1478" y= "468" width="13" height="58" columns="99"/>
+			<cutout id="optRadioThumbnail-r"	x="1491" y= "468" width= "8" height="58" columns="99"/>
+			<cutout id="optRadioRepeatOff-l"	x="1400" y= "468" width="78" height="58" columns="99"/>
+			<cutout id="optRadioRepeatOff-c"	x="1478" y= "468" width="13" height="58" columns="99"/>
+			<cutout id="optRadioRepeatOff-r"	x="1491" y= "468" width= "8" height="58" columns="99"/>
+			<cutout id="optRadioRepeatASong-l"	x="1400" y= "468" width="78" height="58" columns="99"/>
+			<cutout id="optRadioRepeatASong-c"	x="1478" y= "468" width="13" height="58" columns="99"/>
+			<cutout id="optRadioRepeatASong-r"	x="1491" y= "468" width= "8" height="58" columns="99"/>
+			<cutout id="optRadioRepeatAllSongs-l"	x="1400" y= "468" width="78" height="58" columns="99"/>
+			<cutout id="optRadioRepeatAllSongs-c"	x="1478" y= "468" width="13" height="58" columns="99"/>
+			<cutout id="optRadioRepeatAllSongs-r"	x="1491" y= "468" width= "8" height="58" columns="99"/>
+			<cutout id="optRadioTitle-l"		x="600" y= "468" width="78" height="58" columns="99"/>
+			<cutout id="optRadioTitle-c"		x="678" y= "468" width="13" height="58" columns="99"/>
+			<cutout id="optRadioTitle-r"		x="691" y= "468" width= "8" height="58" columns="99"/>
+			<cutout id="optRadioAuthor-l"		x="800" y= "468" width="78" height="58" columns="99"/>
+			<cutout id="optRadioAuthor-c"		x="878" y= "468" width="13" height="58" columns="99"/>
+			<cutout id="optRadioAuthor-r"		x="891" y= "468" width= "8" height="58" columns="99"/>
+			<cutout id="optRadioDate-l"			x="1000" y= "468" width="78" height="58" columns="99"/>
+			<cutout id="optRadioDate-c"			x="1078" y= "468" width="13" height="58" columns="99"/>
+			<cutout id="optRadioDate-r"			x="1091" y= "468" width= "8" height="58" columns="99"/>
+			<cutout id="optRadioPage-l"			x="1200" y= "468" width="78" height="58" columns="99"/>
+			<cutout id="optRadioPage-c"			x="1278" y= "468" width="13" height="58" columns="99"/>
+			<cutout id="optRadioPage-r"			x="1291" y= "468" width= "8" height="58" columns="99"/>
+			<cutout id="optRadioType-l"			x="1400" y= "468" width="78" height="58" columns="99"/>
+			<cutout id="optRadioType-c"			x="1478" y= "468" width="13" height="58" columns="99"/>
+			<cutout id="optRadioType-r"			x="1491" y= "468" width= "8" height="58" columns="99"/>
+			<cutout id="optRadioText-l"			x="1600" y= "468" width="78" height="58" columns="99"/>
+			<cutout id="optRadioText-c"			x="1678" y= "468" width="13" height="58" columns="99"/>
+			<cutout id="optRadioText-r"			x="1691" y= "468" width= "8" height="58" columns="99"/>
+			<cutout id="optRadioTitle-l"		x="1800" y= "468" width="78" height="58" columns="99"/>
+			<cutout id="optRadioTitle-c"		x="1878" y= "468" width="13" height="58" columns="99"/>
+			<cutout id="optRadioTitle-r"		x="1891" y= "468" width= "8" height="58" columns="99"/>
+			<cutout id="optRadioArtist-l"		x="2000" y= "468" width="78" height="58" columns="99"/>
+			<cutout id="optRadioArtist-c"		x="2078" y= "468" width="13" height="58" columns="99"/>
+			<cutout id="optRadioArtist-r"		x="2091" y= "468" width= "8" height="58" columns="99"/-->
+
+				<!-- comment editor/viewer-->
+			<cutout id="keyClose-a" x="859" y="233" width="42" height="42"/>
+			<cutout id="background-a" x="273" y="434" width="24" height="24"/>
+			
+				<!-- dictionary editor/viewer-->
+			<cutout id="dicMaximize-a" x="900" y="233" width="42" height="42"/>
+			<cutout id="dicNormalize-a" x="944" y="233" width="42" height="42"/>
+			<cutout id="dicEdit-a" x="1441" y="233" width="87" height="42"/>
+			<cutout id="dicBS-a" x="1528" y="233" width="87" height="42"/>
+			<cutout id="dicPagePrev-a" x="1616" y="233" width="57" height="42"/>
+			<cutout id="dicPageNext-a" x="1674" y="233" width="57" height="42"/>
+			
+				<!-- jump direct -->
+			<cutout id="jumpBack-lt" x="248" y="434" width="8" height="8"/>
+			<cutout id="jumpBack-ct" x="256" y="434" width="8" height="8"/>
+			<cutout id="jumpBack-rt" x="264" y="434" width="8" height="8"/>
+			<cutout id="jumpBack-lm" x="248" y="442" width="8" height="8"/>
+			<cutout id="jumpBack-cm" x="256" y="442" width="8" height="8"/>
+			<cutout id="jumpBack-rm" x="264" y="442" width="8" height="8"/>
+			<cutout id="jumpBack-lb" x="248" y="450" width="8" height="8"/>
+			<cutout id="jumpBack-cb" x="256" y="450" width="8" height="8"/>
+			<cutout id="jumpBack-rb" x="264" y="450" width="8" height="8"/>
+			
+				<!-- keyboard -->
+			<cutout id="bsNum-a" x="56" y="649" width="122" height="66"/>
+			
+			<cutout id="keyW_H-l" x="106" y="233" width="12" height="58" columns="30"/>
+			<cutout id="keyW_H-c" x="118" y="233" width= "6" height="58" columns="30"/>
+			<cutout id="keyW_H-r" x="124" y="233" width="12" height="58" columns="30"/>
+			<cutout id="keyG_H-l" x="137" y="233" width="12" height="58" columns="30"/>
+			<cutout id="keyG_H-c" x="149" y="233" width= "6" height="58" columns="30"/>
+			<cutout id="keyG_H-r" x="155" y="233" width="12" height="58" columns="30"/>
+			<cutout id="shift_icon-a" x="633" y="233" width="34" height="36" columns="34"/>
+			<cutout id="bs_icon-a" x="699" y="434" width="57" height="21"/>
+			
+			<cutout id="keyW-l"  x="198" y="233" width="12" height="50" columns="30"/>
+			<cutout id="keyW-c"  x="210" y="233" width= "6" height="50" columns="30"/>
+			<cutout id="keyW-r"  x="216" y="233" width="12" height="50" columns="30"/>
+			<cutout id="keyW2-l" x="229" y="233" width="12" height="50" columns="30"/>
+			<cutout id="keyW2-c" x="241" y="233" width= "6" height="50" columns="30"/>
+			<cutout id="keyW2-r" x="247" y="233" width="12" height="50" columns="30"/>
+			<cutout id="keyG-l"  x="260" y="233" width="12" height="50" columns="30"/>
+			<cutout id="keyG-c"  x="272" y="233" width= "6" height="50" columns="30"/>
+			<cutout id="keyG-r"  x="278" y="233" width="12" height="50" columns="30"/>
+			
+			<cutout id="kbareaW" x="205" y="440" width="8" height="8"/>
+			<cutout id="kbarea-lt" x="223" y="434" width="8" height="8" lines="24"/>
+			<cutout id="kbarea-ct" x="231" y="434" width="8" height="8" lines="24"/>
+			<cutout id="kbarea-rt" x="239" y="434" width="8" height="8" lines="24"/>
+			<cutout id="kbarea-lm" x="223" y="442" width="8" height="8" lines="24"/>
+			<cutout id="kbarea-cm" x="231" y="442" width="8" height="8" lines="24"/>
+			<cutout id="kbarea-rm" x="239" y="442" width="8" height="8" lines="24"/>
+			<cutout id="kbarea-lb" x="223" y="450" width="8" height="8" lines="24"/>
+			<cutout id="kbarea-cb" x="231" y="450" width="8" height="8" lines="24"/>
+			<cutout id="kbarea-rb" x="239" y="450" width="8" height="8" lines="24"/>
+			<cutout id="kbarea2-lt" x="222" y="434" width="8" height="8" lines="24"/>
+			<cutout id="kbarea2-lm" x="222" y="442" width="8" height="8" lines="24"/>
+			<cutout id="kbarea2-lb" x="222" y="450" width="8" height="8" lines="24"/>
+			<cutout id="kbarea3-lt" x="223" y="434" width="8" height="3" lines="24"/>
+			<cutout id="kbarea3-ct" x="231" y="434" width="8" height="3" lines="24"/>
+			<cutout id="kbarea3-rt" x="239" y="434" width="8" height="3" lines="24"/>
+			
+			
+			
+			
+			<cutout id="cmtPagePrev_icon-a" x="1141" y="326" width="22" height="24"/>
+			<cutout id="cmtPageNext_icon-a" x="1164" y="326" width="22" height="24"/>
+			
+			<cutout id="searchInput-lt" x="1119" y="326" width="4" height="4" lines="40"/>
+			<cutout id="searchInput-ct" x="1123" y="326" width="13" height="4" lines="40"/>
+			<cutout id="searchInput-rt" x="1136" y="326" width="4" height="4" lines="40"/>
+			<cutout id="searchInput-lm" x="1119" y="330" width="4" height="32" lines="40"/>
+			<cutout id="searchInput-cm" x="1123" y="330" width="13" height="32" lines="40"/>
+			<cutout id="searchInput-rm" x="1136" y="330" width="4" height="32" lines="40"/>
+			<cutout id="searchInput-lb" x="1119" y="362" width="4" height="4" lines="40"/>
+			<cutout id="searchInput-cb" x="1123" y="362" width="13" height="4" lines="40"/>
+			<cutout id="searchInput-rb" x="1136" y="362" width="4" height="4" lines="40"/>
+			
+			<cutout id="cmtInput-lt" x= "0" y="233" width="24" height="6" lines="73"/>
+			<cutout id="cmtInput-ct" x="24" y="233" width= "8" height="6" lines="73"/>
+			<cutout id="cmtInput-rt" x="32" y="233" width="24" height="6" lines="73"/>
+			<cutout id="cmtInput-lm" x= "0" y="239" width="24" height="4" lines="73"/>
+			<cutout id="cmtInput-cm" x="24" y="239" width= "8" height="4" lines="73"/>
+			<cutout id="cmtInput-rm" x="32" y="239" width="24" height="4" lines="73"/>
+			<cutout id="cmtInput-lb" x= "0" y="243" width="24" height="63" lines="73"/>
+			<cutout id="cmtInput-cb" x="24" y="243" width= "8" height="63" lines="73"/>
+			<cutout id="cmtInput-rb" x="32" y="243" width="24" height="63" lines="73"/>
+			
+			<cutout id="dic_frame_top-lt" 			x="1441" y="403" width="8" height="1"/>
+			<cutout id="dic_frame_top-ct" 			x="1449" y="403" width="8" height="1"/>
+			<cutout id="dic_frame_top-rt" 			x="1457" y="403" width="8" height="1"/>
+
+			<cutout id="dic_frame-lt" 			x="1441" y="403" width="8" height="58"/>
+			<cutout id="dic_frame-ct" 			x="1449" y="403" width="8" height="58"/>
+			<cutout id="dic_frame-rt" 			x="1457" y="403" width="8" height="58"/>
+			<cutout id="dic_frame-lm" 			x="1441" y="461" width="8" height="4"/>
+			<cutout id="dic_frame-cm"			x="1449" y="461" width="8" height="4"/>
+			<cutout id="dic_frame-rm"			x="1457" y="461" width="8" height="4"/>
+			<cutout id="dic_frame-lb"			x="1441" y="465" width="8" height="58"/>
+			<cutout id="dic_frame-cb"			x="1449" y="465" width="8" height="58"/>
+			<cutout id="dic_frame-rb"			x="1457" y="465" width="8" height="58"/>
+			
+			<cutout id="dic_viewer-lt"			x="1445" y="461" width="4" height="1"/>
+			<cutout id="dic_viewer-ct"			x="1449" y="461" width="8" height="1"/>
+			<cutout id="dic_viewer-rt"			x="1457" y="461" width="4" height="1"/>
+			<cutout id="dic_viewer-lm"			x="1445" y="462" width="4" height="2"/>
+			<cutout id="dic_viewer-cm"			x="1449" y="462" width="8" height="2"/>
+			<cutout id="dic_viewer-rm"			x="1457" y="462" width="4" height="2"/>
+			<cutout id="dic_viewer-lb"			x="1445" y="464" width="4" height="1"/>
+			<cutout id="dic_viewer-cb"			x="1449" y="464" width="8" height="1"/>
+			<cutout id="dic_viewer-rb"			x="1457" y="464" width="4" height="1"/>
+
+			<cutout id="dic_headword-l"			x="1468" y="403" width="15" height="46"/>
+			<cutout id="dic_headword-m"			x="1484" y="403" width="14" height="46"/>
+			<cutout id="dic_headword-r"			x="1498" y="403" width="15" height="46"/>
+			
+			<cutout id="jumpDialog-lt" x="198" y="434" width="8" height="8"/>
+			<cutout id="jumpDialog-ct" x="206" y="434" width="8" height="8"/>
+			<cutout id="jumpDialog-rt" x="214" y="434" width="8" height="8"/>
+			<cutout id="jumpDialog-lm" x="198" y="442" width="8" height="8"/>
+			<cutout id="jumpDialog-cm" x="206" y="442" width="8" height="8"/>
+			<cutout id="jumpDialog-rm" x="214" y="442" width="8" height="8"/>
+			<cutout id="jumpDialog-lb" x="198" y="450" width="8" height="8"/>
+			<cutout id="jumpDialog-cb" x="206" y="450" width="8" height="8"/>
+			<cutout id="jumpDialog-rb" x="214" y="450" width="8" height="8"/>
+	
+			<cutout id="direct-text-lt" x="1068" y="326" width="15" height="10" lines="40"/>
+			<cutout id="direct-text-ct" x="1083" y="326" width="20" height="10" lines="40"/>
+			<cutout id="direct-text-rt" x="1103" y="326" width="15" height="10" lines="40"/>
+			<cutout id="direct-text-lm" x="1068" y="336" width="15" height="20" lines="40"/>
+			<cutout id="direct-text-cm" x="1083" y="336" width="20" height="20" lines="40"/>
+			<cutout id="direct-text-rm" x="1103" y="336" width="15" height="20" lines="40"/>
+			<cutout id="direct-text-lb" x="1068" y="356" width="15" height="10" lines="40"/>
+			<cutout id="direct-text-cb" x="1083" y="356" width="20" height="10" lines="40"/>
+			<cutout id="direct-text-rb" x="1103" y="356" width="15" height="10" lines="40"/>
+			
+			
+			<cutout id="candidate-l"			x="678" y="394" width="6" height="28"/>
+			<cutout id="candidate-c"			x="684" y="394" width="8" height="28"/>
+			<cutout id="candidate-r"			x="692" y="394" width="6" height="28"/>
+			
+				<!-- Setting -->
+			<cutout2 id="kbookVField-l" x= "57" y="233" width="8" height="70" columns="24" n1y="12" n2y="10" b1y="12" b2y="10" n1x="2" n2x="2"/>
+			<cutout2 id="kbookVField-c" x= "65" y="233" width="8" height="70" columns="24" n1y="12" n2y="10" b1y="12" b2y="10" n1x="2" n2x="2"/>
+			<cutout2 id="kbookVField-r" x= "73" y="233" width="8" height="70" columns="24" n1y="12" n2y="10" b1y="12" b2y="10" n1x="2" n2x="2"/>
+			<cutout2 id="kbookHField-l" x="321" y="233" width="8" height="50" columns="24" n1y="8"  n2y="6"  b1y="7"  b2y="5"  n1x="2" n2x="2"/>
+			<cutout2 id="kbookHField-c" x="329" y="233" width="8" height="50" columns="24" n1y="8"  n2y="6"  b1y="7"  b2y="5"  n1x="2" n2x="2"/>
+			<cutout2 id="kbookHField-r" x="337" y="233" width="8" height="50" columns="24" n1y="8"  n2y="6"  b1y="7"  b2y="5"  n1x="2" n2x="2"/>
+			<cutout id="setting_gesture-a" x="1176" y="436" width="72" height="21"/>
+
+				<!-- Shortcut -->
+			<cutout id="shortcutHighlight"			x= "1848" y= "233" width="42" height="42"/>
+			<cutout id="shortcutSearch"				x= "1891" y= "233" width="42" height="42"/>
+			<cutout id="shortcutDictionary"			x= "1934" y= "233" width="42" height="42"/>
+
+			<cutout id="shortcutFreehand-l"			x= "1600" y= "0" width="67" height="58"/>
+			<cutout id="shortcutFreehand-c"			x= "1667" y= "0" width="10" height="58"/>
+			<cutout id="shortcutFreehand-r"			x= "1677" y= "0" width="22" height="58"/>
+			<cutout id="shortcutKeyboard-l"			x= "1700" y= "0" width="67" height="58"/>
+			<cutout id="shortcutKeyboard-c"			x= "1767" y= "0" width="10" height="58"/>
+			<cutout id="shortcutKeyboard-r"			x= "1777" y= "0" width="22" height="58"/>
+
+			<!-- Shortcut Border -->
+
+			<!-- Optin change -->
+			<cutout id="dicMenuPrev-c" x= "67"  y= "0"  width="10" height="58"/>
+			<cutout id="dicMenuNext-c" x= "67"  y= "0"  width="10" height="58"/>
+			<cutout id="dicMenuPrev-a" x="1732" y="234" width="57" height="42"/>
+			<cutout id="dicMenuNext-a" x="1790" y="234" width="57" height="42"/>
+		</texture>
+
+		<texture href="toolbar.png">
+			<cutout id="tool_check_pen-a"		x="199" y="70" width="80" height="42"/>
+			<cutout id="tool_check_eraser-a"	x="199" y="154" width="80" height="42"/>
+			<cutout id="tool_check_freehand-a"	x="359" y="154" width="80" height="42"/>
+			<cutout id="toolBar_back-a"			x="0" y="0" width="600" height="60"/>
+			<cutout id="toolBar_close-a"		x="157" y="70" width="42" height="42"/>
+			<cutout id="tool_bookmarkOnOff-a"	x="359" y="70" width="80" height="42"/>
+			<cutout id="tool_mynote-a"			x="0" y="70" width="157" height="42" />
+			<cutout id="tool_mynote-l"			x="0" y="70" width="40" height="42"/>
+			<cutout id="tool_mynote-c"			x="40" y="70" width="30" height="42"/>
+			<cutout id="tool_mynote-r"			x="147" y="70" width="10" height="42"/>
+			<cutout id="tool_target_back-a"		x="0" y="240" width="32" height="32" />
+		</texture>
+		<texture href="search.png">
+			<cutout id="searchb" x="0" y="0" width="92" height="42"/>
+			<cutout id="searchf" x="92" y="0" width="92" height="42"/>
+			<cutout id="search_close" x="184" y="0" width="42" height="42"/>
+		</texture>
+
+		<texture href="history.png">
+			<cutout id="historyb" x="0" y="0" width="92" height="42"/>
+			<cutout id="historyf" x="92" y="0" width="92" height="42"/>
+			<cutout id="history_close" x="184" y="0" width="42" height="42"/>
+		</texture>
+
+		<texture href="zoom.png">
+			<cutout id="zoom-l" x="300" y="0" width="42" height="62" />
+			<cutout id="zoom-r" x="342" y="0" width="42" height="62" />
+			<cutout id="zoom-u" x="150" y="0" width="62" height="42" />
+			<cutout id="zoom-d" x="212" y="0" width="62" height="42" />
+			<cutout id="zoomSlider-plus-a"	x= "0" y="0" width="54" height="48"/>
+			<cutout id="zoomSlider-minus-a"	x="54" y="0" width="54" height="48"/>
+			<cutout id="zoomSlider-gt" x=  "84" y="203" width="54" height="38"/>
+			<cutout id="zoomSlider-gm" x=  "84" y="210" width="54" height="10"/>
+			<cutout id="zoomSlider-gb" x=  "84" y="215" width="54" height="37"/>
+			<cutout id="zoomSlider-tv" x=  "108" y="168" width="36" height="35"/>
+			<cutout id="zoomClose-a" x="108" y="0" width="42" height="42"/>
+		</texture>
+		<texture href="dialog.png">
+			<cutout id="yesbutton" x="0" y="0" width="130" height="42" />
+			<cutout id="okbutton" x="260" y="0" width="130" height="42" />
+			<cutout id="nobutton" x="130" y="0" width="130" height="42" />
+			<cutout id="dialog-lt" x="0" y="175" width="10" height="10" />
+			<cutout id="dialog-lc" x="0" y="185" width="10" height="15" />
+			<cutout id="dialog-lb" x="0" y="200" width="10" height="10" />
+			<cutout id="dialog-ct" x="10" y="175" width="15" height="10" />
+			<cutout id="dialog-cc" x="10" y="185" width="15" height="15" />
+			<cutout id="dialog-cb" x="10" y="200" width="15" height="10" />
+			<cutout id="dialog-rt" x="25" y="175" width="10" height="10" />
+			<cutout id="dialog-rc" x="25" y="185" width="10" height="15" />
+			<cutout id="dialog-rb" x="25" y="200" width="10" height="10" />
+		</texture>
+
+		<texture href="defaultAudioThumbnail.png">
+			<cutout id="defaultAudioThumbnail"/>
+		</texture>
+		<texture href="defaultBookThumbnail.png">
+			<cutout id="defaultBookThumbnail"/>
+		</texture>
+		<texture href="defaultNotepadThumbnail.png">
+			<cutout id="defaultNotepadThumbnail"/>
+		</texture>
+		<texture href="defaultLoadingThumbnail.png">
+			<cutout id="defaultLoadingThumbnail"/>
+		</texture>
+		<texture href="AudioOperation.png">
+			<cutout id="audio-repeatAll" x="0" y="0" width="34" height="36" />
+			<cutout id="audio-repeatOne" x="34" y="0" width="44" height="36" />
+			<cutout id="audio-shuffle" x="78" y="0" width="48" height="36" />
+		</texture>
+
+		<texture href="hukidashi.png"> -->
+			<cutout id="popupBackGround-l" x="0"  y="0" width="12" height="72" columns="30"/>
+			<cutout id="popupBackGround-c" x="12" y="0" width="6"  height="72" columns="30"/>
+			<cutout id="popupBackGround-r" x="18" y="0" width="12" height="72" columns="30"/>
+			<cutout id="popupArrow" 	   x="31" y="0" width="24" height="12"/>
+			<cutout id="popupVertLine-lt" x="35" y="55" width="1" height="1" lines="0"/>
+			<cutout id="popupVertLine-ct" x="35" y="55" width="1" height="1" lines="0"/>
+			<cutout id="popupVertLine-rt" x="35" y="55" width="1" height="1" lines="0"/>
+			<cutout id="popupVertLine-lm" x="35" y="54" width="1" height="1" lines="0"/>
+			<cutout id="popupVertLine-cm" x="35" y="54" width="1" height="1" lines="0"/>
+			<cutout id="popupVertLine-rm" x="35" y="54" width="1" height="1" lines="0"/>
+			<cutout id="popupVertLine-lb" x="35" y="55" width="1" height="1" lines="0"/>
+			<cutout id="popupVertLine-cb" x="35" y="55" width="1" height="1" lines="0"/>
+			<cutout id="popupVertLine-rb" x="35" y="55" width="1" height="1" lines="0"/>
+		</texture>
+
+		<skin id="label" 
+				styles="label"/>
+		<skin id="label-black" 
+				styles="label-black"/>
+		<skin id="label-pageNo" styles="label-pageNo"/>
+		<skin id="label-dicPageNo" styles="label-dicPageNo"/>
+		<skin id="label-dicTitle" styles="label-dicTitle"/>
+		<skin id="label-dictionary"
+				 styles="label-dictionary"/>
+		<skin id="time" 
+				styles="time"/>
+		<skin id="title" 
+				styles="kbookBigTitle"/>
+		<skin id="title2"
+				styles="kbookSmallTitle"/>
+		<skin id="message" 
+				styles="kbookVBigName"/>
+		<skin id="settingsMessage" 
+				styles="settingsMessage"/>
+				
+		<skin id="play" 
+				cutouts="play-a"/>
+		<skin id="soft-reset" 
+				cutouts="soft-reset-a"/>
+		<skin id="hard-reset" 
+				cutouts="hard-reset-a"/>
+		<skin id="format-flash" 
+				cutouts="format-flash-a"/>
+		<skin id="format-internal" 
+				cutouts="format-internal-a"/>
+		<skin id="format-ms" 
+				cutouts="format-ms-a"/>
+		<skin id="format-sd" 
+				cutouts="format-sd-a"/>
+		<skin id="delete-book" 
+				cutouts="delete-book-a"/>
+		<skin id="delete-historical-words" 
+				cutouts="delete-historical-words-a"/>
+		<skin id="device-shutdown" 
+				cutouts="device-shutdown-a"/>
+		<skin id="display-calibration" 
+				cutouts="display-calibration-a"/>
+		<skin id="demoSprite" 
+				cutouts="demo-mode-a"/>
+
+		<skin id="label-song" 
+			styles="label-song"/>
+			
+		<skin id="kbookAbout" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kBookVIcon-a,kBookLogos-a"
+				styles="kbookBigTitle,kbookAbout"/>
+				
+		<skin id="kbookInfo" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kBookVIcon-a"
+				styles="kbookBigTitle,info-n,info-v"/>
+				
+		<skin id="kbookNavbar" 
+				cutouts="kBookNavIcon-a"
+				styles="kbookVNavbarAlpha-e, kbookVNavbarAlpha-d,kbookHNavbarAlpha-e, kbookHNavbarAlpha-d"/>
+				
+		<skin id="kbookMenuDetails" 
+				cutouts="null"
+				styles="kbookBigTitle"/>
+
+		<skin id="kbookViewStyleDetails" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,
+						kbookVMenu-l,kbookVMenu-c,kbookVMenu-r,
+						kBookVIcon-a,
+						kbookHMenu-l,kbookHMenu-c,kbookHMenu-r,
+						kBookHIcon-a,
+						logo,kBookSourceIcon-a,kBookExpireLater-a,kBookExpired-a"
+				styles="kbookBigTitle,kbookSmallTitle,kbookVBigName,kbookVSmallName,kbookVComment,kbookVTab,kbookVMark,kbookVExpiration,kbookVExpirationBig,kbookHBigName,kbookHSmallName,kbookHComment,kbookHTab,kbookHMark,kbookHExpiration,kbookHExpirationBig,kbookSortType"/>
+		<skin id="kbookViewStyleThumbnail"
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,logo,
+						kBookVIcon-a,kBookHIcon-a,
+						kbookSourceIconThumb-a,kBookExpireLaterThumb-a,kBookExpiredThumb-a, kbookExpired-back,
+						thumbnailFrame-lt, thumbnailFrame-ct, thumbnailFrame-rt, thumbnailFrame-lc, thumbnailFrame-rc, thumbnailFrame-lb, thumbnailFrame-cb, thumbnailFrame-rb"
+				styles="kbookBigTitle,kbookSmallTitle,kbookVThumbName,kbookVThumbComment,kbookVExpirationThumb,kbookVExpirationBigThumb,kbookHThumbName,kbookHThumbComment,kbookHExpirationThumb,kbookHExpirationBigThumb,kbookSortType"/>
+		<skin id="kbookMenuHome" 
+				cutouts="kbookHomeIconsLarge-a, kbookHomeIconsSmall-a,
+						kbookHomeItem-lt,kbookHomeItem-ct,kbookHomeItem-rt,kbookHomeItem-lm,kbookHomeItem-cm,kbookHomeItem-rm,kbookHomeItem-lb,kbookHomeItem-cb,kbookHomeItem-rb"
+				styles="kbookHomeName,kbookHomeComment"/>
+		<skin id="kbookMenuIcon" 
+				cutouts="kBookVIcon-a,kBookHIcon-a"/>
+		<skin id="kbookMenuStatus" 
+				cutouts="kbookMenuStatus-l,kbookMenuStatus-c,kbookMenuStatus-r"/>
+		
+		<skin id="kbookPage"
+				cutouts="null,null,null,null,tool_target_back-a,null,null,null,null,
+						 p-lt,p2-lt,p-ct,p-rt,p2-rt,p-lm,p2-lm,p-cm,p-rm,p2-rm,p-lb,p2-lb,p-cb,p-rb,p2-rb,
+						 bm-a,bm-b, overlap-a, diskSprite-a, kbookPageCommentLink, freehandSymbol-a, kbookPageCommentBookmark-a, kbookPageCommentBookmark-b"
+				styles="text-p,text-e,text-e,text-s,text-d, text-d, text-d, text-si, text-si, text-si, text-e"/>
+		<skin id="kbookPageStatus" 
+				cutouts="kbookPageStatus-l,kbookPageStatus-c,kbookPageStatus-r"/>
+				
+		<skin id="kbookReset" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="kbookFormatFlash" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="kbookDeleteBook" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="kbookDeleteHistoricalWords" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="kbookDeviceShutdown" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="kbookDisplayCalibration" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="kbookNotepad" 
+				cutouts="null,null,null,null,null,null,null,null,null"
+				styles="notepad-text-e"/>
+		<skin id="kbookNotepadFreehand" 
+				cutouts="p-lt,p-ct,p-rt,p-lm,p-cm,p-rm,p-lb,p-cb,p-rb"
+				styles="notepad-text-e"/>
+		<skin id="kbookNotepadText" 
+				cutouts="cmtInput-lt,cmtInput-ct,cmtInput-rt,cmtInput-lm,cmtInput-cm,cmtInput-rm,cmtInput-lb,cmtInput-cb,cmtInput-rb" 
+				styles="notepad-text-e,notepad-text-d,notepad-text-p,notepad-text-s"/>
+		<skin id="kbookDemoMode" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		
+		<skin id="kbookSetting" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,
+						kbookVSetting-l,kbookVSetting-c,kbookVSetting-r,kBookVIcon-a,kbookVField-l,kbookVField-c,kbookVField-r,
+						kbookHSetting-l,kbookHSetting-c,kbookHSetting-r,kBookHIcon-a,kbookHField-l,kbookHField-c,kbookHField-r,logo,
+						kbookVSetting2-l,kbookVSetting2-c,kbookVSetting2-r,kbookHSetting2-l,kbookHSetting2-c,kbookHSetting2-r,
+						setting_gesture-a,
+						opt_frame-lt,opt_frame-ct,opt_frame-rt,opt_frame-lm,opt_frame-cm,opt_frame-rm,opt_frame-lb,opt_frame-cb,opt_frame-rb,
+						kbookVMenu-l, kbookHMenu-l"
+						
+				styles="kbookBigTitle,
+						kbookVName,kbookVValue,kbookVSelection,kbookVUnit,
+						kbookHName,kbookHValue,kbookHSelection,kbookHUnit,
+						kbookVSelection,kbookVSelection,kbookHSelection,kbookHSelection,kbookGuide,kbookSmallTitle, kbookVUnit_s, kbookHUnit_s"/>
+		<skin id="kbookSong" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookSong-l,kbookSong-c,kbookSong-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="slider2" 
+				cutouts="sl2-gt,sl2-gm,sl2-gb,sl2-tv,sl2-gl,sl2-gc,sl2-gr,sl2-th"/>]
+		<skin id="kbookSelectionIndicator" 
+				cutouts="audio-shuffle,audio-repeatAll,audio-repeatOne"/>
+				
+		<skin id="kbookStatus" 
+				cutouts="kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+				
+		<skin id="kbookImage" 
+				cutouts="imageArrow-l,imageArrow-r,imageArrow-t,imageArrow-b"/>
+				
+		<skin id="batteryProgress" 
+				cutouts="batteryProgress-l,batteryProgress-c,batteryProgress-r"/>
+		<skin id="volumeProgress" 
+				cutouts="volumeProgress-l,volumeProgress-c,volumeProgress-r"/>
+		<skin id="batteryCheckBox" 
+				cutouts="batteryCheckBox-a"/>
+		<skin id="volumeCheckBox" 
+				cutouts="volumeCheckBox-a"/>
+		<skin id="blinkCheckBox" 
+				cutouts="blinkCheckBox-a"/>
+		<skin id="sizeIndicator" 
+				cutouts="sizeIndicator-a"/>
+		<skin id="halfPageIndicator" 
+				cutouts="halfPageIndicator-a"/>
+				
+		<skin id="diskBackground" 
+				cutouts="diskBackground-a"/>
+		<skin id="diskSprite" 
+				cutouts="diskSprite-a"/>
+		<skin id="pageSprite"
+				cutouts="kbookPage-lt,kbookPage-ct,kbookPage-rt,kbookPage-lm,kbookPage-cm,kbookPage-rm,kbookPage-lb,kbookPage-cb,kbookPage-rb"/>
+
+		<skin id="kbookPlay" 
+				cutouts="play-check"/>
+
+		<!--****begin****-->
+		<skin id="background" cutouts="background-a,toolBar_back-a"/>
+			<!-- size menu -->
+		<skin id="fontSize0" 		cutouts="fontSizeL-l,fontSizeL-c,fontSizeL-r,fontIconS-a" styles="fontSize-d,fontSize-e,fontSize-p,fontSize-s"/>
+		<skin id="fontSize1" 		cutouts="fontSizeC-l,fontSizeC-c,fontSizeC-r,fontIconM-a" styles="fontSize-d,fontSize-e,fontSize-p,fontSize-s"/>
+		<skin id="fontSize2" 		cutouts="fontSizeC-l,fontSizeC-c,fontSizeC-r,fontIconL-a" styles="fontSize-d,fontSize-e,fontSize-p,fontSize-s"/>
+		<skin id="fontSize3" 		cutouts="fontSizeC-l,fontSizeC-c,fontSizeC-r,fontIconXL-a" styles="fontSize-d,fontSize-e,fontSize-p,fontSize-s"/>
+		<skin id="fontSize4" 		cutouts="fontSizeR-l,fontSizeR-c,fontSizeR-r,fontIconXXL-a" styles="fontSize-d,fontSize-e,fontSize-p,fontSize-s"/>
+		<skin id="fontClose"		cutouts="fontClose-a"/>
+		<skin id="zoomBtn" cutouts="zoomBtn-l,zoomBtn-c,zoomBtn-r"
+									styles="zoomBtn-d,zoomBtn-e,zoomBtn-p,zoomBtn-s"/>
+			<!-- jump bar menu-->
+		<skin id="jumpBar" cutouts="jumpBarL-a,jumpBarC-a,jumpBarR-a,jumpBarIndex-a,jumpBar2T-a,jumpBar2C-a,jumpBar2B-a,jumpBar2Index-a"/>
+
+			<!-- option menu -->
+		<skin id="optSpaceBig" cutouts="optSpaceBig-l,optSpaceBig-c,optSpaceBig-r"/>
+		<skin id="optSpaceSmall" cutouts="optSpaceSmall-l,optSpaceSmall-c,optSpaceSmall-r"/>
+		<skin id="optSpaceSmall2" cutouts="optSpaceSmall2-l,optSpaceSmall2-c,optSpaceSmall2-r"/>
+		<skin id="optClose" cutouts="optClose-a"/>
+		<skin id="opt_frame" cutouts="opt_frame-lt,opt_frame-ct,opt_frame-rt,opt_frame-lm,opt_frame-cm,opt_frame-rm,opt_frame-lb,opt_frame-cb,opt_frame-rb"/>
+		<skin id="optGoToPage" cutouts="optGoToPage-l,optGoToPage-c,optGoToPage-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optEditNotes" cutouts="optEditNotes-l,optEditNotes-c,optEditNotes-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optShowHideNotes" cutouts="optShowHideNotes-l,optShowHideNotes-c,optShowHideNotes-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optTOC" cutouts="optTOC-l,optTOC-c,optTOC-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optBookInfo" cutouts="optBookInfo-l,optBookInfo-c,optBookInfo-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optDelBook" cutouts="optDelBook-l,optDelBook-c,optDelBook-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optNowPlaying" cutouts="optNowPlaying-l,optNowPlaying-c,optNowPlaying-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optDelAllMyNotes" cutouts="optDelAllMyNotes-l,optDelAllMyNotes-c,optDelAllMyNotes-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optSlideshowOnOff" cutouts="optSlideshowOnOff-l,optSlideshowOnOff-c,optSlideshowOnOff-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optShuffleOnOff"	cutouts="optShuffleOnOff-l,optShuffleOnOff-c,optShuffleOnOff-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optGoToReading"	cutouts="optGoToReading-l,optGoToReading-c,optGoToReading-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optOrientation"	cutouts="optOrientation-l,optOrientation-c,optOrientation-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optDelNotepad"	cutouts="optDelNotepad-l,optDelNotepad-c,optDelNotepad-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optHighlight"	cutouts="optHighlight-l,optHighlight-c,optHighlight-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optSearch"	cutouts="optSearch-l,optSearch-c,optSearch-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optDictionary"	cutouts="optDictionary-l,optDictionary-c,optDictionary-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optFreehand"	cutouts="optFreehand-l,optFreehand-c,optFreehand-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optKeyboard"	cutouts="optKeyboard-l,optKeyboard-c,optKeyboard-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optCloseBook"	cutouts="optCloseBook-l,optCloseBook-c,optCloseBook-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="optHistory"	cutouts="optHistory-l,optHistory-c,optHistory-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+
+		<skin id="optRadioDetails"			cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+		<skin id="optRadioThumbnail"		cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+		<skin id="optRadioRepeatOff"		cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+		<skin id="optRadioRepeatASong"		cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+		<skin id="optRadioRepeatAllSongs"	cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+		<skin id="optRadioTitle"			cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+		<skin id="optRadioAuthor"			cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+		<skin id="optRadioDate"				cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+		<skin id="optRadioPage"				cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+		<skin id="optRadioType"				cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+		<skin id="optRadioText"				cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+		<skin id="optRadioTitle"			cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+		<skin id="optRadioArtist"			cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+		<skin id="optRadio"					cutouts="optRadio-l,optRadio-c,optRadio-r" styles="optRadio-d,optRadio-e,optRadio-p,optRadio-s"/>
+
+		<skin id="keyW_H" cutouts="keyW_H-l,keyW_H-c,keyW_H-r" styles="keyW_H-d,keyW_H-e,keyW_H-p,keyW_H-s"/>
+		<skin id="keyG_H" cutouts="keyG_H-l,keyG_H-c,keyG_H-r" styles="keyG_H-d,keyG_H-e,keyG_H-p,keyG_H-s,keyG_H-d2,keyG_H-e2,keyG_H-p2,keyG_H-s2"/>
+		<skin id="shiftH" cutouts="keyG_H-l,keyG_H-c,keyG_H-r,shift_icon-a" styles="keyG_H-d,keyG_H-e,keyG_H-p,keyG_H-s,keyG_H-d2,keyG_H-e2,keyG_H-p2,keyG_H-s2"/>
+		<skin id="bsH" cutouts="keyG_H-l,keyG_H-c,keyG_H-r,bs_icon-a" styles="keyG_H-d,keyG_H-e,keyG_H-p,keyG_H-s,keyG_H-d2,keyG_H-e2,keyG_H-p2,keyG_H-s2"/>
+		<skin id="keyW_HBIG" cutouts="keyW_H-l,keyW_H-c,keyW_H-r"     styles="keyW_HBIG-d,keyW_HBIG-e,keyW_HBIG-p,keyW_HBIG-s"/>
+		<skin id="keyG_HBIG" cutouts="keyG_H-l,keyG_H-c,keyG_H-r"     styles="keyG_HBIG-d,keyG_HBIG-e,keyG_HBIG-p,keyG_HBIG-s,keyG_HBIG-d2,keyG_HBIG-e2,keyG_HBIG-p2,keyG_HBIG-s2"/>
+		<skin id="bsHBIG" cutouts="keyG_H-l,keyG_H-c,keyG_H-r,bs_icon-a" styles="keyG_HBIG-d,keyG_HBIG-e,keyG_HBIG-p,keyG_HBIG-s,keyG_HBIG-d2,keyG_HBIG-e2,keyG_HBIG-p2,keyG_HBIG-s2"/>
+		<skin id="keyW_HSMALL" cutouts="keyW_H-l,keyW_H-c,keyW_H-r"     styles="keyW_HSMALL-d,keyW_HSMALL-e,keyW_HSMALL-p,keyW_HSMALL-s"/>
+		<skin id="keyG_HSMALL" cutouts="keyG_H-l,keyG_H-c,keyG_H-r"     styles="keyG_HSMALL-d,keyG_HSMALL-e,keyG_HSMALL-p,keyG_HSMALL-s,keyG_HSMALL-d2,keyG_HSMALL-e2,keyG_HSMALL-p2,keyG_HSMALL-s2"/>
+		<skin id="shiftHSMALL" cutouts="keyG_H-l,keyG_H-c,keyG_H-r,shift_icon-a" styles="keyG_HSMALL-d,keyG_HSMALL-e,keyG_HSMALL-p,keyG_HSMALL-s,keyG_HSMALL-d2,keyG_HSMALL-e2,keyG_HSMALL-p2,keyG_HSMALL-s2"/>
+
+		<skin id="keyW" cutouts="keyW-l,keyW-c,keyW-r" styles="keyW-d,keyW-e,keyW-p,keyW-s"/>
+		<skin id="keyWs" cutouts="keyW-l,keyW-c,keyW-r" styles="keyWs-d,keyWs-e,keyWs-p,keyWs-s"/>
+		<skin id="keyG" cutouts="keyG-l,keyG-c,keyG-r" styles="keyG-d,keyG-e,keyG-p,keyG-s,keyG-d2,keyG-e2,keyG-p2,keyG-s2"/>
+		<skin id="keyW2" cutouts="keyW2-l,keyW2-c,keyW2-r" styles="keyW-d,keyW-e,keyW-p,keyW-s"/>
+		<skin id="keyDirect" cutouts="keyW-l,keyW-c,keyW-r" styles="keyDirect-d,keyDirect-e,keyDirect-p,keyDirect-s"/>
+		<skin id="cmtInput"
+			cutouts="cmtInput-lt,cmtInput-ct,cmtInput-rt,cmtInput-lm,cmtInput-cm,cmtInput-rm,cmtInput-lb,cmtInput-cb,cmtInput-rb" 
+			styles="cmtInput-d,cmtInput-e,cmtInput-p,cmtInput-s"/>
+		<skin id="searchInput"
+			cutouts="searchInput-lt,searchInput-ct,searchInput-rt,searchInput-lm,searchInput-cm,searchInput-rm,searchInput-lb,searchInput-cb,searchInput-rb" 
+			styles="searchInput-d,searchInput-e,searchInput-p,searchInput-s"/>
+		<skin id="dictionaryInput"
+			cutouts="searchInput-lt,searchInput-ct,searchInput-rt,searchInput-lm,searchInput-cm,searchInput-rm,searchInput-lb,searchInput-cb,searchInput-rb" 
+			styles="dictionaryInput-d,dictionaryInput-e,dictionaryInput-p,dictionaryInput-s"/>
+		<skin id="direct-text"
+			cutouts="direct-text-lt,direct-text-ct,direct-text-rt,direct-text-lm,direct-text-cm,direct-text-rm,direct-text-lb,direct-text-cb,direct-text-rb" 
+			styles="direct-text-d,direct-text-e,direct-text-p,direct-text-s"/>
+		<skin id="jumpDialog" cutouts="jumpDialog-lt,jumpDialog-ct,jumpDialog-rt,jumpDialog-lm,jumpDialog-cm,jumpDialog-rm,jumpDialog-lb,jumpDialog-cb,jumpDialog-rb"/>
+		<skin id="jumpBack" cutouts="jumpBack-lt,jumpBack-ct,jumpBack-rt,jumpBack-lm,jumpBack-cm,jumpBack-rm,jumpBack-lb,jumpBack-cb,jumpBack-rb"/>
+		<skin id="bsNum" cutouts="bsNum-a"/>
+		
+		<skin id="dic_frame_top" cutouts="dic_frame_top-lt,dic_frame_top-ct,dic_frame_top-rt"/>
+		<skin id="dic_frame" cutouts="dic_frame-lt,dic_frame-ct,dic_frame-rt,dic_frame-lm,dic_frame-cm,dic_frame-rm,dic_frame-lb,dic_frame-cb,dic_frame-rb"/>
+		<skin id="dic_viewer" 
+			cutouts="dic_viewer-lt,dic_viewer-ct,dic_viewer-rt,dic_viewer-lm,dic_viewer-cm,dic_viewer-rm,dic_viewer-lb,dic_viewer-cb,dic_viewer-rb"
+			styles="dic_viewer_text-e"/>
+		<skin id="dic_headword" cutouts="dic_headword-l,dic_headword-m,dic_headword-r"/>
+		
+		<skin id="keyClose" cutouts="keyClose-a"/>
+		
+		<skin id="dicEdit" cutouts="dicEdit-a"/>
+		<skin id="dicMaximize" cutouts="dicMaximize-a"/>
+		<skin id="dicNormalize" cutouts="dicNormalize-a"/>
+		<skin id="dicBS" cutouts="dicBS-a"/>
+		<skin id="dicPagePrev" cutouts="dicPagePrev-a"/>
+		<skin id="dicPageNext" cutouts="dicPageNext-a"/>
+
+		<skin id="kbarea"  cutouts="kbarea-lt, kbarea-ct, kbarea-rt, kbarea-lm, kbarea-cm,kbarea-rm,kbarea-lb, kbarea-cb,kbarea-rb"/>
+		<skin id="kbareaR" cutouts="kbarea2-lt,kbarea-ct, kbarea-rt, kbarea2-lm,kbarea-cm,kbarea-rm,kbarea2-lb,kbarea-cb,kbarea-rb"/>
+		<skin id="kbareaL" cutouts="kbarea3-lt,kbarea3-ct,kbarea3-rt,kbareaW,kbareaW,kbareaW,kbareaW,kbareaW,kbareaW"/>
+		<skin id="kbareaW" cutouts="kbareaW,kbareaW,kbareaW,kbareaW,kbareaW,kbareaW,kbareaW,kbareaW,kbareaW"/>
+		<skin id="cmtPagePrev" cutouts="keyW-l,keyW-c,keyW-r,cmtPagePrev_icon-a" styles="keyW-d,keyW-e,keyW-p,keyW-s"/>
+		<skin id="cmtPageNext" cutouts="keyW-l,keyW-c,keyW-r,cmtPageNext_icon-a" styles="keyW-d,keyW-e,keyW-p,keyW-s"/>
+		<skin id="histLeft" cutouts="keyW-l,keyW-c,keyW-r,histLeftIcon-a" styles="keyW-d,keyW-e,keyW-p,keyW-s"/>
+		<skin id="histRight" cutouts="keyW-l,keyW-c,keyW-r,histRightIcon-a" styles="keyW-d,keyW-e,keyW-p,keyW-s"/>
+		
+		
+		<skin id="opt_labelItem" styles="opt_labelItem-e"/>
+		<skin id="opt_labelStat" styles="opt_item_stat-e"/>
+		<skin id="candidate" cutouts="candidate-l,candidate-c,candidate-r"
+							styles="candidate-d,candidate-e,candidate-p,candidate-s"/>
+
+	
+		<skin id="text" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv"
+				styles="kbookMessage,kbookMessage,kbookMessage,kbookMessage"/>
+		<skin id="settingText" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv"
+				styles="settingsMessageCenter,settingsMessageCenter,settingsMessageCenter,settingsMessageCenter"/>
+
+		<skin id="settingText_gray" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv"
+				styles="settingsMessageCenter_gray,settingsMessageCenter_gray,settingsMessageCenter_gray,settingsMessageCenter_gray"/>
+
+		<skin id="dialogTextCenter" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv"
+				styles="kbookDialogMessageCenter,kbookDialogMessageCenter,kbookDialogMessageCenter,kbookDialogMessageCenter"/>
+
+		<skin id="dialogText" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv"
+				styles="kbookDialogMessageLeft,kbookDialogMessageLeft,kbookDialogMessageLeft,kbookDialogMessageLeft"/>
+
+		<!--****end****-->
+
+		<skin id="welcomeText" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv"
+				styles="kbookWelcome,kbookWelcome,kbookWelcome,kbookWelcome"/>
+
+		<skin id="zoomSlider-plus" 	cutouts="zoomSlider-plus-a"/>
+		<skin id="zoomSlider-minus" cutouts="zoomSlider-minus-a"/>
+		<skin id="zoomSlider"		cutouts="zoomSlider-gt,zoomSlider-gm,zoomSlider-gb,zoomSlider-tv,null,null,null,null"/>
+		<skin id="zoomLeft" cutouts="zoom-l" />
+		<skin id="zoomRight" cutouts="zoom-r" />
+		<skin id="zoomUp" cutouts="zoom-u" />
+		<skin id="zoomDown" cutouts="zoom-d" />
+		<skin id="zoomClose" cutouts="zoomClose-a" />
+		<skin id="tool_bookmarkOnOff" cutouts="tool_bookmarkOnOff-a"/>
+		<skin id="tool_check_pen" cutouts="tool_check_pen-a"/>
+		<skin id="tool_check_eraser" cutouts="tool_check_eraser-a"/>
+		<skin id="tool_check_freehand" cutouts="tool_check_freehand-a"/>
+		<skin id="toolBar_close" cutouts="toolBar_close-a"/>
+		<skin id="toolBar_back" cutouts="toolBar_back-a, toolBar_back-a, toolBar_back-a"/>
+		<skin id="toolBar_myNote" 
+			cutouts="tool_mynote-l, tool_mynote-c, tool_mynote-r"
+			styles="kbookToolbar, kbookToolbar, kbookToolbar, kbookToolbar-i"/>
+
+		<skin id="menu_close" cutouts="menu_close-a"/>
+		<skin id="button_back" cutouts="button_back-a"/>
+
+		<skin id="searchBackward"
+				cutouts="searchb"
+				styles="search_bf-e, search_bf-d, search_bf-p, search_bf-s"/>
+		<skin id="searchForward"
+				cutouts="searchf"
+				styles="search_bf-e, search_bf-d, search_bf-p, search_bf-s"/>
+		<skin id="searchClose"
+				cutouts="search_close"/>
+		<skin id="text-dialog"
+				cutouts="dialog-lt,dialog-ct,dialog-rt,dialog-lc,dialog-cc,dialog-rc,dialog-lb,dialog-cb,dialog-rb" 
+				styles="kbookDialogMessage,kbookDialogMessage,kbookDialogMessage,kbookDialogMessage"/>
+		<skin id="kbookDialog"
+				styles="kbookDialog-b" />
+		<skin id="kbookDialogYesButton"
+				cutouts="yesbutton" />
+		<skin id="kbookDialogOKButton"
+				cutouts="okbutton" />
+		<skin id="kbookDialogNOButton"
+				cutouts="nobutton" />
+		<skin id="kbookAlertDialog"
+				cutouts="dialog-lt,dialog-ct,dialog-rt,dialog-lc,dialog-cc,dialog-rc,dialog-lb,dialog-cb,dialog-rb" 
+				styles="kbookAlertMessage-s,kbookAlertMessage-s,kbookAlertMessage-s,kbookAlertMessage-s"/>
+		<skin id="dictionaryViewer"/>
+
+		<skin id="balloonBackground"
+			cutouts="popupBackGround-l,popupBackGround-c,popupBackGround-r"
+			styles="popupKeyboard-d,popupKeyboard-e,popupKeyboard-p,popupKeyboard-s"/>
+
+		<skin id="balloonArrow"
+			cutouts="popupArrow"
+			styles="popupKeyboard-d,popupKeyboard-e,popupKeyboard-p,popupKeyboard-s"/>
+
+		<skin id="balloonVertLine"
+			cutouts="popupVertLine-lt,popupVertLine-ct,popupVertLine-rt,popupVertLine-lm,popupVertLine-cm,popupVertLine-rm,popupVertLine-lb,popupVertLine-cb,popupVertLine-rb" 
+			styles="popupKeyboard-d,popupKeyboard-e,popupKeyboard-p,popupKeyboard-s"/>
+
+		<skin id="delete_bookmarks" 
+			styles="delete_bookmarks"/>
+
+		<skin id="delete_bookmarks_note" 
+			styles="delete_bookmarks_note"/>
+
+		<skin id="shortcutHighlightButton" cutouts="shortcutHighlight" styles="optShortcutItem-d,optShortcutItem-e,optShortcutItem-p,optShortcutItem-s"/>
+		<skin id="shortcutSearchButton" cutouts="shortcutSearch" styles="optShortcutItem-d,optShortcutItem-e,optShortcutItem-p,optShortcutItem-s"/>
+		<skin id="shortcutDictionaryButton" cutouts="shortcutDictionary" styles="optShortcutItem-d,optShortcutItem-e,optShortcutItem-p,optShortcutItem-s"/>
+		<skin id="shortcutFreehand" cutouts="shortcutFreehand-l,shortcutFreehand-c,shortcutFreehand-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="shortcutKeyboard" cutouts="shortcutKeyboard-l,shortcutKeyboard-c,shortcutKeyboard-r" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+
+		<skin id="panel_plain" cutouts="p-lt,p-ct,p-lt,p-lm,p-cm,p-lm,p-lt,p-ct,p-lt"/>
+		<skin id="homeIconsSmall" cutouts="kbookHomeIconsSmall-a"/>
+
+		<skin id="dic_popup" 
+			cutouts="dic_viewer-lt,dic_viewer-ct,dic_viewer-rt,dic_viewer-lm,dic_viewer-cm,dic_viewer-rm,dic_viewer-lb,dic_viewer-cb,dic_viewer-rb"
+			styles="dic_popup_text-e"/>
+
+		<skin id="formatErrorMessage" 
+			styles="formatErrorMessage"/>
+
+		<skin id="historyBackward"
+				cutouts="historyb"
+				styles="history_bf-e, history_bf-d, history_bf-p, history_bf-s"/>
+		<skin id="historyForward"
+				cutouts="historyf"
+				styles="history_bf-e, history_bf-d, history_bf-p, history_bf-s"/>
+		<skin id="historyClose"
+				cutouts="history_close"/>
+			
+		<skin id="dicMenuPrev"	cutouts="dicMenuPrev-c,dicMenuPrev-c,dicMenuPrev-c,dicMenuPrev-a" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+		<skin id="dicMenuNext"	cutouts="dicMenuNext-c,dicMenuNext-c,dicMenuNext-c,dicMenuNext-a" styles="optItem-d,optItem-e,optItem-p,optItem-s"/>
+
+		</assets>
+</document>

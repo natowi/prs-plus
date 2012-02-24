@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<import href="ktAssets.xml"/>
+		<import href="adviseAssets.xml"	/>
+	</assets>
+	
+	<group left="0" right="0" top="0" bottom="0">
+		<group left="6" right="7" top="0" height="275" >
+			<panel skin="advise-panel" left="2" right="1" top="8" bottom="0" active="true"/>
+			<group id="THUMBNAIL_CONTAINER" left="40" right="36" top="68" bottom="7" clip="true">
+<!--fillBackground color="#74FF00" left="0" right="0" top="0" bottom="0" /-->
+				<kbookMenuDetails id="THUMBNAIL_FREEHAND"  href="x-id://menuHomeThumbnailAdviseData"
+						left="5" right="5" top="0" height="200"	>
+					<views>
+						<kbookViewStyleThumbnailMini name="thumbnail" skin="kbookViewStyleThumbnailMild" left="0" right="0" top="0" bottom="0" 
+											minWidth="140" minHeight="186" titleVisible="false" statusVisible="false" default="true" 
+											thumbnailMaxHeight="156"	thumbnailMaxWidth="128" 
+											designSpacingHeight="3" textSeparation="3" marginNameAndComment="-3" 
+											marginBottomHeight="0"	 marginHeight="0" marginWidth="7" 
+											showEmptyGuide="false">
+						</kbookViewStyleThumbnailMini>
+					</views>
+				</kbookMenuDetails>
+			</group>
+			<view href="notificationAdviseHeader.xml"	left="0" right="0" top="7"		height="60"/>
+			<view href="kbookMenuDetailsPaging.xml"		left="0" right="3" top="127"	height="60"/>
+			
+		</group>
+		<!--fillBackground color="#646464" left="18" right="18" top="272" height="1"/-->
+		<!-- Continue Reading -->
+		<group left="6" right="7" top="288" height="60">
+			<sprite skin="shortcutContinueButton"	active="false"	left="12" width="50"	top="0"		height="50" />
+			<kbookLabel skin="title"				active="false"	left="70" right="0"		top="3"		height="30" textresource="STR_NODE_TITLE_CONTINUEREADINGBOOK"/>
+			<!--kbookLabel skin="continueReadingDate"	active="false"	left="70" right="0"		bottom="0"	height="30" align="left" variable="CONTINUE_DATE"/-->
+			<kbookLabel skin="comment"					active="false" bottom="0" height="30" left="71" right="0" align="left" variable="CONTINUE_COMMENT"/>
+			<kbookHotspot do="doGoToContinueReading" left="0" top="0" right="0" bottom="0" />
+		</group>
+		
+	</group>
+</document>

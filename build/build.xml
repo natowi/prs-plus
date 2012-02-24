@@ -1,0 +1,475 @@
+<!-- 
+Build script for PRS+ project
+
+History:
+	2011-03-01 kartu - Rewritten from scratch
+	2011-09-30 kartu - Added Unix support
+	2011-12-12 kartu - Fixed runonce.sh (removed "archive" attribute)
+-->
+<project default="buildAll">
+	<!--======================================================================== 
+		Task definitions
+	========================================================================-->
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="tools/ant-contrib-1.0b3.jar" />
+		</classpath>
+	</taskdef>
+	<taskdef name="yui-compressor" classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
+		<classpath>
+			<pathelement location="tools/yuicompressor-2.4.2.jar" />
+			<pathelement location="tools/yui-compressor-ant-task-0.5.1.jar" />
+		</classpath>
+	</taskdef>
+	<taskdef name="jsmin" classname="net.matthaynes.jsmin.JSMin_Task" classpath="tools/jsmin.0.2.4.jar" />
+	
+	<!--======================================================================== 
+		Properties
+	========================================================================-->
+	<property name="CORE" value="tmp/core" />
+	<property name="ADDONS" value="tmp/addons" />
+	<property name="SRC.CORE" value="../script/core" />
+	<property name="SRC.ADDONS" value="../script/addons" />
+	
+	<!--======================================================================== 
+		Constants
+	========================================================================-->
+	<property name="FLASHABLE_300" value="true" />
+	<property name="FLASHABLE_505" value="true" />
+	<patternset id="addons_300_505">
+		<include name="**/*" />
+		<exclude name="ScrollbarAlphabet.js" />
+		<exclude name="StandardActions_x50.js" />
+		<exclude name="ViewerSettings_x50.js" />
+		<exclude name="BookManagement_x50.js" />
+		<exclude name="AuthorList.js" />
+		<exclude name="SaveNotepadData.js" />
+		<exclude name="TouchSettings_600.js" />
+		<exclude name="TouchSettings_x50.js" />
+		<exclude name="DictionaryOptions_x50.js" />
+	</patternset>
+	<patternset id="addons_600_x50">
+		<include name="**/*" />
+		<exclude name="MediaTag.js" />
+		<exclude name="MenuCaptions.js" />
+		<exclude name="DictionaryCL" />
+		<exclude name="DictionaryCL/**/*" />
+		<exclude name="DictionaryCL.js" />
+		<exclude name="StandardActions.js" />
+		<exclude name="TextEncoding.js" />
+		<exclude name="TextScale.js" />
+		<exclude name="ViewerSettings.js" />
+	</patternset>
+	<patternset id="addons_300">
+		<patternset refid="addons_300_505" />
+	</patternset>
+	<patternset id="addons_505">
+		<patternset refid="addons_300_505" />
+		<exclude name="MediaTag.js" />
+	</patternset>
+	<patternset id="addons_600">
+		<patternset refid="addons_600_x50" />
+		<exclude name="ViewerSettings_x50.js" />
+		<exclude name="BookManagement_x50.js" />
+		<exclude name="TouchSettings_x50.js" />
+		<exclude name="DictionaryOptions_x50.js" />
+	</patternset>
+	<patternset id="addons_350" >
+		<patternset refid="addons_600_x50" />
+		<exclude name="TouchSettings_600.js" />
+	</patternset>
+	<patternset id="addons_650">
+		<patternset refid="addons_600_x50" />
+		<exclude name="TouchSettings_600.js" />
+	</patternset>
+	<patternset id="addons_950">
+		<patternset refid="addons_600_x50" />
+		<exclude name="TouchSettings_600.js" />
+	</patternset>
+	
+	<!--======================================================================== 
+		Init tools
+	========================================================================-->
+	<chmod perm="+x">
+		<fileset file="tools/mkcramfs" />
+		<fileset file="tools/cramfsck" />
+	</chmod>
+
+	
+	<!--======================================================================== 
+		Tasks
+	========================================================================-->
+	<!-- Load build properties -->
+	<loadproperties srcfile="prsp.properties" />
+	<!-- Calls build for all models -->
+	<target name="buildAll" description="Builds PRS+">
+		<antcall target="clear" />
+		<ant antfile="build_lang.xml" />
+		<antcall target="buildCore" />
+		<antcall target="buildAddons" />
+		<foreach list="${MODEL}" param="model" target="build" />
+		<foreach list="${MODEL}" param="model" target="buildInstaller" />
+	</target>
+	
+	<target name="clear">
+		<delete dir="tmp" />
+		<delete dir="dist" />
+	</target>
+	
+	<target name="buildInstaller">
+		<echo>Building installation package for model PRS-${model}</echo>
+		<propertycopy name="isFlashable" from="FLASHABLE_${model}" override="true" silent="true" />
+		
+		<!-- Clear read only attribute from runonce.sh -->
+		<attrib archive="true" verbose="true">
+			<fileset file="../installer/data/runonce.sh" />
+		</attrib>
+
+
+		<if>
+			<equals arg1="${isFlashable}" arg2="true" />
+			<then>
+				<var name="dist" value="dist/${model}/PRSPInstaller/Sony Reader/software"/>
+				<var name="prspDir" value="${dist}/firmware/${model}/"/>
+				<mkdir dir="${prspDir}"/>
+
+				<echo>Copying installer (flashable)</echo>
+				<copy todir="${dist}">
+					<fileset dir="../installer">
+						<exclude name="installer.sh.*" />
+					</fileset>
+				</copy>
+				<!-- Insert version info -->	
+				<replace encoding="UTF-8" file="${dist}/autorun.xml" token="@@@" value="${PRSP_VER}" />
+				<replace encoding="UTF-8" file="${dist}/installer.js" token="@@@" value="${PRSP_VER}" />
+				<copy file="tmp/${model}/Fsk/fw.ver" todir="${dist}/firmware/${model}" />
+			</then>
+			<else>
+				<var name="dist" value="dist/${model}/PRSPInstaller"/>
+				<var name="prspDir" value="${dist}/prsp"/>
+				<mkdir dir="${prspDir}"/>
+				
+				<echo>Copying installer (mountable)</echo>
+				<copy file="../installer/installer.sh.${model}" tofile="${dist}/installer.sh" />
+				<copy todir="${dist}">
+					<fileset dir="../installer">
+						<include name="data/**/*"/>
+					</fileset>
+				</copy>
+			</else>
+		</if>
+		
+		<echo>Copying changelog</echo>
+		<copy todir="dist/${model}" file="../changelog.txt" />
+		
+		<echo>Copying PRS+ files</echo>
+		<copy todir="${prspDir}" includeemptydirs="false">
+			<fileset dir="tmp/${model}">
+				<include name="*"/>
+				<exclude name="*.dt"/>
+			</fileset>
+		</copy>
+		
+		<!-- Release archive -->
+		<echo>Compressing release archive for PRS-${model}</echo>
+		<zip destfile="dist/PRSP_${model}_${PRSP_VER}_Installer.zip">
+			<fileset dir="dist/${model}" />
+		</zip>
+	</target>
+	
+	<!-- Builds core*.js files. These are the same for all -->
+	<target name="buildCore">
+		<mkdir dir="${CORE}/lang" />
+		<mkdir dir="${CORE}/compat" />
+		<echo>Combine core files</echo>
+		<concat encoding="UTF-8" destfile="${CORE}/core.js">
+			<fileset dir="${SRC.CORE}">
+				<include name="*.js" />
+			</fileset>
+		</concat>
+		
+		<echo>Copying compat/bootstrap &amp; prsp.js</echo>
+		<copy todir="${CORE}">
+			<fileset dir="${SRC.CORE}">
+				<include name="compat/*" />
+				<exclude name="compat/*_config*" />
+			</fileset>
+			<fileset file="../script/prsp.js"/>
+		</copy>
+		
+		<echo>Optimizing combined core &amp; compat with yui</echo>
+		<optimize.yui folder="${CORE}"/>
+		
+		<echo>Optimizing lang with jsmin (yui fails to compile)</echo>
+		<jsmin force="true" destdir="${CORE}/compat">
+			<fileset dir="${SRC.CORE}">
+				<include name="compat/*_config*" />
+			</fileset>
+		</jsmin>
+		<jsmin force="true" destdir="${CORE}/lang">
+			<fileset dir="${SRC.CORE}">
+				<include name="lang/*.js" />
+			</fileset>
+		</jsmin>
+	</target>
+	
+	<!-- Optimizes addon resources -->
+	<target name="buildAddons">
+		<mkdir dir="${ADDONS}" />
+		<echo>Copying common addon files</echo>
+		<copy todir="${ADDONS}">
+			<fileset dir="${SRC.ADDONS}">
+				<exclude name="*.js"/>
+			</fileset>
+		</copy>
+		<echo>Optimizing common addon files with yui</echo>
+		<optimize.yui folder="${ADDONS}"/>
+	</target>
+	
+	<!-- Calls build for all models -->
+	<target name="build.beta" description="Builds PRS+ beta">
+		<antcall target="clear" />
+		<ant antfile="build_lang.xml" />
+		<foreach list="${MODEL}" param="model" target="dobuild.beta" />
+	</target>	
+	
+	<!-- Builds beta package for particular model -->
+	<target name="dobuild.beta">
+		<echo>Building beta package for PRS-${model}</echo>
+		<var name="beta" value="dist/${model}/Beta" />
+		<var name="src" value="../script"/>
+		<delete dir="${beta}"/>
+		<mkdir dir="${beta}/addons"/>
+		<mkdir dir="${beta}/addons1"/>
+		<mkdir dir="${beta}/addons2"/>
+		<mkdir dir="${beta}/addons3"/>
+		<mkdir dir="${beta}/core"/>
+		
+		<echo>Copying model specific addon resources</echo>
+		<copy todir="${beta}/addons">
+			<fileset dir="${src}/addons" >
+			 	<patternset refid="addons_${model}" />
+			</fileset>
+		</copy>
+		<copy todir="${beta}/addons1">
+			<fileset dir="${src}/addons1" >
+			 	<patternset refid="addons_${model}" />
+			</fileset>
+		</copy>
+		<copy todir="${beta}/addons2">
+			<fileset dir="${src}/addons2" >
+			 	<patternset refid="addons_${model}" />
+			</fileset>
+		</copy>
+		<copy todir="${beta}/addons3">
+			<fileset dir="${src}/addons3" >
+			 	<patternset refid="addons_${model}" />
+			</fileset>
+		</copy>
+		
+		<echo>Copying core</echo>
+		<copy todir="${beta}/core">
+			<fileset dir="${src}/core"/>
+		</copy>
+		<copy todir="${beta}" file="../script/prsp.js"/>
+		<copy tofile="${beta}/user.config" file="${src}/user.config.${model}"/>		
+	</target>
+	
+	<!-- Builds release package for particular model -->
+	<target name="build">
+		<echo>Building package for PRS-${model}</echo>
+		<mkdir dir="tmp/${model}" />
+		
+		<echo>Copying firmware files for ${model}</echo>
+		<copy todir="tmp/${model}">
+			<fileset dir="../firmware/${model}" />
+		</copy>
+		<propertycopy name="isFlashable" from="FLASHABLE_${model}" override="true" silent="true" />
+		<if>
+			<equals arg1="${isFlashable}" arg2="true" />
+			<then>
+				<var name="prsp.dir" value="tmp/${model}/Fsk/sony/ebook/application/resources/prsp" />
+			</then>
+			<else>
+				<var name="prsp.dir" value="tmp/${model}/resources/prsp" />
+				<echo file="tmp/${model}/prspfw.ver">${PRSP_VER}</echo>
+			</else>
+		</if>
+		
+		<!-- Executables must have readonly field or cramsf will lose exec bit -->
+		<attrib readonly="true" verbose="true">
+			<fileset dir="../firmware/binaries" />
+		</attrib>
+		<!-- Exec flag on linux -->
+		<chmod perm="+x">
+			<fileset dir="../firmware/binaries" />
+		</chmod>
+		
+		<echo>Copying binaries for PRS-${model}</echo>
+		<copy todir="${prsp.dir}" verbose="true">
+			<fileset dir="../firmware/binaries">
+				<include name="**/*.${model}" />
+			</fileset>
+			<mapper type="glob" from="*.${model}" to="*" />
+		</copy>
+		
+		<echo>Combining model specific addon files</echo>
+		<!-- addons folder -->
+		<concat destfile="${prsp.dir}/addons.js" encoding="UTF-8">
+			<intersect>
+				<fileset dir="${SRC.ADDONS}">
+					<patternset refid="addons_${model}" />
+				</fileset>
+				<fileset dir="${SRC.ADDONS}">
+					<include name="*.js"/>
+				</fileset>
+			</intersect>
+		</concat>
+		<!-- addons 1 folder -->
+		<concat destfile="${prsp.dir}/addons1.js" encoding="UTF-8">
+			<intersect>
+				<fileset dir="${SRC.ADDONS}1">
+					<patternset refid="addons_${model}" />
+				</fileset>
+				<fileset dir="${SRC.ADDONS}1">
+					<include name="*.js"/>
+				</fileset>
+			</intersect>
+		</concat>
+		<!-- addons 2 folder -->
+		<concat destfile="${prsp.dir}/addons2.js" encoding="UTF-8">
+			<intersect>
+				<fileset dir="${SRC.ADDONS}2">
+					<patternset refid="addons_${model}" />
+				</fileset>
+				<fileset dir="${SRC.ADDONS}2">
+					<include name="*.js"/>
+				</fileset>
+			</intersect>
+		</concat>
+		<!-- addons 3 folder -->
+		<concat destfile="${prsp.dir}/addons3.js" encoding="UTF-8">
+			<intersect>
+				<fileset dir="${SRC.ADDONS}3">
+					<patternset refid="addons_${model}" />
+				</fileset>
+				<fileset dir="${SRC.ADDONS}3">
+					<include name="*.js"/>
+				</fileset>
+			</intersect>
+		</concat>
+		
+		<echo>Optimizing addon files</echo>
+		<optimize.yui folder="${prsp.dir}"/>
+		
+		<echo>Copying model specific addon resources</echo>
+		<copy todir="${prsp.dir}/addons">
+			<fileset dir="${ADDONS}" >
+			 	<patternset refid="addons_${model}" />
+			</fileset>
+		</copy>
+		
+		<echo>Copying core files</echo>
+		<copy todir="${prsp.dir}">
+			<fileset dir="${CORE}">
+				<include name="*" />
+				<include name="compat/*${model}*" />
+				<include name="lang/*" />
+			</fileset>
+		</copy>
+		
+		<echo>Creating version info file</echo>
+		<echo file="${prsp.dir}/prspfw.ver">${PRSP_VER}</echo>
+		
+		<echo>Packaging</echo>
+		<foreach param="dir" target="make.cramfs">
+			<path>
+				<dirset dir="../firmware/${model}" includes="*" />
+			</path>
+		</foreach>
+	</target>
+	
+	<!--
+		Creates and tests cramfs image from ${dir} and ${dir}.dt
+	-->
+	<target name="make.cramfs">
+		<var name="dt" unset="true" />
+		<basename file="${dir}" property="dt" />
+		<echo>Building cramfs image from dir ${dt}</echo>
+		<!-- Links **must** have readonly flag, or crams fails -->
+		<attrib readonly="true" verbose="true">
+			<fileset dir="tmp/${model}">
+				<include name="**/*.lnk" />
+			</fileset>
+		</attrib>
+		<var name="img" value="tmp/${model}/${dt}.img"/>
+		<exec executable="tools/mkcramfs" failonerror="true">
+			<arg value="-D" />
+			<arg value="tmp/${model}/${dt}.dt" />
+			<arg value="tmp/${model}/${dt}" />
+			<arg value="${img}" />
+		</exec>
+		<test.cramfs file="${img}" folder="tmp/${model}/${dt}" />
+		
+		<echo>Generating checksum</echo>
+		<var name="CHECKSUM" unset="true" />
+		<checksum file="${img}" property="CHECKSUM" /> 
+		<echo file="${img}.md5">${CHECKSUM}</echo>
+	</target>
+	
+	<!-- 
+		Tests whether cramfs content matches dir content
+	-->
+	<macrodef name="test.cramfs">
+		<attribute name="file" />
+		<attribute name="folder" />
+		<sequential>
+			<echo>Testing cramfs image @{file}</echo>
+			<delete dir="tmp/test.cramfs" failonerror="true" />
+			<exec executable="tools/cramfsck">
+				<arg value="-x" />
+				<arg value="tmp/test.cramfs" />
+				<arg value="@{file}" />
+			</exec>
+			<var name="diff" unset="true" />
+			<fileset dir="@{folder}" id="diff">
+				<different targetdir="tmp/test.cramfs" ignoreFileTimes="true" />
+				<exclude name="**/*.lnk" />
+			</fileset>
+			<foreach param="error" target="test.cramfs.error">
+				<path>
+					<fileset refid="diff" />
+				</path>
+			</foreach>
+			<delete dir="tmp/test.cramfs" failonerror="true" />
+			<echo>OK</echo>
+		</sequential>
+	</macrodef>
+	<target name="test.cramfs.error">
+		<fail message="Folder comparison has failed ${error}" />
+	</target>
+	
+	<!-- 
+		Optimizes javascript in given folder
+	-->
+	<macrodef name="optimize.yui">
+		<attribute name="folder" />
+		<sequential>
+			<echo>Optimizing files in folder @{folder} with yui</echo>
+			<yui-compressor munge="true" warn="false" charset="UTF-8" fromdir="@{folder}" todir="@{folder}" />
+			<echo>Removing -min postfix from optimized core files</echo>
+			<move todir="@{folder}" includeemptydirs="false">
+				<fileset dir="@{folder}">
+					<include name="**/*-min.js" />
+				</fileset>
+				<mapper type="glob" from="*-min.js" to="*.js" />
+			</move>
+			<move todir="@{folder}" includeemptydirs="false">
+				<fileset dir="@{folder}">
+					<include name="**/*-min.css" />
+				</fileset>
+				<mapper type="glob" from="*-min.css" to="*.css" />
+			</move>
+		</sequential>
+	</macrodef>
+</project>

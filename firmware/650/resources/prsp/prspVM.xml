@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<fsk xmlns="http://www.kinoma.com/Fsk/1">
+	<vm name="myVm2">
+		<extension href="/opt/sony/ebook/application/resources/prsp/libfskLoad"/>
+	</vm>
+</fsk>

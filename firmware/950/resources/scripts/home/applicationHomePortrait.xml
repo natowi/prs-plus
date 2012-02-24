@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<texture href="kBookApplicationHomeNetwork.png">
+			<cutout id="shortcutPicture" x="0" y="0" width="50" height="50"/>
+			<cutout id="shortcutHandwriting" x="50" y="0" width="50" height="50"/>
+			<cutout id="appicationIcon" x="100" y="0" width="90" height="80"/>
+			<cutout id="shortcutReading" x="0" y="0" width="50" height="50"/>
+			<cutout id="shortcutMore" x="50" y="0" width="50" height="50"/>
+			<cutout id="shortcutNetwork" x="100" y="0" width="50" height="50"/>
+			<cutout id="applicationBigIcon" x="0" y="50" width="120" height="100"/>
+		</texture>
+		<style id="title20"		color="#0A0A0A" halign="left"	valign="bottom" top="0" size="20"/>
+		<style id="title"		color="#0A0A0A" halign="left"	valign="top"	top="0" size="24"/>
+		<style id="title2lines" color="#0A0A0A" halign="center"	valign="top"	top="0" size="24" nlines="2"/>
+		<style id="comment"		color="#0A0A0A" halign="left"	valign="bottom" bottom="2" size="16"/>
+		<skin id="shortcutPictureButton" cutouts="shortcutPicture"/>
+		<skin id="shortcutHandwritingButton" cutouts="shortcutHandwriting"/>
+		<skin id="appicationIcon" cutouts="appicationIcon"/>
+		<skin id="title" styles="title"/>
+		<skin id="title2lines" styles="title2lines"/>
+		<skin id="title20" styles="title20"/>
+		<skin id="comment" styles="comment"/>
+		<skin id="titleComment" styles="title,comment"/>
+		<skin id="titleComment20" styles="title20,comment"/>
+		<skin id="shortcutNetworkIcon" cutouts="shortcutNetwork"/>
+		<skin id="shortcutReadingIcon" cutouts="shortcutReading"/>
+		<skin id="shortcutMoreIcon" cutouts="shortcutMore"/>
+		<skin id="applicationBigIcon" cutouts="applicationBigIcon"/>
+		
+	</assets>
+	<group left="0" right="0" top="0" bottom="75">
+		<fillBackground color="white" left="0" right="0" top="0" bottom="0"/>
+		<!-- Network List -->
+		<group left="6" right="7" top="0" height="303">
+			
+			<group left="0" right="0" top="5" height="60">
+				<sprite skin="shortcutNetworkIcon" left="12" top="5" width="50" height="50" active="false"/>
+				<kbookLabel skin="title" left="70" right="6" bottom="16" height="31" align="left" textresource="STR_NODE_TITLE_NETWORK"/>
+			</group>
+			<group left="0" right="0" top="65" bottom="5">
+				<view href="applicationHomePortraitNetw.xml" left="0" right="0" top="0" bottom="0"/>
+			</group>
+
+		</group>
+		<fillBackground color="#646464" left="18" right="18" top="303" height="1"/>
+		<!-- Reading List -->
+		<group left="6" right="7" top="304" height="304">
+			
+			<group left="0" right="0" top="5" height="60">
+				<sprite skin="shortcutReadingIcon" left="12" top="5" width="50" height="50" active="false"/>
+				<kbookLabel skin="title" bottom="16" height="31" left="70" right="6" align="left" textresource="STR_NODE_TITLE_READING"/>
+			</group>
+			<group left="0" right="0" top="65" bottom="5">
+
+				<group left="10" top="0" bottom="0" width="191">
+					<kbookIndicator skin="applicationBigIcon" top="52" value="1"/><!--variable="LEFT_ITEM_KIND"/-->
+					<kbookLabel skin="title" active="false" top="157" height="31" left="6" right="6" align="center" variable="LEFT_ITEM_NAME"/>
+					<kbookHotspot do="doGoToDictionary" left="0" top="0" right="0" bottom="0"/>
+				</group>
+				<group left="205" top="0" bottom="0" width="191">
+					<kbookIndicator skin="applicationBigIcon" top="52" value="2"/><!--variable="CENTER_ITEM_KIND"/-->
+					<!--kbookLabel2Style skin="titleComment" active="false" top="157" height="31" left="6" right="6" align="center" variable="MIDDLE_ITEM_NAME_COMMENT" splitStr="||" splitWidth="6"/-->
+					<kbookLabel2LineStyle skin="titleComment" active="false" top="157" height="62" left="7" right="7" align="center" variable="MIDDLE_ITEM_NAME_COMMENT" splitStr="||" splitWidth="6" allowOneLine="true"/>
+					<kbookHotspot do="doGoToNotepadsFreehand" left="0" top="0" right="0" bottom="0" />
+				</group>
+				<group left="398" top="0" bottom="0" width="191">
+					<kbookIndicator skin="applicationBigIcon" top="52" value="3"/><!--variable="RIGHT_ITEM_KIND"/-->
+					<!--kbookLabel2Style skin="titleComment" active="false" top="157" height="31" left="6" right="6" align="center" variable="CENTER_ITEM_NAME_COMMENT" splitStr="||" splitWidth="6"/-->
+					<kbookLabel2LineStyle skin="titleComment" active="false" top="157" height="62" left="7" right="7" align="center" variable="CENTER_ITEM_NAME_COMMENT" splitStr="||" splitWidth="6" allowOneLine="true"/>
+					<kbookHotspot do="doGoToNotepadsText" left="0" top="0" right="0" bottom="0" />
+				</group>
+
+			</group>
+		</group>
+		<fillBackground color="#646464" left="18" right="18" top="609" height="1"/>
+		<!-- More List -->
+		<group left="6" right="7" top="610" height="308">
+			<group left="0" right="0" top="5" height="60">
+				<sprite skin="shortcutMoreIcon" left="12" top="5" width="50" height="50" active="false"/>
+				<kbookLabel skin="title" bottom="16" height="31" left="70" right="6" align="left" textresource="STR_NODE_TITLE_MORE"/>
+			</group>
+			<group left="0" right="0" top="65" bottom="5">
+				<group left="10" top="0" bottom="0" width="191">
+					<kbookIndicator skin="applicationBigIcon" top="52" value="4"/><!--variable="LEFT_ITEM_KIND"/-->
+					<kbookLabel2Style skin="titleComment" active="false" top="157" height="31" left="6" right="6" align="center" variable="TOP_ITEM_NAME_COMMENT" splitStr="||" splitWidth="6"/>
+					<kbookHotspot do="doGoToPictures" left="0" top="0" right="0" bottom="0"/>
+				</group>
+				<group left="205" top="0" bottom="0" width="191">
+					<kbookIndicator skin="applicationBigIcon" top="52" value="5"/><!--variable="CENTER_ITEM_KIND"/-->
+					<kbookLabel2Style skin="titleComment" active="false" top="157" height="31" left="6" right="6" align="center" variable="RIGHT_ITEM_NAME_COMMENT" splitStr="||" splitWidth="6"/>
+					<kbookHotspot do="doGoToMusic" left="0" top="0" right="0" bottom="0" />
+				</group>
+			</group>
+			
+		</group>
+		
+	</group>
+</document>

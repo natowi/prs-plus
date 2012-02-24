@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="Pokračovat ve čtení" />
+		<string id="STR_NODE_TITLE_BEGIN" value="Začít" />
+		<string id="STR_NODE_TITLE_END" value="Konec" />
+		<string id="STR_NODE_TITLE_BOOKMARKS" value="Záložky" />
+		<string id="STR_NODE_TITLE_TOC" value="Obsah" />
+		<string id="STR_NODE_TITLE_HISTORY" value="Historie" />
+		<string id="STR_NODE_TITLE_INFO" value="Info" />
+		<string id="STR_NODE_TITLE_UTILITIES" value="Služby" />
+		<string id="STR_NODE_TITLE_REMOVEALLBOOKMARKS" value="Smazat všechny záložky" />
+		<string id="STR_NODE_TITLE_CLEARHISTORY" value="Vymazat historii" />
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="Smazat knihu" />
+		<string id="STR_NODE_TITLE_CONTINUEREADING" value="Pokračovat ve čtení" />
+		<string id="STR_NODE_TITLE_BOOKSBYAUTHOR" value="Knížky podle autora" />
+		<string id="STR_NODE_TITLE_BOOKSBYDATE" value="Knížky podle data" />
+		<string id="STR_NODE_TITLE_TODAY" value="Dnes" />
+		<string id="STR_NODE_TITLE_EARLIERTHISWEEK" value="Před týdnem" />
+		<string id="STR_NODE_TITLE_LASTWEEK" value="Poslední týden" />
+		<string id="STR_NODE_TITLE_EARLIERTHISMONTH" value="Před měsícem" />
+		<string id="STR_NODE_TITLE_LASTMONTH" value="Poslední měsíc" />
+		<string id="STR_NODE_TITLE_EARLIERTHISQUARTER" value="Před čtvrtletním" />
+		<string id="STR_NODE_TITLE_LASTQUARTER" value="Poslední čtvrtletí" />
+		<string id="STR_NODE_TITLE_EARLIERTHISYEAR" value="Před rokem" />
+		<string id="STR_NODE_TITLE_LASTYEAR" value="Poslední rok" />
+		<string id="STR_NODE_TITLE_OLDER" value="Starší" />
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="Sbírky" />
+		<string id="STR_NODE_TITLE_ALLBOOKMARKS" value="Všechny záložky" />
+		<string id="STR_NODE_TITLE_NOWPLAYING" value="Nyní hraje" />
+		<string id="STR_NODE_TITLE_AUDIO" value="Audio" />
+		<string id="STR_NODE_TITLE_PICTURE" value="Obrázky" />
+		<string id="STR_NODE_TITLE_SETTINGS" value="Nastavení" />
+		<string id="STR_NODE_TITLE_ORIENTATION" value="Orientace" />
+		<string id="STR_NODE_COMMENT_HORIZONTAL" value="Horizontálně" />
+		<string id="STR_NODE_COMMENT_VERTICAL" value="Vertikálně" />
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="Datum a čas" />
+		<string id="STR_NODE_TITLE_YEAR" value="Rok" />
+		<string id="STR_NODE_TITLE_MONTH" value="Měsíc" />
+		<string id="STR_NODE_TITLE_DATE" value="Den" />
+		<string id="STR_NODE_TITLE_HOUR" value="Hodina" />
+		<string id="STR_NODE_TITLE_MINUTE" value="Minuta" />
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="Zámek zařízení" />
+		<string id="STR_NODE_TITLE_ENTERCODE" value="Zadejte kód" />
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="Prezentace" />
+		<string id="STR_NODE_TITLE_TURN" value="Stav" />
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="Doba zobrazení" />
+		<string id="STR_NODE_TITLE_SLEEPMODE" value="Režim spánku" />
+		<string id="STR_NODE_TITLE_ADBANCEDSETTINGS" value="Rozšířená nastavení" />
+		<string id="STR_NODE_TITLE_FORMATINTERNALMEMORY" value="Formátování interní paměti" />
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="Vypnutí zařízení" />
+		<string id="STR_NODE_TITLE_ABOUT" value="Informace" />
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="Nastavit původní" />
+		<string id="STR_NODE_TITLE_CODE" value="Kód" />
+		<string id="#STR_NODE_TITLE_AUTORUN" value="autoRun" />
+		<string id="#STR_NODE_TITLE_HARDRESET" value="hardReset" />
+		<string id="STR_COUNTER_BOOKMARK_N" value=" záložek (záložky)" />
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 záložka" />
+		<string id="STR_COUNTER_BOOKMARK_0" value="Žádné záložky" />
+		<string id="STR_COUNTER_ITEM_N" value=" položek (položky)" />
+		<string id="STR_COUNTER_ITEM_1" value="1 položka" />
+		<string id="STR_COUNTER_ITEM_0" value="Žádné položky" />
+		<string id="STR_COUNTER_PAGE_N" value=" stránek (stránky)" />
+		<string id="STR_COUNTER_PAGE_1" value="1 stránka" />
+		<string id="STR_COUNTER_PAGE_0" value="Žádná stránka" />
+		<string id="STR_COUNTER_UTILITIES_N" value=" služeb (služby)" />
+		<string id="STR_COUNTER_UTILITIES_1" value="1 služba" />
+		<string id="STR_COUNTER_UTILITIES_0" value="Žádné služby" />
+		<string id="STR_COUNTER_BOOK_N" value=" knížek (knížky)" />
+		<string id="STR_COUNTER_BOOK_1" value="1 knížka" />
+		<string id="STR_COUNTER_BOOK_0" value="Žádné knížky" />
+		<string id="STR_COUNTER_COLLECTION_N" value=" sbírek (sbírky)" />
+		<string id="STR_COUNTER_COLLECTION_1" value="1 sbírka" />
+		<string id="STR_COUNTER_COLLECTION_0" value="Žádné sbírky" />
+		<string id="STR_COUNTER_SONG_N" value=" skladeb (skladby)" />
+		<string id="STR_COUNTER_SONG_1" value="Jednu skladbu" />
+		<string id="STR_COUNTER_SONG_0" value="Žádná skladba" />
+		<string id="STR_COUNTER_NOSONG" value="Žádná skladba" />
+		<string id="STR_COUNTER_PICTURE_N" value=" obrázků (obrázky)" />
+		<string id="STR_COUNTER_PICTURE_1" value="1 obrázek" />
+		<string id="STR_COUNTER_PICTURE_0" value="Žádné obrázky" />
+		<string id="STR_COUNTER_SETTING_N" value=" nastavení" />
+		<string id="STR_COUNTER_SETTING_1" value="1 nastavení" />
+		<string id="STR_COUNTER_SETTING_0" value="0 nastavení" />
+		<string id="STR_UI_BUTTON_OK" value="OK" />
+		<string id="STR_UI_BUTTON_On" value="Zap." />
+		<string id="STR_UI_BUTTON_Off" value="Vyp." />
+		<string id="STR_UI_BUTTON_ABLE" value="Zap." />
+		<string id="STR_UI_BUTTON_DISABLE" value="Vyp." />
+		<string id="STR_UI_UNITNAME_SECONDS" value="vteřin(y)" />
+		<string id="STR_UI_UNITNAME_SIZEKB" value="KB" />
+		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
+		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
+		<string id="STR_UI_DELIMITER_POINT" value="." />
+		<string id="STR_UI_PARTS_PART" value="Část " />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Stránka " />
+		<string id="STR_UI_PARTS_OF" value=" vyp " />
+		<string id="STR_UI_PARTS_UNKNOWN" value="?" />
+		<string id="STR_UI_PARTS_VERSION" value="Verze: " />
+		<string id="STR_UI_PARTS_DEVICE" value="Přístroj: " />
+		<string id="STR_UI_GOTOPAGE" value="Stránka" />
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="Špatná stránka!" />
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="Chráněná stránka!" />
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="Chyba stránky!" />
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="Špatný formát!" />
+		<string id="STR_UI_MESSAGE_FORMATTING" value="Formátuji..." />
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="Chráněno" />
+		<string id="STR_UI_MESSAGE_DRMFULL" value="Vše, zobrazeno" />
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="Paměťová karta" />
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="Vnitřní paměť" />
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="Prošlé" />
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="Dnes" />
+		<string id="STR_UI_MESSAGE_FORMATTINGINTERNALMEMORY" value="Formátuji vnitřní paměť" />
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="Vypínám..." />
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDYES" value="Autorizováno pro prodejnu eknih." />
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDNO" value="Neutorizováno pro prodejnu eknih." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDYES" value="Tento přístroj je autorizován pro obsah chráněný Adobe DRM." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="Tento přístroj není autorizován pro obsah chráněný Adobe DRM." />
+		<string id="STR_UI_MESSAGE_RESTOREDEFAULTSOPERATION" value="Stiskněte XXMARKXX (Tlačítko záložka) pro obnovení základních nastavení." />
+		<string id="STR_UI_MESSAGE_CLEARHISTORYOPERATION" value="Stiskněte XXMARKXX (Tlačítko záložka) pro vymazání historie" />
+		<string id="STR_UI_MESSAGE_FORMATOPERATION" value="Stiskněte XXMARKXX (Tlačítko záložka) pro formátování vnitřní paměti." />
+		<string id="STR_UI_MESSAGE_DELETEBOOKOPERATION" value="Stiskněte XXMARKXX (Tlačítko záložka) pro smazání knihy." />
+		<string id="STR_UI_MESSAGE_REMOVEALLBOOKMARKSOPERATION" value="Stiskněte XXMARKXX (Tlačítko záložka) pro smazání všech záložek" />
+		<string id="STR_UI_MESSAGE_SHUTDOWNOPERATION" value="Stiskněte XXMARKXX (Tlačítko záložka) pro vypnutí zařízení." />
+		<string id="STR_UI_MESSAGE_HARDRESET" value="Resetuj vše" />
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="Opravdu chcete smazat veškerý obsah, obnovit tovární nastavení, a vymazat autorizační stav DRM?&#xA;&#xA;Ano - zmáčkněte tlačítko VOLBY&#xA;Ne - zmáčkněte tlačítko DOMU" />
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="Nízký stav baterie!" />
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="Žádná baterie!" />
+		<string id="STR_UI_MESSAGE_LOADING" value="Nahrávám..." />
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 z 1" />
+		<string id="STR_UI_MESSAGE_CANNOTDELETEBOOK" value="Nemohu smazat knihu." />
+		<string id="STR_UI_FORMAT_RTF" value="Rich Text Formát" />
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF" />
+		<string id="STR_UI_FORMAT_EPUB" value="Dokument EPUB" />
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB Book" />
+		<string id="STR_UI_FORMAT_TXT" value="Volný text" />
+		<string id="STR_UI_TITLESORTLABEL1" value="0-9" />
+		<string id="STR_UI_TITLESORTLABEL2" value="A B C" />
+		<string id="STR_UI_TITLESORTLABEL3" value="D E F" />
+		<string id="STR_UI_TITLESORTLABEL4" value="G H I" />
+		<string id="STR_UI_TITLESORTLABEL5" value="J K L" />
+		<string id="STR_UI_TITLESORTLABEL6" value="M N O" />
+		<string id="STR_UI_TITLESORTLABEL7" value="P Q R S" />
+		<string id="STR_UI_TITLESORTLABEL8" value="T U V" />
+		<string id="STR_UI_TITLESORTLABEL9" value="W X Y Z" />
+		<string id="STR_UI_TITLESORTLABEL10" value="Jiný" />
+		<string id="STR_VAL_TITLESORTCRITERION1" value="9" />
+		<string id="STR_VAL_TITLESORTCRITERION2" value="C" />
+		<string id="STR_VAL_TITLESORTCRITERION3" value="F" />
+		<string id="STR_VAL_TITLESORTCRITERION4" value="I" />
+		<string id="STR_VAL_TITLESORTCRITERION5" value="L" />
+		<string id="STR_VAL_TITLESORTCRITERION6" value="O" />
+		<string id="STR_VAL_TITLESORTCRITERION7" value="S" />
+		<string id="STR_VAL_TITLESORTCRITERION8" value="V" />
+		<string id="STR_VAL_TITLESORTCRITERION9" value="Z" />
+		<string id="STR_UI_AUTHORSORTLABEL1" value="0-9" />
+		<string id="STR_UI_AUTHORSORTLABEL2" value="A B C" />
+		<string id="STR_UI_AUTHORSORTLABEL3" value="D E F" />
+		<string id="STR_UI_AUTHORSORTLABEL4" value="G H I" />
+		<string id="STR_UI_AUTHORSORTLABEL5" value="J K L" />
+		<string id="STR_UI_AUTHORSORTLABEL6" value="M N O" />
+		<string id="STR_UI_AUTHORSORTLABEL7" value="P Q R S" />
+		<string id="STR_UI_AUTHORSORTLABEL8" value="T U V" />
+		<string id="STR_UI_AUTHORSORTLABEL9" value="W X Y Z" />
+		<string id="STR_UI_AUTHORSORTLABEL10" value="Other" />
+		<string id="STR_VAL_AUTHORSORTCRITERION1" value="9" />
+		<string id="STR_VAL_AUTHORSORTCRITERION2" value="C" />
+		<string id="STR_VAL_AUTHORSORTCRITERION3" value="F" />
+		<string id="STR_VAL_AUTHORSORTCRITERION4" value="I" />
+		<string id="STR_VAL_AUTHORSORTCRITERION5" value="L" />
+		<string id="STR_VAL_AUTHORSORTCRITERION6" value="O" />
+		<string id="STR_VAL_AUTHORSORTCRITERION7" value="S" />
+		<string id="STR_VAL_AUTHORSORTCRITERION8" value="V" />
+		<string id="STR_VAL_AUTHORSORTCRITERION9" value="Z" />
+		<string id="STR_FORMAT_DATE" value="MM/DD/RR" />
+		<string id="STR_UI_MESSAGE_USBDONOT" value="Neodpojujte" />
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="USB připojeno" />
+		<string id="STR_UI_MESSAGE_LOCKED" value="Přístroj zamknut" />
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,‘,’,“,”" />
+		<string id="STR_SORT_IGNOREARTICLES" value="a ,an ,the " />
+		<string id="infoTitles" value="Cover,Title,Author,Publisher,Category,eBook ID,Kind,Date,Size,Location,Path,Digital Rights,Expiration Date" />
+		<string id="STR_UPDATE_SUCCESS" value="Nyní updatuji firmware..." />
+		<string id="STR_UPDATE_FAIL" value="Aktualizace firmware nebyla úspěšně dokončena . Prosím zkuste znovu." />
+		<string id="STR_NODE_TITLE_PREVIOUS_VIEW" value="Předchozí zobrazení" />
+		<string id="STR_NODE_TITLE_NEXT_VIEW" value="Další zobrazení" />
+		<string id="STR_NODE_TITLE_WELCOME" value="Vítejte!" />
+		<string id="STR_UI_MESSAGE_WELCOME" value="Hello from Sony. What you hold in your hands&#xA;is the future of reading. To experience this&#xA;now, tap anywhere on the screen." />
+		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Jazyk nabídky" />
+		<string id="STR_UI_LANG" value="Jazyk" />
+		<string id="STR_UI_LANG_EN" value="Angličtina" />
+		<string id="STR_UI_LANG_FR" value="Francouština" />
+		<string id="STR_UI_LANG_DE" value="Němčina" />
+		<string id="STR_UI_LANG_NL" value="Holandština" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="Vyberte svůj oblíbený jazyk a stiskněte OK.&#xA;Poznámka: nastavení přístroje lze později změnit v menu nastavení." />
+		<string id="STR_UI_PARTS_DELIMITER" value="/" />
+		<string id="STR_UI_MESSAGE_DEMOMODE" value="(Demonstrační mód)" />
+		<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value="Demonstrační šetřič" />
+		<string id="STR_NODE_TITLE_HOME" value="Domů" />
+		<string id="STR_NODE_TITLE_OPTIONS" value="Volby" />
+		<string id="STR_UI_MESSAGE_DELETEALLBOOKMARKS" value="Tato stránka obsahuje záložku(y) označené v jiné velikosti fontu nebo v jiném přístroji. Opravdu chcete smazat záložky na této stránce?" />
+		<string id="STR_DEMO_NOTAVAILABLE" value="Toto nastavení není přístupné v demonstračním módu. Stiskněte tlačítko XXRETURNXX(Zpět) pro návrat na předchozí obrazovku." />
+		<string id="STR_DEMO_TITLE" value="DEMO MÓD" />
+		<string id="STR_UI_MESSAGE_REMOVEBOOKMARKSOPERATION" value="Stiskněte tlačítko XXMARKXX (Záložky) pro vyjmutí záložky." />
+		<string id="STR_UI_MESSAGE_NOTE_BOOKMARKOPERATION" value="Poznámka: tato stránka obsahuje ve více velikostech textu.  Pokud budete pokračovat, všechny poznámky na straně budou smazány." />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="Název: &quot;XXTITLEXX&quot;" />
+		<string id="STR_NODE_TITLE_REMOVEBOOKMARK" value="Odstranit záložku" />
+		<string id="STR_UI_MESSAGE_MENURETURN" value="Stiskněte tlačítko XXRETURNXX(Zpět) pro návrat" />
+		<string id="STR_NODE_TITLE_DATE_TIME_FORMAT_SETTINGS" value="Formát data a času" />
+		<string id="STR_UI_DATE" value="Datum" />
+		<string id="STR_UI_BUTTON_MMDDYY" value="Měsíc-den-rok" />
+		<string id="STR_UI_BUTTON_DDMMYY" value="Den-měsíc-rok" />
+		<string id="STR_UI_TIME" value="Čas" />
+		<string id="STR_UI_BUTTON_12HR" value="12 hodinový" />
+		<string id="STR_UI_BUTTON_24HR" value="24 hodinový" />
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / " />
+		<string id="STR_UI_MESSAGE_NOTE_DELETE_ALL_CONTENTS" value="Poznámka: veškerý obsah bude smazán." />
+		<string id="STR_UI_MESSAGE_NOBOOK" value="Žádná kniha" />
+		<string id="STR_NODE_TITLE_BOOK" value="Knížky" />
+		<string id="STR_NODE_TITLE_SORTEDBYTITLE" value="Seřazeno podle názvu" />
+		<string id="STR_NODE_TITLE_SORTEDBYAUTHOR" value="Seřazeno podle autora" />
+		<string id="STR_NODE_TITLE_SORTEDBYDATE" value="Seřazeno podle data" />
+		<string id="STR_NODE_TITLE_SORTEDBYORDER" value="Seřazeno podle pořadí" />
+		<string id="STR_NODE_TITLE_ALLNOTES" value="Všechny poznámky" />
+		<string id="STR_NODE_TITLE_SORTEDBYCOMMENT" value="Seřazeno podle komentáře" />
+		<string id="STR_NODE_TITLE_SORTEDBYTYPE" value="Seřazeno podle typu" />
+		<string id="STR_NODE_TITLE_SORTEDBYARTIST" value="Seřazeno podle umělce" />
+		<string id="STR_NODE_TITLE_NEXTPAGE" value="Další stránka" />
+		<string id="STR_NODE_TITLE_PAGETURNGESTURE" value="Gesta pro otočení stránky" />
+		<string id="STR_NODE_TITLE_ADVANCEDSETTINGS" value="Rozšířená nastavení" />
+		<string id="STR_NODE_TITLE_TOUCHPANEL" value="Kalibrace dotykové obrazovky" />
+		<string id="STR_NODE_TITLE_CLEARKEYBOARDHISTORY" value="Vymazání historie klávesnice" />
+		<string id="STR_NODE_TITLE_SEARCHRESULTS" value="Výsledky hledání" />
+		<string id="STR_COUNTER_NOTES_N" value=" poznámek (poznámky)" />
+		<string id="STR_COUNTER_NOTE_1" value="1 poznámka" />
+		<string id="STR_COUNTER_NOTE_0" value="Žádné poznámky" />
+		<string id="STR_NODE_TITLE_SORTEDBYPAGE" value="Seřazeno podle stránky" />
+		<string id="STR_NODE_TITLE_POWERMANAGEMENT" value="Správa napájení" />
+		<string id="STR_UI_MENU_SORT" value="Řadit" />
+		<string id="STR_UI_MENU_BYORDER" value="podle pořadí" />
+		<string id="STR_UI_MENU_BYTITLE" value="podle názvu" />
+		<string id="STR_UI_MENU_BYAUTHOR" value="podle autora" />
+		<string id="STR_UI_MENU_BYDATE" value="podle data" />
+		<string id="STR_UI_MENU_VIEW" value="Zobraz" />
+		<string id="STR_UI_MENU_LIST" value="Seznam" />
+		<string id="STR_UI_MENU_THUMBNAIL" value="Náhled" />
+		<string id="STR_UI_MENU_NOWPLAYING" value="Nyní hraje" />
+		<string id="STR_UI_MENU_ORIENTATION" value="Orientace" />
+		<string id="STR_UI_MENU_SEARCHTITLE" value="Hledat" />
+		<string id="STR_UI_MENU_CLOSETHISBOOK" value="Návrat na seznam" />
+		<string id="STR_UI_MENU_GOTOPAGE" value="Přejít na stránku" />
+		<string id="STR_UI_MENU_CREATEEDITNOTES" value="Správa poznámek" />
+		<string id="STR_UI_MENU_SHOWNOTES" value="Zobrazit poznámky" />
+		<string id="STR_UI_MENU_HIDENOTES" value="Skrýt poznámky" />
+		<string id="STR_UI_MENU_TABLEOFCONTENTS" value="Obsah" />
+		<string id="STR_UI_MENU_BOOKINFO" value="Info" />
+		<string id="STR_UI_MENU_DELETEBOOK" value="Smazat knihu" />
+		<string id="STR_UI_MENU_SEARCHAKEYWORD" value="Hledat" />
+		<string id="STR_UI_MENU_HISTORYJUMP" value="Historie" />
+		<string id="STR_UI_MENU_CLOSETHISMUSIC" value="Návrat na seznam" />
+		<string id="STR_UI_MENU_OFF" value="Vyp" />
+		<string id="STR_UI_MENU_SONG_1" value="1 Skladba" />
+		<string id="STR_UI_MENU_SONG_ALL" value="Všechny skladby" />
+		<string id="STR_UI_MENU_SHUFFLEON" value="Náhodné přehrávání zap." />
+		<string id="STR_UI_MENU_SHUFFLEOFF" value="Náhodné přehrávání vyp." />
+		<string id="STR_UI_MENU_CONTINUEREADING" value="Pokračovat ve čtení" />
+		<string id="STR_UI_MENU_CLOSETHISPICTURE" value="Návrat na seznam" />
+		<string id="STR_UI_MENU_SLIDESHOWOFF" value="Prezentace vyp." />
+		<string id="STR_UI_MENU_SLIDESHOWON" value="Prezentace zap." />
+		<string id="STR_UI_MENU_BYARTIST" value="podle autora" />
+		<string id="STR_UI_MENU_BYPAGE" value="podle stránky" />
+		<string id="STR_UI_MENU_BYTYPE" value="podle typu" />
+		<string id="STR_UI_MENU_BYCOMMENT" value="podle komentáře" />
+		<string id="STR_UI_MENU_DELETENOTES" value="Smazat poznámky" />
+		<string id="STR_UI_MESSAGE_RESET" value="Opravdu chcete obnovit původní nastavení?" />
+		<string id="STR_UI_MESSAGE_FORMATINTERNALMEMORY" value="Formátování vnitřní paměti" />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE" value="Opravdu chcete formátovat vnitřní paměť?&#xA;Varování: veškerý obsah včetně poznámek bude smazán." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_MS" value="Opravdu chcete formátovat kartu Memory Stick?&#xA;Varování: veškerý obsah včetně poznámek bude smazán." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_SD" value="Opravdu chcete formátovat SD kartu?&#xA;Varování: veškerý obsah včetně poznámek bude smazán." />
+		<string id="STR_UI_MESSAGE_DELETEBOOK" value="Opravdu chcete smazat tuto knihu?" />
+		<string id="STR_UI_MESSAGE_DELETEBOOKERR" value="Nemohu smazat knihu. Stiskněte OK pro návrat do seznamu knih." />
+		<string id="STR_UI_MESSAGE_DELETEHISTORICAL" value="Opravdu chcete smazat hisorii kláves?" />
+		<string id="STR_UI_MESSAGE_DEVICE_SHUTDOWN" value="Opravdu chcete vypnout přístroj?" />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONSTART" value="Stiskněte Ano pro start kalibrace dotykového displeje." />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONEND" value="Kalibrace dotykového displeje dokončena." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_1" value="Toto nastavení není přístupné v demonstračním módu." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_2" value="Tato funkce není přístupná v demonstračním módu." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_START" value="Ťukněte stylusem na střed&#xA;cíle." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_ERR" value="Zjištěna chyba kalibrace.&#xA;Spusťte znovu kalibrační proces." />
+		<string id="STR_UI_BUTTON_YES" value="Ano" />
+		<string id="STR_UI_BUTTON_NO" value="Ne" />
+		<string id="STR_UI_BUTTON_ZOOMIN" value="Zvětšit" />
+		<string id="STR_UI_BUTTON_SEARCH" value="Hledat" />
+		<string id="STR_UI_BUTTON_DONE" value="Hotovo" />
+		<string id="STR_UI_BUTTON_GO" value="Přejít" />
+		<string id="STR_UI_BUTTON_ENTERPAGE" value="Na stránku #" />
+		<string id="STR_UI_BUTTON_NEW" value="Nová" />
+		<string id="STR_UI_BUTTON_LIST" value="Seznam" />
+		<string id="STR_UI_SHORTCUT_HIGHLIGHT" value="Zvýraznění" />
+		<string id="STR_UI_SHORTCUT_SEARCH" value="Hledat" />
+		<string id="STR_UI_SHORTCUT_DICTIONARY" value="Slovník" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING" value="Slovník" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING_l" value="slovník" />
+		<string id="STR_DICTIONARY_US" value="New Oxford American Dictionary" />
+		<string id="STR_DICTIONARY_BRITISH" value="Oxford Dictionary of English" />
+		<string id="STR_DICTIONARY_NO" value="Žádný" />
+		<string id="STR_NODE_TITLE_DATEANDTIMEFORMAT_SETTING" value="Formát data a času" />
+		<string id="STR_UI_PARTS_MONTH" value="Měsíc" />
+		<string id="STR_UI_PARTS_DAY" value="Den" />
+		<string id="STR_UI_PARTS_YEAR" value="Rok" />
+		<string id="STR_UI_PARTS_HOUR" value="hodin" />
+		<string id="STR_UI_MESSAGE_RESTARTING" value="Restartuji..." />
+		<string id="STR_UI_NODE_TITLE_KEYBOARD" value="Klávesnice" />
+		<string id="STR_UI_KEYBOARD_US" value="Spojené státy" />
+		<string id="STR_UI_KEYBOARD_UK" value="Velká Británie" />
+		<string id="STR_UI_KEYBOARD_FRENCH" value="Francie" />
+		<string id="STR_UI_KEYBOARD_GERMAN" value="Nemecko" />
+		<string id="STR_UI_KEYBOARD_NETHERLANDS" value="Holandsko" />
+		<string id="STR_UI_BUTTON_DICTIONARY_LIST" value="Seznam" />
+		<string id="STR_UI_BUTTON_DICTIONARY_DETAIL" value="Detailně" />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP1" value="Stránku nelze zobrazit." />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP2" value="" />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_CANNOT_EDIT" value="Tento náčrt nelze upravit." />
+		<string id="DIALOGMSG_INFORM_SCR_CANNOT_EDIT" value="Tuto poznánku nelze upravit." />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_FREEHAND" value="Nový náčrt" />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_TEXT" value="Nová poznámka" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYFREEHAND" value="podle náčrtů" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYTEXT" value="podle kláves" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_MS" value="Formátovat Memory Stick" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_SD" value="Formátovat SD Card" />
+		<string id="STR_NODE_TITLE_FORMATDEVICE" value="Formátování paměťi" />
+		<string id="STR_NODE_TITLE_FORMAT_INTERNAL" value="Formátovat vnitřní paměť" />
+		<string id="STR_NODE_TITLE_FORMAT_MS" value="Memory Stick" />
+		<string id="STR_NODE_TITLE_FORMAT_SD" value="SD Card" />
+		<string id="STR_UI_FORMAT_INTERNAL_MEMORY" value="Formátuji vnitřní paměť..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_MS" value="Formátuji Memory Stick..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_SD" value="Formátuji SD Card..." />
+		<string id="STR_WARNING_FORMAT_1" value="Formátuji..." />
+		<string id="STR_WARNING_FORMAT_2_MS" value="Nevyjímejte kartu Memory Stick." />
+		<string id="STR_WARNING_FORMAT_2_SD" value="Nevyjímejte kartu SD." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_1" value="Opravdu chcete smazat tuto záložku?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_2" value="Poznámka: Tato stránka obsahuje záložku ve více než jedné velikosti textu. Pokud budete pokračovat, všechny záložky na stránce budou smazány." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_1" value="Opravdu chcete smazat tuto záložku?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_2" value="Poznámka: Tato stránka obsahuje záložku s poznámkou ve více než jedné velikosti textu. Pokud budete pokračovat, všechny záložky a poznámky na stránce budou smazány." />
+		<string id="STR_FORMAT_NO_MEMORY" value="Paměťová karta není vložena" />
+		<string id="STR_FORMAT_WRITE_PROTECTED" value="Paměťová karta je chráněna proti zápisu" />
+		<string id="STR_FORMAT_NON_STANDARD" value="Paměťová karta není podporována" />
+		<string id="STR_NODE_TITLE_NOTEPAD_FREEHAND" value="Náčrty" />
+		<string id="STR_NODE_TITLE_NOTEPAD_TEXT" value="Poznámky" />
+		<string id="STR_NODE_TITLE_SORTEDBYCREATEDDATE" value="Seřazeno podle data vytvoření" />
+		<string id="STR_NODE_TITLE_MORE" value="Další" />
+		<string id="STR_NODE_TITLE_MORE_FULL" value="Další aplikace" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK1" value="Opravdu chcete smazat záložku s poznámkou?" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK2" value="" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT1" value="Opravdu chcete smazat zvýraznění s poznámkou?" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT2" value="" />
+		<string id="DIALOGMSG_INFORM_NOHITS" value="Nenalezeno." />
+		<string id="DIALOGMSG_INFORM_NOMOREHITS" value="Nenalezeno." />
+		<string id="DIALOGMSG_CONFIRM_BACKWARDSEARCH" value="Chcete pokračovat ve vyhledávání od konce knihy?" />
+		<string id="DIALOGMSG_CONFIRM_FORWARDSEARCH" value="Chcete pokračovat ve vyhledávání od začátku knihy?" />
+		<string id="STR_MSG_SEARCHING" value="Vyhledávám..." />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK1" value="Opravdu chcete smazat záložku s poznámkou?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK2" value="" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT1" value="Opravdu chcete smazat zvýraznění s poznámkou?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_CMT_EDIT_QUIT" value="Pokud budete pokračovat, změny nebudou uloženy. Opravdu chcete pokračovat?" />
+		<string id="DIALOGMSG_CONFIRM_SCR_EDIT_QUIT" value="Pokud budete pokračovat, změny nebudou uloženy. Opravdu chcete pokračovat?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES1" value="Všechny poznámky budou odstraněny." />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES2" value="Opravdu chcete smazat?" />
+		<string id="KBOOK_UI_MYNOTE" value="Poznámky" />
+		<string id="STR_UI_KEYBOARD_SYMBOL" value="Symboly" />
+		<string id="STR_UI_KEYBOARD_SPACE" value="Mezera" />
+		<string id="STR_UI_KEYBOARD_ABC" value="Abc" />
+		<string id="STR_UI_KEYBOARD_RETURN" value="Návrat" />
+		<string id="STR_UI_COMMENTVIEWER_EDIT" value="Upravit" />
+		<string id="STR_UI_COMMENTVIEWER_DELETE" value="Smazat" />
+		<string id="STR_UI_AUDIO_REPEAT" value="Opakovat" />
+		<string id="STR_NODE_TITLE_HOMEPERSONALIZATION" value="Přizpůsobení hlavní nabídky" />
+		<string id="STR_UI_PARTS_LEFT" value="VLEVO" />
+		<string id="STR_UI_PARTS_RIGHT" value="VPRAVO" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_FREEHAND" value="Smazat náčrt" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_TEXT" value="Smazat poznámku" />
+		<string id="STR_UI_MENU_CLOSETHISNOTEPAD_FREEHAND" value="Návrat na seznam" />
+		<string id="STR_UI_MENU_CLOSETHISNOTEPAD_TEXT" value="Návrat na seznam" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND1" value="Opravdu chcete smazat tento náčrt?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND2" value="" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT1" value="Opravdu chcete smazat tuto poznámku?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT1" value="Pokud budete pokračovat nebudou změny uloženy. Opravdu chcete pokračovat?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT1" value="Pokud budete pokračovat nebudou změny uloženy. Opravdu chcete pokračovat?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT1" value="Pokud budete pokračovat nebude náčrt uložen. Opravdu chcete pokračovat?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT1" value="Pokud budete pokračovat nebude poznámka uložena. Opravdu chcete pokračovat?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT2" value="" />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_RESULT" value="Definice nenalezena." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_INPUT_KEYBOARD" value="Zapište výraz." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_HEADWORD" value="Záznam nenalezen.&#xA;Prosím zkontrolujte zadaný výraz." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SUPPORTED" value="Slovník vypnut." />
+		<string id="STR_UI_DICTIONARY_ENTRIES_PAGE" value="Vstupy, P." />
+		<string id="STR_UI_DICTIONARY_ENTRY_PAGE" value="Vstup, P." />
+		<string id="STR_COUNTER_DRAWING_N" value=" náčrtů (náčrty)" />
+		<string id="STR_COUNTER_DRAWING_1" value="1 náčrt" />
+		<string id="STR_COUNTER_DRAWING_0" value="Žádný náčrt" />
+		<string id="STR_COUNTER_MEMO_N" value=" poznámek (poznámky)" />
+		<string id="STR_COUNTER_MEMO_1" value="1 poznámka" />
+		<string id="STR_COUNTER_MEMO_0" value="Žádné poznámky" />
+		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="Vyjímečný stav vnitřní paměti.&#xA;Formátuji." />
+	</assets>
+</document>

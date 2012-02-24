@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<language xmlns="http://www.kinoma.com/fskin/1">
+	<name>English</name>
+	<txtWelcome>Hello from Sony. What you hold in your hands&#xA;is the future of reading. To experience this&#xA;now, tap anywhere on the screen.</txtWelcome>
+	<txtGuideAreaLang>Elija su idioma favorito y seleccione “OK”.&#xA;Nota:  podrá modificar la configuración del aparato mas tarde en el menú “configuración”.</txtGuideAreaLang>
+	<txtCalibration1>Using the stylus, tap on the center&#xA;of the target.</txtCalibration1>
+	<txtCalibration2>Calibration error detected.&#xA;Please restart calibration process.</txtCalibration2>
+</language>

@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="DOCUMENT">
+    <assets>
+		<import href="../AppAssets/AppAssets.xml"/>
+		
+        <behavior id="squareSprite">
+            <script on="mouseUp" params="event">
+				if (this.hitBounds(event.x, event.y))
+					this.bubble("doSquareClick",this);
+            </script>
+        </behavior>	
+        <behavior id="selectSprite">
+            <script on="mouseUp" params="event">
+				if (this.hitBounds(event.x, event.y))
+					this.bubble("doSelectClick",this);
+            </script>
+        </behavior>
+		<!--behavior id="iconSprite">
+		    <script on="mouseUp" params="event">
+	    		if (this.hitBounds(event.x, event.y))
+					this.bubble("doRoot",this);
+		    </script>
+		</behavior-->			
+        <style font="Swis721 BT">
+          <style id="sumText" size="40" style="bold" color="#000000"/>
+          <style id="sometext" size="22" style="bold" color="#000000"/>
+          <style id="digits" size="22" style="bold" color="#666666"/>
+          <style id="klWeis" size="18" style="bold" color="#FFFFFF" align="center"/>
+          <style id="touchText" size="12" style="bold" color="#000000"/>
+			<style id="copyText" size="11" style="" color="#BBBBBB"/>
+			<style id="tinyText" size="10" style="bold" color="#000000"/>
+			<style id="versText" size="40" style="bold" color="#FFFFFF"/>
+
+			<!--For pop-up panels-->
+			<style id="swis24gry" size="24" style="" right="15" halign="right" top="5" color="#6D6D6D"/>
+			<style id="swis32blk" size="32" style="" color="#000000"/>
+			<style id="swis24blk" size="24" style="" right="20" halign="right" top="5" color="#000000"/>
+			<style id="swis16blk" size="16" style="bold" color="#000000"/>		
+        </style>
+
+		<style id="dialog" background="#80000000"/>			
+		
+  		<style font="Swis721 BT" size="20" style="bold">
+			<style id="etext-e" halign="left" left="8" top="8" right="8" bottom="8">
+				<style id="etext-d" color="#959595" background="#6D6D6D"/>
+				<style id="etext-p" background="#B49AFF"/>
+				<style id="etext-s" background="#B49AFF"/>
+			</style>	
+		</style>		
+	
+        <texture href="calendarSkins/calendarGraphics.png">
+            <cutout id="selectcalsquare" x="0" y="0" width="70" height="70"/>
+			<cutout id="highlightcalsquare" x="70" y="0" width="70" height="70"/>
+			<cutout id="calendarsquare" x="140" y="0" width="70" height="70" columns="70"/>
+			<cutout id="null32h" x="0" y="75" width="1" height="32" lines="1"/>
+        </texture>
+		
+        <skin id="klWeis" 		styles="klWeis"/>
+        <skin id="sumText" 		styles="sumText"/>
+        <skin id="sometext" 	styles="sometext"/>
+        <skin id="digits" 		styles="digits"/>
+		<skin id="selectSquare"	cutouts="selectcalsquare"/>
+		<skin id="calendarSquare"	cutouts="calendarsquare"/>
+		<skin id="highlightSquare"	cutouts="highlightcalsquare"/>
+        <skin id="touchText" styles="touchText"/>
+		<skin id="tinyText" styles="tinyText"/>
+		<skin id="copyText" styles="copyText"/>
+      	<skin id="eventText"
+				cutouts="htext-lt,htext-ct,htext-rt,htext-lm,htext-cm,htext-rm,htext-lb,htext-cb,htext-rb" 
+				styles="etext-e,etext-e,etext-p,etext-s"/>
+		<skin id="yearText" 	styles="versText"/>
+				
+		<!--Assests for pop-up panels-->	
+		<skin id="swis16blk" styles="swis16blk"/>	
+		<skin id="swis20blk" styles="menu_e"/>
+		<skin id="swis24gry" styles="swis24gry"/>	
+		<skin id="swis24blk" styles="swis24blk"/>
+		<skin id="swis32blk" styles="swis32blk"/>
+		<skin id="customText"
+			cutouts="htext-lt,htext-ct,htext-rt,htext-lm,htext-cm,htext-rm,htext-lb,htext-cb,htext-rb" 
+			styles="swis24blk,swis24blk,swis24blk,swis24blk"/>
+		<skin id="nullButton" 
+			cutouts="null32h,null32h,null32h"
+			styles="button-d,button-e,button-p,button-s"/>			
+    </assets>
+
+	<model>
+		<variable id="week_begins" value="1"/>
+		<variable id="event_num" value="1"/>
+		<variable id="event_type" value="1"/>
+		<variable id="event_month" value="1"/>
+		<variable id="event_day" value="1"/>
+		<variable id="event_year" value="1"/>
+		<variable id="event_icon" value="1"/>
+		<variable id="event_description" value=""/>
+	</model>	
+
+    <code>
+		<function id="runJs" params="path,target">
+			try {
+				var f = new Stream.File(path);          
+				var fn = new Function("target", f.toString());
+				fn(target);
+				delete fn;
+			}
+			catch(e)
+			{
+			}
+		</function>
+		<function id="loadScript">
+			if (!this.hasOwnProperty('_scriptLoaded'))
+				this._scriptLoaded = false;
+			if (!this._scriptLoaded)
+			{
+				if(kbook.autoRunRoot.path==undefined){
+					path = this.getBaseURI().slice(7); 		
+					kbook.model=this;
+				}else{
+					path = kbook.autoRunRoot.path;
+				}
+				var index = path.lastIndexOf('/');
+				if (index > 0)
+				   path = path.substring(0, index + 1);
+				this.driveroot = path.substring(0,2);
+				var target = this.AUTORUN_GROUP.AUTORUN;
+				target.driveroot = this.driveroot;
+				target.calendarRoot = path;
+				
+				this.runJs(path+"calendar.js",target);
+				
+			}
+			this._scriptLoaded = true;
+		</function>
+		<function id="modelChanged">
+			arguments.callee.grammar.call(this);
+			var state = this.getVariable("STATE"); 
+			
+			var target;
+
+			if (this.state != state) {
+				this.focus(true)
+				this.AUTORUN_GROUP.show(false)
+				switch(state) {
+				case "AUTORUN":
+					this.loadScript();
+					this.AUTORUN_GROUP.show(true);
+					target = this.AUTORUN_GROUP.AUTORUN;
+					break;
+				}
+				this.state = state;
+				target.init();
+				if (target.isEnabled()) {  
+				
+					target.focus(true);
+					
+				};
+			}           
+		</function>
+    </code>
+
+    <group id="AUTORUN_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+        <panel skin="AppMainSkin" left="0" right="0" top="0" bottom="0"/>
+        <group id="AUTORUN" width="600" top="70" bottom="30">
+        	<sprite id="appIcon" skin="kbookMenuIcon" left="0" width="70" top="-70" height="70" u="0" v="1"/>
+        	   	<!--behave like="iconSprite"/>
+		    </sprite-->
+			<label id="appTitle" skin="title" left="70" right="0" top="-78" height="70" align="left" text="Calendar"/>
+			<label id="copyright" skin="copyText" left="70" right="0" top="-20" height="20" align="left" text="(C) Ben Chenoweth 2011"/>
+			<label id='bigYear' skin='yearText' left='300' right='140' top='-70' height='70' align='right' text="0"/>			
+            <code>
+                <function id="doPrevious">this.doPrev();</function>
+				<function id="doNext">	this.doNext();</function>
+                <function id="doSize">	this.doSize();</function>
+				<function id="doMark">	this.doMark();</function>
+                <function id="doOption">	this.doOption();</function>
+				<function id="doRoot">	this.doRoot();</function>
+				<function id="doMenu">	this.doOption();</function>
+				<function id="doCenter">	this.doCenterF();</function>
+				<function id="doLeft">		this.moveCursor("left");</function>
+				<function id="doRight">		this.moveCursor("right");</function>
+				<function id="doUp">	this.moveCursor("up");</function>
+				<function id="doDown">	this.moveCursor("down");</function>		
+				<function id="doDigit" params="part"> this.digitF(part.key);</function>
+				<function id="doLast">	this.doLast();</function>
+				<function id="doFirst">	this.doFirst();</function>
+            </code>
+			
+			<button id="BUTTON_TDY"		active="true" text="Today"  align="right" right="10" width="90" top="-57" height="45" do="doButtonClick"/>
+			<button id="BUTTON_PYR"		active="true" text="- Year"    left="10" width="90" top="10" height="45" do="doButtonClick"/>
+			<button id="BUTTON_PMN"		active="true" text="- Month"    left="110" width="90" top="10" height="45" do="doButtonClick"/>
+			<button id="BUTTON_NMN"		active="true" text="+ Month"    left="400" width="90" top="10" height="45" do="doButtonClick"/>
+			<button id="BUTTON_NYR"		active="true" text="+ Year"    left="500" width="90" top="10" height="45" do="doButtonClick"/>
+
+          <label id='displayMonth' skin='sometext' left='205' width='190' top='0' height='60' align='center' text="September"/>	
+		  
+		    <label id='labelSun' skin='touchText' left='50' width='70' top='62' height='20' align='center' text="Sun"/>
+		    <label id='labelMon' skin='touchText' left='120' width='70' top='62' height='20' align='center' text="Mon"/>
+		    <label id='labelTue' skin='touchText' left='190' width='70' top='62' height='20' align='center' text="Tue"/>
+		    <label id='labelWed' skin='touchText' left='260' width='70' top='62' height='20' align='center' text="Wed"/>
+		    <label id='labelThu' skin='touchText' left='330' width='70' top='62' height='20' align='center' text="Thu"/>
+		    <label id='labelFri' skin='touchText' left='400' width='70' top='62' height='20' align='center' text="Fri"/>
+		    <label id='labelSat' skin='touchText' left='470' width='70' top='62' height='20' align='center' text="Sat"/>
+			
+            <sprite skin='calendarSquare' id='square0' left="50" width="70" top="80" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events0' skin='tinyText' left='54' width='20' top='130' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square1' left="120" width="70" top="80" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events1' skin='tinyText' left='124' width='20' top='130' height='20' align='left' text=""/>
+			<sprite skin='calendarSquare' id='square2' left="190" width="70" top="80" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events2' skin='tinyText' left='194' width='20' top='130' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square3' left="260" width="70" top="80" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events3' skin='tinyText' left='264' width='20' top='130' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square4' left="330" width="70" top="80" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events4' skin='tinyText' left='334' width='20' top='130' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square5' left="400" width="70" top="80" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events5' skin='tinyText' left='404' width='20' top='130' height='20' align='left' text=""/>
+			<sprite skin='calendarSquare' id='square6' left="470" width="70" top="80" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events6' skin='tinyText' left='474' width='20' top='130' height='20' align='left' text=""/>
+			
+            <sprite skin='calendarSquare' id='square7' left="50" width="70" top="150" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events7' skin='tinyText' left='54' width='20' top='200' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square8' left="120" width="70" top="150" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events8' skin='tinyText' left='124' width='20' top='200' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square9' left="190" width="70" top="150" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events9' skin='tinyText' left='194' width='20' top='200' height='20' align='left' text=""/>
+			<sprite skin='calendarSquare' id='square10' left="260" width="70" top="150" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events10' skin='tinyText' left='264' width='20' top='200' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square11' left="330" width="70" top="150" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events11' skin='tinyText' left='334' width='20' top='200' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square12' left="400" width="70" top="150" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events12' skin='tinyText' left='404' width='20' top='200' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square13' left="470" width="70" top="150" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events13' skin='tinyText' left='474' width='20' top='200' height='20' align='left' text=""/>
+			
+			<sprite skin='calendarSquare' id='square14' left="50" width="70" top="220" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events14' skin='tinyText' left='54' width='20' top='270' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square15' left="120" width="70" top="220" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events15' skin='tinyText' left='124' width='20' top='270' height='20' align='left' text=""/>
+			<sprite skin='calendarSquare' id='square16' left="190" width="70" top="220" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events16' skin='tinyText' left='194' width='20' top='270' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square17' left="260" width="70" top="220" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events17' skin='tinyText' left='264' width='20' top='270' height='20' align='left' text=""/>
+			<sprite skin='calendarSquare' id='square18' left="330" width="70" top="220" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events18' skin='tinyText' left='334' width='20' top='270' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square19' left="400" width="70" top="220" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events19' skin='tinyText' left='404' width='20' top='270' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square20' left="470" width="70" top="220" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events20' skin='tinyText' left='474' width='20' top='270' height='20' align='left' text=""/>
+			
+            <sprite skin='calendarSquare' id='square21' left="50" width="70" top="290" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events21' skin='tinyText' left='54' width='20' top='340' height='20' align='left' text=""/>
+			<sprite skin='calendarSquare' id='square22' left="120" width="70" top="290" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events22' skin='tinyText' left='124' width='20' top='340' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square23' left="190" width="70" top="290" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events23' skin='tinyText' left='194' width='20' top='340' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square24' left="260" width="70" top="290" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events24' skin='tinyText' left='264' width='20' top='340' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square25' left="330" width="70" top="290" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events25' skin='tinyText' left='334' width='20' top='340' height='20' align='left' text=""/>
+			<sprite skin='calendarSquare' id='square26' left="400" width="70" top="290" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events26' skin='tinyText' left='404' width='20' top='340' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square27' left="470" width="70" top="290" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events27' skin='tinyText' left='474' width='20' top='340' height='20' align='left' text=""/>
+			
+            <sprite skin='calendarSquare' id='square28' left="50" width="70" top="360" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events28' skin='tinyText' left='54' width='20' top='410' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square29' left="120" width="70" top="360" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events29' skin='tinyText' left='124' width='20' top='410' height='20' align='left' text=""/>
+			<sprite skin='calendarSquare' id='square30' left="190" width="70" top="360" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events30' skin='tinyText' left='194' width='20' top='410' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square31' left="260" width="70" top="360" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events31' skin='tinyText' left='264' width='20' top='410' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square32' left="330" width="70" top="360" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events32' skin='tinyText' left='334' width='20' top='410' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square33' left="400" width="70" top="360" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events33' skin='tinyText' left='404' width='20' top='410' height='20' align='left' text=""/>
+			<sprite skin='calendarSquare' id='square34' left="470" width="70" top="360" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events34' skin='tinyText' left='474' width='20' top='410' height='20' align='left' text=""/>
+			
+            <sprite skin='calendarSquare' id='square35' left="50" width="70" top="430" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events35' skin='tinyText' left='54' width='20' top='480' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square36' left="120" width="70" top="430" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events36' skin='tinyText' left='124' width='20' top='480' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square37' left="190" width="70" top="430" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events37' skin='tinyText' left='194' width='20' top='480' height='20' align='left' text=""/>
+			<sprite skin='calendarSquare' id='square38' left="260" width="70" top="430" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events38' skin='tinyText' left='264' width='20' top='480' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square39' left="330" width="70" top="430" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events39' skin='tinyText' left='334' width='20' top='480' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square40' left="400" width="70" top="430" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events40' skin='tinyText' left='404' width='20' top='480' height='20' align='left' text=""/>
+            <sprite skin='calendarSquare' id='square41' left="470" width="70" top="430" height="70"  u='1' active='true' canFocus='true' >
+                <behave like="squareSprite"/>
+            </sprite>
+			<label id='events41' skin='tinyText' left='474' width='20' top='480' height='20' align='left' text=""/>
+
+           <label skin='sometext' id='day0' left="50" width="70" top="85" height="30"  align='center' text="1"/>
+            <label skin='sometext' id='day1' left="120" width="70" top="85" height="30"  align='center' text="2"/>
+			<label skin='sometext' id='day2' left="190" width="70" top="85" height="30"  align='center' text="3"/>
+            <label skin='sometext' id='day3' left="260" width="70" top="85" height="30"  align='center' text="4"/>
+            <label skin='sometext' id='day4' left="330" width="70" top="85" height="30"  align='center' text="5"/>
+            <label skin='sometext' id='day5' left="400" width="70" top="85" height="30"  align='center' text="6"/>
+			<label skin='sometext' id='day6' left="470" width="70" top="85" height="30"  align='center' text="7"/>
+			
+            <label skin='sometext' id='day7' left="50" width="70" top="155" height="30"  align='center' text="8"/>
+            <label skin='sometext' id='day8' left="120" width="70" top="155" height="30"  align='center' text="9"/>
+            <label skin='sometext' id='day9' left="190" width="70" top="155" height="30"  align='center' text="10"/>
+			<label skin='sometext' id='day10' left="260" width="70" top="155" height="30"  align='center' text="11"/>
+            <label skin='sometext' id='day11' left="330" width="70" top="155" height="30"  align='center' text="12"/>
+            <label skin='sometext' id='day12' left="400" width="70" top="155" height="30"  align='center' text="13"/>
+            <label skin='sometext' id='day13' left="470" width="70" top="155" height="30"  align='center' text="14"/>
+			
+			<label skin='sometext' id='day14' left="50" width="70" top="225" height="30"  align='center' text="15"/>
+            <label skin='sometext' id='day15' left="120" width="70" top="225" height="30"  align='center' text="16"/>
+			<label skin='sometext' id='day16' left="190" width="70" top="225" height="30"  align='center' text="17"/>
+            <label skin='sometext' id='day17' left="260" width="70" top="225" height="30"  align='center' text="18"/>
+			<label skin='sometext' id='day18' left="330" width="70" top="225" height="30"  align='center' text="19"/>
+            <label skin='sometext' id='day19' left="400" width="70" top="225" height="30"  align='center' text="20"/>
+            <label skin='sometext' id='day20' left="470" width="70" top="225" height="30"  align='center' text="21"/>
+			
+            <label skin='sometext' id='day21' left="50" width="70" top="295" height="30"  align='center' text="22"/>
+			<label skin='sometext' id='day22' left="120" width="70" top="295" height="30"  align='center' text="23"/>
+            <label skin='sometext' id='day23' left="190" width="70" top="295" height="30"  align='center' text="24"/>
+            <label skin='sometext' id='day24' left="260" width="70" top="295" height="30"  align='center' text="25"/>
+            <label skin='sometext' id='day25' left="330" width="70" top="295" height="30"  align='center' text="26"/>
+			<label skin='sometext' id='day26' left="400" width="70" top="295" height="30"  align='center' text="27"/>
+            <label skin='sometext' id='day27' left="470" width="70" top="295" height="30"  align='center' text="28"/>
+			
+            <label skin='sometext' id='day28' left="50" width="70" top="365" height="30"  align='center' text="29"/>
+            <label skin='sometext' id='day29' left="120" width="70" top="365" height="30"  align='center' text="30"/>
+			<label skin='sometext' id='day30' left="190" width="70" top="365" height="30"  align='center' text="31"/>
+            <label skin='sometext' id='day31' left="260" width="70" top="365" height="30"  align='center' text="32"/>
+            <label skin='sometext' id='day32' left="330" width="70" top="365" height="30"  align='center' text="33"/>
+            <label skin='sometext' id='day33' left="400" width="70" top="365" height="30"  align='center' text="34"/>
+			<label skin='sometext' id='day34' left="470" width="70" top="365" height="30"  align='center' text="35"/>
+			
+            <label skin='sometext' id='day35' left="50" width="70" top="435" height="30"  align='center' text="36"/>
+            <label skin='sometext' id='day36' left="120" width="70" top="435" height="30"  align='center' text="37"/>
+            <label skin='sometext' id='day37' left="190" width="70" top="435" height="30"  align='center' text="38"/>
+			<label skin='sometext' id='day38' left="260" width="70" top="435" height="30"  align='center' text="39"/>
+            <label skin='sometext' id='day39' left="330" width="70" top="435" height="30"  align='center' text="40"/>
+            <label skin='sometext' id='day40' left="400" width="70" top="435" height="30"  align='center' text="41"/>
+            <label skin='sometext' id='day41' left="470" width="70" top="435" height="30"  align='center' text="42"/>
+			
+			<sprite id='selection1' skin='highlightSquare' left='50' width='70' top='80' height='70' active="false" canFocus='false' >		
+            </sprite>
+				
+			<sprite id="gridCursor" skin="selectSquare" left="470" width="70" top="430" height="70" active="true" canFocus="true"/>
+			
+		  <label id='touchButtons0' skin='touchText' left='20' right='0' bottom='3' height='15' align='left' text='- Month'/>
+          <label id='touchButtons1'   skin='touchText'    left='145' right='0' bottom='3' height='15' align='left' text='+ Month'/>
+		  <!--label id='touchButtons2'   skin='touchText'    left='400' right='0' bottom='3' height='15' align='left' text='[Size]'/-->
+		  <label id='touchButtons3'   skin='touchText'    left='520' right='0' bottom='3' height='15' align='left' text='Options'/>
+		  <label id='touchButtons4'   skin='touchText'    left='285' right='0' bottom='3' height='15' align='left' text='Quit'/>
+			<label id='nonTouch1'   skin='touchText'    left='300' right='0' bottom='3' height='15' align='left' text='[Mark] Today'/>		  
+		  <label id='nonTouch2'   skin='touchText'    left='140' right='0' bottom='16' height='15' align='left' text='[Next] +Month'/>
+		  <label id='nonTouch3'   skin='touchText'    left='140' right='0' bottom='3' height='15' align='left' text='[Hold Next] +Year'/>
+			<label id='nonTouch4'   skin='touchText'    left='490' right='0' bottom='3' height='15' align='left' text='[Hold 0] Quit'/>
+			<label id='nonTouch5' skin='touchText' left='1' right='0' bottom='16' height='15' align='left' text='[Prev] -Month'/>
+          <label id='nonTouch6'   skin='touchText'    left='1' right='0' bottom='3' height='15' align='left' text='[Hold Prev] -Year'/>
+			<label id='nonTouch7'   skin='touchText'    left='490' right='0' bottom='16' height='15' align='left' text='[Menu] Options'/>
+			<label id='nonTouch8'   skin='touchText'    left='300' right='0' bottom='16' height='15' align='left' text='[Center] Edit Events'/>
+		  
+		  <text id='eventsText' skin='eventText' left='48' right='55' top='510' bottom='30' active='false' visible='true' />  
+		  <button id="BUTTON_EDT" active="true" text="Edit Events"  left="374" width="170" top="460" height="40" do="doButtonClick"/>
+		  <button id="BUTTON_UPP" active="true" text="U"  left="550" width="40" top="516" height="40" do="doButtonClick"/>
+		  <button id="BUTTON_DWN" active="true" text="D"  left="550" width="40" top="626" height="40" do="doButtonClick"/>
+			<label id='nonTouch9'   skin='touchText'    left='550' width='40' top="516" height='40' align='left' text='8: U'/>
+			<label id='nonTouch0'   skin='touchText'    left='550' width='40' top='626' height='40' align='left' text='9: D'/>
+		  <button id="btn_Exit" left="0" top="-70" height="70" width="70" active="true" visible="false" do="doRoot"/>
+		  
+			<!--Settings pop-up panel-->
+			<dialog id="SETTINGS_DIALOG" width="450" height="250" visible="false">
+				<code>
+					<function id="doOK">
+						this.show(false);
+						this.container.changeSettings();
+					</function>
+					<function id="doClose">
+						this.show(false);
+						this.container.closeDlg();
+					</function>
+					<function id="doLeft">		this.container.moveCursor("left"); </function>
+					<function id="doPrevious">	this.container.moveCursor("left"); </function>
+					<function id="doRight">		this.container.moveCursor("right"); </function>
+					<function id="doNext">		this.container.moveCursor("right"); </function> 
+					<function id="doUp">      	this.container.moveCursor("up");    </function>
+					<function id="doDown">		this.container.moveCursor("down");  </function>	        
+					<function id="doCenter">	this.container.doCenterF();  </function>	        
+				</code>
+				<background skin="dlg_background" left="0" right="0" top="0" bottom="0"/>
+				<label id="CalSettings" skin="swis32blk" active="false" text="Calendar Settings" align="center" left="28" right="28" top="20" height="38"/>
+				<text skin="customText" id="week_starts" active="false" left="10" width="200" top="70" align="left" height="44"/>
+				<radio id="SUN" variable="week_begins" on="1" active="true" text="Sunday" left="220" width="100" top="75" height="30" do="settingsType"/>
+				<radio id="MON" variable="week_begins" on="2" active="true" text="Monday" left="300" width="100" top="75" height="30" do="settingsType"/> 
+				<default-button id="btn_Ok" text="OK" width="100" bottom="10" do="doOK"/>
+				<button id="btn_Cancel" text="Cancel" width="100" left ="300" bottom="10" do="doClose"/>		
+			</dialog>
+
+		<!--Events pop-up panel-->
+		<dialog id="EVENTS_DIALOG" width="450" height="630" visible="false">
+			<code>
+				<function id="doOK">
+					this.show(false);
+					this.container.doUpdateEvent();
+				</function>
+				<function id="doDelete">
+					this.show(false);
+					this.container.doDeleteEvent();
+				</function>				
+				<function id="doClose">
+					this.show(false);
+					this.container.closeDlg();
+				</function>
+				<function id="doShift">
+					this.container.doShift();
+				</function>
+				<function id="doSpace">
+					this.container.doSpace();
+				</function>
+				<function id="doSymbol">
+					this.container.doSymbol();
+				</function>
+				<function id="doBack">
+					this.container.doBack();
+				</function>
+				<function id="doKeyPress" params="sender">
+					this.container.doKeyPress(sender);
+				</function>
+				<function id="doLeft">		this.container.moveCursor("left"); </function>
+				<function id="doPrevious">	this.container.moveCursor("left"); </function>
+				<function id="doRight">		this.container.moveCursor("right"); </function>
+				<function id="doNext">		this.container.moveCursor("right"); </function> 
+				<function id="doUp">      	this.container.moveCursor("up");    </function>
+				<function id="doDown">		this.container.moveCursor("down");  </function>	        
+				<function id="doCenter">	this.container.doCenterF();  </function>
+				<function id="doMark">		this.container.doMark(); </function>
+				<function id="doSize">		this.container.doSize(); </function>
+			</code>
+			<background skin="dlg_background" left="0" right="0" top="0" bottom="0"/>
+			<label id="CalEvents" skin="swis32blk" active="false" text="Events" align="center" left="28" right="28" top="20" height="38"/>
+			<label id="ntEventSize" skin="swis16blk" active="false" text="[Size] OK" align="left" left="0" right="0" bottom="30" height="20"/>
+			<label id="ntEventMark" skin="swis16blk" active="false" text="[Mark] Cancel" align="left" left="0" right="0" bottom="10" height="20"/>
+
+			<label id="fieldEvent" skin="swis24blk" active="false" text="Event:" left="40" width="130" top="67" align="left" height="32"/>
+			<text id="eventNum" skin="eventText" active="false" variable="event_num" left="190" width="62" top="67" height="41"/>
+			<button id="eventNum-" skin="nullButton" left="140" top="67" width="50" heigth="28" text="-" do="doPlusMinus"/>
+			<button id="eventNum+" skin="nullButton" left="252" top="67" width="50" heigth="28" text="+" do="doPlusMinus"/>
+					
+			<label id="fieldType" skin="swis24blk" active="false" text="Type:" left="40" width="130" top="107" align="left" height="32"/>
+			<text id="eventType" skin="eventText" active="false" variable="event_type" left="190" width="62" top="107" height="41"/>
+			<text id="eventTypeText" skin="eventText" active="false" left="190" width="160" top="107" height="41"/>
+			<button id="eventType-" skin="nullButton" left="140" top="107" width="50" heigth="28" text="-" do="doPlusMinus"/>
+			<button id="eventType+" skin="nullButton" left="350" top="107" width="50" heigth="28" text="+" do="doPlusMinus"/>
+					
+			<label id="fieldMonth" skin="swis24blk" active="false" text="Month:" left="40" width="130" top="147" align="left" height="32"/>
+			<text id="eventMonth" skin="eventText" active="false" variable="event_month" left="190" width="62" top="147" height="41"/>
+			<button id="eventMonth-" skin="nullButton" left="140" top="147" width="50" heigth="28" text="-" do="doPlusMinus"/>
+			<button id="eventMonth+" skin="nullButton" left="252" top="147" width="50" heigth="28" text="+" do="doPlusMinus"/>
+			
+			<label id="eventDayText" skin="swis24blk" active="false" text="Date:" left="40" width="130" top="187" align="left" height="32"/>
+			<text id="eventDay" skin="eventText" active="false" variable="event_day" left="190" width="62" top="187" height="41"/>
+			<text id="cardinalDay" skin="eventText" active="false" left="190" width="62" top="187" height="41"/>
+			<button id="eventDay-" skin="nullButton" left="140" top="187" width="50" heigth="28" text="-" do="doPlusMinus"/>
+			<button id="eventDay+" skin="nullButton" left="252" top="187" width="50" heigth="28" text="+" do="doPlusMinus"/>
+
+			<label id="eventYearText" skin="swis24blk" active="false" text="Year:" left="40" width="130" top="227" align="left" height="32"/>
+			<text id="eventYear" skin="eventText" active="false" variable="event_year" left="190" width="102" top="227" height="41"/>
+			<text id="weekDay" skin="eventText" active="false" left="190" width="102" top="227" height="41"/>			
+			<button id="eventYear-" skin="nullButton" left="140" top="227" width="50" heigth="28" text="-" do="doPlusMinus"/>
+			<button id="eventYear+" skin="nullButton" left="292" top="227" width="50" heigth="28" text="+" do="doPlusMinus"/>
+			
+			<label id="eventIconText" skin="swis24blk" active="false" text="Icon:" left="360" width="100" top="147" align="left" height="32"/>
+			<text id="eventIcon" skin="eventText" active="false" variable="event_icon" left="355" width="83" top="181" height="84"/>
+			<sprite skin='calendarSquare' id='square42' left="360" width="70" top="187" height="70"  u='2' active='true' canFocus='true'/>
+			<button id="eventIcon-" skin="nullButton" left="350" top="260" width="50" heigth="28" text="-" do="doPlusMinus"/>
+			<button id="eventIcon+" skin="nullButton" left="390" top="260" width="50" heigth="28" text="+" do="doPlusMinus"/>
+			
+			<label id="fieldDescription" skin="swis24blk" active="false" text="Description:" left="40" width="250" top="267" align="left" height="32"/>
+			<text id="eventDescription" skin="eventText" active="false" variable="event_description" left="40" width="390" top="307" height="41"/>
+			
+			<button id="key01" text="q" left=  "5" top="370" width="40" height="40" do="doKeyPress"/>
+			<button id="key02" text="w" left= "50" top="370" width="40" height="40" do="doKeyPress"/>
+			<button id="key03" text="e" left= "95" top="370" width="40" height="40" do="doKeyPress"/>
+			<button id="key04" text="r" left="140" top="370" width="40" height="40" do="doKeyPress"/>
+			<button id="key05" text="t" left="185" top="370" width="40" height="40" do="doKeyPress"/>
+			<button id="key06" text="y" left="230" top="370" width="40" height="40" do="doKeyPress"/>
+			<button id="key07" text="u" left="275" top="370" width="40" height="40" do="doKeyPress"/>
+			<button id="key08" text="i" left="320" top="370" width="40" height="40" do="doKeyPress"/>
+			<button id="key09" text="o" left="365" top="370" width="40" height="40" do="doKeyPress"/>
+			<button id="key10" text="p" left="410" top="370" width="40" height="40" do="doKeyPress"/>
+			
+			<button id="key11" text="a" left= "25" top="420" width="40" height="40" do="doKeyPress"/>
+			<button id="key12" text="s" left= "70" top="420" width="40" height="40" do="doKeyPress"/>
+			<button id="key13" text="d" left="115" top="420" width="40" height="40" do="doKeyPress"/>
+			<button id="key14" text="f" left="160" top="420" width="40" height="40" do="doKeyPress"/>
+			<button id="key15" text="g" left="205" top="420" width="40" height="40" do="doKeyPress"/>
+			<button id="key16" text="h" left="250" top="420" width="40" height="40" do="doKeyPress"/>
+			<button id="key17" text="j" left="295" top="420" width="40" height="40" do="doKeyPress"/>
+			<button id="key18" text="k" left="340" top="420" width="40" height="40" do="doKeyPress"/>
+			<button id="key19" text="l" left="385" top="420" width="40" height="40" do="doKeyPress"/>			
+
+			<button id="key20" text="z" left= "70" top="470" width="40" height="40" do="doKeyPress"/>
+			<button id="key21" text="x" left="115" top="470" width="40" height="40" do="doKeyPress"/>
+			<button id="key22" text="c" left="160" top="470" width="40" height="40" do="doKeyPress"/>
+			<button id="key23" text="v" left="205" top="470" width="40" height="40" do="doKeyPress"/>
+			<button id="key24" text="b" left="250" top="470" width="40" height="40" do="doKeyPress"/>
+			<button id="key25" text="n" left="295" top="470" width="40" height="40" do="doKeyPress"/>
+			<button id="key26" text="m" left="340" top="470" width="40" height="40" do="doKeyPress"/>
+			
+			<button id="SHIFT" text="Shft" left="0" top="470" width="65" height="40" do="doShift"/>
+			<button id="SYMBOL" text="Symbols" left="0" top="520" width="110" height="40" do="doSymbol"/>
+			<button id="SPACE" text="Space" left="115" top="520" width="220" height="40" do="doSpace"/>
+			<button id="BACK" text="Back" left="340" top="520" width="110" height="40" do="doBack"/>
+		
+			<default-button id="btn_Ok" text="OK" width="100" bottom="10" do="doOK"/>
+			<button id="btn_Cancel" text="Cancel" width="100" left ="300" bottom="10" do="doClose"/>
+			<button id="btn_Delete" text="Delete" width="100" left ="350" top="60" do="doDelete"/>	
+		</dialog>
+		
+        </group>
+    </group>
+</document>

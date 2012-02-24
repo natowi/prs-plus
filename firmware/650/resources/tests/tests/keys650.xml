@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<model>
+		<code>
+			<function id="initialized">
+				this.container.CHECK_ALL_KEYS.focus(true)
+				this.container.CHECK_ALL_KEYS.start()
+			</function>
+		</code>
+	</model>
+	<group id="CHECK_ALL_KEYS" left="0" right="0" top="0" bottom="0">
+		<code>
+			<function id="done" params="flag">
+				this.flags |= flag;
+				if (this.flags == 0x0000007F)
+					this.stop();
+			</function>
+
+			<function id="doMenu"><![CDATA[
+				this.stop();
+			]]></function>
+
+			<function id="doPrevious" params="part"><![CDATA[
+				this.PREVIOUS.v = 1;
+				this.done(1);
+			]]></function>
+			<function id="doNext" params="part"><![CDATA[
+				this.NEXT.v = 1;
+				this.done(1 << 1);
+			]]></function>
+			<function id="doRoot" params="part"><![CDATA[
+				this.HOME.v = 1;
+				this.done(1 << 2);
+			]]></function>
+			<function id="doSize"><![CDATA[
+				this.SIZE.v = 1;
+				this.done(1 << 3);
+			]]></function>
+			<function id="doOption"><![CDATA[
+				this.OPTION.v = 1;
+				this.done(1 << 4);
+			]]></function>
+			<function id="doLoud"><![CDATA[
+				this.LOUD.v = 1;
+				this.done(1 << 5);
+			]]></function>
+			<function id="doQuiet"><![CDATA[
+				this.QUIET.v = 1;
+				this.done(1 << 6);
+			]]></function>
+			
+			<function id="start">
+				this.flags = 0;
+				this.NEXT.v = 0;
+				this.PREVIOUS.v = 0;
+				this.HOME.v = 0;
+				this.SIZE.v = 0;
+				this.OPTION.v = 0;
+				this.LOUD.v = 0;
+				this.QUIET.v = 0;
+				
+				this.BACKGROUND.invalidate();
+			</function>
+			<function id="stop">
+				try {
+					var folderInfo = FileSystem.getFileInfo("/Data");
+					if (folderInfo) {
+						FileSystem.ensureDirectory("/Data/tmp/")
+						var checkfile = new Stream.File("/Data/tmp/checked", 3);
+						if (checkfile) 
+							checkfile.close();
+					}
+				}
+				catch (e) {
+				}
+				this.setVariable("KEYCHECK", "Done")
+				this.bubble("finishTest")
+			</function>
+		</code>
+		
+		<sprite id="BACKGROUND" left="0" right="0" top="0" bottom="0">
+			<behave like="background"/>
+		</sprite>
+		
+		<sprite id="PREVIOUS" left="100" width="100" top="400" height="50" skin="keySkin" skinType="horizontal">
+			<property id="text" value="PREV"/>
+			<behave like="key"/>
+		</sprite>
+		<sprite id="NEXT" left="200" width="100" top="400" height="50" skin="keySkin" skinType="horizontal">
+			<property id="text" value="NEXT"/>
+			<behave like="key"/>
+		</sprite>
+		<sprite id="HOME" left="250" width="100" top="300" height="50" skin="keySkin" skinType="horizontal">
+			<property id="text" value="HOME"/>
+			<behave like="key"/>
+		</sprite>
+		<sprite id="SIZE" left="400" width="100" top="400" height="50" skin="keySkin" skinType="horizontal">
+			<property id="text" value="SIZE"/>
+			<behave like="key"/>
+		</sprite>
+		<sprite id="OPTION" left="500" width="100" top="400" height="50" skin="keySkin" skinType="horizontal">
+			<property id="text" value="OPTION"/>
+			<behave like="key"/>
+		</sprite>
+		<sprite id="LOUD" left="0" width="100" top="500" height="50" skin="keySkin" skinType="horizontal">
+			<property id="text" value="VOL+"/>
+			<behave like="key"/>
+		</sprite>
+		<sprite id="QUIET" left="0" width="100" top="550" height="50" skin="keySkin" skinType="horizontal">
+			<property id="text" value="VOL-"/>
+			<behave like="key"/>
+		</sprite>
+		
+	</group>
+</document>

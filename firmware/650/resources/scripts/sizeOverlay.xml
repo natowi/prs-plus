@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="VIEW">
+
+	<kbookOverlay id="SIZE_OVERLAY"  right="0" left="0" top="0" bottom="30" visible="false">
+		<model>
+			<variable id="VAR_MAX_FONTSCALE" value="0" />
+			<variable id="VAR_MIN_FONTSCALE" value="0" />
+			<variable id="VAR_RADIO_FONTSIZE" value="0"/>
+			<variable id="VAR_ENABLE_ZOOM" value="true"/>
+			<variable id="VAR_ENABLE_STYLE" value="true"/>
+			<variable id="VAR_UPDATE_FONTSIZE" value="false"/>
+		</model>
+		<code>
+			<function id="canZoomMode"><![CDATA[
+				return this.getVariable("VAR_ENABLE_ZOOM");
+			]]></function>
+			<function id="canStyleMode"><![CDATA[
+				return this.getVariable("VAR_ENABLE_STYLE");
+			]]></function>
+			<function id="canFontSize0"><![CDATA[
+				var ret = this.getVariable("VAR_MAX_FONTSCALE")>=0 && this.getVariable("VAR_MIN_FONTSCALE")<=0;
+				return ret
+			]]></function>
+			<function id="canFontSize1"><![CDATA[
+				var ret = this.getVariable("VAR_MAX_FONTSCALE")>=1 && this.getVariable("VAR_MIN_FONTSCALE")<=1;
+				return ret
+			]]></function>
+			<function id="canFontSize2"><![CDATA[
+				var ret = this.getVariable("VAR_MAX_FONTSCALE")>=2 && this.getVariable("VAR_MIN_FONTSCALE")<=2;
+				return ret
+			]]></function>
+			<function id="canFontSize3"><![CDATA[
+				var ret=  this.getVariable("VAR_MAX_FONTSCALE")>=3 && this.getVariable("VAR_MIN_FONTSCALE")<=3;
+				return ret
+			]]></function>
+			<function id="canFontSize4"><![CDATA[
+				var ret=  this.getVariable("VAR_MAX_FONTSCALE")>=4 && this.getVariable("VAR_MIN_FONTSCALE")<=4;
+				return ret
+			]]></function>
+			<function id="canFontSize5"><![CDATA[
+				var ret=  this.getVariable("VAR_MAX_FONTSCALE")>=5 && this.getVariable("VAR_MIN_FONTSCALE")<=5;
+				return ret
+			]]></function>
+			<function id="doGestureFail">
+				this.bubble("doBlink")
+			</function>
+			<function id="initBtnShowHide" params="dicFlag">
+				var btnShow = (dicFlag?false:true)
+				this.sizeV.FONTSIZE.zoomBtn.show(btnShow);
+				this.sizeV.FONTSIZE.StyleBtn.show(btnShow);
+				this.sizeH.FONTSIZE.zoomBtn.show(btnShow);
+				this.sizeH.FONTSIZE.StyleBtn.show(btnShow);
+			</function>
+		</code>
+		<exGroup id="sizeV" bottom="0" height="128" left="0" right="0" playing="V">
+			<panel skin="kbarea" left="0" right="0" top="0" bottom="0" active="true"/>
+			<button2icon skin="fontClose" right="24" top="12" width="50" height="50" bw="4" do="doCloseButton"/>
+			<group id="FONTSIZE" top="0" bottom="0" left="0" right="0">
+				<button2icon id="zoomBtn" skin="zoomBtn" text="fskin:/l/strings/STR_UI_BUTTON_ZOOMIN"   left="24" top="12" width="181" height="50" do="goZoomMode" can="canZoomMode" bw1y="4" bw2y="4"/>
+				<button2icon id="StyleBtn" skin="styleBtn" text="fskin:/l/strings/STR_UI_BUTTON_PAGE_STYLE" right="94" top= "12" width="190" height="50" do="doSelectStyle" can="canStyleMode" bw="4" bw1y="4" bw2y="4"/>
+
+				<radio2icon id="font0" skin="fontSize0" bottom="9" left= "24" width="91" height="53" on="0" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize0" bw1x="2" bw1y="6" bw2y="5"/>
+				<radio2icon id="font1" skin="fontSize1" bottom="9" left="115" width="91" height="53" on="1" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize1"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font2" skin="fontSize2" bottom="9" left="206" width="91" height="53" on="2" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize2"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font3" skin="fontSize3" bottom="9" left="297" width="91" height="53" on="3" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize3"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font4" skin="fontSize4" bottom="9" left="388" width="91" height="53" on="4" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize4"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font5" skin="fontSize5" bottom="9" left="479" width="91" height="53" on="5" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize5" bw2x="3" bw1y="6" bw2y="5"/>
+			</group>
+		</exGroup>
+		
+		<exGroup id="sizeH" bottom="0" height="128" left="0" right="0" playing="H">
+			<panel skin="kbarea" left="0" right="0" top="0" bottom="0" active="true"/>
+			<button2icon skin="fontClose" right="24" top="12" width="50" height="50" bw="4" do="doCloseButton"/>
+			<group id="FONTSIZE" top="0" bottom="0" left="0" right="0">
+				<button2icon id="zoomBtn" skin="zoomBtn" text="fskin:/l/strings/STR_UI_BUTTON_ZOOMIN"   left="24" top="12" width="181" height="50" do="goZoomMode" can="canZoomMode" bw1y="4" bw2y="4"/>
+				<button2icon id="StyleBtn" skin="styleBtn" text="fskin:/l/strings/STR_UI_BUTTON_PAGE_STYLE"  right="94" top= "12" width="190" height="50" do="doSelectStyle" can="canStyleMode" bw="4" bw1y="4" bw2y="4"/>
+
+				<radio2icon id="font0" skin="fontSize0" bottom="9" left= "24" width="124" height="53" on="0" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize0" bw1x="2" bw1y="6" bw2y="5"/>
+				<radio2icon id="font1" skin="fontSize1" bottom="9" left="148" width="124" height="53" on="1" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize1"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font2" skin="fontSize2" bottom="9" left="272" width="124" height="53" on="2" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize2"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font3" skin="fontSize3" bottom="9" left="396" width="124" height="53" on="3" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize3"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font4" skin="fontSize4" bottom="9" left="520" width="124" height="53" on="4" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize4"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font5" skin="fontSize5" bottom="9" left="644" width="124" height="53" on="5" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize5" bw2x="3" bw1y="6" bw2y="5"/>
+			</group>
+		</exGroup>
+	</kbookOverlay>
+
+</document>

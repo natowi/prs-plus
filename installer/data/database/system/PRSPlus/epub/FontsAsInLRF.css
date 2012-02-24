@@ -1,0 +1,15 @@
+@font-face
+{
+	font-family: sans-serif;
+	src:url(res:///opt/sony/ebook/FONT/tt0003m_.ttf);
+}
+@font-face
+{
+	font-family: serif;
+	src:url(res:///opt/sony/ebook/FONT/tt0011m_.ttf);
+}
+@font-face
+{
+	font-family: monospace;
+	src:url(res:///opt/sony/ebook/FONT/tt0419m_.ttf);
+}

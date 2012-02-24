@@ -1,0 +1,29 @@
+Instructions for MineSweeper 
+
+The Basics: 
+* You are presented with a board of squares, each with a cover. Some squares contain mines (bombs) under the covers. If you open a square containing a bomb, you lose. If you open all squares without bombs, you win.
+* Opening a square which doesn't have a bomb reveals the number of neighboring squares contain bombs. Use this information plus some guess work to avoid the bombs.
+* There are two Modes: "step" and "flag".  Switch with prev/next button or tap indicator on screen
+* To open a square, tap it in "step"-mode. To mark a square you think is a bomb tap it in "flag"-mode.
+
+The Details: 
+* A square's "neighbors" are the squares adjacent above, below, left, right, and all 4 diagonals. Squares on the sides of the board or in a corner have fewer neighbors. The board does not wrap around the edges.
+* If you open a square with 0 neighboring bombs, all its neighbors will automatically open. This can cause a large area to automatically open.
+* Open squares show their neighbor counts
+* To remove a bomb marker from a square, tap it in "flag"-mode.
+* The first square you open is never a bomb.
+* If you mark a bomb incorrectly, you will have to correct the mistake before you can win. Incorrect bomb marking doesn't kill you, but it can easily lead to mistakes which do.
+* You don't have to mark all bombs to win; you just need to open all non-bomb squares.
+* Press the yellow face to start a new game.
+
+The Status Information: 
+* The upper left corner of the screen contains the number of bombs minus the number of marked squares. At the beginning of a game it is just the number of bombs. The number will update as you mark and unmark squares.
+* The yellow face will show a smile face while you play, a clock face when a game board is being built, a dead face when you hit a bomb, a cool face when you win, and a pirate face when you win while cheating.
+* The upper right corner of the screen contains a time counter. The timer will max out at 999 (16 minutes 39 seconds).
+* Click on the time to switch to the number of moves counter. Click again to switch back to the time.
+
+Options and Enhancements: 
+* Opening Move - Not only will the first square never be a bomb, but neither will any of the neighbors.
+* Marks (?) - Tapping a marked bomb in "flag"-mode will change the flag into a question mark. Tapping it again will change it back into an unmarked square.
+* Area Open - If an open square has the correct number of marked neighboring bombs, click on the open square to open all remaining unopened neighbor squares all at once. If an incorrect number of neighbors are marked, or all neighbors are marked or open, clicking the square has no effect. If an incorrect neighbor is marked, this will cause instant death.
+* Open Remaining - Once the correct number of bombs have been marked, the bomb counter will turn blue. Click on the blue bomb counter to open all remaining cells. If any bombs are incorrectly marked, this will cause instant death.
