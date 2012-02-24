@@ -76,14 +76,17 @@ History:
 	</patternset>
 	<patternset id="addons_350" >
 		<patternset refid="addons_600_x50" />
+		<exclude name="BookManagement.js" />
 		<exclude name="TouchSettings_600.js" />
 	</patternset>
 	<patternset id="addons_650">
 		<patternset refid="addons_600_x50" />
+		<exclude name="BookManagement.js" />
 		<exclude name="TouchSettings_600.js" />
 	</patternset>
 	<patternset id="addons_950">
 		<patternset refid="addons_600_x50" />
+		<exclude name="BookManagement.js" />
 		<exclude name="TouchSettings_600.js" />
 	</patternset>
 	

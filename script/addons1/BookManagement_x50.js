@@ -44,6 +44,7 @@
 //	2012-02-11 quisvir - Added options: page buttons in home menu, use sub-collections, mark all books read/unread, clear history on shutdown
 //	2012-02-16 quisvir - Added checkmarks for finished books, enable/disable page option items; fixed ignoreCards
 //	2012-02-17 quisvir - Fixed #286 'Page buttons stop working for cycling books in main screen'
+//	2012-02-24 quisvir - Made sub-collections recursive (unlimited levels), added option for separator
 
 tmp = function() {
 
@@ -190,21 +191,21 @@ tmp = function() {
 		}
 		this.constNodesCount -= c;
 		this.presetItemsCount -= p;
-		createSubCollections(nodes, this, this.constNodesCount);
+		if (opt.subCollections === 'true') {
+			createSubCollections(this, this.constNodesCount, opt.subCollSeparator);
+		}
 	}
 
-	var createSubCollections = function (nodes, parent, next) {
-		if (opt.subCollections === 'false') return;
-		var i, node, newNode, last, idx, coll, title;
-		i = next;
-		c = nodes.length;
-		while (i < c) {
+	var createSubCollections = function (parent, start, sep) {
+		var i, c, next, node, nodes, newNode, last, idx, coll, title;
+		nodes = parent.nodes;
+		for (i = next = start, c = nodes.length; i < c; i++) {
 			node = nodes[i];
 			title = node.title;
-			idx = title.indexOf('|');
+			idx = title.indexOf(sep);
 			if (idx !== -1) {
-				node.name = node.title = title.slice(idx + 1);
 				coll = title.slice(0, idx);
+				node.name = node.title = title.slice(idx + 1);
 				if (last === coll) {
 					node.parent = nodes[next-1];
 					nodes[next-1].nodes.push(nodes.splice(i,1)[0]);
@@ -226,9 +227,11 @@ tmp = function() {
 					next++;
 				}
 			}
-			i++;
 		}
 		if (last) nodes[next-1].separator = 1;
+		for (i = nodes.length - 1; i >= start; i--) {
+			if (nodes[i].nodes) createSubCollections(nodes[i], 0, sep);
+		}
 	}
 	
 	// Draw reading progress instead of 'last read' date/time
@@ -252,7 +255,7 @@ tmp = function() {
 		oldDrawRecord.apply(this, arguments);
 		if (!constructRun) return;
 		
-		var win, menu, home, list, record, media, page, pages, msg, n, comX, comY, comWidth, comHeight;
+		var win, menu, home, list, idx, record, media, page, pages, msg, n, comX, comY, comWidth, comHeight;
 		win = this.getWindow();
 		menu = this.menu;
 		comHeight = this.textCommentHeight;
@@ -270,7 +273,10 @@ tmp = function() {
 					msg = BookManagement_x50.optionDefs[0].optionDefs[0].valueTitles[list];
 				}
 				// Replace | with : for sub-collections
-				if (opt.subCollections === 'true') msg = msg.replace('|',': ');
+				if (opt.subCollections === 'true') {
+					idx = msg.lastIndexOf(opt.subCollSeparator);
+					if (idx !== -1) msg = msg.slice(idx + 1);
+				}
 				// Add position in current booklist
 				n = thumbnailsNode.nodes.length;
 				if (n > 1) {
@@ -306,7 +312,7 @@ tmp = function() {
 	};
 	
 	// Format reading progress comment
-	readingProgressComment = function (page, pages, format) {
+	var readingProgressComment = function (page, pages, format) {
 		switch (format) {
 			case '1': return L('PAGE') + ' ' + page + ' ' + L('OF') + ' ' + pages;
 			case '2': return L('PAGE') + ' ' + page + ' ' + L('OF') + ' ' + pages + ' (' + Math.floor((page/pages)*100) + '%)';
@@ -639,7 +645,9 @@ tmp = function() {
 			node.oldNode = oldNode;
 			node.target = this.target;
 		}
-		createSubCollections(nodes, this, 0);
+		if (opt.subCollections === 'true') {
+			createSubCollections(this, 0, opt.subCollSeparator);
+		}
 	}
 	
 	var selectCollectionDestruct = function () {
@@ -1040,7 +1048,7 @@ tmp = function() {
 				},
 				{
 					name: 'subCollections',
-					title: L('USE_SUB_COLLECTIONS'),
+					title: L('SUB_COLLECTIONS'),
 					icon: 'BOOKS',
 					defaultValue: 'false',
 					values: ['true','false'],
@@ -1048,6 +1056,13 @@ tmp = function() {
 						'true': L('VALUE_TRUE'),
 						'false': L('VALUE_FALSE')
 					}
+				},
+				{
+					name: 'subCollSeparator',
+					title: L('SUB_COLLECTIONS_SEPARATOR'),
+					icon: 'BOOKS',
+					defaultValue: '|',
+					values: ['|', '.', ',', ':', ';', '/', '~'],
 				}
 			]},
 			{
@@ -1177,7 +1192,7 @@ tmp = function() {
 					'true': L('VALUE_TRUE'),
 					'false': L('VALUE_FALSE')
 				}	
-			},
+			}
 		],
 		hiddenOptions: [
 			{
