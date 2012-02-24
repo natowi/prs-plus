@@ -44,7 +44,7 @@
 //	2012-02-11 quisvir - Added options: page buttons in home menu, use sub-collections, mark all books read/unread, clear history on shutdown
 //	2012-02-16 quisvir - Added checkmarks for finished books, enable/disable page option items; fixed ignoreCards
 //	2012-02-17 quisvir - Fixed #286 'Page buttons stop working for cycling books in main screen'
-//	2012-02-24 quisvir - Made sub-collections recursive (unlimited levels), added option for separator
+//	2012-02-24 quisvir - Made sub-collections recursive (unlimited levels), added option for separator, enabled #-Z navbar
 
 tmp = function() {
 
@@ -221,6 +221,10 @@ tmp = function() {
 					});
 					node.parent = newNode;
 					newNode.sublistMark = true;
+					newNode.ignoreSort = true;
+					newNode.getSortBy = function () {
+						return 'text';
+					};
 					newNode.nodes.push(nodes.splice(i,1)[0]);
 					nodes.splice(next, 0, newNode);
 					last = coll;

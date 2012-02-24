@@ -46,6 +46,10 @@ tmp = function() {
 					});
 					node.parent = newNode;
 					newNode.sublistMark = true;
+					newNode.ignoreSort = true;
+					newNode.getSortBy = function () {
+						return 'text';
+					};
 					newNode.nodes.push(nodes.splice(i,1)[0]);
 					nodes.splice(next, 0, newNode);
 					last = coll;

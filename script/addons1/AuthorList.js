@@ -10,6 +10,7 @@
 //	2011-11-20 quisvir - Now working on 600 thanks to Ben Chenoweth, first public version
 //	2011-11-20 quisvir - Minor changes
 //	2011-11-24 quisvir - Fixed deleting books opened from Author List
+//	2012-02-24 quisvir - Enabled #-Z navbar
 
 tmp = function() {
 
@@ -102,6 +103,9 @@ tmp = function() {
 					construct: authorsNodeConstruct,
 					destruct: authorsNodeDestruct
 				});
+				authorsNode.getSortBy = function () {
+					return 'text';
+				};
 			}
 			return authorsNode;
 		},
