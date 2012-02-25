@@ -699,6 +699,22 @@ var tmp = function () {
 					// trim save/quit lines at end of output
 					result = result.substring(0, result.indexOf(">"));
 					return result;
+				} else if ((result.indexOf("Are you sure you want to go that way?")>0) || (result.indexOf("Are you sure you want to go over that cliff?")>0)) {
+					// set up new input file
+					setFileContent(FROTZINPUT, startGame+restoreTemp+currentLine+"\nY\n"+saveTemp+"Y\n"+quitGame); // just answer 'YES'
+					cmd = "cd " + workingDir + ";" + FROTZ + FROTZOPTIONS + datPath + GAMETITLE + " < " + FROTZINPUT + " > " + FROTZOUTPUT;
+					shellExec(cmd);
+					result = getFileContent(FROTZOUTPUT, "222");
+					if (result !== "222") {
+						// trim initial/restore lines at start of output
+						result = result.substring(result.indexOf(">")+1);
+						result = result.substring(result.indexOf(">")+1);
+						result = result.substring(result.indexOf(">")+1);
+						
+						// trim save/quit lines at end of output
+						result = result.substring(0, result.indexOf(">"));
+						return result;
+					}
 				}
 				break;
 			case "phobos":
