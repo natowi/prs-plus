@@ -95,7 +95,7 @@
 		<string id="STR_UI_MESSAGE_USBDONOT" value="Niet loskoppelen" />
 		<string id="STR_UI_MESSAGE_USBCONNECTED" value="USB verbonden" />
 		<string id="STR_UI_MESSAGE_LOCKED" value="Apparaat vergrendeld" />
-		<string id="STR_UI_MESSAGE_CHARGING" value="Batterij aan het laden" />
+		<string id="STR_UI_MESSAGE_CHARGING" value="Batterij laadt op" />
 		<string id="STR_UI_MESSAGE_CHARGING_COMPLETE" value="Laden voltooid" />
 		<string id="STR_UI_MESSAGE_CHARGING_NOT_CHARGING" value="Laden gestopt" />
 		<string id="STR_UI_USB_MODE_GUIDE_CHECK_CONNECTION" value="De reader kan niet laden aangezien er geen voeding gedetecteerd is. Gelieve na te gaan of de lader ingeplugd en ingeschakeld is, of dat de USB-kabel juist is aangesloten." />
@@ -321,7 +321,7 @@
 		<string id="STR_COUNTER_MEMO_N" value=" notities" />
 		<string id="STR_COUNTER_MEMO_1" value="1 notitie" />
 		<string id="STR_COUNTER_MEMO_0" value="Geen notities" />
-		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="Inhoud binnenin is ongeldig.&#xA;Bezig met formatteren." />
+		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="Bestandsindeling is ongeldig.&#xA;Bezig met formatteren." />
 		<string id="STR_HOME_TAB_HOME_V" value="Hoofdscherm" />
 		<string id="STR_HOME_TAB_HOME_H" value="Hoofd-&#xA;scherm" />
 		<string id="STR_HOME_TAB_STORE_V" value="Store" />
@@ -416,8 +416,8 @@
 		<string id="STR_DAY_FRIDAY_ABB" value="Vri" />
 		<string id="STR_DAY_SATURDAY_ABB" value="Zat" />
 		<string id="STR_DAY_SUNDAY_ABB" value="Zon" />
-		<string id="STR_NODE_TITLE_UNREAD_BOOKS" value="Niet gelezen boeken" />
-		<string id="STR_NODE_TITLE_UNREAD_PERIODICALS" value="Nt gel.periodieken" />
+		<string id="STR_NODE_TITLE_UNREAD_BOOKS" value="Ongelezen boeken" />
+		<string id="STR_NODE_TITLE_UNREAD_PERIODICALS" value="Ongelezen periodieken" />
 		<string id="STR_NODE_TITLE_PURCHASED_BOOKS" value="Gekochte boeken" />
 		<string id="STR_UI_MENU_NEW_COLLECTION" value="Nieuwe collectie" />
 		<string id="STR_UI_MENU_DELETE_COLLECTIONS" value="Wis collecties" />
@@ -495,13 +495,13 @@
 		<string id="STR_UI_SETTING_SUMMERTIME_MSG" value="Daglicht besparingstijd" />
 		<string id="DIALOGMSG_INFORM_RESTART_TIMEZONE" value="Bezig met toepassen van tijdzone-instellingen..." />
 		<string id="DIALOGMSG_INFORM_RESTART_WIZARD" value="Bezig met toepassen van instellingen..." />
-		<string id="DIALOGMSG_NOT_AVAILABLE_WHILE_DOWNLOADING" value="Deze feature is niet beschikbaar tijdens het downloaden van content. Gelieve deze opnieuw te selecteren nadat de download voltooid is." />
+		<string id="DIALOGMSG_NOT_AVAILABLE_WHILE_DOWNLOADING" value="Deze functie is niet beschikbaar tijdens het downloaden van content. Gelieve deze opnieuw te selecteren nadat de download voltooid is." />
 		<string id="STR_UI_SETTING_RANGE_HOUR" value="(00 - 23)" />
 		<string id="STR_UI_MESSAGE_BROWSE_ERROR_1" value="Geen toegang mogelijk tot de Reader Store omdat de “WIRELESS” schakelaar uit is. Gelieve deze aan te zetten en opnieuw te proberen." />
 		<string id="STR_UI_MESSAGE_BROWSE_ERROR_2" value="Kan geen toegang krijgen tot de Reader Store omdat het netwerk niet verbonden is. Gelieve opnieuw te proberen nadat u verbonden bent." />
 		<string id="STR_UI_MESSAGE_BROWSE_ERROR_3" value="Kan geen toegang krijgen tot de Reader Store omdat de “datum- en tijd-” instellingen of “tijdzone-” instellingen niet juist zijn. Gelieve deze vanuit de “instellingen-” tab te verbeteren en opnieuw te proberen." />
 		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_1" value="Uw SIM wordt niet herkend. Gelieve uw reader uit te schakelen, de SIM-kaart opnieuw in te steken en uw reader opnieuw in te schakelen. Indien het probleem blijft aanslepen, gelieve met de Sony Customer Support contact op te nemen." />
-		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_3" value="Deze Sim-kaart is vergrendeld door een PIN of PUK code. Gelieve via een ander product te ontgrendelen en opnieuw te proberen, of met de Sony Customer Support contact op te nemen." />
+		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_3" value="Deze Sim-kaart is vergrendeld door een PIN of PUK code. Gelieve via een ander product te ontgrendelen en opnieuw te proberen, of met de Sony klantenservice contact op te nemen." />
 		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_1" value="De reader kon de inhoud niet downloaden omdat de “WIRELESS” schakelaar uit is." />
 		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_2" value="Gelieve deze aan te zetten en, eens dat u verbonden bent met het netwerk, kan u opnieuw beginnen downloaden vanaf uw “My Account” pagina in de Reader Store." />
 		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_1" value="De reader kon de inhoud niet downloaden omdat het netwerk niet verbonden is." />
