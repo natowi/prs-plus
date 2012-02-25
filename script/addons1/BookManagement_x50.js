@@ -244,10 +244,12 @@ tmp = function() {
 		cb = this.currentBook;
 		if (cb && opt.readingProgressCurrent === 'true') {
 			media = cb.media;
-			page = media.currentPosition.page + 1;
-			if (page >= parseInt(opt.OnlyShowFromPage)) {
-				pages = media.history[0].pages;
-				return readingProgressComment(page, pages, opt.progressFormatCurrent);
+			if (media.currentPosition) {
+				page = media.currentPosition.page + 1;
+				if (page >= parseInt(opt.OnlyShowFromPage)) {
+					pages = media.history[0].pages;
+					return readingProgressComment(page, pages, opt.progressFormatCurrent);
+				}
 			}
 		}
 		return node.nodes[0].lastReadDate;

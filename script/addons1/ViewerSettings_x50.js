@@ -483,7 +483,7 @@ tmp = function() {
 			node.selected = item.selected;
 			node.title = node.title.replace(new RegExp('([\\1-\\31]+)', 'g'), ' ');
 			node.name = node.title = Fskin.trimString(node.title);
-			node._mycomment = L('PAGE') + ' ' + this.bookmark._page;
+			node._mycomment = L('PAGE') + ' ' + (this.bookmark._page + 1);
 			node.onEnter = 'onEnterPageOption';
 			this.nodes.unshift(node);
 		}

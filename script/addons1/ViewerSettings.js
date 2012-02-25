@@ -232,7 +232,7 @@ tmp = function() {
 			node.parent = this;
 			node.depth = this.depth + 1;
 			node.selected = item.selected;
-			node._mycomment = L('PAGE') + ' ' + this.bookmark._page;
+			node._mycomment = L('PAGE') + ' ' + (this.bookmark._page + 1);
 			this.nodes.unshift(node);
 		}
 	}
