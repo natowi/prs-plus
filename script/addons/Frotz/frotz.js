@@ -16,6 +16,7 @@
 //	2012-02-20 Ben Chenoweth - Extended compatibility list; fix for 'Trinity'; fix for listing even number of games
 //	2012-02-22 Ben Chenoweth - Workaround for 'Bureaucracy' (requires externally created initial gamesave file)
 //	2012-02-22 Ben Chenoweth - Workaround for 'Zork1' (disable the 'loud' room so that save/restore work); use switches
+//	2012-02-25 Ben Chenoweth - More fixes for 'Trinity'
 
 var tmp = function () {
 	
@@ -26,8 +27,6 @@ var tmp = function () {
 	var setFileContent = kbook.autoRunRoot.setFileContent;
 	var listFiles = kbook.autoRunRoot.listFiles;
 	var deleteFile = kbook.autoRunRoot.deleteFile;
-	//var createSimpleMenu = kbook.autoRunRoot.createSimpleMenu;
-	//var showMenu = kbook.autoRunRoot.showMenu;
 	var shellExec = kbook.autoRunRoot.shellExec;
 	
 	var datPath = kbook.autoRunRoot.gamesSavePath+'Frotz/';
@@ -592,14 +591,14 @@ var tmp = function () {
 		
 		result = getFileContent(FROTZOUTPUT, "222");
 		if (result !== "222") {
-			/*/ output files for debugging
+			// output files for debugging
 			if (FileSystem.getFileInfo("/Data/frotz0.out")) {
 				cmd = "cp "+FROTZOUTPUT+" /Data/frotz1.out";
 				shellExec(cmd);
 			} else {
 				cmd = "cp "+FROTZOUTPUT+" /Data/frotz0.out";
 				shellExec(cmd);
-			}*/
+			}
 			
 			// output
 			if (tempOutput === "") {
@@ -663,28 +662,43 @@ var tmp = function () {
 		getNewResult = false;
 		switch(lowerGameTitle) {
 			case "trinity":
+				result = getFileContent(FROTZOUTPUT, "222");
 				if (previousresult.indexOf("T    R    I    N    I    T    Y")>0) {
 					// set up new input file
 					setFileContent(FROTZINPUT, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+"Y\n"+quitGame); // extra return needed
 					getNewResult = true;
 				} else if (previousresult.indexOf("purpose of the calligraphy")>0) {
-					// need to get output again and reprocess it
-					result = getFileContent(FROTZOUTPUT, "222");
-					if (result !== "222") {
-						// trim initial/restore lines at start of output
-						result = result.substring(result.indexOf(">")+1);
-						result = result.substring(result.indexOf(">")+1);
+					// trim initial/restore lines at start of output
+					result = result.substring(result.indexOf(">")+1);
+					result = result.substring(result.indexOf(">")+1);
 
-						// skip three ">" (part of the contents of the book in the cottage)
-						charPos = result.indexOf(">")+1;
-						charPos = result.indexOf(">", charPos); // marks location of middle ">"
-						charPos2 = result.indexOf(">", charPos + 1);
-						
-						// remove second book entry and trim save/quit lines at end of output
-						result = result.substring(0, charPos) + result.substring(charPos2, result.indexOf(">", charPos2 + 1));
-						result = result.replace("few incantations", "two incantations");
-						return result;
-					}
+					// skip three ">" (part of the contents of the book in the cottage)
+					charPos = result.indexOf(">")+1;
+					charPos = result.indexOf(">", charPos); // marks location of middle ">"
+					charPos2 = result.indexOf(">", charPos + 1);
+					
+					// remove second book entry and trim save/quit lines at end of output
+					result = result.substring(0, charPos) + result.substring(charPos2, result.indexOf(">", charPos2 + 1));
+					result = result.replace("few incantations", "two incantations");
+					return result;
+				} else if (result.indexOf("You cross the brink of the white door")>0) {
+					// trim initial/restore lines at start of output
+					result = result.substring(result.indexOf(">")+1);
+					result = result.substring(result.indexOf(">")+1);
+					result = result.substring(result.indexOf(">")+currentLine.length+2); // skip player input
+			
+					// trim save/quit lines at end of output
+					result = result.substring(0, result.indexOf(">"));
+					return result;
+				} else if (result.indexOf("You surrender a silver coin you didn't know you had")>0) {
+					// trim initial/restore lines at start of output
+					result = result.substring(result.indexOf(">")+1);
+					result = result.substring(result.indexOf(">")+1);
+					result = result.substring(result.indexOf(">")+currentLine.length+2); // skip player input
+			
+					// trim save/quit lines at end of output
+					result = result.substring(0, result.indexOf(">"));
+					return result;
 				}
 				break;
 			case "phobos":
