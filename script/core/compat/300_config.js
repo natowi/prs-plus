@@ -25,9 +25,14 @@
 //		Calendar by Ben Chenoweth
 //		Solitaire by Ben Chenoweth
 //	2011-09-14 kartu - games & utils "into games (unstable)"
-//	2011-10-19 Ben Chenoweth - Added ALT icons
-//	2011-12-25 Mark Nord - added picture to "media" -> will be supported by BrowseFolders
-//	2012-02-20 quisvir - Added Action Launcher (StandardActions node)
+//  2011-10-19 Ben Chenoweth - Added ALT icons
+
+var imageNodePrototype = xs.newInstanceOf(FskCache.tree.mediaNode);
+imageNodePrototype.onEnter = 'onEnterPicture';
+imageNodePrototype.onExit = 'onExitPicture';
+imageNodePrototype.onSelect = 'onSelectDefault';
+imageNodePrototype.kind = -4;
+imageNodePrototype.comment ="";
 
 return {
 	// Menu icon indices 
@@ -76,7 +81,6 @@ return {
 		FOLDER: 47,
 		GAME: 48,
 		CALC: 49,
-		KEYBOARD_ALT: 51,
 		CHESS: 52,
 		CARDS: 53,
 		SUDOKU: 54,
@@ -96,12 +100,8 @@ return {
 		NEXT: 67,
 		
 		BOOK_ALT: 69,
-		INTERACT_FICT: 69,
 		PICTURE_ALT: 70,
 		SEARCH_ALT: 71,
-		COMIC: 72,
-		ARCHIVE:73,
-		AUDIO_ALT: 74,
 		
 		DEFAULT: 47,
 		
@@ -132,8 +132,7 @@ return {
 	// are there volume keys
 	hasVolumeButtons: false,
 	// are there paging buttons
-	hasPagingButtonsOld: false,
-	hasPagingButtonsNew: false,
+	hasPagingButtons: false,
 	// are there joypad buttons
 	hasJoypadButtons: true,
 	// are there "other" buttons
@@ -165,14 +164,11 @@ return {
 			{ name: "DictionaryCL", parent: "gamesAndUtils" },
 			{ name: "Calculator", parent: "gamesAndUtils" },				
 			{ name: "Calendar", parent: "gamesAndUtils" },
-			//{ name: "Cli", parent: "gamesAndUtils" },
-			{ name: "StandardActions", parent: "gamesAndUtils" },
 			{ name: "Chess", parent: "gamesAndUtils" },
 			{ name: "Draughts", parent: "gamesAndUtils" },
 			{ name: "FiveBalls", parent: "gamesAndUtils" },				
 			{ name: "FiveRow", parent: "gamesAndUtils" },				
-			{ name: "FreeCell", parent: "gamesAndUtils" },
-			{ name: "Frotz", parent: "gamesAndUtils" },
+			{ name: "FreeCell", parent: "gamesAndUtils" },				
 			{ name: "Mahjong", parent: "gamesAndUtils" },
 			{ name: "MineSweeper", parent: "gamesAndUtils" },
 			{ name: "Solitaire", parent: "gamesAndUtils" },
@@ -201,7 +197,7 @@ return {
 		// what kind it is, supported are: "book", "picture", "note", "audio"
 		kinds: ["book", "picture"],
 		// node prototypes to use when creating media nodes
-		prototypes: [FskCache.tree.bookNode, kbook.root.children.pictures.prototype]
+		prototypes: [FskCache.tree.bookNode, imageNodePrototype]
 	}, 
 	
 	compareStrings: function(a, b) {
