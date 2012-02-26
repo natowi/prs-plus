@@ -81,6 +81,7 @@ return {
 		FOLDER: 47,
 		GAME: 48,
 		CALC: 49,
+		KEYBOARD_ALT: 51,
 		CHESS: 52,
 		CARDS: 53,
 		SUDOKU: 54,
@@ -100,8 +101,12 @@ return {
 		NEXT: 67,
 		
 		BOOK_ALT: 69,
+		INTERACT_FICT: 69,
 		PICTURE_ALT: 70,
 		SEARCH_ALT: 71,
+		COMIC: 72,
+		ARCHIVE:73,
+		AUDIO_ALT: 74,
 		
 		DEFAULT: 47,
 		
@@ -132,7 +137,8 @@ return {
 	// are there volume keys
 	hasVolumeButtons: false,
 	// are there paging buttons
-	hasPagingButtons: false,
+	hasPagingButtonsOld: false,
+	hasPagingButtonsNew: false,
 	// are there joypad buttons
 	hasJoypadButtons: true,
 	// are there "other" buttons
@@ -164,11 +170,14 @@ return {
 			{ name: "DictionaryCL", parent: "gamesAndUtils" },
 			{ name: "Calculator", parent: "gamesAndUtils" },				
 			{ name: "Calendar", parent: "gamesAndUtils" },
+			//{ name: "Cli", parent: "gamesAndUtils" },
+			{ name: "StandardActions", parent: "gamesAndUtils" },
 			{ name: "Chess", parent: "gamesAndUtils" },
 			{ name: "Draughts", parent: "gamesAndUtils" },
 			{ name: "FiveBalls", parent: "gamesAndUtils" },				
 			{ name: "FiveRow", parent: "gamesAndUtils" },				
-			{ name: "FreeCell", parent: "gamesAndUtils" },				
+			{ name: "FreeCell", parent: "gamesAndUtils" },
+			{ name: "Frotz", parent: "gamesAndUtils" },
 			{ name: "Mahjong", parent: "gamesAndUtils" },
 			{ name: "MineSweeper", parent: "gamesAndUtils" },
 			{ name: "Solitaire", parent: "gamesAndUtils" },
