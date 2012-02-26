@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <language xmlns="http://www.kinoma.com/fskin/1">
-	<name>English</name>
-	<txtWelcome>Hello from Sony. What you hold in your hands&#xA;is the future of reading. To experience this&#xA;now, tap anywhere on the screen.</txtWelcome>
-	<txtGuideAreaLang>Trií el seu idioma preferit i premi “OK”.&#xA;Nota:  podrà modificar la configuració del apararell més endavant en el menú “configuració”.</txtGuideAreaLang>
-	<txtCalibration1>Using the stylus, tap on the center&#xA;of the target.</txtCalibration1>
-	<txtCalibration2>Calibration error detected.&#xA;Please restart calibration process.</txtCalibration2>
+	<name>Català</name>
+	<txtWelcome>Salutacions de Sony. El que té a les seves mans&#xA;és el futur de la lectura. Per experimentar-ho&#xA;ara, toqui en qualsevol lloc de la pantalla.</txtWelcome>
+	<txtGuideAreaLang>Triï el seu idioma preferit i premi “OK”.&#xA;Nota:  podrà modificar la configuració de l'apararell més endavant en el menú “configuració”.</txtGuideAreaLang>
+	<txtCalibration1>Fent servir el llapis, piqui en el centre&#xA;del blanc.</txtCalibration1>
+	<txtCalibration2>S'ha detectat un error de calibrat.&#xA;Sisplau, torni a començar el procès de calibrat.</txtCalibration2>
 </language>
