@@ -104,7 +104,7 @@
 		<string id="STR_UI_USB_MODE_GUIDE_OTHER_ERRORS" value="Votre Reader doit être réinitialisé. Pour faire ceci vous devez introduire une épingle dans le bouton « RESET » et ensuite faire glisser et relâcher l’interrupteur « POWER ». Si vous voyez toujours ce message à l’écran, veuillez contacter le Sony Customer Support." />
 		<string id="STR_UI_USB_MODE_GUIDE" value="Veuillez consulter le guide de l’utilisateur." />
 		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,„,‘,’,“,”" />
-		<string id="STR_SORT_IGNOREARTICLES" value="l' ,la ,le ,les ,un ,une " />
+		<string id="STR_SORT_IGNOREARTICLES" value="l',la ,le ,les ,un ,une " />
 		<string id="infoTitles" value="Couverture,Titre,Titre,Date édit,Auteur,Éditeur,Catégorie,ID eBook,Type,Date,Taille,Emplacement,Chemin,Droits digitaux,Date d'expiration" />
 		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Langue du menu" />
 		<string id="STR_UI_LANG" value="Langue" />
@@ -333,7 +333,7 @@
 		<string id="STR_NODE_TITLE_NEWDELIVERY" value="Nouvelle livraison" />
 		<string id="STR_NODE_TITLE_DICTIONARY" value="Dictionnaire" />
 		<string id="STR_HOME_SEEALL" value="Tout voir" />
-		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Lu en dernier :" />
+		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Lu en dernier : " />
 		<string id="STR_COUNTER_PERIODICAL_N" value=" périodiques" />
 		<string id="STR_COUNTER_PERIODICAL_1" value="1 périodique" />
 		<string id="STR_COUNTER_PERIODICAL_0" value="Aucun périodique" />
@@ -382,7 +382,7 @@
 		<string id="STR_COUNTER_ARTICLE_0" value="Aucun article" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SECTION" value="XXSECTIONXX Section" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SEPARATE" value=" : " />
-		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value="  /" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" / " />
 		<string id="STR_NODE_TITLE_DELETEISSUE" value="Supprimer publication" />
 		<string id="STR_UI_MESSAGE_TITLE_DELETEISSUE" value="Titre publication : &quot;XXTITLEXX&quot;" />
 		<string id="STR_UI_MESSAGE_DELETEISSUE" value="Êtes-vous sûr de vouloir supprimer cette publication ?" />
@@ -575,7 +575,7 @@
 		<string id="STR_UI_SETTING_STANDBY_GUIDE" value="En sélectionnant « Oui » pour « Afficher image », l’image que vous avez sélectionné sera affichée dans le mode sommeil. En sélectionnant « Oui » pour « Afficher message », les messages à propos de comment réveiller le Reader seront affichés." />
 		<string id="STR_UI_SETTING_PICTURE" value="Image" />
 		<string id="STR_UI_SETTING_TEXT" value="Message" />
-		<string id="STR_UI_SETTING_ROTATETO" value="Rotation vers" />
+		<string id="STR_UI_SETTING_ROTATETO" value="Rotation vers " />
 		<string id="STR_UI_SETTING_ROTATETO_GUIDE" value="Sélectionnez la direction de rotation de l’écran lorsque « Orientation » est sélectionné dans le menu « OPTIONS »." />
 		<string id="STR_UI_MESSAGE_COLLECTION_NAME_ALREADY_EXISTS" value="Le nom de collection spécifié existe déjà. Veuillez introduire un autre nom." />
 		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION" value="Êtes-vous sûr de vouloir procéder ? Le contenu lui-même restera non-supprimé." />

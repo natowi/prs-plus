@@ -59,9 +59,9 @@
 		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
 		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
 		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
-		<string id="STR_UI_PARTS_PART" value="Deel" />
+		<string id="STR_UI_PARTS_PART" value="Deel " />
 		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
-		<string id="STR_UI_PARTS_PAGE" value="Pag." />
+		<string id="STR_UI_PARTS_PAGE" value="Pag. " />
 		<string id="STR_UI_PARTS_OF" value=" van " />
 		<string id="STR_UI_PARTS_TOC_UNKNOWN" value="?" />
 		<string id="STR_UI_PARTS_VERSION" value="Versie" />
@@ -334,7 +334,7 @@
 		<string id="STR_NODE_TITLE_NEWDELIVERY" value="Nieuwe levering" />
 		<string id="STR_NODE_TITLE_DICTIONARY" value="Woordenboek" />
 		<string id="STR_HOME_SEEALL" value="Alles zien" />
-		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Laatst gelezen:" />
+		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Laatst gelezen: " />
 		<string id="STR_COUNTER_PERIODICAL_N" value=" publicaties" />
 		<string id="STR_COUNTER_PERIODICAL_1" value="1 publicatie" />
 		<string id="STR_COUNTER_PERIODICAL_0" value="Geen publicaties" />
@@ -378,12 +378,12 @@
 		<string id="STR_NODE_TITLE_FRONT_PAGE" value="Voorpagina" />
 		<string id="STR_NODE_TITLE_SECTION_HOME" value="Bovenaan sectie XXSECTIONXX" />
 		<string id="STR_NODE_TITLE_SECTION_OTHERS" value="Andere" />
-		<string id="STR_COUNTER_ARTICLE_N" value=" artikels" />
+		<string id="STR_COUNTER_ARTICLE_N" value=" artikelen" />
 		<string id="STR_COUNTER_ARTICLE_1" value="1 artikel" />
-		<string id="STR_COUNTER_ARTICLE_0" value="Geen artikels" />
+		<string id="STR_COUNTER_ARTICLE_0" value="Geen artikelen" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SECTION" value="XXSECTIONXX sectie" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SEPARATE" value=":" />
-		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" /" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" / " />
 		<string id="STR_NODE_TITLE_DELETEISSUE" value="Wis publicatie" />
 		<string id="STR_UI_MESSAGE_TITLE_DELETEISSUE" value="Titel publicatie: &quot;XXTITLEXX&quot;" />
 		<string id="STR_UI_MESSAGE_DELETEISSUE" value="Weet u zeker dat u deze publicatie wilt verwijderen?" />
@@ -484,7 +484,7 @@
 		<string id="STR_UI_ABOUT_LEGALINFO" value="Juridische informatie" />
 		<string id="STR_NODE_TITLE_WIRELESS_SLEEP_MODE" value="Draadloze standby" />
 		<string id="STR_UI_MESSAGE_GUIDEAREA_WIRELESS" value="“Draadloze standby” plaatst de draadloze toepassin in “standby-stand” als het netwerk niet gebruikt wordt gedurende tien minuten. Zet dit “aan” om de levensduur van de batterij te vermeerderen en zet dit “uit” om verbindingstijden te verbeteren." />
-		<string id="STR_UI_SETTING_DIC_EBOOKID" value="eBook ID:" />
+		<string id="STR_UI_SETTING_DIC_EBOOKID" value="eBook ID: " />
 		<string id="STR_NODE_TITLE_TIMEZONE" value="Tijdzone" />
 		<string id="STR_UI_SETTING_TZ_EST" value="Oostelijke tijd" />
 		<string id="STR_UI_SETTING_TZ_CST" value="Centrale tijd" />
@@ -577,7 +577,7 @@
 		<string id="STR_UI_SETTING_STANDBY_GUIDE" value="Door “Ja” te selecteren voor “Foto weergeven” zal de foto die u geselecteerd hebt weergegeven worden in de slaapstand. Door “Ja” te selecteren voor “Bericht weergeven” zullen de berichten weergegeven worden over hoe u de reader wakker maakt ." />
 		<string id="STR_UI_SETTING_PICTURE" value="Foto" />
 		<string id="STR_UI_SETTING_TEXT" value="Bericht" />
-		<string id="STR_UI_SETTING_ROTATETO" value="Roteren naar" />
+		<string id="STR_UI_SETTING_ROTATETO" value="Roteren naar " />
 		<string id="STR_UI_SETTING_ROTATETO_GUIDE" value="Selecteer de schermrotatie-richting wanneer “Oriëntatie” geselecteerd is in het &quot;OPTIONS&quot;-menu." />
 		<string id="STR_UI_MESSAGE_COLLECTION_NAME_ALREADY_EXISTS" value="De gespecificeerde collectienaam bestaat reeds. Gelieve een andere naam in te voeren." />
 		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION" value="Weet u zeker dat u wilt voortgaan? De huidige inhoud zal onverwijderd blijven." />

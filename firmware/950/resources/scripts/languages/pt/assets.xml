@@ -59,9 +59,9 @@
 		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
 		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
 		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
-		<string id="STR_UI_PARTS_PART" value="Parte" />
-		<string id="STR_UI_PARTS_DIVIDER" value=" -" />
-		<string id="STR_UI_PARTS_PAGE" value="Página" />
+		<string id="STR_UI_PARTS_PART" value="Parte " />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Página " />
 		<string id="STR_UI_PARTS_OF" value=" de " />
 		<string id="STR_UI_PARTS_TOC_UNKNOWN" value="?" />
 		<string id="STR_UI_PARTS_VERSION" value="Versão" />
@@ -104,7 +104,7 @@
 		<string id="STR_UI_USB_MODE_GUIDE_OTHER_ERRORS" value="Seu Reader precisa ser redefinido. Para isso, insira um pino no botão de &quot;RESET&quot; abaixo e então deslize e solte o interruptor &quot;POWER&quot;. Se você continuar a ver essa mensagem na tela, por favor contacte a Sony Customer Support." />
 		<string id="STR_UI_USB_MODE_GUIDE" value="Por favor consulte o Guia do Usuário." />
 		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,„,‘,’,“,”" />
-		<string id="STR_SORT_IGNOREARTICLES" value="um, uma, uns, umas, o, os, a, as" />
+		<string id="STR_SORT_IGNOREARTICLES" value="um ,uma ,uns ,umas ,o ,os ,a ,as " />
 		<string id="infoTitles" value="Capa, Título, Título, Data Pub., Autor, Editora, Categoria, ID do eBook, Tipo, Data, Tamanho, Local, Passos, Direitos Digitais, Data de Validade" />
 		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Idioma do Menu" />
 		<string id="STR_UI_LANG" value="Idioma" />
@@ -126,7 +126,7 @@
 		<string id="STR_UI_TIME" value="Hora" />
 		<string id="STR_UI_BUTTON_12HR" value="12 horas" />
 		<string id="STR_UI_BUTTON_24HR" value="24 horas" />
-		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" /" />
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / " />
 		<string id="STR_UI_MESSAGE_NOBOOK" value="Nenhum Livro" />
 		<string id="STR_NODE_TITLE_BOOK" value="Livros" />
 		<string id="STR_NODE_TITLE_SORTEDBYTITLE" value="por Título" />
@@ -333,7 +333,7 @@
 		<string id="STR_NODE_TITLE_NEWDELIVERY" value="Nova Entrega" />
 		<string id="STR_NODE_TITLE_DICTIONARY" value="Dicionário" />
 		<string id="STR_HOME_SEEALL" value="Ver Tudo" />
-		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Última leitura:" />
+		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Última leitura: " />
 		<string id="STR_COUNTER_PERIODICAL_N" value=" periódicos" />
 		<string id="STR_COUNTER_PERIODICAL_1" value="1 periódico" />
 		<string id="STR_COUNTER_PERIODICAL_0" value="Nenhum periódico" />
@@ -382,7 +382,7 @@
 		<string id="STR_COUNTER_ARTICLE_0" value="Nenhum artigo" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SECTION" value="Seção XXSECTIONXX" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SEPARATE" value=":" />
-		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" /" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" / " />
 		<string id="STR_NODE_TITLE_DELETEISSUE" value="Deletar Exemplar" />
 		<string id="STR_UI_MESSAGE_TITLE_DELETEISSUE" value="Título da publicação: &quot;XXTITLEXX&quot;" />
 		<string id="STR_UI_MESSAGE_DELETEISSUE" value="Tem certeza que deseja deletar este exemplar?" />
@@ -483,7 +483,7 @@
 		<string id="STR_UI_ABOUT_LEGALINFO" value="Informação Legal" />
 		<string id="STR_NODE_TITLE_WIRELESS_SLEEP_MODE" value="Conex s/ fio esp" />
 		<string id="STR_UI_MESSAGE_GUIDEAREA_WIRELESS" value="&quot;Conex s/ fio esp&quot; configura a função sem fio no modo de espera quando a rede estiver ociosa por dez minutos. Selecione &quot;Sim&quot; para aumentar a vida útil da bateria e &quot;Não&quot; para melhorar o tempo de conexão." />
-		<string id="STR_UI_SETTING_DIC_EBOOKID" value="ID do eBook:" />
+		<string id="STR_UI_SETTING_DIC_EBOOKID" value="ID do eBook: " />
 		<string id="STR_NODE_TITLE_TIMEZONE" value="Fuso horário" />
 		<string id="STR_UI_SETTING_TZ_EST" value="Horário do Leste" />
 		<string id="STR_UI_SETTING_TZ_CST" value="Horário Central" />
@@ -575,7 +575,7 @@
 		<string id="STR_UI_SETTING_STANDBY_GUIDE" value="Ao selecionar &quot;Sim&quot; em &quot;Mostrar imagem&quot;, imagens selecionadas irão aparecer no modo de suspensão.&#xA;Ao selecionar &quot;Sim&quot; em &quot;Mostrar mensagem&quot;, mensagens sobre como acordar o Reader irão aparecer." />
 		<string id="STR_UI_SETTING_PICTURE" value="Imagem" />
 		<string id="STR_UI_SETTING_TEXT" value="Mensagem" />
-		<string id="STR_UI_SETTING_ROTATETO" value="Girar para" />
+		<string id="STR_UI_SETTING_ROTATETO" value="Girar para " />
 		<string id="STR_UI_SETTING_ROTATETO_GUIDE" value="Selecionar a direção de rotação da tela quando a &quot;Orientação&quot; for selecionada no menu &quot;OPTIONS&quot;." />
 		<string id="STR_UI_MESSAGE_COLLECTION_NAME_ALREADY_EXISTS" value="O nome da coleção especificado já existe.&#xA;Por favor insira outro nome." />
 		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION" value="Tem certeza que deseja prosseguir? Conteúdo atual permanecerá desdeletado." />

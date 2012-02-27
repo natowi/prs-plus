@@ -31,7 +31,7 @@
 		<string id="STR_COUNTER_BOOKMARK_N" value=" marcadors" />
 		<string id="STR_COUNTER_BOOKMARK_1" value="1 marcador" />
 		<string id="STR_COUNTER_BOOKMARK_0" value="Cap marcador" />
-		<string id="STR_COUNTER_ITEM_N" value="elements" />
+		<string id="STR_COUNTER_ITEM_N" value=" elements" />
 		<string id="STR_COUNTER_ITEM_1" value="1 element" />
 		<string id="STR_COUNTER_ITEM_0" value="Cap element" />
 		<string id="STR_COUNTER_BOOK_N" value=" llibres" />
@@ -59,9 +59,9 @@
 		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
 		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
 		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
-		<string id="STR_UI_PARTS_PART" value="Part" />
-		<string id="STR_UI_PARTS_DIVIDER" value=" -" />
-		<string id="STR_UI_PARTS_PAGE" value="Pàgina" />
+		<string id="STR_UI_PARTS_PART" value="Part " />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Pàgina " />
 		<string id="STR_UI_PARTS_OF" value=" de " />
 		<string id="STR_UI_PARTS_TOC_UNKNOWN" value="?" />
 		<string id="STR_UI_PARTS_VERSION" value="Versió" />
@@ -104,7 +104,7 @@
 		<string id="STR_UI_USB_MODE_GUIDE_OTHER_ERRORS" value="Cal reiniciar el seu Reader. Per fer això, inserti una agulla en l´orifici de Reset i després desplaci i deixi anar l'interruptor d'encesa mecànic. Si encara veu aquest missatge a la pantalla, sisplau, consulti la guia de l'usuari." />
 		<string id="STR_UI_USB_MODE_GUIDE" value="Sisplau, consulti la guia de l'usuari." />
 		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,„,‘,’,“,”" />
-		<string id="STR_SORT_IGNOREARTICLES" value="el, la, els, les, un, una, uns, unes" />
+		<string id="STR_SORT_IGNOREARTICLES" value="el ,la ,els ,les ,un ,una ,uns ,unes " />
 		<string id="infoTitles" value="Coberta, Títol, Títol, data de pub, Autor, Editorial, Categoria, ID eBook, Tipus, Data, Mida, Ubicació, Ruta, Drets Digitals, Data de Caducitat" />
 		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Idioma del menú" />
 		<string id="STR_UI_LANG" value="Idioma" />
@@ -334,7 +334,7 @@
 		<string id="STR_NODE_TITLE_NEWDELIVERY" value="Nou lliurament" />
 		<string id="STR_NODE_TITLE_DICTIONARY" value="Diccionari" />
 		<string id="STR_HOME_SEEALL" value="Veure tot" />
-		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Llegit darrerament:" />
+		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Llegit darrerament: " />
 		<string id="STR_COUNTER_PERIODICAL_N" value=" diaris" />
 		<string id="STR_COUNTER_PERIODICAL_1" value="1 diari" />
 		<string id="STR_COUNTER_PERIODICAL_0" value="Cap diari" />
@@ -383,7 +383,7 @@
 		<string id="STR_COUNTER_ARTICLE_0" value="Cap article" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SECTION" value="Secció XXSECTIONXX" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SEPARATE" value=":" />
-		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" /" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" / " />
 		<string id="STR_NODE_TITLE_DELETEISSUE" value="Suprimir exemplar" />
 		<string id="STR_UI_MESSAGE_TITLE_DELETEISSUE" value="Títol exemplar: &quot;XXTITLEXX&quot;" />
 		<string id="STR_UI_MESSAGE_DELETEISSUE" value="Està segur de què vol suprimir aquesta publicació?" />
@@ -484,7 +484,7 @@
 		<string id="STR_UI_ABOUT_LEGALINFO" value="Informació legal" />
 		<string id="STR_NODE_TITLE_WIRELESS_SLEEP_MODE" value="Standby inalàmbric" />
 		<string id="STR_UI_MESSAGE_GUIDEAREA_WIRELESS" value="" />
-		<string id="STR_UI_SETTING_DIC_EBOOKID" value="ID de l'eBook" />
+		<string id="STR_UI_SETTING_DIC_EBOOKID" value="ID de l'eBook: " />
 		<string id="STR_NODE_TITLE_TIMEZONE" value="Fus horari" />
 		<string id="STR_UI_SETTING_TZ_EST" value="Fus de l'Est" />
 		<string id="STR_UI_SETTING_TZ_CST" value="Hora del Centre" />
@@ -577,7 +577,7 @@
 		<string id="STR_UI_SETTING_STANDBY_GUIDE" value="Quan seleccioni “Si” en Mostrar imatge, la imatge que vostè ha seleccionat es mostrarà en el mode de repòs. Quan seleccioni “Si” en Mostrar missatge, el missatge sobre com engegar el Reader es mostrarà." />
 		<string id="STR_UI_SETTING_PICTURE" value="Imatge" />
 		<string id="STR_UI_SETTING_TEXT" value="Missatge" />
-		<string id="STR_UI_SETTING_ROTATETO" value="Rotació cap a" />
+		<string id="STR_UI_SETTING_ROTATETO" value="Rotació cap a " />
 		<string id="STR_UI_SETTING_ROTATETO_GUIDE" value="Seleccioni la direcció de rotació de la pantalla quan “Orientació” estigui seleccionat en el menú &quot;OPTIONS&quot;." />
 		<string id="STR_UI_MESSAGE_COLLECTION_NAME_ALREADY_EXISTS" value="El nom de colecció especificat ja existeix. Sisplau, especifiqui un altre nom." />
 		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION" value="Està segur de què vol procedir? El contingut en si es quedarà sense suprimir." />

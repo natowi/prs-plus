@@ -59,7 +59,7 @@
 		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
 		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
 		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
-		<string id="STR_UI_PARTS_PART" value="Teil" />
+		<string id="STR_UI_PARTS_PART" value="Teil " />
 		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
 		<string id="STR_UI_PARTS_PAGE" value="Seite " />
 		<string id="STR_UI_PARTS_OF" value=" von " />
@@ -334,7 +334,7 @@
 		<string id="STR_NODE_TITLE_NEWDELIVERY" value="Neue Lieferung" />
 		<string id="STR_NODE_TITLE_DICTIONARY" value="Wörterbuch" />
 		<string id="STR_HOME_SEEALL" value="Alle sehen" />
-		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Zuletzt gelesen:" />
+		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Zuletzt gelesen: " />
 		<string id="STR_COUNTER_PERIODICAL_N" value=" Periodika" />
 		<string id="STR_COUNTER_PERIODICAL_1" value="1 Periodikum" />
 		<string id="STR_COUNTER_PERIODICAL_0" value="Keine Periodika" />
@@ -383,7 +383,7 @@
 		<string id="STR_COUNTER_ARTICLE_0" value="Keine Artikel" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SECTION" value="XXSECTIONXX Rubrik" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SEPARATE" value=":" />
-		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" /" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" / " />
 		<string id="STR_NODE_TITLE_DELETEISSUE" value="Ausgabe löschen" />
 		<string id="STR_UI_MESSAGE_TITLE_DELETEISSUE" value="Titel d. Ausgabe: &quot;XXTITLEXX&quot;" />
 		<string id="STR_UI_MESSAGE_DELETEISSUE" value="Sind Sie sicher, Sie möchten diese Ausgabe löschen?" />
@@ -484,7 +484,7 @@
 		<string id="STR_UI_ABOUT_LEGALINFO" value="Rechtliche Hinweise" />
 		<string id="STR_NODE_TITLE_WIRELESS_SLEEP_MODE" value="Wireless Standby" />
 		<string id="STR_UI_MESSAGE_GUIDEAREA_WIRELESS" value="&quot;Wireless Standby&quot; versetzt die Drahtlos-Funktion in den Zustand &quot;Bereitschaft&quot;, sobald das Netzwerk 10 Minuten lang nicht benutzt worden ist. Schalten Sie sie &quot;Ein&quot;, um die Batterie-Betriebsdauer zu verlängern. Schalten Sie sie &quot;Aus&quot;, um die Verbindungszeiten zu verbessern." />
-		<string id="STR_UI_SETTING_DIC_EBOOKID" value="E-Book-ID" />
+		<string id="STR_UI_SETTING_DIC_EBOOKID" value="E-Book-ID: " />
 		<string id="STR_NODE_TITLE_TIMEZONE" value="Zeitzone" />
 		<string id="STR_UI_SETTING_TZ_EST" value="US-Ost Standardzeit" />
 		<string id="STR_UI_SETTING_TZ_CST" value="US-Zentral Standardzeit" />
@@ -577,7 +577,7 @@
 		<string id="STR_UI_SETTING_STANDBY_GUIDE" value="Durch die Auswahl von „Ja&quot; bei „Bild anzeigen&quot; werden Ihre ausgewählten Bilder im Schlafmodus angezeigt.&#xA;Durch die Auswahl von „Ja&quot; bei „Nachricht anzeigen&quot; wird die Nachricht angezeigt, wie der Reader aufzuwecken ist." />
 		<string id="STR_UI_SETTING_PICTURE" value="Bild" />
 		<string id="STR_UI_SETTING_TEXT" value="Nachricht" />
-		<string id="STR_UI_SETTING_ROTATETO" value="Drehen nach" />
+		<string id="STR_UI_SETTING_ROTATETO" value="Drehen nach " />
 		<string id="STR_UI_SETTING_ROTATETO_GUIDE" value="Wählen Sie die Bildschirm-Drehrichtung, wenn „Ausrichtung&quot; im Menü &quot;OPTIONS&quot; ausgewählt ist." />
 		<string id="STR_UI_MESSAGE_COLLECTION_NAME_ALREADY_EXISTS" value="Der angegebene Name der Sammlung besteht bereits. Bitte geben Sie einen anderen Namen ein." />
 		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION" value="Sind Sie sicher, Sie möchten fortfahren? Die aktuellen Inhalte werden nicht gelöscht." />

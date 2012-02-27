@@ -59,9 +59,9 @@
 		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
 		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
 		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
-		<string id="STR_UI_PARTS_PART" value="Parte" />
-		<string id="STR_UI_PARTS_DIVIDER" value=" -" />
-		<string id="STR_UI_PARTS_PAGE" value="Pagina" />
+		<string id="STR_UI_PARTS_PART" value="Parte " />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Pagina " />
 		<string id="STR_UI_PARTS_OF" value=" di " />
 		<string id="STR_UI_PARTS_TOC_UNKNOWN" value="?" />
 		<string id="STR_UI_PARTS_VERSION" value="Versione" />
@@ -104,7 +104,7 @@
 		<string id="STR_UI_USB_MODE_GUIDE_OTHER_ERRORS" value="Il Reader ha bisogno di essere azzerato. Per fare ciò, inserire uno spillo nel pulsante &quot;RESET&quot; sul fondo e quindi spostare e rilasciare l'interruttore &quot;POWER&quot;. Se si continua a vedere questo messaggio sullo schermo, rivolgersi al Sony Customer Support." />
 		<string id="STR_UI_USB_MODE_GUIDE" value="Consultare la Guida dell'utilizzatore." />
 		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,„,‘,’,“,”" />
-		<string id="STR_SORT_IGNOREARTICLES" value="un, uno, una, un', il, lo, la, l', i, gli, le" />
+		<string id="STR_SORT_IGNOREARTICLES" value="un ,uno ,una ,un',il ,lo ,la ,l',i ,gli ,le " />
 		<string id="infoTitles" value="Copertina, Titolo, Titolo, Data pubb., Autore, Editore, Categoria, ID e-Book, Tipo, Data, Dimensioni, Ubicazione, Percorso, Diritti digitali, Data di scadenza" />
 		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Lingua del menu" />
 		<string id="STR_UI_LANG" value="Lingua" />
@@ -333,7 +333,7 @@
 		<string id="STR_NODE_TITLE_NEWDELIVERY" value="Nuova consegna" />
 		<string id="STR_NODE_TITLE_DICTIONARY" value="Dizionario" />
 		<string id="STR_HOME_SEEALL" value="Vedere tutto" />
-		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Lettura più recente:" />
+		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Lettura più recente: " />
 		<string id="STR_COUNTER_PERIODICAL_N" value=" periodici" />
 		<string id="STR_COUNTER_PERIODICAL_1" value="1 periodico" />
 		<string id="STR_COUNTER_PERIODICAL_0" value="Nessun periodico" />
@@ -382,7 +382,7 @@
 		<string id="STR_COUNTER_ARTICLE_0" value="Nessun articolo" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SECTION" value="Sezione XXSECTIONXX" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SEPARATE" value=":" />
-		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" /" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" / " />
 		<string id="STR_NODE_TITLE_DELETEISSUE" value="Eliminare Pubblicazione" />
 		<string id="STR_UI_MESSAGE_TITLE_DELETEISSUE" value="Titolo Pubblicazione: &quot;XXTITLEXX&quot;" />
 		<string id="STR_UI_MESSAGE_DELETEISSUE" value="Si è sicuri di voler eliminare questa pubblicazione?" />
@@ -575,7 +575,7 @@
 		<string id="STR_UI_SETTING_STANDBY_GUIDE" value="Selezionare &quot;Sì&quot; per &quot;Mostrare immagine&quot;, le immagini selezionate vengono visualizzate nella modalità di riposo. Quando si seleziona &quot;Sì&quot; per &quot;Mostrare messag.&quot;, vengono visualizzati i messaggi su come riattivare il Reader." />
 		<string id="STR_UI_SETTING_PICTURE" value="Immagine" />
 		<string id="STR_UI_SETTING_TEXT" value="Messaggio" />
-		<string id="STR_UI_SETTING_ROTATETO" value="Ruotare verso" />
+		<string id="STR_UI_SETTING_ROTATETO" value="Ruotare verso " />
 		<string id="STR_UI_SETTING_ROTATETO_GUIDE" value="Selezionare la direzione dell'orientamento della schermata quando &quot;Orientamento&quot; è selezionato nel menu &quot;OPTIONS&quot;." />
 		<string id="STR_UI_MESSAGE_COLLECTION_NAME_ALREADY_EXISTS" value="Il nome di collezione specificato esiste già. Immettere un altro nome." />
 		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION" value="Si è sicuri di voler procedere? Il contenuto effettivo non verrà eliminato." />

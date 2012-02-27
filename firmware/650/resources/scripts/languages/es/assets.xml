@@ -31,7 +31,7 @@
 		<string id="STR_COUNTER_BOOKMARK_N" value=" marcadores" />
 		<string id="STR_COUNTER_BOOKMARK_1" value="1 marcador" />
 		<string id="STR_COUNTER_BOOKMARK_0" value="Ningún marcador" />
-		<string id="STR_COUNTER_ITEM_N" value="elementos" />
+		<string id="STR_COUNTER_ITEM_N" value=" elementos" />
 		<string id="STR_COUNTER_ITEM_1" value="1 elemento" />
 		<string id="STR_COUNTER_ITEM_0" value="Ningún elemento" />
 		<string id="STR_COUNTER_BOOK_N" value=" libros" />
@@ -59,9 +59,9 @@
 		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
 		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
 		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
-		<string id="STR_UI_PARTS_PART" value="Parte" />
-		<string id="STR_UI_PARTS_DIVIDER" value=" -" />
-		<string id="STR_UI_PARTS_PAGE" value="Página" />
+		<string id="STR_UI_PARTS_PART" value="Parte " />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Página " />
 		<string id="STR_UI_PARTS_OF" value=" de " />
 		<string id="STR_UI_PARTS_TOC_UNKNOWN" value="?" />
 		<string id="STR_UI_PARTS_VERSION" value="Versión" />
@@ -104,7 +104,7 @@
 		<string id="STR_UI_USB_MODE_GUIDE_OTHER_ERRORS" value="Su Reader debe ser reiniciado. Para hacer esto, inserte una aguja en el orificio de Reset y entonces deslice y suelte el interruptor de encendido mecánico. Si sigue viendo este mensaje en la pantalla, por favor, consulte el guía del usuario." />
 		<string id="STR_UI_USB_MODE_GUIDE" value="Por favor, consulte el guía del usuario." />
 		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,„,‘,’,“,”" />
-		<string id="STR_SORT_IGNOREARTICLES" value="el, la, los, las, un, una, unos, unas" />
+		<string id="STR_SORT_IGNOREARTICLES" value="el ,la ,los ,las ,un ,una ,unos ,unas " />
 		<string id="infoTitles" value="Cubierta, Título, Título, Fecha de pub, Autor, Editorial, Categoría, ID eBook, Tipo, Fecha, Tamaño, Ubicación, Ruta, Derechos Digitales, Fecha de Caducidad" />
 		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Idioma del menú" />
 		<string id="STR_UI_LANG" value="Idioma" />
@@ -334,7 +334,7 @@
 		<string id="STR_NODE_TITLE_NEWDELIVERY" value="Nueva entrega" />
 		<string id="STR_NODE_TITLE_DICTIONARY" value="Diccionario" />
 		<string id="STR_HOME_SEEALL" value="Ver todo" />
-		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Última lectura:" />
+		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Última lectura: " />
 		<string id="STR_COUNTER_PERIODICAL_N" value=" periódicos" />
 		<string id="STR_COUNTER_PERIODICAL_1" value="1 periódico" />
 		<string id="STR_COUNTER_PERIODICAL_0" value="Ningún periódico" />
@@ -383,7 +383,7 @@
 		<string id="STR_COUNTER_ARTICLE_0" value="Ningún artículo" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SECTION" value="Sección XXSECTIONXX" />
 		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SEPARATE" value=":" />
-		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" /" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" / " />
 		<string id="STR_NODE_TITLE_DELETEISSUE" value="Suprimir ejemplar" />
 		<string id="STR_UI_MESSAGE_TITLE_DELETEISSUE" value="Titulo ejemplar: &quot;XXTITLEXX&quot;" />
 		<string id="STR_UI_MESSAGE_DELETEISSUE" value="¿Está seguro de querer suprimir esta publicación?" />
@@ -484,7 +484,7 @@
 		<string id="STR_UI_ABOUT_LEGALINFO" value="Información legal" />
 		<string id="STR_NODE_TITLE_WIRELESS_SLEEP_MODE" value="Standby inalámbrico" />
 		<string id="STR_UI_MESSAGE_GUIDEAREA_WIRELESS" value="" />
-		<string id="STR_UI_SETTING_DIC_EBOOKID" value="ID del eBook" />
+		<string id="STR_UI_SETTING_DIC_EBOOKID" value="ID del eBook: " />
 		<string id="STR_NODE_TITLE_TIMEZONE" value="Huso horario" />
 		<string id="STR_UI_SETTING_TZ_EST" value="Hora del Este" />
 		<string id="STR_UI_SETTING_TZ_CST" value="Hora del Centro" />
@@ -577,7 +577,7 @@
 		<string id="STR_UI_SETTING_STANDBY_GUIDE" value="Cuando selecciona “Sí” en Mostrar imagen, la imagen que usted ha seleccionado se mostrará en el modo de reposo. Cuando selecciona “Sí” en Mostrar mensaje, el mensaje sobre como despertar al Reader se mostrará." />
 		<string id="STR_UI_SETTING_PICTURE" value="Imagen" />
 		<string id="STR_UI_SETTING_TEXT" value="Mensaje" />
-		<string id="STR_UI_SETTING_ROTATETO" value="Rotación hacia" />
+		<string id="STR_UI_SETTING_ROTATETO" value="Rotación hacia " />
 		<string id="STR_UI_SETTING_ROTATETO_GUIDE" value="Seleccione la dirección de rotación de la pantalla cuando “Orientación” está seleccionado en el menú &quot;OPTIONS&quot;." />
 		<string id="STR_UI_MESSAGE_COLLECTION_NAME_ALREADY_EXISTS" value="El nombre de colección especificado ya existe. Por favor especifique otro nombre." />
 		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION" value="¿Está seguro de querer proceder? El contenido en sí se quedará sin suprimir." />
