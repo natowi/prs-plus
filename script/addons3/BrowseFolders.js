@@ -56,6 +56,7 @@
 //	2011-12-29 Ben Chenoweth - Fixes for audio: index, prev/next on 600/x50 (".." node not compatible with shuffle); removed doUnpackHere
 //	2011-12-29 Mark Nord - some changes for 300/505; book-preview out of archive disabled due to unexpected results
 //	2011-12-20 Ben Chenoweth - Added more checks; localised song-index
+//	2012-02-27 Ben Chenoweth - Fix for archives (with no subfolders) on MS/SD
 
 tmp = function() {
 	var log, L, startsWith, trim, BrowseFolders, TYPE_SORT_WEIGHTS, compare, sorter, folderConstruct, 
@@ -605,7 +606,7 @@ tmp = function() {
 		var path, file, node, needsMount, mime, media, source;
 		try {
 			// mount, if needed
-			needsMount = this.parent.needsMount;
+			needsMount = this.needsMount;
 			if (needsMount !== undefined) {
 				Core.shell.mount(needsMount);
 			}
