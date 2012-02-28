@@ -57,6 +57,7 @@
 //	2011-12-29 Mark Nord - some changes for 300/505; book-preview out of archive disabled due to unexpected results
 //	2011-12-20 Ben Chenoweth - Added more checks; localised song-index
 //	2012-02-27 Ben Chenoweth - Fix for archives (with no subfolders) on MS/SD
+//	2012-02-28 Ben Chenoweth - Update reader when archive closes not after every item
 
 tmp = function() {
 	var log, L, startsWith, trim, BrowseFolders, TYPE_SORT_WEIGHTS, compare, sorter, folderConstruct, 
@@ -449,6 +450,7 @@ tmp = function() {
 			currentArchive = null;
 			this.nodes = null;
 			parent.update();
+			kbook.root.update(kbook.model);
 		} catch(e) {
 			log.error("Error in archiveRootDestruct", e);
 		}
@@ -510,6 +512,10 @@ tmp = function() {
 							fileIcon = 'PICTURE_ALT';
 							enterAction = archiveDummyEnter;
 							break;
+						/*case 'mp3':
+						case 'aac':
+							fileicon = 'AUDIO';
+							break;*/
 						default:
 							fileIcon = 'CROSSED_BOX';
 							break;
@@ -599,7 +605,7 @@ tmp = function() {
 			Core.ui.setCurrentNode(oldCurrentNode);
 			kbook.model.onChangeBook(oldCurrentBook);
 		}
-		kbook.root.update(kbook.model);
+		//kbook.root.update(kbook.model);
 	}
 	
 	var archiveDummyEnter = function () {
