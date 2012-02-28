@@ -342,7 +342,7 @@ tmp = function() {
 			bookChanged = false;
 		}
 		oldOnEnterDeviceRoot.apply(this, arguments);
-		homeGroup.sandbox.MENU_HOME_GROUP_SUB.sandbox.MENU_HOME_GROUP.sandbox.MENU_HOME.focus(true);
+		homeGroup.focus(true);
 	}
 	
 	// Update booklist after collection edit

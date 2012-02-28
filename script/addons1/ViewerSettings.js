@@ -21,9 +21,7 @@ tmp = function() {
 	LX = Core.lang.LX;
 	log = Core.log.getLogger('ViewerSettings');
 
-	var autoPageTimer, autoPageToggle, autoPageCallBack, autoPageRestart;
-
-	var oldRender, myRender, setMarginCut, resetMarginCut, myBounds, dx, dy, myWidth, myHeight, marginCut;
+	var autoPageTimer, oldRender, myRender, setMarginCut, resetMarginCut, myBounds, dx, dy, myWidth, myHeight, marginCut;
 	marginCut = false;
 
 	setMarginCut = function () {
@@ -173,7 +171,7 @@ tmp = function() {
 	
 
 
-	autoPageToggle = function () {
+	var autoPageToggle = function () {
 		if (!autoPageTimer) {
 			Core.ui.showMsg(L("AUTO_PAGE_TURNER") + ": " + L("VALUE_TRUE"), 2);
 			kbook.model.processing(100);
@@ -191,7 +189,7 @@ tmp = function() {
 		}
 	};
 	
-	autoPageCallback = function () {
+	var autoPageCallback = function () {
 		if (kbook.model.STATE === 'PAGE') {
 			kbook.model.container.sandbox.PAGE_GROUP.sandbox.PAGE.doNext();
 		} else {
@@ -199,7 +197,7 @@ tmp = function() {
 		}
 	};
 
-	autoPageRestart = function () {
+	var autoPageRestart = function () {
 		if (autoPageTimer) {
 			autoPageTimer.cancel();
 			autoPageTimer.schedule(autoPageTimer.delay);

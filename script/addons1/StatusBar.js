@@ -16,7 +16,7 @@
 var StatusBar;
 
 tmp = function() {
-	var L, log, BOOK, PAGE_INFO, MENU, TIME, sandbox, widgets, updateMenu, updateBook;
+	var L, log, BOOK, PAGE_INFO, MENU, TIME, sandbox, widgets, updateMenu, updateBook, updateAutorun;
 	L = Core.lang.getLocalizer("StatusBar");
 	log = Core.log.getLogger("StatusBar");
 	

@@ -13,7 +13,7 @@
 
 try {
 	tmp = function() {
-		var L, supportedArchives, defaultPassword, UNRAR, P7ZIP, RESULT_FILE, unpack, getRarCmdLine, getP7zipCmdLine;
+		var L, supportedArchives, defaultPassword, list, UNRAR, P7ZIP, RETURNED_LIST, RESULT_FILE, unpack, getRarCmdLine, getP7zipCmdLine;
 		UNRAR = System.applyEnvironment("[prspPath]") + "unrar";
 		P7ZIP = System.applyEnvironment("[prspPath]") + "7za";
 		RETURNED_LIST = "/tmp/returnedlist";

@@ -44,7 +44,7 @@ tmp = function() {
 	log = Core.log.getLogger('ViewerSettings_x50');
 
 	var opt, orgOrientation, docWidth, docHeight, oldIsScrollView, falseFunc, toggleTrueLandscape, restoreLandscape,
-		oldOnEnterOrientation1, oldOnEnterOrientation2, autoPageTimer, autoPageToggle, autoPageCallBack, autoPageRestart, activateCustomViewSettings;
+		oldOnEnterOrientation1, oldOnEnterOrientation2, autoPageTimer, activateCustomViewSettings;
 	
 	oldIsScrollView = kbook.kbookPage.isScrollView;
 	falseFunc = function () { return false };
@@ -421,7 +421,7 @@ tmp = function() {
 		};
 	};
 	
-	autoPageToggle = function () {
+	var autoPageToggle = function () {
 		if (!autoPageTimer) {
 			Core.ui.showMsg(L("AUTO_PAGE_TURNER") + ": " + L("VALUE_TRUE"), 2);
 			autoPageTimer = new HardwareTimer();
@@ -437,7 +437,7 @@ tmp = function() {
 		}
 	}
 	
-	autoPageCallback = function () {
+	var autoPageCallback = function () {
 		if (kbook.model.STATE === 'PAGE') {
 			kbook.model.container.sandbox.PAGE_GROUP.sandbox.PAGE_SUBGROUP.sandbox.PAGE.doNext();
 		} else {
@@ -445,7 +445,7 @@ tmp = function() {
 		}
 	}
 
-	autoPageRestart = function () {
+	var autoPageRestart = function () {
 		if (autoPageTimer) {
 			autoPageTimer.cancel();
 			autoPageTimer.schedule(autoPageTimer.delay);
