@@ -14,10 +14,11 @@
 //	2012-02-09 quisvir - Optimised Word Log trimming code
 //	2012-02-11 quisvir - Added option to clear word logs on shutdown
 //	2012-02-17 quisvir - Fixed #284, #288
+//	2012-02-28 quisvir - Fixed #301 'Pop-up dictionary demands to be closed and opened again to look up'
 
 tmp = function() {
 
-	var L, log, opt;
+	var L, log, opt, touchOptions;
 	L = Core.lang.getLocalizer('DictionaryOptions');
 	log = Core.log.getLogger('DictionaryOptions');
 	
@@ -124,9 +125,11 @@ tmp = function() {
 	
 	// Close dictionary popup and cancel selection by tapping page
 	pageShortcutOverlayModel.doTap = function (x, y) {
-		var model = kbook.model;
+		var model, func;
+		model = kbook.model;
 		if (model.doSomething('checkTap', x, y)) {
-			model.doSomething('doTap', x, y);
+			func = (touchOptions.switchPageTaps === 'true') ? 'doDoubleTap' : 'doTap';
+			model.doSomething(func, x, y);
 		} else if (opt.closePopupByPageTap === 'true') {
 			model.doSomething('selectNone');
 		} else {
@@ -134,6 +137,20 @@ tmp = function() {
 			return;
 		}
 		this.doCloseShortcut();
+	};
+	
+	pageShortcutOverlayModel.doDoubleTap = function (x, y) {
+		var model, cache, func;
+		model = kbook.model;
+		if (this.dictionaryDoubleTap(x, y)) return;
+		func = (touchOptions.switchPageTaps === 'true') ? 'doTap' : 'doDoubleTap';
+		cache = model.doSomething('hitCache', {x:x, y:y});
+		if (model.doSomething('hitMark', cache)) {
+			model.doSomething(func, x, y);
+			this.doCloseShortcut();
+			return;
+		}
+		model.doSomething(func, x, y);
 	};
 	
 	// Set Dictionary Popup lines
@@ -287,6 +304,7 @@ tmp = function() {
 		],
 		onInit: function () {
 			opt = this.options;
+			touchOptions = Core.addonByName.TouchSettings.options;
 			opt.popupLines = parseInt(opt.popupLines);
 			Core.events.subscribe(Core.events.EVENTS.BOOK_CHANGED, initPopupSize);
 			kbook.model.dicHistoriesMax = parseInt(opt.dicHistMax);

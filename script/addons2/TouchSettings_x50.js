@@ -14,6 +14,7 @@
 //	2011-12-08 quisvir - Added option to disable predictive text
 //	2011-12-13 quisvir - Added option to prevent popup menu overlapping selection
 //	2011-12-17 quisvir - Some options moved to DictionaryOptions_x50
+//	2012-02-28 quisvir - Fixed #301 'Pop-up dictionary demands to be closed and opened again to look up'
 
 tmp = function() {
 
@@ -62,29 +63,30 @@ tmp = function() {
 	oldDoBlink = kbook.model.doBlink;
 	doNothingFunc = function () {};
 	
-	// On tap (doubletap if switched), get coordinates from readingTracker
+	// On tap, get coordinates from readingTracker
 	var oldReadingTrackerTap = kbook.kbookPage.readingTracker.tap;
 	kbook.kbookPage.readingTracker.tap = function (target, x, y) {
 		readingTapX = x;
 		readingTapY = y;
-		if (opt.SwitchPageTaps === 'false') {
-			oldReadingTrackerTap.apply(this, arguments);
-		} else {
-			Core.addonByName.DictionaryOptions.pageDoubleTap(x, y);
-			oldReadingTrackerDoubleTap.apply(this, arguments);
-		}
+		oldReadingTrackerTap.apply(this, arguments);
 	};
 	
 	var oldReadingTrackerDoubleTap = kbook.kbookPage.readingTracker.doubleTap;
 	kbook.kbookPage.readingTracker.doubleTap = function (target, x, y) {
-		readingTapX = x;
-		readingTapY = y;
-		if (opt.SwitchPageTaps === 'false') {
-			Core.addonByName.DictionaryOptions.pageDoubleTap(x, y);
-			oldReadingTrackerDoubleTap.apply(this, arguments);
-		} else {
-			oldReadingTrackerTap.apply(this, arguments);
-		}
+		Core.addonByName.DictionaryOptions.pageDoubleTap(x, y);
+		oldReadingTrackerDoubleTap.apply(this, arguments);
+	}
+	
+	var SwitchPageTaps = function () {
+		var rt, dummy;
+		rt = kbook.kbookPage.readingTracker;
+		dummy = rt.tap;
+		rt.tap = rt.doubleTap;
+		rt.doubleTap = dummy;
+		dummy = pageShortcutOverlayModel.doTap;
+		pageShortcutOverlayModel.doTap = pageShortcutOverlayModel.doDoubleTap;
+		pageShortcutOverlayModel.doDoubleTap = dummy;
+		dummy = null;
 	}
 	
 	// Call pageTapAction, but only if tap is not a link, highlight etc.
@@ -363,7 +365,7 @@ tmp = function() {
 					values: ['50', '125', '250', '375', '500', '625', '750', '875', '1000'],
 				},
 				{
-					name: 'SwitchPageTaps',
+					name: 'switchPageTaps',
 					title: L('SWITCH_PAGE_TAPS'),
 					icon: 'STYLUS',
 					defaultValue: 'false',
@@ -470,13 +472,19 @@ tmp = function() {
 				BookUtil.gesture.tracker.gesture.actions[3].time = parseInt(opt.DoubleTapSpeed);
 				BookUtil.gesture.tracker.gesture.actions[4].time = parseInt(opt.DoubleTapSpeed);
 			}
+			if (opt.switchPageTaps === 'true') SwitchPageTaps();
 		},
 		onSettingsChanged: function (propertyName, oldValue, newValue, object) {
-			if (propertyName === 'ExtendTapAreas') {
-				Fskin.bookScroller.hitLink = (newValue === 'true') ? newHitLink : oldHitLink;
-			} else if (propertyName === 'DoubleTapSpeed') {
-				BookUtil.gesture.tracker.gesture.actions[3].time = parseInt(newValue);
-				BookUtil.gesture.tracker.gesture.actions[4].time = parseInt(newValue);
+			switch (propertyName) {
+				case 'switchPageTaps':
+					if (newValue !== oldValue) SwitchPageTaps();
+					break;
+				case 'ExtendTapAreas':
+					Fskin.bookScroller.hitLink = (newValue === 'true') ? newHitLink : oldHitLink;
+					break;
+				case 'DoubleTapSpeed':
+					BookUtil.gesture.tracker.gesture.actions[3].time = parseInt(newValue);
+					BookUtil.gesture.tracker.gesture.actions[4].time = parseInt(newValue);
 			}
 		},
 		actions: [{
@@ -533,9 +541,10 @@ tmp = function() {
 			group: 'Utils',
 			icon: 'STYLUS',
 			action: function () {
-				opt.SwitchPageTaps = (opt.SwitchPageTaps === 'true') ? 'false' : 'true';
-				Core.ui.showMsg(L('SWITCH_PAGE_TAPS') + ': ' + ((opt.SwitchPageTaps === 'true')?L('VALUE_TRUE'):L('VALUE_FALSE')));
+				opt.switchPageTaps = (opt.switchPageTaps === 'true') ? 'false' : 'true';
+				Core.ui.showMsg(L('SWITCH_PAGE_TAPS') + ': ' + ((opt.switchPageTaps === 'true')?L('VALUE_TRUE'):L('VALUE_FALSE')));
 				Core.settings.saveOptions(TouchSettings);
+				SwitchPageTaps();
 			}
 		}]
 	};
