@@ -104,7 +104,7 @@
 		<string id="STR_UI_USB_MODE_GUIDE_OTHER_ERRORS" value="Ihr Reader muss zurückgesetzt werden. Dazu stecken Sie bitte einen spitzen Gegenstand in den &quot;RESET&quot;-Knopf und betätigen Sie dann den &quot;POWER&quot;-Schalter. Falls diese Mitteilung weiterhin auf dem Bildschirm angezeigt wird, kontaktieren Sie bitte den Sony Customer Support." />
 		<string id="STR_UI_USB_MODE_GUIDE" value="Bitte siehe die Betriebsanleitung." />
 		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,„,‘,’,“,”" />
-		<string id="STR_SORT_IGNOREARTICLES" value="" />
+		<string id="STR_SORT_IGNOREARTICLES" value="der ,die ,das ,des ,dem ,den ,ein ,eine ,eines ,einer ,einem " />
 		<string id="infoTitles" value="Cover,Titel,Titel,Erscheinungstag,Autor,Verlag,Kategorie,E-Book-ID,Dateityp,Datum,Dateigröße,Speicherort,Dateipfad,Digitale Rechte,Gültigkeitsdatum" />
 		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Sprachmenü" />
 		<string id="STR_UI_LANG" value="Sprache" />

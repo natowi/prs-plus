@@ -180,7 +180,7 @@
 		<string id="STR_UI_MESSAGE_USBCONNECTED" value="Per USB verbunden" />
 		<string id="STR_UI_MESSAGE_LOCKED" value="Gerät gesperrt" />
 		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,„,‘,’,“,”" />
-		<string id="STR_SORT_IGNOREARTICLES" value="" />
+		<string id="STR_SORT_IGNOREARTICLES" value="der ,die ,das ,des ,dem ,den ,ein ,eine ,eines ,einer ,einem " />
 		<string id="infoTitles" value="Einband,Titel,Autor,Verleger,Kategorie,eBook-ID,Dateityp,Datum,Dateigröße,Dateipfad,Digitale Rechte,Gültigkeitsende" />
 		<string id="STR_UPDATE_SUCCESS" value="Die Firmware wird aktualisiert..." />
 		<string id="STR_UPDATE_FAIL" value="Die Aktualisierung der Firmware konnte nicht erfolgreich abgeschlossen werden. Versuchen Sie es erneut." />
