@@ -15,6 +15,7 @@
 //	2011-12-13 quisvir - Added option to prevent popup menu overlapping selection
 //	2011-12-17 quisvir - Some options moved to DictionaryOptions_x50
 //	2012-02-28 quisvir - Fixed #301 'Pop-up dictionary demands to be closed and opened again to look up'
+//	2012-02-29 quisvir - Fixed #304 'Only assigned gestures should be taken into account'
 
 tmp = function() {
 
@@ -175,35 +176,30 @@ tmp = function() {
 	
 	/*** SWIPE RELATED ***/
 	
-	// Add detection of up & down swipes
-	BookUtil.lineAction.up = function (target, x, y) {
-		this.previousAverage = this.currentAverage;
-		this.currentAverage = this.currentX + x;
-		BookUtil.baseAction.up.call(this, target, x, y);
-		if (!this.checkLine(x, y)) {
-			this.fail();
-			return false;
+	// Pass coordinate info to tracker so it can distinguish up/down
+	kbook.kbookPage.doLine = function (dir, p1, p2) {
+		if (this.getModel().overlayModel.checkZoomLock()) {
+			kbook.kbookPage.readingTracker.line(this, dir, p1, p2);
+		} else if (this.tracker !== kbook.kbookPage.freehandTracker) {
+			this.tracker.line(this, dir, p1, p2);
 		}
-		if (this.direction !== Gesture.noDirection) {
-			if (Math.abs(y - this.firstDownY) > Math.abs(x - this.firstDownX)) {
-				if (y - this.firstDownY > 0) {
-					this.direction = Gesture.bottomDirection;
-				} else {
-					this.direction = Gesture.upDirection;
-				}
-			}
-			this.tracker.execute(this, target, this.canCommand, this.doCommand, this.direction, new Point(this.firstDownX, this.firstDownY), new Point(x, y));
-			return false;
-		}
-		this.fail();
-	}
+	};
 	
 	// Execute swipe action based on direction
 	var oldLine = kbook.kbookPage.readingTracker.line;
-	kbook.kbookPage.readingTracker.line = function (target, dir) {
-		var swipe, actionName;
-		if (opt.DisableAllSwipes !== 'true') {
-			switch (dir) {
+	kbook.kbookPage.readingTracker.line = function (target, dir, p1, p2) {
+		var dir2, swipe, actionName;
+		if (opt.DisableAllSwipes === 'true') return;
+		dir2 = dir;
+		if (Math.abs(p2.y - p1.y) > Math.abs(p2.x - p1.x)) {
+			if (p2.y - p1.y > 0) {
+				dir2 = Gesture.bottomDirection;
+			} else {
+				dir2 = Gesture.upDirection;
+			}
+		}
+		while (true) {
+			switch (dir2) {
 				case Gesture.leftDirection:
 					swipe = 'SWIPE_LEFT';
 					break;
@@ -218,6 +214,11 @@ tmp = function() {
 			}
 			actionName = opt[swipe];
 			if (actionName === 'default') {
+				if (dir2 !== dir) {
+					// No action for up/down, rerun as left/right
+					dir2 = dir;
+					continue;
+				}
 				oldLine.apply(this, arguments);
 			} else {
 				target.clearTargetLink(true);
@@ -227,6 +228,7 @@ tmp = function() {
 				} catch(ignore) {}
 				touchAction = false;
 			}
+			break;
 		}
 	};
 	
