@@ -512,10 +512,6 @@ tmp = function() {
 							fileIcon = 'PICTURE_ALT';
 							enterAction = archiveDummyEnter;
 							break;
-						/*case 'mp3':
-						case 'aac':
-							fileicon = 'AUDIO';
-							break;*/
 						default:
 							fileIcon = 'CROSSED_BOX';
 							break;
