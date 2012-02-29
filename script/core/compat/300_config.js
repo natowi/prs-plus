@@ -177,7 +177,7 @@ return {
 			{ name: "FiveBalls", parent: "gamesAndUtils" },				
 			{ name: "FiveRow", parent: "gamesAndUtils" },				
 			{ name: "FreeCell", parent: "gamesAndUtils" },
-			{ name: "Frotz", parent: "gamesAndUtils" },
+			{ name: "IntFic", parent: "gamesAndUtils" },
 			{ name: "Mahjong", parent: "gamesAndUtils" },
 			{ name: "MineSweeper", parent: "gamesAndUtils" },
 			{ name: "Solitaire", parent: "gamesAndUtils" },

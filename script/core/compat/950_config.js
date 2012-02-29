@@ -259,7 +259,7 @@ return {
 			{ name: "FiveBalls", parent: "games" },	
 			{ name: "FiveRow", parent: "games" },	
 			{ name: "FreeCell", parent: "games" },
-			{ name: "Frotz", parent: "games" },
+			{ name: "IntFic", parent: "games" },
 			{ name: "Mahjong", parent: "games" },
 			// FIXME: Doesn't work on 950 yet
 			// { name: "MineSweeper", parent: "games" },

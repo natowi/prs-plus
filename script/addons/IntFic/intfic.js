@@ -1,5 +1,5 @@
 //
-// Frotz for Sony Reader (600/x50)
+// Interactive Fiction for Sony Reader
 // by Ben Chenoweth
 //
 // Initial version: 2012-01-25
@@ -17,6 +17,8 @@
 //	2012-02-22 Ben Chenoweth - Workaround for 'Bureaucracy' (requires externally created initial gamesave file)
 //	2012-02-22 Ben Chenoweth - Workaround for 'Zork1' (disable the 'loud' room so that save/restore work); use switches
 //	2012-02-25 Ben Chenoweth - More fixes for 'Trinity'
+//	2012-02-26 Ben Chenoweth - Added input shortcuts (x=examine, g=again, q=quit)
+//	2012-03-01 Ben Chenoweth - Renamed app; use nitfol for more recent IntFic (600/x50 only)
 
 var tmp = function () {
 	
@@ -48,12 +50,17 @@ var tmp = function () {
 	var prevSel;
 	
 	var FROTZ = System.applyEnvironment("[prspPath]") + "dfrotz";
-	var FROTZINPUT = tempPath + "frotz.in";
-	var FROTZOUTPUT = tempPath + "frotz.out";
 	// FROTZ options: -w: screen width, -h: number of lines,
 	// 				  -R: execute runtime code (cm = compression max, lt0 = line-type display off)
 	var FROTZOPTIONS = " -w 56 -h 40 -R lt0 "; // note there needs to be spaces at start and end of this string
+	var NITFOL = System.applyEnvironment("[prspPath]") + "cheapnitfol";
+	// NITFOL options: -q: quiet mode, -i: ignore errors, -expand: expand shorthand
+	var NITFOLOPTIONS = " -q -i -expand "; // note there needs to be spaces at start and end of this string
+	var INTFICIN = tempPath + "intfic.in";
+	var INTFICOUT = tempPath + "intfic.out";
 	var GAMETITLE = "";
+	var CONFIRM = ""; // Frotz asks for confirmation if save file exists, Nitfol does not
+	var EXECUTABLE = "";
 	var workingDir;
 	var tempOutput = "";
 	var chooseGame = false;
@@ -77,6 +84,12 @@ var tmp = function () {
 	var saveUser;
 	var quitGame;
 	var initialInput;
+	var useFrotz;
+	var quitMessage;
+	var restartMessage;
+	var saveSuccessMessage;
+	var restoreSuccessMessage;
+	var failMessage;
 	var loudRoomDisabled = false;
 		
 	var twoDigits = function (i) {
@@ -311,14 +324,29 @@ var tmp = function () {
 			saveUser = "save\n";
 			restoreUser = "restore\n";
 			quitGame = "quit\nY\n";
+			quitMessage = "Are you sure you want to quit? (y/n) ";
+			restartMessage = "Are you sure you want to restart? (y/n) ";
+			saveSuccessMessage = "OK.";
+			restoreSuccessMessage = "OK.";
+			failMessage = "Failed.";
 			initialInput = "";
 			
 			// modify if needed for specific games
 			switch(lowerGameTitle) {
+				// INFOCOM GAMES
 				case "amfv":
+					useFrotz = true;
 					startGame = "\n";
 					break;
+				case "ballyhoo":
+					useFrotz = true;
+					break;
+				case "borderzone":
+					useFrotz = true;
+					startGame = "1\n"; // to start Chapter 1
+					break;
 				case "bureau":
+					useFrotz = true;
 					workingDir = datPath + GAMETITLE.substring(0, GAMETITLE.indexOf(".")) + "/";
 					FileSystem.ensureDirectory(workingDir);
 
@@ -338,36 +366,124 @@ var tmp = function () {
 						initialInput = restoreUser+"userinput.sav\n"+saveTemp+quitGame;
 					}
 					break;
-				case "borderzone":
-					startGame = "1\n"; // to start Chapter 1
+				case "enchanter":
+					useFrotz = true;
 					break;
 				case "hhgg":
 				case "hitchhik":
+					useFrotz = true;
 					quitGame = "quit\nY\nY\n";
 					break;
+				case "infidel":
+					useFrotz = true;
+					break;
+				case "lurking":
+					useFrotz = true;
+					break;
+				case "moonmist":
+					useFrotz = true;
+					break;
 				case "phobos":
+					useFrotz = true;
 					startGame = "\n";
+					break;
+				case "planetfall":
+					useFrotz = true;
 					break;
 				case "plunderer":
+					useFrotz = true;
 					startGame = "\n";
+					break;
+				case "sorcerer":
+					useFrotz = true;
+					break;
+				case "spellbreaker":
+					useFrotz = true;
+					break;
+				case "stationfall":
+					useFrotz = true;
+					break;
+				case "suspect":
+					useFrotz = true;
+					break;
+				case "suspended":
+					useFrotz = true;
 					break;
 				case "trinity":
-					FROTZOPTIONS = " -w 62 -h 40 -R lt0 "; // game won't play if screen width less than 62!
+					useFrotz = true;
+					FROTZOPTIONS = " -w 106 -h 40 -R lt0 "; // game won't play if width less than 62 (instead use a width that's approximately twice the reader screen width)
 					startGame = "\n";
 					break;
+				case "wishbringer":
+					useFrotz = true;
+					break;
+				case "witness":
+					useFrotz = true;
+					break;
+				case "zork1":
+					useFrotz = true;
+					break;
+				case "zork2":
+					useFrotz = true;
+					break;
+				case "zork3":
+					useFrotz = true;
+					break;
+					
+				// INTERACTIVE FICTION
+				case "anchor":
+					useFrotz = false;
+					startGame = "\n\n\n";
+					break;
+				case "bronze":
+					useFrotz = false;
+					startGame = "Y\n";
+					break;
+				case "curses":
+					useFrotz = false;
+					startGame = "\n";
+					break;
+				case "lostpig":
+					useFrotz = false;
+					quitMessage = "Really all done with story? ";
+					restartMessage = "Really start all over? ";
+					failMessage = "Oops, that not work.";
+					break;
+				case "slouch":
+					useFrotz = false;
+					quitMessage = "/(?? QUITleaveenddone ??)\\ ";
+					restartMessage = "/(?? RESTARTperiodfirstrevisit ??)\\ ";
+					saveSuccessMessage = "/(pointrememberingSAVEstoresafekeep)\\";
+					restoreSuccessMessage = "/(yesunfoldingbackwardsRESTORErenewpointtimespace)\\";
+					failMessage = "/(failednullRESTOREbackconfusion)\\";
+					break;
+					
 				default:
+					useFrotz = false;
 			}
 			
 			if (initialInput === "") {
 				initialInput = startGame+saveTemp+quitGame;
 			}
 			
+			if (hasNumericButtons) {
+				useFrotz = true; // 505/300 do not have NITFOL
+			}
+			
+			if (useFrotz) {
+				CONFIRM = "Y\n";
+				EXECUTABLE = FROTZ + FROTZOPTIONS;
+			} else {
+				CONFIRM = "";
+				EXECUTABLE = NITFOL + NITFOLOPTIONS;
+			}
+			
 			try {
 				// delete old output file if it exists
-				deleteFile(FROTZOUTPUT);
+				deleteFile(INTFICOUT);
 				
 				// create input file (deletes file if it already exists)
-				setFileContent(FROTZINPUT, initialInput);
+				setFileContent(INTFICIN, initialInput);
 				
 				// create working directory (where savegames go) if it doesn't already exist
 				workingDir = datPath + GAMETITLE.substring(0, GAMETITLE.indexOf(".")) + "/";
@@ -376,8 +492,8 @@ var tmp = function () {
 				// delete old temp save if it exists
 				deleteFile(workingDir + "temp.sav");
 				
-				// move to working directory and start FROTZ
-				cmd = "cd " + workingDir + ";" + FROTZ + FROTZOPTIONS + datPath + GAMETITLE + " < " + FROTZINPUT + " > " + FROTZOUTPUT;
+				// move to working directory and start executable
+				cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
 				shellExec(cmd);
 				
 				// clear textbox
@@ -406,6 +522,7 @@ var tmp = function () {
 		var currentLine, itemNum, stream, timer;
 		// get currentLine
 		currentLine = target.getVariable("current_line");
+		
 		if (chooseGame) {
 			// convert input to number and look for respective GAMETITLE
 			itemNum = parseInt(currentLine);
@@ -419,6 +536,21 @@ var tmp = function () {
 				this.initialiseGame();
 			}
 		} else {
+			// process input replacing shortcuts
+			if (currentLine.substring(0,2) === "x ") {
+				currentLine = "examine " + currentLine.substring(2);
+			} else if (currentLine === "q") {
+				currentLine = "quit";
+			} else if (currentLine.substring(0,2) === "t ") {
+				currentLine = "take " + currentLine.substring(2);
+			} else if (currentLine === "g") {
+				currentLine = previousCommands[previousCommands.length-1];
+			}
+			
+			// update currentLine
+			target.currentText.setValue(currentLine);
+			target.setVariable("current_line",currentLine);
+		
 			// add command to previousCommands array
 			if (currentLine !== "") {
 				previousCommands.push(currentLine);
@@ -437,30 +569,30 @@ var tmp = function () {
 					this.setOutput(tempOutput);
 				} else {
 					// restore temp.sav and then save to user saveName
-					deleteFile(FROTZOUTPUT);
-					setFileContent(FROTZINPUT, startGame+restoreTemp+saveUser+saveName+"\n"+quitGame);
-					cmd = "cd " + workingDir + ";" + FROTZ + FROTZOPTIONS + datPath + GAMETITLE + " < " + FROTZINPUT + " > " + FROTZOUTPUT;
+					deleteFile(INTFICOUT);
+					setFileContent(INTFICIN, startGame+restoreTemp+saveUser+saveName+"\n"+quitGame);
+					cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
 					shellExec(cmd);
 					savingGame = false;
-					tempOutput = tempOutput + currentLine + "\nOK.\n\n>";
+					tempOutput = tempOutput + currentLine + "\n" + saveSuccessMessage + "\n\n>";
 					this.setOutput(tempOutput);
 				}
 			} else if ((savingGame) && (confirmedName)) {
 				// input should be Y or N
 				if ((currentLine === "Y") || (currentLine === "y")) {
 					// restore temp.sav and then save to user saveName (overwriting existing file)
-					deleteFile(FROTZOUTPUT);
-					setFileContent(FROTZINPUT, startGame+restoreTemp+saveUser+saveName+"\nY\n"+quitGame);
-					cmd = "cd " + workingDir + ";" + FROTZ + FROTZOPTIONS + datPath + GAMETITLE + " < " + FROTZINPUT + " > " + FROTZOUTPUT;
+					deleteFile(INTFICOUT);
+					setFileContent(INTFICIN, startGame+restoreTemp+saveUser+saveName+"\n"+CONFIRM+quitGame);
+					cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
 					shellExec(cmd);
 					savingGame = false;
 					confirmedName = false;
-					tempOutput = tempOutput + currentLine + "\nOK.\n\n>";
+					tempOutput = tempOutput + currentLine + "\n" + saveSuccessMessage + "\n\n>";
 					this.setOutput(tempOutput);
 				} else {
 					savingGame = false;
 					confirmedName = false;
-					tempOutput = tempOutput + currentLine + "\nFailed.\n\n>";
+					tempOutput = tempOutput + currentLine + "\n" + failMessage + "\n\n>";
 					this.setOutput(tempOutput);
 				}
 			} else if (restoringGame) {
@@ -470,16 +602,16 @@ var tmp = function () {
 				}
 				if (FileSystem.getFileInfo(workingDir + saveName)) {
 					// restore user saveName and then save to temp.sav
-					deleteFile(FROTZOUTPUT);
-					setFileContent(FROTZINPUT, startGame+restoreUser+saveName+"\n"+saveTemp+"Y\n"+quitGame);
-					cmd = "cd " + workingDir + ";" + FROTZ + FROTZOPTIONS + datPath + GAMETITLE + " < " + FROTZINPUT + " > " + FROTZOUTPUT + " &";
+					deleteFile(INTFICOUT);
+					setFileContent(INTFICIN, startGame+restoreUser+saveName+"\n"+saveTemp+CONFIRM+quitGame);
+					cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
 					shellExec(cmd);
 					restoringGame = false;
-					tempOutput = tempOutput + currentLine + "\nOK.\n\n>";
+					tempOutput = tempOutput + currentLine + "\n" + restoreSuccessMessage + "\n\n>";
 					this.setOutput(tempOutput);
 				} else {
 					restoringGame = false;
-					tempOutput = tempOutput + currentLine + "\nFailed.\n\n>";
+					tempOutput = tempOutput + currentLine + "\n" + failMessage + "\n\n>";
 					this.setOutput(tempOutput);
 				}
 			} else if (quittingGame) {
@@ -497,17 +629,16 @@ var tmp = function () {
 					restartingGame = false;
 					
 					// delete old output file if it exists
-					deleteFile(FROTZOUTPUT);
+					deleteFile(INTFICOUT);
 					
 					// create input file (deletes file if it already exists)
-					setFileContent(FROTZINPUT, initialInput);
+					setFileContent(INTFICIN, initialInput);
 					
 					// delete old temp save
 					deleteFile(workingDir + "temp.sav");
 					
-					// move to working directory and start FROTZ
-					// FROTZ options: -w: character width, -h: number of lines, -R: execute runtime code (cm = compression max)
-					cmd = "cd " + workingDir + ";" + FROTZ + FROTZOPTIONS + datPath + GAMETITLE + " < " + FROTZINPUT + " > " + FROTZOUTPUT;
+					// move to working directory and start executable
+					cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
 					shellExec(cmd);
 					
 					// clear textbox
@@ -533,44 +664,40 @@ var tmp = function () {
 					this.setOutput(tempOutput);
 				} else if ((currentLine === "quit") || (currentLine === "exit")) {
 					quittingGame = true;
-					tempOutput = tempOutput + currentLine + "\nAre you sure you want to quit? (y/n) ";
+					tempOutput = tempOutput + currentLine + "\n" + quitMessage;
 					this.setOutput(tempOutput);
 				} else if (currentLine === "restart") {
 					restartingGame = true;
-					tempOutput = tempOutput + currentLine + "\nAre you sure you want to restart? (y/n) ";
+					tempOutput = tempOutput + currentLine + "\n" + restartMessage;
 					this.setOutput(tempOutput);
 				} else if (currentLine === "score") {
-					// pass special command to FROTZ
+					// pass special command to executable
 					// delete old output file if it exists
-					deleteFile(FROTZOUTPUT);
-					
-					// set up new input file (requires additional RETURN after currentLine for some games, eg. hhgg)
-					setFileContent(FROTZINPUT, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+"Y\n"+quitGame);
+					deleteFile(INTFICOUT);
 					
 					// add currentLine to output
 					tempOutput = tempOutput + currentLine;
 					this.setOutput(tempOutput);
-					
-					// move to working directory and start FROTZ
-					cmd = "cd " + workingDir + ";" + FROTZ + FROTZOPTIONS + datPath + GAMETITLE + " < " + FROTZINPUT + " > " + FROTZOUTPUT;
+
+					// set up new input file (extra RETURN after currentLine needed for hhgg)
+					setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+CONFIRM+quitGame);
+					cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
 					shellExec(cmd);
 					
 					scoreCheck = true;
 					this.getResponse();
 				} else {
-					// pass command to FROTZ
+					// pass command to executable
 					// delete old output file if it exists
-					deleteFile(FROTZOUTPUT);
-					
-					// set up new input file
-					setFileContent(FROTZINPUT, startGame+restoreTemp+currentLine+"\n"+saveTemp+"Y\n"+quitGame);
+					deleteFile(INTFICOUT);
 					
 					// add currentLine to output
 					tempOutput = tempOutput + currentLine;
 					this.setOutput(tempOutput);
 					
-					// move to working directory and start FROTZ
-					cmd = "cd " + workingDir + ";" + FROTZ + FROTZOPTIONS + datPath + GAMETITLE + " < " + FROTZINPUT + " > " + FROTZOUTPUT;
+					// set up new input file
+					setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n"+saveTemp+CONFIRM+quitGame);
+					cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
 					shellExec(cmd);
 					
 					this.getResponse();
@@ -586,19 +713,17 @@ var tmp = function () {
 	
 	target.getResponse = function () {
 		var result, lowerGameTitle, charPos, charPos2;
-		//target = this.target;
-		//target.timer = null;
 		
-		result = getFileContent(FROTZOUTPUT, "222");
+		result = getFileContent(INTFICOUT, "222");
 		if (result !== "222") {
-			// output files for debugging
+			/*/ output files for debugging
 			if (FileSystem.getFileInfo("/Data/frotz0.out")) {
-				cmd = "cp "+FROTZOUTPUT+" /Data/frotz1.out";
+				cmd = "cp "+INTFICOUT+" /Data/frotz1.out";
 				shellExec(cmd);
 			} else {
-				cmd = "cp "+FROTZOUTPUT+" /Data/frotz0.out";
+				cmd = "cp "+INTFICOUT+" /Data/frotz0.out";
 				shellExec(cmd);
-			}
+			}*/
 			
 			// output
 			if (tempOutput === "") {
@@ -606,16 +731,23 @@ var tmp = function () {
 				lowerGameTitle = GAMETITLE.toLowerCase();
 				lowerGameTitle = lowerGameTitle.substring(0, lowerGameTitle.lastIndexOf(".")); //strip extension
 				
+				// initial removals
+				result = result.replace("Welcome to the Cheap Glk Implementation, library version 1.0.3.", ""); // NITFOL output
+				result = result.replace("Have you played interactive fiction before? >", ""); //bronze
+				
+				// initial replacements
+				result = result.replace("<PERSON>", "[PERSON]");
+				result = result.replace("<TOPIC>", "[TOPIC]");
+				result = result.replace("<ORDER>", "[ORDER]");
+				
 				switch(lowerGameTitle) {
 					case "borderzone":
-						// trim save/quit lines at end of output
 						charPos = result.indexOf(">")+1; // need to include first '>'
 						charPos = result.indexOf(">", charPos);
 						result = result.substring(0, charPos);
 						tempOutput = result + ">";
 						break;
 					case "bureau":
-						// trim save/quit lines at end of output
 						charPos = result.indexOf("[RESTORE completed.]")+21;
 						charPos2 = result.indexOf(">", charPos);
 						result = result.substring(charPos, charPos2);
@@ -627,6 +759,9 @@ var tmp = function () {
 						tempOutput = result + ">";
 				}
 			} else {
+				// initial removals
+				result = result.replace("Have you played interactive fiction before? >", ""); //bronze
+				
 				// trim initial/restore lines at start of output
 				result = result.substring(result.indexOf(">")+1);
 				result = result.substring(result.indexOf(">")+1);
@@ -640,7 +775,12 @@ var tmp = function () {
 				}
 				
 				// trim save/quit lines at end of output
-				result = result.substring(0, result.indexOf(">"));
+				charPos = result.indexOf(" -> "); // nitfol uses this when expanding/correcting
+				if (charPos > 0) {
+					result = result.substring(0, result.indexOf(">", charPos + 4));
+				} else {
+					result = result.substring(0, result.indexOf(">"));
+				}
 				
 				// extra check for special cases
 				result = this.extraCheck(result);
@@ -656,16 +796,24 @@ var tmp = function () {
 	
 	target.extraCheck = function (previousresult) {
 		var lowerGameTitle, currentLine, result, cmd, getNewResult, charPos, charPos;
+				
+		// check for problematic help (used in more recent IntFic)
+		if (previousresult.indexOf("Q = resume game") > 0) {
+			previousresult = "Unfortunately, the help in this game involves a menu system which is not compatible with this Interactive Fiction app.  Sorry!\n\n";
+			return previousresult;
+		}
+				
+		// game-specific checks
 		lowerGameTitle = GAMETITLE.toLowerCase();
 		lowerGameTitle = lowerGameTitle.substring(0, lowerGameTitle.lastIndexOf(".")); //strip extension
 		currentLine = target.getVariable("current_line");
 		getNewResult = false;
 		switch(lowerGameTitle) {
 			case "trinity":
-				result = getFileContent(FROTZOUTPUT, "222");
+				result = getFileContent(INTFICOUT, "222");
 				if (previousresult.indexOf("T    R    I    N    I    T    Y")>0) {
 					// set up new input file
-					setFileContent(FROTZINPUT, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+"Y\n"+quitGame); // extra return needed
+					setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+CONFIRM+quitGame); // extra return needed
 					getNewResult = true;
 				} else if (previousresult.indexOf("purpose of the calligraphy")>0) {
 					// trim initial/restore lines at start of output
@@ -701,10 +849,10 @@ var tmp = function () {
 					return result;
 				} else if ((result.indexOf("Are you sure you want to go that way?")>0) || (result.indexOf("Are you sure you want to go over that cliff?")>0)) {
 					// set up new input file
-					setFileContent(FROTZINPUT, startGame+restoreTemp+currentLine+"\nY\n"+saveTemp+"Y\n"+quitGame); // just answer 'YES'
-					cmd = "cd " + workingDir + ";" + FROTZ + FROTZOPTIONS + datPath + GAMETITLE + " < " + FROTZINPUT + " > " + FROTZOUTPUT;
+					setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\nY\n"+saveTemp+CONFIRM+quitGame); // just answer 'YES'
+					cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
 					shellExec(cmd);
-					result = getFileContent(FROTZOUTPUT, "222");
+					result = getFileContent(INTFICOUT, "222");
 					if (result !== "222") {
 						// trim initial/restore lines at start of output
 						result = result.substring(result.indexOf(">")+1);
@@ -720,13 +868,13 @@ var tmp = function () {
 			case "phobos":
 				if (previousresult.indexOf("Scratch 'n' sniff spot")>0) {
 					// set up new input file
-					setFileContent(FROTZINPUT, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+"Y\n"+quitGame); // extra return needed
+					setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+CONFIRM+quitGame); // extra return needed
 					getNewResult = true;
 				}
 				break;
 			case "borderzone":
 				// need to get output again and reprocess it
-				result = getFileContent(FROTZOUTPUT, "222");
+				result = getFileContent(INTFICOUT, "222");
 				if (result !== "222") {
 					// trim initial/restore lines at start of output
 					result = result.substring(result.indexOf(">")+1);
@@ -740,7 +888,7 @@ var tmp = function () {
 				break;
 			case "bureau":
 				// need to get output again and reprocess it
-				result = getFileContent(FROTZOUTPUT, "222");
+				result = getFileContent(INTFICOUT, "222");
 				if (result !== "222") {
 					// trim initial/restore lines at start of output
 					charPos = result.indexOf("[RESTORE completed.]");
@@ -759,63 +907,61 @@ var tmp = function () {
 					previousresult = previousresult + ">echo\nThe acoustics of the room change subtly.\n\n";
 					loudRoomDisabled = true;
 				}
+				break;
+			case "tangle":
+				if (previousresult.indexOf("[Hit any key.]")>0) {
+					// set up new input file
+					setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+CONFIRM+quitGame); // extra return needed
+					getNewResult = true;
+				}
+				break;
 			default:
 		}
+
 		if (getNewResult) {
-			cmd = "cd " + workingDir + ";" + FROTZ + FROTZOPTIONS + datPath + GAMETITLE + " < " + FROTZINPUT + " > " + FROTZOUTPUT;
+			cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
 			shellExec(cmd);
-			result = getFileContent(FROTZOUTPUT, "222");
+			result = getFileContent(INTFICOUT, "222");
 			if (result !== "222") {
 				// trim initial/restore lines at start of output
 				result = result.substring(result.indexOf(">")+1);
 				result = result.substring(result.indexOf(">")+1);
 				
 				// trim save/quit lines at end of output
-				result = result.substring(0, result.indexOf(">"));
+				charPos = result.indexOf(" -> "); // nitfol uses this when expanding/correcting
+				if (charPos > 0) {
+					result = result.substring(0, result.indexOf(">", charPos + 1));
+				} else {
+					result = result.substring(0, result.indexOf(">"));
+				}
+				
+				if (!useFrotz) {
+					result = this.removeWhiteSpace(result);
+				}
 				return result;
 			}
 		} else {
+			if (!useFrotz) {
+				previousresult = this.removeWhiteSpace(previousresult);
+			}
 			return previousresult;
 		}
 	}
 	
-	target.doQuit = function () {
-		/*var PSLOG, result, psStrings, PID;
-		PSLOG = tempPath + "/ps.log";
-		cmd = "ps ax|grep frotz|head -2 > " + PSLOG;
-		shellExec(cmd);
-		
-		result = getFileContent(PSLOG, "2X2");
-		//tempOutput = tempOutput + "\nPSLOG:\n"+result;
-		//this.setOutput(tempOutput);
-		if (result !== "2X2") {
-			psStrings = result.split("\n");
-			if (psStrings[0]) {
-				PID = psStrings[0].split(" ");
-				tempOutput = tempOutput + "\nPID[2]:" + PID[2];
-				if (psStrings[0].indexOf("grep") == -1) {
-					cmd = "kill " + PID[2];
-					shellExec(cmd);
-				}
-				if (psStrings[1]) {
-					PID = psStrings[1].split(" ");
-					tempOutput = tempOutput + "\nPID[2]:" + PID[2];
-					if (psStrings[1].indexOf("grep") == -1) {
-						cmd = "kill " + PID[2];
-						shellExec(cmd);
-					}
-				}
-			}
-		}
-		
-		// check to see if frotz is still running
-		//cmd = "ps ax|grep frotz > /Data/ps.log";
-		//shellExec(cmd);*/
-		
+	target.removeWhiteSpace = function (outputstring) {
+		// TODO: remove "\n" when there are more than two in a row
+
+		// any final NITFOL-specific removals?
+		outputstring = outputstring.replace("Welcome to the Cheap Glk Implementation, library version 1.0.3.\n", "");
+		outputstring = outputstring.replace("\n[Hit any key.]\n", ""); //tangle	
+		return outputstring;
+	}
+
+	target.doQuit = function () {	
 		// delete temp save
 		deleteFile(workingDir + "temp.sav");
-		deleteFile(FROTZINPUT);
-		deleteFile(FROTZOUTPUT);
+		deleteFile(INTFICIN);
+		deleteFile(INTFICOUT);
 		
 		kbook.autoRunRoot.exitIf(kbook.model);
 		return;

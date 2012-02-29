@@ -230,7 +230,7 @@ return {
 			{ name: "FiveBalls", parent: "games" },	
 			{ name: "FiveRow", parent: "games" },	
 			{ name: "FreeCell", parent: "games" },
-			{ name: "Frotz", parent: "games" },
+			{ name: "IntFic", parent: "games" },
 			{ name: "Mahjong", parent: "games" },
 			{ name: "MineSweeper", parent: "games" },
 			{ name: "Solitaire", parent: "games" },
