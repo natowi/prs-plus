@@ -108,7 +108,7 @@ tmp = function() {
 	var preventPopupOverlap = function (y) {
 		if (opt.popupPosition !== 'avoid') return;
 		var target = kbook.model.container.sandbox.SHORTCUT_OVERLAY.sandbox.VIEW_SHORTCUT;
-		if (y < kbook.model.container.height - target.height - 100) {
+		if (y < kbook.model.container.height - target.height - 60) {
 			if (target.y === 0) {
 				modifyDictPopup(false, false);
 			}
