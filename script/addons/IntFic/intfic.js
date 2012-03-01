@@ -18,7 +18,8 @@
 //	2012-02-22 Ben Chenoweth - Workaround for 'Zork1' (disable the 'loud' room so that save/restore work); use switches
 //	2012-02-25 Ben Chenoweth - More fixes for 'Trinity'
 //	2012-02-26 Ben Chenoweth - Added input shortcuts (x=examine, g=again, q=quit)
-//	2012-03-01 Ben Chenoweth - Renamed app; use nitfol for more recent IntFic (600/x50 only)
+//	2012-02-29 Ben Chenoweth - Renamed app; use nitfol for more recent IntFic (600/x50 only)
+//	2012-03-01 Ben Chenoweth - Whitespace handled; mortlake.z8 included in PRS+ installer
 
 var tmp = function () {
 	
@@ -411,7 +412,7 @@ var tmp = function () {
 					break;
 				case "trinity":
 					useFrotz = true;
-					FROTZOPTIONS = " -w 106 -h 40 -R lt0 "; // game won't play if width less than 62 (instead use a width that's approximately twice the reader screen width)
+					FROTZOPTIONS = " -w 112 -h 40 -R lt0 "; // game won't play if width less than 62 (instead use a width that's approximately twice the reader screen width)
 					startGame = "\n";
 					break;
 				case "wishbringer":
@@ -466,7 +467,7 @@ var tmp = function () {
 				initialInput = startGame+saveTemp+quitGame;
 			}
 			
-			if (hasNumericButtons) {
+			if (!FileSystem.getFileInfo(NITFOL)) {
 				useFrotz = true; // 505/300 do not have NITFOL
 			}
 			
@@ -732,8 +733,11 @@ var tmp = function () {
 				lowerGameTitle = lowerGameTitle.substring(0, lowerGameTitle.lastIndexOf(".")); //strip extension
 				
 				// initial removals
+				result = result.replace("Line-type display OFF", ""); // FROTZ output
 				result = result.replace("Welcome to the Cheap Glk Implementation, library version 1.0.3.", ""); // NITFOL output
 				result = result.replace("Have you played interactive fiction before? >", ""); //bronze
+				result = result.replace("[Press any key to begin.]", ""); // trinity (and presumably others)
+				result = result.replace(/\n{2,}/g, '\n\n'); // deal with unnecessary whitespace
 				
 				// initial replacements
 				result = result.replace("<PERSON>", "[PERSON]");
@@ -745,19 +749,20 @@ var tmp = function () {
 						charPos = result.indexOf(">")+1; // need to include first '>'
 						charPos = result.indexOf(">", charPos);
 						result = result.substring(0, charPos);
-						tempOutput = result + ">";
 						break;
 					case "bureau":
 						charPos = result.indexOf("[RESTORE completed.]")+21;
 						charPos2 = result.indexOf(">", charPos);
 						result = result.substring(charPos, charPos2);
-						tempOutput = result + ">";
 						break;
 					default:
 						// trim save/quit lines at end of output
 						result = result.substring(0, result.indexOf(">"));
-						tempOutput = result + ">";
 				}
+				
+				tempOutput = result + ">";
+				this.frotzText.setValue(tempOutput);
+				
 			} else {
 				// initial removals
 				result = result.replace("Have you played interactive fiction before? >", ""); //bronze
@@ -786,12 +791,13 @@ var tmp = function () {
 				result = this.extraCheck(result);
 				
 				tempOutput = tempOutput + "\n"+result + ">";
+				this.setOutput(tempOutput);
 			}
 		} else {
 			// no output file!
 			tempOutput = tempOutput + "\nNo output found!";
-		}
-		this.setOutput(tempOutput);
+			this.setOutput(tempOutput);
+		}	
 	}
 	
 	target.extraCheck = function (previousresult) {
@@ -949,7 +955,8 @@ var tmp = function () {
 	}
 	
 	target.removeWhiteSpace = function (outputstring) {
-		// TODO: remove "\n" when there are more than two in a row
+		// TOFIX: is there a better way of doing this?
+		outputstring = outputstring.replace(/\n{2,}/g, '\n\n');
 
 		// any final NITFOL-specific removals?
 		outputstring = outputstring.replace("Welcome to the Cheap Glk Implementation, library version 1.0.3.\n", "");
