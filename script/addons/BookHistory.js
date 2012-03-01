@@ -107,7 +107,7 @@ tmp = function() {
 	constructNodes = function () {
 		var i, node;
 		this.nodes = [];
-		
+		this.onSearch = 'onSearchDefault';
 		for (i = bookList.length-1; i >= 0; i--) {
 			node = createBookNode(bookList[i]);
 			if (node !== null) {

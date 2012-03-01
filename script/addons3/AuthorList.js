@@ -62,10 +62,18 @@ tmp = function() {
 					construct: authorConstruct,
 					icon: 'COLLECTION'
 				})
+				node.onSearch = 'onSearchDefault';
+				node.match = function (term) {
+					return this.name.toLowerCase().indexOf(term) !== -1;
+				};
 				node.authorIndex = i;
 				this.nodes.push(node);
 			}
 		}
+		this.onSearch = 'onSearchDefault';
+		this.getSortBy = function () {
+			return 'text';
+		};
 	};
 	
 	authorsNodeDestruct = function () {
@@ -103,9 +111,6 @@ tmp = function() {
 					construct: authorsNodeConstruct,
 					destruct: authorsNodeDestruct
 				});
-				authorsNode.getSortBy = function () {
-					return 'text';
-				};
 			}
 			return authorsNode;
 		},

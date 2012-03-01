@@ -45,6 +45,7 @@
 //	2012-02-16 quisvir - Added checkmarks for finished books, enable/disable page option items; fixed ignoreCards
 //	2012-02-17 quisvir - Fixed #286 'Page buttons stop working for cycling books in main screen'
 //	2012-02-24 quisvir - Made sub-collections recursive (unlimited levels), added option for separator, enabled #-Z navbar
+//	2012-03-01 quisvir - Added book content search
 
 tmp = function() {
 
@@ -224,6 +225,10 @@ tmp = function() {
 					newNode.ignoreSort = true;
 					newNode.getSortBy = function () {
 						return 'text';
+					};
+					newNode.onSearch = 'onSearchDefault';
+					newNode.match = function (term) {
+						return this.name.toLowerCase().indexOf(term) !== -1;
 					};
 					newNode.nodes.push(nodes.splice(i,1)[0]);
 					nodes.splice(next, 0, newNode);
@@ -626,10 +631,12 @@ tmp = function() {
 		tempNode = Core.ui.createContainerNode({
 			title: L('SELECT_COLLECTION'),
 			parent: oldNode,
+			icon: 'BOOKS',
 			construct: selectCollectionConstruct,
 			destruct: selectCollectionDestruct
 		});
 		tempNode.target = target;
+		tempNode.onSearch = 'onSearchDefault';
 		oldNode.gotoNode(tempNode, model);
 	}
 	
@@ -650,6 +657,10 @@ tmp = function() {
 			node.coll = coll;
 			node.oldNode = oldNode;
 			node.target = this.target;
+			node.onSearch = 'onSearchDefault';
+			node.match = function (term) {
+				return this.name.toLowerCase().indexOf(term) !== -1;
+			};
 		}
 		if (opt.subCollections === 'true') {
 			createSubCollections(this, 0, opt.subCollSeparator);
@@ -745,7 +756,9 @@ tmp = function() {
 	}
 	
 	var enableCheckmarks = function () {
-	
+		
+		var checkMarkKind = Core.config.compat.NodeKinds.CHECKMARK;
+		
 		// Hijack newIcon cutout, regular thumbnail views
 		model.container.cutouts['newIcon'].x = 3100;
 		
@@ -769,7 +782,7 @@ tmp = function() {
 		delete FskCache.tree.bookNode.iconKind;
 		FskCache.tree.bookNode.construct = function () {
 			FskCache.tree.xdbNode.construct.call(this);
-			this.iconKind = (this.opened) ? 118 : 2;
+			this.iconKind = (this.opened) ? checkMarkKind : 2;
 		};
 		
 		// Set iconKind for items in collection view
@@ -781,7 +794,7 @@ tmp = function() {
 			for (i = nodes.length - 1;i >= 0; i--) {
 				n = nodes[i];
 				if (n.opened) {
-					n.iconKind = 118;
+					n.iconKind = checkMarkKind;
 				} else {
 					n.iconKind = (n.media.isPeriodical()) ? 66 : 2;
 				}
@@ -797,7 +810,7 @@ tmp = function() {
 			nodes = this.nodes;
 			for (i = nodes.length - 1; i >= 0; i-- ) {
 				n = nodes[i];
-				n.iconKind = (n.opened) ? 118 : 66;
+				n.iconKind = (n.opened) ? checkMarkKind : 66;
 			}
 		}
 		
@@ -827,12 +840,12 @@ tmp = function() {
 				}
 				if (kind == 1 || kind == 120) {
 					bins.add(2);
-					bins.add(118);
+					bins.add(checkMarkKind);
 				}
 				else {
 					if (kind == 105 || kind == 121) {
 						bins.add(66);
-						bins.add(118);
+						bins.add(checkMarkKind);
 					}
 					else {
 						return null;
@@ -852,6 +865,103 @@ tmp = function() {
 			return bins;
 		}
 	}
+	
+	// Book content search
+	var doContentSearch, cSearchTimer;
+	
+	var oldExecSearch = commonSearchOverlayModel.execSearch;
+	commonSearchOverlayModel.execSearch = function (word) {
+		if (opt.contentSearch === 'false') {
+			return oldExecSearch.apply(this, arguments);
+		}
+		var dialog = kbook.model.getConfirmationDialog();
+		dialog.target = this;
+		dialog.onOk = function () {
+			doContentSearch = true;
+			oldExecSearch.call(this.target, word);
+		}
+		dialog.onNo = function () {
+			doContentSearch = false;
+			oldExecSearch.call(this.target, word);
+		}
+		dialog.openDialog(L('SEARCH_BOOK_CONTENTS'), 0);
+	};
+	
+	var oldDoSearch = FskCache.tree.searchResultsNode.doSearch;
+	FskCache.tree.searchResultsNode.doSearch = function () {
+		if (!doContentSearch) {
+			return oldDoSearch.apply(this, arguments);
+		}
+		if (this.nodes) {
+			this.clear();
+		}
+		this.nodes = [];
+		
+		var dialog = kbook.model.getConfirmationDialog();
+		dialog.target = this;
+		dialog.onNo = function () {
+			if (cSearchTimer) {
+				cSearchTimer.cancel();
+				cSearchTimer.close();
+				cSearchTimer = null;
+			}
+			if (kbook.model.currentNode === this.target && !this.target.nodes.length) {
+				this.target.gotoParent(kbook.model);
+			}
+			this.target = null;
+			kbook.model.processed(100);
+		}
+		dialog.openDialog(L('SEARCHING_CONTENTS') + '...', 4);
+		
+		kbook.model.processing(100);
+		cSearchTimer = new HardwareTimer();
+		cSearchTimer.onCallback = cSearchCallback;
+		cSearchTimer.target = this;
+		cSearchTimer.nodes1 = this.target.nodes;
+		cSearchTimer.nodes2 = this.nodes;
+		cSearchTimer.term = this.term;
+		cSearchTimer.i = 0;
+		cSearchTimer.dialog = dialog;
+		cSearchTimer.schedule(0);
+		
+		return 1;
+	};
+	
+	var cSearchCallback = function () {
+		var n, path;
+		n = this.nodes1[this.i++];
+		if (n && this.dialog.active) {
+			path = (n.media) ? n.media.source.path + n.media.path : n.path;
+			if (path && searchBookContents(path, this.term)) {
+				n.parent = this.target;
+				this.nodes2.push(n);
+			}
+			this.dialog.setVariable('MSG', L('SEARCHING_CONTENTS') + '...\n\n' + L('PROGRESS') + ': ' + this.i + ' / ' + this.nodes1.length + '\n' + L('HITS') + ': ' + this.nodes2.length);
+			this.schedule(175); // lower values seem to hinder key/button processing
+		} else {
+			this.dialog.doNO();
+			if (!this.nodes2.length) {
+				this.dialog.openDialog('fskin:/l/strings/DIALOGMSG_INFORM_NOHITS'.idToString(), 1);
+			}
+		}
+	}
+	
+	var searchBookContents = function (path, term) {
+		var mime, viewer, ret;
+		try {
+			mime = FileSystem.getMIMEType(path);
+			if (Document.Viewer.canHandle(mime)) {
+				viewer = new Document.Viewer.URL('file://' + path, mime);
+				if (viewer.find(term)) {
+					ret = true;
+				}
+			}
+		} catch(ignore) {
+		} finally {
+			if (viewer) viewer.close();
+		}
+		return ret;
+	};
 	
 	var BookManagement_x50 = {
 		name: 'BookManagement_x50',
@@ -1198,6 +1308,18 @@ tmp = function() {
 					'true': L('VALUE_TRUE'),
 					'false': L('VALUE_FALSE')
 				}	
+			},
+			{
+				name: 'contentSearch',
+				title: L('CONTENT_SEARCH'),
+				icon: 'SETTINGS',
+				helpText: L('CONTENT_SEARCH_HELPTEXT'),
+				defaultValue: 'false',
+				values: ['true', 'false'],
+				valueTitles: {
+					'true': L('VALUE_TRUE'),
+					'false': L('VALUE_FALSE')
+				}	
 			}
 		],
 		hiddenOptions: [
@@ -1244,6 +1366,9 @@ tmp = function() {
 				case 'subCollections':
 				case 'subCollSeparator':
 					Core.ui.nodes.collections.update(model);
+					break;
+				case 'contentSearch':
+					doContentSearch = false;
 			}
 		}
 	};

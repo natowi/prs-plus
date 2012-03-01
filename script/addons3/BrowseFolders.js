@@ -152,6 +152,15 @@ tmp = function() {
 			node.path = path + "/";
 			node.type = "folder";
 			node.needsMount = needsMount;
+			// Model sniffing: enable search on x50
+			if (kbook.iconKindField) {
+				node.iconKind = node.kind;
+				node.kind = 17;
+				node.onSearch = 'onSearchDefault';
+				node.match = function (term) {
+					return this.name.toLowerCase().indexOf(term) !== -1;
+				};
+			}
 			return node;
 		} catch (e) {
 			log.error("in createFolderNode", e);
@@ -1276,6 +1285,12 @@ tmp = function() {
 						parent: kbook.root,
 						construct: folderRootConstruct
 				});
+				// Model sniffing: enable search on x50
+				if (kbook.iconKindField) {
+					browseFoldersNode.iconKind = browseFoldersNode.kind;
+					browseFoldersNode.kind = 17;
+					browseFoldersNode.onSearch = 'onSearchDefault';
+				}
 			}
 			return browseFoldersNode;
 		},
