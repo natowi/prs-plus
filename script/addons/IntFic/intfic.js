@@ -20,6 +20,7 @@
 //	2012-02-26 Ben Chenoweth - Added input shortcuts (x=examine, g=again, q=quit)
 //	2012-02-29 Ben Chenoweth - Renamed app; use nitfol for more recent IntFic (600/x50 only)
 //	2012-03-01 Ben Chenoweth - Whitespace handled; mortlake.z8 included in PRS+ installer
+//	2012-03-02 Ben Chenoweth - Fixes for 'Tangle' & 'Trinity'; error message for 'undo'
 
 var tmp = function () {
 	
@@ -551,7 +552,7 @@ var tmp = function () {
 			// update currentLine
 			target.currentText.setValue(currentLine);
 			target.setVariable("current_line",currentLine);
-		
+			
 			// add command to previousCommands array
 			if (currentLine !== "") {
 				previousCommands.push(currentLine);
@@ -687,6 +688,9 @@ var tmp = function () {
 					
 					scoreCheck = true;
 					this.getResponse();
+				} else if (currentLine === "undo") {
+					tempOutput = tempOutput + currentLine + "\nUnfortunately, undo is not compatible with this Interactive Fiction app.  Sorry!\n\n>";
+					this.setOutput(tempOutput);
 				} else {
 					// pass command to executable
 					// delete old output file if it exists
@@ -808,6 +812,8 @@ var tmp = function () {
 			previousresult = "Unfortunately, the help in this game involves a menu system which is not compatible with this Interactive Fiction app.  Sorry!\n\n";
 			return previousresult;
 		}
+		
+		previousresult = previousresult.replace("UNDO your last move, ", ""); // undo doesn't work on the PRS+
 				
 		// game-specific checks
 		lowerGameTitle = GAMETITLE.toLowerCase();
@@ -834,15 +840,6 @@ var tmp = function () {
 					// remove second book entry and trim save/quit lines at end of output
 					result = result.substring(0, charPos) + result.substring(charPos2, result.indexOf(">", charPos2 + 1));
 					result = result.replace("few incantations", "two incantations");
-					return result;
-				} else if (result.indexOf("You cross the brink of the white door")>0) {
-					// trim initial/restore lines at start of output
-					result = result.substring(result.indexOf(">")+1);
-					result = result.substring(result.indexOf(">")+1);
-					result = result.substring(result.indexOf(">")+currentLine.length+2); // skip player input
-			
-					// trim save/quit lines at end of output
-					result = result.substring(0, result.indexOf(">"));
 					return result;
 				} else if (result.indexOf("You surrender a silver coin you didn't know you had")>0) {
 					// trim initial/restore lines at start of output
@@ -915,13 +912,22 @@ var tmp = function () {
 				}
 				break;
 			case "tangle":
-				if (previousresult.indexOf("[Hit any key.]")>0) {
-					// set up new input file
-					setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+CONFIRM+quitGame); // extra return needed
+				charPos = previousresult.indexOf("[Hit any key.]");
+				if (charPos > 0) {
+					if (previousresult.indexOf("[Hit any key.]", charPos + 1)>0) {
+						setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n\n\n"+saveTemp+CONFIRM+quitGame); // need two extra returns
+					} else {
+						setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+CONFIRM+quitGame); // extra return needed
+					}
 					getNewResult = true;
 				}
 				break;
 			default:
+		}
+		
+		if (previousresult.indexOf("Would you like to RESTART, RESTORE a saved game, or QUIT?")>0) {
+			setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n\n"+quitGame); // can't save, so just quit (extra return just in case)
+			getNewResult = true;
 		}
 
 		if (getNewResult) {
@@ -955,12 +961,12 @@ var tmp = function () {
 	}
 	
 	target.removeWhiteSpace = function (outputstring) {
-		// TOFIX: is there a better way of doing this?
+		// remove multiple (more than 2) new line characters
 		outputstring = outputstring.replace(/\n{2,}/g, '\n\n');
 
 		// any final NITFOL-specific removals?
-		outputstring = outputstring.replace("Welcome to the Cheap Glk Implementation, library version 1.0.3.\n", "");
-		outputstring = outputstring.replace("\n[Hit any key.]\n", ""); //tangle	
+		outputstring = outputstring.replace("Welcome to the Cheap Glk Implementation, library version 1.0.3.\n\n", "");
+		outputstring = outputstring.replace("[Hit any key.]", ""); //tangle	
 		return outputstring;
 	}
 

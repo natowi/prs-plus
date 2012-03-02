@@ -6,8 +6,8 @@
  * ALL: Added CBR/CBZ/CB7 reader (using BrowseFolders)
  * ALL: Added audio support to BrowseFolders
  * ALL: Added CLI App (not enabled by default)
- * ALL: Added actions: No Action, Goto various nodes, Delete Current Item, Play/Pause Audio
- * ALL: Frotz App
+ * ALL: Added actions: No Action, Goto various nodes, Delete Current Item, Pause/Play Audio
+ * ALL: Interactive Fiction App using Frotz (all models) and Nitfol (600/x50)
  * 300/505/600: Added Available Space Info to PRS+ About
  * 600/x50: Added Author List addon
  * 600/x50: Added Auto Standby/Shutdown Time options
