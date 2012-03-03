@@ -17,10 +17,11 @@
 //	2012-02-22 Ben Chenoweth - Workaround for 'Bureaucracy' (requires externally created initial gamesave file)
 //	2012-02-22 Ben Chenoweth - Workaround for 'Zork1' (disable the 'loud' room so that save/restore work); use switches
 //	2012-02-25 Ben Chenoweth - More fixes for 'Trinity'
-//	2012-02-26 Ben Chenoweth - Added input shortcuts (x=examine, g=again, q=quit)
+//	2012-02-26 Ben Chenoweth - Added input shortcuts (x=examine, g=again, q=quit, l=look)
 //	2012-02-29 Ben Chenoweth - Renamed app; use nitfol for more recent IntFic (600/x50 only)
 //	2012-03-01 Ben Chenoweth - Whitespace handled; mortlake.z8 included in PRS+ installer
 //	2012-03-02 Ben Chenoweth - Fixes for 'Tangle' & 'Trinity'; error message for 'undo'
+//	2012-03-03 Ben Chenoweth - Better handling of YES/NO situations in 'Trinity'
 
 var tmp = function () {
 	
@@ -72,6 +73,8 @@ var tmp = function () {
 	var quittingGame = false;
 	var restartingGame = false;
 	var scoreCheck = false;
+	var getYesNo = false;
+	var checkYesNo = false;
 	var saveName = "story.sav";
 	var titles = [];
 	var pageScroll;
@@ -547,6 +550,8 @@ var tmp = function () {
 				currentLine = "take " + currentLine.substring(2);
 			} else if (currentLine === "g") {
 				currentLine = previousCommands[previousCommands.length-1];
+			} else if (currentLine === "l") {
+				currentLine = "look";
 			}
 			
 			// update currentLine
@@ -554,7 +559,7 @@ var tmp = function () {
 			target.setVariable("current_line",currentLine);
 			
 			// add command to previousCommands array
-			if (currentLine !== "") {
+			if ((currentLine !== "") && (!getYesNo)) {
 				previousCommands.push(currentLine);
 			}
 			previousCommandNum = 0;
@@ -645,12 +650,39 @@ var tmp = function () {
 					
 					// clear textbox
 					tempOutput = "";
+					this.frotzText.setValue(tempOutput);
+					try {
+						pageScroll.call(this.frotzText, true, -1);
+					}
+					catch (ignore) { }
 					loudRoomDisabled = false; // just in case current game is zork1
 					
 					this.getResponse();
 				} else {
 					restartingGame = false;
 					tempOutput = tempOutput + currentLine + "\nOK.\n\n>";
+					this.setOutput(tempOutput);
+				}
+			} else if (getYesNo) {
+				// input should be Y or N
+				if ((currentLine.toLowerCase() === "y") || (currentLine.toLowerCase() === "yes")) {
+					getYesNo = false;
+					checkYesNo = true;
+					deleteFile(INTFICOUT);
+					setFileContent(INTFICIN, startGame+restoreTemp+previousCommands[previousCommands.length-1]+"\nYES\n"+saveTemp+CONFIRM+quitGame);
+					cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
+					shellExec(cmd);
+					this.getResponse();					
+				} else if ((currentLine.toLowerCase() === "n") || (currentLine.toLowerCase() === "no")) {
+					getYesNo = false;
+					checkYesNo = true;
+					deleteFile(INTFICOUT);
+					setFileContent(INTFICIN, startGame+restoreTemp+previousCommands[previousCommands.length-1]+"\nNO\n"+saveTemp+CONFIRM+quitGame);
+					cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
+					shellExec(cmd);
+					this.getResponse();	
+				} else {
+					tempOutput = tempOutput + currentLine + "\n[Please type YES or NO.] >";
 					this.setOutput(tempOutput);
 				}
 			} else {
@@ -774,6 +806,10 @@ var tmp = function () {
 				// trim initial/restore lines at start of output
 				result = result.substring(result.indexOf(">")+1);
 				result = result.substring(result.indexOf(">")+1);
+				if (checkYesNo) {
+					result = result.substring(result.indexOf(">")+1);
+					checkYesNo = false;
+				}
 				
 				if (scoreCheck) {
 					if ((result.indexOf("ENTER") > 0) || (result.indexOf("RETURN") > 0)) {
@@ -820,6 +856,7 @@ var tmp = function () {
 		lowerGameTitle = lowerGameTitle.substring(0, lowerGameTitle.lastIndexOf(".")); //strip extension
 		currentLine = target.getVariable("current_line");
 		getNewResult = false;
+				
 		switch(lowerGameTitle) {
 			case "trinity":
 				result = getFileContent(INTFICOUT, "222");
@@ -827,12 +864,14 @@ var tmp = function () {
 					// set up new input file
 					setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+CONFIRM+quitGame); // extra return needed
 					getNewResult = true;
+				} else if (previousresult.indexOf("Are you sure you want to")>=0) {
+					getYesNo = true;
 				} else if (previousresult.indexOf("purpose of the calligraphy")>0) {
-					// trim initial/restore lines at start of output
+					// player is reading book in the cottage
 					result = result.substring(result.indexOf(">")+1);
 					result = result.substring(result.indexOf(">")+1);
 
-					// skip three ">" (part of the contents of the book in the cottage)
+					// skip three ">" (part of the contents of the book)
 					charPos = result.indexOf(">")+1;
 					charPos = result.indexOf(">", charPos); // marks location of middle ">"
 					charPos2 = result.indexOf(">", charPos + 1);
@@ -842,7 +881,7 @@ var tmp = function () {
 					result = result.replace("few incantations", "two incantations");
 					return result;
 				} else if (result.indexOf("You surrender a silver coin you didn't know you had")>0) {
-					// trim initial/restore lines at start of output
+					// player died
 					result = result.substring(result.indexOf(">")+1);
 					result = result.substring(result.indexOf(">")+1);
 					result = result.substring(result.indexOf(">")+currentLine.length+2); // skip player input
@@ -850,22 +889,6 @@ var tmp = function () {
 					// trim save/quit lines at end of output
 					result = result.substring(0, result.indexOf(">"));
 					return result;
-				} else if ((result.indexOf("Are you sure you want to go that way?")>0) || (result.indexOf("Are you sure you want to go over that cliff?")>0)) {
-					// set up new input file
-					setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\nY\n"+saveTemp+CONFIRM+quitGame); // just answer 'YES'
-					cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
-					shellExec(cmd);
-					result = getFileContent(INTFICOUT, "222");
-					if (result !== "222") {
-						// trim initial/restore lines at start of output
-						result = result.substring(result.indexOf(">")+1);
-						result = result.substring(result.indexOf(">")+1);
-						result = result.substring(result.indexOf(">")+1);
-						
-						// trim save/quit lines at end of output
-						result = result.substring(0, result.indexOf(">"));
-						return result;
-					}
 				}
 				break;
 			case "phobos":
