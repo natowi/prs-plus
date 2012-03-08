@@ -12,10 +12,12 @@
 // 2011-04-06 Ben Chenoweth - AI improvement: Make and block triple whammies; added difficulty level 'Very Hard'; losing player goes first next game
 // 2011-04-07 Ben Chenoweth - AI tweaks; combined 'Very Hard' into 'Hard'; commented out make triple whammies; added two missing planes
 // 2012-03-03 DrMerry - Optimized some code; removed unused: oMovesX = [], oMovesY = [], oMovesZ = []
+// 2012-03-05 DrMerry - futher optimization; removed unused: whammyinplay; difficulty is now a number so it can be checked faster and more easily expanded.
+// 2012-03-08 Ben Chenoweth - Removed commented code (including triple whammies code)
 
 var tmp = function () {
-    var Exiting, gameover, players = 1, player1turn, previousplayers = 1, lastwinner = 0, difficulty = "Easy", firstX = 110, curDX = 98, firstY = 16, curDY = 36, curDZ = 154, pos1X, pos1Y, pos1Z, pos2X, pos2Y, pos2Z, maxX = 4, maxY = 4, maxZ = 4, board = [], oMoves, xMovesX = [], xMovesY = [], xMovesZ = [], lines = [], planes = [], centre, numlines, numplanes, whammyinplay, isTouch, uD,
-    a, b, boardcoordxyz, c, count, id, j, k, lineintersect, linesum, n, num, planesum, pos10, pos5, pos6, pos9, posO, skipfirstone, tempcount, templinesum, winstring, x, tempplane, xMoves, y, z, hasNumericButtons = kbook.autoRunRoot.hasNumericButtons, getSoValue = kbook.autoRunRoot.getSoValue;
+    var Exiting, gameover, players = 1, player1turn, previousplayers = 1, lastwinner = 0, difficulty = 0, difficultyLabel = ["Easy", "Hard"], firstX = 110, curDX = 98, firstY = 16, curDY = 36, curDZ = 154, pos1X, pos1Y, pos1Z, pos2X, pos2Y, pos2Z, maxX = 4, maxY = 4, maxZ = 4, board = [], oMoves, xMovesX = [], xMovesY = [], xMovesZ = [], lines = [], planes = [], centre, numlines, numplanes, isTouch, uD,
+    a, b, boardcoordxyz, count, id, j, k, lineintersect, linesum, num, planesum, posno = [], posO, x, tempplane, xMoves, y, z, hasNumericButtons = kbook.autoRunRoot.hasNumericButtons, getSoValue = kbook.autoRunRoot.getSoValue;
     //merry class-scope vars
     //TODO look for vars that can be set to function-scope
 
@@ -27,10 +29,14 @@ var tmp = function () {
         return newObj;
     };
 
+    target.getButtonID = function (buttonValue) {
+        return buttonValue < 10 ? "3Buttons00" + buttonValue : "3Buttons0" + buttonValue;
+    };
+
     //this.bubble("tracelog","id="+id);
 
     target.init = function () {
-		this.enable(true);
+        this.enable(true);
         this.appIcon.u = kbook.autoRunRoot._icon;
 
         if (!hasNumericButtons) {
@@ -172,8 +178,7 @@ var tmp = function () {
     };
 
     target.coord = function (x, y, z) {
-        //var c
-        c = new this.Coord(x, y, z);
+        var c = new this.Coord(x, y, z);
         return c;
     };
 
@@ -185,7 +190,7 @@ var tmp = function () {
                 z = 0;
                 for (z; z < maxZ; z++) {
                     num = z * 16 + y * 4 + x;
-                    id = num < 10 ? "3Buttons00" + num : "3Buttons0" + num;
+                    id = target.getButtonID(num);
                     board[x][y][z] = 0;
                     if (num < 64) this[id].u = 0;
                 }
@@ -194,29 +199,32 @@ var tmp = function () {
         return;
     };
 
-    target.drawgrid2Cursors = function (x1, y1, z1, x2, y2, z2) {
-        this.drawgridACursor(x1, y1, z1, 1);
-        this.drawgridACursor(x2, y2, z2, 2);
+    target.drawgrid2Cursors = function () {
+        this.drawgridACursor(true);
+        this.drawgridACursor(false);
         return;
     };
 
-    target.drawgridACursor = function (x, y, z, gridToUse) {
-        var usedGrid = (gridToUse === 1) ? this.grid1Cursor : this.grid2Cursor;
-        usedGrid.changeLayout(firstX + x * curDX - y * 21, uD, uD, firstY + y * curDY + z * curDZ, uD, uD);
+    target.drawgridACursor = function (useGridOne) {
+        var usedX, usedY, usedZ, usedGrid;
+        if (useGridOne) {
+            usedX = pos1X;
+            usedY = pos1Y;
+            usedZ = pos1Z;
+            usedGrid = this.grid1Cursor;
+        } else {
+            usedX = pos2X;
+            usedY = pos2Y;
+            usedZ = pos2Z;
+            usedGrid = this.grid2Cursor;
+        }
+        usedGrid.changeLayout(firstX + usedX * curDX - usedY * 21, uD, uD, firstY + usedY * curDY + usedZ * curDZ, uD, uD);
         return;
     };
 
     target.startPlay = function () {
         var templine, showTurnstring;
-        pos1X = 0;
-        pos1Y = 0;
-        pos1Z = 0;
-        pos2X = 3;
-        pos2Y = 0;
-        pos2Z = 0;
-        gameover = false;
-        oMoves = 0;
-        xMoves = 0;
+        target.GameOneTwoInitial();
 
         // Reset the board - note that the board array needs to be initialised to be one column, row and height larger than the button array (for board-searching purposes)
         x = 0;
@@ -226,7 +234,7 @@ var tmp = function () {
                 z = 0;
                 for (z; z <= maxZ; z++) {
                     num = z * 16 + y * 4 + x;
-                    id = num < 10 ? "3Buttons00" + num : "3Buttons0" + num;
+                    id = target.getButtonID(num);
                     board[x][y][z] = 0;
                     if (num < 64) this[id].u = 0;
                 }
@@ -251,13 +259,13 @@ var tmp = function () {
             planes[k] = tempplane;
         }
 
-        this.drawgrid2Cursors(pos1X, pos1Y, pos1Z, pos2X, pos2Y, pos2Z);
+        this.drawgrid2Cursors();
         showTurnstring = (players === 2) ? "Player 1's turn..." : "Your turn...";
         this.showTurn.setValue(showTurnstring);
         player1turn = true;
         if (!isTouch) {
             this.grid1Cursor.show(true);
-            this.drawgridACursor(pos1X, pos1Y, pos1Z, 1);
+            this.drawgridACursor(true);
             this.grid2Cursor.show(false);
         }
         return;
@@ -268,7 +276,7 @@ var tmp = function () {
     };
 
     target.placeO = function () {
-        var coordinate, num, foundmove = false, tempcoordinate;
+        var coordinate, num, foundmove = false, tempcoordinate, templinesum, tempcount, skipfirstone, mhcount;
 
         // Step one - look for three O's in the same line and complete for the win
         x = 0;
@@ -279,7 +287,7 @@ var tmp = function () {
             for (y; y < 4; y++) {
                 coordinate = lines[x][y];
                 boardcoordxyz = this.getBoardcoord(coordinate);
-                linesum = linesum + boardcoordxyz;
+                linesum += boardcoordxyz;
                 if (boardcoordxyz !== 0) count++;
             }
             if ((linesum === -3) && (count === 3)) {
@@ -306,7 +314,7 @@ var tmp = function () {
                 for (y; y < 4; y++) {
                     coordinate = lines[x][y];
                     boardcoordxyz = this.getBoardcoord(coordinate);
-                    linesum = linesum + boardcoordxyz;
+                    linesum += boardcoordxyz;
                     if (boardcoordxyz !== 0) count++;
                 }
                 if ((linesum === 3) && (count === 3)) {
@@ -325,7 +333,7 @@ var tmp = function () {
         //if (!foundmove) this.bubble("tracelog","Step two failed - no move to block a win");
 
         // Step three - look for intersection point of two lines each with two O's and no X's (to complete a double-whammy)
-        if ((!foundmove) && (difficulty === "Hard")) {
+        if ((!foundmove) && (difficulty === 1)) {
             x = 0;
             for (x; x < numlines; x++) {
                 linesum = 0;
@@ -334,7 +342,7 @@ var tmp = function () {
                 for (y; y < 4; y++) {
                     coordinate = lines[x][y];
                     boardcoordxyz = this.getBoardcoord(coordinate);
-                    linesum = linesum + boardcoordxyz;
+                    linesum += boardcoordxyz;
                     if (boardcoordxyz !== 0) count++;
                 }
                 if ((linesum === -2) && (count === 2)) {
@@ -356,7 +364,7 @@ var tmp = function () {
                         for (b; b < 4; b++) {
                             tempcoordinate = lines[a][b];
                             boardcoordxyz = this.getBoardcoord(tempcoordinate);
-                            templinesum = templinesum + boardcoordxyz;
+                            templinesum += boardcoordxyz;
                             if (boardcoordxyz !== 0) tempcount++;
                             lineintersect = (lineintersect || ((tempcoordinate.x === coordinate.x) && (tempcoordinate.y === coordinate.y) && (tempcoordinate.z === coordinate.z)));
                         }
@@ -387,7 +395,7 @@ var tmp = function () {
                             for (b; b < 4; b++) {
                                 tempcoordinate = lines[a][b];
                                 boardcoordxyz = this.getBoardcoord(tempcoordinate);
-                                templinesum = templinesum + boardcoordxyz;
+                                templinesum += boardcoordxyz;
                                 if (boardcoordxyz !== 0) tempcount++;
                                 lineintersect = (lineintersect || ((tempcoordinate.x === coordinate.x) && (tempcoordinate.y === coordinate.y) && (tempcoordinate.z === coordinate.z)));
                             }
@@ -403,7 +411,7 @@ var tmp = function () {
         //if ((!foundmove) && (difficulty=="Hard")) this.bubble("tracelog","Step three failed - cannot complete a double whammy");
 
         // Step four - look for intersection point of two lines each with two X's and no O's (to block a double-whammy)
-        if ((!foundmove) && (difficulty === "Hard")) {
+        if ((!foundmove) && (difficulty === 1)) {
             x = 0;
             for (x; x < numlines; x++) {
                 linesum = 0;
@@ -412,7 +420,7 @@ var tmp = function () {
                 for (y; y < 4; y++) {
                     coordinate = lines[x][y];
                     boardcoordxyz = this.getBoardcoord(coordinate);
-                    linesum = linesum + boardcoordxyz;
+                    linesum += boardcoordxyz;
                     if (boardcoordxyz !== 0) count++;
                 }
                 if ((linesum === 2) && (count === 2)) {
@@ -434,7 +442,7 @@ var tmp = function () {
                         for (b; b < 4; b++) {
                             tempcoordinate = lines[a][b];
                             boardcoordxyz = this.getBoardcoord(tempcoordinate);
-                            templinesum = templinesum + boardcoordxyz;
+                            templinesum += boardcoordxyz;
                             if (boardcoordxyz !== 0) tempcount++;
                             lineintersect = (lineintersect || ((tempcoordinate.x === coordinate.x) && (tempcoordinate.y === coordinate.y) && (tempcoordinate.z === coordinate.z)));
                         }
@@ -465,7 +473,7 @@ var tmp = function () {
                             for (b; b < 4; b++) {
                                 tempcoordinate = lines[a][b];
                                 boardcoordxyz = this.getBoardcoord(tempcoordinate);
-                                templinesum = templinesum + boardcoordxyz;
+                                templinesum += boardcoordxyz;
                                 if (boardcoordxyz !== 0) tempcount++;
                                 lineintersect = (lineintersect || ((tempcoordinate.x === coordinate.x) && (tempcoordinate.y === coordinate.y) && (tempcoordinate.z === coordinate.z)));
                             }
@@ -480,101 +488,37 @@ var tmp = function () {
         }
         //if ((!foundmove) && (difficulty=="Hard")) this.bubble("tracelog","Step four failed - cannot block a double whammy");
 
-        /*		// Step five - look to make triple whammy
-        if ((!foundmove) && (difficulty=="Hard")) {
-        for (x=0;x<numplanes;x++) {
-        planesum=0;
-        count=0;
-        pos5=false;
-        pos6=false;
-        pos9=false;
-        pos10=false;
-        for (y=0;y<16;y++) {
-        coordinate=planes[x][y];
-        planesum=planesum+board[coordinate.x][coordinate.y][coordinate.z];
-        if (board[coordinate.x][coordinate.y][coordinate.z]!=0) count++;
-        if ((y==5) && (board[coordinate.x][coordinate.y][coordinate.z]==1)) pos5=true;
-        if ((y==6) && (board[coordinate.x][coordinate.y][coordinate.z]==1)) pos6=true;
-        if ((y==9) && (board[coordinate.x][coordinate.y][coordinate.z]==1)) pos9=true;
-        if ((y==10) && (board[coordinate.x][coordinate.y][coordinate.z]==1)) pos10=true;
-        }
-        if ((planesum==-4) && (count==4) && (pos5) && (pos6) && (pos9) && (pos10)) {
-        // found a plane with four O's in the middle positions and no X's
-        this.bubble("tracelog","Step five succeeded - can make a triple whammy");
-        coordinate=planes[x][0];
-        foundmove=true;
-        }
-        if (foundmove) break;
-        }
-        }
-        //if ((!foundmove) && (difficulty=="Hard")) this.bubble("tracelog","Step five failed - cannot make a triple whammy");
-        */
-        // Step six - look to block potential triple whammy
-        if ((!foundmove) && (difficulty === "Hard")) {
+        // Step five - look to block potential triple whammy
+        if ((!foundmove) && (difficulty === 1)) {
             x = 0;
             for (x; x < numplanes; x++) {
                 planesum = 0;
                 count = 0;
-                pos5 = false;
-                pos6 = false;
-                pos9 = false;
-                pos10 = false;
+                posno[5] = false;
+                posno[6] = false;
+                posno[9] = false;
+                posno[10] = false;
                 posO = 0;
                 y = 0;
                 for (y; y < 16; y++) {
                     coordinate = planes[x][y];
                     boardcoordxyz = this.getBoardcoord(coordinate);
-                    planesum = planesum + boardcoordxyz;
+                    planesum += boardcoordxyz;
                     if (boardcoordxyz !== 0) count++;
                     if (boardcoordxyz === 1) {
-                        switch (y) {
-                            case 5:
-                                pos5 = true;
-                                break;
-                            case 6:
-                                pos6 = true;
-                                break;
-                            case 9:
-                                pos9 = true;
-                                break;
-                            case 10:
-                                pos10 = true;
-                                break;
-                        }
-                    } else if (boardcoordxyz === -1) {
-                        switch (y) {
-                            case 5:
-                                posO = 5;
-                                break;
-                            case 6:
-                                posO = 6;
-                                break;
-                            case 9:
-                                posO = 9;
-                                break;
-                            case 10:
-                                posO = 10;
-                                break;
-                        }
+                        posno[y] = true;
+                    } else if ((boardcoordxyz === -1) && (y === 5 || y === 6 || y === 9 || y === 10)) {
+                        posO = y;
                     }
                 }
                 if ((planesum === 3) && (count === 3)) {
                     // found a plane with three X's and no O's
-                    if ((!pos5) && (!pos6) && (!pos9) && (!pos10)) {
-                        if (!pos5) {
-                            //this.bubble("tracelog","Step six succeeded - can block a triple whammy");
-                            coordinate = planes[x][5];
-                        } else if (!pos6) {
-                            //this.bubble("tracelog","Step six succeeded - can block a triple whammy");
-                            coordinate = planes[x][6];
-                        } else if (!pos9) {
-                            //this.bubble("tracelog","Step six succeeded - can block a triple whammy");
-                            coordinate = planes[x][9];
-                        } else if (!pos10) {
-                            //this.bubble("tracelog","Step six succeeded - can block a triple whammy");
-                            coordinate = planes[x][10];
+                    for (mhcount in [5, 6, 9, 10]) {
+                        if (!posno[mhcount]) {
+                            coordinate = planes[x][mhcount];
+                            foundmove = true;
+                            break;
                         }
-                        foundmove = true;
                     }
                 }
                 else if ((planesum === 4) && (count === 6)) {
@@ -641,98 +585,9 @@ var tmp = function () {
                 if (foundmove) break;
             }
         }
-        //if ((!foundmove) && (difficulty=="Hard")) this.bubble("tracelog","Step six failed - cannot block a triple whammy");
-        /*
-        // Step seven - look to setup potential triple whammy
-        if ((!foundmove) && (difficulty=="Hard") && (!whammyinplay)) {
-        for (x=0;x<numplanes;x++) {
-        planesum=0;
-        count=0;
-        pos5=false;
-        pos6=false;
-        pos9=false;
-        pos10=false;
-        for (y=0;y<16;y++) {
-        coordinate=planes[x][y];
-        planesum=planesum+board[coordinate.x][coordinate.y][coordinate.z];
-        if (board[coordinate.x][coordinate.y][coordinate.z]!=0) count++;
-        if ((y==5) && (board[coordinate.x][coordinate.y][coordinate.z]==-1)) pos5=true;
-        if ((y==6) && (board[coordinate.x][coordinate.y][coordinate.z]==-1)) pos6=true;
-        if ((y==9) && (board[coordinate.x][coordinate.y][coordinate.z]==-1)) pos9=true;
-        if ((y==10) && (board[coordinate.x][coordinate.y][coordinate.z]==-1)) pos10=true;
-        }
-        if ((planesum*-1==count) && (count>2)) {
-        // found a plane with 3 or more O's and no X's
-        if ((pos5) && (pos6) && (pos9) && (pos10)) {
-        // middle positions already taken
-        //this.bubble("tracelog","Step seven succeeded - can play a triple whammy");
-        coordinate=planes[x][0];
-        foundmove=true;
-        whammyinplay=true;
-        } else if (!pos5) {
-        //this.bubble("tracelog","Step seven succeeded - can work towards a triple whammy");
-        coordinate=planes[x][5];
-        foundmove=true;
-        } else if (!pos6) {
-        //this.bubble("tracelog","Step seven succeeded - can work towards a triple whammy");
-        coordinate=planes[x][6];
-        foundmove=true;
-        } else if (!pos9) {
-        //this.bubble("tracelog","Step seven succeeded - can work towards a triple whammy");
-        coordinate=planes[x][9];
-        foundmove=true;
-        } else if (!pos10) {
-        //this.bubble("tracelog","Step seven succeeded - can work towards a triple whammy");
-        coordinate=planes[x][10];
-        foundmove=true;
-        }
-        }
-        if (foundmove) break;
-        }
-        }
-        if ((!foundmove) && (difficulty=="Hard") && (!whammyinplay)) {
-        for (x=0;x<numplanes;x++) {
-        planesum=0;
-        count=0;
-        pos5=false;
-        pos6=false;
-        pos9=false;
-        pos10=false;
-        for (y=0;y<16;y++) {
-        coordinate=planes[x][y];
-        planesum=planesum+board[coordinate.x][coordinate.y][coordinate.z];
-        if (board[coordinate.x][coordinate.y][coordinate.z]!=0) count++;
-        if ((y==5) && (board[coordinate.x][coordinate.y][coordinate.z]==-1)) pos5=true;
-        if ((y==6) && (board[coordinate.x][coordinate.y][coordinate.z]==-1)) pos6=true;
-        if ((y==9) && (board[coordinate.x][coordinate.y][coordinate.z]==-1)) pos9=true;
-        if ((y==10) && (board[coordinate.x][coordinate.y][coordinate.z]==-1)) pos10=true;
-        }
-        if ((planesum*-1==count) && (count==2)) {
-        // found a plane with only 2 O's
-        if (!pos5) {
-        //this.bubble("tracelog","Step seven succeeded - can work towards a triple whammy");
-        coordinate=planes[x][5];
-        foundmove=true;
-        } else if (!pos6) {
-        //this.bubble("tracelog","Step seven succeeded - can work towards a triple whammy");
-        coordinate=planes[x][6];
-        foundmove=true;
-        } else if (!pos9) {
-        //this.bubble("tracelog","Step seven succeeded - can work towards a triple whammy");
-        coordinate=planes[x][9];
-        foundmove=true;
-        } else if (!pos10) {
-        //this.bubble("tracelog","Step seven succeeded - can work towards a triple whammy");
-        coordinate=planes[x][10];
-        foundmove=true;
-        }
-        }
-        if (foundmove) break;
-        }
-        }
-        //if ((!foundmove) && (difficulty=="Hard")) this.bubble("tracelog","Step seven failed - cannot work towards a triple whammy");
-        */
-        // Step eight - look for two O's in the same line with no X's
+        //if ((!foundmove) && (difficulty=="Hard")) this.bubble("tracelog","Step five failed - cannot block a triple whammy");
+
+        // Step six - look for two O's in the same line with no X's
         if (!foundmove) {
             x = 0;
             for (x; x < numlines; x++) {
@@ -742,7 +597,7 @@ var tmp = function () {
                 for (y; y < 4; y++) {
                     coordinate = lines[x][y];
                     boardcoordxyz = this.getBoardcoord(coordinate);
-                    linesum = linesum + boardcoordxyz;
+                    linesum += boardcoordxyz;
                     if (boardcoordxyz !== 0) count++;
                 }
                 if ((linesum === -2) && (count === 2)) {
@@ -753,14 +608,14 @@ var tmp = function () {
                         coordinate = lines[x][y];
                         if (this.getBoardcoord(coordinate) === 0) break;
                     }
-                    //this.bubble("tracelog","Step eight succeeded - found a line with two O's and no X's");
+                    //this.bubble("tracelog","Step six succeeded - found a line with two O's and no X's");
                 }
                 if (foundmove) break;
             }
         }
-        //if (!foundmove) this.bubble("tracelog","Step eight failed - no line with two O's and no X's");
+        //if (!foundmove) this.bubble("tracelog","Step six failed - no line with two O's and no X's");
 
-        // Step nine - look to move in the central area (to control the game better!)
+        // Step seven - look to move in the central area (to control the game better!)
         if (!foundmove) {
             count = 0;
             x = 0;
@@ -773,13 +628,13 @@ var tmp = function () {
                     x = Math.floor(Math.random() * 8);
                     coordinate = centre[x];
                     foundmove = (this.getBoardcoord(coordinate) === 0);
-                    //this.bubble("tracelog","Step nine succeeded - found move in central area");
+                    //this.bubble("tracelog","Step seven succeeded - found move in central area");
                 }
             }
         }
-        //if (!foundmove) this.bubble("tracelog","Step nine failed - central area taken");
+        //if (!foundmove) this.bubble("tracelog","Step seven failed - central area taken");
 
-        // Step ten - look for one O in the same line with no X's
+        // Step eight - look for one O in the same line with no X's
         if (!foundmove) {
             x = 0;
             for (x; x < numlines; x++) {
@@ -789,7 +644,7 @@ var tmp = function () {
                 for (y; y < 4; y++) {
                     coordinate = lines[x][y];
                     boardcoordxyz = this.getBoardcoord(coordinate);
-                    linesum = linesum + boardcoordxyz;
+                    linesum += boardcoordxyz;
                     if (boardcoordxyz !== 0) count++;
                 }
                 if ((linesum === -1) && (count === 1)) {
@@ -800,14 +655,14 @@ var tmp = function () {
                         coordinate = lines[x][y];
                         if (this.getBoardcoord(coordinate) === 0) break;
                     }
-                    //this.bubble("tracelog","Step ten succeeded - found a line with one O and no X's");
+                    //this.bubble("tracelog","Step eight succeeded - found a line with one O and no X's");
                 }
                 if (foundmove) break;
             }
         }
-        //if (!foundmove) this.bubble("tracelog","Step ten failed - no line with one O's and no X's");
+        //if (!foundmove) this.bubble("tracelog","Step eight failed - no line with one O's and no X's");
 
-        // Step eleven - look for no O's in the same line with no X's
+        // Step nine - look for no O's in the same line with no X's
         if (!foundmove) {
             x = 0;
             for (x; x < numlines; x++) {
@@ -817,7 +672,7 @@ var tmp = function () {
                 for (y; y < 4; y++) {
                     coordinate = lines[x][y];
                     boardcoordxyz = this.getBoardcoord(coordinate);
-                    linesum = linesum + boardcoordxyz;
+                    linesum += boardcoordxyz;
                     if (boardcoordxyz !== 0) count++;
                 }
                 if ((linesum === 0) && (count === 0)) {
@@ -825,12 +680,12 @@ var tmp = function () {
                     // choose 2nd or 3rd position
                     y = Math.floor(Math.random() * 2) + 1;
                     coordinate = lines[x][y];
-                    //this.bubble("tracelog","Step eleven succeeded - found a line with no O's and no X's");
+                    //this.bubble("tracelog","Step nine succeeded - found a line with no O's and no X's");
                 }
                 if (foundmove) break;
             }
         }
-        //if (!foundmove) this.bubble("tracelog","Step eleven failed - no line with no O's and no X's");
+        //if (!foundmove) this.bubble("tracelog","Step nine failed - no line with no O's and no X's");
 
         // Last step - do random move
         while (!foundmove) {
@@ -847,41 +702,38 @@ var tmp = function () {
 
         // convert coordinate to sprite id
         num = coordinate.z * 16 + coordinate.y * 4 + coordinate.x;
-        id = num < 10 ? "3Buttons00" + num : "3Buttons0" + num;
+        id = target.getButtonID(num);
         board[coordinate.x][coordinate.y][coordinate.z] = -1;
         return id;
     };
 
     target.checkWin = function (player) {
-        var coordinate, win = false; //, x = 0, y = 0, count = 0, num, id, winstring;
+        var coordinate, win = false, winstring; //, x = 0, y = 0, count = 0, num, id;
         x = 0;
         for (x; x < numlines; x++) {
             y = 0;
             count = 0;
             for (y; y < 4; y++) {
                 coordinate = lines[x][y];
-                if (this.getBoardcoord(coordinate) === player) {
-                    count++;
-                }
+                if (this.getBoardcoord(coordinate) === player) count++;
             }
             if (count === 4) {
                 y = 0;
                 for (y; y < 4; y++) {
                     coordinate = lines[x][y];
                     num = coordinate.z * 16 + coordinate.y * 4 + coordinate.x;
-                    id = num < 10 ? "3Buttons00" + num : "3Buttons0" + num;
+                    id = target.getButtonID(num);
                     this[id].u = player === 1 ? 3 : 4;
                 }
                 gameover = true;
                 win = true;
+                lastwinner = player;
                 if (player === 1) {
                     // player 1 wins
                     winstring = (players === 2) ? "Player 1 won!" : "Congratulations!  You won!";
-                    lastwinner = 1;
                 } else {
                     // player 2 wins
                     winstring = (players === 2) ? "Player 2 won!" : "Bad luck!  I won!";
-                    lastwinner = 2;
                 }
                 this.showTurn.setValue(winstring);
                 this.grid2Cursor.show(false);
@@ -892,7 +744,7 @@ var tmp = function () {
     };
 
     target.checkfordraw = function () {
-        var res = false, placesleft = 0, x, y, z;
+        var x, y, z;
 
         x = 0;
         for (x; x < maxX; x++) {
@@ -900,123 +752,86 @@ var tmp = function () {
             for (y; y < maxY; y++) {
                 z = 0;
                 for (z; z < maxZ; z++) {
-                    if (board[x][y][z] === 0) return false; //placesleft++;
+                    if (board[x][y][z] === 0) return false; //Will quit directly if an empty space is located
                 }
             }
         }
 
-        if (placesleft === 0) {
-            this.showTurn.setValue("It's a draw!");
-            gameover = true;
-            res = true;
-        }
-        return res;
+        this.showTurn.setValue("It's a draw!");
+        gameover = true;
+        return true;
     };
 
     target.placeXO = function () {
-        var id, res = false, drawres = false; //, num; //butt not used
-
+        var id, posTX = player1turn ? pos1X : pos2X, posTY = player1turn ? pos1Y : pos2Y, posTZ = player1turn ? pos1Z : pos2Z, playerval = player1turn ? 1 : -1, winner;
         if (Exiting) {
             kbook.autoRunRoot.exitIf(kbook.model);
         }
-
         if (gameover) {
             return;
         }
+        // player 1 places "X", 2 "O"
+        num = posTZ * 16 + posTY * 4 + posTX;
+        id = target.getButtonID(num);
+        if (board[posTX][posTY][posTZ] !== 0) {
+            return;
+        }
+        board[posTX][posTY][posTZ] = player1turn ? 1 : -1;
+        this[id].u = playerval;
 
         if (player1turn) {
-            // player 1 places "X"
-            num = pos1Z * 16 + pos1Y * 4 + pos1X;
-            id = num < 10 ? "3Buttons00" + num : "3Buttons0" + num;
-            if (board[pos1X][pos1Y][pos1Z] !== 0) {
-                return;
-            }
-            board[pos1X][pos1Y][pos1Z] = 1;
-            this[id].u = 1;
-
             // store X's moves to help determine O's moves
             xMoves++;
             xMovesX[xMoves] = pos1X;
             xMovesY[xMoves] = pos1Y;
             xMovesZ[xMoves] = pos1Z;
 
-            // check for win
-            res = this.checkWin(1);
-            if (!res) {
-                // if not win
-                // check for draw (no free spaces)
-                drawres = this.checkfordraw();
-                if (!drawres) {
-                    if (players === 1) {
-                        // reader's turn
-                        this.showTurn.setValue("My turn...");
-                        if (!isTouch) {
-                            this.grid1Cursor.show(false);
-                        }
-                        FskUI.Window.update.call(kbook.model.container.getWindow());
-                        id = target.placeO();
-                        this[id].u = 2;
+            // check for win or res
+            winner = this.checkWin(1);
+            if (!winner && !this.checkfordraw()) {
+                if (players === 1) {
+                    // reader's turn
+                    this.showTurn.setValue("My turn...");
+                    if (!isTouch) {
+                        this.grid1Cursor.show(false);
+                    }
+                    FskUI.Window.update.call(kbook.model.container.getWindow());
+                    id = target.placeO();
+                    this[id].u = 2;
 
-                        // check for win
-                        res = this.checkWin(-1);
-
-                        if (!res) {
-                            // if not win
-                            // check for draw (no free spaces)
-                            drawres = this.checkfordraw();
-                            if (!drawres) {
-                                this.showTurn.setValue("Your turn...");
-                                if (!isTouch) {
-                                    this.grid1Cursor.show(true);
-                                }
-                            }
-                        }
-                    } else {
-                        // player 2's turn
-                        player1turn = false;
-                        this.showTurn.setValue("Player 2's turn...");
-                        //this.drawgrid2Cursor(pos2X, pos2Y, pos2Z);
-                        this.drawgridACursor(pos2X, pos2Y, pos2Z, 2);
+                    // check for win or draw
+                    winner = this.checkWin(-1);
+                    if (!winner && !this.checkfordraw()) {
+                        this.showTurn.setValue("Your turn...");
                         if (!isTouch) {
-                            this.grid2Cursor.show(true);
-                            //this.drawgrid2Cursor(pos2X, pos2Y, pos2Z);
-                            this.drawgridACursor(pos2X, pos2Y, pos2Z, 2);
-                            this.grid1Cursor.show(false);
+                            this.grid1Cursor.show(true);
                         }
                     }
+                }
+            } else if (!winner) {
+                // player 2's turn
+                player1turn = false;
+                this.showTurn.setValue("Player 2's turn...");
+                this.drawgridACursor(false);
+                if (!isTouch) {
+                    this.grid2Cursor.show(true);
+                    this.drawgridACursor(false);
+                    this.grid1Cursor.show(false);
                 }
             }
         } else {
-            // player 2 places "O"
-            num = pos2Z * 16 + pos2Y * 4 + pos2X;
-            id = num < 10 ? "3Buttons00" + num : "3Buttons0" + num;
-            if (board[pos2X][pos2Y][pos2Z] !== 0) {
-                return;
-            }
-            board[pos2X][pos2Y][pos2Z] = -1;
-            this[id].u = 2;
-            //this.setButtons();
-
-            // check for win
-            res = this.checkWin(-1);
-
-            if (!res) {
-                // if not win
-                // check for draw (no free spaces)
-                drawres = this.checkfordraw();
-                if (!drawres) {
-                    player1turn = true;
-                    this.showTurn.setValue("Player 1's turn...");
-                    //this.drawgrid1Cursor(pos1X, pos1Y, pos1Z);
-                    this.drawgridACursor(pos1X, pos1Y, pos1Z, 1);
-                    if (!isTouch) {
-                        this.grid1Cursor.show(true);
-                        //this.drawgrid1Cursor(pos1X, pos1Y, pos1Z);
-                        this.drawgridACursor(pos1X, pos1Y, pos1Z, 1);
-                        this.grid2Cursor.show(false);
-                    }
+            winner = this.checkWin(-1);
+            // check for win or res
+            if (!winner && !this.checkfordraw()) {
+                player1turn = true;
+                this.showTurn.setValue("Player 1's turn...");
+                this.drawgridACursor(true);
+                if (!isTouch) {
+                    this.grid1Cursor.show(true);
+                    this.drawgridACursor(true);
+                    this.grid2Cursor.show(false);
                 }
-            } else {
+            } else if (winner) {
                 // player 2 won!
                 this.showTurn.setValue("Player 2 won!");
                 this.showTurn.show(true);
@@ -1028,95 +843,84 @@ var tmp = function () {
     };
 
     target.doGridClick = function (sender) {
-        var u, id; //, num; //x and y not used
-        id = getSoValue(sender, "id");
-        num = id.substring(9, 11);
+        var u, pos12Z, pos12X;
+        num = getSoValue(sender, "id").substring(9, 11) * 1;
         u = getSoValue(sender, "u") * 1;
         //this.bubble("tracelog","id="+id+", num="+num+", u="+u);
         if (u === 0) {
+            //always executed so write it once to save space (while the var is inside the function, it will vanish directly
+            pos12Z = Math.floor(num / 16);
+            pos12X = num % 4; //modulus
             if (player1turn || players === 1) {
-                pos1Z = Math.floor(num / 16);
+                pos1Z = pos12Z;
                 pos1Y = Math.floor((num - pos1Z * 16) / 4);
-                pos1X = num % 4; //modulus
-                //this.drawgrid1Cursor(pos1X, pos1Y, pos1Z);
-                this.drawgridACursor(pos1X, pos1Y, pos1Z, 1);
+                pos1X = pos12X;
+                this.drawgridACursor(true);
             } else {
-                pos2Z = Math.floor(num / 16);
+                pos2Z = pos12Z;
                 pos2Y = Math.floor((num - pos2Z * 16) / 4);
-                pos2X = num % 4; //modulus
-                //this.drawgrid2Cursor(pos2X, pos2Y, pos2Z);
-                this.drawgridACursor(pos2X, pos2Y, pos2Z, 2);
+                pos2X = pos12X;
+                this.drawgridACursor(false);
             }
             this.placeXO();
         }
     };
 
     target.doButtonClick = function (sender) {
-        //var id, n;
-        var id = getSoValue(sender, "id");
-        n = id.substring(7, 10);
-        //var n = getSoValue(sender, "id").substring(7, 10);
-        /*		if (n == "EXT") {
-        kbook.autoRunRoot.exitIf(kbook.model);
-        return;
-        } */
+        var n = getSoValue(sender, "id").substring(7, 10);
         if (n === "ONE") {
             this.GameOnePlayer();
-            return;
-        }
-        if (n === "TWO") {
+        } else if (n === "TWO") {
             this.GameTwoPlayers();
-            return;
         }
+        return;
     };
 
     target.moveCursor = function (dir) {
-        switch (dir) {
-            case "down":
-                if (player1turn || players === 1) {
+        if (player1turn || players === 1) {
+            switch (dir) {
+                case "down":
                     pos1Y = (pos1Y + 1) % maxY;
-                } else {
-                    pos2Y = (pos2Y + 1) % maxY;
-                }
-                break;
-            case "up":
-                if (player1turn || players === 1) {
+                    break;
+                case "up":
                     pos1Y = (maxY + pos1Y - 1) % maxY;
-                } else {
-                    pos2Y = (maxY + pos2Y - 1) % maxY;
-                }
-                break;
-            case "left":
-                if (player1turn || players === 1) {
+                    break;
+                case "left":
                     pos1X = (maxX + pos1X - 1) % maxX;
-                } else {
-                    pos2X = (maxX + pos2X - 1) % maxX;
-                }
-                break;
-            case "right":
-                if (player1turn || players === 1) {
+                    break;
+                case "right":
                     pos1X = (pos1X + 1) % maxX;
-                } else {
-                    pos2X = (pos2X + 1) % maxX;
-                }
-                break;
+                    break;
+            }
+            this.drawgridACursor(true);
         }
-        if (players === 1 || player1turn) {
-            this.drawgridACursor(pos1X, pos1Y, pos1Z, 1);
-        } else {
-            this.drawgridACursor(pos2X, pos2Y, pos2Z, 2);
+        else {
+            switch (dir) {
+                case "down":
+                    pos2Y = (pos2Y + 1) % maxY;
+                    break;
+                case "up":
+                    pos2Y = (maxY + pos2Y - 1) % maxY;
+                    break;
+                case "left":
+                    pos2X = (maxX + pos2X - 1) % maxX;
+                    break;
+                case "right":
+                    pos2X = (pos2X + 1) % maxX;
+                    break;
+            }
+            this.drawgridACursor(false);
         }
         return;
     };
 
-    target.doRoot = function () { //removed sender as parameter
+    target.doRoot = function () {
         kbook.autoRunRoot.exitIf(kbook.model);
         return;
     };
 
-    target.GameOnePlayer = function () {
-        //var id;
-        players = 1;
+    target.GameOneTwoInitial = function () {
+        //initial values used in GameOnePlayer and GameTwoPlayer
         this.resetButtons();
         pos1X = 0;
         pos1Y = 0;
@@ -1125,10 +929,14 @@ var tmp = function () {
         pos2Y = 0;
         pos2Z = 0;
         gameover = false;
-        whammyinplay = false;
         oMoves = 0;
         xMoves = 0;
-        this.drawgrid2Cursors(pos1X, pos1Y, pos1Z, pos2X, pos2Y, pos2Z);
+    };
+
+    target.GameOnePlayer = function () {
+        players = 1;
+        target.GameOneTwoInitial();
+        this.drawgrid2Cursors();
         if (!isTouch) {
             this.grid1Cursor.show(true);
             this.grid2Cursor.show(false);
@@ -1159,18 +967,8 @@ var tmp = function () {
 
     target.GameTwoPlayers = function () {
         players = 2;
-        this.resetButtons();
-        pos1X = 0;
-        pos1Y = 0;
-        pos1Z = 0;
-        pos2X = 3;
-        pos2Y = 0;
-        pos2Z = 0;
-        gameover = false;
-        whammyinplay = false;
-        oMoves = 0;
-        xMoves = 0;
-        this.drawgrid2Cursors(pos1X, pos1Y, pos1Z, pos2X, pos2Y, pos2Z);
+        target.GameOneTwoInitial();
+        this.drawgrid2Cursors();
         if (!isTouch) {
             this.grid1Cursor.show(true);
             this.grid2Cursor.show(false);
@@ -1194,14 +992,14 @@ var tmp = function () {
         if ((digitval < 5) && (digitval > -1)) {
             if (player1turn || players === 1) {
                 pos1Z = digitval - 1;
-                this.drawgridACursor(pos1X, pos1Y, pos1Z, 1);
+                this.drawgridACursor(true);
             } else {
                 pos2Z = digitval - 1;
-                this.drawgridACursor(pos2X, pos2Y, pos2Z, 2);
+                this.drawgridACursor(false);
             }
         } else {
             switch (digitval) {
-                case 8:
+				case 8:
                     this.GameOnePlayer();
                     return;
                 case 9:
@@ -1210,25 +1008,13 @@ var tmp = function () {
                 case 0:
                     this.doRoot();
                     break;
-                /*	if (difficulty == "Easy") {
-                difficulty="Hard";
-                this.nonTouch6.setValue("[0] Difficulty: Hard");
-                } else if (difficulty == "Hard") {
-                difficulty="Easy";
-                this.nonTouch6.setValue("[0] Difficulty: Easy");
-                }
-                return; */
             }
         }
     };
 
     target.doPrev = function () {
-        /*	if (hasNumericButtons) {
-        this.moveCursor("left");
-        return;
-        } */
-        difficulty = (difficulty === "Easy") ? "Hard" : "Easy";
-        this.touchButtons1.setValue("[Prev]: Difficulty: " + difficulty);
+        difficulty = (difficulty + 1) % difficultyLabel.length;
+        this.touchButtons1.setValue("[Prev]: Difficulty: " + difficultyLabel[difficulty]);
         return;
     };
 
