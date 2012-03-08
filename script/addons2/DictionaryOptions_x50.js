@@ -15,6 +15,7 @@
 //	2012-02-11 quisvir - Added option to clear word logs on shutdown
 //	2012-02-17 quisvir - Fixed #284, #288
 //	2012-02-28 quisvir - Fixed #301 'Pop-up dictionary demands to be closed and opened again to look up'
+//	2012-03-08 quisvir - Added FR 'Keeping track of which dictionary was used with which book'
 
 tmp = function() {
 
@@ -220,6 +221,18 @@ tmp = function() {
 		}
 	};
 	
+	// Change dictionary to the one last used for current book
+	var changeDictWithBook = function () {
+		var hist, id;
+		if (opt.rememberBookDict === 'true') {
+			hist = kbook.model.currentBook.media.preferences.dicHistories;
+			if (hist.length) {
+				id = kbook.model.getContentsIDFromHistories(hist[0]);
+				kbook.model.setDictionary(id);
+			}
+		}
+	}
+	
 	var DictionaryOptions = {
 		name: 'DictionaryOptions',
         title: L('TITLE'),
@@ -300,6 +313,18 @@ tmp = function() {
 					'true': L('VALUE_TRUE'),
 					'false': L('VALUE_FALSE')
 				}
+			},
+			{
+				name: 'rememberBookDict',
+				title: L('REMEMBER_BOOK_DICT'),
+				icon: 'DICTIONARY',
+				helpText: L('REMEMBER_BOOK_DICT_HELPTEXT'),
+				defaultValue: 'false',
+				values: ['true', 'false'],
+				valueTitles: {
+					'true': L('VALUE_TRUE'),
+					'false': L('VALUE_FALSE')
+				}
 			}
 		],
 		onInit: function () {
@@ -309,6 +334,7 @@ tmp = function() {
 			Core.events.subscribe(Core.events.EVENTS.BOOK_CHANGED, initPopupSize);
 			kbook.model.dicHistoriesMax = parseInt(opt.dicHistMax);
 			Core.events.subscribe(Core.events.EVENTS.SHUTDOWN, clearDicHists, true);
+			Core.events.subscribe(Core.events.EVENTS.BOOK_CHANGED, changeDictWithBook);
 		},
 		onSettingsChanged: function (propertyName, oldValue, newValue, object) {
 			var toTop, dialog, max;
