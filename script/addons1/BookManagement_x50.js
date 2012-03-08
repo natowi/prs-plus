@@ -49,7 +49,8 @@
 
 tmp = function() {
 
-	var L, LX, log, opt, bookChanged, trigger1, trigger2, trigger3, trigger4, tempNode, oldNode, numCur, holdKey, model, devRoot, thumbnailsNode, homeGroup, constructRun;
+	var L, LX, log, opt, bookChanged, trigger1, trigger2, trigger3, trigger4, tempNode, oldNode,
+		numCur, holdKey, model, devRoot, thumbnailsNode, homeGroup, constructRun, VALUE_TRUE, VALUE_FALSE;
 	
 	L = Core.lang.getLocalizer('BookManagement');
 	LX = Core.lang.LX;
@@ -63,6 +64,8 @@ tmp = function() {
 	
 	numCur = 0;
 	holdKey = false;
+	VALUE_TRUE = L('VALUE_TRUE');
+	VALUE_FALSE = L('VALUE_FALSE');
 	
 	// Treat Periodicals as Books	
 	var oldIsPeriodical = FskCache.text.isPeriodical;
@@ -745,8 +748,8 @@ tmp = function() {
 						defaultValue: 'true',
 						values: ['true', 'false'],
 						valueTitles: {
-							'true': L('VALUE_TRUE'),
-							'false': L('VALUE_FALSE')
+							'true': VALUE_TRUE,
+							'false': VALUE_FALSE
 						}
 					})
 				}
@@ -1077,8 +1080,8 @@ tmp = function() {
 				defaultValue: 'false',
 				values: ['true','false'],
 				valueTitles: {
-					'true': L('VALUE_TRUE'),
-					'false': L('VALUE_FALSE')
+					'true': VALUE_TRUE,
+					'false': VALUE_FALSE
 				}
 			},
 			{
@@ -1088,8 +1091,8 @@ tmp = function() {
 				defaultValue: 'false',
 				values: ['true', 'false'],
 				valueTitles: {
-					'true': L('VALUE_TRUE'),
-					'false': L('VALUE_FALSE')
+					'true': VALUE_TRUE,
+					'false': VALUE_FALSE
 				}
 			},
 			{
@@ -1114,8 +1117,8 @@ tmp = function() {
 					defaultValue: 'false',
 					values: ['true','false'],
 					valueTitles: {
-						'true': L('VALUE_TRUE'),
-						'false': L('VALUE_FALSE')
+						'true': VALUE_TRUE,
+						'false': VALUE_FALSE
 					}
 				},
 				{
@@ -1125,8 +1128,8 @@ tmp = function() {
 					defaultValue: 'false',
 					values: ['true','false'],
 					valueTitles: {
-						'true': L('VALUE_TRUE'),
-						'false': L('VALUE_FALSE')
+						'true': VALUE_TRUE,
+						'false': VALUE_FALSE
 					}
 				},
 				{
@@ -1136,8 +1139,8 @@ tmp = function() {
 					defaultValue: 'false',
 					values: ['true','false'],
 					valueTitles: {
-						'true': L('VALUE_TRUE'),
-						'false': L('VALUE_FALSE')
+						'true': VALUE_TRUE,
+						'false': VALUE_FALSE
 					}
 				},
 				{
@@ -1147,8 +1150,8 @@ tmp = function() {
 					defaultValue: 'false',
 					values: ['true','false'],
 					valueTitles: {
-						'true': L('VALUE_TRUE'),
-						'false': L('VALUE_FALSE')
+						'true': VALUE_TRUE,
+						'false': VALUE_FALSE
 					}
 				},
 				{
@@ -1158,8 +1161,8 @@ tmp = function() {
 					defaultValue: 'false',
 					values: ['true','false'],
 					valueTitles: {
-						'true': L('VALUE_TRUE'),
-						'false': L('VALUE_FALSE')
+						'true': VALUE_TRUE,
+						'false': VALUE_FALSE
 					}
 				},
 				{
@@ -1169,8 +1172,8 @@ tmp = function() {
 					defaultValue: 'false',
 					values: ['true','false'],
 					valueTitles: {
-						'true': L('VALUE_TRUE'),
-						'false': L('VALUE_FALSE')
+						'true': VALUE_TRUE,
+						'false': VALUE_FALSE
 					}
 				},
 				{
@@ -1192,8 +1195,8 @@ tmp = function() {
 				defaultValue: 'false',
 				values: ['true','false'],
 				valueTitles: {
-					'true': L('VALUE_TRUE'),
-					'false': L('VALUE_FALSE')
+					'true': VALUE_TRUE,
+					'false': VALUE_FALSE
 				}
 				},
 				{
@@ -1222,7 +1225,7 @@ tmp = function() {
 				valueTitles: {
 					'all': L('ALL_THUMBNAIL_VIEWS'),
 					'home': L('HOME_MENU_ONLY'),
-					'false': L('VALUE_FALSE')
+					'false': VALUE_FALSE
 				}
 				},
 				{
@@ -1257,8 +1260,8 @@ tmp = function() {
 				defaultValue: 'false',
 				values: ['true', 'false'],
 				valueTitles: {
-					'true': L('VALUE_TRUE'),
-					'false': L('VALUE_FALSE')
+					'true': VALUE_TRUE,
+					'false': VALUE_FALSE
 				}	
 			},
 			{
@@ -1268,8 +1271,8 @@ tmp = function() {
 				defaultValue: 'false',
 				values: ['true','false'],
 				valueTitles: {
-					'true': L('VALUE_TRUE'),
-					'false': L('VALUE_FALSE')
+					'true': VALUE_TRUE,
+					'false': VALUE_FALSE
 				}
 			},
 			{
@@ -1305,20 +1308,20 @@ tmp = function() {
 				defaultValue: 'false',
 				values: ['true', 'false'],
 				valueTitles: {
-					'true': L('VALUE_TRUE'),
-					'false': L('VALUE_FALSE')
+					'true': VALUE_TRUE,
+					'false': VALUE_FALSE
 				}	
 			},
 			{
 				name: 'contentSearch',
 				title: L('CONTENT_SEARCH'),
-				icon: 'SETTINGS',
+				icon: 'SEARCH_ALT',
 				helpText: L('CONTENT_SEARCH_HELPTEXT'),
 				defaultValue: 'false',
 				values: ['true', 'false'],
 				valueTitles: {
-					'true': L('VALUE_TRUE'),
-					'false': L('VALUE_FALSE')
+					'true': VALUE_TRUE,
+					'false': VALUE_FALSE
 				}	
 			}
 		],
