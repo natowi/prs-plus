@@ -3,33 +3,6 @@
 	<assets>
 		<!-- PRS+ stuff -->
 		<import href="../prsp/prspAssets.xml"/>
-		
-		<texture href="kBookAssets.png">
-			<cutout id="whiteBox" x="630" y="0" width="70" height="70" columns="0" lines="0" />
-			<cutout id="blackBox" x="351" y="0" width="35" height="70" columns="0" lines="0" />
-			<cutout id="greyBox" x="500" y="75" width="35" height="70" columns="0" lines="0" />
-			<cutout id="greyLine" x="70" y="138" width="35" height="2" columns="0" lines="0" />
-			<cutout id="empty" x="0" y="0" width="0" height="0" />	
-		</texture>
-		
-		<style id="popupText" halign="left" valign="top" top="8" left="10" size="30" style="bold"/>
-		<style id="popupTextWhite" halign="left" valign="top" top="8" left="10" size="30" style="bold" color="#FFFFFF"/>
-		
-		<skin id="popup"
-			cutouts="blackBorder-tl,blackBorder-tc,blackBorder-tr,blackBorder-cl,whiteBox,blackBorder-cl,blackBorder-bl,blackBorder-bc,blackBorder-br"
-		/>
-		<skin id="popupText"
-			styles="popupText,popupText,popupText,popupText"
-			cutouts="empty,greyLine,empty,empty,whiteBox,empty,empty,greyLine,empty"
-		/>
-		<skin id="popupIndicator"
-			styles="popupText,popupText,popupText,popupText"
-			cutouts="empty,empty,empty,empty,greyBox,empty,empty,empty,empty"
-		/>
-		<skin id="popupIndicatorSel"
-			styles="popupTextWhite,popupTextWhite,popupTextWhite,popupTextWhite"
-			cutouts="empty,empty,empty,empty,blackBox,empty,empty,empty,empty"
-		/>
 		<!-- End of PRS+ stuff -->
 
 		<string id="infoTitles" value="Cover,Title,Author,Publisher,Category,eBook ID,Kind,Date,Size,Location,File,Digital Rights,Expires"/>
@@ -1104,50 +1077,7 @@
 	</group>
 	
 	<!-- PRS+ stuff -->
-	<panel id="POPUP_MENU"  skin="popup" left="50" bottom="50" width="0" height="0"  visible="false">
-		<group id="innerGroup" left="6" right="6" top="6" bottom = "6">
-			<group id="panel10" left="0" right="0" height="1" bottom="1" >
-				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
-				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="0" />
-			</group>
-			<group id="panel9" left="0" right="0" height="1" bottom="1" >
-				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
-				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="9" />
-			</group>
-			<group id="panel8" left="0" right="0" height="1" bottom="1" >
-				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
-				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="8" />
-			</group>
-			<group id="panel7" left="0" right="0" height="1" bottom="1" >
-				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
-				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="7" />
-			</group>
-			<group id="panel6" left="0" right="0" height="1" bottom="1" >
-				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
-				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="6" />
-			</group>
-			<group id="panel5" left="0" right="0" height="1" bottom="1" >
-				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
-				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="5" />
-			</group>
-			<group id="panel4" left="0" right="0" height="1" bottom="1" >
-				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
-				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="4" />
-			</group>
-			<group id="panel3" left="0" right="0" height="1" bottom="1" >
-				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
-				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="3" />
-			</group>
-			<group id="panel2" left="0" right="0" height="1" bottom="1" >
-				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
-				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="2" />
-			</group>
-			<group id="panel1" left="0" right="0" height="1" bottom="1" >
-				<text id="menu" skin="popupText" left="0" right="35" top="0" bottom="0" />
-				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="1" />
-			</group>
-		</group>
-	</panel>
+	<view href="prspPopUp.xml" id="POPUP_MENU" left="0" right="0" top="0" bottom="0"/>
 	<!-- End of PRS+ stuff -->
 
 	<group id="INVALID_FORMAT_GROUP" left="0" right="0" top="0" bottom="0" visible="false">

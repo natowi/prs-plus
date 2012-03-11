@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns="http://www.kinoma.com/fskin/1">
 	<assets>
-		<!-- PRS+ start -->
-		<texture href="../../prsp/prspAssets.png">
-			<cutout id="menuArrows-l" x="5" y="95" width="15" height="80" />
-			<cutout id="menuArrows-r" x="30" y="95" width="15" height="80" />
-			<cutout id="menuArrows-u" x="56" y="95" width="80" height="15" />
-			<cutout id="menuArrows-d" x="56" y="120" width="80" height="15" />
-		</texture>
-		<!-- PRS+ end -->
 		<texture href="kBookDeviceHomeWide.png">
 			<cutout id="shortcutContinue"		x= "0" y= "0" width="50" height="50"/>
 			<cutout id="shortcutBook"			x= "50" y= "0" width="50" height="50"/>
@@ -17,6 +9,7 @@
 			<cutout id="newIcon"				x= "150" y="0" width="60" height="60"/>
 			<cutout id="sl2-tv"					x="0" y="0" width="0" height="0"/>
 		</texture>
+		
 		<style id="title" color="#0A0A0A" halign="left" valign="top" top="0" size="23"/>
 		<style id="title20" color="#0A0A0A" halign="left" valign="top" top="0" size="24"/>
 		<style id="title17" color="#0A0A0A" halign="left" valign="top" top="0" size="17"/>
@@ -53,16 +46,6 @@
 			styles="continueReadingDate"/>
 		<skin id="continueReadingComment" 
 			styles="comment"/>
-		<!-- PRS+ start -->
-		<skin id="menuArrows-l"
-			cutouts="menuArrows-l"/>
-		<skin id="menuArrows-r"
-			cutouts="menuArrows-r"/>
-		<skin id="menuArrows-u"
-			cutouts="menuArrows-u"/>
-		<skin id="menuArrows-d"
-			cutouts="menuArrows-d"/>
-		<!-- PRS+ end -->
 	</assets>
 	<model>
 		<variable id="VAR_COVER" value=""/>
@@ -121,9 +104,9 @@
 				<sprite skin="seeAll" right="24" top="6" width="35" height="35" active="false"/>
 				<kbookHotspot do="doGoToBooks" left="0" top="0" width="240" bottom="0" threshold="0xA8"/>
 				<!-- PRS+ start -->
-				<sprite id="PRSPUpArrow" skin="menuArrows-u" left="260" top="5" width="80" height="15" active="false"/>
+				<sprite id="PRSPUpArrow" skin="menuArrows-u" left="288" top="5" width="25" height="22" active="false"/>
 				<kbookHotspot do="booklistArrows" left="240" top="0" width="125" bottom="25" threshold="0xA8" index="3"/>
-				<sprite id="PRSPDownArrow" skin="menuArrows-d" left="380" top="5" width="80" height="15" active="false"/>
+				<sprite id="PRSPDownArrow" skin="menuArrows-d" left="408" top="5" width="25" height="22" active="false"/>
 				<kbookHotspot do="booklistArrows" left="365" top="0" width="115" bottom="25" threshold="0xA8" index="4"/>
 				<!-- PRS+ end -->
 				<kbookHotspot do="doGoToBooks" right="0" top="0" width="240" bottom="0" threshold="0xA8"/>

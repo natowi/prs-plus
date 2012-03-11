@@ -7,8 +7,9 @@
 //	2010-07-13 kartu - Initial version
 //	2011-12-11 Mark Nord - some adjustments for 505, added invalidate() to hideMenu()
 //	2011-12-20 Mark Nord - enabled for 600/x50
-//		ToDo: handle more then 10 menu-items
 //	2011-12-30 Mark Nord - added menu.titel to error.trace in doCenter() 
+//	2012-02-19 Mark Nord - use of visible Button
+//		ToDo: handle more then 10 menu-items
 
 /**
  Sample code:
@@ -37,8 +38,9 @@ tmp = function() {
 	//
 	var model = kbook.model;
 	var root = model.container.root;
-	var popupMenu = model.container.sandbox.POPUP_MENU;
-	
+	var popupMenu = model.container.sandbox.POPUP_MENU.sandbox.POPUP_MENU_SUB.sandbox.POPUP_MENU;
+	//var popupMenu = model.container.sandbox.POPUP_MENU;
+
 	// Constants
 	//
 	// spacing in menu label
@@ -73,14 +75,25 @@ tmp = function() {
 	
 	var dummy = {};
 	var SimpleMenu = function(titles, actions) {
-		var children = [];
+		var children = [], sub1Children = [], sub1, len, i, n;
 		if (actions === undefined) {
 			// not to break actions[i] lookups
 			actions = dummy;
 		}
 		var result = new MenuItem(undefined, undefined, undefined, children);
-		for (var i = 0, n = titles.length; i < n; i++) {
+		len = titles.length;
+		//FixMe: do this in a loop
+		if (len>9) {
+			sub1 = new MenuItem('MORE', undefined, undefined, sub1Children);	
+			for (i = 9, n = len; i < n; i++) {
+				sub1Children.push(new MenuItem(titles[i], actions[i], sub1));
+			}
+		}
+		for (i = 0, n = Math.min(len, 9); i < n; i++) {
 			children.push(new MenuItem(titles[i], actions[i], result));
+		}
+		if (sub1Children.length>0) {
+			children.splice(9, 0, sub1);
 		}
 		return result;
 	};
@@ -235,7 +248,7 @@ tmp = function() {
 		if (children !== undefined) {
 			count = children.length;
 			// set current text style					
-			win.setTextFormat(sandbox.panel1.sandbox.menu.skin.styles[0]);
+			win.setTextFormat(sandbox.panel1.sandbox.indicator.skin.styles[0]);
 			indicatorWidth = hasNumericButtons ? win.getTextBounds("0").width + HGAP : 0;
 			for (i = 0, n = Math.min(count, 10); i < n; i++) {
 				var bounds = win.getTextBounds("" + children[i].title);
@@ -266,15 +279,16 @@ tmp = function() {
 				var indicator = control.sandbox.indicator;
 				indicator.changeLayout(undefined, indicatorWidth, 0, 0, undefined, 0);
 
-				// resize menu
+				/*/ resize menu
 				var m = control.sandbox.menu;
 				m.setValue(children[i].title);
-				m.changeLayout(0, undefined, indicatorWidth, 0, undefined, 0);
+				m.changeLayout(0, undefined, indicatorWidth, 0, undefined, 0); */
 
 				// resize button if necessary, 300/505 don't have the buttons
 				var b = control.sandbox[""+ (10 - i)%10];
 				if (b) {
-					b.changeLayout(0, undefined, 0, 0, undefined, 0);
+					b.setText(children[i].title);
+					b.changeLayout(0, undefined, indicatorWidth, 0, undefined, 0);
 				}
 
 			} else {

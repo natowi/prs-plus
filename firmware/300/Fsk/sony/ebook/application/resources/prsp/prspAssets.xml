@@ -1,12 +1,127 @@
 <?xml version="1.0"?>
 <document xmlns="http://www.kinoma.com/fskin/1" id="DOCUMENT">
     <assets>
+		<behavior id="button">
+			<property id="text" value="OK"/>
+
+			<script on="enabled" params="enableIt">
+				this.v = (enableIt) ? 1 : 0
+				this.invalidate()
+			</script>
+			<script on="mouseEnter" params="event">
+				this.v = 2;
+				this.invalidate();
+			</script>
+			<script on="mouseLeave" params="event">
+				if (this.v == 2)
+					this.v = 1;
+				this.invalidate();
+			</script>
+			<script on="mouseDown" params="event">
+				this.v = 3;
+				this.cont = event.contextual;
+				this.invalidate();
+			</script>
+			<script on="mouseMoved" params="event">
+				var v = (this.hitBounds(event.x, event.y)) ? 3 : 1;
+				if (this.v != v) {
+					this.v = v;
+					this.invalidate();
+				}
+			</script>
+			<script on="mouseUp" params="event">
+				this.v = 1;
+				this.invalidate();
+				if (this.hitBounds(event.x, event.y))
+					this.trigger('select');					
+			</script>
+			<script on="select">
+				this.bubble('Click');
+			</script>
+			<script on="draw" params="window, index, u, v, x, y, width, height">
+				this.drawText(this.text.value, v, x, y, width, this.getDefaultHeight())
+			</script>
+		</behavior>
+		<style id="popupText" halign="left" valign="top" top="8" left="10" size="30" style="bold"/>
+		<style id="popupTextWhite" halign="left" valign="top" top="8" left="10" size="30" style="bold" color="#FFFFFF"/>
+						  
         <texture href="prspAssets.png">			
+			<cutout id="whiteBox" x="50" y="180" width="35" height="48" columns="0" lines="0" />
+			<cutout id="blackBox" x="50" y="332" width="35" height="48" columns="0" lines="0" />
+			<cutout id="greyBox"  x="50" y="280" width="35" height="48" columns="0" lines="0" />
+			<cutout id="empty"    x="0"  y="0"   width="0"  height="0" />	
+			<cutout id="greyLine" x="50" y="230" width="35" height="2" />			
 			<!-- CALENDAR SPRITES-->
 			<cutout id="selectcalsquare" x="0" y="0" width="70" height="70"/>
 			<cutout id="highlightcalsquare" x="70" y="0" width="70" height="70"/>
 			<cutout id="calendarsquare" x="140" y="0" width="70" height="70" columns="70"/>
 			<cutout id="transparentsquare" x="0" y="70" width="20" height="20" columns="20"/>
-        </texture>
+			<!-- PRSP POPUP_MENU-->
+			<cutout id="blackBorder-tl" x="0" y="180" width="6" height="5"  columns="0" lines="0" />
+			<cutout id="blackBorder-tc" x="6" y="180" width="30" height="5"  columns="0" lines="0" />
+			<cutout id="blackBorder-tr" x="40" y="180" width="6" height="5"  columns="0" lines="0" />
+			<cutout id="blackBorder-cl" x="0" y="185" width="3" height="70"  columns="0" lines="0" />
+			<cutout id="blackBorder-bl" x="0" y="413" width="6" height="5"  columns="0" lines="0" />
+			<cutout id="blackBorder-bc" x="6" y="413" width="30" height="5"  columns="0" lines="0" />
+			<cutout id="blackBorder-br" x="40" y="413" width="6" height="5"  columns="0" lines="0" />
+			<!-- PRSP SCROLLBAR-->    
+			<cutout id="sb-gt" x="120" y="90"  width="36" height="24" columns="40"/>			    
+			<cutout id="sb-gm" x="120" y="120" width="36" height="20" columns="40"/>
+			<cutout id="sb-gb" x="120" y="140" width="36" height="24" columns="40"/>
+			<cutout id="sb-bu" x="120" y="170" width="36" height="20" columns="40"/>
+			<cutout id="sb-tt" x="124" y="194" width="26" height="11" columns="40"/>
+			<cutout id="sb-tm" x="124" y="205" width="26" height="10" columns="40"/>
+			<cutout id="sb-tb" x="124" y="215" width="26" height="15" columns="40"/>
+			<cutout id="sb-bd" x="120" y="230" width="36" height="20" columns="40"/>
+			
+			<cutout id="sb-gl" x="120" y="250" width="48" height="18" lines="40"/>
+			<cutout id="sb-gc" x="144" y="250" width="40" height="18" lines="40"/>
+			<cutout id="sb-gr" x="164" y="250" width="48" height="18" lines="40"/>
+			<cutout id="sb-bl" x="194" y="250" width="40" height="18" lines="40"/>
+			<cutout id="sb-tl" x="217" y="254" width="24" height="13" lines="40"/>
+			<cutout id="sb-tc" x="229" y="254" width="20" height="13" lines="40"/>
+			<cutout id="sb-tr" x="239" y="254" width="28" height="13" lines="40"/>
+			<cutout id="sb-br" x="254" y="250" width="40" height="18" lines="40"/>
+
+			<cutout id="sbc" x="280" y="90" width="40" height="40" lines="40"/>
+
+			<cutout id="prspBtn-l" x="50" y="182" width="4" height="48" lines="50"/>
+			<cutout id="prspBtn-c" x="50" y="182" width="50" height="48" lines="50"/>
+			<cutout id="prspBtn-r" x="50" y="182" width="4" height="48" lines="50"/>
+
+			<cutout id="menuArrows-l" x="5"  y="95"  width="15" height="80" columns="0" lines="0"/>
+			<cutout id="menuArrows-r" x="30" y="95"  width="15" height="80" columns="0" lines="0"/>
+			<cutout id="menuArrows-u" x="50" y="90"  width="25" height="22" columns="0" lines="0"/>
+			<cutout id="menuArrows-d" x="50" y="115" width="25" height="22" columns="0" lines="0"/>
+		</texture>
+
+		<skin id="popup"
+			cutouts="blackBorder-tl,blackBorder-tc,blackBorder-tr,blackBorder-cl,whiteBox,blackBorder-cl,blackBorder-bl,blackBorder-bc,blackBorder-br"/>
+		<skin id="popupText"
+			styles="popupText,popupText,popupText,popupText"
+			cutouts="empty,greyLine,empty,empty,whiteBox,empty,empty,greyLine,empty"/>
+		<skin id="popupIndicator"
+			styles="popupText,popupText,popupText,popupText"
+			cutouts="empty,empty,empty,empty,greyBox,empty,empty,empty,empty"/>
+		<skin id="popupIndicatorSel"
+			styles="popupTextWhite,popupTextWhite,popupTextWhite,popupTextWhite"
+			cutouts="empty,empty,empty,empty,blackBox,empty,empty,empty,empty"/>  
+ 		<skin id="prspButton"
+			styles="popupText,popupText,popupText,popupTextWhite"
+			cutouts="prspBtn-l,prspBtn-r,prspBtn-r"/>	    
+		<skin id="scrollbar" 
+				cutouts="sb-gt,sb-gm,sb-gb,sb-bu,sb-tt,sb-tm,sb-tb,sb-bd,sb-gl,sb-gc,sb-gr,sb-bl,sb-tl,sb-tc,sb-tr,sb-br"/>
+		<skin id="scrollbarRB" 
+				cutouts="sb-gt,sb-gm,sb-gm,sb-bu,sb-tt,sb-tm,sb-tb,sb-bd,sb-gl,sb-gc,sb-gc,sb-bl,sb-tl,sb-tc,sb-tr,sb-br"/>
+		<skin id="scrollbarCorner"
+				cutouts="sbc"/>     
+		<skin id="menuArrows-l"
+			cutouts="menuArrows-l"/>
+		<skin id="menuArrows-r"
+			cutouts="menuArrows-r"/>
+		<skin id="menuArrows-u"
+			cutouts="menuArrows-u"/>
+		<skin id="menuArrows-d"
+			cutouts="menuArrows-d"/>
     </assets>	
 </document>
