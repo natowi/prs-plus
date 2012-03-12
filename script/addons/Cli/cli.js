@@ -5,6 +5,7 @@
 // Initial version: 2012-01-29
 // Changelog:
 //	2012-02-17 Ben Chenoweth - Added UP/DOWN (scroll window) and PREVIOUS (commands) buttons
+//	2012-03-05 Ben Chenoweth - Scrollbar added; handle first command without scrolling
 
 var tmp = function () {
 	
@@ -39,6 +40,7 @@ var tmp = function () {
 	var strDown = "\u2193";
 	var previousCommands = [];
 	var previousCommandNum = 0;
+	var firstTime = true;
 	
 	var twoDigits = function (i) {
 		if (i<10) {return "0"+i}
@@ -160,8 +162,6 @@ var tmp = function () {
 		setSoValue(target.BACK, 'text', strBack);
 		setSoValue(target.SHIFT, 'text', strShift);
 		setSoValue(target.SPACE, 'text', "");
-		setSoValue(target.BUTTON_UPP, 'text', strUp);
-		setSoValue(target.BUTTON_DWN, 'text', strDown);
 		
 		// highlight OK button for nonTouch
 		if (hasNumericButtons) {
@@ -181,11 +181,12 @@ var tmp = function () {
 		this.enable(true);
 		this.loadKeyboard();
 		tempOutput = "> ";
-		this.setOutput(tempOutput);
+		this.cliText.setValue(tempOutput);
 		if (hasNumericButtons) {
+			this.touchLabel0.show(false);
 			this.touchLabel1.show(false);
-			//this.cliScroll.show(false);
 		} else {
+			this.nonTouch0.show(false);
 			this.nonTouch1.show(false);
 		}
 		previousCommands.push(""); // start previous commands list with a blank entry
@@ -193,10 +194,14 @@ var tmp = function () {
 
 	target.setOutput = function (output) {
 		this.cliText.setValue(output);
-		try {
-			pageScroll.call(this.cliText, true, 1);
+		if (firstTime) {
+			firstTime = false;
+		} else {
+			try {
+				pageScroll.call(this.cliText, true, 1);
+			}
+			catch (ignore) { }
 		}
-		catch (ignore) { }
 	}
 	
 	target.doOK = function () {
@@ -210,10 +215,6 @@ var tmp = function () {
 			previousCommands.push(cmd);
 		}
 		previousCommandNum = 0;
-
-		// add cmd to output
-		tempOutput = tempOutput + cmd;
-		this.setOutput(tempOutput);
 		
 		// execute cmd
 		shellExec(cmd + " > " + CLIOUTPUT);
@@ -222,7 +223,7 @@ var tmp = function () {
 		result = getFileContent(CLIOUTPUT, "222");
 		if (result !== "222") {
 			// output
-			tempOutput = tempOutput + "\n"+result+"> ";
+			tempOutput = tempOutput + cmd + "\n"+result+"> ";
 			this.setOutput(tempOutput);
 		} else {
 			// no output file!
@@ -256,23 +257,7 @@ var tmp = function () {
 	target.doButtonClick = function (sender) {
 		var id, n, numCommands;
 		id = getSoValue(sender, "id");
-		n = id.substring(7, 10);
-		if (n == "UPP") {
-			// scroll cliText textbox up
-			try {
-				pageScroll.call(this.cliText, true, -1);
-			}
-			catch (ignore) { }
-			return;
-		}
-		if (n == "DWN") {
-			// scroll cliText textbox down
-			try {
-				pageScroll.call(this.cliText, true, 1);
-			}
-			catch (ignore) { }
-			return;
-		}		
+		n = id.substring(7, 10);	
 		if (n == "PRE") {
 			// copy previous command into command box
 			numCommands = previousCommands.length;
@@ -404,18 +389,8 @@ var tmp = function () {
 	}
 
 	target.ntHandleEventsDlg = function () {
-		if (custSel === 1) {
-			mouseEnter.call(target.BUTTON_UPP);
-			mouseLeave.call(target.BUTTON_DWN);
-		}
-		if (custSel === 2) {
-			mouseLeave.call(target.btn_Ok);
-			mouseEnter.call(target.BUTTON_DWN);
-			mouseLeave.call(target.BUTTON_UPP);
-		}
 		if (custSel === 5) {
 			mouseEnter.call(target.btn_Ok);
-			mouseLeave.call(target.BUTTON_DWN);
 			mouseLeave.call(target.BUTTON_PRE);
 			mouseLeave.call(target.key01);
 			mouseLeave.call(target.key02);
@@ -636,15 +611,7 @@ var tmp = function () {
 	target.moveCursor = function (direction) {
 	switch (direction) {
 		case "up" : {
-			if (custSel===2) {
-				prevSel=custSel;
-				custSel=1;
-				target.ntHandleEventsDlg();
-			} else if (custSel===5) {
-				prevSel=custSel;
-				custSel=2;
-				target.ntHandleEventsDlg();
-			} else if (custSel===6) {
+			if (custSel===6) {
 				prevSel=custSel;
 				custSel=5;
 				target.ntHandleEventsDlg();
@@ -680,15 +647,7 @@ var tmp = function () {
 			break
 		}
 		case "down" : {
-			if (custSel===1) {
-				prevSel=custSel;
-				custSel=2;
-				target.ntHandleEventsDlg();
-			} else if (custSel===2) {
-				prevSel=custSel;
-				custSel=5;
-				target.ntHandleEventsDlg();
-			} else if (custSel===5) {
+			if (custSel===5) {
 				prevSel=custSel;
 				custSel=6;
 				target.ntHandleEventsDlg();
@@ -776,8 +735,6 @@ var tmp = function () {
 	}
 	
 	target.doCenterF = function () {
-		if (custSel === 1) target.BUTTON_UPP.click();
-		if (custSel === 2) target.BUTTON_DWN.click();
 		if (custSel === 5) target.btn_Ok.click();
 		if (custSel === 6) target.BUTTON_PRE.click();
 		if (custSel === 7) target.key01.click();

@@ -153,10 +153,10 @@
             </code>
 			
 		  <button id="btn_Exit" left="0" top="-70" height="70" width="70" active="true" visible="false" do="doQuit"/>	  
-		  <text id='frotzText' skin='eventText' left='10' right='54' top='8' bottom='260' active='false' visible='true' />
-		  <scrollbar scroller="frotzText" id="frotzScroll" visible="true" right="22" top="10" bottom="260"/>
-		  <button id="BUTTON_UPP" active="true" text="U"  right="10" width="40" top="10" height="40" do="doButtonClick" visible="false"/>
-		  <button id="BUTTON_DWN" active="true" text="D"  right="10" width="40" bottom="262" height="40" do="doButtonClick" visible="false" />
+		  <text id='frotzText' skin='eventText' left='10' right='30' top='8' bottom='260' active='false' visible='true' />
+		  <scrollbar scroller="frotzText" id="frotzScroll" visible="true" right="10" top="8" bottom="258" />
+		  <label id='touchLabel0'   skin='touchText'    left='5' right='0' bottom='0' height='20' align='left' text='     Page Up               Page Down'/>
+		  <label id='nonTouch0'   skin='touchText'    left='0' right='0' bottom='0' height='20' align='left' text='[Prev] Page Up     [Next] Page Down'/>
 		  <label id='touchLabel1'   skin='touchText'    left='285' right='0' bottom='3' height='15' align='left' text='Quit'/>
 		  <label id='nonTouch1'   skin='touchText'    left='490' right='0' bottom='3' height='15' align='left' text='[Hold 0] Quit'/>
 		  <text id='currentText' skin='eventText' left='10' right='108' height='42' bottom='215' active='false' visible='true' />

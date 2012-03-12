@@ -22,6 +22,7 @@
 //	2012-03-01 Ben Chenoweth - Whitespace handled; mortlake.z8 included in PRS+ installer
 //	2012-03-02 Ben Chenoweth - Fixes for 'Tangle' & 'Trinity'; error message for 'undo'
 //	2012-03-03 Ben Chenoweth - Better handling of YES/NO situations in 'Trinity'
+//	2012-03-08 Ben Chenoweth - Scrollbar added; fixes for '9:05' and 'PartyFoul'
 
 var tmp = function () {
 	
@@ -217,8 +218,6 @@ var tmp = function () {
 		setSoValue(target.BACK, 'text', strBack);
 		setSoValue(target.SHIFT, 'text', strShift);
 		setSoValue(target.SPACE, 'text', "");
-		setSoValue(target.BUTTON_UPP, 'text', strUp);
-		setSoValue(target.BUTTON_DWN, 'text', strDown);
 		
 		// highlight OK button for nonTouch
 		if (hasNumericButtons) {
@@ -238,9 +237,10 @@ var tmp = function () {
 		this.enable(true);
 		this.loadKeyboard();		
 		if (hasNumericButtons) {
+			this.touchLabel0.show(false);
 			this.touchLabel1.show(false);
-			//this.frotzScroll.show(false);
 		} else {
+			this.nonTouch0.show(false);
 			this.nonTouch1.show(false);
 		}
 		previousCommands.push(""); // start previous commands list with a blank entry
@@ -453,6 +453,12 @@ var tmp = function () {
 					quitMessage = "Really all done with story? ";
 					restartMessage = "Really start all over? ";
 					failMessage = "Oops, that not work.";
+					break;
+				case "partyfoul":
+					useFrotz = false;
+					startGame = "\nN\n\n";
+					saveTemp = "\nsave\ntemp.sav\n";
+					saveUser = "\nsave\n";
 					break;
 				case "slouch":
 					useFrotz = false;
@@ -753,14 +759,14 @@ var tmp = function () {
 		
 		result = getFileContent(INTFICOUT, "222");
 		if (result !== "222") {
-			/*/ output files for debugging
+			// output files for debugging
 			if (FileSystem.getFileInfo("/Data/frotz0.out")) {
 				cmd = "cp "+INTFICOUT+" /Data/frotz1.out";
 				shellExec(cmd);
 			} else {
 				cmd = "cp "+INTFICOUT+" /Data/frotz0.out";
 				shellExec(cmd);
-			}*/
+			}
 			
 			// output
 			if (tempOutput === "") {
@@ -802,6 +808,8 @@ var tmp = function () {
 			} else {
 				// initial removals
 				result = result.replace("Have you played interactive fiction before? >", ""); //bronze
+				result = result.replace("Would you like to continue with the tutorial on?", ""); //partyfoul
+				result = result.replace(">>", ">"); //905
 				
 				// trim initial/restore lines at start of output
 				result = result.substring(result.indexOf(">")+1);
@@ -821,7 +829,7 @@ var tmp = function () {
 				
 				// trim save/quit lines at end of output
 				charPos = result.indexOf(" -> "); // nitfol uses this when expanding/correcting
-				if (charPos > 0) {
+				if ((charPos > 0) && (result.indexOf(">") === charPos + 2)) { // ie. '->' contains the next '>'
 					result = result.substring(0, result.indexOf(">", charPos + 4));
 				} else {
 					result = result.substring(0, result.indexOf(">"));
@@ -934,6 +942,26 @@ var tmp = function () {
 					loudRoomDisabled = true;
 				}
 				break;
+			case "905":
+				/*result = getFileContent(INTFICOUT, "222");
+				if (result.indexOf("vanish without a trace")>=0) {
+					// trim initial/restore lines at start of output
+					result = result.replace(">>", ">");
+					result = result.substring(result.indexOf(">")+1);
+					result = result.substring(result.indexOf(">")+1);
+					result = result.substring(result.indexOf(">")+1);
+				
+					// trim save/quit lines at end of output
+					result = result.substring(0, result.indexOf(">"));
+					return result;
+				} else */
+				if (previousresult.indexOf("Would you like to")>=0) {
+					getYesNo = true;
+				} else if (previousresult.indexOf("[Press a key to continue.]")>=0) {
+					setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+CONFIRM+quitGame); // extra return needed
+					getNewResult = true;
+				}
+				break;
 			case "tangle":
 				charPos = previousresult.indexOf("[Hit any key.]");
 				if (charPos > 0) {
@@ -948,9 +976,10 @@ var tmp = function () {
 			default:
 		}
 		
-		if (previousresult.indexOf("Would you like to RESTART, RESTORE a saved game, or QUIT?")>0) {
+		if ((previousresult.indexOf("Would you like to RESTART, RESTORE a saved game, or QUIT?")>0) || (previousresult.indexOf("Would you like to RESTART, RESTORE a saved game or QUIT?")>0)) {
 			setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n\n"+quitGame); // can't save, so just quit (extra return just in case)
 			getNewResult = true;
+			getYesNo = false;
 		}
 
 		if (getNewResult) {
@@ -964,7 +993,7 @@ var tmp = function () {
 				
 				// trim save/quit lines at end of output
 				charPos = result.indexOf(" -> "); // nitfol uses this when expanding/correcting
-				if (charPos > 0) {
+				if ((charPos > 0) && (result.indexOf(">") === charPos + 2)) {
 					result = result.substring(0, result.indexOf(">", charPos + 1));
 				} else {
 					result = result.substring(0, result.indexOf(">"));
@@ -989,7 +1018,8 @@ var tmp = function () {
 
 		// any final NITFOL-specific removals?
 		outputstring = outputstring.replace("Welcome to the Cheap Glk Implementation, library version 1.0.3.\n\n", "");
-		outputstring = outputstring.replace("[Hit any key.]", ""); //tangle	
+		outputstring = outputstring.replace("[Hit any key.]", ""); //tangle
+		outputstring = outputstring.replace("[Press a key to continue.]", ""); //905
 		return outputstring;
 	}
 
@@ -1017,22 +1047,6 @@ var tmp = function () {
 		var id, n, numCommands;
 		id = getSoValue(sender, "id");
 		n = id.substring(7, 10);
-		if (n == "UPP") {
-			// scroll frotzText textbox up
-			try {
-				pageScroll.call(this.frotzText, true, -1);
-			}
-			catch (ignore) { }
-			return;
-		}
-		if (n == "DWN") {
-			// scroll frotzText textbox down
-			try {
-				pageScroll.call(this.frotzText, true, 1);
-			}
-			catch (ignore) { }
-			return;
-		}		
 		if (n == "PRE") {
 			// copy previous command into command box
 			numCommands = previousCommands.length;
@@ -1164,18 +1178,8 @@ var tmp = function () {
 	}
 
 	target.ntHandleEventsDlg = function () {
-		if (custSel === 1) {
-			mouseEnter.call(target.BUTTON_UPP);
-			mouseLeave.call(target.BUTTON_DWN);
-		}
-		if (custSel === 2) {
-			mouseLeave.call(target.btn_Ok);
-			mouseEnter.call(target.BUTTON_DWN);
-			mouseLeave.call(target.BUTTON_UPP);
-		}
 		if (custSel === 5) {
 			mouseEnter.call(target.btn_Ok);
-			mouseLeave.call(target.BUTTON_DWN);
 			mouseLeave.call(target.BUTTON_PRE);
 			mouseLeave.call(target.key01);
 			mouseLeave.call(target.key02);
@@ -1396,15 +1400,7 @@ var tmp = function () {
 	target.moveCursor = function (direction) {
 	switch (direction) {
 		case "up" : {
-			if (custSel===2) {
-				prevSel=custSel;
-				custSel=1;
-				target.ntHandleEventsDlg();
-			} else if (custSel===5) {
-				prevSel=custSel;
-				custSel=2;
-				target.ntHandleEventsDlg();
-			} else if (custSel===6) {
+			if (custSel===6) {
 				prevSel=custSel;
 				custSel=5;
 				target.ntHandleEventsDlg();
@@ -1440,15 +1436,7 @@ var tmp = function () {
 			break
 		}
 		case "down" : {
-			if (custSel===1) {
-				prevSel=custSel;
-				custSel=2;
-				target.ntHandleEventsDlg();
-			} else if (custSel===2) {
-				prevSel=custSel;
-				custSel=5;
-				target.ntHandleEventsDlg();
-			} else if (custSel===5) {
+			if (custSel===5) {
 				prevSel=custSel;
 				custSel=6;
 				target.ntHandleEventsDlg();
@@ -1536,8 +1524,6 @@ var tmp = function () {
 	}
 	
 	target.doCenterF = function () {
-		if (custSel === 1) target.BUTTON_UPP.click();
-		if (custSel === 2) target.BUTTON_DWN.click();
 		if (custSel === 5) target.btn_Ok.click();
 		if (custSel === 6) target.BUTTON_PRE.click();
 		if (custSel === 7) target.key01.click();
