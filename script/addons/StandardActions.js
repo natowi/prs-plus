@@ -312,6 +312,8 @@ tmp = function() {
 					if (current) {
 						// Show current book
 						model.onEnterContinue();
+					} else {
+						model.doBlink();
 					}
 				}
 			},
