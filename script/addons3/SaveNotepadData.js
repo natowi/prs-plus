@@ -15,6 +15,7 @@
 //  2011-12-08 Ben Chenoweth - Code cleaning; failure message now compulsory (success message still optional)
 //  2011-12-10 Ben Chenoweth - Added option to override Text Note with contents of changed TXT file
 //  2011-12-11 Ben Chenoweth - Added error code to log.error calls
+//	2012-03-13 Ben Chenoweth - Fixed #318: 'Failed to save' message appearing incorrectly
 
 tmp = function() {
 	var L, log, oldNotepadDataSave, oldNotepadFreehandDataSave;
@@ -108,7 +109,7 @@ tmp = function() {
 						Core.ui.showMsg([msg1, msg2]);
 					}
 				}
-				if (media.type === 'drawing') {
+				if ((media.type === 'drawing') && ((SaveNotepadData.options.saveHandwritingSVG === 'on') || (SaveNotepadData.options.saveHandwritingJPG === 'on'))) {
 					try {
 						name = media.path.substring(media.path.lastIndexOf('/') + 1);
 						svg = media.note.drawing.pages[0].svg;
