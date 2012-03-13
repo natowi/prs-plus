@@ -12,6 +12,7 @@
 //	2012-02-06 Ben Chenoweth - Added No Action, Goto various nodes, Delete Current Item, Play/Pause Audio
 //	2012-02-20 quisvir - Added custom action; code cleaning
 //	2012-02-20 quisvir - Added Action Launcher; code cleaning
+//	2012-03-13 Ben Chenoweth - Fix for issue #321
 
 tmp = function() {
 	var L, log, NAME, StandardActions, model, book, doHistory, isBookEnabled, addBubbleActions, addOptionalActions,
@@ -306,8 +307,12 @@ tmp = function() {
 				group: "Book",
 				icon: "CONTINUE",
 				action: function () {
-					// Show current book
-					model.onEnterContinue();
+					var current;
+					current = kbook.model.currentBook;
+					if (current) {
+						// Show current book
+						model.onEnterContinue();
+					}
 				}
 			},
 			{
