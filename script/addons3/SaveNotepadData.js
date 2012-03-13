@@ -84,58 +84,60 @@ tmp = function() {
 	kbook.notepadData.save = function () {
 		var folder, media, name, path, msg1, msg2, failed, width, height, stream, chr34, tab, svg, count, x, points, maker, bitmap, stream;
 		failed = false;
-		try {
-			media = this.media;
-			if (media) {				
-				if ((media.type === 'text') && (SaveNotepadData.options.saveTextMemo === 'on')) {				
-					try {
-						folder = SaveNotepadData.options.saveTo + "Notepads/";
-						FileSystem.ensureDirectory(folder);
-						name = media.path.substring(media.path.lastIndexOf('/') + 1);
-						path = folder + name + ".txt";
-						folder = SaveNotepadData.options.saveTo;
-						Core.io.setFileContent(path, media.note.text);
-					} catch (ee) {
-						msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
-						msg2 = L("FAILED_TO_SAVE");
-						failed = true;
-						log.error("Save as TXT failed!", ee);
-					}
-					if ((SaveNotepadData.options.showSaveProgress === "on") || (failed)) {
-						if (msg1 === undefined) {
-							msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];
-							msg2 = path;
-						}
-						Core.ui.showMsg([msg1, msg2]);
-					}
-				}
-				if ((media.type === 'drawing') && ((SaveNotepadData.options.saveHandwritingSVG === 'on') || (SaveNotepadData.options.saveHandwritingJPG === 'on'))) {
-					try {
-						name = media.path.substring(media.path.lastIndexOf('/') + 1);
-						svg = media.note.drawing.pages[0].svg;
-						width = parseInt(media.note.drawing.width);
-						height = parseInt(media.note.drawing.height);
-						if (SaveNotepadData.options.saveHandwritingSVG === 'on') {
-							path = saveHandwritingSVG(name, svg, width, height);
-						}
-						if (SaveNotepadData.options.saveHandwritingJPG === 'on') {
-							path = saveHandwritingJPG(name, svg, width, height);
-						}
-						if ((SaveNotepadData.options.showSaveProgress === "on") || (!path)) {
+		if ((SaveNotepadData.options.saveTextMemo === 'on') || (SaveNotepadData.options.saveHandwritingSVG === 'on') || (SaveNotepadData.options.saveHandwritingJPG === 'on')) {
+			try {
+				media = this.media;
+				if (media) {				
+					if ((media.type === 'text') && (SaveNotepadData.options.saveTextMemo === 'on')) {				
+						try {
+							folder = SaveNotepadData.options.saveTo + "Notepads/";
+							FileSystem.ensureDirectory(folder);
+							name = media.path.substring(media.path.lastIndexOf('/') + 1);
+							path = folder + name + ".txt";
 							folder = SaveNotepadData.options.saveTo;
-							if (path) {
+							Core.io.setFileContent(path, media.note.text);
+						} catch (ee) {
+							msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
+							msg2 = L("FAILED_TO_SAVE");
+							failed = true;
+							log.error("Save as TXT failed!", ee);
+						}
+						if ((SaveNotepadData.options.showSaveProgress === "on") || (failed)) {
+							if (msg1 === undefined) {
 								msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];
 								msg2 = path;
-							} else {
-								msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
-								msg2 = L("FAILED_TO_SAVE");
 							}
 							Core.ui.showMsg([msg1, msg2]);
 						}
-					} catch (e) { }
+					}
+					if ((media.type === 'drawing') && ((SaveNotepadData.options.saveHandwritingSVG === 'on') || (SaveNotepadData.options.saveHandwritingJPG === 'on'))) {
+						try {
+							name = media.path.substring(media.path.lastIndexOf('/') + 1);
+							svg = media.note.drawing.pages[0].svg;
+							width = parseInt(media.note.drawing.width);
+							height = parseInt(media.note.drawing.height);
+							if (SaveNotepadData.options.saveHandwritingSVG === 'on') {
+								path = saveHandwritingSVG(name, svg, width, height);
+							}
+							if (SaveNotepadData.options.saveHandwritingJPG === 'on') {
+								path = saveHandwritingJPG(name, svg, width, height);
+							}
+							if ((SaveNotepadData.options.showSaveProgress === "on") || (!path)) {
+								folder = SaveNotepadData.options.saveTo;
+								if (path) {
+									msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];
+									msg2 = path;
+								} else {
+									msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
+									msg2 = L("FAILED_TO_SAVE");
+								}
+								Core.ui.showMsg([msg1, msg2]);
+							}
+						} catch (e) { }
+					}
 				}
-			}
-		} catch (e) { log.error("Save failed!", e); }
+			} catch (e) { log.error("Save failed!", e); }
+		}
 		return oldNotepadDataSave.apply(this);
 	}
 	
