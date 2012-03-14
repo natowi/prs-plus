@@ -23,6 +23,7 @@
 //	2012-03-02 Ben Chenoweth - Fixes for 'Tangle' & 'Trinity'; error message for 'undo'
 //	2012-03-03 Ben Chenoweth - Better handling of YES/NO situations in 'Trinity'
 //	2012-03-08 Ben Chenoweth - Scrollbar added; fixes for '9:05' and 'PartyFoul'
+//	2012-03-14 Ben Chenoweth - Output 'yes' or 'no'; another fix for '9:05'
 
 var tmp = function () {
 	
@@ -674,6 +675,8 @@ var tmp = function () {
 				if ((currentLine.toLowerCase() === "y") || (currentLine.toLowerCase() === "yes")) {
 					getYesNo = false;
 					checkYesNo = true;
+					tempOutput = tempOutput + "yes";
+					this.setOutput(tempOutput);					
 					deleteFile(INTFICOUT);
 					setFileContent(INTFICIN, startGame+restoreTemp+previousCommands[previousCommands.length-1]+"\nYES\n"+saveTemp+CONFIRM+quitGame);
 					cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
@@ -682,6 +685,8 @@ var tmp = function () {
 				} else if ((currentLine.toLowerCase() === "n") || (currentLine.toLowerCase() === "no")) {
 					getYesNo = false;
 					checkYesNo = true;
+					tempOutput = tempOutput + "no";
+					this.setOutput(tempOutput);
 					deleteFile(INTFICOUT);
 					setFileContent(INTFICIN, startGame+restoreTemp+previousCommands[previousCommands.length-1]+"\nNO\n"+saveTemp+CONFIRM+quitGame);
 					cmd = "cd " + workingDir + ";" + EXECUTABLE + datPath + GAMETITLE + " < " + INTFICIN + " > " + INTFICOUT;
@@ -943,19 +948,12 @@ var tmp = function () {
 				}
 				break;
 			case "905":
-				/*result = getFileContent(INTFICOUT, "222");
-				if (result.indexOf("vanish without a trace")>=0) {
-					// trim initial/restore lines at start of output
-					result = result.replace(">>", ">");
-					result = result.substring(result.indexOf(">")+1);
-					result = result.substring(result.indexOf(">")+1);
-					result = result.substring(result.indexOf(">")+1);
-				
-					// trim save/quit lines at end of output
-					result = result.substring(0, result.indexOf(">"));
+				result = getFileContent(INTFICOUT, "222");
+				if ((result.indexOf("vanish without a trace")>=0) && (result.indexOf("Please answer yes or no")==-1)) {		
+					// replace output (brute force solution!)
+					result = "You merge onto the freeway, crank up the radio, and vanish without a trace.\n\n    *** You have left Las Mesas ***\n\nWould you like to RESTART, RESTORE a saved game or QUIT?\n";
 					return result;
-				} else */
-				if (previousresult.indexOf("Would you like to")>=0) {
+				} else if (previousresult.indexOf("Would you like to")>=0) {
 					getYesNo = true;
 				} else if (previousresult.indexOf("[Press a key to continue.]")>=0) {
 					setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+CONFIRM+quitGame); // extra return needed
