@@ -683,7 +683,7 @@ tmp = function() {
 		switch (node.target) {
 			case 'book':
 				id = this.currentBook.media.id;
-				if (coll.getItemIndex(id) !== -1) {
+				if (coll.getItemIndex(id) === -1) {
 					coll.append(id);
 					this.cache.updateRecord(coll.id, coll);
 				}
