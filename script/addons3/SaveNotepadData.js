@@ -16,6 +16,7 @@
 //  2011-12-10 Ben Chenoweth - Added option to override Text Note with contents of changed TXT file
 //  2011-12-11 Ben Chenoweth - Added error code to log.error calls
 //	2012-03-13 Ben Chenoweth - Fixed #318: 'Failed to save' message appearing incorrectly
+//	2012-03-17 Ben Chenoweth - Added saving Contents of Highlights
 
 tmp = function() {
 	var L, log, oldNotepadDataSave, oldNotepadFreehandDataSave;
@@ -141,10 +142,67 @@ tmp = function() {
 		return oldNotepadDataSave.apply(this);
 	}
 	
+	// save CONTENTS OF HIGHLIGHTS
+	var oldNoteFromHighlight = FskCache.text.noteFromHighlight;
+	FskCache.text.noteFromHighlight = function (ann, viewer) {
+		var failed, folder, media, name, path, title, author, stream, span, highlightText, page, msg1, msg2;
+		if (SaveNotepadData.options.saveHighlights === 'on') {
+			failed = false;
+			folder = SaveNotepadData.options.saveTo + "Notepads/";
+			FileSystem.ensureDirectory(folder);
+			try {
+				if (kbook.model.currentBook) {
+					media = kbook.model.currentBook.media;
+					name = media.path.substring(media.path.lastIndexOf("/")+1,media.path.lastIndexOf("."));
+					path = folder + name + ".txt";
+					try {
+						if (!FileSystem.getFileInfo(path)) {
+							// first comment for this book, so output header information
+							title=media.title;
+							author=media.author;
+							stream = new Stream.File(path, 1);
+							stream.writeLine("Title: "+title);
+							stream.writeLine("Author: "+author);
+						} else {
+							// file already exists, so scan through to the end
+							stream = new Stream.File(path, 1);
+							stream.seek(stream.bytesAvailable);
+						}
+						stream.writeLine("");
+						span = ann.copySpan(viewer);
+						highlightText = span.getText();
+						page = span.start.getPage();
+						stream.writeLine("Page: "+page);
+						stream.writeLine(highlightText);
+						stream.close();
+					} catch(e) {
+							stream.close();
+							msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
+							msg2 = L("FAILED_TO_SAVE");
+							failed = true;
+					}
+					if ((SaveNotepadData.options.showSaveProgress === "on") || (failed)) {
+						folder = SaveNotepadData.options.saveTo;
+						if (msg1 === undefined) {
+							msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];
+							msg2 = path;
+						} else {
+							msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
+							msg2 = L("FAILED_TO_SAVE");
+						}
+						Core.ui.showMsg([msg1, msg2]);
+					}
+				}
+			}
+			catch (e) { log.error("Highlight save failed!", e); }
+		}
+		return oldNoteFromHighlight.apply(this, arguments);
+	}
+	
 	// Save BOOKMARK COMMENTS
 	var oldPageCommentEditorOverlayModelCloseAnnotationEditor = pageCommentEditorOverlayModel.closeAnnotationEditor;
 	pageCommentEditorOverlayModel.closeAnnotationEditor = function (saveflag) {
-		var folder, note, media, name, path, title, author, stream, bookmark, page, date, str, failed;
+		var folder, note, media, name, path, title, author, stream, bookmark, page, date, str, failed, msg1, msg2;
 		failed = false;
 		if (SaveNotepadData.options.saveTextMemo === 'on') {
 			folder = SaveNotepadData.options.saveTo + "Notepads/";
@@ -160,7 +218,7 @@ tmp = function() {
 								path = folder + name + ".txt";
 								try {
 									if (!FileSystem.getFileInfo(path)) {
-										// first bookmark comment for this book, so output header information
+										// first comment for this book, so output header information
 										title=media.title;
 										author=media.author;
 										stream = new Stream.File(path, 1);
@@ -353,6 +411,17 @@ tmp = function() {
 				name: "saveHandwritingJPG",
 				title: L("SAVE_HANDWRITING_JPG"),
 				icon: "HANDWRITING_ALT",
+				defaultValue: "off",
+				values: ["on", "off"],
+				valueTitles: {
+					"on": L("FEEDBACK_ON"),
+					"off": L("FEEDBACK_OFF")
+				}
+			},
+			{
+				name: "saveHighlights",
+				title: L("SAVE_HIGHLIGHTS"),
+				icon: "HIGHLIGHT",
 				defaultValue: "off",
 				values: ["on", "off"],
 				valueTitles: {
