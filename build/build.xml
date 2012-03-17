@@ -5,6 +5,7 @@ History:
 	2011-03-01 kartu - Rewritten from scratch
 	2011-09-30 kartu - Added Unix support
 	2011-12-12 kartu - Fixed runonce.sh (removed "archive" attribute)
+	2012-03-17 Mark Nord - core1
 -->
 <project default="buildAll">
 	<!--======================================================================== 
@@ -190,7 +191,12 @@ History:
 				<include name="*.js" />
 			</fileset>
 		</concat>
-		
+		<mkdir dir="${CORE}1" />
+		<concat encoding="UTF-8" destfile="${CORE}/core1.js">
+			<fileset dir="${SRC.CORE}1">
+				<include name="*.js" />
+			</fileset>
+		</concat>		
 		<echo>Copying compat/bootstrap &amp; prsp.js</echo>
 		<copy todir="${CORE}">
 			<fileset dir="${SRC.CORE}">
@@ -202,6 +208,7 @@ History:
 		
 		<echo>Optimizing combined core &amp; compat with yui</echo>
 		<optimize.yui folder="${CORE}"/>
+		<optimize.yui folder="${CORE}1"/>
 		
 		<echo>Optimizing lang with jsmin (yui fails to compile)</echo>
 		<jsmin force="true" destdir="${CORE}/compat">
@@ -247,6 +254,7 @@ History:
 		<mkdir dir="${beta}/addons2"/>
 		<mkdir dir="${beta}/addons3"/>
 		<mkdir dir="${beta}/core"/>
+		<mkdir dir="${beta}/core1"/>
 		
 		<echo>Copying model specific addon resources</echo>
 		<copy todir="${beta}/addons">
@@ -273,6 +281,9 @@ History:
 		<echo>Copying core</echo>
 		<copy todir="${beta}/core">
 			<fileset dir="${src}/core"/>
+		</copy>
+		<copy todir="${beta}/core1">
+			<fileset dir="${src}/core1"/>
 		</copy>
 		<copy todir="${beta}" file="../script/prsp.js"/>
 		<copy tofile="${beta}/user.config" file="${src}/user.config.${model}"/>		

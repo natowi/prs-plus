@@ -9,6 +9,7 @@
 //	2011-08-27 Mark Nord - Fixed "addonpath1" in case of folder (as addonsPath ends with "/" simply adding +"1" will fail)
 //	2011-11-26 Ben Chenoweth - Added "addons2" folder
 //	2011-01-19 Ben Chenoweth - Added "addons3" folder
+//	2012-03-17 Mark Nord - Fixed #322 - core1 / load addons# in a loop
 
 if (!FileSystem.getFileInfo(System.applyEnvironment("[prspSafeModeFile]"))) {
 	var bootLog;
@@ -134,61 +135,39 @@ if (!FileSystem.getFileInfo(System.applyEnvironment("[prspSafeModeFile]"))) {
 			}
 		};
 		
-		// Load addons, called by model specific bootstrap
+		// Load core1 & addons, called by model specific bootstrap
 		loadAddons = function() {
-			var addonCode, log, addons, addonsPath, addonsPath1, addonsPath2, addonsPath3, jsPostfix;
+			var addonCode, log, addons, addonsPath, addonsPathX, jsPostfix, lenDiff, idx;
 			jsPostfix = ".js";
-			addonsPath = config.addonsFile;
-			// Call addons
+			// Call core1 & addons#
 			try {
-				addonCode = getFileContentEx(addonsPath, jsPostfix);
 				log = Core.log.getLogger("addons");
-				addons = new Function("Core,log,tmp", addonCode);
-				addons(Core, log, undefined);
+				for (i = -1; i<4; i++) {
+					switch (i) {
+					case -1:
+						addonsPath = config.coreFile;
+						idx = "1";	
+						break;
+					case 0:	
+						addonsPath = config.addonsFile;
+						idx = "";
+						break;
+					default:
+						addonsPath = config.addonsFile;
+						idx = ""+i; //idx = i.toSting(); 
+					}
+					lenDiff = addonsPath.length - jsPostfix.length;
+					if (addonsPath.indexOf(jsPostfix) === lenDiff) {
+						addonsPathX = addonsPath.substring(0, lenDiff) + idx + jsPostfix;
+					} else {
+						addonsPathX = addonsPath.substring(0, addonsPath.lastIndexOf("/")) + idx + "/";
+					}
+					addonCode = getFileContentEx(addonsPathX, ".js");
+					addons = new Function("Core,log,tmp", addonCode);
+					addons(Core, log, undefined);
+				}			
 			} catch (e) {
-				bootLog("Failed to load addons " + e);
-			}
-			// Call addons1
-			try {
-				var lenDiff = addonsPath.length - jsPostfix.length;
-				if (addonsPath.indexOf(jsPostfix) === lenDiff) {
-					addonsPath1 = addonsPath.substring(0, lenDiff) + "1" + jsPostfix;
-				} else {
-					addonsPath1 = addonsPath.substring(0, addonsPath.lastIndexOf("/")) + "1/";
-				}
-				addonCode = getFileContentEx(addonsPath1, ".js");
-				addons = new Function("Core,log,tmp", addonCode);
-				addons(Core, log, undefined);
-			} catch (e) {
-				bootLog("Failed to load addons1 " + e);
-			}
-			// Call addons2
-			try {
-				var lenDiff = addonsPath.length - jsPostfix.length;
-				if (addonsPath.indexOf(jsPostfix) === lenDiff) {
-					addonsPath2 = addonsPath.substring(0, lenDiff) + "2" + jsPostfix;
-				} else {
-					addonsPath2 = addonsPath.substring(0, addonsPath.lastIndexOf("/")) + "2/";
-				}
-				addonCode = getFileContentEx(addonsPath2, ".js");
-				addons = new Function("Core,log,tmp", addonCode);
-				addons(Core, log, undefined);
-			} catch (e) {
-				bootLog("Failed to load addons2 " + e);
-			}
-			// Call addons3
-			try {
-				var lenDiff = addonsPath.length - jsPostfix.length;
-				if (addonsPath.indexOf(jsPostfix) === lenDiff) {
-					addonsPath3 = addonsPath.substring(0, lenDiff) + "3" + jsPostfix;
-				} else {
-					addonsPath3 = addonsPath.substring(0, addonsPath.lastIndexOf("/")) + "3/";
-				}
-				addonCode = getFileContentEx(addonsPath3, ".js");
-				addons = new Function("Core,log,tmp", addonCode);
-				addons(Core, log, undefined);
-			} catch (e) {
-				bootLog("Failed to load addons3 " + e);
+				bootLog("Failed to load " + addonsPathX + ' e: ' + e);
 			}
 		};
 
