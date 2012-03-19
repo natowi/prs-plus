@@ -9,8 +9,9 @@
 //	2012-02-18 quisvir - Add parent items as separate bookmarks in multi-level ToC (FR)
 //	2012-02-20 Mark Nord - Fixed missing AutoPageTurn-Toggle-Action; Thanks Matt
 //	2012-02-21 quisvir - Fixed #291 'Two taps are needed with SHOW_PARENT_ITEMS_IN_TOC enabled'
+//	2012-03-19 Mark Nord - workaround for issue #303; disable keybindings in certain situations
 //
-//	ToDo: check for landscape; add to Book-Menu; possible enhancements: 4-quadrants view, ...
+//	ToDo - marginCut: check for landscape; add to Book-Menu; possible enhancements: 4-quadrants view, ...
 
 
 tmp = function() {
@@ -106,7 +107,8 @@ tmp = function() {
 		freeKeys = function () {
 			kbook.model.container.sandbox.PAGE_GROUP.sandbox.doDigit = oldDoDigit;
 			kbook.model.doMenu = oldDoMenu;
-			kbook.model.doCenter = oldDoCenter;		
+			kbook.model.doCenter = oldDoCenter;	
+			Core.addonByName.KeyBindings.overRide = false;
 		};
 
 		// toggle from marginCut to normal 100% view
@@ -124,6 +126,7 @@ tmp = function() {
 				kbook.model.container.sandbox.PAGE_GROUP.sandbox.doDigit = doDigit;
 				kbook.model.doMenu = doMenu;
 				kbook.model.doCenter = doCenter;
+				Core.addonByName.KeyBindings.overRide = true;
 
 				factor = 584/754;
 				window = kbook.model.container.getWindow();

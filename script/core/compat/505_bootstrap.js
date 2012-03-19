@@ -23,6 +23,7 @@
 //	2011-11-20 quisvir - Added sub-collection support (max 1 sub-level, using | as separator)
 //	2011-11-21 quisvir - Moved Standby Image code to addon
 //	2012-02-24 quisvir - Moved sub-collection support to addon
+//	2012-03-19 Mark Nord - workaround for issue #303; disable keybindings in certain situations
 
 var tmp = function() {
 	var oldReadPreference, oldCallback, bootLog;
@@ -104,6 +105,7 @@ var tmp = function() {
 	kbook.model.container.sandbox.PAGE_GROUP.sandbox.doDigit = function(part) {
 		try {
 			var c, s, i, container, key;
+			Core.addonByName.KeyBindings.overRide = true;
 			c = this.sandbox.PAGE.countPages().toString().length - 1;
 			s = "";
 			for (i = 0; i < c; i++) {

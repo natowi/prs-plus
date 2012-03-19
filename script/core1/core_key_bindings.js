@@ -12,6 +12,7 @@
 //	2011-12-06 quisvir - Added Paging Buttons for 600+
 //	2012-01-08 Mark Nord - PageGroup wasn't created for 505 -> keybindings faild to start
 //	2012-01-10 quisvir - Fixed bug with hold prev/next icw state change; removed State event swallowing
+//	2012-03-19 Mark Nord - workaround for issue #303; disable keybindings in certain situations
 
 tmp = function() {
 	var KeyBindings, STATE_GLOBAL, contexts, contextsLen, defVal, contextLabels,
@@ -19,7 +20,7 @@ tmp = function() {
 		oldHandleEvent, options, getBoundAction, handleEvent, holdKey,
 		handleEvent2, createOptionDef, createValueList, createButtonOptions,
 		createPagingButtonOptions, createNumericButtonOptions, createJoypadButtonOptions,
-		createVolumeButtonOptions, createOtherButtonOptions;
+		createVolumeButtonOptions, createOtherButtonOptions, resetOverRide;
 	STATE_GLOBAL = "ALL";
 	contexts = [STATE_GLOBAL, "MENU", "PAGE"];
 	contextsLen = contexts.length;
@@ -59,9 +60,8 @@ tmp = function() {
 			var key, state, action;
 			key = event.getKey();
 			state = kbook.model.STATE;
-			
 			action = getBoundAction(key, state);
-			if (action !== undefined) {
+                        if ((action !== undefined) && !KeyBindings.overRide ){
 				try {
 					if (!action.action()) {
 						return;
@@ -271,6 +271,10 @@ tmp = function() {
 		}
 	};
 	
+	resetOverRide = function () {
+		Core.addonByName.KeyBindings.overRide = false;
+	};
+
 	KeyBindings = {
 		name: "KeyBindings",
 		icon: "KEYBOARD",
@@ -295,18 +299,21 @@ tmp = function() {
 		onInit: function() {
 			options = this.options;
 			// FIXME: determine reader version based on info from compat
-			if (Fskin.deviceBooleanPart) {
+			if (!Core.config.compat.hasNumericButtons) {
 				// 600+
 				Fskin.device.handleEvent = handleEvent2;
 			} else {
-				// 300/500
+				// 300/505
 				Fskin.device.handleEvent = handleEvent;
+				Core.hook.hookAfter(kbook.model.container.sandbox.GOTO_GROUP.sandbox, "doCenter", resetOverRide);
+				Core.hook.hookAfter(kbook.model.container.sandbox.GOTO_GROUP.sandbox, "doMenu", resetOverRide);
 			}
 		},
 		
 		getActionDefs: function() {
 			return [values, valueTitles, valueIcons, valueGroups, actionName2action];
-		}
+		},
+		overRide: false
 	};
 	Core.addAddon(KeyBindings);
 };
