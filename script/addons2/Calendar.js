@@ -224,7 +224,7 @@ tmp = function() {
 				events.push(["Y", "12", "25", "1900", "5", L("STR_CHRISTMAS")]);
 			}
 			
-			// check if event is a today event or TODO: a future event
+			// check if event is a today event or a future event
 			for (var j=0; j<events.length; j++) {
 				if (events[j][0] == "Y") {
 					if ((events[j][2] == todaysDate) && (events[j][1] == todaysMonth) && (events[j][3] <= todaysYear)) {
@@ -239,6 +239,7 @@ tmp = function() {
 				}
 				if (events[j][0] == "F") {
 					if ((events[j][1] == 3) && (events[j][2] == 0) && (events[j][3] == 0) ) {
+						Calendar.easter(todaysYear);
 						if (easterday == todaysDate && eastermonth == todaysMonth) {
 							todayevents.push(events[j][5]);
 						}
