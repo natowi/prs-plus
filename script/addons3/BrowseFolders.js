@@ -58,14 +58,15 @@
 //	2011-12-20 Ben Chenoweth - Added more checks; localised song-index
 //	2012-02-27 Ben Chenoweth - Fix for archives (with no subfolders) on MS/SD
 //	2012-02-28 Ben Chenoweth - Update reader when archive closes not after every item
+//	2012-03-21 Ben Chenoweth - Added Option menu to Archives (x50)
 
 tmp = function() {
 	var log, L, startsWith, trim, BrowseFolders, TYPE_SORT_WEIGHTS, compare, sorter, folderConstruct, 
 		createFolderNode, createMediaNode, favourites, loadFavFolders, folderRootConstruct,
 		compareFields, supportedMIMEs, supportedArchives, createArchiveNode, createLazyInitNode,
 		constructLazyNode, archiveBookNodeEnter, ACTION_ICON, doCopyAndOpen, doCopy, doOpenHere, doOpenSongHere,
-		supportedExtensions, supportedComics, browsingArchive, currentNode, oldCurrentBook, oldCurrentNode,
-		doUnpackHere, doGotoParent, browseFoldersNode, setPictureIndexCount, onEnterPicture,
+		supportedExtensions, supportedComics, browsingArchive, currentArchivePath, currentNode, oldCurrentBook,
+		oldCurrentNode, doUnpackHere, doGotoParent, browseFoldersNode, setPictureIndexCount, onEnterPicture,
 		imageZoomOverlayModel_doNext, imageZoomOverlayModel_onCallback, ENABLED, DISABLED;
 	
 	ENABLED = "enabled";
@@ -84,7 +85,6 @@ tmp = function() {
 	oldCurrentBook = null;
 	oldCurrentNode = null;
 	ACTION_ICON = "BACK";
-
 	//-----------------------------------------------------------------------------------------------------------------------------
 	// Sorting
 	//-----------------------------------------------------------------------------------------------------------------------------
@@ -226,6 +226,13 @@ tmp = function() {
 			destruct: archiveRootDestruct
 		});
 		node.path = path;
+
+		// activate options menu (x50)
+		if (kbook.iconKindField) {
+			node.iconKind = node.kind;
+			node.kind = 17;
+		}
+		
 		return node;
 	};
 		
@@ -400,31 +407,33 @@ tmp = function() {
 		
 		try {
 			this.insidePath = '';
+			currentArchivePath = this.path;
 			
 			// Create and fill currentArchive object
-			currentArchive = {
+			kbook.model.currentArchive = {
 				path: this.path,
 				needsMount: this.needsMount,
+				parent: this.parent,
 				dirs: [],
 				files: []
 			};
-			d = currentArchive.dirs;
-			f = currentArchive.files;
+			d = kbook.model.currentArchive.dirs;
+			f = kbook.model.currentArchive.files;
 			
 			// If browsing SD or MS but not in Mount mode - IS THIS WHAT ARE WE SUPPOSED TO DO IN THIS SITUATION?
-			if (startsWith(currentArchive.path, "a:")){
-				currentArchive.path = currentArchive.path.replace("a:", "/opt/mnt/ms");
-				currentArchive.needsMount = 1;
-			} else if (startsWith(currentArchive.path, "b:")) {
-				currentArchive.path = currentArchive.path.replace("b:", "/opt/mnt/sd");
-				currentArchive.needsMount = 0;
+			if (startsWith(kbook.model.currentArchive.path, "a:")){
+				kbook.model.currentArchive.path = kbook.model.currentArchive.path.replace("a:", "/opt/mnt/ms");
+				kbook.model.currentArchive.needsMount = 1;
+			} else if (startsWith(kbook.model.currentArchive.path, "b:")) {
+				kbook.model.currentArchive.path = kbook.model.currentArchive.path.replace("b:", "/opt/mnt/sd");
+				kbook.model.currentArchive.needsMount = 0;
 			}
 
-			if (currentArchive.needsMount !== undefined) {
-				Core.shell.mount(currentArchive.needsMount);
+			if (kbook.model.currentArchive.needsMount !== undefined) {
+				Core.shell.mount(kbook.model.currentArchive.needsMount);
 			}
 			
-			list = Core.archiver.list(currentArchive.path).split('\n');
+			list = Core.archiver.list(kbook.model.currentArchive.path).split('\n');
 
 			for (i = 0; i < list.length; i++) {
 				switch (list[i].slice(0,1)) {
@@ -440,8 +449,8 @@ tmp = function() {
 		} catch(e) {
 			log.error("Error in archiveRootConstruct",e);
 		} finally {
-			if (currentArchive.needsMount !== undefined) {
-				Core.shell.umount(currentArchive.needsMount);
+			if (kbook.model.currentArchive.needsMount !== undefined) {
+				Core.shell.umount(kbook.model.currentArchive.needsMount);
 			}
 		}
 		
@@ -456,17 +465,100 @@ tmp = function() {
 			parent = this.parent;
 			path = parent.path + '~temp~/';
 			Core.io.deleteDirectory(path);
-			currentArchive = null;
+			kbook.model.currentArchive = null;
 			this.nodes = null;
-			parent.update();
 			kbook.root.update(kbook.model);
 		} catch(e) {
 			log.error("Error in archiveRootDestruct", e);
 		}
 	}
 	
+	// Archive menu option to delete current archive, called from main.xml (x50)
+	if (kbook.iconKindField) {
+		kbook.model.container.sandbox.OPTION_OVERLAY_PICTURE.sandbox.doDeleteArchive = function () {
+			var currentArchive, path, dialog;
+			currentArchive = kbook.model.currentArchive;
+			path = currentArchive.path;
+			this.doOption();
+			if (path) {
+				dialog = kbook.model.getConfirmationDialog();
+				dialog.target = this;
+				dialog.onOk = function () {
+					var path, parent, needsMount, cn;
+					path = currentArchive.path;
+					parent = currentArchive.parent;
+					
+					try {
+						// mount, if needed
+						needsMount = currentArchive.needsMount;
+						if (needsMount !== undefined) {
+							Core.shell.mount(needsMount);
+						}
+						Core.io.deleteFile(path);
+						if (needsMount !== undefined) {
+							Core.shell.umount(needsMount);
+						}
+					} catch(e) { log.trace("Error deleting archive file: ", e); }
+					
+					// move to archive's parent node (triggering deletion of archive content)
+					cn = Core.ui.getCurrentNode();
+					if (cn) {
+						cn.gotoNode(parent, kbook.model);
+					} else {
+						this.gotoNode(foldersNode, kbook.model);
+					}
+				}
+				dialog.onNo = function () {
+					Core.ui.doBlink();
+				}
+				dialog.openDialog(L('DELETE_ARCHIVE'), 0);
+			}
+		}
+		
+		kbook.model.container.sandbox.OPTION_OVERLAY_COLLECTION.sandbox.doDeleteArchive = function () {
+			var currentArchive, path, cn, dialog;
+			currentArchive = kbook.model.currentArchive;
+			path = currentArchive.path;
+			this.doOption();
+			if (path) {
+				dialog = kbook.model.getConfirmationDialog();
+				dialog.target = this;
+				dialog.onOk = function () {
+					var path, parent, needsMount, cn;
+					path = currentArchive.path;
+					parent = currentArchive.parent;
+					
+					try {
+						// mount, if needed
+						needsMount = currentArchive.needsMount;
+						if (needsMount !== undefined) {
+							Core.shell.mount(needsMount);
+						}
+						Core.io.deleteFile(path);
+						if (needsMount !== undefined) {
+							Core.shell.umount(needsMount);
+						}
+					} catch(e) { log.trace("Error deleting archive file: ", e); }
+					
+					// move to archive's parent node (triggering deletion of archive content)
+					cn = Core.ui.getCurrentNode();
+					if (cn) {
+						cn.gotoNode(parent, kbook.model);
+					} else {
+						this.gotoNode(foldersNode, kbook.model);
+					}
+				}
+				dialog.onNo = function () {
+					Core.ui.doBlink();
+				}
+				dialog.openDialog(L('DELETE_ARCHIVE'), 0);
+			}
+		}
+	}
+	
 	var archiveFolderConstruct = function () {
-		var node, nodes, d, f, path, i, ext, fileIcon, bookNode;
+		var currentArchive, node, nodes, d, f, path, i, ext, fileIcon, bookNode;
+		currentArchive = kbook.model.currentArchive;
 		nodes = this.nodes = [];
 		d = currentArchive.dirs;
 		f = currentArchive.files;
@@ -491,6 +583,13 @@ tmp = function() {
 					} else {
 						node.needsMount = this.parent.needsMount;
 					}
+					
+					// activate options menu (x50)
+					if (kbook.iconKindField) {
+						node.iconKind = node.kind;
+						node.kind = 17;
+					}
+
 					nodes.push(node);
 				}
 			}
@@ -548,7 +647,8 @@ tmp = function() {
 	};
 	
 	var archiveFolderDestruct = function () {
-		var nodes, n, i, file, item, source;
+		var currentArcive, nodes, n, i, file, item, source;
+		currentArchive = kbook.model.currentArchive;
 		try {
 			browsingArchive = false;
 			// remove files from library
@@ -592,12 +692,14 @@ tmp = function() {
 		}
 		try {
 			// delete temporary directory
-			path = Core.io.extractPath(currentArchive.path) + '~temp~/';
+			path = Core.io.extractPath(currentArchivePath) + '~temp~/';
 			// need to convert mounted paths to unmounted paths
 			path = path.replace("/opt/mnt/ms", "a:");
 			path = path.replace("/opt/mnt/sd", "b:");
-			Core.io.emptyDirectory(path);
-			Core.io.deleteDirectory(path);
+			if (Core.io.pathExists(path)) {
+				Core.io.emptyDirectory(path);
+				Core.io.deleteDirectory(path);
+			}
 		} catch(e) {
 			log.error("Error in archiveItemDestruct trying to delete temp directory", e);
 		}
@@ -614,7 +716,8 @@ tmp = function() {
 	}
 	
 	var archiveDummyEnter = function () {
-		var path, file, node, needsMount, mime, media, source;
+		var currentArchive, path, file, node, needsMount, mime, media, source;
+		currentArchive = kbook.model.currentArchive;
 		try {
 			// mount, if needed
 			needsMount = this.needsMount;
@@ -673,7 +776,7 @@ tmp = function() {
 	}
 
 	doArchiveCopy = function () {
-		var fileDestination, fileTemp, path, needsMount, node;
+		var fileDestination, fileTemp, path, currentArchive, needsMount, node;
 		Core.ui.showMsg(L("MSG_COPYING_BOOK"), 1);
 		try {
 			// mount, if needed
@@ -684,6 +787,7 @@ tmp = function() {
 			
 			try {
 				path = '/tmp/~temp~/';
+				currentArchive = kbook.model.currentArchive;
 				fileDestination = Core.io.extractFileName(this.insidePath);
 				fileTemp = path + fileDestination;
 				FileSystem.ensureDirectory(path);
@@ -710,7 +814,7 @@ tmp = function() {
 	}
 	
 	doArchiveCopyAndOpen = function () {
-		var success, fileDestination, fileTemp, path, needsMount, foldersNode, nodes, targetFolder, imNode, i, n;
+		var success, fileDestination, currentArchive, fileTemp, path, needsMount, foldersNode, nodes, targetFolder, imNode, i, n;
 		Core.ui.showMsg(L("MSG_COPYING_BOOK"), 1);
 		try {
 			// mount, if needed
@@ -721,6 +825,7 @@ tmp = function() {
 			success = false;
 			try {
 				path = '/tmp/~temp~/';
+				currentArchive = kbook.model.currentArchive;
 				fileDestination = Core.io.extractFileName(this.insidePath);
 				fileTemp = path + fileDestination;
 				FileSystem.ensureDirectory(path);

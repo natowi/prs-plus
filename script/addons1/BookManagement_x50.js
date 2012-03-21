@@ -46,6 +46,7 @@
 //	2012-02-17 quisvir - Fixed #286 'Page buttons stop working for cycling books in main screen'
 //	2012-02-24 quisvir - Made sub-collections recursive (unlimited levels), added option for separator, enabled #-Z navbar
 //	2012-03-01 quisvir - Added book content search
+//	2012-03-21 Ben Chenoweth - Added Option menu to Archives in BF (x50)
 
 tmp = function() {
 
@@ -146,9 +147,38 @@ tmp = function() {
 					part.u = (opened) ? 31 : 30;
 			}
 		}
+		if (kbook.model.currentArchive) {
+			// this will only be true if an archive is currently being browsed in BF
+			if (part.id === 'archive') {
+				part.text = L('DELETE_ARCHIVE');
+				return false;
+			} else if (part.textresource === 'STR_UI_MENU_CLOSETHISPICTURE') {
+				return false;
+			} else if (part.textresource === 'STR_UI_MENU_ORIENTATION') {
+				return false;
+			} else if (part.textresource === 'STR_UI_MENU_NOWPLAYING') {
+				if (!this.playing) {
+					return true;
+				} else {
+					return false;
+				}
+			} else if (part.textresource === 'STR_UI_MENU_RESUMELISTENING') {
+				if (!this.hasResume || this.playing) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return true;
+			}
+		} else {
+			if (part.id === 'archive') {
+				return true;
+			}
+		}
 		return Fskin.overlayTool.isDisable(part);
 	}
-
+	
 	// Hide default collections
 	var oldKbookPlaylistNode = kbook.root.kbookPlaylistNode.construct;
 	kbook.root.kbookPlaylistNode.construct = function () {

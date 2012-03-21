@@ -4,7 +4,6 @@
 		<!-- PRS+ stuff -->
 		<import href="../prsp/prspAssets.xml"/>
 		<!-- End of PRS+ stuff -->
-
 		<import href="kbookAssets.xml"/>
 	</assets>
 	<code>
@@ -4924,6 +4923,7 @@
 		<optMenu>
 			<optItemButton skin="dicMenuPrev" playing="prev"/>
 			<optItemButton u="18" textresource="STR_UI_MENU_CLOSETHISPICTURE"	do="doMenuClose"/>
+			<optItemButton u="5" id="archive" do="doDeleteArchive"/> <!-- PRS+ -->
 			<optItemButton u= "8" textresource="STR_UI_MENU_SLIDESHOWOFF"		do="doSlideshowOnOff" 
 				onoff="VAR_Slideshow,fskin:/l/strings/STR_UI_MENU_SLIDESHOWOFF,fskin:/l/strings/STR_UI_MENU_SLIDESHOWON"/>
 			<optItemButton u= "6" textresource="STR_UI_MENU_NOWPLAYING"			do="doGoToNowPlaying" playing="audio"/>
@@ -5241,6 +5241,7 @@
 		<optCloseBtn do="doCloseOptMenu"/>
 		<optMenu>
 			<optItemButton skin="dicMenuPrev" playing="prev"/>
+			<optItemButton u="5" id="archive" do="doDeleteArchive"/> <!-- PRS+ -->
 			<optItemButton u="38" textresource="STR_UI_MENU_NEW_COLLECTION"		do="doBeginCreateCollection"/>
 			<optItemButton u="40" textresource="STR_UI_MENU_DELETE_COLLECTIONS"	do="doBeginDeleteCollections" playing="collectionDeletable"/>
 			<optItemButton u="14" textresource="STR_UI_MENU_SEARCHAKEYWORD"		do="doSearch" playing="item"/>
