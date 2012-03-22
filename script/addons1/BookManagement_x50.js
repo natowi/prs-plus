@@ -46,7 +46,7 @@
 //	2012-02-17 quisvir - Fixed #286 'Page buttons stop working for cycling books in main screen'
 //	2012-02-24 quisvir - Made sub-collections recursive (unlimited levels), added option for separator, enabled #-Z navbar
 //	2012-03-01 quisvir - Added book content search
-//	2012-03-21 Ben Chenoweth - Added Option menu to Archives in BF (x50)
+//	2012-03-21 Ben Chenoweth - Added Option menu to Archives in BF (x50); removed audio items
 
 tmp = function() {
 
@@ -156,18 +156,6 @@ tmp = function() {
 				return false;
 			} else if (part.textresource === 'STR_UI_MENU_ORIENTATION') {
 				return false;
-			} else if (part.textresource === 'STR_UI_MENU_NOWPLAYING') {
-				if (!this.playing) {
-					return true;
-				} else {
-					return false;
-				}
-			} else if (part.textresource === 'STR_UI_MENU_RESUMELISTENING') {
-				if (!this.hasResume || this.playing) {
-					return true;
-				} else {
-					return false;
-				}
 			} else {
 				return true;
 			}
