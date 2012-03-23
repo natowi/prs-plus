@@ -16,7 +16,7 @@
 //  2011-12-10 Ben Chenoweth - Added option to override Text Note with contents of changed TXT file
 //  2011-12-11 Ben Chenoweth - Added error code to log.error calls
 //	2012-03-13 Ben Chenoweth - Fixed #318: 'Failed to save' message appearing incorrectly
-//	2012-03-17 Ben Chenoweth - Added saving Contents of Highlights
+//	2012-03-17 Ben Chenoweth - Added saving Contents of Highlights; fix for page numbers
 
 tmp = function() {
 	var L, log, oldNotepadDataSave, oldNotepadFreehandDataSave;
@@ -171,7 +171,7 @@ tmp = function() {
 						stream.writeLine("");
 						span = ann.copySpan(viewer);
 						highlightText = span.getText();
-						page = span.start.getPage();
+						page = span.start.getPage() + 1;
 						stream.writeLine("Page: "+page);
 						stream.writeLine(highlightText);
 						stream.close();
@@ -231,7 +231,7 @@ tmp = function() {
 									}
 									stream.writeLine("");
 									bookmark=kbook.model.currentBook.bookmark;
-									page=bookmark.page;
+									page=bookmark.page + 1;
 									date=bookmark.date;
 									stream.writeLine("Page: "+page);
 									str = this.VAR_KEYBUF;

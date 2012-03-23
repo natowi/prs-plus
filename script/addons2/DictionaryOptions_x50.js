@@ -16,11 +16,13 @@
 //	2012-02-17 quisvir - Fixed #284, #288
 //	2012-02-28 quisvir - Fixed #301 'Pop-up dictionary demands to be closed and opened again to look up'
 //	2012-03-08 quisvir - Added FR 'Keeping track of which dictionary was used with which book'
+//	2012-03-23 Ben Chenoweth - Added FR 'Save Words to TXT File'
 
 tmp = function() {
 
-	var L, log, opt, touchOptions;
+	var L, LL, log, opt, touchOptions;
 	L = Core.lang.getLocalizer('DictionaryOptions');
+	LL = Core.lang.getLocalizer("Screenshot");
 	log = Core.log.getLogger('DictionaryOptions');
 	
 	
@@ -97,9 +99,63 @@ tmp = function() {
 		this.container.sandbox.VIEW_SHORTCUT.sandbox.VIEW_SHORTCUT2.sandbox.BTN_NEXTDICENTRY.show(show);
 	}
 	
-	// Disable dictionary by DoubleTap
+	// Save Words to TXT File & Disable dictionary by DoubleTap
 	var oldDoSelectWord = kbook.kbookPage.doSelectWord;
 	kbook.kbookPage.doSelectWord = function () {
+		// Save Words to TXT File
+		if (opt.saveWordsToTextfile === 'true') {
+			var failed, folder, media, name, path, title, author, stream, span, highlightText, page, msg1, msg2;		
+			failed = false;
+			folder = Core.addonByName.SaveNotepadData.options.saveTo + "Notepads/";
+			FileSystem.ensureDirectory(folder);
+			try {
+				if (kbook.model.currentBook) {
+					media = kbook.model.currentBook.media;
+					name = media.path.substring(media.path.lastIndexOf("/")+1,media.path.lastIndexOf("."));
+					path = folder + name + ".txt";
+					try {
+						if (!FileSystem.getFileInfo(path)) {
+							// first comment for this book, so output header information
+							title=media.title;
+							author=media.author;
+							stream = new Stream.File(path, 1);
+							stream.writeLine("Title: "+title);
+							stream.writeLine("Author: "+author);
+						} else {
+							// file already exists, so scan through to the end
+							stream = new Stream.File(path, 1);
+							stream.seek(stream.bytesAvailable);
+						}
+						stream.writeLine("");
+						span = this.data.getWordSelect.apply(this.data, arguments);
+						highlightText = span.getText();
+						page = span.start.getPage() + 1;
+						stream.writeLine("Page: "+page);
+						stream.writeLine(highlightText);
+						stream.close();
+					} catch(e) {
+							stream.close();
+							msg1 = LL("SAVING_TO") + " " + saveToValueTitles[folder];					
+							msg2 = LL("FAILED_TO_SAVE");
+							failed = true;
+					}
+					if ((Core.addonByName.SaveNotepadData.options.showSaveProgress === "on") || (failed)) {
+						folder = Core.addonByName.SaveNotepadData.options.saveTo;
+						if (msg1 === undefined) {
+							msg1 = LL("SAVING_TO") + " " + saveToValueTitles[folder];
+							msg2 = path;
+						} else {
+							msg1 = LL("SAVING_TO") + " " + saveToValueTitles[folder];					
+							msg2 = LL("FAILED_TO_SAVE");
+						}
+						Core.ui.showMsg([msg1, msg2]);
+					}
+				}
+			}
+			catch (e) { log.error("Highlight save failed!", e); }
+		}
+		
+		// Disable dictionary by DoubleTap
 		if (opt.disableDictDoubleTap !== 'true') {
 			return oldDoSelectWord.apply(this, arguments);
 		}
@@ -233,6 +289,12 @@ tmp = function() {
 		}
 	}
 	
+	var saveToValueTitles = {
+		"a:/": LL("MEMORY_STICK"),
+		"b:/": LL("SD_CARD"),
+		"/Data/": LL("INTERNAL_MEMORY")
+	}
+	
 	var DictionaryOptions = {
 		name: 'DictionaryOptions',
         title: L('TITLE'),
@@ -319,6 +381,18 @@ tmp = function() {
 				title: L('REMEMBER_BOOK_DICT'),
 				icon: 'DICTIONARY',
 				helpText: L('REMEMBER_BOOK_DICT_HELPTEXT'),
+				defaultValue: 'false',
+				values: ['true', 'false'],
+				valueTitles: {
+					'true': L('VALUE_TRUE'),
+					'false': L('VALUE_FALSE')
+				}
+			},
+			{
+				name: 'saveWordsToTextfile',
+				title: L('SAVE_WORDS_TO_TEXTFILE'),
+				icon: 'DICTIONARY',
+				helpText: L('SAVE_WORDS_TO_TEXTFILE_HELPTEXT'),
 				defaultValue: 'false',
 				values: ['true', 'false'],
 				valueTitles: {
