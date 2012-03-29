@@ -23,6 +23,7 @@
 //	2011-12-29 quisvir - Added USB Data Transfer Mode dialog to allow reading while charging via usb
 //	2011-12-30 Mark Nord - Added UI for function above for 300/505
 //	2011-12-30 quisvir - Use popup menu on all models, stop usb charging on disconnect
+//	2012-03-29 Ben Chenoweth - Added mini cover overlay option (on standby and/or shutdown)
 
 tmp = function() {
 	var L, LX, log, orgOrientation, shutdown, oldStandbyImageDraw, getBookCover, usbConnected, standbyState;
@@ -329,6 +330,21 @@ tmp = function() {
 				eventsonly=true;
 				Core.addonByName.Calendar.drawStandbyWidget(win, eventsonly);
 			}
+			
+			// Display mini-cover
+			if (((shutdown && opt.DisplayShutdownMiniCover === 'true') || (!shutdown && opt.DisplayStandbyMiniCover === 'true')) && (mode !== 'cover')) {
+				if (kbook.model.currentBook) {
+					path = kbook.model.currentBook.media.source.path + kbook.model.currentBook.media.path;
+					bitmap = getBookCover(path, 150, 200);
+					if (bitmap) {
+						win.setPenColor(Color.black);
+						win.fillRectangle(9, 9, 152, 202);
+						if (opt.dither === 'true') bitmap = bitmap.dither(true);
+						win.drawBitmap(bitmap, 10, 10, 150, 200);
+						bitmap.close();
+					}
+				}
+			}
 		}
 		win.endDrawing();
 		// Model sniffing: call win.update() only for 600/x50
@@ -426,7 +442,18 @@ tmp = function() {
 						"true": L("VALUE_TRUE"),
 						"false": L("VALUE_FALSE")
 					}
-				}				
+				},
+				{
+					name: "DisplayStandbyMiniCover",
+					title: L("DISPLAY_STANDBY_MINI_COVER"),
+					icon: "PICTURE_ALT",
+					defaultValue: "false",
+					values: ["true", "false"],
+					valueTitles: {
+						"true": L("VALUE_TRUE"),
+						"false": L("VALUE_FALSE")
+					}
+				}
 			]},
 			{
 			groupTitle: L('SHUTDOWN_IMAGE'),
@@ -473,6 +500,17 @@ tmp = function() {
 					name: "DisplayShutdownEvents",
 					title: L("DISPLAY_SHUTDOWN_EVENTS"),
 					icon: "DATE",
+					defaultValue: "false",
+					values: ["true", "false"],
+					valueTitles: {
+						"true": L("VALUE_TRUE"),
+						"false": L("VALUE_FALSE")
+					}
+				},
+				{
+					name: "DisplayShutdownMiniCover",
+					title: L("DISPLAY_SHUTDOWN_MINI_COVER"),
+					icon: "PICTURE_ALT",
 					defaultValue: "false",
 					values: ["true", "false"],
 					valueTitles: {
