@@ -286,6 +286,10 @@ tmp = function() {
 						height = Math.floor(bounds.height * ratio);
 						x = (w > width) ? Math.floor((w - width) / 2) : 0;
 						y = (h > height) ? Math.floor((h - height) / 2) : 0;
+						if (opt.BackgroundColour === 'black') {
+							win.setPenColor(Color.black);
+							win.fillRectangle(win);
+						}
 						break;
 					case 'stretch':
 						width = w;
@@ -293,10 +297,6 @@ tmp = function() {
 						x = y = 0;
 				}
 				if (opt.dither === 'true') bitmap = bitmap.dither(true);
-				if (opt.BackgroundColour === 'black') {
-					win.setPenColor(Color.black);
-					win.fillRectangle(win);
-				}
 				win.drawBitmap(bitmap, x, y, width, height);
 				bitmap.close();
 			}
