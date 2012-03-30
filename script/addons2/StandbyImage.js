@@ -24,6 +24,7 @@
 //	2011-12-30 Mark Nord - Added UI for function above for 300/505
 //	2011-12-30 quisvir - Use popup menu on all models, stop usb charging on disconnect
 //	2012-03-29 Ben Chenoweth - Added mini cover overlay option (on standby and/or shutdown); aspect ratio preserved
+//	2012-03-30 Ben Chenoweth - Added option for background colour
 
 tmp = function() {
 	var L, LX, log, orgOrientation, shutdown, oldStandbyImageDraw, getBookCover, usbConnected, standbyState;
@@ -292,6 +293,10 @@ tmp = function() {
 						x = y = 0;
 				}
 				if (opt.dither === 'true') bitmap = bitmap.dither(true);
+				if (opt.BackgroundColour === 'black') {
+					win.setPenColor(Color.black);
+					win.fillRectangle(win);
+				}
 				win.drawBitmap(bitmap, x, y, width, height);
 				bitmap.close();
 			}
@@ -534,6 +539,17 @@ tmp = function() {
 				valueTitles: {
 					"keepaspect": L("VALUE_KEEP_ASPECT_RATIO"),
 					"stretch": L("VALUE_STRETCH_TO_SCREEN")
+				}
+			},
+			{
+				name: "BackgroundColour",
+				title: L("BACKGROUND_COLOUR"),
+				icon: "SETTINGS",
+				defaultValue: "white",
+				values: ["white", "black"],
+				valueTitles: {
+					"white": L("VALUE_WHITE_SCREEN"),
+					"black": L("VALUE_BLACK_SCREEN")
 				}
 			},
 			{
