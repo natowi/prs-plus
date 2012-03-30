@@ -23,7 +23,7 @@
 //	2011-12-29 quisvir - Added USB Data Transfer Mode dialog to allow reading while charging via usb
 //	2011-12-30 Mark Nord - Added UI for function above for 300/505
 //	2011-12-30 quisvir - Use popup menu on all models, stop usb charging on disconnect
-//	2012-03-29 Ben Chenoweth - Added mini cover overlay option (on standby and/or shutdown)
+//	2012-03-29 Ben Chenoweth - Added mini cover overlay option (on standby and/or shutdown); aspect ratio preserved
 
 tmp = function() {
 	var L, LX, log, orgOrientation, shutdown, oldStandbyImageDraw, getBookCover, usbConnected, standbyState;
@@ -335,12 +335,18 @@ tmp = function() {
 			if (((shutdown && opt.DisplayShutdownMiniCover === 'true') || (!shutdown && opt.DisplayStandbyMiniCover === 'true')) && (mode !== 'cover')) {
 				if (kbook.model.currentBook) {
 					path = kbook.model.currentBook.media.source.path + kbook.model.currentBook.media.path;
-					bitmap = getBookCover(path, 150, 200);
+					w = 150;
+					h = 200;
+					bitmap = getBookCover(path, w, h);
 					if (bitmap) {
+						bounds = bitmap.getBounds();
+						ratio = (bounds.height/bounds.width > h/w) ? (h/bounds.height) : (w/bounds.width);
+						width = Math.floor(bounds.width * ratio);
+						height = Math.floor(bounds.height * ratio);
 						win.setPenColor(Color.black);
-						win.fillRectangle(9, 9, 152, 202);
+						win.fillRectangle(9, 9, width + 2, height + 2);
 						if (opt.dither === 'true') bitmap = bitmap.dither(true);
-						win.drawBitmap(bitmap, 10, 10, 150, 200);
+						win.drawBitmap(bitmap, 10, 10, width, height);
 						bitmap.close();
 					}
 				}
