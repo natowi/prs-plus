@@ -59,6 +59,7 @@
 //	2012-02-27 Ben Chenoweth - Fix for archives (with no subfolders) on MS/SD
 //	2012-02-28 Ben Chenoweth - Update reader when archive closes not after every item
 //	2012-03-21 Ben Chenoweth - Added Option menu to Archives (x50)
+//	2012-03-31 Ben Chenoweth - Fix for filename as comment and filesize/extension in comment for archives and unscanned files
 
 tmp = function() {
 	var log, L, startsWith, trim, BrowseFolders, TYPE_SORT_WEIGHTS, compare, sorter, folderConstruct, 
@@ -243,7 +244,7 @@ tmp = function() {
 		sizeStr = "";
 
 		// Size in comment
-		if (BrowseFolders.options.fileSizeInComment === ENABLED) {
+		if ((BrowseFolders.options.fileSizeInComment === ENABLED) || (BrowseFolders.options.sortMode === "filenameAsComment")) {
 			size = Core.io.getFileSize(path) / 1024;
 			if (size > 1024) {
 				size /= 1024;
@@ -264,14 +265,80 @@ tmp = function() {
 				// convertable node needs media constructor for converted file
 				node = Core.convert.createMediaNode(path, title, parent, createMediaNode, needsMount);
 			}
-		} else if (BrowseFolders.options.sortMode === "filenameAsComment") {
-			node._mycomment = function() {
-				try {
-					return Core.io.extractFileName(this.media.path) + ", " + sizeStr;
-				} catch (e) {
-					return "error: " + e;
+			if (node) {
+				if (BrowseFolders.options.sortMode === "filenameAsComment") {
+					if (BrowseFolders.options.fileSizeInComment === ENABLED) {
+						node._mycomment = function() {
+							try {
+								if (this.path) {
+									return Core.io.extractFileName(this.path) + ", " + sizeStr + ", [" + extension + "]";
+								} else {
+									return sizeStr + ", [" + extension + "]";
+								}
+							} catch (e) {
+								return "error: " + e;
+							}
+						};
+					} else {
+						node._mycomment = function() {
+							try {
+								if (this.path) {
+									return Core.io.extractFileName(this.path);
+								} else {
+									return "";
+								}
+							} catch (e) {
+								return "error: " + e;
+							}
+						};
+					}
+				} else {
+					if (BrowseFolders.options.fileSizeInComment === ENABLED) {
+						node._mycomment = function() {
+							try {
+								return sizeStr + ", [" + extension + "]";
+							} catch (e) {
+								return "error: " + e;
+							}
+						};
+					} else {
+						node._mycomment = function() {
+							try {
+								return "";
+							} catch (e) {
+								return "error: " + e;
+							}
+						};
+					}
 				}
-			};
+			}
+		} else if (BrowseFolders.options.sortMode === "filenameAsComment") {
+			if (BrowseFolders.options.fileSizeInComment === ENABLED) {
+				node._mycomment = function() {
+					try {
+						if (this.media) {
+							return Core.io.extractFileName(this.media.path) + ", " + sizeStr + ", [" + extension + "]";
+						} else {
+							return sizeStr + ", [" + extension + "]";
+						}
+					} catch (e) {
+						return "error: " + e;
+					}
+				};
+			} else {
+				node._mycomment = function() {
+					try {
+						if (this.media) {
+							return Core.io.extractFileName(this.media.path);
+						} else {
+							return "";
+						}
+					} catch (e) {
+						return "error: " + e;
+					}
+				};
+
+			}
 		} else if (BrowseFolders.options.fileSizeInComment === ENABLED) {
 			node._mycomment = function() {
 				return this.comment + ", " + sizeStr + ", [" + extension + "]";
