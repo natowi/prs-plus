@@ -10,8 +10,9 @@
 //	2012-02-20 Mark Nord - Fixed missing AutoPageTurn-Toggle-Action; Thanks Matt
 //	2012-02-21 quisvir - Fixed #291 'Two taps are needed with SHOW_PARENT_ITEMS_IN_TOC enabled'
 //	2012-03-19 Mark Nord - workaround for issue #303; disable keybindings in certain situations
+//	2012-04-01 Mark Nord - MarginCut now also works in landscape-mode
 //
-//	ToDo - marginCut: check for landscape; add to Book-Menu; possible enhancements: 4-quadrants view, ...
+//	ToDo - marginCut: add to Book-Menu; possible enhancements: 4-quadrants view, ...
 
 
 tmp = function() {
@@ -22,16 +23,19 @@ tmp = function() {
 	LX = Core.lang.LX;
 	log = Core.log.getLogger('ViewerSettings');
 
-	var autoPageTimer, oldRender, myRender, setMarginCut, resetMarginCut, myBounds, dx, dy, myWidth, myHeight, marginCut;
-	marginCut = false;
+	var autoPageTimer, oldRender, myRender, setMarginCut, resetMarginCut, rotateMarginCut, myBounds, myHBounds, 
+	dx, dy, hdx, hdy,  myWidth, myHeight, 
+	marginCut = false, 
+	mcLandscape = false;
+
 
 	setMarginCut = function () {
 		var oldDoDigit, oldDoMenu, oldDoCenter, window, factor, drawRect, page,
-			clipTop, clipBottom, offsetX, delta, oldRec, rec, doDigit, doMenu, doCenter, freeKeys;
+			clipTop, clipBottom, offsetX, extraX, delta, oldRec, rec, doDigit, doMenu, doCenter, freeKeys;
 
 
 		page = kbook.model.container.sandbox.PAGE_GROUP.sandbox.PAGE;		
-		clipTop = clipBottom = offsetX = 0;
+		clipTop = clipBottom = offsetX = extraX = 0;
 		delta = 5;
 
 		oldRec = new Rectangle;
@@ -43,6 +47,10 @@ tmp = function() {
 				break;
 			case 2: clipTop += delta * 2;
 				break;
+		/*	case 3: extraX -= delta;
+				break;
+			case 4: extraX += delta;
+				break;  */
 			case 5: offsetX -= delta;
 				break;
 			case 6: offsetX += delta;
@@ -58,6 +66,11 @@ tmp = function() {
 			if (clipBottom < 0) {
 				clipBottom = 0;
 			}
+		/*	try{ 
+				if ((rec.width/rec.height < 0.71) && (extraX<0)) {
+					extraX += delta;
+				}
+			} catch (ignore) {}	*/
 			drawRect(clipTop, clipBottom);
 			return true;
 		};
@@ -69,12 +82,20 @@ tmp = function() {
 
 		doCenter = function () {
 			var f;
+			// calculation for portraitmode
 			f = 754/rec.height;
-			myHeight = Math.floor(754*f);
-			myWidth = Math.floor(myHeight * 0.7754);
+			myHeight = Math.floor(754 * f);
+			myWidth = Math.floor(myHeight * factor); 	// 0.7754 = 584 / 754
 			dx = Math.floor((584-myWidth)/2) - offsetX;
 			dy = Math.floor(clipTop * -f) 
 			myBounds = new Rectangle(0, 0, myWidth, myHeight);
+			// calculation for landscapemode
+			f = 584/rec.width;
+			myWidth = Math.floor(784 * f);
+			myHeight = Math.floor(myWidth / factor);	
+			hdx = Math.floor((784-myWidth) / 2 - (offsetX / factor)) ;
+			hdy = Math.floor(clipTop / factor * -f);
+			myHBounds = new Rectangle(0, 0, myWidth, myHeight);
 			marginCut = true;
 			page.dataChanged();
 			freeKeys();
@@ -91,7 +112,7 @@ tmp = function() {
 			rec.height = 754 - deltaTop - deltaBottom;
 			rec.y = 8 + deltaTop;
 
-			rec.width = Math.floor(rec.height*factor);
+			rec.width = Math.floor(rec.height*factor)+extraX;
 			rec.x = 8 + offsetX + Math.floor((584-rec.width)/2);
 	
 			oldRec = rec;
@@ -107,10 +128,10 @@ tmp = function() {
 		freeKeys = function () {
 			kbook.model.container.sandbox.PAGE_GROUP.sandbox.doDigit = oldDoDigit;
 			kbook.model.doMenu = oldDoMenu;
-			kbook.model.doCenter = oldDoCenter;	
+			kbook.model.doCenter = oldDoCenter;		
 			Core.addonByName.KeyBindings.overRide = false;
 		};
-
+1
 		// toggle from marginCut to normal 100% view
 		if (marginCut) {
 			marginCut = false;
@@ -119,6 +140,12 @@ tmp = function() {
 		}
 		if (kbook.model.STATE === 'PAGE') {
 			try{
+				mcLandscape = ebook.getOrientation()
+				if (mcLandscape) {
+					Core.ui.showMsg(L('MARGINCUT_CUTINPORTRAIT') ,2);	
+				return;
+				}
+					
 				oldDoDigit = kbook.model.container.sandbox.PAGE_GROUP.sandbox.doDigit;
 				oldDoMenu = kbook.model.doMenu;
 				oldDoCenter = kbook.model.doCenter; 
@@ -141,6 +168,11 @@ tmp = function() {
 		}
 	};
 
+	rotateMarginCut = function () {
+		if (marginCut) {
+			mcLandscape = ebook.getOrientation()}	
+	}
+
 	resetMarginCut = function () {
 			marginCut = false;
 	};
@@ -150,14 +182,24 @@ tmp = function() {
 	myRender = function () {
 		var oldBounds, myBitmap, bitmap2, port;
 		if (marginCut) {
-		try {	
+		try {
 			oldBounds = this.get(Document.Property.dimensions);
-			this.set(Document.Property.dimensions, myBounds);
+			if (mcLandscape) {
+				this.set(Document.Property.dimensions, myHBounds);	
+			} 
+			else {
+				this.set(Document.Property.dimensions, myBounds);
+			}
 			myBitmap = oldRender.call(this);
 			this.set(Document.Property.dimensions, oldBounds);
 			bitmap2 = new Bitmap(oldBounds.width, oldBounds.height);
 			port = new Port(bitmap2);
-			port.drawBitmap(myBitmap, dx, dy, myBounds.width, myBounds.height);
+			if (mcLandscape) {
+				port.drawBitmap(myBitmap, hdx, hdy, myHBounds.width, myHBounds.height);	
+			} 
+			else {
+				port.drawBitmap(myBitmap, dx, dy, myBounds.width, myBounds.height);
+			}
 			myBitmap.close();
 			port.close();
 			return bitmap2;
@@ -300,10 +342,10 @@ tmp = function() {
 		onInit: function () {
 			Core.events.subscribe(Core.events.EVENTS.BOOK_PAGE_CHANGED, autoPageRestart);
 			Core.events.subscribe(Core.events.EVENTS.BOOK_CHANGED, resetMarginCut);
-			Core.hook.hookBefore(ebook, "rotate", resetMarginCut); //function(where, what, newFunction, tag) 
+			Core.hook.hookAfter(ebook, "rotate", rotateMarginCut); //function(where, what, newFunction, tag) 
 			Core.hook.hookBefore(Fskin.kbookPage, "doSize", resetMarginCut);
 			Document.Viewer.viewer.render = myRender;
-/*			var node;
+		/*	var node;
 			node = Core.ui.createContainerNode({
 				title: L("MARGINCUT"),
 				icon: 'SEARCH_ALT' 
