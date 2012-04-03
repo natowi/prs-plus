@@ -6,6 +6,7 @@
 // Changelog:
 //	2012-02-17 Ben Chenoweth - Added UP/DOWN (scroll window) and PREVIOUS (commands) buttons
 //	2012-03-05 Ben Chenoweth - Scrollbar added; handle first command without scrolling
+//	2012-04-03 Ben Chenoweth - Handle 'cd' (current directory) command
 
 var tmp = function () {
 	
@@ -41,6 +42,8 @@ var tmp = function () {
 	var previousCommands = [];
 	var previousCommandNum = 0;
 	var firstTime = true;
+	var currentDir = "/";
+	var previousDir;
 	
 	var twoDigits = function (i) {
 		if (i<10) {return "0"+i}
@@ -180,7 +183,7 @@ var tmp = function () {
 		} catch (ignore) { }
 		this.enable(true);
 		this.loadKeyboard();
-		tempOutput = "> ";
+		tempOutput = "/> ";
 		this.cliText.setValue(tempOutput);
 		if (hasNumericButtons) {
 			this.touchLabel0.show(false);
@@ -205,7 +208,7 @@ var tmp = function () {
 	}
 	
 	target.doOK = function () {
-		var cmd, result;
+		var cmd, result, len, changeDir;
 		// get currentLine
 		cmd = target.getVariable("current_line");
 		if (cmd === "exit") target.doQuit();
@@ -215,20 +218,66 @@ var tmp = function () {
 			previousCommands.push(cmd);
 		}
 		previousCommandNum = 0;
+		previousDir = currentDir;
 		
-		// execute cmd
-		shellExec(cmd + " > " + CLIOUTPUT);
-		
-		// get output
-		result = getFileContent(CLIOUTPUT, "222");
-		if (result !== "222") {
-			// output
-			tempOutput = tempOutput + cmd + "\n"+result+"> ";
+		// handle 'cd' command
+		if (cmd === "cd /") {
+			// move to root directory
+			currentDir = "/";
+			tempOutput = tempOutput + cmd + "\n" + currentDir + "> ";
+			this.setOutput(tempOutput);
+		} else if (cmd === "cd ..") {
+			// move to parent directory
+			currentDir = currentDir.substring(0, currentDir.lastIndexOf("/"));
+			tempOutput = tempOutput + cmd + "\n" + currentDir + "> ";
+			this.setOutput(tempOutput);
+		} else if (cmd === "cd .") {
+			// stay in current directory
+			tempOutput = tempOutput + cmd + "\n" + currentDir + "> ";
 			this.setOutput(tempOutput);
 		} else {
-			// no output file!
-			tempOutput = tempOutput + "\nError executing cmd: "+cmd+"\n> ";
-			this.setOutput(tempOutput);
+			len = cmd.length;
+			if ((len > 4) && (cmd.substring(0,4) === "cd /")) {
+				// move to directory defined from root directory
+				currentDir = cmd.substring(3);
+				changeDir = true;
+			} else if ((len > 3) && (cmd.substring(0,3) === "cd ")) {
+				// move to subdirectory
+				if (currentDir === "/") {
+					currentDir = "/" + cmd.substring(3);
+				} else {
+					currentDir = currentDir + "/" + cmd.substring(3);
+				}
+				changeDir = true;
+			} else {
+				changeDir = false;
+			}
+			
+			try {
+				if (changeDir) {
+					// execute cmd
+					shellExec("cd " + currentDir + " > " + CLIOUTPUT);
+				} else {
+					// move to current directory and then execute cmd
+					shellExec("cd " + currentDir + ";" + cmd + " > " + CLIOUTPUT);
+				}
+				
+				// get output
+				result = getFileContent(CLIOUTPUT, "222");
+				if (result !== "222") {
+					// output
+					tempOutput = tempOutput + cmd + "\n" + result + "\n" + currentDir + "> ";
+					this.setOutput(tempOutput);
+				} else {
+					// no output file!
+					tempOutput = tempOutput + cmd + "\nError\n" + currentDir + "> ";
+					this.setOutput(tempOutput);
+				}
+			} catch(e) {
+				currentDir = previousDir;
+				tempOutput = tempOutput + cmd + "\nError '" + e + "'\n" + currentDir + "> ";
+				this.setOutput(tempOutput);
+			}
 		}
 			
 		// clear currentLine
