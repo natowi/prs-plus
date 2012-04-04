@@ -7,7 +7,7 @@
 //	2012-02-17 Ben Chenoweth - Added UP/DOWN (scroll window) and PREVIOUS (commands) buttons
 //	2012-03-05 Ben Chenoweth - Scrollbar added; handle first command without scrolling
 //	2012-04-03 Ben Chenoweth - Handle 'cd' (current directory) command
-//	2012-04-04 Ben Chenoweth - Handle OS error codes
+//	2012-04-04 Ben Chenoweth - Handle OS error codes; minor fix for 'cd ..' if returning to root
 
 var tmp = function () {
 	
@@ -230,6 +230,9 @@ var tmp = function () {
 		} else if (cmd === "cd ..") {
 			// move to parent directory
 			currentDir = currentDir.substring(0, currentDir.lastIndexOf("/"));
+			if (currentDir === "") {
+				currentDir = "/";
+			}
 			tempOutput = tempOutput + cmd + "\n" + currentDir + "> ";
 			this.setOutput(tempOutput);
 		} else if (cmd === "cd .") {
