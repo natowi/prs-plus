@@ -7,6 +7,7 @@
 //	2012-02-17 Ben Chenoweth - Added UP/DOWN (scroll window) and PREVIOUS (commands) buttons
 //	2012-03-05 Ben Chenoweth - Scrollbar added; handle first command without scrolling
 //	2012-04-03 Ben Chenoweth - Handle 'cd' (current directory) command
+//	2012-04-04 Ben Chenoweth - Handle OS error codes
 
 var tmp = function () {
 	
@@ -208,7 +209,7 @@ var tmp = function () {
 	}
 	
 	target.doOK = function () {
-		var cmd, result, len, changeDir;
+		var cmd, result, len, changeDir, exitError, exitCode;
 		// get currentLine
 		cmd = target.getVariable("current_line");
 		if (cmd === "exit") target.doQuit();
@@ -275,7 +276,389 @@ var tmp = function () {
 				}
 			} catch(e) {
 				currentDir = previousDir;
-				tempOutput = tempOutput + cmd + "\nError '" + e + "'\n" + currentDir + "> ";
+				exitError = e.indexOf("exit code: ");
+				if (exitError>0) {
+					exitCode = e.substring(exitError + 11);
+					switch(exitCode) {
+						case "1":
+							e = "Operation not permitted";
+							break;
+						case "2":
+							e = "No such file or directory";
+							break;
+						case "3":
+							e = "No such process";
+							break;
+						case "4":
+							e = "Interrupted system call";
+							break;
+						case "5":
+							e = "Input/output error";
+							break;
+						case "6":
+							e = "No such device or address";
+							break;
+						case "7":
+							e = "Argument list too long";
+							break;
+						case "8":
+							e = "Exec format error";
+							break;
+						case "9":
+							e = "Bad file number";
+							break;
+						case "10":
+							e = "No child processes";
+							break;
+						case "11":
+							e = "Resource temporarily unavailable";
+							break;
+						case "12":
+							e = "Out of memory";
+							break;
+						case "13":
+							e = "Permission denied";
+							break;
+						case "14":
+							e = "Bad address";
+							break;
+						case "15":
+							e = "Block device required";
+							break;
+						case "16":
+							e = "Device or resource busy";
+							break;
+						case "17":
+							e = "File exists";
+							break;
+						case "18":
+							e = "Invalid cross-device link";
+							break;
+						case "19":
+							e = "No such device";
+							break;
+						case "20":
+							e = "Not a directory";
+							break;
+						case "21":
+							e = "Is a directory";
+							break;
+						case "22":
+							e = "Invalid argument";
+							break;
+						case "23":
+							e = "Too many open files in system";
+							break;
+						case "24":
+							e = "Too many open files";
+							break;
+						case "25":
+							e = "Inappropriate ioctl for device";
+							break;
+						case "26":
+							e = "Text file busy";
+							break;
+						case "27":
+							e = "File too large";
+							break;
+						case "28":
+							e = "No space left on device";
+							break;
+						case "29":
+							e = "Illegal seek";
+							break;
+						case "30":
+							e = "Read-only file system";
+							break;
+						case "31":
+							e = "Too many links";
+							break;
+						case "32":
+							e = "Broken pipe";
+							break;
+						case "33":
+							e = "Numerical argument out of domain";
+							break;
+						case "34":
+							e = "Numerical result out of range";
+							break;
+						case "35":
+							e = "Resource deadlock avoided";
+							break;
+						case "36":
+							e = "File name too long";
+							break;
+						case "37":
+							e = "No record locks available";
+							break;
+						case "38":
+							e = "Function not implemented";
+							break;
+						case "39":
+							e = "Directory not empty";
+							break;
+						case "40":
+							e = "Too many symbolic links encountered";
+							break;
+						case "42":
+							e = "No message of desired type";
+							break;
+						case "43":
+							e = "Identifier removed";
+							break;
+						case "44":
+							e = "Channel number out of range";
+							break;
+						case "45":
+							e = "Level 2 not synchronized";
+							break;
+						case "46":
+							e = "Level 3 halted";
+							break;
+						case "47":
+							e = "Level 3 reset";
+							break;
+						case "48":
+							e = "Link number out of range";
+							break;
+						case "49":
+							e = "Protocol driver not attached";
+							break;
+						case "50":
+							e = "No CSI structure available";
+							break;
+						case "51":
+							e = "Level 2 halted";
+							break;
+						case "52":
+							e = "Invalid exchange";
+							break;
+						case "53":
+							e = "Invalid request descriptor";
+							break;
+						case "54":
+							e = "Exchange full";
+							break;
+						case "55":
+							e = "No anode";
+							break;
+						case "56":
+							e = "Invalid request code";
+							break;
+						case "57":
+							e = "Invalid slot";
+							break;
+						case "59":
+							e = "Bad font file format";
+							break;
+						case "60":
+							e = "Device not a stream";
+							break;
+						case "61":
+							e = "No data available";
+							break;
+						case "62":
+							e = "Timer expired";
+							break;
+						case "63":
+							e = "Out of streams resources";
+							break;
+						case "64":
+							e = "Machine is not on the network";
+							break;
+						case "65":
+							e = "Package not installed";
+							break;
+						case "66":
+							e = "Object is remote";
+							break;
+						case "67":
+							e = "Link has been severed";
+							break;
+						case "68":
+							e = "Advertise error";
+							break;
+						case "69":
+							e = "Srmount error";
+							break;
+						case "70":
+							e = "Communication error on send";
+							break;
+						case "71":
+							e = "Protocol error";
+							break;
+						case "72":
+							e = "Multihop attempted";
+							break;
+						case "73":
+							e = "RFS specific error";
+							break;
+						case "74":
+							e = "Not a data message";
+							break;
+						case "75":
+							e = "Value too large for defined data type";
+							break;
+						case "76":
+							e = "Name not unique on network";
+							break;
+						case "77":
+							e = "File descriptor in bad state";
+							break;
+						case "78":
+							e = "Remote address changed";
+							break;
+						case "79":
+							e = "Can not access a needed shared library";
+							break;
+						case "80":
+							e = "Accessing a corrupted shared library";
+							break;
+						case "81":
+							e = ".lib section in a.out corrupted";
+							break;
+						case "82":
+							e = "Attempting to link in too many shared libraries";
+							break;
+						case "83":
+							e = "Cannot exec a shared library directly";
+							break;
+						case "84":
+							e = "Illegal byte sequence";
+							break;
+						case "85":
+							e = "Interrupted system call should be restarted";
+							break;
+						case "86":
+							e = "Streams pipe error";
+							break;
+						case "87":
+							e = "Too many users";
+							break;
+						case "88":
+							e = "Socket operation on non-socket";
+							break;
+						case "89":
+							e = "Destination address required";
+							break;
+						case "90":
+							e = "Message too long";
+							break;
+						case "91":
+							e = "Protocol wrong type for socket";
+							break;
+						case "92":
+							e = "Protocol not available";
+							break;
+						case "93":
+							e = "Protocol not supported";
+							break;
+						case "94":
+							e = "Socket type not supported";
+							break;
+						case "95":
+							e = "Operation not supported";
+							break;
+						case "96":
+							e = "Protocol family not supported";
+							break;
+						case "97":
+							e = "Address family not supported by protocol";
+							break;
+						case "98":
+							e = "Address already in use";
+							break;
+						case "99":
+							e = "Cannot assign requested address";
+							break;
+						case "100":
+							e = "Network is down";
+							break;
+						case "101":
+							e = "Network is unreachable";
+							break;
+						case "102":
+							e = "Network dropped connection on reset";
+							break;
+						case "103":
+							e = "Software caused connection abort";
+							break;
+						case "104":
+							e = "Connection reset by peer";
+							break;
+						case "105":
+							e = "No buffer space available";
+							break;
+						case "106":
+							e = "Transport endpoint is already connected";
+							break;
+						case "107":
+							e = "Transport endpoint is not connected";
+							break;
+						case "108":
+							e = "Cannot send after transport endpoint shutdown";
+							break;
+						case "109":
+							e = "Too many references: cannot splice";
+							break;
+						case "110":
+							e = "Connection timed out";
+							break;
+						case "111":
+							e = "Connection refused";
+							break;
+						case "112":
+							e = "Host is down";
+							break;
+						case "113":
+							e = "No route to host";
+							break;
+						case "114":
+							e = "Operation already in progress";
+							break;
+						case "115":
+							e = "Operation now in progress";
+							break;
+						case "116":
+							e = "Stale NFS file handle";
+							break;
+						case "117":
+							e = "Structure needs cleaning";
+							break;
+						case "118":
+							e = "Not a XENIX named type file";
+							break;
+						case "119":
+							e = "No XENIX semaphores available";
+							break;
+						case "120":
+							e = "Is a named type file";
+							break;
+						case "121":
+							e = "Remote I/O error";
+							break;
+						case "122":
+							e = "Disk quota exceeded";
+							break;
+						case "123":
+							e = "No medium found";
+							break;
+						case "124":
+							e = "Wrong medium type";
+							break;
+						case "126":
+							e = "Command cannot execute";
+							break;
+						case "127":
+							e = "Command not found";
+							break;
+						case "139":
+							e = "Segmentation fault";
+							break;
+						default:
+					}
+				}
+				tempOutput = tempOutput + cmd + "\nError: " + e + "\n" + currentDir + "> ";
 				this.setOutput(tempOutput);
 			}
 		}
