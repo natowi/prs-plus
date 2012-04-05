@@ -8,6 +8,7 @@
 //	2012-03-05 Ben Chenoweth - Scrollbar added; handle first command without scrolling
 //	2012-04-03 Ben Chenoweth - Handle 'cd' (current directory) command
 //	2012-04-04 Ben Chenoweth - Handle OS error codes; minor fix for 'cd ..' if returning to root
+//	2012-04-05 Ben Chenoweth - Replace tabs with spaces in output
 
 var tmp = function () {
 	
@@ -270,6 +271,7 @@ var tmp = function () {
 				result = getFileContent(CLIOUTPUT, "222");
 				if (result !== "222") {
 					// output
+					result = result.replace(/\t/g,"    "); // replace tabs with spaces
 					tempOutput = tempOutput + cmd + "\n" + result + "\n" + currentDir + "> ";
 					this.setOutput(tempOutput);
 				} else {
