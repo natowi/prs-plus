@@ -11,6 +11,7 @@
 //	2010-04-21 kartu - Reformatted
 //	2010-04-25 kartu - Fixed minor syntax glitch: removed trailing comma
 //	2010-04-27 kravitz - Added getFastBookMedia()
+//	2012-04-05 Ben Chenoweth - Added "dateFormat" function
 
 try {
 	Core.system = {
@@ -102,6 +103,18 @@ try {
 				book._media = Core.system.getSoValue(book, "media");
 			}
 			return book._media;
+		},
+		
+		// Provide Date Format
+		dateFormat: function () {
+			var dateStr;
+			try {
+				dateStr = kbook.model.DateFormat;
+			} catch(ignore) {
+				// TODO: handle earlier models
+				dateStr = "Day-Month-Year";
+			}
+			return dateStr;
 		}
 	};
 

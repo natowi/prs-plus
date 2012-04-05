@@ -426,12 +426,25 @@ tmp = function() {
 					}
 					win.setTextStyle(0);
 					win.setTextAlignment(1, 0);
+					var dateFormat;
+					dateFormat = Core.system.dateFormat();
 					for (var j=i; (j-i)<futureevents.length; j++) {
 						if (j==linelimit) break; // only room for a limited number of lines
 						var datestring;
-						//datestring = futureevents[j-i][3]+"/"+futureevents[j-i][1]+"/"+futureevents[j-i][2]; // YYYY/MM/DD
-						//datestring = futureevents[j-i][1]+"/"+futureevents[j-i][2]+"/"+futureevents[j-i][3]; // MM/DD/YYYY
-						datestring = futureevents[j-i][2]+"/"+futureevents[j-i][1]+"/"+futureevents[j-i][3]; // DD/MM/YYYY
+						switch (dateFormat) {
+							case 'Year-Month-Day':
+								datestring = futureevents[j-i][3]+"/"+futureevents[j-i][1]+"/"+futureevents[j-i][2];
+								break;
+							case 'Day-Month-Year':
+								datestring = futureevents[j-i][2]+"/"+futureevents[j-i][1]+"/"+futureevents[j-i][3];
+								break;
+							case 'Month-Day-Year':
+								datestring = futureevents[j-i][1]+"/"+futureevents[j-i][2]+"/"+futureevents[j-i][3];
+								break;
+							default:
+								// just in case: use 'Day-Month-Year'
+								datestring = futureevents[j-i][2]+"/"+futureevents[j-i][1]+"/"+futureevents[j-i][3];
+						}
 						if (i==0) {
 							win.drawText(" "+datestring+" - "+futureevents[j-i][5], 50, (j-1)*22+630+hdiff, w-107, 22);
 						} else {
