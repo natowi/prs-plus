@@ -4665,6 +4665,7 @@
 			<optItemButton u="33" textresource="STR_UI_MENU_CHANG_TONE_CURVE"	do="doToneCurve" playing="!dictionary,!isInvalidPage"/> <!-- adjustFont -->
 			<optItemButton u="30" id="flag" do="doFlagToggle" playing="!dictionary"/> <!-- PRS+ -->
 			<optItemButton u="55" textresource="STR_UI_MENU_ADD_TO_COLLECTION"	do="doAddToCollection" playing="!dictionary"/> <!-- PRS+ -->
+			<optItemButton u="15" id="changeEPUBStyle"	do="doChangeEPUBStyle" playing="!dictionary"/> <!-- PRS+ -->
 			<optItemButton u= "5" textresource="STR_UI_MENU_DELETEBOOK"			do="doDelBook" playing="!dictionary" onoff="VAR_IsPeriodical,fskin:/l/strings/STR_UI_MENU_DELETEISSUE,fskin:/l/strings/STR_UI_MENU_DELETEBOOK"/> <!-- canToolbar -->
 			<optItemButton u= "4" textresource="STR_UI_MENU_BOOKINFO"			do="doViewBookInfo" playing="!dictionary"/> <!-- canToolbar -->
 

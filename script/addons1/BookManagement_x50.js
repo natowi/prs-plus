@@ -47,6 +47,7 @@
 //	2012-02-24 quisvir - Made sub-collections recursive (unlimited levels), added option for separator, enabled #-Z navbar
 //	2012-03-01 quisvir - Added book content search
 //	2012-03-21 Ben Chenoweth - Added Option menu to Archives in BF (x50); removed audio items
+//	2012-04-06 Ben Chenoweth - Added 'User EPUB Style (CSS File)' option in Book Option Menu
 
 tmp = function() {
 
@@ -54,6 +55,7 @@ tmp = function() {
 		numCur, holdKey, model, devRoot, thumbnailsNode, homeGroup, constructRun, VALUE_TRUE, VALUE_FALSE;
 	
 	L = Core.lang.getLocalizer('BookManagement');
+	LL = Core.lang.getLocalizer('EpubUserStyle');
 	LX = Core.lang.LX;
 	log = Core.log.getLogger('BookManagement');
 	
@@ -126,6 +128,14 @@ tmp = function() {
 		doSelectCollection('book');
 	}
 	
+	// Book menu option to change EPUB style, called from main.xml
+	model.container.sandbox.OPTION_OVERLAY_PAGE.sandbox.doChangeEPUBStyle = function () {
+		var currentNode = Core.ui.getCurrentNode();  
+		this.doOption();         
+		Core.addonByName.PRSPSettings.createSingleSetting(currentNode, Core.addonByName.EpubUserStyle.optionDefs[0], Core.addonByName.EpubUserStyle);
+		currentNode.gotoNode(currentNode.nodes.pop(), kbook.model);
+	}
+	
 	// Show book menu option if preference is set
 	kbook.optMenu.isDisable = function (part) {
 		var res, opened;
@@ -146,6 +156,10 @@ tmp = function() {
 					part.text = (opened) ? L('MARK_AS_UNREAD') : L('MARK_AS_READ');
 					part.u = (opened) ? 31 : 30;
 			}
+		}
+		if (part.id === 'changeEPUBStyle') {
+			// add translated text to option menu
+			part.text = LL('OPTION_EPUB_CSS_FILE');
 		}
 		if (kbook.model.currentArchive) {
 			// this will only be true if an archive is currently being browsed in BF
