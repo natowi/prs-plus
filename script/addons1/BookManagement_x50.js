@@ -140,6 +140,9 @@ tmp = function() {
 	kbook.optMenu.isDisable = function (part) {
 		var res, opened;
 		res = part.textresource;
+		if (!res) {
+			res = part.id;
+		}
 		if (res && opt[res] === 'false' && part.container.container.id === 'OPTION_OVERLAY_PAGE') {
 			return true;
 		}
@@ -773,6 +776,22 @@ tmp = function() {
 			if (id) {
 				title = ('fskin:/l/strings/' + id).idToString();
 				if (title) {
+					group.optionDefs.push({
+						name: id,
+						title: title,
+						icon: 'SETTINGS',
+						defaultValue: 'true',
+						values: ['true', 'false'],
+						valueTitles: {
+							'true': VALUE_TRUE,
+							'false': VALUE_FALSE
+						}
+					})
+				}
+			} else {
+				id = contents[i].id;
+				if (id === "changeEPUBStyle") {
+					title = LL('OPTION_EPUB_CSS_FILE');
 					group.optionDefs.push({
 						name: id,
 						title: title,
