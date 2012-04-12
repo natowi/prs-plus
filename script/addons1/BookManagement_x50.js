@@ -47,7 +47,8 @@
 //	2012-02-24 quisvir - Made sub-collections recursive (unlimited levels), added option for separator, enabled #-Z navbar
 //	2012-03-01 quisvir - Added book content search
 //	2012-03-21 Ben Chenoweth - Added Option menu to Archives in BF (x50); removed audio items
-//	2012-04-06 Ben Chenoweth - Added 'User EPUB Style (CSS File)' option in Book Option Menu
+//	2012-04-06 Ben Chenoweth - Added 'User EPUB Style (CSS File)' option in Book Option Menu (EPUB books only)
+//	2012-04-12 Ben Chenoweth - Added 'Reformat Current Book' option in Book Option Menu (LRF books only)
 
 tmp = function() {
 
@@ -55,7 +56,6 @@ tmp = function() {
 		numCur, holdKey, model, devRoot, thumbnailsNode, homeGroup, constructRun, VALUE_TRUE, VALUE_FALSE;
 	
 	L = Core.lang.getLocalizer('BookManagement');
-	LL = Core.lang.getLocalizer('EpubUserStyle');
 	LX = Core.lang.LX;
 	log = Core.log.getLogger('BookManagement');
 	
@@ -130,15 +130,27 @@ tmp = function() {
 	
 	// Book menu option to change EPUB style, called from main.xml
 	model.container.sandbox.OPTION_OVERLAY_PAGE.sandbox.doChangeEPUBStyle = function () {
-		var currentNode = Core.ui.getCurrentNode();  
-		this.doOption();         
-		Core.addonByName.PRSPSettings.createSingleSetting(currentNode, Core.addonByName.EpubUserStyle.optionDefs[0], Core.addonByName.EpubUserStyle);
-		currentNode.gotoNode(currentNode.nodes.pop(), kbook.model);
+		var mime, currentNode, data;
+		this.doOption();
+		if (model.currentBook) {
+			mime = FileSystem.getMIMEType(model.currentBook.media.path);
+			if (mime === "application/epub+zip") {
+				currentNode = Core.ui.getCurrentNode();          
+				Core.addonByName.PRSPSettings.createSingleSetting(currentNode, Core.addonByName.EpubUserStyle.optionDefs[0], Core.addonByName.EpubUserStyle);
+				currentNode.gotoNode(currentNode.nodes.pop(), kbook.model);
+			} else if (mime === "application/x-sony-bbeb") {
+				data = kbook.bookData;
+				model.currentBook.media.browseTo(data, undefined, undefined, undefined, undefined, false, data.width, data.height, data.book.facing);
+				data.book.dataChanged();
+			} else {
+				model.doBlink();
+			}
+		}
 	}
 	
 	// Show book menu option if preference is set
 	kbook.optMenu.isDisable = function (part) {
-		var res, opened;
+		var res, opened, mime, LL;
 		res = part.textresource;
 		if (!res) {
 			res = part.id;
@@ -161,8 +173,18 @@ tmp = function() {
 			}
 		}
 		if (part.id === 'changeEPUBStyle') {
-			// add translated text to option menu
-			part.text = LL('OPTION_EPUB_CSS_FILE');
+			if (model.currentBook) {
+				mime = FileSystem.getMIMEType(model.currentBook.media.path);
+				if (mime === "application/epub+zip") {
+					LL = Core.lang.getLocalizer('EpubUserStyle');
+					part.text = LL('OPTION_EPUB_CSS_FILE');
+				} else if (mime === "application/x-sony-bbeb") {
+					LL = Core.lang.getLocalizer('LRFTextScale');
+					part.text = LL("REFORMAT_CURRENT_BOOK");
+				} else {
+					return true;
+				}
+			}
 		}
 		if (kbook.model.currentArchive) {
 			// this will only be true if an archive is currently being browsed in BF
@@ -763,7 +785,7 @@ tmp = function() {
 	}
 	
 	var createPageOptionSettings = function () {
-		var group, contents, c, i, id, title;
+		var group, contents, c, i, id, title, mime, LL;
 		group = {
 			groupTitle: L('PAGE_OPTION_ITEMS'),
 			groupIcon: 'LIST',
@@ -791,7 +813,10 @@ tmp = function() {
 			} else {
 				id = contents[i].id;
 				if (id === "changeEPUBStyle") {
+					LL = Core.lang.getLocalizer('EpubUserStyle');
 					title = LL('OPTION_EPUB_CSS_FILE');
+					LL = Core.lang.getLocalizer('LRFTextScale');
+					title = title + " / " + LL("REFORMAT_CURRENT_BOOK");
 					group.optionDefs.push({
 						name: id,
 						title: title,
