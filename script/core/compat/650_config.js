@@ -41,6 +41,7 @@
 //	2012-02-06 quisvir - Added HIGHLIGHT
 //	2012-02-16 quisvir - Added CHECKMARK
 //	2012-02-20 quisvir - Added Action Launcher (StandardActions node)
+//	2012-04-23 drMerry - Added Reboot Icon
  
 return {
 	// Menu icon indices 
@@ -137,6 +138,8 @@ return {
 		COMIC: 116,
 		AUDIO_ALT: 117,
 		CHECKMARK: 118,
+		
+		REBOOT: 30,
 		
 		DEFAULT: 87,
 		

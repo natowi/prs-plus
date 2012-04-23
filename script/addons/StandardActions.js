@@ -13,6 +13,7 @@
 //	2012-02-20 quisvir - Added custom action; code cleaning
 //	2012-02-20 quisvir - Added Action Launcher; code cleaning
 //	2012-03-13 Ben Chenoweth - Fix for issue #321
+//	2012-04-23 drMerry - Moved shutdown to System folder (actions)
 
 tmp = function() {
 	var L, log, NAME, StandardActions, model, book, doHistory, isBookEnabled, addBubbleActions, addOptionalActions,
@@ -229,7 +230,7 @@ tmp = function() {
 			{
 				name: "Shutdown",
 				title: L("ACTION_SHUTDOWN"),
-				group: "Other",
+				group: "System",
 				icon: "SHUTDOWN",
 				action: function () {
 					model.doDeviceShutdown();

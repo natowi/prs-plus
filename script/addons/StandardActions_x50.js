@@ -16,6 +16,7 @@
 //	2012-02-20 quisvir - Added Action Launcher; code cleaning
 //	2012-02-23 Ben Chenoweth - Added Toggle Notes Toolbar
 //	2012-03-13 Ben Chenoweth - Fix for issue #321
+//	2012-04-23 drMerry - Moved shutdown and standby to System folder (actions)
 
 tmp = function() {
 	var L, log, NAME, StandardActions, model, book, doHistory, isBookEnabled, addBubbleActions, addOptionalActions,
@@ -318,7 +319,7 @@ tmp = function() {
 			{
 				name: "Shutdown",
 				title: L("ACTION_SHUTDOWN"),
-				group: "Other",
+				group: "System",
 				icon: "SHUTDOWN",
 				action: function () {
 					model.doDeviceShutdown();
@@ -381,7 +382,7 @@ tmp = function() {
 			{
 				name: "Standby",
 				title: L("ACTION_STANDBY"),
-				group: "Other",
+				group: "System",
 				icon: "STANDBY",
 				bubble: "doPowerSwitch",
 				action: doBubbleFunc
