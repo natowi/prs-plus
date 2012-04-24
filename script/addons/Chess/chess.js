@@ -6,7 +6,7 @@
 // AI uses slightly modified Toga II v1.3.1 (http://www.superchessengine.com/toga_ii.htm)
 //
 //	2012-04-23 Ben Chenoweth - Replaced javascript AI with Toga II executable (alpha release)
-//	2012-04-24 Ben Chenoweth - Removed AI move display; fixed checkmate message
+//	2012-04-24 Ben Chenoweth - Removed AI move display; fixed checkmate message; fix for AI pawn promotion
 
 var tmp = function () {
     var sMovesList, bCheck = false, bGameNotOver = true, lastStart = 0, lastEnd = 0, kings = [0, 0],
@@ -1610,11 +1610,11 @@ var tmp = function () {
 
 		// check for pawn promotion
 		if (etc.bBlackSide) {
-			if ((fourBtsLastPc === 1) && (nScndFocus >= 90)) {
+			if ((fourBtsLastPc === 1) && (nSquareId >= 90)) {
 				fourBtsLastPc = 6 - bestmove[4];
 			}
 		} else {
-			if ((fourBtsLastPc === 9) && (nScndFocus <= 29)) {
+			if ((fourBtsLastPc === 9) && (nSquareId <= 29)) {
 				fourBtsLastPc = 14 - bestmove[4];
 			}
 		}
@@ -1811,6 +1811,7 @@ var tmp = function () {
 
     target.loadPuzzle = function () {
         puzzDlgOpen = false;
+		newGame = false;
         var t = target.getVariable("puzzle_selected"),
         //target.debugOut(t);
         cMateIn2 = parseInt(target.getVariable("checkmate_2"), 10),
