@@ -6,6 +6,7 @@
 // AI uses slightly modified Toga II v1.3.1 (http://www.superchessengine.com/toga_ii.htm)
 //
 //	2012-04-23 Ben Chenoweth - Replaced javascript AI with Toga II executable (alpha release)
+//	2012-04-24 Ben Chenoweth - Removed AI move display; fixed checkmate message
 
 var tmp = function () {
     var sMovesList, bCheck = false, bGameNotOver = true, lastStart = 0, lastEnd = 0, kings = [0, 0],
@@ -906,10 +907,10 @@ var tmp = function () {
         if (bCheck) {
             merryMessage = (flagWhoMoved === 0) ? chessGame.textString[0][0] : chessGame.textString[0][1];
             merryMessage += " king is in check!";
-			this.checkStatus.setValue(merryMessage);
         } else {
             merryMessage = "";
         }
+		this.checkStatus.setValue(merryMessage);
         
         iExamSq = 22;
         for (iExamSq; iExamSq <= 99; iExamSq++) {
@@ -944,7 +945,7 @@ var tmp = function () {
         //this.debugOut("bNoMoreMoves="+bNoMoreMoves+", bCheck="+bCheck);
         if (bNoMoreMoves) {
             if (bCheck) {
-                merryMessage = etc.bBlackSide ? chessGame.textString[0][0] : chessGame.textString[0][1];
+                merryMessage = etc.bBlackSide ? chessGame.textString[0][1] : chessGame.textString[0][0];
                 this.checkStatus.setValue("Checkmate! " + merryMessage + " wins.");
                 bGameNotOver = false;
             } else {
@@ -1462,7 +1463,7 @@ var tmp = function () {
 			var endPos = result.indexOf("\n", movePos);
 			var moveText = result.substring(movePos + 9, endPos);
 			//this.debugOut("moveText="+moveText);
-			this.checkStatus.setValue(moveText);
+			//this.checkStatus.setValue(moveText);
 		
 			switch (move.substring(0, 1)) {
 				case 'a':
