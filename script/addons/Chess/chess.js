@@ -7,6 +7,7 @@
 //
 //	2012-04-23 Ben Chenoweth - Replaced javascript AI with Toga II executable (alpha release)
 //	2012-04-24 Ben Chenoweth - Removed AI move display; fixed checkmate message; fix for AI pawn promotion
+//	2012-04-25 Ben Chenoweth - Properly handle en passant; disable castling if rooks moved; fixed ancient bug that had disabled black castling in 2 player mode; undo/save/load castling variables
 
 var tmp = function () {
     var sMovesList, bCheck = false, bGameNotOver = true, lastStart = 0, lastEnd = 0, kings = [0, 0],
@@ -40,12 +41,11 @@ var tmp = function () {
 	moveno = 0, // no of moves
 	level = 2, // "Medium"
 	automode = true, // reader controls the black pieces
-	tempPath = "/tmp/fruit/",
-	FRUITIN = tempPath + "fruit.in",
-	FRUITOUT = tempPath + "fruit.out",
 	inputHeader,
-	FRUIT = System.applyEnvironment("[prspPath]") + "fruit",
 	newGame,
+	enPassant = "",
+	wRooks = "KQ",
+	bRooks = "kq",
 	//debugOutput = "",
 	//debugPath = "/Data/debug.txt",
 
@@ -53,6 +53,7 @@ var tmp = function () {
 	undoboard,
 	currundo,
 	undodepth,
+	undosettings,
 
     // Save/Load
 	datPath,
@@ -67,10 +68,9 @@ var tmp = function () {
 	doingPuzzle = false,
 	puzzleMoves,
 	datPath0 = kbook.autoRunRoot.gamesSavePath + 'Chess/',
-	BOOK = datPath0 + "performance.bin",
 
     //DrMerry: Added game-scope vars
-	nWay, newy, merryMessage, t, n, kingHasMoved, nDiffX, nDiffY, x, y, s, z, custSel,
+	merryMessage, t, n, x, y, s, z, custSel,
 
     //DrMerry: Added text string array
     chessGame = {
@@ -164,16 +164,18 @@ var tmp = function () {
         // this allows for 10 undos
         currundo = 0;
         undoboard = new Array(undodepth);
+		undosettings = new Array(undodepth);
         t = 0;
         for (t; t < undodepth; t++) {
             undoboard[t] = new Array(120);
+			undosettings[t] = new Array(7);
         }
         this.updateUndo();
 		
 		// setup for chess engine
-		FileSystem.ensureDirectory(tempPath);
+		FileSystem.ensureDirectory("/tmp/fruit/");
 		inputHeader = "uci\n";
-		if (FileSystem.getFileInfo(BOOK)) {
+		if (FileSystem.getFileInfo(datPath0 + "performance.bin")) {
 			inputHeader += "option name OwnBook value performance.bin\n";
 		}
 		inputHeader += "ucinewgame\nisready\n";
@@ -191,7 +193,11 @@ var tmp = function () {
         bHasMoved = false;
         wOldKing = 96;
         bOldKing = 26;
-
+		newGame = true;
+		enPassant = "";
+		wRooks = "KQ";
+		bRooks = "kq";
+		
         // place all pieces in their starting positions (located in the first 32 items of the aParams array)
         iPosition = 0;
         for (iPosition; iPosition < 120; iPosition++) {
@@ -204,12 +210,10 @@ var tmp = function () {
         this.puzzleSource.setValue("");
         this.puzzleMoves.setValue("");
         doingPuzzle = false;
-		newGame = true;
     };
 
     target.writePieces = function () {
         var x, y, sSqrContent, nSquareId, iCell, pieceId = -1;
-        // DrMerry Unused: nMenacedSq, nConst
         //this.debugOut("redraw board");
         iCell = 0;
         for (iCell; iCell < 64; iCell++) {
@@ -251,7 +255,6 @@ var tmp = function () {
 
     target.doSquareClick = function (sender) {
         var id, x, y, iPosition;
-        //DrMerry Unused: , sMove; //extracted n
         id = getSoValue(sender, "id");
         n = id.substring(6, 8);
         x = n % 8; // find column
@@ -263,8 +266,7 @@ var tmp = function () {
     };
 
     target.makeSelection = function (nSquareId) {
-        var x, y, z, destx, desty, ourRook, flagPcColor, nPieceType, nPiece, xRook;
-        //, nDiffX, nDiffY;
+        var x, y, destx, desty, ourRook, flagPcColor, nPieceType, nPiece, xRook, nWay, nDiffX, nDiffY;
         if (!bGameNotOver) {
             return;
         }
@@ -317,14 +319,35 @@ var tmp = function () {
                         etc.aBoard[nSquareId + 1] = ourRook;
                     }
                 }
+				
+				// need to disable possibility of castling if rooks moved
+				if ((nPieceType === 5) && (nFrstFocus === 92) && (wRooks.indexOf("Q")>=0)) {
+					if (wRooks === "KQ") {
+						wRooks = "K";
+					} else if (wRooks === "Q") {
+						wRooks = "";
+					}
+				}
+				if ((nPieceType === 5) && (nFrstFocus === 99) && (wRooks.indexOf("K")>=0)) {
+					if (wRooks === "KQ") {
+						wRooks = "Q";
+					} else if (wRooks === "K") {
+						wRooks = "";
+					}
+				}
 
                 // need to handle en passant
                 flagPcColor = nPiece & 8;
                 nWay = 4 - flagPcColor >> 2;
-                if ((nPieceType === 1) && (y === 7 + nWay >> 1)) {
+                if ((nPieceType === 1) && (y === 7 + nWay >> 1) && (enPassant === nSquareId + 10)) {
                     // remove (black) pawn
                     etc.aBoard[nSquareId + 10] = 0;
                 }
+				if ((nPieceType === 1) && (nDiffY === -2)) {
+					enPassant = nSquareId + 10;
+				} else {
+					enPassant = "";
+				}
 
                 // remove selections
                 this.squareFocus(nFrstFocus, false);
@@ -406,15 +429,36 @@ var tmp = function () {
                         etc.aBoard[nSquareId + 1] = ourRook;
                     }
                 }
-
+				
+				// need to disable possibility of castling if rooks moved
+				if ((nPieceType === 5) && (nFrstFocus === 22) && (bRooks.indexOf("q")>=0)) {
+					if (bRooks === "kq") {
+						bRooks = "k";
+					} else if (bRooks === "q") {
+						bRooks = "";
+					}
+				}
+				if ((nPieceType === 5) && (nFrstFocus === 29) && (bRooks.indexOf("k")>=0)) {
+					if (bRooks === "kq") {
+						bRooks = "q";
+					} else if (bRooks === "k") {
+						bRooks = "";
+					}
+				}
+				
                 // need to handle en passant
                 flagPcColor = nPiece & 8;
                 nWay = 4 - flagPcColor >> 2;
-                if ((nPieceType === 1) && (y === 7 + nWay >> 1)) {
+                if ((nPieceType === 1) && (y === 7 + nWay >> 1) && (enPassant === nSquareId - 10)) {
                     // remove pawn
                     etc.aBoard[nSquareId - 10] = 0;
                 }
-
+				if ((nPieceType === 1) && (nDiffY === 2)) {
+					enPassant = nSquareId - 10;
+				} else {
+					enPassant = "";
+				}
+				
                 // remove selections
                 this.squareFocus(nFrstFocus, false);
                 nFrstFocus = 0;
@@ -474,9 +518,10 @@ var tmp = function () {
     };
 
     target.isValidMove = function (nPosX, nPosY, nTargetX, nTargetY, inCheck, colorPcInCheck, firstMove) {
-        var nPiece, endSq, nTarget, nPieceType, flagPcColor, flagTgColor, pawnHasMoved, nWay,
+        var startSq, nPiece, endSq, nTarget, nPieceType, flagPcColor, kingHasMoved,
+		flagTgColor, pawnHasMoved, nWay, nDiffX, nDiffY, flagOpColor,
 		bKingInCheck, passX, nTargetType,
-        oKing, iObliqueY, iObliqueX, iOrthogX, iOrthogY,
+        oKing, iObliqueY, iObliqueX, iOrthogX, iOrthogY;
         //this.debugOut("isValidMove?");
         startSq = nPosY * 10 + nPosX + 22;
         nPiece = etc.aBoard[startSq];
@@ -546,17 +591,17 @@ var tmp = function () {
                 break;
             case 2:
                 // king
-                //var ourRook;
                 if ((nDiffY === 0 || (nDiffY + 1 | 2) === 2) && (nDiffX === 0 || (nDiffX + 1 | 2) === 2)) {
                     if (nTarget > 0 && flagTgColor === flagPcColor) {
                         //this.debugOut("Invalid move for king");
                         return (false);
                     }
-                } else if (target.tryingToCastle(nTargetY)) {
+                } else if (target.tryingToCastle(nTargetY, nDiffX, nDiffY, flagPcColor)) {
                     // castling
                     passX = nDiffX * 3 + 14 >> 2;
+					flagOpColor = flagPcColor ^ 8;
                     for (passX; passX < nDiffX * 3 + 22 >> 2; passX++) {
-                        if (etc.lookAt(passX, nTargetY) > 0 || this.isThreatened(passX, nTargetY, flagTgColor)) {
+                        if (etc.lookAt(passX, nTargetY) > 0 || this.isThreatened(passX, nTargetY, flagOpColor)) {
                             //this.debugOut("Invalid move for king");
                             return (false);
                         }
@@ -565,6 +610,24 @@ var tmp = function () {
                         //this.debugOut("Invalid move for king");
                         return (false);
                     }
+					// check to see if rooks have been moved
+					if (flagPcColor === 8) {
+						// white
+						if ((startSq === 96) && (endSq === 94) && (wRooks.indexOf("Q") === -1)) {
+							return (false);
+						}
+						if ((startSq === 96) && (endSq === 98) && (wRooks.indexOf("K") === -1)) {
+							return (false);
+						}
+					} else {
+						// black
+						if ((startSq === 26) && (endSq === 24) && (bRooks.indexOf("q") === -1)) {
+							return (false);
+						}
+						if ((startSq === 26) && (endSq === 28) && (bRooks.indexOf("k") === -1)) {
+							return (false);
+						}
+					}
                 } else {
                     //this.debugOut("Invalid move for king");
                     return (false);
@@ -759,8 +822,9 @@ var tmp = function () {
         return (true);
     };
 
-    target.tryingToCastle = function (nTargetY) {
+    target.tryingToCastle = function (nTargetY, nDiffX, nDiffY, flagPcColor) {
         var ourRook = etc.lookAt(30 - nDiffX >> 2 & 7, nTargetY);
+		var kingHasMoved = (flagPcColor === 8) ? wHasMoved : bHasMoved;
         return (nDiffX + 2 | 4) === 4 && nDiffY === 0 && !bCheck && !kingHasMoved && ourRook > 0 && Boolean(ourRook & 16);
     };
 
@@ -774,7 +838,7 @@ var tmp = function () {
                 iMenacing = etc.aBoard[iMenaceY * 10 + iMenaceX + 22];
                 if (iMenacing > 0 && (iMenacing & 8) === flagFromColor && this.isValidMove(iMenaceX, iMenaceY, nPieceX, nPieceY, false, -1, false)) {
                     bIsThrtnd = true;
-                    //this.debugOut("Piece is threatened by piece at X="+iMenaceX+", Y="+iMenaceY);
+                    //this.debugOut("Piece at X="+nPieceX+", Y="+nPieceY+" is threatened by piece at X="+iMenaceX+", Y="+iMenaceY);
                     break;
                 }
             }
@@ -792,13 +856,15 @@ var tmp = function () {
 
     target.doRoot = function (sender) {
         /*var stream;
-        try {
-            if (FileSystem.getFileInfo(debugPath)) FileSystem.deleteFile(debugPath);
-            stream = new Stream.File(debugPath, 1);
-            stream.writeLine(debugOutput);
-            stream.close();
-        } catch (e) { }*/
-
+		if (debugOutput !== "") {
+			try {
+				if (FileSystem.getFileInfo(debugPath)) FileSystem.deleteFile(debugPath);
+				stream = new Stream.File(debugPath, 1);
+				stream.writeLine(debugOutput);
+				stream.close();
+			} catch (e) { }
+		}*/
+		
         kbook.autoRunRoot.exitIf(kbook.model);
         return;
     };
@@ -827,6 +893,10 @@ var tmp = function () {
                 for (t; t < 120; t++) {
                     undoboard[s - 1][t] = undoboard[s][t];
                 }
+				t = 0;
+				for (t; t < 7; t++) {
+					undosettings[s - 1][t] = undosettings[s][t];
+				}
             }
         }
 
@@ -835,6 +905,15 @@ var tmp = function () {
         for (t; t < 120; t++) {
             undoboard[currundo - 1][t] = etc.aBoard[t];
         }
+		
+		// store current settings
+		undosettings[currundo - 1][0] = (wHasMoved) ? "true" : "false";
+		undosettings[currundo - 1][1] = (bHasMoved) ? "true" : "false";
+		undosettings[currundo - 1][2] = String(wOldKing);
+		undosettings[currundo - 1][3] = String(bOldKing);
+		undosettings[currundo - 1][4] = (enPassant !== "") ? String(enPassant) : "";
+		undosettings[currundo - 1][5] = wRooks;
+		undosettings[currundo - 1][6] = bRooks;
         return;
     };
 
@@ -856,6 +935,24 @@ var tmp = function () {
                 if (etc.aBoard[t] === 26) kings[1] = t;
             }
         }
+
+		if (automode) {
+			wHasMoved = (undosettings[currundo - 3][0] === "true") ? true : false;
+			bHasMoved = (undosettings[currundo - 3][1] === "true") ? true : false;
+			wOldKing = undosettings[currundo - 3][2] * 1;
+			bOldKing = undosettings[currundo - 3][3] * 1;
+			enPassant = (undosettings[currundo - 3][4] !== "") ? undosettings[currundo - 3][4] * 1 : "";
+			wRooks = undosettings[currundo - 3][5];
+			bRooks = undosettings[currundo - 3][6];
+		} else {
+			wHasMoved = (undosettings[currundo - 2][0] === "true") ? true : false;
+			bHasMoved = (undosettings[currundo - 2][1] === "true") ? true : false;
+			wOldKing = undosettings[currundo - 2][2] * 1;
+			bOldKing = undosettings[currundo - 2][3] * 1;
+			enPassant = (undosettings[currundo - 2][4] !== "") ? undosettings[currundo - 2][4] * 1 : "";
+			wRooks = undosettings[currundo - 2][5];
+			bRooks = undosettings[currundo - 2][6];
+		}
 
         // decrement current undo
         currundo--;
@@ -999,7 +1096,7 @@ var tmp = function () {
         }
         //this.debugOut("noOfMoves="+noOfMoves);
         flagWhoMoved ^= 8;
-        return foundmove;
+        return (foundmove);
     };
 
     target.getPcByParams = function (nParamId, nWhere) {
@@ -1063,6 +1160,16 @@ var tmp = function () {
             }
             stream.writeLine(etc.bBlackSide);
             stream.writeLine(moveno);
+			
+			// save current settings
+			stream.writeLine(wHasMoved);
+			stream.writeLine(bHasMoved);
+			stream.writeLine(wOldKing);
+			stream.writeLine(bOldKing);
+			stream.writeLine(enPassant);
+			stream.writeLine(wRooks);
+			stream.writeLine(bRooks);
+			
             stream.close();
             this.checkStatus.setValue("Game saved successfully");
         } catch (e) { this.checkStatus.setValue("Game save failed"); }
@@ -1071,7 +1178,7 @@ var tmp = function () {
     target.loadGame = function (filePath) {
         try {
             if (FileSystem.getFileInfo(filePath)) {
-                var stream = new Stream.File(filePath), t;
+                var stream = new Stream.File(filePath), t, checkEOF;
 
                 // load board from save file
                 t = 22;
@@ -1095,7 +1202,29 @@ var tmp = function () {
                     merryMessage = chessGame.textString[0][0]; // White's turn
                 }
                 this.messageStatus.setValue(merryMessage + "'s turn");
-                moveno = stream.readLine();
+                moveno = Math.floor(stream.readLine());
+				checkEOF = stream.readLine();
+				if (checkEOF) {
+					// compatibility with old saved files
+					if (checkEOF === "true") {
+						wHasMoved = true;
+					} else {
+						wHasMoved = false;
+					}
+					if (stream.readLine() === "true") {
+						bHasMoved = true;
+					} else {
+						bHasMoved = false;
+					}
+					wOldKing = Math.floor(stream.readLine());
+					bOldKing = Math.floor(stream.readLine());
+					enPassant = stream.readLine();
+					if (enPassant !== "" ) {
+						enPassant *= 1;
+					}
+					wRooks = stream.readLine();
+					bRooks = stream.readLine();
+				}
                 this.puzzleName.setValue("");
                 this.puzzleSource.setValue("");
                 this.puzzleMoves.setValue("");
@@ -1320,13 +1449,13 @@ var tmp = function () {
             bestmove = this.callChessEngine();
         }
 		
-		if (bestmove == null) return false;
+		if (bestmove == null) return (false);
 		
 		return (this.processMove(bestmove));
     };
 
 	target.callChessEngine = function () {
-		var inputText, emptyCount, boardSquare, contentSquare, cmd, result, movePos, endPos, move, bestmove = [];
+		var inputText, emptyCount, boardSquare, contentSquare, FRUITIN, FRUITOUT, FRUIT, cmd, result, movePos, endPos, move, bestmove = [];
 		//this.debugOut("callChessEngine");
 		
 		inputText = inputHeader;
@@ -1403,17 +1532,75 @@ var tmp = function () {
 			
 			// add castling info
 			if (!wHasMoved) {
-				inputText += "KQ"; // TODO: Fix me: need to track if rooks are moved, too.
+				inputText += wRooks;
 			}
 			if (!bHasMoved) {
-				inputText += "kq"; // TODO: Fix me: need to track if rooks are moved, too.
+				inputText += bRooks;
 			}
 			if ((wHasMoved) && (bHasMoved)) {
 				inputText += "-";
 			}
 			
-			// add en-passant info
-			inputText += " -"; // TODO: Track en passant!
+			// add en passant info
+			if (enPassant !== "") {
+				inputText += " ";
+				x = (enPassant % 10) - 2;			
+				switch (x) {
+					case 0:
+						inputText += "a";
+						break;
+					case 1:
+						inputText += "b";
+						break;
+					case 2:
+						inputText += "c";
+						break;
+					case 3:
+						inputText += "d";
+						break;
+					case 4:
+						inputText += "e";
+						break;
+					case 5:
+						inputText += "f";
+						break;
+					case 6:
+						inputText += "g";
+						break;
+					case 7:
+						inputText += "h";
+						break;
+				}
+				y = Math.floor((enPassant - 20) / 10);
+				switch (y) {
+					case 0:
+						inputText += "8";
+						break;
+					case 1:
+						inputText += "7";
+						break;
+					case 2:
+						inputText += "6";
+						break;
+					case 3:
+						inputText += "5";
+						break;
+					case 4:
+						inputText += "4";
+						break;
+					case 5:
+						inputText += "3";
+						break;
+					case 6:
+						inputText += "2";
+						break;
+					case 7:
+						inputText += "1";
+						break;
+				}
+			} else {
+				inputText += " -";
+			}
 			
 			// add half-move number
 			inputText += " 0 "; // TODO: Track number of moves since pawn moved or piece taken!
@@ -1434,9 +1621,11 @@ var tmp = function () {
 		}
 		
 		// delete old output file if it exists
+		FRUITOUT = "/tmp/fruit/fruit.out";
 		FileSystem.deleteFile(FRUITOUT);
 		
 		// set up new input file
+		FRUITIN = "/tmp/fruit/fruit.in";
 		setFileContent(FRUITIN, inputText);
 		//this.debugOut("inputText:\n"+inputText);
 		
@@ -1445,6 +1634,7 @@ var tmp = function () {
 		FskUI.Window.update.call(kbook.model.container.getWindow());
 
 		// change to directory where performance.bin should be and call chess engine
+		FRUIT = System.applyEnvironment("[prspPath]") + "fruit";
 		cmd = "cd " + datPath0 + ";" + FRUIT + " < " + FRUITIN + " > " + FRUITOUT;
 		//this.debugOut("cmd="+cmd);
 		shellExec(cmd);
@@ -1458,12 +1648,6 @@ var tmp = function () {
 			//this.debugOut("movePos="+movePos);
 			move = result.substring(movePos + 9, movePos + 14);
 			//this.debugOut("move="+move);
-			
-			// put bestmove output into status message for debug purposes
-			var endPos = result.indexOf("\n", movePos);
-			var moveText = result.substring(movePos + 9, endPos);
-			//this.debugOut("moveText="+moveText);
-			//this.checkStatus.setValue(moveText);
 		
 			switch (move.substring(0, 1)) {
 				case 'a':
@@ -1595,7 +1779,7 @@ var tmp = function () {
 	};
 	
 	target.processMove = function (bestmove) {
-		var nFrstFocus, nSquareId;
+		var nFrstFocus, nSquareId, nDiffX, nDiffY, nWay, nPiece, nPieceType, xRook, ourRook, flagPcColor;
 		//this.debugOut("processMove");
 		//this.debugOut("From: x="+bestmove[0]+", y="+bestmove[1]);
 		//this.debugOut("To: x="+bestmove[2]+", y="+bestmove[3]);
@@ -1603,7 +1787,7 @@ var tmp = function () {
 		// convert x,y to board position
 		nFrstFocus = (bestmove[1] + 2) * 10 + 2 + bestmove[0];
 		if (etc.aBoard[nFrstFocus] === 0) {
-			return false;
+			return (false);
 		}
 		nSquareId = (bestmove[3] + 2) * 10 + 2 + bestmove[2];
 		fourBtsLastPc = etc.aBoard[nFrstFocus] & 15;
@@ -1648,15 +1832,60 @@ var tmp = function () {
 			}
 		}
 
+		// need to disable possibility of castling if rooks moved
+		if (etc.bBlackSide) {
+			if ((nPieceType === 5) && (nFrstFocus === 22) && (bRooks.indexOf("q")>=0)) {
+				if (bRooks === "kq") {
+					bRooks = "k";
+				} else if (bRooks === "q") {
+					bRooks = "";
+				}
+			}
+			if ((nPieceType === 5) && (nFrstFocus === 29) && (bRooks.indexOf("k")>=0)) {
+				if (bRooks === "kq") {
+					bRooks = "q";
+				} else if (bRooks === "k") {
+					bRooks = "";
+				}
+			}
+		} else {		
+			if ((nPieceType === 5) && (nFrstFocus === 92) && (wRooks.indexOf("Q")>=0)) {
+				if (wRooks === "KQ") {
+					wRooks = "K";
+				} else if (wRooks === "Q") {
+					wRooks = "";
+				}
+			}
+			if ((nPieceType === 5) && (nFrstFocus === 99) && (wRooks.indexOf("K")>=0)) {
+				if (wRooks === "KQ") {
+					wRooks = "Q";
+				} else if (wRooks === "K") {
+					wRooks = "";
+				}
+			}
+		}
+				
 		// need to handle en passant
 		flagPcColor = nPiece & 8;
 		nWay = 4 - flagPcColor >> 2;
-		if ((nPieceType === 1) && (bestmove[1] === 7 + nWay >> 1)) {
-			// remove pawn
-			if (etc.bBlackSide) {
+		if (etc.bBlackSide) {
+			if ((nPieceType === 1) && (bestmove[1] === 7 + nWay >> 1) && (enPassant === nSquareId - 10)) {
+				// remove pawn
 				etc.aBoard[nSquareId - 10] = 0;
+			}
+			if ((nPieceType === 1) && (nDiffY === 2)) {
+				enPassant = nSquareId - 10;
 			} else {
+				enPassant = "";
+			}
+		} else {
+			if ((nPieceType === 1) && (bestmove[1] === 7 + nWay >> 1) && (enPassant === nSquareId + 10)) {
 				etc.aBoard[nSquareId + 10] = 0;
+			}
+			if ((nPieceType === 1) && (nDiffY === -2)) {
+				enPassant = nSquareId + 10;
+			} else {
+				enPassant = "";
 			}
 		}
 
@@ -1686,7 +1915,7 @@ var tmp = function () {
         merryMessage = (etc.bBlackSide) ? chessGame.textString[0][1] : chessGame.textString[0][0];
         this.messageStatus.setValue(merryMessage + "'s turn");
 
-		return true;
+		return (true);
 	};
 
     // Puzzle pop-up panel stuff
