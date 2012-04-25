@@ -9,6 +9,7 @@
  * ALL: Added CLI App (not enabled by default)
  * ALL: Added actions: No Action, Goto various nodes, Delete Current Item, Pause/Play Audio
  * ALL: Interactive Fiction App using Frotz (all models) and Nitfol (600/x50)
+ * ALL: Chess now uses Toga II v1.3.1 for AI; castling/en passant now properly handled
  * 300/505/600: Added Available Space Info to PRS+ About
  * 600/x50: Added Author List addon
  * 600/x50: Added Auto Standby/Shutdown Time options
