@@ -127,7 +127,7 @@
             </function>
                        
             <function id="doLeft">
-         	   this.moveCursor("left");
+				this.moveCursor("e");<!-- east AKA left -->
             </function>
 
 	       <function id="doPrevious">
@@ -135,7 +135,7 @@
             </function>
 
             <function id="doRight">
-          	  this.moveCursor("right");
+          	  this.moveCursor("w");<!-- west AKA right -->
             </function>
 
             <function id="doNext">
@@ -143,11 +143,11 @@
             </function>
 
             <function id="doUp">
-         	   this.moveCursor("up");
+				this.moveCursor("n"); <!-- north AKA up -->
             </function>
             
             <function id="doDown">
-         	   this.moveCursor("down");
+				this.moveCursor("s"); <!-- south AKA down -->
             </function>
 
         </code>

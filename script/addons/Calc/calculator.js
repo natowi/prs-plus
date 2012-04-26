@@ -6,7 +6,8 @@
 //	2011-03-01 kartu - Moved into a function, to allow variable name optimizations
 //	2011-05-20 Mark Nord - fixed input of digits like 0.0x
 //	2011-11-25 Ben Chenoweth - contents of memory cells now saved and loaded
-//	2012-04-23 drMerry - started wit optimizing
+//	2012-04-23 drMerry - started with optimizing
+//	2012-04-26 drMerry - more optimizations applied
 
 var tmp = function () {
 	// GLOBAL VARIABLES
@@ -14,7 +15,7 @@ var tmp = function () {
 		maxPushLevels = 12,
 		nhdigits = 8,
 		valueMaximum = 4294967296,
-		hexdigits = "" + "0123456789ABCDEF",
+		hexdigits = String("0123456789ABCDEF"),
 		stack = new Array(maxPushLevels),
 		angleMeasure = "deg",
 		value = 0,
@@ -32,6 +33,7 @@ var tmp = function () {
 		curDY = 50,
 		posX = 8,
 		posY = 8,
+		display,
 		gridDX,
 		gridDY,
 		digits,
@@ -40,41 +42,59 @@ var tmp = function () {
 			[{checked: false}],
 			[{checked: false}]
 		],
+		row_0 = ['b:hex', 'b:dec', 'b:bin', null, null, null, 't:deg', 't:rad', 't:grad'],
+		row_1 = ['f:memclear3', null, null, null, 'f:memplus3', 'f:memminus3', 'f:memrecall3', null, 'c:exitApp'],
+		row_2 = ['f:memclear2', null, null, null, 'f:memplus2', 'f:memminus2', 'f:memrecall2', null, null],
+		row_3 = ['f:memclear1', null, null, null, 'f:memplus1', 'f:memminus1', 'f:memrecall1', null, 'c:clearAll'],
+		row_4 = [null, 'f:ln', 'f:etox', 'f:log', 'f:10tox', 'f:log2', 'f:2tox', null, 'c:clear'],
+		row_4_2 = ['f:pi', 'f:ln', 'f:etox', 'f:log', 'f:10tox', 'f:log2', 'f:2tox', 'f:percent', 'c:clear'],
+		row_5 = [null, null, null, null, null, null, 'm:/', 'f:sqrt', 'f:xsq'],
+		row_5_2 = ['f:sin', 'f:cos', 'f:tan', 'd:7', 'd:8', 'd:9', 'm:/', 'f:sqrt', 'f:xsq'],
+		row_5_3 = [null, null, null, 'd:7', 'd:8', 'd:9', 'm:/', 'f:sqrt', 'f:xsq'],
+		row_6 = [null, null, null, null, null, null, 'm:*', 'f:1/x', 'm:pow'],
+		row_6_2 = ['f:asin', 'f:acos', 'f:atan', 'd:4', 'd:5', 'd:6', 'm:*', 'f:1/x', 'm:pow'],
+		row_6_3 = [null, null, null, 'd:4', 'd:5', 'd:6', 'm:*', 'f:1/x', 'm:pow'],
+		row_7 = ['c:exp', 'f:n!', 'm:%', 'd:1', null, null, 'm:-', 'c:popen', 'c:pclose'],
+		row_7_2 = ['c:exp', 'f:n!', 'm:%', 'd:1', 'd:2', 'd:3', 'm:-', 'c:popen', 'c:pclose'],
+		row_8 = ['m:and', 'm:or', 'm:xor', 'd:0', null, null, 'm:+', null, 'c:equals'],
+		row_8_2 = ['m:and', 'm:or', 'm:xor', 'd:0', 'c:period', 'c:sign', 'm:+', null, 'c:equals'],
+		row_9 = ['f:not', 'f:lsh', 'f:rsh', null, null, null, null, null, null],
+		row_9_2 = ['f:not', 'f:lsh', 'f:rsh', 'd:10', 'd:11', 'd:12', 'd:13', 'd:14', 'd:15'],
 		func_bas2 = [
-			['b:hex', 'b:dec', 'b:bin', null, null, null, 't:deg', 't:rad', 't:grad'],
-			['f:memclear3', null, null, null, 'f:memplus3', 'f:memminus3', 'f:memrecall3', null, 'c:exitApp'],
-			['f:memclear2', null, null, null, 'f:memplus2', 'f:memminus2', 'f:memrecall2', null, null],
-			['f:memclear1', null, null, null, 'f:memplus1', 'f:memminus1', 'f:memrecall1', null, 'c:clearAll'],
-			[null, 'f:ln', 'f:etox', 'f:log', 'f:10tox', 'f:log2', 'f:2tox', null, 'c:clear'],
-			[null, null, null, null, null, null, 'm:/', 'f:sqrt', 'f:xsq'],
-			[null, null, null, null, null, null, 'm:*', 'f:1/x', 'm:pow'],
-			['c:exp', 'f:n!', 'm:%', 'd:1', null, null, 'm:-', 'c:popen', 'c:pclose'],
-			['m:and', 'm:or', 'm:xor', 'd:0', null, null, 'm:+', null, 'c:equals'],
-			['f:not', 'f:lsh', 'f:rsh', null, null, null, null, null, null]
+			row_0,
+			row_1,
+			row_2,
+			row_3,
+			row_4,
+			row_5,
+			row_6,
+			row_7,
+			row_8,
+			row_9
 		],
 		func_bas10 = [
-			['b:hex', 'b:dec', 'b:bin', null, null, null, 't:deg', 't:rad', 't:grad'],
-			['f:memclear3', null, null, null, 'f:memplus3', 'f:memminus3', 'f:memrecall3', null, 'c:exitApp'],
-			['f:memclear2', null, null, null, 'f:memplus2', 'f:memminus2', 'f:memrecall2', null, null],
-			['f:memclear1', null, null, null, 'f:memplus1', 'f:memminus1', 'f:memrecall1', null, 'c:clearAll'],
-			['f:pi', 'f:ln', 'f:etox', 'f:log', 'f:10tox', 'f:log2', 'f:2tox', 'f:percent', 'c:clear'],
-			['f:sin', 'f:cos', 'f:tan', 'd:7', 'd:8', 'd:9', 'm:/', 'f:sqrt', 'f:xsq'],
-			['f:asin', 'f:acos', 'f:atan', 'd:4', 'd:5', 'd:6', 'm:*', 'f:1/x', 'm:pow'],
-			['c:exp', 'f:n!', 'm:%', 'd:1', 'd:2', 'd:3', 'm:-', 'c:popen', 'c:pclose'],
-			['m:and', 'm:or', 'm:xor', 'd:0', 'c:period', 'c:sign', 'm:+', null, 'c:equals'],
-			['f:not', 'f:lsh', 'f:rsh', null, null, null, null, null, null]
+			row_0,
+			row_1,
+			row_2,
+			row_3,
+			row_4_2,
+			row_5_2,
+			row_6_2,
+			row_7_2,
+			row_8_2,
+			row_9
 		],
 		func_bas16 = [
-			['b:hex', 'b:dec', 'b:bin', null, null, null, 't:deg', 't:rad', 't:grad'],
-			['f:memclear3', null, null, null, 'f:memplus3', 'f:memminus3', 'f:memrecall3', null, 'c:exitApp'],
-			['f:memclear2', null, null, null, 'f:memplus2', 'f:memminus2', 'f:memrecall2', null, null],
-			['f:memclear1', null, null, null, 'f:memplus1', 'f:memminus1', 'f:memrecall1', null, 'c:clearAll'],
-			[null, 'f:ln', 'f:etox', 'f:log', 'f:10tox', 'f:log2', 'f:2tox', null, 'c:clear'],
-			[null, null, null, 'd:7', 'd:8', 'd:9', 'm:/', 'f:sqrt', 'f:xsq'],
-			[null, null, null, 'd:4', 'd:5', 'd:6', 'm:*', 'f:1/x', 'm:pow'],
-			['c:exp', 'f:n!', 'm:%', 'd:1', 'd:2', 'd:3', 'm:-', 'c:popen', 'c:pclose'],
-			['m:and', 'm:or', 'm:xor', 'd:0', null, null, 'm:+', null, 'c:equals'],
-			['f:not', 'f:lsh', 'f:rsh', 'd:10', 'd:11', 'd:12', 'd:13', 'd:14', 'd:15']
+			row_0,
+			row_1,
+			row_2,
+			row_3,
+			row_4,
+			row_5_3,
+			row_6_3,
+			row_7_2,
+			row_8,
+			row_9_2
 		],
 		button = func_bas10,
 		buttons = [
@@ -108,7 +128,7 @@ var tmp = function () {
 			var valStr, i, expStr, valNeg, valInt, valFrac, prec, mult, frac,
 				s = "", x, d, y, e, fracStr; //get var out of loop JS has function scope, no block scope so all vars can be at start of function to speed up process.
 			if (base === 10) {
-				valStr = "" + value; //value.toString(base);
+				valStr = String(value); //value.toString(base);
 
 				if (valStr.indexOf("N") >= 0 || (value === 2 * value && value === 1 + value)) {return "Error "; }
 				i = valStr.indexOf("e");
@@ -123,15 +143,15 @@ var tmp = function () {
 					if (value < 0) { value = -value; valNeg = true; }
 					valInt = Math.floor(value);
 					valFrac = value - valInt;
-					prec = digitsMaximum - ("" + valInt).length - 1;	// how many digits available after period
+					prec = digitsMaximum - String(valInt).length - 1;	// how many digits available after period
 					if (!isItThere && fixed > 0) { prec = fixed; }
 					mult = " 1000000000000000000".substring(1, prec + 2);
 					frac = Math.floor(valFrac * mult + 0.5);
-					valInt = Math.floor(Math.floor(value * mult + .5) / mult);
+					valInt = Math.floor(Math.floor(value * mult + 0.5) / mult);
 					if (valNeg) {
 						valStr = "-" + valInt;
 						value = -value;
-					} else { valStr = "" + valInt; }
+					} else { valStr = String(valInt); }
 					fracStr = "00000000000000" + frac;
 					fracStr = fracStr.substring(fracStr.length - prec, fracStr.length);
 					i = fracStr.length - 1;
@@ -164,14 +184,14 @@ var tmp = function () {
 					x = val % base;
 					d = hexdigits.charAt(x);
 					val = (val - x) / base | 0;
-					s = "" + d + s;
+					s = String(d) + s;
 				}
 				return s;
 			}
 		},
 
 		update = function () {
-			var display;
+			var digMax = digitsMaximum - 1;
 			if (base === 10) {
 				display = format(value);
 				if (expMode) {
@@ -189,7 +209,7 @@ var tmp = function () {
 					}
 				}
 				display = "               " + display;
-				display = display.substring(display.length - digitsMaximum - 1, display.length);
+				display = display.substring(display.length - digMax, display.length);
 				target.CalculatorLabel.setValue(display);
 			} else {
 				value = value % valueMaximum;
@@ -203,7 +223,7 @@ var tmp = function () {
 					display += " ";
 				}
 				display = "                 " + display;
-				display = display.substring(display.length - digitsMaximum - 1, display.length);
+				display = display.substring(display.length - digMax, display.length);
 				target.CalculatorLabel.setValue(display);
 			}
 		  // target.bubble("tracelog","upd ende"); // debug
@@ -226,11 +246,12 @@ var tmp = function () {
 			if (stackTier === maxPushLevels) {
 				return false;
 			}
-			var i;
+			var i, j;
 			for (i = stackTier; i > 0; --i) {
-				stack[i].value = stack[i - 1].value;
-				stack[i].op = stack[i - 1].op;
-				stack[i].prec = stack[i - 1].prec;
+				j = i - 1;
+				stack[i].value = stack[j].value;
+				stack[i].op = stack[j].op;
+				stack[i].prec = stack[j].prec;
 			}
 			stack[0].value = value;
 			stack[0].op = op;
@@ -251,11 +272,12 @@ var tmp = function () {
 			if (stackTier === 0) {
 				return false;
 			}
-			var i;
+			var i, j;
 			for (i = 0; i < stackTier; ++i) {
-				stack[i].value = stack[i + 1].value;
-				stack[i].op = stack[i + 1].op;
-				stack[i].prec = stack[i + 1].prec;
+				j = i + 1;
+				stack[i].value = stack[j].value;
+				stack[i].op = stack[j].op;
+				stack[i].prec = stack[j].prec;
 			}
 			--stackTier;
 			return true;
@@ -269,39 +291,39 @@ var tmp = function () {
 				sval = stack[0].value;
 			//	target.bubble("tracelog","evalx "+op+sval); // debug
 			switch (op) {
-				case '+': {
-					value = sval + value;
-					break; }
-				case '-': {
-					value = sval - value;
-					break; }
-				case '*': {
-					value = sval * value;
-					break; }
-				case '/': {
-					value = sval / value;
-					break; }
-				case '%': {
-					value = sval % value;
-					break; }
-				case 'pow': {
-					value = Math.pow(sval, value);
-					break; }
-				case "and": {
-					value = sval & value;
-					break; }
-				case "or": {
-					value = sval | value;
-					break; }
-				case "xor": {
-					value = sval ^ value;
-					break; }
-				case "lsh": {
-					value = sval << value;
-					break; }
-				case "rsh": {
-					value = sval >> value;
-					break; }
+			case '+':
+				value = sval + value;
+				break;
+			case '-':
+				value = sval - value;
+				break;
+			case '*':
+				value = sval * value;
+				break;
+			case '/':
+				value = sval / value;
+				break;
+			case '%':
+				value = sval % value;
+				break;
+			case 'pow':
+				value = Math.pow(sval, value);
+				break;
+			case 'and':
+				value = sval & value;
+				break;
+			case 'or':
+				value = sval | value;
+				break;
+			case 'xor':
+				value = sval ^ value;
+				break;
+			case 'lsh':
+				value = sval << value;
+				break;
+			case 'rsh':
+				value = sval >> value;
+				break;
 			}
 			pop();
 			if (op === '(') {
@@ -320,82 +342,42 @@ var tmp = function () {
 			enter();
 			//	target.bubble("tracelog","op= "+op); // debug
 			var prec = 0;
-			if (base === 10) {
-				switch (op) {
-				case '+':
-				case '-':
-				{
-					prec = 1;
-					break; }
-				case '*':
-				case '/':
-				case '%': { // op=='%' was added (blippie)
-					prec = 2;
-					break;
-				}
-				case "pow": {
-					prec = 3;
-					break;
-				}
-				case "or":
-				case 'xor': { // this statement wasn't originally here
-					prec = 4;
-					break;
-				}
-				case "and": { // this statement wasn't originally here
-					prec = 5;
-					break;
-				}
-				case "lsh":
-				case "rsh": { // this statement wasn't originally here
-					prec = 6;
-					break;
-						}
-					}
-				if (stackTier > 0 && prec <= stack[0].prec) {
-					evalx();
-				}
-				if (!push(value, op, prec)) {
+			switch (op) {
+			case '+':
+			case '-':
+				prec = 1;
+				break;
+			case '*':
+			case '/':
+			case '%':  // op=='%' was added (blippie)
+				prec = 2;
+				break;
+			case 'pow':
+				prec = 3;
+				break;
+			case 'or':
+			case 'xor':
+				prec = 4; // original value: prec = 3;
+				break;
+			case 'and':
+				prec = 5; // original value: prec = 4;
+				break;
+			case 'lsh':
+			case 'rsh':  // this statement wasn't originally here
+				prec = 6;
+				break;
+			default:
+				if (base !== 10) {
 					value = "NAN";
 				}
-				update();
-			} else {
-				switch (op) {
-				case '+':
-				case '-': {
-					prec = 1;
-					break; }
-				case '*':
-				case '/':
-				case '%': { // op=='%' was added (blippie)
-					prec = 2;
-					break; }
-				case 'pow': {
-					prec = 3;
-					break; }
-				case "or":
-				case 'xor': {
-					prec = 4; // original value: prec = 3;
-					break; }
-				case "and": {
-					prec = 5; // original value: prec = 4;
-					break; }
-				case "lsh":
-				case "rsh": { // this statement wasn't originally here
-					prec = 6;
-					break; }
-				default: {
-					value = "NAN";
-						}
-				}
-				if (stackTier > 0 && prec <= stack[0].prec) {
-					evalx();
-				}
-				if (!push(value, op, prec)) {
-					value = "NAN";
-				}
-				update();
 			}
+			if (stackTier > 0 && prec <= stack[0].prec) {
+				evalx();
+			}
+			if (!push(value, op, prec)) {
+				value = "NAN";
+			}
+			update();
 		},
 
 		equals = function () {
@@ -444,26 +426,32 @@ var tmp = function () {
 			}
 		},
 
+		decval = function (dv) {
+			return parseInt(dv, 10);
+		},
+
 		func = function (f) {
 			enter();
 			//target.bubble("tracelog","f= "+f); // debug
-			var op, n, sval, i;
-			//TODO turn next into switch
-			if (f === "percent") { // behave like old TI-Calculators
+			var op, n, sval, i, trigmeth0 = trigmeth[0].checked, trigmeth1 = trigmeth[1].checked, onepercent = value / 100;
+			//trigmeth2 = trigmeth[2].checked = inherent. if 0 or 1 are true this is false, else true
+			switch (f) {
+			case 'percent': // behave like old TI-Calculators
 				op = stack[0].op;
 				sval = stack[0].value;
 				//target.bubble("tracelog","op= " + op); // debug
 				//target.bubble("tracelog","value= " + sval); // debug
 				if (op === '+' || op === '-') {
-					value = sval * value / 100;
+					value = sval * onepercent;
 				} else {
-					value = value / 100;
+					value = onepercent;
 				}
-			} else if (f === "1/x") {
+				break;
+			case '1/x':
 				value = 1 / value;
-			} else if (f === "n!") {
+				break;
+			case 'n!':
 				value = Math.floor(value);
-
 				if (value < 0 || value > 200) {
 					value = "NAN";
 				} else {
@@ -471,186 +459,222 @@ var tmp = function () {
 					for (i = 1; i <= value; ++i) {
 						n *= i;
 					}
-				// Value needs to be inside the else}
-
+					// Value needs to be inside the else}
 					value = n;
 				}
-			} else if (f === "memclearall") {
+				break;
+			case 'memclearall':
 				target.Meminput1.setValue(0);
 				target.Meminput2.setValue(0);
 				target.Meminput3.setValue(0);
 				//memform.meminput4.value = "";
 				//memform.meminput5.value = "";
-			} else if (f === "memplus1") {
-				target.Meminput1.setValue(target.Meminput1.getValue() * 1 + value);
-			} else if (f === "memminus1") {
-				target.Meminput1.setValue(target.Meminput1.getValue() * 1 - value);
-			} else if (f === "memrecall1") {
+				break;
+			case 'memplus1':
+				target.Meminput1.setValue(decval(target.Meminput1.getValue()) + value);
+				break;
+			case 'memminus1':
+				target.Meminput1.setValue(decval(target.Meminput1.getValue()) - value);
+				break;
+			case 'memrecall1':
 				value = parseFloat(target.Meminput1.getValue());
-			} else if (f === "memclear1") {
+				break;
+			case 'memclear1':
 				target.Meminput1.setValue(0);
-			} else if (f === "memplus2") {
-				target.Meminput2.setValue(target.Meminput2.getValue() * 1 + value);
-			} else if (f === "memminus2") {
-				target.Meminput2.setValue(target.Meminput2.getValue() * 1 - value);
-			} else if (f === "memrecall2") {
+				break;
+			case 'memplus2':
+				target.Meminput2.setValue(decval(target.Meminput2.getValue()) + value);
+				break;
+			case 'memminus2':
+				target.Meminput2.setValue(decval(target.Meminput2.getValue()) - value);
+				break;
+			case 'memrecall2':
 				value = parseFloat(target.Meminput2.getValue());
-			} else if (f === "memclear2") {
+				break;
+			case 'memclear2':
 				target.Meminput2.setValue(0);
-			} else if (f === "memplus3") {
-				target.Meminput3.setValue(target.Meminput3.getValue() * 1 + value);
-			} else if (f === "memminus3") {
-				target.Meminput3.setValue(target.Meminput3.getValue() * 1 - value);
-			} else if (f === "memrecall3") {
+				break;
+			case 'memplus3':
+				target.Meminput3.setValue(decval(target.Meminput3.getValue()) + value);
+				break;
+			case 'memminus3':
+				target.Meminput3.setValue(decval(target.Meminput3.getValue()) - value);
+				break;
+			case 'memrecall3':
 				value = parseFloat(target.Meminput3.getValue());
-			} else if (f === "memclear3") {
+				break;
+			case 'memclear3':
 				target.Meminput3.setValue(0);
-			}
-			/*
-			else if (f === "memplus4") {
-				memform.meminput4.value = value;
-			}
-			else if (f === "memrecall4") {
-				value = parseFloat(memform.meminput4.value);
-			}
-			else if (f === "memclear4") {
-				memform.meminput4.value = "";
-			}
-			else if (f === "memplus5") {
-				memform.meminput5.value = value;
-			}
-			else if (f === "memrecall5") {
-				value = parseFloat(memform.meminput5.value);
-			}
-			else if (f === "memclear5") {
-				memform.meminput5.value = "";
-			}
-			*/
-				else if (f === "sin") {
-				// if "Deg" is checked...
-				if (trigmeth[0].checked) {
+				break;
+				/*
+				else if (f === "memplus4") {
+					memform.meminput4.value = value;
+				}
+				else if (f === "memrecall4") {
+					value = parseFloat(memform.meminput4.value);
+				}
+				else if (f === "memclear4") {
+					memform.meminput4.value = "";
+				}
+				else if (f === "memplus5") {
+					memform.meminput5.value = value;
+				}
+				else if (f === "memrecall5") {
+					value = parseFloat(memform.meminput5.value);
+				}
+				else if (f === "memclear5") {
+					memform.meminput5.value = "";
+				}
+				*/
+			case 'sin':
+				if (trigmeth0) {
+					// if "Deg" is checked...
 					value = Math.sin(value * Math.PI / 180);
-				} else if (trigmeth[1].checked) {
-				// if "Rad" is checked...
+				} else if (trigmeth1) {
+					// if "Rad" is checked...
 					value = Math.sin(value);
-				} else if (trigmeth[2].checked) {
-				// if "Grad" is checked...
+				} else {
+					// if "Grad" is checked...
 					value = Math.sin(value * Math.PI / 200);
 				}
-			} else if (f === "cos") {
-				if (trigmeth[0].checked) {
-				// if "Deg" is checked...
+				break;
+			case 'cos':
+				if (trigmeth0) {
+					// if "Deg" is checked...
 					value = Math.cos(value * Math.PI / 180);
-				} else if (trigmeth[1].checked) {
-				// if "Rad" is checked...
+				} else if (trigmeth1) {
+					// if "Rad" is checked...
 					value = Math.cos(value);
-				} else if (trigmeth[2].checked) {
-				// if "Grad" is checked...
+				} else {
+					// if "Grad" is checked...
 					value = Math.cos(value * Math.PI / 200);
 				}
-			} else if (f === "tan") {
-				// if "Deg" is checked...
-				if (trigmeth[0].checked) {
+				break;
+			case 'tan':
+				if (trigmeth0) {
+					// if "Deg" is checked...
 					value = Math.tan(value * Math.PI / 180);
-				} else if (trigmeth[1].checked) {
-				// if "Rad" is checked...
+				} else if (trigmeth1) {
+					// if "Rad" is checked...
 					value = Math.tan(value);
-				} else if (trigmeth[2].checked) {
-				// if "Grad" is checked...
+				} else {
+					// if "Grad" is checked...
 					value = Math.tan(value * Math.PI / 200);
 				}
-			} else if (f === "log") {
+				break;
+			case 'log':
 				value = Math.log(value) / Math.LN10;
-			} else if (f === "log2") {
+				break;
+			case 'log2':
 				value = Math.log(value) / Math.LN2;
-			} else if (f === "ln") {
+				break;
+			case 'ln':
 				value = Math.log(value);
-			} else if (f === "sqrt") {
+				break;
+			case 'sqrt':
 				value = Math.sqrt(value);
-			} else if (f === "lsh") {
+				break;
+			case 'lsh':
 				value = value << 1;
-			} else if (f === "rsh") {
+				break;
+			case 'rsh':
 				value = value >> 1;
-			} else if (f === "pi") {
+				break;
+			case 'pi':
 				value = Math.PI;
-			} else if (f === "acos") {
-				// if "Deg" is checked...
-				if (trigmeth[0].checked) {
+				break;
+			case 'acos':
+				if (trigmeth0) {
+					// if "Deg" is checked...
 					value = Math.acos(value) * (180 / Math.PI);
-				} else if (trigmeth[1].checked) {
-				// if "Rad" is checked...
+				} else if (trigmeth1) {
+					// if "Rad" is checked...
 					value = Math.acos(value);
-				} else if (trigmeth[2].checked) {
-				// if "Grad" is checked...
+				} else {
+					// if "Grad" is checked...
 					value = Math.acos(value) * (200 / Math.PI);
 				}
-			} else if (f === "asin") {
-				// if "Deg" is checked...
-				if (trigmeth[0].checked) {
+				break;
+			case 'asin':
+				if (trigmeth0) {
+					// if "Deg" is checked...
 					value = Math.asin(value) * (180 / Math.PI);
-				} else if (trigmeth[1].checked) {
+				} else if (trigmeth1) {
 					// if "Rad" is checked...
 					value = Math.asin(value);
-				} else if (trigmeth[2].checked) {
+				} else {
 					// if "Grad" is checked...
 					value = Math.asin(value) * (200 / Math.PI);
 				}
-			} else if (f === "atan") {
-				// if "Deg" is checked...
-				if (trigmeth[0].checked) {
+				break;
+			case 'atan':
+				if (trigmeth0) {
+					// if "Deg" is checked...
 					value = Math.atan(value) * (180 / Math.PI);
-				} else if (trigmeth[1].checked) {
-				// if "Rad" is checked...
+				} else if (trigmeth1) {
+					// if "Rad" is checked...
 					value = Math.atan(value);
-				} else if (trigmeth[2].checked) {
-				// if "Grad" is checked...
+				} else {
+					// if "Grad" is checked...
 					value = Math.atan(value) * (200 / Math.PI);
 				}
-			} else if (f === "10tox") {
+				break;
+			case '10tox':
 				value = Math.exp(value * Math.LN10);
-			} else if (f === "etox") {
+				break;
+			case 'etox':
 				value = Math.exp(value);
-			} else if (f === "2tox") {
+				break;
+			case '2tox':
 				value = Math.exp(value * Math.LN2);
-			} else if (f === "xsq") {
+				break;
+			case 'xsq':
 				value = value * value;
-			} else if (f === "not") {
+				break;
+			case 'not':
 				value = ~value;
+				break;
 			}
 			update();
 		},
 
-		checkbase = function (e) {
-			if (e >= base) {
-				return false;
-			} else {
-				return true;
-			}
-		},
+		// checkbase = function (e) { //unused
+			// if (e >= base) {
+				// return false;
+			// } else {
+				// return true;
+			// }
+		// },
 
 		angleConvert = function (e) {
-			if (e === "deg") {
-				if (angleMeasure === "rad") {
+			var angleRad = angleMeasure === "rad", angleDeg = angleMeasure === "deg", angleGra = angleMeasure === "grad";
+			switch (e) {
+			case 'deg':
+				if (angleGra) {
 					value = (180 / Math.PI) * value;
 				} else if (angleMeasure === "grad") {
 					value = (180 / 200) * value;
 				}
-				angleMeasure = "deg";
-			} else if (e === "rad") {
-				if (angleMeasure === "deg") {
+				//angleMeasure = "deg";
+				break;
+			case 'rad':
+				if (angleDeg) {
 					value = (Math.PI / 180) * value;
-				} else if (angleMeasure === "grad") {
+				} else if (angleGra) {
 					value = (Math.PI / 200) * value;
 				}
-				angleMeasure = "rad";
-			} else if (e === "grad") {
-				if (angleMeasure === "deg") {
+				//angleMeasure = "rad";
+				break;
+			case 'grad':
+				if (angleDeg) {
 					value = (200 / 180) * value;
-				} else if (angleMeasure === "rad") {
+				} else if (angleRad) {
 					value = (200 / Math.PI) * value;
-					}
-				angleMeasure = "grad";
+				}
+				//angleMeasure = "grad";
+				break;
 			}
+			angleMeasure = e;
 			equals();
 		},
 
@@ -658,11 +682,12 @@ var tmp = function () {
 			this.value = 0;
 			this.prec = 0;
 			this.op = "";
-			},
+		},
 
 
 		freshstart = function () {
-			var display = format(value), i;
+			var i;
+			display = format(value);
 			display = "               " + display;
 			display = display.substring(display.length - digitsMaximum - 1, display.length);
 			target.CalculatorLabel.setValue(display);
@@ -684,7 +709,7 @@ var tmp = function () {
 		/* set translated appTitle and appIcon */
 		this.appTitle.setValue(kbook.autoRunRoot._title);
 		this.appIcon.u = kbook.autoRunRoot._icon;
-		this.showTime();
+		//this.showTime(); //Function disabled
 		freshstart();
 
 		/* shown gridCursor only on 300/505 */
@@ -703,7 +728,7 @@ var tmp = function () {
 	target.digitF = function (sender) {
 		// this.bubble("tracelog"," "+_Core.debug.dumpToString(sender.text,"n.",2)); // debug
 		// this.bubble("tracelog"," "+getSoValue(sender,"text")); // debug
-		var n = parseInt(sender);
+		var n = decval(sender);
 		if (isNaN(n)) {// Button doCommand; param = buttonObject, Number in Object.text
 			n = parseInt(getSoValue(sender, "text"), base);
 		}
@@ -744,7 +769,7 @@ var tmp = function () {
 					value = value * 10 + n;
 				}
 			}
-			update();
+			//update();
 		} else {
 			if (isItThere) {
 				value = 0;
@@ -759,17 +784,17 @@ var tmp = function () {
 				value = value * base + n;
 				++digits;
 			}
-			update();
+			//update();
 		}
+		update(); //if and else both use it
 	};
 
 	/* this function calculates the x/y index of the selected button now device-indpended,
 	   sets ScreenCursorPosition and calls doCenterF */
 	target.doButtonClick = function (sender) {
-		this.showTime();
-		var x = getSoValue(sender, "x"), y;
+		//this.showTime(); //Function Disabled
+		var x = getSoValue(sender, "x"), y = getSoValue(sender, "y");
 		x = (x - gridDX) / 60;
-		y = getSoValue(sender, "y");
 		y = (y - gridDY) / 50;
 		//	this.bubble("tracelog","x="+x+" y="+y); // debug
 		posX = x;
@@ -782,69 +807,55 @@ var tmp = function () {
 	target.doNextF = function () { equals(); };
 
 	target.doCenterF = function () {
-		var  todo = button[posY][posX].split(":");
+		var todo = button[posY][posX].split(":");
 		//	this.bubble("tracelog","[0]="+todo[0]+"[1]="+todo[1]); // debug
 		switch (todo[0]) {
-			case "b": {
-				target.setNumberBase(todo[1]);
-				break; }
-			case "c": {
-				switch (todo[1]) {
-					case "clear": {
-						clear();
-						break;
-					}
-					case "clearAll": {
-						clearAll();
-						break;
-					}
-					case "equals": {
-						equals();
-						break;
-					}
-					case "exitApp": {
-						this.exitApp();
-						break;
-					}
-					case "exp": {
-						exp();
-						break;
-					}
-					case "pclose": {
-						pclose();
-						break;
-					}
-					case "period": {
-						period();
-						break;
-					}
-					case "popen": {
-						popen();
-						break;
-					}
-					case "sign": {
-						sign();
-						break;
-					}
-				}
+		case 'b':
+			target.setNumberBase(todo[1]);
 			break;
-			}
-			case "d": {
-				this.digitF(todo[1]);
+		case 'c':
+			switch (todo[1]) {
+			case 'clear':
+				clear();
+				break;
+			case 'clearAll':
+				clearAll();
+				break;
+			case 'equals':
+				equals();
+				break;
+			case 'exitApp':
+				this.exitApp();
+				break;
+			case 'exp':
+				exp();
+				break;
+			case 'pclose':
+				pclose();
+				break;
+			case 'period':
+				period();
+				break;
+			case 'popen':
+				popen();
+				break;
+			case 'sign':
+				sign();
 				break;
 			}
-			case "f": {
-				func(todo[1]);
-				break;
-			}
-			case "m": {
-				mathOp(todo[1]);
-				break;
-			}
-			case "t": {
-				target.setTrigmeth(todo[1]);
-				break;
-			}
+			break;
+		case 'd':
+			this.digitF(todo[1]);
+			break;
+		case 'f':
+			func(todo[1]);
+			break;
+		case 'm':
+			mathOp(todo[1]);
+			break;
+		case 't':
+			target.setTrigmeth(todo[1]);
+			break;
 		}
 	};
 
@@ -857,30 +868,35 @@ var tmp = function () {
 			// this.bubble("tracelog","base:"+b); // debug
 		}
 		switch (b) {
-			case 'hex': { base = 16;
-					button = func_bas16;
-					break; }
-			case 'dec': { base = 10;
-					button = func_bas10;
-					break; }
-			case 'bin': { base = 2;
-					button = func_bas2;
-					break; }
-		default:
+		case 'hex':
+			base = 16;
+			button = func_bas16;
+			break;
+		// case 'dec': 
+			// base = 10;
+			// button = func_bas10;
+			// break;
+		case 'bin':
+			base = 2;
+			button = func_bas2;
+			break;
+		default: //equals case 'dec'
 			base = 10;
+			button = func_bas10;
 		}
 		// enable trigm only when base=10
-		var doTrigm = base === 10, i, j, id;
+		var doTrigm = base === 10, i, j, k, id;
 		target.TRIGM.RBUTTON_DEG.enable(doTrigm);
 		target.TRIGM.RBUTTON_RAD.enable(doTrigm);
 		target.TRIGM.RBUTTON_GRAD.enable(doTrigm);
 		// activate/deactivate buttons/functions according base
 		for (i = 0; i < 6; i++) {
+			k = i + 4;
 			for (j = 0; j < 9; j++) {
 				id = buttons[i][j];
 				// target.bubble("tracelog",id ); // debug
 				if (id !== null) {
-					target[id].enable(button[i + 4][j] !== null);
+					target[id].enable(button[k][j] !== null);
 				}
 			}
 		}
@@ -904,36 +920,38 @@ var tmp = function () {
 		// this.bubble("tracelog","base:"+b); // debug
 		}
 		if (base === 10) {angleConvert(t); }
-			// target.bubble("tracelog","t="+trigmeth[0].checked+trigmeth[1].checked+trigmeth[2].checked);	// debug
+		// target.bubble("tracelog","t="+trigmeth[0].checked+trigmeth[1].checked+trigmeth[2].checked);	// debug
 	};
 
-	target.showTime = function () {
-		return; /* clock disabled * /
+	/*target.showTime = function () {
+		return; / * clock disabled * /
 		var time = new Date(), 
 		timeLocale = time.toLocaleTimeString(),
 		show = timeLocale.substring(0, timeLocale.lastIndexOf(':'));
-		target.clock1.setValue(show);/ **/
-	};
+		target.clock1.setValue(show);/ ** /
+	};*/
 
 	target.moveCursor = function (direction) {
-		this.showTime();
-		if (direction === "right") {
+		//this.showTime(); //Function disabled
+		switch (direction) {
+		case 'w': //west AKA right
 			posX = posX + 1;
 			if (posX > 8) {posX = 0; }
-		}
-		if (direction === "left") {
+			break;
+		case 'e': //east AKA left
 			posX = posX - 1;
 			if (posX < 0) {posX = 8; }
-		}
-		if (direction === "up") {
+			break;
+		case 'n': //north AKA up
 			posY = posY - 1;
 			if (posY < 0) {posY = 9; }
-		}
-		if (direction === "down") {
+			break;
+		case 's': //south AKA down
 			posY = posY + 1;
 			if (posY > 9) {posY = 0; }
+			break;
 		}
-		if ((direction !== "left") && posY === 8 && posX === 7) {posX++; } // double sized equal button
+		if ((direction !== "e") && posY === 8 && posX === 7) {posX++; } // double sized equal button
 		if (button[posY][posX] === null) {this.moveCursor(direction); }  // jump holes
 		if (posY === 0) { firstY = 105; } else { firstY = 205; }
 		this.drawGridCursor(posX, posY);
