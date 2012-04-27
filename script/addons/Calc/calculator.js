@@ -8,10 +8,16 @@
 //	2011-11-25 Ben Chenoweth - contents of memory cells now saved and loaded
 //	2012-04-23 drMerry - started with optimizing
 //	2012-04-26 drMerry - more optimizations applied
+//		Chosen for speed over readability
 
 var tmp = function () {
 	// GLOBAL VARIABLES
 	var digitsMaximum = 16,
+		pi = Math.PI,
+		pi200 = 200 / pi,
+		pi180 = 180 / pi,
+		pidiv180 = pi / 180,
+		pidiv200 = pi / 200,
 		maxPushLevels = 12,
 		nhdigits = 8,
 		valueMaximum = 4294967296,
@@ -33,7 +39,9 @@ var tmp = function () {
 		curDY = 50,
 		posX = 8,
 		posY = 8,
-		display,
+		isbase10 = true,
+		disp = ['NAN', '.', ' ', '                 ', 'Error ', '               '],
+		display = '',
 		gridDX,
 		gridDY,
 		digits,
@@ -110,8 +118,13 @@ var tmp = function () {
 		datPath,
 	// END GLOBAL VARIABLES */
 
+		setbase = function (nb) {
+			isbase10 = (nb === 10);
+			base = nb;
+		},
+
 		enter = function () {
-			if (base === 10) {
+			if (isbase10) {
 				if (expMode) {
 					value = value * Math.exp(expval * Math.LN10);
 				}
@@ -126,18 +139,18 @@ var tmp = function () {
 			//	target.bubble("tracelog","FORMAT");   //debug
 			//	return;		//debug
 			var valStr, i, expStr, valNeg, valInt, valFrac, prec, mult, frac,
-				s = "", x, d, y, e, fracStr; //get var out of loop JS has function scope, no block scope so all vars can be at start of function to speed up process.
-			if (base === 10) {
+				s = "", x, d, fracStr; //get var out of loop JS has function scope, no block scope so all vars can be at start of function to speed up process.
+			if (isbase10) {
 				valStr = String(value); //value.toString(base);
 
-				if (valStr.indexOf("N") >= 0 || (value === 2 * value && value === 1 + value)) {return "Error "; }
+				if (valStr.indexOf("N") >= 0 || (value === 2 * value && value === 1 + value)) {return disp[4]; }
 				i = valStr.indexOf("e");
 				if (i >= 0) {
 					expStr = valStr.substring(i + 1, valStr.length);
 					if (i > 11) {i = 11; }  // max 11 digits
 					valStr = valStr.substring(0, i);
-					if (valStr.indexOf(".") < 0) { valStr += "."; }
-					valStr += " " + expStr;
+					if (valStr.indexOf(disp[1]) < 0) { valStr += disp[1]; }
+					valStr += disp[2] + expStr;
 				} else {
 					valNeg = false;
 					if (value < 0) { value = -value; valNeg = true; }
@@ -160,26 +173,26 @@ var tmp = function () {
 						while (i >= 0 && fracStr.charAt(i) === "0") { --i; }
 						fracStr = fracStr.substring(0, i + 1);
 					}
-					if (i >= 0) { valStr += "." + fracStr; }
+					if (i >= 0) { valStr += disp[1] + fracStr; }
 				}
 				return valStr;
 			} else {
 				s = "";
-				if (val < 0 || val > valueMaximum) { return "Error"; }
+				if (val < 0 || val > valueMaximum) { return disp[4]; }
 				if (val === 0) { return "0"; }
-				if (base < 2) {
-					while (val && s.length < 20) {
-						x = val % 16;
-						d = hexdigits.charAt(x);
-						val = (val - x) / 16 | 0;
-						y = val % 16;
-						e = hexdigits.charAt(y);
-						val = (val - y) / 16 | 0;
-						s = "%" + e + d + s;
-					}
-					s = '"' + s + '"';
-					return unescape(s);
-				}
+				// if (base < 2) { // will never run while base is 2, 10 or 16
+					// while (val && s.length < 20) {
+						// x = val % 16;
+						// d = hexdigits.charAt(x);
+						// val = (val - x) / 16 | 0;
+						// y = val % 16;
+						// e = hexdigits.charAt(y);
+						// val = (val - y) / 16 | 0;
+						// s = "%" + e + d + s;
+					// }
+					// s = '"' + s + '"';
+					// return unescape(s);
+				// }
 				while (val && s.length < 20) {
 					x = val % base;
 					d = hexdigits.charAt(x);
@@ -192,25 +205,23 @@ var tmp = function () {
 
 		update = function () {
 			var digMax = digitsMaximum - 1;
-			if (base === 10) {
+			if (isbase10) {
 				display = format(value);
 				if (expMode) {
 					if (expval < 0) {
-						display += " " + expval;
+						display += disp[2] + expval;
 					} else {
 						display += " +" + expval;
 					}
 				}
-				if (display.indexOf(".") < 0 && display !== "Error ") {
+				if (display.indexOf(disp[1]) < 0 && display !== disp[4]) {
 					if (isItThere || decimal > 0) {
-						display += '.';
+						display += disp[1];
 					} else {
-						display += ' ';
+						display += disp[2];
 					}
 				}
-				display = "               " + display;
-				display = display.substring(display.length - digMax, display.length);
-				target.CalculatorLabel.setValue(display);
+				display = disp[5] + display;
 			} else {
 				value = value % valueMaximum;
 				if (value < 0) {
@@ -218,14 +229,14 @@ var tmp = function () {
 				}
 				display = format(value);
 				if (isItThere) {
-					display += ".";
+					display += disp[1];
 				} else {
-					display += " ";
+					display += disp[2];
 				}
-				display = "                 " + display;
-				display = display.substring(display.length - digMax, display.length);
-				target.CalculatorLabel.setValue(display);
+				display = disp[3] + display;
 			}
+			display = display.substring(display.length - digMax, display.length);
+			target.CalculatorLabel.setValue(display);
 		  // target.bubble("tracelog","upd ende"); // debug
 		},
 
@@ -246,8 +257,8 @@ var tmp = function () {
 			if (stackTier === maxPushLevels) {
 				return false;
 			}
-			var i, j;
-			for (i = stackTier; i > 0; --i) {
+			var i = stackTier, j;
+			for (i; i > 0; --i) {
 				j = i - 1;
 				stack[i].value = stack[j].value;
 				stack[i].op = stack[j].op;
@@ -263,7 +274,7 @@ var tmp = function () {
 		popen =  function () {
 			enter();
 			if (!push(0, '(', 0)) {
-				value = "NAN";
+				value = disp[0];
 			}
 			update();
 		},
@@ -272,8 +283,8 @@ var tmp = function () {
 			if (stackTier === 0) {
 				return false;
 			}
-			var i, j;
-			for (i = 0; i < stackTier; ++i) {
+			var i = 0, j;
+			for (i; i < stackTier; ++i) {
 				j = i + 1;
 				stack[i].value = stack[j].value;
 				stack[i].op = stack[j].op;
@@ -367,15 +378,15 @@ var tmp = function () {
 				prec = 6;
 				break;
 			default:
-				if (base !== 10) {
-					value = "NAN";
+				if (!isbase10) {
+					value = disp[0];
 				}
 			}
 			if (stackTier > 0 && prec <= stack[0].prec) {
 				evalx();
 			}
 			if (!push(value, op, prec)) {
-				value = "NAN";
+				value = disp[0];
 			}
 			update();
 		},
@@ -389,7 +400,7 @@ var tmp = function () {
 		},
 
 		sign = function () {
-			if (base === 10) {
+			if (isbase10) {
 				if (expMode) {
 					expval = -expval;
 				} else {
@@ -400,7 +411,7 @@ var tmp = function () {
 		},
 
 		period = function () {
-			if (base === 10) {
+			if (isbase10) {
 				if (isItThere) {
 					value = 0;
 					digits = 1;
@@ -414,7 +425,7 @@ var tmp = function () {
 		},
 
 		exp = function () {
-			if (base === 10) {
+			if (isbase10) {
 				if (isItThere || expMode) {
 					return;
 				}
@@ -433,207 +444,215 @@ var tmp = function () {
 		func = function (f) {
 			enter();
 			//target.bubble("tracelog","f= "+f); // debug
-			var op, n, sval, i, trigmeth0 = trigmeth[0].checked, trigmeth1 = trigmeth[1].checked, onepercent = value / 100;
+			var op, n, sval, i, trigmeth0 = trigmeth[0].checked, trigmeth1 = trigmeth[1].checked, onepercent = value / 100, valXpi180, valXpi200;
 			//trigmeth2 = trigmeth[2].checked = inherent. if 0 or 1 are true this is false, else true
-			switch (f) {
-			case 'percent': // behave like old TI-Calculators
-				op = stack[0].op;
-				sval = stack[0].value;
-				//target.bubble("tracelog","op= " + op); // debug
-				//target.bubble("tracelog","value= " + sval); // debug
-				if (op === '+' || op === '-') {
-					value = sval * onepercent;
-				} else {
-					value = onepercent;
-				}
-				break;
-			case '1/x':
-				value = 1 / value;
-				break;
-			case 'n!':
-				value = Math.floor(value);
-				if (value < 0 || value > 200) {
-					value = "NAN";
-				} else {
-					n = 1;
-					for (i = 1; i <= value; ++i) {
-						n *= i;
+			if (f === 'cos' || f === 'sin' || f === 'tan' || f === 'acos' || f === 'asin' || f === 'atan') {
+				valXpi180 = value * pidiv180;
+				valXpi200 = value * pidiv200;
+				switch (f) {
+				case 'sin':
+					if (trigmeth0) {
+						// if "Deg" is checked...
+						value = Math.sin(valXpi180);
+					} else if (trigmeth1) {
+						// if "Rad" is checked...
+						value = Math.sin(value);
+					} else {
+						// if "Grad" is checked...
+						value = Math.sin(valXpi200);
 					}
-					// Value needs to be inside the else}
-					value = n;
+					break;
+				case 'cos':
+					if (trigmeth0) {
+						// if "Deg" is checked...
+						value = Math.cos(valXpi180);
+					} else if (trigmeth1) {
+						// if "Rad" is checked...
+						value = Math.cos(value);
+					} else {
+						// if "Grad" is checked...
+						value = Math.cos(valXpi200);
+					}
+					break;
+				case 'tan':
+					if (trigmeth0) {
+						// if "Deg" is checked...
+						value = Math.tan(valXpi180);
+					} else if (trigmeth1) {
+						// if "Rad" is checked...
+						value = Math.tan(value);
+					} else {
+						// if "Grad" is checked...
+						value = Math.tan(valXpi200);
+					}
+					break;
+				case 'acos':
+					if (trigmeth0) {
+						// if "Deg" is checked...
+						value = Math.acos(value) * pi180;
+					} else if (trigmeth1) {
+						// if "Rad" is checked...
+						value = Math.acos(value);
+					} else {
+						// if "Grad" is checked...
+						value = Math.acos(value) * pi200;
+					}
+					break;
+				case 'asin':
+					if (trigmeth0) {
+						// if "Deg" is checked...
+						value = Math.asin(value) * pi180;
+					} else if (trigmeth1) {
+						// if "Rad" is checked...
+						value = Math.asin(value);
+					} else {
+						// if "Grad" is checked...
+						value = Math.asin(value) * pi200;
+					}
+					break;
+				case 'atan':
+					if (trigmeth0) {
+						// if "Deg" is checked...
+						value = Math.atan(value) * pi180;
+					} else if (trigmeth1) {
+						// if "Rad" is checked...
+						value = Math.atan(value);
+					} else {
+						// if "Grad" is checked...
+						value = Math.atan(value) * pi200;
+					}
+					break;
 				}
-				break;
-			case 'memclearall':
-				target.Meminput1.setValue(0);
-				target.Meminput2.setValue(0);
-				target.Meminput3.setValue(0);
-				//memform.meminput4.value = "";
-				//memform.meminput5.value = "";
-				break;
-			case 'memplus1':
-				target.Meminput1.setValue(decval(target.Meminput1.getValue()) + value);
-				break;
-			case 'memminus1':
-				target.Meminput1.setValue(decval(target.Meminput1.getValue()) - value);
-				break;
-			case 'memrecall1':
-				value = parseFloat(target.Meminput1.getValue());
-				break;
-			case 'memclear1':
-				target.Meminput1.setValue(0);
-				break;
-			case 'memplus2':
-				target.Meminput2.setValue(decval(target.Meminput2.getValue()) + value);
-				break;
-			case 'memminus2':
-				target.Meminput2.setValue(decval(target.Meminput2.getValue()) - value);
-				break;
-			case 'memrecall2':
-				value = parseFloat(target.Meminput2.getValue());
-				break;
-			case 'memclear2':
-				target.Meminput2.setValue(0);
-				break;
-			case 'memplus3':
-				target.Meminput3.setValue(decval(target.Meminput3.getValue()) + value);
-				break;
-			case 'memminus3':
-				target.Meminput3.setValue(decval(target.Meminput3.getValue()) - value);
-				break;
-			case 'memrecall3':
-				value = parseFloat(target.Meminput3.getValue());
-				break;
-			case 'memclear3':
-				target.Meminput3.setValue(0);
-				break;
-				/*
-				else if (f === "memplus4") {
-					memform.meminput4.value = value;
+			} else {
+				switch (f) {
+				case 'percent': // behave like old TI-Calculators
+					op = stack[0].op;
+					sval = stack[0].value;
+					//target.bubble("tracelog","op= " + op); // debug
+					//target.bubble("tracelog","value= " + sval); // debug
+					if (op === '+' || op === '-') {
+						value = sval * onepercent;
+					} else {
+						value = onepercent;
+					}
+					break;
+				case '1/x':
+					value = 1 / value;
+					break;
+				case 'n!':
+					value = Math.floor(value);
+					if (value < 0 || value > 200) {
+						value = disp[0];
+					} else {
+						n = 1;
+						i = 1;
+						for (i; i <= value; ++i) {
+							n *= i;
+						}
+						// Value needs to be inside the else}
+						value = n;
+					}
+					break;
+				case 'memclearall':
+					target.Meminput1.setValue(0);
+					target.Meminput2.setValue(0);
+					target.Meminput3.setValue(0);
+					//memform.meminput4.value = "";
+					//memform.meminput5.value = "";
+					break;
+				case 'memplus1':
+					target.Meminput1.setValue(decval(target.Meminput1.getValue()) + value);
+					break;
+				case 'memminus1':
+					target.Meminput1.setValue(decval(target.Meminput1.getValue()) - value);
+					break;
+				case 'memrecall1':
+					value = parseFloat(target.Meminput1.getValue());
+					break;
+				case 'memclear1':
+					target.Meminput1.setValue(0);
+					break;
+				case 'memplus2':
+					target.Meminput2.setValue(decval(target.Meminput2.getValue()) + value);
+					break;
+				case 'memminus2':
+					target.Meminput2.setValue(decval(target.Meminput2.getValue()) - value);
+					break;
+				case 'memrecall2':
+					value = parseFloat(target.Meminput2.getValue());
+					break;
+				case 'memclear2':
+					target.Meminput2.setValue(0);
+					break;
+				case 'memplus3':
+					target.Meminput3.setValue(decval(target.Meminput3.getValue()) + value);
+					break;
+				case 'memminus3':
+					target.Meminput3.setValue(decval(target.Meminput3.getValue()) - value);
+					break;
+				case 'memrecall3':
+					value = parseFloat(target.Meminput3.getValue());
+					break;
+				case 'memclear3':
+					target.Meminput3.setValue(0);
+					break;
+					/*
+					else if (f === "memplus4") {
+						memform.meminput4.value = value;
+					}
+					else if (f === "memrecall4") {
+						value = parseFloat(memform.meminput4.value);
+					}
+					else if (f === "memclear4") {
+						memform.meminput4.value = "";
+					}
+					else if (f === "memplus5") {
+						memform.meminput5.value = value;
+					}
+					else if (f === "memrecall5") {
+						value = parseFloat(memform.meminput5.value);
+					}
+					else if (f === "memclear5") {
+						memform.meminput5.value = "";
+					}
+					*/
+				case 'log':
+					value = Math.log(value) / Math.LN10;
+					break;
+				case 'log2':
+					value = Math.log(value) / Math.LN2;
+					break;
+				case 'ln':
+					value = Math.log(value);
+					break;
+				case 'sqrt':
+					value = Math.sqrt(value);
+					break;
+				case 'lsh':
+					value = value << 1;
+					break;
+				case 'rsh':
+					value = value >> 1;
+					break;
+				case 'pi':
+					value = pi;
+					break;
+				case '10tox':
+					value = Math.exp(value * Math.LN10);
+					break;
+				case 'etox':
+					value = Math.exp(value);
+					break;
+				case '2tox':
+					value = Math.exp(value * Math.LN2);
+					break;
+				case 'xsq':
+					value *= value;
+					break;
+				case 'not':
+					value = ~value;
+					break;
 				}
-				else if (f === "memrecall4") {
-					value = parseFloat(memform.meminput4.value);
-				}
-				else if (f === "memclear4") {
-					memform.meminput4.value = "";
-				}
-				else if (f === "memplus5") {
-					memform.meminput5.value = value;
-				}
-				else if (f === "memrecall5") {
-					value = parseFloat(memform.meminput5.value);
-				}
-				else if (f === "memclear5") {
-					memform.meminput5.value = "";
-				}
-				*/
-			case 'sin':
-				if (trigmeth0) {
-					// if "Deg" is checked...
-					value = Math.sin(value * Math.PI / 180);
-				} else if (trigmeth1) {
-					// if "Rad" is checked...
-					value = Math.sin(value);
-				} else {
-					// if "Grad" is checked...
-					value = Math.sin(value * Math.PI / 200);
-				}
-				break;
-			case 'cos':
-				if (trigmeth0) {
-					// if "Deg" is checked...
-					value = Math.cos(value * Math.PI / 180);
-				} else if (trigmeth1) {
-					// if "Rad" is checked...
-					value = Math.cos(value);
-				} else {
-					// if "Grad" is checked...
-					value = Math.cos(value * Math.PI / 200);
-				}
-				break;
-			case 'tan':
-				if (trigmeth0) {
-					// if "Deg" is checked...
-					value = Math.tan(value * Math.PI / 180);
-				} else if (trigmeth1) {
-					// if "Rad" is checked...
-					value = Math.tan(value);
-				} else {
-					// if "Grad" is checked...
-					value = Math.tan(value * Math.PI / 200);
-				}
-				break;
-			case 'log':
-				value = Math.log(value) / Math.LN10;
-				break;
-			case 'log2':
-				value = Math.log(value) / Math.LN2;
-				break;
-			case 'ln':
-				value = Math.log(value);
-				break;
-			case 'sqrt':
-				value = Math.sqrt(value);
-				break;
-			case 'lsh':
-				value = value << 1;
-				break;
-			case 'rsh':
-				value = value >> 1;
-				break;
-			case 'pi':
-				value = Math.PI;
-				break;
-			case 'acos':
-				if (trigmeth0) {
-					// if "Deg" is checked...
-					value = Math.acos(value) * (180 / Math.PI);
-				} else if (trigmeth1) {
-					// if "Rad" is checked...
-					value = Math.acos(value);
-				} else {
-					// if "Grad" is checked...
-					value = Math.acos(value) * (200 / Math.PI);
-				}
-				break;
-			case 'asin':
-				if (trigmeth0) {
-					// if "Deg" is checked...
-					value = Math.asin(value) * (180 / Math.PI);
-				} else if (trigmeth1) {
-					// if "Rad" is checked...
-					value = Math.asin(value);
-				} else {
-					// if "Grad" is checked...
-					value = Math.asin(value) * (200 / Math.PI);
-				}
-				break;
-			case 'atan':
-				if (trigmeth0) {
-					// if "Deg" is checked...
-					value = Math.atan(value) * (180 / Math.PI);
-				} else if (trigmeth1) {
-					// if "Rad" is checked...
-					value = Math.atan(value);
-				} else {
-					// if "Grad" is checked...
-					value = Math.atan(value) * (200 / Math.PI);
-				}
-				break;
-			case '10tox':
-				value = Math.exp(value * Math.LN10);
-				break;
-			case 'etox':
-				value = Math.exp(value);
-				break;
-			case '2tox':
-				value = Math.exp(value * Math.LN2);
-				break;
-			case 'xsq':
-				value = value * value;
-				break;
-			case 'not':
-				value = ~value;
-				break;
 			}
 			update();
 		},
@@ -651,7 +670,7 @@ var tmp = function () {
 			switch (e) {
 			case 'deg':
 				if (angleGra) {
-					value = (180 / Math.PI) * value;
+					value = pi180 * value;
 				} else if (angleMeasure === "grad") {
 					value = (180 / 200) * value;
 				}
@@ -659,9 +678,9 @@ var tmp = function () {
 				break;
 			case 'rad':
 				if (angleDeg) {
-					value = (Math.PI / 180) * value;
+					value = pidiv180 * value;
 				} else if (angleGra) {
-					value = (Math.PI / 200) * value;
+					value = pidiv200 * value;
 				}
 				//angleMeasure = "rad";
 				break;
@@ -669,7 +688,7 @@ var tmp = function () {
 				if (angleDeg) {
 					value = (200 / 180) * value;
 				} else if (angleRad) {
-					value = (200 / Math.PI) * value;
+					value = pi200 * value;
 				}
 				//angleMeasure = "grad";
 				break;
@@ -688,7 +707,7 @@ var tmp = function () {
 		freshstart = function () {
 			var i;
 			display = format(value);
-			display = "               " + display;
+			display = disp[5] + display;
 			display = display.substring(display.length - digitsMaximum - 1, display.length);
 			target.CalculatorLabel.setValue(display);
 			enter();
@@ -699,7 +718,8 @@ var tmp = function () {
 
 		//	initialise stack
 			stack[0] = 0;
-			for (i = 0; i < stack.length; ++i) {
+			i = 0;
+			for (i; i < stack.length; ++i) {
 				stack[i] = 0;
 				stack[i] = new StackPushTier();
 			}
@@ -734,7 +754,7 @@ var tmp = function () {
 		}
 		// this.bubble("tracelog","sender="+sender+" "+typeof sender); // debug
 		// return;	// debug
-		if (base === 10) {
+		if (isbase10) {
 			// this.bubble("tracelog","base10"); // debug
 			if (isItThere) {
 				value = 0;
@@ -869,7 +889,7 @@ var tmp = function () {
 		}
 		switch (b) {
 		case 'hex':
-			base = 16;
+			setbase(16);
 			button = func_bas16;
 			break;
 		// case 'dec': 
@@ -877,22 +897,24 @@ var tmp = function () {
 			// button = func_bas10;
 			// break;
 		case 'bin':
-			base = 2;
+			setbase(2);
 			button = func_bas2;
 			break;
 		default: //equals case 'dec'
-			base = 10;
+			setbase(10);
 			button = func_bas10;
 		}
 		// enable trigm only when base=10
-		var doTrigm = base === 10, i, j, k, id;
-		target.TRIGM.RBUTTON_DEG.enable(doTrigm);
-		target.TRIGM.RBUTTON_RAD.enable(doTrigm);
-		target.TRIGM.RBUTTON_GRAD.enable(doTrigm);
+		var i, j, k, id;
+		target.TRIGM.RBUTTON_DEG.enable(isbase10);
+		target.TRIGM.RBUTTON_RAD.enable(isbase10);
+		target.TRIGM.RBUTTON_GRAD.enable(isbase10);
 		// activate/deactivate buttons/functions according base
-		for (i = 0; i < 6; i++) {
+		i = 0;
+		for (i; i < 6; i++) {
 			k = i + 4;
-			for (j = 0; j < 9; j++) {
+			j = 0;
+			for (j; j < 9; j++) {
 				id = buttons[i][j];
 				// target.bubble("tracelog",id ); // debug
 				if (id !== null) {
@@ -919,7 +941,7 @@ var tmp = function () {
 			t = target.getVariable("TRIG");
 		// this.bubble("tracelog","base:"+b); // debug
 		}
-		if (base === 10) {angleConvert(t); }
+		if (isbase10) {angleConvert(t); }
 		// target.bubble("tracelog","t="+trigmeth[0].checked+trigmeth[1].checked+trigmeth[2].checked);	// debug
 	};
 
@@ -935,20 +957,20 @@ var tmp = function () {
 		//this.showTime(); //Function disabled
 		switch (direction) {
 		case 'w': //west AKA right
-			posX = posX + 1;
-			if (posX > 8) {posX = 0; }
+			posX = (posX + 1) % 9;
+			//if (posX > 8) {posX = 0; }
 			break;
 		case 'e': //east AKA left
-			posX = posX - 1;
-			if (posX < 0) {posX = 8; }
+			posX = (posX + 10) % 9;
+			//if (posX < 0) {posX = 8; }
 			break;
 		case 'n': //north AKA up
-			posY = posY - 1;
-			if (posY < 0) {posY = 9; }
+			posY = (posY + 11) % 10;
+			//if (posY < 0) {posY = 9; }
 			break;
 		case 's': //south AKA down
-			posY = posY + 1;
-			if (posY > 9) {posY = 0; }
+			posY = (posY + 1) % 10;
+			//if (posY > 9) {posY = 0; }
 			break;
 		}
 		if ((direction !== "e") && posY === 8 && posX === 7) {posX++; } // double sized equal button
