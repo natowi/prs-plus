@@ -49,6 +49,7 @@
 //	2012-03-21 Ben Chenoweth - Added Option menu to Archives in BF (x50); removed audio items
 //	2012-04-06 Ben Chenoweth - Added 'User EPUB Style (CSS File)' option in Book Option Menu (EPUB books only)
 //	2012-04-12 Ben Chenoweth - Added 'Reformat Current Book' option in Book Option Menu (LRF books only)
+//	2012-04-28 Ben Chenoweth - 350: Removed audio items from menu
 
 tmp = function() {
 
@@ -796,6 +797,7 @@ tmp = function() {
 		for (i = 0; i < c; i++) {
 			id = contents[i].textresource;
 			if (id) {
+				if ((Core.config.model === "350") && ((id === "STR_UI_MENU_NOWPLAYING") || (id === "STR_UI_MENU_RESUMELISTENING"))) continue; // 350 has no audio
 				title = ('fskin:/l/strings/' + id).idToString();
 				if (title) {
 					group.optionDefs.push({
