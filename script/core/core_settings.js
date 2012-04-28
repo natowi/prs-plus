@@ -24,44 +24,45 @@
 //	2012-02-11 quisvir - Let options keep showing unchecked using 'noCheck' property
 //	2012-02-20 quisvir - Fixed incorrect settings count in case of hidden settings; minor changes
 //	2012-02-21 quisvir - Moved hidden settings to separate group
+//	2012-04-27 drMerry - some optimizing of the code
 
 // dummy function, to avoid introducing global vars
-tmp = function() {
-	var prspSettingsNode;
-	
+var tmp = function() {
+	var prspSettingsNode,
+
 	// Returns option title for given addon/option definition
 	//
-	var core_setting_translateValue = function(optionDef, value) {
+	core_setting_translateValue = function(optionDef, value) {
 		if (optionDef.hasOwnProperty("valueTitles") && optionDef.valueTitles.hasOwnProperty(value)) {
 			return optionDef.valueTitles[value];
 		}
 		return value;
-	};
+	},
 	// Returns closure that retrieves given value from a given option object
-	// 
-	var core_setting_getValueTranslator = function(options, optionDef) {
+	//
+	core_setting_getValueTranslator = function(options, optionDef) {
 		return function() {
 			return core_setting_translateValue(optionDef, options[optionDef.name]);
 		};
-	};
+	},
 
 	// Returns option icon for given addon/option definition
 	//
-	var core_setting_translateIcon = function(optionDef, value) {
+	core_setting_translateIcon = function(optionDef, value) {
 		if (optionDef.hasOwnProperty("valueIcons") && optionDef.valueIcons.hasOwnProperty(value)) {
 			return optionDef.valueIcons[value];
 		}
 		return "UNCHECKED";
-	};
+	},
 
 	// Returns option group for given addon/option definition
 	//
-	var core_setting_translateGroup = function(optionDef, value) {
+	core_setting_translateGroup = function(optionDef, value) {
 		if (optionDef.hasOwnProperty("valueGroups") && optionDef.valueGroups.hasOwnProperty(value)) {
 			return optionDef.valueGroups[value];
 		}
 		return "";
-	};
+	},
 
 	// Creates "value" node (used in settings).
 	// Arguments:
@@ -71,14 +72,14 @@ tmp = function() {
 	//		object - target object, to set option to (typically addon.options)
 	//		addon - addon object
 	//
-	var core_setting_createValueNode = function(arg) {
-		var node = Core.ui.createContainerNode(arg);
+	core_setting_createValueNode = function(arg) {
+		var node = Core.ui.createContainerNode(arg), i, n, nodes, icon;
 		node.enter = function() {
 			try {
-				var optionDef = arg.optionDef;
-				var propertyName = optionDef.name;
+				var optionDef = arg.optionDef,
+				propertyName = optionDef.name,
 
-				var oldValue = arg.object[propertyName];
+				oldValue = arg.object[propertyName];
 				arg.object[propertyName] = arg.value;
 
 				if(arg.addon && arg.addon.onSettingsChanged) {
@@ -86,7 +87,6 @@ tmp = function() {
 				}
 
 				if (!optionDef.useIcons && !optionDef.noCheck) {
-					var i, n, node, nodes, icon;
 					nodes = this.parent.nodes;
 					for (i = 0, n = nodes.length; i < n; i++) {
 						node = nodes[i];
@@ -113,11 +113,11 @@ tmp = function() {
 			}
 		};
 		return node;
-	};
+	},
 
 	// Creates value nodes (used in addon settings) for given option definition and addon.
 	//
-	var core_setting_createValueNodes = function(parent, optionDef, addon, options) {
+	core_setting_createValueNodes = function(parent, optionDef, addon, options) {
 		var i, n, values, v, node, groups, group, groupTitle;
 		try {
 			values = optionDef.values;
@@ -145,7 +145,7 @@ tmp = function() {
 				for (i = 0, n = values.length; i < n; i++) {
 					v = values[i];
 					groupTitle = core_setting_translateGroup(optionDef, v);
-					if (groupTitle !== "") { 
+					if (groupTitle !== "") {
 						if (!groups.hasOwnProperty(groupTitle)) {
 							groups[groupTitle] = Core.ui.createContainerNode({
 								parent: parent,
@@ -177,14 +177,14 @@ tmp = function() {
 		} catch (e) {
 			log.error("in core_setting_createValueNodes for addon " + addon.name + " option " + optionDef.name + ": " + e);
 		}
-	};
+	},
 
 
-	var doCreateAddonSettings;
+	doCreateAddonSettings,
 	/**
 	 * @constructor
 	 */
-	var lazyCreateSettings = function(parent, optionDefs, addon) {
+	lazyCreateSettings = function(parent, optionDefs, addon) {
 		// FIXME maybe replace with legit "construct" initialization
 		parent._uncreated = (parent._uncreated) ? parent._uncreated + 1 : 1;
 		Core.hook.hookBefore(parent, "enter", function(args, oldFunc) {
@@ -193,9 +193,9 @@ tmp = function() {
 				doCreateAddonSettings(parent, optionDefs, addon, true);
 			}
 		});
-	};
+	},
 
-	var doCreateSingleSetting;
+	doCreateSingleSetting;
 	doCreateAddonSettings = function(parent, optionDefs, addon, ignoreLazy) {
 		var i, n;
 		if (ignoreLazy !== true) {
@@ -211,15 +211,15 @@ tmp = function() {
 	// Recursively creates setting nodes
 	//
 	doCreateSingleSetting = function(parent, optionDef, addon) {
-		var node;
+		var node, options;
 		if (optionDef.hasOwnProperty("groupTitle")) {
 			// Group
 			node = Core.ui.createContainerNode({
 					parent: parent,
 					title: optionDef.groupTitle,
-					comment: optionDef.groupComment ? optionDef.groupComment : function () {
+					comment: (optionDef.groupComment || function () {
 						return Core.lang.LX("SETTINGS", optionDef.optionDefs.length);
-					},
+					}),
 					icon: optionDef.groupIcon,
 					guideArea: optionDef.helpText
 			});
@@ -229,7 +229,6 @@ tmp = function() {
 			doCreateAddonSettings(node, optionDef.optionDefs, addon, false);
 		} else {
 			// If target is defined, use it, else create "options"
-			var options;
 			if (optionDef.hasOwnProperty("target")) {
 				options = addon.options[optionDef.target];
 			} else {
@@ -264,7 +263,7 @@ tmp = function() {
 			advanced: {
 				title: coreL("GROUP_ADV_SETTINGS_TITLE"),
 				icon: "SETTINGS"
-			},			
+			},
 			viewer: {
 				title: coreL("GROUP_VIEWER_TITLE"),
 				icon: "BOOK_ALT"
@@ -289,10 +288,10 @@ tmp = function() {
 		try {
 			// Addon
 			if (addon && addon.optionDefs && addon.optionDefs.length > 0) {
-				var optionDefs = addon.optionDefs;
-				
+				var optionDefs = addon.optionDefs, defs,
+
 				// Search for settings node with same settingsGroup property
-				var thisSettingsNode, group, title, comment, icon, i, n;
+				thisSettingsNode, group, title, comment, icon, i, n;
 				if (addon.settingsGroup && this.settingsGroupDefs[addon.settingsGroup]) {
 					group = addon.settingsGroup;
 					for (i = 0, n = prspSettingsNode.nodes.length; i < n; i++) {
@@ -309,14 +308,14 @@ tmp = function() {
 					}
 					if (thisSettingsNode === undefined) {
 						// ... group not found
-						var defs = this.settingsGroupDefs[group];
+						defs = this.settingsGroupDefs[group];
 						title = defs.title;
 						comment = defs.comment;
 						icon = defs.icon;
 					}
 				} else {
 					group = addon.name;
-					title = (addon.title) ? addon.title : addon.name;
+					title = (addon.title || addon.name);
 					comment = addon.comment;
 					icon = addon.icon;
 				}
@@ -354,7 +353,7 @@ tmp = function() {
 		try {
 			FileSystem.ensureDirectory(Core.config.settingsPath);
 			var od, od2, name, options, optionDefsToSave, gotSomethingToSave,
-				stream, globalStr, ii, str, j, m;
+				stream, globalStr, ii, str, j, m, settingsFile;
 
 			// Find out which options need to be saved (do not save devault values)
 			options = addon.options;
@@ -368,9 +367,9 @@ tmp = function() {
 					gotSomethingToSave = true;
 				}
 			}
-			
+
 			// If there is anything to save - save, if not, delete settings file
-			var settingsFile = Core.config.settingsPath + addon.name + ".config";
+			settingsFile = Core.config.settingsPath + addon.name + ".config";
 			if (gotSomethingToSave) {
 				stream = new Stream.File(settingsFile, 1, 0);
 				try {
@@ -408,7 +407,7 @@ tmp = function() {
 			log.error("saving options for addon: " + addon.name);
 		}
 	};
-	
+
 	var saveOptions2 = function (optionDefs, options, optionDefsToSave) {
 		var i, od, name, defValue, target, gotSomethingToSave;
 		for (i = 0; i < optionDefs.length; i++) {
@@ -442,7 +441,7 @@ tmp = function() {
 			}
 		}
 		return gotSomethingToSave;
-	}
+	};
 
 	// Loads addon's options, using default option values, if settings file or value is not present.
 	//
@@ -460,19 +459,19 @@ tmp = function() {
 				if (!options) {
 					options = {};
 				}
-				
+
 				loadOptions2(addon.optionDefs, options);
 				if (addon.hiddenOptions) {
 					loadOptions2(addon.hiddenOptions, options);
 				}
-				
+
 				addon.options = options;
 			}
 		} catch (e) {
 			log.error("Loading settings of " + addon.name);
 		}
 	};
-	
+
 	var loadOptions2 = function (optionDefs, options) {
 		var i, od;
 		for (i = 0; i < optionDefs.length; i++) {
@@ -495,8 +494,8 @@ tmp = function() {
 				}
 			}
 		}
-	}
-	
+	};
+
 	Core.addAddon({
 		name: "PRSPSettings",
 		icon: "SETTINGS",
