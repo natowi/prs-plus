@@ -7,7 +7,8 @@
 //
 //	2012-04-23 Ben Chenoweth - Replaced javascript AI with Toga II executable (alpha release)
 //	2012-04-24 Ben Chenoweth - Removed AI move display; fixed checkmate message; fix for AI pawn promotion
-//	2012-04-25 Ben Chenoweth - Properly handle en passant; disable castling if rooks moved; fixed ancient bug that had disabled black castling in 2 player mode; undo/save/load castling variables
+//	2012-04-25 Ben Chenoweth - Properly handle en passant; disable castling if rooks moved; fixed ancient bug that had disabled black castling in 2 player mode; undo/save/load castling/en passant status
+//	2012-05-06 Ben Chenoweth - Fix for en passant
 
 var tmp = function () {
     var sMovesList, bCheck = false, bGameNotOver = true, lastStart = 0, lastEnd = 0, kings = [0, 0],
@@ -339,7 +340,7 @@ var tmp = function () {
                 // need to handle en passant
                 flagPcColor = nPiece & 8;
                 nWay = 4 - flagPcColor >> 2;
-                if ((nPieceType === 1) && (y === 7 + nWay >> 1) && (enPassant === nSquareId + 10)) {
+                if ((nPieceType === 1) && (y === 7 + nWay >> 1) && (enPassant === nSquareId)) {
                     // remove (black) pawn
                     etc.aBoard[nSquareId + 10] = 0;
                 }
@@ -449,7 +450,7 @@ var tmp = function () {
                 // need to handle en passant
                 flagPcColor = nPiece & 8;
                 nWay = 4 - flagPcColor >> 2;
-                if ((nPieceType === 1) && (y === 7 + nWay >> 1) && (enPassant === nSquareId - 10)) {
+                if ((nPieceType === 1) && (y === 7 + nWay >> 1) && (enPassant === nSquareId)) {
                     // remove pawn
                     etc.aBoard[nSquareId - 10] = 0;
                 }
@@ -1869,7 +1870,7 @@ var tmp = function () {
 		flagPcColor = nPiece & 8;
 		nWay = 4 - flagPcColor >> 2;
 		if (etc.bBlackSide) {
-			if ((nPieceType === 1) && (bestmove[1] === 7 + nWay >> 1) && (enPassant === nSquareId - 10)) {
+			if ((nPieceType === 1) && (bestmove[1] === 7 + nWay >> 1) && (enPassant === nSquareId)) {
 				// remove pawn
 				etc.aBoard[nSquareId - 10] = 0;
 			}
@@ -1879,7 +1880,7 @@ var tmp = function () {
 				enPassant = "";
 			}
 		} else {
-			if ((nPieceType === 1) && (bestmove[1] === 7 + nWay >> 1) && (enPassant === nSquareId + 10)) {
+			if ((nPieceType === 1) && (bestmove[1] === 7 + nWay >> 1) && (enPassant === nSquareId)) {
 				etc.aBoard[nSquareId + 10] = 0;
 			}
 			if ((nPieceType === 1) && (nDiffY === -2)) {
