@@ -581,7 +581,7 @@ var tmp = function () {
                         //this.debugOut("Invalid move for pawn");
                         return (false);
                     }
-                    if ((nTarget < 1 || flagTgColor === flagPcColor) && ( /* not en passant: */nPosY !== 7 + nWay >> 1)) {
+                    if ((nTarget < 1 || flagTgColor === flagPcColor) && /* not en passant: */ !((firstMove) && (nPosY === 7 + nWay >> 1) && (enPassant === endSq))) {
                         //this.debugOut("Invalid move for pawn");
                         return (false);
                     }
