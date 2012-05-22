@@ -5,7 +5,7 @@
 //
 // Initial version: 2011-07-14
 // Latest update:
-// 2011-11-03 Ben Chenoweth - Fixed floating events not appearing in event popup; fixed easter icon; fixed floating event day info in data file.
+// 2012-05-22 Ben Chenoweth - Removed unused variables; changed globals to locals.
 
 var tmp = function () {
 	var L = kbook.autoRunRoot.L;
@@ -41,7 +41,6 @@ var tmp = function () {
 	var firstDay;					// Tracks the day number 1-7 of the first day of the current month
 	var lastDate;					// Tracks the last date of the current month
 	var numbDays = 0;
-	var calendarString = "";
 	var eastermonth = 0;
 	var easterday = 0;
 	var events = [];
@@ -62,8 +61,6 @@ var tmp = function () {
 	var settingsDlgOpen = false;
 	var eventsDlgOpen = false;
 	var weekBeginsWith = "Sun";
-	var custSel;
-	var prevSel;
 	var maxEventNum;
 	var maxEventType = 5;
 	var maxEventMonth = 12;
@@ -122,7 +119,7 @@ var tmp = function () {
       		}	
       		stream.close();
       	} catch (e) {}	
-	}         
+	};      
 
 	// writes values of target.settings.xx to file         
 	target.saveSettings = function () { 
@@ -135,7 +132,7 @@ var tmp = function () {
       		}
       		stream.close();
       	} catch (e) { }         
-    } 
+    };
 
 	// Load settings from save file once at startup
 	target.loadSettings();
@@ -149,7 +146,7 @@ var tmp = function () {
 	var twoDigits = function (i) {
 		if (i<10) {return "0"+i}
 		return i;	
-	}
+	};
 
 	target.loadWesternKeys = function () {
 		keys[0]="q";
@@ -305,7 +302,7 @@ var tmp = function () {
 		keys[150]="";
 		keys[151]="";
 		return;
-	}
+	};
 
 	target.saveCustomKeyboard = function () {
 		var o, stream;
@@ -318,7 +315,7 @@ var tmp = function () {
       		stream.close();
       	} catch (e) { }   
 		return;
-	}
+	};
 	
 	// load keyboard from file
 	target.loadKeyboard = function (filename) {
@@ -363,7 +360,7 @@ var tmp = function () {
 			setSoValue(target.EVENTS_DIALOG['keyC'+j], 'text', keys[i-1]);
 		}
 		return; 
-	}
+	};
 	
 	target.init = function () {
 		var i,j;
@@ -489,11 +486,11 @@ var tmp = function () {
 		this.touchButtons0.setValue("-" + STR_MONTH);
 		this.touchButtons1.setValue("+" + STR_MONTH);
 		this.touchButtons3.setValue(L("STR_OPTIONS"));
-		this.touchButtons4.setValue(L("STR_QUIT"));
+		this.touchButtons4.setValue(STR_QUIT);
 		this.nonTouch1.setValue("[Mark] " + L("STR_TODAY"));
 		this.nonTouch2.setValue("[Next] +" + STR_MONTH);
 		this.nonTouch3.setValue("[Hold Next] +" + STR_YEAR);
-		this.nonTouch4.setValue("[Hold 0] " + L("STR_QUIT"));
+		this.nonTouch4.setValue("[Hold 0] " + STR_QUIT);
 		this.nonTouch5.setValue("[Prev] -" + STR_MONTH);
 		this.nonTouch6.setValue("[Hold Prev] -" + STR_YEAR);
 		this.nonTouch7.setValue("[Menu] " + L("STR_OPTIONS"));
@@ -553,7 +550,7 @@ var tmp = function () {
 		this.selectToday();
 		target.BUTTON_EDT.enable(true);
 		return;
-	}
+	};
 
 	target.selectToday = function() {
 		var daycounter = 0;
@@ -588,7 +585,7 @@ var tmp = function () {
 			this.eventsText.setValue("");
 		}
 		return;
-	}
+	};
 	
 	target.dateChanged = function() {
 		if (monthNum == 0) {
@@ -661,27 +658,27 @@ var tmp = function () {
 		//target.bubble("tracelog","monthNum="+monthNum+", yearNum="+yearNum+", numbDays="+numbDays);
 		//target.bubble("tracelog","firstDate="+firstDate+", lastDate="+lastDate+", firstDay="+firstDay);
 		return;	
-	}
+	};
 
 	target.easter = function (year) {
-	// feed in the year it returns the month and day of Easter using two GLOBAL variables: eastermonth and easterday
-	var a = year % 19;
-	var b = Math.floor(year/100);
-	var c = year % 100;
-	var d = Math.floor(b/4);
-	var e = b % 4;
-	var f = Math.floor((b+8) / 25);
-	var g = Math.floor((b-f+1) / 3);
-	var h = (19*a + b - d - g + 15) % 30;
-	var i = Math.floor(c/4);
-	var j = c % 4;
-	var k = (32 + 2*e + 2*i - h - j) % 7;
-	var m = Math.floor((a + 11*h + 22*k) / 451);
-	var month = Math.floor((h + k - 7*m + 114) / 31);
-	var day = ((h + k - 7*m +114) % 31) + 1;
-	eastermonth = month;
-	easterday = day;
-	}
+		// feed in the year it returns the month and day of Easter using two GLOBAL variables: eastermonth and easterday
+		var a = year % 19;
+		var b = Math.floor(year/100);
+		var c = year % 100;
+		var d = Math.floor(b/4);
+		var e = b % 4;
+		var f = Math.floor((b+8) / 25);
+		var g = Math.floor((b-f+1) / 3);
+		var h = (19*a + b - d - g + 15) % 30;
+		var i = Math.floor(c/4);
+		var j = c % 4;
+		var k = (32 + 2*e + 2*i - h - j) % 7;
+		var m = Math.floor((a + 11*h + 22*k) / 451);
+		var month = Math.floor((h + k - 7*m + 114) / 31);
+		var day = ((h + k - 7*m +114) % 31) + 1;
+		eastermonth = month;
+		easterday = day;
+	};
 
 	target.setSquare = function (row, column, type, date, numevents) {
 		var id;
@@ -698,7 +695,7 @@ var tmp = function () {
 			this['events' + id].setValue("");
 		}
 		return;
-	}
+	};
 	
 	target.createCalendar = function () {
 		var daycounter = 0;
@@ -778,7 +775,7 @@ var tmp = function () {
 		}
 		thisDate = 1;
 		return;
-	}
+	};
 
 	target.checkevents = function (day,month,year,week,dayofweek) {
 		var numevents = 0;
@@ -821,10 +818,10 @@ var tmp = function () {
 		}
 		
 		return numevents;
-	}
+	};
 
 	target.getevent = function (day,month,year,week,dayofweek) {
-		var altdayofweek;
+		var altdayofweek, floater;
 		
 		altdayofweek = dayofweek+1;
 		if (altdayofweek==8) altdayofweek=1;
@@ -890,13 +887,13 @@ var tmp = function () {
 
 		// default event icon
 		return 3;
-	}
+	};
 	
 	target.showevents = function (day,month,year,week,dayofweek,offset) {
-	var theevent = "";
-	var floater = 0;
-	var altdayofweek;
-	var preoffset = 0;
+		var theevent = "";
+		var floater = 0;
+		var altdayofweek;
+		var preoffset = 0;
 
 		altdayofweek = dayofweek+1;
 		if (altdayofweek==8) altdayofweek=1;
@@ -1011,48 +1008,48 @@ var tmp = function () {
 			this.nonTouch0.setValue('');
 		}
 		return;
-	}
+	};
 
 	target.floatingholiday = function (targetyr,targetmo,cardinaloccurrence,targetday) {
-	// Floating holidays/events uses:
-	//	the Month field for the Month (here it becomes the targetmo field)
-	//	the Day field as the Cardinal Occurrence  (here it becomes the cardinaloccurrence field)
-	//		1=1st, 2=2nd, 3=3rd, 4=4th, 5=5th, 6=6th occurrence of the day listed next
-	//	the Year field as the Day of the week the event/holiday falls on  (here it becomes the targetday field)
-	//		1=Sunday, 2=Monday, 3=Tuesday, 4=Wednesday, 5=Thurday, 6=Friday, 7=Saturday
-	//	example: "F",	"1",	"3",	"2", = Floating holiday in January on the 3rd Monday of that month.
-	//
-	// In our code below:
-	// 	targetyr is the active year
-	// 	targetmo is the active month (1-12)
-	// 	cardinaloccurrence is the xth occurrence of the targetday (1-6)
-	// 	targetday is the day of the week the floating holiday is on
-	//		0=Sun; 1=Mon; 2=Tue; 3=Wed; 4=Thu; 5=Fri; 6=Sat
-	//		Note: subtract 1 from the targetday field if the info comes from the events.js file
-	//
-	// Note:
-	//	If Memorial Day falls on the 22nd, 23rd, or 24th, then we add 7 to the dayofmonth to the result.
-	//
-	// Example: targetyr = 2052; targetmo = 5; cardinaloccurrence = 4; targetday = 1
-	//	This is the same as saying our floating holiday in the year 2052, is during May, on the 4th Monday
-	//
-	var firstdate = new Date(targetyr, targetmo-1, 1);	// Object Storing the first day of the current month.
-	var firstday = firstdate.getDay() + 1;	// The first day (0-6) of the target month.
-	var dayofmonth = 0;	// zero out our calendar day variable.
+		// Floating holidays/events uses:
+		//	the Month field for the Month (here it becomes the targetmo field)
+		//	the Day field as the Cardinal Occurrence  (here it becomes the cardinaloccurrence field)
+		//		1=1st, 2=2nd, 3=3rd, 4=4th, 5=5th, 6=6th occurrence of the day listed next
+		//	the Year field as the Day of the week the event/holiday falls on  (here it becomes the targetday field)
+		//		1=Sunday, 2=Monday, 3=Tuesday, 4=Wednesday, 5=Thurday, 6=Friday, 7=Saturday
+		//	example: "F",	"1",	"3",	"2", = Floating holiday in January on the 3rd Monday of that month.
+		//
+		// In our code below:
+		// 	targetyr is the active year
+		// 	targetmo is the active month (1-12)
+		// 	cardinaloccurrence is the xth occurrence of the targetday (1-6)
+		// 	targetday is the day of the week the floating holiday is on
+		//		0=Sun; 1=Mon; 2=Tue; 3=Wed; 4=Thu; 5=Fri; 6=Sat
+		//		Note: subtract 1 from the targetday field if the info comes from the events.js file
+		//
+		// Note:
+		//	If Memorial Day falls on the 22nd, 23rd, or 24th, then we add 7 to the dayofmonth to the result.
+		//
+		// Example: targetyr = 2052; targetmo = 5; cardinaloccurrence = 4; targetday = 1
+		//	This is the same as saying our floating holiday in the year 2052, is during May, on the 4th Monday
+		//
+		var firstdate = new Date(targetyr, targetmo-1, 1);	// Object Storing the first day of the current month.
+		var firstday = firstdate.getDay() + 1;	// The first day (0-6) of the target month.
+		var dayofmonth = 0;	// zero out our calendar day variable.
 
-		//targetday = targetday - 1;
+			//targetday = targetday - 1;
 
-		if (targetday >= firstday) {
-			cardinaloccurrence--;	// Subtract 1 from cardinal day.
-			dayofmonth = (cardinaloccurrence * 7) + ((targetday - firstday)+1);
-		} else {
-			dayofmonth = (cardinaloccurrence * 7) + ((targetday - firstday)+1);
-		}
-	return dayofmonth;
-	}
+			if (targetday >= firstday) {
+				cardinaloccurrence--;	// Subtract 1 from cardinal day.
+				dayofmonth = (cardinaloccurrence * 7) + ((targetday - firstday)+1);
+			} else {
+				dayofmonth = (cardinaloccurrence * 7) + ((targetday - firstday)+1);
+			}
+		return dayofmonth;
+	};
 	
 	target.doButtonClick = function (sender) {
-		var id;
+		var id, n, x, y;
 		id = getSoValue(sender, "id");
 		n = id.substring(7, 10);
 		if (n == "TDY") {
@@ -1113,11 +1110,11 @@ var tmp = function () {
 			this.showevents(selectionDate,monthNum,yearNum,y,x,currentOffset);
 			return;
 		}		
-	}
+	};
 
 	target.digitF = function (key) {
 		return;
-	}
+	};
 	
 	target.doSquareClick = function (sender) {
 		var id, n, x, y;
@@ -1167,11 +1164,11 @@ var tmp = function () {
 
 		//target.bubble("tracelog","n="+n+", column="+x+", row="+y+", date="+selectionDate);
 		return;
-	}
+	};
 	
 	target.doSelectClick = function (sender) {
 		return;
-	}
+	};
 
 	target.doNext = function (sender) {
 		// next month
@@ -1181,7 +1178,7 @@ var tmp = function () {
 		}
 		this.dateChanged();	
 		return;
-	}
+	};
 
 	target.doPrev = function (sender) {
 		// previous month
@@ -1191,26 +1188,22 @@ var tmp = function () {
 		}		
 		this.dateChanged();	
 		return;
-	}
-
-	target.doSize = function (sender) {
-		return;
-	}
+	};
 
 	target.doRoot = function (sender) {
 		this.saveEvents();
 		kbook.autoRunRoot.exitIf(kbook.model);
 		return;
-	}
+	};
 	
 	target.doHold0 = function () {
 		this.saveEvents();
 		kbook.autoRunRoot.exitIf(kbook.model);
 		return;
-	}
+	};
 
 	target.saveEvents = function () {
-		var event;
+		var stream, event;
 		// save events to file
 		try {
 			if (FileSystem.getFileInfo(datPath)) FileSystem.deleteFile(datPath); 
@@ -1229,7 +1222,7 @@ var tmp = function () {
 			stream.close();
 		} catch (e) {}
 		return;
-	}
+	};
 	
 	target.doLast = function () {
 		// next year
@@ -1239,7 +1232,7 @@ var tmp = function () {
 		}		
 		this.dateChanged();	
 		return;
-	}
+	};
 	
 	target.doFirst = function () {
 		// last year
@@ -1249,15 +1242,15 @@ var tmp = function () {
 		}		
 		this.dateChanged();	
 		return;
-	}
+	};
 
 	target.doCenterF = function () {
 		return;
-	}
+	};
 	
 	target.moveCursor = function (dir) {
 		return;
-	}
+	};
 	
 	target.doMark = function () {
 		if (eventsDlgOpen) {
@@ -1269,14 +1262,14 @@ var tmp = function () {
 			this.dateChanged();
 		}
 		return;
-	}
+	};
 	
 	target.doSize = function () {
 		if (eventsDlgOpen) {
 			target.EVENTS_DIALOG.btn_Ok.click();
 		}
 		return;
-	}
+	};
 	
 	
 	// Settings pop-up panel stuff
@@ -1287,22 +1280,16 @@ var tmp = function () {
 		} else {
 			target.setVariable("week_begins","2");
 		}
-		if (hasNumericButtons) {
-			custSel = 0;
-			this.ntHandleSettingsDlg();
-		} else {
-			//target.SETTINGS_DIALOG.week_starts.enable(true);
-		}
 		settingsDlgOpen = true;
 		target.SETTINGS_DIALOG.show(true);
 		return;
-    }
+    };
 	
 	target.closeDlg = function () {
 		settingsDlgOpen = false;
 		eventsDlgOpen = false;
 		return;
-	}
+	};
 
 	target.changeSettings = function () {
 		settingsDlgOpen = false;
@@ -1345,11 +1332,11 @@ var tmp = function () {
 		}		
 		this.dateChanged();
 		return;
-	}
+	};
 	
 	target.SETTINGS_DIALOG.settingsType = function (t) {
 		return;
-	}
+	};
 	
 	// events popup stuff
     target.doEditEvents = function () {
@@ -1373,7 +1360,7 @@ var tmp = function () {
 			target.setVariable("event_year",yearNum);
 			target.EVENTS_DIALOG.eventIcon.setValue("3");
 			target.setVariable("event_icon","3");
-			this.EVENTS_DIALOG.square42.u = 3;			
+			this.EVENTS_DIALOG.square42.u = 3;
 			target.EVENTS_DIALOG.eventDescription.setValue("");
 			target.setVariable("event_description","");
 			target.EVENTS_DIALOG.eventDayText.setValue(STR_DATE + ":");
@@ -1401,133 +1388,134 @@ var tmp = function () {
 		eventsDlgOpen = true;
 		target.EVENTS_DIALOG.show(true);
 		return;
-    }
+    };
 
 	target.EVENTS_DIALOG.loadTempEvent = function () {
+		var eventMonth, eventYear, eventDay;
+		target.EVENTS_DIALOG.eventDayText.setValue(STR_DATE + ":");
+		target.EVENTS_DIALOG.eventYearText.setValue(STR_YEAR + ":");	
+		target.EVENTS_DIALOG.weekDay.show(false);
+		target.EVENTS_DIALOG.cardinalDay.show(false);
+		target.EVENTS_DIALOG.eventMonth.show(true);
+		target.EVENTS_DIALOG.eventDay.show(true);
+		if (tempEvents[currentTempEvent][0]=="") {
+			target.EVENTS_DIALOG.eventType.setValue("1");
+			target.setVariable("event_type","1");
+			target.EVENTS_DIALOG.eventTypeText.setValue(STR_ONE_OFF);
+			target.EVENTS_DIALOG.eventMonth.setValue(tempEvents[currentTempEvent][1]);
+			target.setVariable("event_month",tempEvents[currentTempEvent][1]);
+			target.EVENTS_DIALOG.eventDay.setValue(tempEvents[currentTempEvent][2]);
+			target.setVariable("event_day",tempEvents[currentTempEvent][2]);
+			target.EVENTS_DIALOG.eventYear.setValue(tempEvents[currentTempEvent][3]);
+			target.setVariable("event_year",tempEvents[currentTempEvent][3]);				
+		} else if (tempEvents[currentTempEvent][0]=="Y") {
+			target.EVENTS_DIALOG.eventType.setValue("2");
+			target.setVariable("event_type","2");
+			target.EVENTS_DIALOG.eventTypeText.setValue(STR_YEARLY);
+			target.EVENTS_DIALOG.eventMonth.setValue(tempEvents[currentTempEvent][1]);
+			target.setVariable("event_month",tempEvents[currentTempEvent][1]);
+			target.EVENTS_DIALOG.eventDay.setValue(tempEvents[currentTempEvent][2]);
+			target.setVariable("event_day",tempEvents[currentTempEvent][2]);
+			target.EVENTS_DIALOG.eventYear.setValue(tempEvents[currentTempEvent][3]);
+			target.setVariable("event_year",tempEvents[currentTempEvent][3]);				
+		} else if (tempEvents[currentTempEvent][0]=="M") {
+			// monthly event (therefore don't need the month label)
+			target.EVENTS_DIALOG.eventType.setValue("3");
+			target.setVariable("event_type","3");
+			target.EVENTS_DIALOG.eventTypeText.setValue(STR_MONTHLY);
+			target.EVENTS_DIALOG.eventMonth.show(false);
+			eventMonth=0;
+			target.setVariable("event_month",eventMonth);
 			target.EVENTS_DIALOG.eventDayText.setValue(STR_DATE + ":");
 			target.EVENTS_DIALOG.eventYearText.setValue(STR_YEAR + ":");	
 			target.EVENTS_DIALOG.weekDay.show(false);
 			target.EVENTS_DIALOG.cardinalDay.show(false);
-			target.EVENTS_DIALOG.eventMonth.show(true);
 			target.EVENTS_DIALOG.eventDay.show(true);
-			if (tempEvents[currentTempEvent][0]=="") {
-				target.EVENTS_DIALOG.eventType.setValue("1");
-				target.setVariable("event_type","1");
-				target.EVENTS_DIALOG.eventTypeText.setValue(STR_ONE_OFF);
-				target.EVENTS_DIALOG.eventMonth.setValue(tempEvents[currentTempEvent][1]);
-				target.setVariable("event_month",tempEvents[currentTempEvent][1]);
-				target.EVENTS_DIALOG.eventDay.setValue(tempEvents[currentTempEvent][2]);
-				target.setVariable("event_day",tempEvents[currentTempEvent][2]);
-				target.EVENTS_DIALOG.eventYear.setValue(tempEvents[currentTempEvent][3]);
-				target.setVariable("event_year",tempEvents[currentTempEvent][3]);				
-			} else if (tempEvents[currentTempEvent][0]=="Y") {
-				target.EVENTS_DIALOG.eventType.setValue("2");
-				target.setVariable("event_type","2");
-				target.EVENTS_DIALOG.eventTypeText.setValue(STR_YEARLY);
-				target.EVENTS_DIALOG.eventMonth.setValue(tempEvents[currentTempEvent][1]);
-				target.setVariable("event_month",tempEvents[currentTempEvent][1]);
-				target.EVENTS_DIALOG.eventDay.setValue(tempEvents[currentTempEvent][2]);
-				target.setVariable("event_day",tempEvents[currentTempEvent][2]);
-				target.EVENTS_DIALOG.eventYear.setValue(tempEvents[currentTempEvent][3]);
-				target.setVariable("event_year",tempEvents[currentTempEvent][3]);				
-			} else if (tempEvents[currentTempEvent][0]=="M") {
-				// monthly event (therefore don't need the month label)
-				target.EVENTS_DIALOG.eventType.setValue("3");
-				target.setVariable("event_type","3");
-				target.EVENTS_DIALOG.eventTypeText.setValue(STR_MONTHLY);
-				target.EVENTS_DIALOG.eventMonth.show(false);
-				eventMonth=0;
-				target.setVariable("event_month",eventMonth);
-				target.EVENTS_DIALOG.eventDayText.setValue(STR_DATE + ":");
-				target.EVENTS_DIALOG.eventYearText.setValue(STR_YEAR + ":");	
-				target.EVENTS_DIALOG.weekDay.show(false);
-				target.EVENTS_DIALOG.cardinalDay.show(false);
-				target.EVENTS_DIALOG.eventDay.show(true);
-				eventYear=tempEvents[currentTempEvent][3];
-				eventDay=tempEvents[currentTempEvent][2];
-				if (eventYear<1900) eventYear=todaysYear; // if original event was a floating event
-				target.setVariable("event_year",eventYear);
-				target.EVENTS_DIALOG.eventYear.setValue(eventYear);
-				if (eventDay==0) eventDay=1; // if original event was a floating event
-				target.setVariable("event_day",eventDay);
-				target.EVENTS_DIALOG.eventDay.setValue(eventDay);
-			} else if (tempEvents[currentTempEvent][0]=="W") {
-				// weekly event (therefore don't need the month or date, and yearly becomes week day)
-				target.EVENTS_DIALOG.eventType.setValue("4");
-				target.setVariable("event_type","4");
-				target.EVENTS_DIALOG.eventTypeText.setValue(STR_WEEKLY);
-				target.EVENTS_DIALOG.eventMonth.show(false);
-				eventMonth=0;
-				target.setVariable("event_month",eventMonth);
-				target.EVENTS_DIALOG.eventDay.show(false);
-				target.EVENTS_DIALOG.cardinalDay.show(false);
-				eventDay=0;
-				target.setVariable("event_day",eventDay);
-				target.EVENTS_DIALOG.eventYearText.setValue(STR_WEEKDAY);
-				target.EVENTS_DIALOG.weekDay.show(true);
-				eventYear=tempEvents[currentTempEvent][3];
-				if (eventYear>7) eventYear=1;
-				target.setVariable("event_year",eventYear);
-				if (eventYear==0) {
-					target.EVENTS_DIALOG.weekDay.setValue("0");
-				} else if (eventYear==1) {
-					target.EVENTS_DIALOG.weekDay.setValue(wordDays[0]);				
-				} else if (eventYear==2) {
-					target.EVENTS_DIALOG.weekDay.setValue(wordDays[1]);
-				} else if (eventYear==3) {
-					target.EVENTS_DIALOG.weekDay.setValue(wordDays[2]);
-				} else if (eventYear==4) {
-					target.EVENTS_DIALOG.weekDay.setValue(wordDays[3]);
-				} else if (eventYear==5) {
-					target.EVENTS_DIALOG.weekDay.setValue(wordDays[4]);
-				} else if (eventYear==6) {
-					target.EVENTS_DIALOG.weekDay.setValue(wordDays[5]);
-				} else if (eventYear==7) {
-					target.EVENTS_DIALOG.weekDay.setValue(wordDays[6]);
-				}
-			} else if (tempEvents[currentTempEvent][0]=="F") {
-				target.EVENTS_DIALOG.eventType.setValue("5");
-				target.setVariable("event_type","5");
-				target.EVENTS_DIALOG.eventTypeText.setValue(STR_FLOATING);	
-				// floating event requires different labels
-				target.EVENTS_DIALOG.eventDayText.setValue(STR_CARDINAL + ":");
-				target.EVENTS_DIALOG.eventYearText.setValue(STR_WEEKDAY + ":");
-				target.EVENTS_DIALOG.weekDay.show(true);
-				if (tempEvents[currentTempEvent][3]=="0") {
-					target.EVENTS_DIALOG.weekDay.setValue("0");
-				} else if (tempEvents[currentTempEvent][3]>="1" && tempEvents[currentTempEvent][3]<="6" ) {			
-					target.EVENTS_DIALOG.weekDay.setValue(wordDays[(tempEvents[currentTempEvent][3])-1]);				
-				}
-				target.EVENTS_DIALOG.cardinalDay.show(true);
-				if (tempEvents[currentTempEvent][2]=="0") {
-					target.EVENTS_DIALOG.cardinalDay.setValue("0");
-				} else if (tempEvents[currentTempEvent][2]>="1" && tempEvents[currentTempEvent][2]<="5" ) {
-					target.EVENTS_DIALOG.cardinalDay.setValue(cardinals[(tempEvents[currentTempEvent][2])-1]);
-				}
-				target.EVENTS_DIALOG.eventMonth.setValue(tempEvents[currentTempEvent][1]);
-				target.setVariable("event_month",tempEvents[currentTempEvent][1]);
-				target.EVENTS_DIALOG.eventDay.setValue(tempEvents[currentTempEvent][2]);
-				target.setVariable("event_day",tempEvents[currentTempEvent][2]);
-				target.EVENTS_DIALOG.eventYear.setValue(tempEvents[currentTempEvent][3]);
-				target.setVariable("event_year",tempEvents[currentTempEvent][3]);				
+			eventYear=tempEvents[currentTempEvent][3];
+			eventDay=tempEvents[currentTempEvent][2];
+			if (eventYear<1900) eventYear=todaysYear; // if original event was a floating event
+			target.setVariable("event_year",eventYear);
+			target.EVENTS_DIALOG.eventYear.setValue(eventYear);
+			if (eventDay==0) eventDay=1; // if original event was a floating event
+			target.setVariable("event_day",eventDay);
+			target.EVENTS_DIALOG.eventDay.setValue(eventDay);
+		} else if (tempEvents[currentTempEvent][0]=="W") {
+			// weekly event (therefore don't need the month or date, and yearly becomes week day)
+			target.EVENTS_DIALOG.eventType.setValue("4");
+			target.setVariable("event_type","4");
+			target.EVENTS_DIALOG.eventTypeText.setValue(STR_WEEKLY);
+			target.EVENTS_DIALOG.eventMonth.show(false);
+			eventMonth=0;
+			target.setVariable("event_month",eventMonth);
+			target.EVENTS_DIALOG.eventDay.show(false);
+			target.EVENTS_DIALOG.cardinalDay.show(false);
+			eventDay=0;
+			target.setVariable("event_day",eventDay);
+			target.EVENTS_DIALOG.eventYearText.setValue(STR_WEEKDAY);
+			target.EVENTS_DIALOG.weekDay.show(true);
+			eventYear=tempEvents[currentTempEvent][3];
+			if (eventYear>7) eventYear=1;
+			target.setVariable("event_year",eventYear);
+			if (eventYear==0) {
+				target.EVENTS_DIALOG.weekDay.setValue("0");
+			} else if (eventYear==1) {
+				target.EVENTS_DIALOG.weekDay.setValue(wordDays[0]);				
+			} else if (eventYear==2) {
+				target.EVENTS_DIALOG.weekDay.setValue(wordDays[1]);
+			} else if (eventYear==3) {
+				target.EVENTS_DIALOG.weekDay.setValue(wordDays[2]);
+			} else if (eventYear==4) {
+				target.EVENTS_DIALOG.weekDay.setValue(wordDays[3]);
+			} else if (eventYear==5) {
+				target.EVENTS_DIALOG.weekDay.setValue(wordDays[4]);
+			} else if (eventYear==6) {
+				target.EVENTS_DIALOG.weekDay.setValue(wordDays[5]);
+			} else if (eventYear==7) {
+				target.EVENTS_DIALOG.weekDay.setValue(wordDays[6]);
 			}
-			target.EVENTS_DIALOG.eventIcon.setValue(tempEvents[currentTempEvent][4]);
-			target.setVariable("event_icon",tempEvents[currentTempEvent][4]);
-			this.square42.u = tempEvents[currentTempEvent][4];
-			target.EVENTS_DIALOG.eventDescription.setValue(tempEvents[currentTempEvent][5]);
-			target.setVariable("event_description",tempEvents[currentTempEvent][5]);
-			return;
-	}
+		} else if (tempEvents[currentTempEvent][0]=="F") {
+			target.EVENTS_DIALOG.eventType.setValue("5");
+			target.setVariable("event_type","5");
+			target.EVENTS_DIALOG.eventTypeText.setValue(STR_FLOATING);	
+			// floating event requires different labels
+			target.EVENTS_DIALOG.eventDayText.setValue(STR_CARDINAL + ":");
+			target.EVENTS_DIALOG.eventYearText.setValue(STR_WEEKDAY + ":");
+			target.EVENTS_DIALOG.weekDay.show(true);
+			if (tempEvents[currentTempEvent][3]=="0") {
+				target.EVENTS_DIALOG.weekDay.setValue("0");
+			} else if (tempEvents[currentTempEvent][3]>="1" && tempEvents[currentTempEvent][3]<="6" ) {			
+				target.EVENTS_DIALOG.weekDay.setValue(wordDays[(tempEvents[currentTempEvent][3])-1]);				
+			}
+			target.EVENTS_DIALOG.cardinalDay.show(true);
+			if (tempEvents[currentTempEvent][2]=="0") {
+				target.EVENTS_DIALOG.cardinalDay.setValue("0");
+			} else if (tempEvents[currentTempEvent][2]>="1" && tempEvents[currentTempEvent][2]<="5" ) {
+				target.EVENTS_DIALOG.cardinalDay.setValue(cardinals[(tempEvents[currentTempEvent][2])-1]);
+			}
+			target.EVENTS_DIALOG.eventMonth.setValue(tempEvents[currentTempEvent][1]);
+			target.setVariable("event_month",tempEvents[currentTempEvent][1]);
+			target.EVENTS_DIALOG.eventDay.setValue(tempEvents[currentTempEvent][2]);
+			target.setVariable("event_day",tempEvents[currentTempEvent][2]);
+			target.EVENTS_DIALOG.eventYear.setValue(tempEvents[currentTempEvent][3]);
+			target.setVariable("event_year",tempEvents[currentTempEvent][3]);				
+		}
+		target.EVENTS_DIALOG.eventIcon.setValue(tempEvents[currentTempEvent][4]);
+		target.setVariable("event_icon",tempEvents[currentTempEvent][4]);
+		this.square42.u = tempEvents[currentTempEvent][4];
+		target.EVENTS_DIALOG.eventDescription.setValue(tempEvents[currentTempEvent][5]);
+		target.setVariable("event_description",tempEvents[currentTempEvent][5]);
+		return;
+	};
 	
 	target.EVENTS_DIALOG.doPlusMinus = function (sender) {
 	    var senderID;
 	    senderID = getSoValue(sender,"id");
 		target.EVENTS_DIALOG.doPlusMinusF(senderID);
 		return;
-	}
+	};
 	
 	target.EVENTS_DIALOG.doPlusMinusF = function (senderID) {
-		var step, eventNum, eventType, eventMonth, eventDay, eventYear;
+		var step, eventNum, eventType, eventMonth, eventDay, eventYear, eventIcon;
 		step = ( senderID.lastIndexOf("+") != -1) ? 1 : -1;
 		senderID = senderID.slice(0,senderID.length-1);
 	    eventNum = parseInt(target.getVariable("event_num"));
@@ -1699,7 +1687,7 @@ var tmp = function () {
 					target.setVariable("event_day",eventDay);
 					target.EVENTS_DIALOG.eventDay.setValue(eventDay);
 					if (eventMonth==0) eventMonth=1; // if original event was a floating event
-					target.setVariable("event_month",eventmonth);
+					target.setVariable("event_month",eventMonth);
 					target.EVENTS_DIALOG.eventMonth.setValue(eventMonth);
 				}
 				break;
@@ -1824,10 +1812,10 @@ var tmp = function () {
 			}
 	    }
 		return;
-	}
+	};
 	
 	target.doUpdateEvent = function () {
-		var eventNum, eventType, eventTypeCode, eventMonth, eventDay, eventYear, eventDescription;
+		var eventNum, eventType, eventTypeCode, eventMonth, eventDay, eventYear, eventDescription, eventIcon;
 		eventsDlgOpen = false;
 		
 		// create new array item from stored variables
@@ -1862,7 +1850,7 @@ var tmp = function () {
 			this.eventsText.setValue("");
 		}
 		return;
-	}
+	};
 
 	target.doDeleteEvent = function () {
 		//target.bubble("tracelog","Delete event "+tempEventsNum[currentTempEvent]);
@@ -1883,7 +1871,7 @@ var tmp = function () {
 			this.eventsText.setValue("");
 		}
 		return;
-	}
+	};
 	
 	target.refreshKeys = function () {
 		var i,j,n,key;
@@ -1948,7 +1936,7 @@ var tmp = function () {
 			mouseEnter.call(target.EVENTS_DIALOG[key]);
 			mouseLeave.call(target.EVENTS_DIALOG[key]);	
 		}
-	}
+	};
 
 	target.doSpace = function () {
 		// ADD A SPACE
@@ -1956,17 +1944,17 @@ var tmp = function () {
 		eventDescription = eventDescription + " ";
 		target.EVENTS_DIALOG.eventDescription.setValue(eventDescription);
 		target.setVariable("event_description",eventDescription);
-	}
+	};
 
 	target.doSymbol = function () {
 		symbols = !symbols;
 		this.refreshKeys();
-	} 
+	};
 
 	target.doShift = function () {
 		shifted = !shifted;
 		this.refreshKeys();
-	}	
+	};
 	
 	target.doBack = function () {
 		// BACKSPACE
@@ -1974,13 +1962,13 @@ var tmp = function () {
 		eventDescription = eventDescription.slice(0,eventDescription.length-1);
 		target.EVENTS_DIALOG.eventDescription.setValue(eventDescription);
 		target.setVariable("event_description",eventDescription);
-	}
+	};
 	
 	target.doKeyPress = function (sender) {
 		var id = getSoValue(sender, "id");
 		this.addCharacter(id);
 		return;
-	}
+	};
 	
 	target.addCharacter = function (id) {
 		var key=id.substring(3, 5);
@@ -2008,7 +1996,7 @@ var tmp = function () {
 		eventDescription = eventDescription + character;
 		target.EVENTS_DIALOG.eventDescription.setValue(eventDescription);
 		target.setVariable("event_description",eventDescription);		
-	}
+	};
 };
 tmp();
 tmp = undefined;

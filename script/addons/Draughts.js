@@ -15,7 +15,6 @@ tmp = function() {
 			kbook.autoRunRoot.sandbox._title = Draughts.title;		
 			kbook.autoRunRoot.sandbox.getSoValue = Core.system.getSoValue;
 			kbook.autoRunRoot.sandbox.hasNumericButtons = Core.config.compat.hasNumericButtons;
-			kbook.autoRunRoot.sandbox.getFileContent = Core.io.getFileContent;
 			kbook.autoRunRoot.sandbox.gamesSavePath = Core.config.userGamesSavePath;
 			kbook.autoRunRoot.path = Core.config.addonsPath + "Draughts/draughts.xml";
 			kbook.autoRunRoot.enterIf(kbook.model);

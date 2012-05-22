@@ -18,53 +18,50 @@
 // 2011-04-03 Ben Chenoweth - Moved all labels around slightly
 // 2011-09-19 Ben Chenoweth - Added setting: pawns can capture backwards
 // 2011-09-20 Ben Chenoweth - Added setting: compulsory jumping
+// 2012-05-22 Ben Chenoweth - Removed unused variables; changed globals to locals
 
 var tmp = function () {
 
-	var hasNumericButtons = kbook.autoRunRoot.hasNumericButtons;
-	var getSoValue = kbook.autoRunRoot.getSoValue;
-	var getFileContent = kbook.autoRunRoot.getFileContent;
-
-	var undoboard;
-	var currundo;
-	var undodepth;	
-	var auto_mode = true;
-	var cursorX = 0;
-	var cursorY = 445;
-	var lastEnd_x = -1;
-	var lastEnd_y = -1;
-	var black = -1; // computer is black
-	var white = 1; // visitor is white
-	var square_dim = 35;
-	var piece_toggled = false;
-	var curr_x;
-	var curr_y;
-	var black_turn = false;
-	var double_jump = false;
-	var comp_move = false;
-	var game_is_over = false;
-	var safe_from = safe_to = null;
-	var jump_priority = 10;	// the higher the jump_priority, the more often the computer will take the jump over the safe move
-	var board = [[],[],[],[],[],[],[],[]];
-	var startLayout = [[0,-1,0,0,0,1,0,1],[-1,0,-1,0,0,0,1,0],[0,-1,0,0,0,1,0,1],[-1,0,-1,0,0,0,1,0],[0,-1,0,0,0,1,0,1],[-1,0,-1,0,0,0,1,0],[0,-1,0,0,0,1,0,1],[-1,0,-1,0,0,0,1,0]];
-
-	var bestlength;
-	var bestboard = [[],[],[],[],[],[],[],[]];
-	var bestlastendx;
-	var bestlastendy;
-	var foundmultijump;
-	var templength;
-	var tempboard = [[],[],[],[],[],[],[],[],[],[]];
+	var hasNumericButtons = kbook.autoRunRoot.hasNumericButtons,
+	getSoValue = kbook.autoRunRoot.getSoValue,
+	undoboard,
+	currundo,
+	undodepth,
+	auto_mode = true,
+	cursorX = 0,
+	cursorY = 445,
+	lastEnd_x = -1,
+	lastEnd_y = -1,
+	piece_toggled = false,
+	curr_x,
+	curr_y,
+	black_turn = false,
+	double_jump = false,
+	game_is_over = false,
+	safe_from = null,
+	safe_to = null,
+	board = [[],[],[],[],[],[],[],[]],
+	startLayout = [[0,-1,0,0,0,1,0,1],[-1,0,-1,0,0,0,1,0],[0,-1,0,0,0,1,0,1],[-1,0,-1,0,0,0,1,0],[0,-1,0,0,0,1,0,1],[-1,0,-1,0,0,0,1,0],[0,-1,0,0,0,1,0,1],[-1,0,-1,0,0,0,1,0]],
+	bestlength,
+	bestboard = [[],[],[],[],[],[],[],[]],
+	bestlastendx,
+	bestlastendy,
+	foundmultijump,
+	templength,
+	templastendx,
+	templastendy,
+	tempboard = [[],[],[],[],[],[],[],[],[],[]],
+	datPath0 = kbook.autoRunRoot.gamesSavePath+'Draughts/',
+	settingsPath = datPath0 + 'settings.dat',
+	settingsDlgOpen = false,
+	PawnsCaptureBackwards = "NO",
+	CompulsoryJumping = "NO",
+	mouseLeave = getSoValue( target.SETTINGS_DIALOG.btn_Cancel,'mouseLeave'),
+	mouseEnter = getSoValue( target.SETTINGS_DIALOG.btn_Cancel,'mouseEnter'),
+	custSel;
 	
-	var datPath0 = kbook.autoRunRoot.gamesSavePath+'Draughts/';
-	FileSystem.ensureDirectory(datPath0);  
-	var settingsPath = datPath0 + 'settings.dat';
-	var settingsDlgOpen = false;
-	var PawnsCaptureBackwards = "NO";
-	var CompulsoryJumping = "NO";
-	var mouseLeave = getSoValue( target.SETTINGS_DIALOG.btn_Cancel,'mouseLeave');
-	var mouseEnter = getSoValue( target.SETTINGS_DIALOG.btn_Cancel,'mouseEnter');
-
+	FileSystem.ensureDirectory(datPath0);
+	
 	// variables to be saved to a file
 	target.settings = {	
 		PawnsCaptureBackwards : "NO",
@@ -92,7 +89,7 @@ var tmp = function () {
       	} catch (e) {}
 		CompulsoryJumping=target.settings.CompulsoryJumping;
 		PawnsCaptureBackwards=target.settings.PawnsCaptureBackwards;
-	}         
+	};    
 
 	// writes values of target.settings.xx to file         
 	target.saveSettings = function () { 
@@ -105,7 +102,7 @@ var tmp = function () {
       		}
       		stream.close();
       	} catch (e) { }         
-    } 
+    };
 
 	// Load settings from save file once at startup
 	target.loadSettings();
@@ -118,7 +115,7 @@ var tmp = function () {
 	}
 	
 	target.init = function () {
-		var i;
+		var t, r;
 		this.appTitle.setValue(kbook.autoRunRoot._title);
 		this.appIcon.u = kbook.autoRunRoot._icon;		
 
@@ -1096,7 +1093,7 @@ var tmp = function () {
 		}
 		this.writePieces();
 		return;
-	}
+	};
 	
 	target.squareFocus = function (x, y, makeActive) {
 		if (makeActive) {
@@ -1105,23 +1102,23 @@ var tmp = function () {
 			this['selection1'].changeLayout(0, 0, uD, 0, 0, uD);
 		}
 		return;
-	}
+	};
 	
 	target.doSelectClick = function (sender) {
 		return;
-	}
+	};
 	
 	target.doRoot = function (sender) {
 		kbook.autoRunRoot.exitIf(kbook.model);
 		return;
-	}
+	};
 	
 	target.doMark = function (sender) {
 		return;
-	}
+	};
 	
 	target.doButtonClick = function (sender) {
-		var id;
+		var id, n;
 		id = getSoValue(sender, "id");
 		n = id.substring(7, 10);
 		if (n == "RES") {
@@ -1148,7 +1145,7 @@ var tmp = function () {
 			kbook.autoRunRoot.exitIf(kbook.model);
 			return;
 		}
-	}
+	};
 	
 	target.moveCursor = function (dir) {
 		if (settingsDlgOpen) {
@@ -1190,18 +1187,18 @@ var tmp = function () {
 			}
 		}
 		this.gridCursor.changeLayout(cursorX, 75, uD, cursorY, 75, uD);
-	}
+	};
 	
 	target.cursorClick = function () {
 		if (settingsDlgOpen) {
 			this.SETTINGS_DIALOG.doCenterF();
 		}	
-		var x, y, iPosition, sMove;
+		var x, y;
 		x = cursorX / 75; // find column
 		y = (cursorY - 70) / 75; // find row
 		this.makeSelection(x,y);
 		return;
-	}
+	};
 	
 	target.digitF = function (key) {
 		if ((key > 0) && (key < 9)) {
@@ -1217,7 +1214,7 @@ var tmp = function () {
 			}
 		}
 		return;
-	}
+	};
 	
 	target.doHold9 = function () {
 		// initiate new game
@@ -1238,12 +1235,12 @@ var tmp = function () {
 		currundo=0;
 		this.updateUndo();
 		return;
-	}
+	};
 	
 	target.doHold0 = function () {
 		kbook.autoRunRoot.exitIf(kbook.model);
 		return;
-	}
+	};
 	
 	target.doPrev = function () {
 		if (hasNumericButtons) {
@@ -1258,7 +1255,7 @@ var tmp = function () {
 			this.touchButtons1.setValue("[Prev] Auto OFF");
 		}
 		return;
-	}
+	};
 	
 	target.doNext = function () {
 		if (hasNumericButtons) {
@@ -1266,9 +1263,10 @@ var tmp = function () {
 			return;
 		}
 		return;
-	}
+	};
 	
 	target.doUndo = function () {
+		var t, r;
 		if (game_is_over) return;
 		
 		// do undo
@@ -1309,9 +1307,10 @@ var tmp = function () {
 		this.selection3.changeLayout(-0,0,uD,0,0,uD);
 		
 		return;
-	}
+	};
 	
 	target.updateUndo = function () {
+		var s, t, r;
 		// update undo
 		if (currundo < undodepth) {
 			// increment current undo if possible
@@ -1340,10 +1339,10 @@ var tmp = function () {
 			}
 		}
 		return;
-	}
+	};
 	
 	target.autoMove = function () {
-		var i,j;
+		var black_moves;
 		// AI move (black)
 		black_moves=this.computer();
 		
@@ -1362,18 +1361,19 @@ var tmp = function () {
 			this.messageStatus.setValue("White wins!");
 		}
 		return;
-	}
+	};
 	
 	// AI routines
 	target.Coord = function (x,y) {	
 		this.x = x;
 		this.y = y;
-	}
+	};
 	
 	target.coord = function (x,y) {
+		var c;
 		c = new this.Coord(x,y);
 		return c;
-	}
+	};
 	
 	target.integ = function (num) {
 		if (num != null) {
@@ -1383,25 +1383,26 @@ var tmp = function () {
 		} else {
 			return null;
 		}
-	}
+	};
 	
 	target.abs = function (num) {
 		return Math.abs(num);
-	}
+	};
 	
 	target.sign = function (num) {
 		if (num < 0) return -1;
 		else return 1;
-	}
+	};
 	
 	target.concatenate = function (arr1,arr2) {
 		// function tacks the second array onto the end of the first and returns result
 		for(var i=0;i<arr2.length;i++)
 			arr1[arr1.length+i] = arr2[i];
 		return arr1;
-	}
+	};
 	
 	target.legal_move = function (from,to) {
+		var piece, distance;
 		if ((to.x < 0) || (to.y < 0) || (to.x > 7) || (to.y > 7)) return false;
 		piece = board[from.x][from.y];
 		distance = this.coord(to.x-from.x,to.y-from.y);
@@ -1437,9 +1438,10 @@ var tmp = function () {
 		}
 		//this.bubble("tracelog","move is legal!");
 		return true;
-	}
+	};
 
 	target.templegal_move = function (from,to) {
+		var piece, distance;
 		if ((to.x < 0) || (to.y < 0) || (to.x > 7) || (to.y > 7)) return false;
 		piece = tempboard[from.x][from.y];
 		distance = this.coord(to.x-from.x,to.y-from.y);
@@ -1475,7 +1477,7 @@ var tmp = function () {
 		}
 		//this.bubble("tracelog","move is legal!");
 		return true;
-	}
+	};
 	
 	target.king_me = function (x,y) {
 		if (board[x][y] == 1) {
@@ -1483,17 +1485,17 @@ var tmp = function () {
 		} else if (board[x][y] == -1) {
 			board[x][y] = -1.1; // black king
 		}
-	}
+	};
 	
 	target.remove = function (x,y) {
 		board[x][y] = 0;
-	}
+	};
 	
 	target.swap = function (from,to) {
 		var dummy_num = board[from.x][from.y];
 		board[from.x][from.y] = board[to.x][to.y];
 		board[to.x][to.y] = dummy_num;
-	}
+	};
 	
 	target.move_comp = function (from,to) {
 		//this.bubble("tracelog","from.x="+from.x+", from.y="+from.y+", to.x="+to.x+", to.y="+to.y);
@@ -1507,7 +1509,7 @@ var tmp = function () {
 		lastEnd_x=to.x;
 		lastEnd_y=to.y;		
 		return true;
-	}
+	};
 
 	target.tempmove_comp = function (from,to) {
 		// move piece on tempboard
@@ -1525,7 +1527,7 @@ var tmp = function () {
 		templastendx=to.x;
 		templastendy=to.y;		
 		return true;
-	}	
+	};
 	
 	target.computer = function () {
 		var piecesx=[];
@@ -1560,8 +1562,8 @@ var tmp = function () {
 		if (foundmultijump) {
 			//this.bubble("tracelog","Found multi-step jump!");
 			//update board
-			for(var j=0;j<8;j++) {
-				for(var i=0;i<8;i++) {
+			for(j=0;j<8;j++) {
+				for(i=0;i<8;i++) {
 					board[i][j]=bestboard[i][j];
 				}
 			}
@@ -1577,8 +1579,8 @@ var tmp = function () {
 		//this.bubble("tracelog","step one passed: no multi-step jumps found");
 		
 		// step two - prevent any jumps by jumping the threatening piece
-		for(var j=0;j<8;j++) {
-			for(var i=0;i<8;i++) {
+		for(j=0;j<8;j++) {
+			for(i=0;i<8;i++) {
 				if (this.integ(board[i][j]) == 1) {
 					if ((i>0) && (i<6) && (j>1) && (this.legal_move(this.coord(i,j),this.coord(i+2,j-2)))) {
 						//this.bubble("tracelog","Jumper at i="+i+", j="+j);
@@ -1601,8 +1603,8 @@ var tmp = function () {
 
 		// step three - prevent any jumps by moving (skip if compulsory jumping)
 		if (CompulsoryJumping=="NO") {
-			for(var j=0;j<8;j++) {
-				for(var i=0;i<8;i++) {
+			for(j=0;j<8;j++) {
+				for(i=0;i<8;i++) {
 					if (this.integ(board[i][j]) == 1) {
 						//this.bubble("tracelog","Potential jumper at i="+i+", j="+j);
 						if ((j>1) && (this.legal_move(this.coord(i,j),this.coord(i+2,j-2))) && (this.prevent(this.coord(i+2,j-2),this.coord(i+1,j-1)))) {
@@ -1626,8 +1628,8 @@ var tmp = function () {
 		//this.bubble("tracelog","step three passed: no jumps to prevent");
 		
 		// step four - look for jumps
-		for(var j=7;j>=0;j--) {
-			for(var i=0;i<8;i++) {
+		for(j=7;j>=0;j--) {
+			for(i=0;i<8;i++) {
 				if (this.jump(i,j))
 					return true;
 			}
@@ -1635,7 +1637,7 @@ var tmp = function () {
 		//this.bubble("tracelog","step four passed: no jumps to make");
 
 		// step five - look for single space move to obtain a king
-		for(var i=0;i<8;i++) {
+		for(i=0;i<8;i++) {
 			if (board[i][6]==-1) {
 				// black piece in row above king row
 				if ((board[i-1][7]==0) && (board[i+1][7]==0)) {
@@ -1658,8 +1660,8 @@ var tmp = function () {
 		//this.bubble("tracelog","step five passed: no pieces can move to be crowned");
 
 		// step six - look for safe single space move for a king (but use random to prevent kings dominating the moves)
-		for(var j=0;j<8;j++) {
-			for(var i=0;i<8;i++) {
+		for(j=0;j<8;j++) {
+			for(i=0;i<8;i++) {
 				if (board[i][j]==-1.1) {
 					if (Math.floor(Math.random()*4)==1) {
 						if (this.single(i,j)) {
@@ -1672,7 +1674,7 @@ var tmp = function () {
 		//this.bubble("tracelog","step six passed: no safe single spaces for a king to make");
 
 		// step seven - look for pawn in row 5 that can safely move to row 6
-		for(var i=0;i<8;i++) {
+		for(i=0;i<8;i++) {
 			if (board[i][5]==-1) {
 				// black piece in 2 rows above king row
 				if ((i>1) && (board[i-1][6]==0) && (board[i-2][7]==0) && (board[i][7]==0)) {
@@ -1691,8 +1693,8 @@ var tmp = function () {
 		// Use random to choose between looking for pieces from left to right or right to left
 		if (Math.floor(Math.random()*2)==1) {
 			//this.bubble("tracelog","left to right");
-			for(var j=0;j<8;j++) {
-				for(var i=0;i<8;i++) {
+			for(j=0;j<8;j++) {
+				for(i=0;i<8;i++) {
 					if (this.single(i,j,false)) {
 						//this.bubble("tracelog","MOVE FOUND!");
 						return true;
@@ -1701,8 +1703,8 @@ var tmp = function () {
 			}
 		} else {
 			//this.bubble("tracelog","right to left");
-			for(var j=0;j<8;j++) {
-				for(var i=7;i>=0;i--) {
+			for(j=0;j<8;j++) {
+				for(i=7;i>=0;i--) {
 					if (this.single(i,j,false)) {
 						//this.bubble("tracelog","MOVE FOUND!");
 						return true;
@@ -1717,8 +1719,8 @@ var tmp = function () {
 		// Use random to choose between looking for pieces from left to right or right to left
 		if (Math.floor(Math.random()*2)==1) {
 			//this.bubble("tracelog","left to right");
-			for(var j=0;j<8;j++) {
-				for(var i=0;i<8;i++) {
+			for(j=0;j<8;j++) {
+				for(i=0;i<8;i++) {
 					if (this.single(i,j,true)) {
 						//this.bubble("tracelog","MOVE FOUND!");
 						return true;
@@ -1727,8 +1729,8 @@ var tmp = function () {
 			}
 		} else {
 			//this.bubble("tracelog","right to left");
-			for(var j=0;j<8;j++) {
-				for(var i=7;i>=0;i--) {
+			for(j=0;j<8;j++) {
+				for(i=7;i>=0;i--) {
 					if (this.single(i,j,true)) {
 						//this.bubble("tracelog","MOVE FOUND!");
 						return true;
@@ -1747,11 +1749,11 @@ var tmp = function () {
 		}
 		safe_from = safe_to = null;
 		return false;
-	}
+	};
 	
 	target.tryfindmultijump = function (i,j) {
 		// reset temp variables
-		for(var k=0;k<10;k++) {
+		for(var k=0;k<8;k++) {
 			for(var l=0;l<8;l++) {
 				tempboard[k][l]=board[k][l];
 			}
@@ -1769,9 +1771,9 @@ var tmp = function () {
 			bestlength=templength;
 			bestlastendx=templastendx;
 			bestlastendy=templastendy;
-			for(var j=0;j<8;j++) {
-				for(var i=0;i<8;i++) {
-					bestboard[i][j]=tempboard[i][j];
+			for(k=0;k<8;k++) {
+				for(l=0;l<8;l++) {
+					bestboard[k][l]=tempboard[k][l];
 				}
 			}
 		}
@@ -1779,7 +1781,7 @@ var tmp = function () {
 		// if best length has more than 1 jump then it is a multi-step jump
 		if (bestlength>1) foundmultijump=true;
 		return;
-	}
+	};
 
 	target.multijump = function (i,j) {
 		if (tempboard[i][j] == -1.1) {
@@ -1819,7 +1821,7 @@ var tmp = function () {
 			}
 		}
 		return false;
-	}
+	};
 	
 	target.jump = function (i,j) {
 		if (board[i][j] == -1.1) {
@@ -1859,7 +1861,7 @@ var tmp = function () {
 			}
 		}
 		return false;
-	}
+	};
 	
 	target.single = function (i,j,override) {
 		var whitepieces,blackpieces,whitex,whitey,attack;
@@ -1960,7 +1962,7 @@ var tmp = function () {
 			}
 		}
 		return false;
-	}
+	};
 	
 	target.possibilities = function (x,y) {
 		//this.bubble("tracelog","x="+x+", y="+y);
@@ -1976,10 +1978,11 @@ var tmp = function () {
 			//this.bubble("tracelog","jump, so return false");
 			return false;
 		}
-	}
+	};
 	
 	target.prevent = function (end,s) {
-		i = end.x;
+		var i, j;
+                i = end.x;
 		j = end.y;
 		//this.bubble("tracelog","prevent: i="+i+", j="+j);
 		if (!this.possibilities(s.x,s.y))
@@ -1995,9 +1998,10 @@ var tmp = function () {
 		} else {
 			return false;
 		}
-	}
+	};
 	
 	target.wise = function (from,to) {
+		var i, j, n, s, e, w, ne, nw, se, sw;
 		i = to.x;
 		j = to.y;
 		n = (j>0);
@@ -2022,19 +2026,19 @@ var tmp = function () {
 		
 		//this.bubble("tracelog","returning true!");
 		return true;
-	}
+	};
 	
 	target.doCenterF = function () {
 		if (settingsDlgOpen) {
 			this.SETTINGS_DIALOG.doCenterF();
 		}
 		return;
-	}
+	};
 	
 	target.doMenu = function () {
 		this.doOption();
 		return;
-	}
+	};
 
 	// Settings pop-up panel stuff
     target.doOption = function(sender) {
@@ -2057,13 +2061,12 @@ var tmp = function () {
 		settingsDlgOpen = true;
 		target.SETTINGS_DIALOG.show(true);
 		return;
-    }
+    };
 	
 	target.closeDlg = function () {
 		settingsDlgOpen = false;
-		eventsDlgOpen = false;
 		return;
-	}
+	};
 
 	target.changeSettings = function () {
 		settingsDlgOpen = false;
@@ -2089,7 +2092,7 @@ var tmp = function () {
 		target.settings.CompulsoryJumping = CompulsoryJumping;
 		this.saveSettings();
 		return;
-	}
+	};
 	
 	target.ntHandleSettingsDlg = function () {
 		if (custSel === 0) {
@@ -2113,56 +2116,55 @@ var tmp = function () {
 			mouseEnter.call(target.SETTINGS_DIALOG.btn_Cancel);	
 		}
 		return;
-	}
+	};
 
 	target.SETTINGS_DIALOG.moveCursor = function (direction) {
-	switch (direction) {
-		case "up" : {
-			if (custSel>0) {
-				custSel--;
-				target.ntHandleSettingsDlg();
+		switch (direction) {
+			case "up" : {
+				if (custSel>0) {
+					custSel--;
+					target.ntHandleSettingsDlg();
+				}
+				break
 			}
-			break
-		}
-		case "down" : {
-			if (custSel<3) {
-				custSel++;
-				target.ntHandleSettingsDlg();
+			case "down" : {
+				if (custSel<3) {
+					custSel++;
+					target.ntHandleSettingsDlg();
+				}
+				break
 			}
-			break
-		}
-		case "left" : {
-			if (custSel==0) {
-				target.setVariable("pawns_capture_backwards","1");
+			case "left" : {
+				if (custSel==0) {
+					target.setVariable("pawns_capture_backwards","1");
+				}
+				if (custSel==1) {
+					target.setVariable("compulsory_jumping","1");
+				}
+				break
+			}		
+			case "right" : {
+				if (custSel==0) {
+					target.setVariable("pawns_capture_backwards","2");
+				}
+				if (custSel==1) {
+					target.setVariable("compulsory_jumping","2");
+				}
+				break
 			}
-			if (custSel==1) {
-				target.setVariable("compulsory_jumping","1");
-			}
-			break
-		}		
-		case "right" : {
-			if (custSel==0) {
-				target.setVariable("pawns_capture_backwards","2");
-			}
-			if (custSel==1) {
-				target.setVariable("compulsory_jumping","2");
-			}
-			break
-		}
-		return;
-	  }	
-	}
+			return;
+		}	
+	};
 	
 	target.SETTINGS_DIALOG.doCenterF = function () {
 		if (custSel === 2) target.SETTINGS_DIALOG.btn_Ok.click();	
 		if (custSel === 3) target.SETTINGS_DIALOG.btn_Cancel.click();
 		return;
-	}
+	};
 
 	target.SETTINGS_DIALOG.settingsType = function (t) {
 		return;
-	}
-	
+	};
 };
 tmp();
 tmp = undefined;

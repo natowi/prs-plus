@@ -10,21 +10,22 @@
 //	2011-02-28 Ben Chenoweth - Changed addon name to CamelCase
 //  2011-03-01 kartu - Moved into a function, to allow variable name optimizations
 //  2011-03-20 Beb Chenoweth - Moved all labels out of status bar; moved this changelog from startup script into main script.
-//  2011-03-24 Mark Nord: skins changed over to use common AppAssests
-//  2011-03-25 Ben Chenoweth: made a few small adjustments to AppAssests skins
-//  2011-06-02 Mark Nord: unified UI
+//  2011-03-24 Mark Nord - skins changed over to use common AppAssests
+//  2011-03-25 Ben Chenoweth - made a few small adjustments to AppAssests skins
+//  2011-06-02 Mark Nord - unified UI
+//	2012-05-22 Ben Chenoweth - Removed unused variables; changed globals to locals
 
 var tmp = function () {
-	var firstX = 40;
-	var curDX = 50;
-	var firstY = 45;
-	var curDY = 50;
-	var posX;
-	var posY;
-	var hasNumericButtons = kbook.autoRunRoot.hasNumericButtons;
-	var getSoValue = kbook.autoRunRoot.getSoValue; 
-	var datpath;
-	var datPath0 = kbook.autoRunRoot.gamesSavePath+'FiveBalls/';
+	var firstX = 40,
+	curDX = 50,
+	firstY = 45,
+	curDY = 50,
+	posX,
+	posY,
+	hasNumericButtons = kbook.autoRunRoot.hasNumericButtons,
+	getSoValue = kbook.autoRunRoot.getSoValue,
+	datpath,
+	datPath0 = kbook.autoRunRoot.gamesSavePath+'FiveBalls/';
 	
 	target.help;
 	target.anAus;
@@ -106,7 +107,7 @@ var tmp = function () {
 			j = 1;
 		while (drin == false) {
 			drin = true;
-			for (i = 0; i < 120; i++) {
+			for (var i = 0; i < 120; i++) {
 				if ((this.sameBall[i] > -10) && (this.sameBall[i] < 0)) {
 					YX = i;
 					j++;
@@ -127,8 +128,8 @@ var tmp = function () {
 					this.col10m[i.substring(End)][11] = 0;
 				}
 			}
-			for (x = 0; x < 10; x++) {
-				y = 0;
+			for (var x = 0; x < 10; x++) {
+				var y = 0;
 				while (this.col10m[x][11] == 0 && y < 12) {
 					y++;
 					this.col10m[x].splice(11, 1);
@@ -149,8 +150,7 @@ var tmp = function () {
 	
 	target.findUdLr = function (ball, YX) {
 		if (YX % 10 < 9) {
-			for (x = 1;
-			(YX + x) % 10 > 0; x++) {
+			for (var x = 1; (YX + x) % 10 > 0; x++) {
 				if (this.sameBall[YX + x] == ball) this.sameBall[YX + x] = ball * -1;
 				else
 				break;
@@ -177,8 +177,8 @@ var tmp = function () {
 	};
 	
 	target.drawSumNum = function () {
-		var id = "5Balls" + ((9 + posX * 1) % 10) + '' + posY,
-			ball = this[id].u;
+		var stream;
+		//var id = "5Balls" + ((9 + posX * 1) % 10) + '' + posY, ball = this[id].u;
 		if (this.summe > this.cNum) {
 			this.cNum = this.summe;
 			// TODO should store this as "options" instead
@@ -205,13 +205,13 @@ var tmp = function () {
 	};
 	
 	target.setBalls = function () {
-		var B1 = 0,
-			B2 = 0,
-			B3 = 0,
-			B4 = 0,
-			B5 = 0;
-		for (x = 0; x < 10; x++) {
-			for (y = 0; y < 12; y++) {
+		var id, B1 = 0,
+		B2 = 0,
+		B3 = 0,
+		B4 = 0,
+		B5 = 0;
+		for (var x = 0; x < 10; x++) {
+			for (var y = 0; y < 12; y++) {
 				id = "5Balls" + x + '' + y;
 				this[id].u = this.col10m[x][y];
 				switch (this[id].u) {
@@ -303,14 +303,14 @@ var tmp = function () {
 	};
 	
 	target.doGridClick = function (sender) {
-		var id, y, x, u;
+		var id, y, x;
 		id = getSoValue(sender, "id");
 		x = id.substring(6, 7);
 		y = id.substring(7, 8);
 		if (y == 1) {
 			y = id.substring(7, 9);
 		}
-		u = getSoValue(sender, "u");
+		//var u = getSoValue(sender, "u");
 		//this.bubble("tracelog","id="+id+", x="+x+", y="+y+", u="+u);
 		posX = parseInt(x, 10) + 1;
 		posY = parseInt(y, 10);
@@ -319,6 +319,7 @@ var tmp = function () {
 	};
 	
 	target.exitQuit = function () {
+		var stream;
 		if (this.summe > this.cNum) {
 			// TODO should store this as "options" instead
 			//datPath = this.fiveballsRoot + 'fiveballs.dat';
@@ -335,7 +336,7 @@ var tmp = function () {
 	
 	
 	target.doButtonClick = function (sender) {
-		var id;
+		var id, n;
 		id = getSoValue(sender, "id");
 		n = id.substring(7, 10);
 		if (n == "EXT") {
@@ -346,7 +347,7 @@ var tmp = function () {
 			this.init();
 			return;
 		}
-	}
+	};
 };
 tmp();
-delete tmp;
+tmp = undefined;

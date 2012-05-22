@@ -36,3 +36,4 @@ Initial version: 2011-07-14
 2011-10-23 Ben Chenoweth - Edit Events button now enabled on start and on button Today.
 2011-11-02 Ben Chenoweth - Selected date (not today) used in new event popup.
 2011-11-03 Ben Chenoweth - Fixed floating events not appearing in event popup; fixed easter icon; fixed floating event day info in data file.
+2012-05-22 Ben Chenoweth - Removed unused variables; changed globals to locals.

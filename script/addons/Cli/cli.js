@@ -9,48 +9,44 @@
 //	2012-04-03 Ben Chenoweth - Handle 'cd' (current directory) command
 //	2012-04-04 Ben Chenoweth - Handle OS error codes; minor fix for 'cd ..' if returning to root
 //	2012-04-05 Ben Chenoweth - Replace tabs with spaces in output
+//	2012-05-22 Ben Chenoweth - Removed unused variables; changed globals to locals
 
 var tmp = function () {
 	
-	var hasNumericButtons = kbook.autoRunRoot.hasNumericButtons;
-	var getSoValue = kbook.autoRunRoot.getSoValue;
-	var setSoValue = kbook.autoRunRoot.setSoValue;
-	var getFileContent = kbook.autoRunRoot.getFileContent;
-	var setFileContent = kbook.autoRunRoot.setFileContent;
-	var startsWith = kbook.autoRunRoot.startsWith;
-	var listFiles = kbook.autoRunRoot.listFiles;
-	var deleteFile = kbook.autoRunRoot.deleteFile;
-	var shellExec = kbook.autoRunRoot.shellExec;
+	var hasNumericButtons = kbook.autoRunRoot.hasNumericButtons,
+	getSoValue = kbook.autoRunRoot.getSoValue,
+	setSoValue = kbook.autoRunRoot.setSoValue,
+	getFileContent = kbook.autoRunRoot.getFileContent,
+	deleteFile = kbook.autoRunRoot.deleteFile,
+	shellExec = kbook.autoRunRoot.shellExec,
 	
-	var CLIOUTPUT = "/tmp/cli.out";
+	CLIOUTPUT = "/tmp/cli.out",
 
-	var mouseLeave = getSoValue(target.btn_Ok, 'mouseLeave');
-	var mouseEnter = getSoValue(target.btn_Ok, 'mouseEnter');
-	var shifted = false;
-	var shiftOffset = 26;
-	var symbols = false;
-	var symbolsOffset = 52;
-	var keys = [];	
-	var strShift = "\u2191"; //up arrow
-	var strUnShift = "\u2193"; //down arrow
-	var strBack = "\u2190"; //left arrow
-	var custSel;
-	var prevSel;
+	mouseLeave = getSoValue(target.btn_Ok, 'mouseLeave'),
+	mouseEnter = getSoValue(target.btn_Ok, 'mouseEnter'),
+	shifted = false,
+	shiftOffset = 26,
+	symbols = false,
+	symbolsOffset = 52,
+	keys = [],
+	strShift = "\u2191", //up arrow
+	strUnShift = "\u2193", //down arrow
+	strBack = "\u2190", //left arrow
+	custSel,
+	prevSel,
 	
-	var tempOutput = "";
-	var pageScroll;
-	var strUp = "\u2191";
-	var strDown = "\u2193";
-	var previousCommands = [];
-	var previousCommandNum = 0;
-	var firstTime = true;
-	var currentDir = "/";
-	var previousDir;
+	tempOutput = "",
+	pageScroll,
+	previousCommands = [],
+	previousCommandNum = 0,
+	firstTime = true,
+	currentDir = "/",
+	previousDir,
 	
-	var twoDigits = function (i) {
+	twoDigits = function (i) {
 		if (i<10) {return "0"+i}
 		return i;	
-	}
+	};
 
 	target.loadKeyboard = function () {
 		keys[0]="q";
@@ -159,7 +155,7 @@ var tmp = function () {
 		keys[103]=">";
 
 		// put keys on buttons
-		for (i=1; i<=26; i++) {
+		for (var i=1; i<=26; i++) {
 			setSoValue(target['key'+twoDigits(i)], 'text', keys[i-1]);
 		}
 	
@@ -174,7 +170,7 @@ var tmp = function () {
 			target.ntHandleEventsDlg();
 		}
 		return;
-	}
+	};
 	
 	target.init = function () {
 		//target.bubble("tracelog","initialising...");
@@ -195,7 +191,7 @@ var tmp = function () {
 			this.nonTouch1.show(false);
 		}
 		previousCommands.push(""); // start previous commands list with a blank entry
-	}
+	};
 
 	target.setOutput = function (output) {
 		this.cliText.setValue(output);
@@ -207,7 +203,7 @@ var tmp = function () {
 			}
 			catch (ignore) { }
 		}
-	}
+	};
 	
 	target.doOK = function () {
 		var cmd, result, len, changeDir, exitError, exitCode;
@@ -673,26 +669,26 @@ var tmp = function () {
 		target.currentText.setValue(cmd);
 		target.setVariable("current_line",cmd);		
 		return;
-	}
+	};
 		
 	target.doQuit = function () {
 		deleteFile(CLIOUTPUT);
 		kbook.autoRunRoot.exitIf(kbook.model);
 		return;
-	}
+	};
 	
 	target.doRoot = function () {
 		this.doQuit();
 		return;
-	}
+	};
 	
 	target.doHold0 = function () {
 		this.doQuit();
 		return;
-	}
+	};
 	
 	target.doButtonClick = function (sender) {
-		var id, n, numCommands;
+		var id, n, numCommands, currentLine;
 		id = getSoValue(sender, "id");
 		n = id.substring(7, 10);	
 		if (n == "PRE") {
@@ -711,7 +707,7 @@ var tmp = function () {
 			}
 			return;
 		}		
-	}
+	};
 
 	target.doPrevious = function () {
 		// scroll cliText textbox up
@@ -720,7 +716,7 @@ var tmp = function () {
 		}
 		catch (ignore) { }
 		return;
-	}
+	};
 
 	target.doNext = function () {
 		// scroll cliText textbox down
@@ -729,23 +725,23 @@ var tmp = function () {
 		}
 		catch (ignore) { }
 		return;
-	}
+	};
 
 	target.doMark = function () {
 		return;
-	}
+	};
 		
 	target.doSize = function () {
 		return;
-	}
+	};
 	
 	target.doOption = function () {
 		return;
-	}
+	};
 	
 	target.doMenu = function () {
 		return;
-	}
+	};
 	
 	target.refreshKeys = function () {
 		var i,n,key;
@@ -778,9 +774,9 @@ var tmp = function () {
 		}
 		if (hasNumericButtons) {
 			// highlight active key
-			this.ntHandleEventsDlg
+			this.ntHandleEventsDlg;
 		}
-	}
+	};
 
 	target.doSpace = function () {
 		// ADD A SPACE
@@ -788,17 +784,17 @@ var tmp = function () {
 		currentLine = currentLine + " ";
 		target.currentText.setValue(currentLine);
 		target.setVariable("current_line",currentLine);
-	}
+	};
 
 	target.doSymbol = function () {
 		symbols = !symbols;
 		this.refreshKeys();
-	} 
+	};
 
 	target.doShift = function () {
 		shifted = !shifted;
 		this.refreshKeys();
-	}	
+	};
 	
 	target.doBack = function () {
 		// BACKSPACE
@@ -806,13 +802,13 @@ var tmp = function () {
 		currentLine = currentLine.slice(0,currentLine.length-1);
 		target.currentText.setValue(currentLine);
 		target.setVariable("current_line",currentLine);
-	}
+	};
 	
 	target.doKeyPress = function (sender) {
 		var id = getSoValue(sender, "id");
 		this.addCharacter(id);
 		return;
-	}
+	};
 	
 	target.addCharacter = function (id) {
 		var n = parseInt(id.substring(3, 5));
@@ -823,7 +819,7 @@ var tmp = function () {
 		currentLine = currentLine + character;
 		target.currentText.setValue(currentLine);
 		target.setVariable("current_line",currentLine);		
-	}
+	};
 
 	target.ntHandleEventsDlg = function () {
 		if (custSel === 5) {
@@ -1043,133 +1039,133 @@ var tmp = function () {
 			mouseEnter.call(target.BACK);
 		}
 		return;
-	}
+	};
 
 	target.moveCursor = function (direction) {
-	switch (direction) {
-		case "up" : {
-			if (custSel===6) {
-				prevSel=custSel;
-				custSel=5;
-				target.ntHandleEventsDlg();
-			} else if ((custSel>6) && (custSel<17)) {
-				prevSel=custSel;
-				custSel=5;
-				target.ntHandleEventsDlg();
-			} else if ((custSel>16) && (custSel<26)) {
-				prevSel=custSel;
-				custSel=custSel-10;
-				target.ntHandleEventsDlg();
-			} else if (custSel==26) {
-				prevSel=custSel;
-				custSel=17;
-				target.ntHandleEventsDlg();				
-			} else if ((custSel>26) && (custSel<34)) {
-				prevSel=custSel;
-				custSel=custSel-9;
-				target.ntHandleEventsDlg();
-			} else if (custSel==34) {
-				prevSel=custSel;
-				custSel=26;
-				target.ntHandleEventsDlg();				
-			} else if (custSel==35) {
-				prevSel=custSel;
-				custSel=30;
-				target.ntHandleEventsDlg();				
-			} else if (custSel==36) {
-				prevSel=custSel;
-				custSel=33;
-				target.ntHandleEventsDlg();				
+		switch (direction) {
+			case "up" : {
+				if (custSel===6) {
+					prevSel=custSel;
+					custSel=5;
+					target.ntHandleEventsDlg();
+				} else if ((custSel>6) && (custSel<17)) {
+					prevSel=custSel;
+					custSel=5;
+					target.ntHandleEventsDlg();
+				} else if ((custSel>16) && (custSel<26)) {
+					prevSel=custSel;
+					custSel=custSel-10;
+					target.ntHandleEventsDlg();
+				} else if (custSel==26) {
+					prevSel=custSel;
+					custSel=17;
+					target.ntHandleEventsDlg();				
+				} else if ((custSel>26) && (custSel<34)) {
+					prevSel=custSel;
+					custSel=custSel-9;
+					target.ntHandleEventsDlg();
+				} else if (custSel==34) {
+					prevSel=custSel;
+					custSel=26;
+					target.ntHandleEventsDlg();				
+				} else if (custSel==35) {
+					prevSel=custSel;
+					custSel=30;
+					target.ntHandleEventsDlg();				
+				} else if (custSel==36) {
+					prevSel=custSel;
+					custSel=33;
+					target.ntHandleEventsDlg();				
+				}
+				break
 			}
-			break
+			case "down" : {
+				if (custSel===5) {
+					prevSel=custSel;
+					custSel=6;
+					target.ntHandleEventsDlg();
+				} else if ((custSel>6) && (custSel<16)) {
+					prevSel=custSel;
+					custSel=custSel+10;
+					target.ntHandleEventsDlg();
+				} else if (custSel===16) {
+					prevSel=custSel;
+					custSel=25;
+					target.ntHandleEventsDlg();
+				} else if ((custSel>16) && (custSel<24)) {
+					prevSel=custSel;
+					custSel=custSel+9;
+					target.ntHandleEventsDlg();			
+				} else if ((custSel===24) || (custSel===25)) {
+					prevSel=custSel;
+					custSel=33;
+					target.ntHandleEventsDlg();			
+				} else if ((custSel===26) || (custSel===27)) {
+					prevSel=custSel;
+					custSel=34;
+					target.ntHandleEventsDlg();			
+				} else if ((custSel>27) && (custSel<33)) {
+					prevSel=custSel;
+					custSel=35;
+					target.ntHandleEventsDlg();			
+				} else if (custSel===33) {
+					prevSel=custSel;
+					custSel=36;
+					target.ntHandleEventsDlg();			
+				}
+				break
+			}
+			case "left" : {
+				if (custSel===6) {
+					prevSel=custSel;
+					custSel=16;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel>7) && (custSel<17)) {
+					prevSel=custSel;
+					custSel--;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel>17) && (custSel<26)) {
+					prevSel=custSel;
+					custSel--;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel>26) && (custSel<34)) {
+					prevSel=custSel;
+					custSel--;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel===35) || (custSel===36)) {
+					prevSel=custSel;
+					custSel--;
+					target.ntHandleEventsDlg();	
+				}
+				break
+			}		
+			case "right" : {
+				if (custSel===16) {
+					prevSel=custSel;
+					custSel=6;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel>6) && (custSel<16)) {
+					prevSel=custSel;
+					custSel++;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel>16) && (custSel<25)) {
+					prevSel=custSel;
+					custSel++;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel>25) && (custSel<33)) {
+					prevSel=custSel;
+					custSel++;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel===34) || (custSel===35)) {
+					prevSel=custSel;
+					custSel++;
+					target.ntHandleEventsDlg();	
+				}
+				break
+			}
+			return;
 		}
-		case "down" : {
-			if (custSel===5) {
-				prevSel=custSel;
-				custSel=6;
-				target.ntHandleEventsDlg();
-			} else if ((custSel>6) && (custSel<16)) {
-				prevSel=custSel;
-				custSel=custSel+10;
-				target.ntHandleEventsDlg();
-			} else if (custSel===16) {
-				prevSel=custSel;
-				custSel=25;
-				target.ntHandleEventsDlg();
-			} else if ((custSel>16) && (custSel<24)) {
-				prevSel=custSel;
-				custSel=custSel+9;
-				target.ntHandleEventsDlg();			
-			} else if ((custSel===24) || (custSel===25)) {
-				prevSel=custSel;
-				custSel=33;
-				target.ntHandleEventsDlg();			
-			} else if ((custSel===26) || (custSel===27)) {
-				prevSel=custSel;
-				custSel=34;
-				target.ntHandleEventsDlg();			
-			} else if ((custSel>27) && (custSel<33)) {
-				prevSel=custSel;
-				custSel=35;
-				target.ntHandleEventsDlg();			
-			} else if (custSel===33) {
-				prevSel=custSel;
-				custSel=36;
-				target.ntHandleEventsDlg();			
-			}
-			break
-		}
-		case "left" : {
-			if (custSel===6) {
-				prevSel=custSel;
-				custSel=16;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel>7) && (custSel<17)) {
-				prevSel=custSel;
-				custSel--;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel>17) && (custSel<26)) {
-				prevSel=custSel;
-				custSel--;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel>26) && (custSel<34)) {
-				prevSel=custSel;
-				custSel--;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel===35) || (custSel===36)) {
-				prevSel=custSel;
-				custSel--;
-				target.ntHandleEventsDlg();	
-			}
-			break
-		}		
-		case "right" : {
-			if (custSel===16) {
-				prevSel=custSel;
-				custSel=6;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel>6) && (custSel<16)) {
-				prevSel=custSel;
-				custSel++;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel>16) && (custSel<25)) {
-				prevSel=custSel;
-				custSel++;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel>25) && (custSel<33)) {
-				prevSel=custSel;
-				custSel++;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel===34) || (custSel===35)) {
-				prevSel=custSel;
-				custSel++;
-				target.ntHandleEventsDlg();	
-			}
-			break
-		}
-		return;
-	  }	
-	}
+	};
 	
 	target.doCenterF = function () {
 		if (custSel === 5) target.btn_Ok.click();
@@ -1205,8 +1201,7 @@ var tmp = function () {
 		if (custSel === 35) target.SPACE.click();
 		if (custSel === 36) target.BACK.click();
 		return;
-	}
-
+	};
 };
 tmp();
 tmp = undefined;

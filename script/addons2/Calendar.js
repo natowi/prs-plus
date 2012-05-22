@@ -225,7 +225,7 @@ tmp = function() {
 			}
 			
 			// check if event is a today event or a future event
-			for (var j=0; j<events.length; j++) {
+			for ( j=0; j<events.length; j++) {
 				if (events[j][0] == "Y") {
 					if ((events[j][2] == todaysDate) && (events[j][1] == todaysMonth) && (events[j][3] <= todaysYear)) {
 						todayevents.push(events[j][5]);
@@ -248,7 +248,7 @@ tmp = function() {
 							futureevents.push(["", eastermonth, easterday, todaysYear, events[j][4], events[j][5]]);
 						}
 					} else {
-						var floater = Calendar.floatingholiday(year,events[j][1],events[j][2],events[j][3]);
+						var floater = Calendar.floatingholiday(todaysYear,events[j][1],events[j][2],events[j][3]);
 						if ((todaysMonth == 5) && (events[j][1] == 5) && (events[j][2] == 4) && (events[j][3] == 2)) {
 							if ((floater + 7 <= 31) && (todaysDate == floater + 7)) {
 								todayevents.push(events[j][5]);
@@ -392,7 +392,7 @@ tmp = function() {
 				}
 				win.setPenColor(Color.black);
 				win.setTextSize(20);
-				var i = 0;
+				i = 0;
 				if (todayevents.length>0) {
 					win.setTextStyle(1);
 					win.setTextAlignment(0, 0);
@@ -428,7 +428,7 @@ tmp = function() {
 					win.setTextAlignment(1, 0);
 					var dateFormat;
 					dateFormat = Core.system.dateFormat();
-					for (var j=i; (j-i)<futureevents.length; j++) {
+					for (j=i; (j-i)<futureevents.length; j++) {
 						if (j==linelimit) break; // only room for a limited number of lines
 						var datestring;
 						switch (dateFormat) {

@@ -9,9 +9,10 @@
 //	2012-04-24 Ben Chenoweth - Removed AI move display; fixed checkmate message; fix for AI pawn promotion
 //	2012-04-25 Ben Chenoweth - Properly handle en passant; disable castling if rooks moved; fixed ancient bug that had disabled black castling in 2 player mode; undo/save/load castling/en passant status
 //	2012-05-06 Ben Chenoweth - Fix for en passant
+//	2012-05-22 Ben Chenoweth - Removed unused variables; changed globals to locals
 
 var tmp = function () {
-    var sMovesList, bCheck = false, bGameNotOver = true, lastStart = 0, lastEnd = 0, kings = [0, 0],
+    var bCheck = false, bGameNotOver = true, lastStart = 0, lastEnd = 0, kings = [0, 0],
     etc = {
         aBoard: [],
         nPromotion: 0,
@@ -205,7 +206,6 @@ var tmp = function () {
             etc.aBoard[iPosition] = iPosition % 10 ? iPosition / 10 % 10 < 2 | iPosition % 10 < 2 ? 7 : iPosition / 10 & 4 ? 0 : this.getPcByParams(iParamId++, iPosition - 1) | 16 : 7;
             //this.debugOut("iPosition="+iPosition+", etc.aBoard="+etc.aBoard[iPosition - 1]);
         }
-        sMovesList = "";
         this.checkStatus.setValue("");
         this.puzzleName.setValue("");
         this.puzzleSource.setValue("");
@@ -1394,7 +1394,7 @@ var tmp = function () {
 
 	// AI functions
     target.doSize = function () {
-        var x, y, z, checkAI = false;
+        var x, y, z;
 		//this.debugOut("doSize");
         if (!bGameNotOver) {
             return;
@@ -1437,7 +1437,7 @@ var tmp = function () {
     };
 	
     target.findMove = function () {
-        var s, e, noOfMoves, bestmove = [];
+        var noOfMoves, bestmove = [];
 		//this.debugOut("findMove");
 
         //check to see if there is only one possible move available
@@ -1456,7 +1456,7 @@ var tmp = function () {
     };
 
 	target.callChessEngine = function () {
-		var inputText, emptyCount, boardSquare, contentSquare, FRUITIN, FRUITOUT, FRUIT, cmd, result, movePos, endPos, move, bestmove = [];
+		var inputText, emptyCount, boardSquare, contentSquare, FRUITIN, FRUITOUT, FRUIT, cmd, result, movePos, move, bestmove = [];
 		//this.debugOut("callChessEngine");
 		
 		inputText = inputHeader;
