@@ -10,6 +10,7 @@
 //	2012-04-25 Ben Chenoweth - Properly handle en passant; disable castling if rooks moved; fixed ancient bug that had disabled black castling in 2 player mode; undo/save/load castling/en passant status
 //	2012-05-06 Ben Chenoweth - Fix for en passant
 //	2012-05-22 Ben Chenoweth - Removed unused variables; changed globals to locals
+//	2012-05-24 Ben Chenoweth - 'Play As Black' mode
 
 var tmp = function () {
     var bCheck = false, bGameNotOver = true, lastStart = 0, lastEnd = 0, kings = [0, 0],
@@ -34,6 +35,7 @@ var tmp = function () {
 	cursorY = 520,
 	isNT = kbook.autoRunRoot.hasNumericButtons,
 	getSoValue = kbook.autoRunRoot.getSoValue,
+	setSoValue = kbook.autoRunRoot.setSoValue,
 	shellExec = kbook.autoRunRoot.shellExec,
 	getFileContent = kbook.autoRunRoot.getFileContent,
 	setFileContent = kbook.autoRunRoot.setFileContent,
@@ -42,7 +44,8 @@ var tmp = function () {
 	
 	moveno = 0, // no of moves
 	level = 2, // "Medium"
-	automode = true, // reader controls the black pieces
+	automode = true, // reader will automatically move
+	playAsBlack = false, // player controls the white pieces
 	inputHeader,
 	newGame,
 	enPassant = "",
@@ -221,7 +224,11 @@ var tmp = function () {
             x = iCell % 8;
             // find column
             y = Math.floor(iCell / 8); // find row
-            nSquareId = (y + 2) * 10 + 2 + x;
+            if (playAsBlack) {
+				nSquareId = 121 - ((y + 2) * 10 + 2 + x);
+			} else {
+				nSquareId = (y + 2) * 10 + 2 + x;
+			}
             sSqrContent = etc.aBoard[nSquareId];
             //this.debugOut("iCell="+iCell+", sSqrContent="+sSqrContent);
             if (sSqrContent > 0) {
@@ -260,7 +267,11 @@ var tmp = function () {
         n = id.substring(6, 8);
         x = n % 8; // find column
         y = Math.floor(n / 8); // find row
-        iPosition = (y + 2) * 10 + 2 + x;
+		if (playAsBlack) {
+			iPosition = 121 - ((y + 2) * 10 + 2 + x);
+		} else {
+			iPosition = (y + 2) * 10 + 2 + x;
+		}
         //this.debugOut("n="+n+", iPosition="+iPosition);
         this.makeSelection(iPosition);
         return;
@@ -287,6 +298,12 @@ var tmp = function () {
             desty = (nSquareId - nSquareId % 10) / 10 - 2;
             //this.debugOut("x="+x+", y="+y+", destx="+destx+", desty="+desty);
             if (this.isValidMove(x, y, destx, desty, false, -1, true)) {
+				// revert button/label to "New Game"
+				setSoValue(target.BUTTON_RES, 'text', "New Game");
+				this.nonTouch.setValue("[Hold 9] New Game");
+				mouseEnter.call(target.BUTTON_RES);
+				mouseLeave.call(target.BUTTON_RES);
+				
 				newGame = false;
                 nScndFocus = nSquareId;
                 fourBtsLastPc = etc.aBoard[nFrstFocus] & 15;
@@ -379,7 +396,7 @@ var tmp = function () {
                     this.puzzleMoves.setValue(puzzleMoves);
                 }
 
-                if (automode) {
+                if ((automode) && (!playAsBlack)) {
                     FskUI.Window.update.call(kbook.model.container.getWindow());
                     this.doSize();
                 }
@@ -398,6 +415,12 @@ var tmp = function () {
             desty = (nSquareId - nSquareId % 10) / 10 - 2;
             //this.debugOut("x="+x+", y="+y+", destx="+destx+", desty="+desty);
             if (this.isValidMove(x, y, destx, desty, false, -1, true)) {
+				// revert button/label to "New Game"
+				setSoValue(target.BUTTON_RES, 'text', "New Game");
+				this.nonTouch.setValue("[Hold 9] New Game");
+				mouseEnter.call(target.BUTTON_RES);
+				mouseLeave.call(target.BUTTON_RES);
+				
                 nScndFocus = nSquareId;
                 fourBtsLastPc = etc.aBoard[nFrstFocus] - 16;
 
@@ -488,6 +511,11 @@ var tmp = function () {
                     puzzleMoves = Math.floor((moveno + 1) / 2);
                     this.puzzleMoves.setValue(puzzleMoves);
                 }
+				
+                if ((automode) && (playAsBlack)) {
+                    FskUI.Window.update.call(kbook.model.container.getWindow());
+                    this.doSize();
+                }
             }
         }
         return;
@@ -496,6 +524,9 @@ var tmp = function () {
     target.squareFocus = function (nPieceId, bMakeActive) {
         var x, y;
         //this.debugOut("bMakeActive="+bMakeActive);
+		if (playAsBlack) {
+			nPieceId = 121 - nPieceId;
+		}
         if (etc.bBlackSide) {
             x = (nPieceId - 2) % 10;
             y = Math.floor((nPieceId - 22) / 10);
@@ -1113,20 +1144,7 @@ var tmp = function () {
         id = getSoValue(sender, "id");
         n = id.substring(7, 10);
         if (n === "RES") {
-            // initiate new game
-            this.resetBoard();
-            bGameNotOver = true;
-            this.messageStatus.setValue(chessGame.textString[0][0] + "'s turn");
-            this.selection1.changeLayout(0, 0, uD, 0, 0, uD);
-            this.selection2.changeLayout(0, 0, uD, 0, 0, uD);
-            this.selection3.changeLayout(0, 0, uD, 0, 0, uD);
-            etc.bBlackSide = false;
-
-            this.writePieces();
-
-            // initial undo
-            currundo = 0;
-            this.updateUndo();
+			this.doHold9();
             return;
         }
         if (n === "EXT") {
@@ -1170,6 +1188,9 @@ var tmp = function () {
 			stream.writeLine(enPassant);
 			stream.writeLine(wRooks);
 			stream.writeLine(bRooks);
+			
+			// save playAsBlack setting
+			stream.writeLine(playAsBlack);
 			
             stream.close();
             this.checkStatus.setValue("Game saved successfully");
@@ -1226,6 +1247,15 @@ var tmp = function () {
 					wRooks = stream.readLine();
 					bRooks = stream.readLine();
 				}
+				checkEOF = stream.readLine();
+				if (checkEOF) {
+					// compatibility with old saved files
+					if (checkEOF === "true") {
+						playAsBlack = true;
+					} else {
+						playAsBlack = false;
+					}
+				}
                 this.puzzleName.setValue("");
                 this.puzzleSource.setValue("");
                 this.puzzleMoves.setValue("");
@@ -1237,6 +1267,12 @@ var tmp = function () {
                 // update board
                 this.writePieces();
 
+				// revert button/label to "New Game"
+				setSoValue(target.BUTTON_RES, 'text', "New Game");
+				this.nonTouch.setValue("[Hold 9] New Game");
+				mouseEnter.call(target.BUTTON_RES);
+				mouseLeave.call(target.BUTTON_RES);
+				
                 // reset undo
                 currundo = 0;
                 this.updateUndo();
@@ -1301,7 +1337,11 @@ var tmp = function () {
         }
         x = cursorX / 75; // find column
         y = (cursorY - 70) / 75; // find row
-        iPosition = (y + 2) * 10 + 2 + x;
+		if (playAsBlack) {
+			iPosition = 121 - ((y + 2) * 10 + 2 + x);
+		} else {
+			iPosition = (y + 2) * 10 + 2 + x;
+		}
         //this.debugOut("n="+n+", iPosition="+iPosition);
         this.makeSelection(iPosition);
         return;
@@ -1318,7 +1358,7 @@ var tmp = function () {
             return;
         }
         if (key === 0) {
-            // This indicates the AI level. It can be 1: "very stupid", 2: "slow, stupid", or 3: "very slow".
+            // This indicates the AI level. It can be 1 (2 seconds),2 (10 seconds) or 3 (30 seconds).
             level++;
             if (level === 4) {
                 level = 1;
@@ -1333,17 +1373,33 @@ var tmp = function () {
     };
 
     target.doHold9 = function () {
-        // initiate new game
+        var currentLabel;
+		// initiate new game
+		currentLabel = getSoValue(target.BUTTON_RES, 'text');
+		if (currentLabel == "As Black") {
+			playAsBlack = true;
+			setSoValue(target.BUTTON_RES, 'text', "New Game");
+			this.nonTouch.setValue("[Hold 9] New Game");
+			mouseEnter.call(target.BUTTON_RES);
+			mouseLeave.call(target.BUTTON_RES);
+		} else {
+			playAsBlack = false;
+			setSoValue(target.BUTTON_RES, 'text', "As Black");
+			this.nonTouch.setValue("[Hold 9] As Black");
+			mouseEnter.call(target.BUTTON_RES);
+			mouseLeave.call(target.BUTTON_RES);
+		}
         this.resetBoard();
-        this.writePieces();
         bGameNotOver = true;
         this.messageStatus.setValue(chessGame.textString[0][0] + "'s turn");
         this.selection1.changeLayout(0, 0, uD, 0, 0, uD);
         this.selection2.changeLayout(0, 0, uD, 0, 0, uD);
         this.selection3.changeLayout(0, 0, uD, 0, 0, uD);
-        cursorX = 0;
-        cursorY = 520;
-        this.gridCursor.changeLayout(cursorX, 75, uD, cursorY, 75, uD);
+		if (hasNumericButtons) {
+			cursorX = 0;
+			cursorY = 520;
+			this.gridCursor.changeLayout(cursorX, 75, uD, cursorY, 75, uD);
+		}
         etc.bBlackSide = false;
 
         this.writePieces();
@@ -1351,6 +1407,11 @@ var tmp = function () {
         // initial undo
         currundo = 0;
         this.updateUndo();
+		
+		if ((automode) && (playAsBlack)) {
+			FskUI.Window.update.call(kbook.model.container.getWindow());
+			this.doSize();
+		}
         return;
     };
 
@@ -1369,7 +1430,7 @@ var tmp = function () {
             this.moveCursor("left");
             return;
         }
-        // This indicates the AI level. It can be 1: "very stupid", 2: "slow, stupid", or 3: "very slow".
+        // This indicates the AI level. It can be 1 (2 seconds),2 (10 seconds) or 3 (30 seconds).
         level++;
         if (level === 4) {
             level = 1;
@@ -1402,6 +1463,12 @@ var tmp = function () {
 
         // call AI routine to calculate move for whichever player is currently supposed to be making a move
         if (this.findMove()) {
+			// revert button/label to "New Game"
+			setSoValue(target.BUTTON_RES, 'text', "New Game");
+			this.nonTouch.setValue("[Hold 9] New Game");
+			mouseEnter.call(target.BUTTON_RES);
+			mouseLeave.call(target.BUTTON_RES);
+				
 			// check for checkmate / stalemate
 			this.getInCheckPieces();
 			if (bGameNotOver) {
@@ -1412,8 +1479,8 @@ var tmp = function () {
 				etc.bBlackSide = !etc.bBlackSide;
 			}
 
-			// black needs to do an automove if game not over and in automode
-			if ((bGameNotOver) && (automode) && (etc.bBlackSide)) {
+			// may need to do an automove if game not over and in automode
+			if ((bGameNotOver) && (automode) && (((etc.bBlackSide) && (!playAsBlack)) || ((!etc.bBlackSide) && (playAsBlack)))) {
 				FskUI.Window.update.call(kbook.model.container.getWindow());
 				this.doSize();
 			}
@@ -2133,6 +2200,15 @@ var tmp = function () {
                 // update board
                 this.writePieces();
 
+				// revert button/label to "New Game"
+				setSoValue(target.BUTTON_RES, 'text', "New Game");
+				this.nonTouch.setValue("[Hold 9] New Game");
+				mouseEnter.call(target.BUTTON_RES);
+				mouseLeave.call(target.BUTTON_RES);
+				
+				// all puzzles player plays as white
+				playAsBlack = false;
+				
                 // reset undo
                 currundo = 0;
                 this.updateUndo();

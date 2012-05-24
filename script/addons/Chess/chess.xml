@@ -171,7 +171,7 @@
 				<function id="doDigit" params="part"> this.digitF(part.key);</function> 
             </code>
 			
-			<button id="BUTTON_RES"		active="true" text="New Game"  align="right" right="10" width="130" top="-57" height="45" do="doButtonClick"/>
+			<button id="BUTTON_RES"		active="true" text="As Black"  align="right" right="10" width="130" top="-57" height="45" do="doButtonClick"/>
 			<button id="BUTTON_PUZ"		active="true" text="Puzzle"    left="10" width="90" top="10" height="45" do="doButtonClick"/>
 			<button id="BUTTON_SAV"		active="true" text="Save"    left="520" width="70" top="10" height="45" do="doButtonClick"/>
 			<button id="BUTTON_LOA"		active="true" text="Load"    left="440" width="70" top="10" height="45" do="doButtonClick"/>
@@ -436,7 +436,7 @@
 		  <label id='nonTouch3'   skin='touchText'    left='215' right='0' bottom='3' height='15' align='left' text='[Size] for AI move'/>
 		  <label id='nonTouch7'   skin='touchText'    left='340' right='0' bottom='16' height='15' align='left' text='[Mark] Load'/>
 		  <label id='nonTouch8'   skin='touchText'    left='340' right='0' bottom='3' height='15' align='left' text='[Hold Mark] Save'/>
-			<label id='nonTouch'   skin='touchText'    left='460' right='0' bottom='16' height='15' align='left' text='[Hold 9] New game'/>
+			<label id='nonTouch'   skin='touchText'    left='460' right='0' bottom='16' height='15' align='left' text='[Hold 9] As Black'/>
 			<label id='nonTouch9'   skin='touchText'    left='460' right='0' top='0' height='15' align='left' text='[Hold 1] Puzzle'/>
 			<label id='nonTouch4'   skin='touchText'    left='460' right='0' bottom='3' height='15' align='left' text='[Hold 0] Quit'/>
 			<label id='nonTouch5' skin='touchText' left='1' right='0' bottom='16' height='15' align='left' text='[9] Pawn promotion to: Queen'/>
