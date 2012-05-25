@@ -24,85 +24,79 @@
 //	2012-03-03 Ben Chenoweth - Better handling of YES/NO situations in 'Trinity'
 //	2012-03-08 Ben Chenoweth - Scrollbar added; fixes for '9:05' and 'PartyFoul'
 //	2012-03-14 Ben Chenoweth - Output 'yes' or 'no'; another fix for '9:05'
+//	2012-05-25 Ben Chenoweth - Removed unused variables; changed globals to locals; right margin fix
 
 var tmp = function () {
 	
-	var hasNumericButtons = kbook.autoRunRoot.hasNumericButtons;
-	var getSoValue = kbook.autoRunRoot.getSoValue;
-	var setSoValue = kbook.autoRunRoot.setSoValue;
-	var getFileContent = kbook.autoRunRoot.getFileContent;
-	var setFileContent = kbook.autoRunRoot.setFileContent;
-	var listFiles = kbook.autoRunRoot.listFiles;
-	var deleteFile = kbook.autoRunRoot.deleteFile;
-	var shellExec = kbook.autoRunRoot.shellExec;
-	
-	var datPath = kbook.autoRunRoot.gamesSavePath+'Frotz/';
-	FileSystem.ensureDirectory(datPath);
-	var tempPath = "/tmp/frotz/";
-	FileSystem.ensureDirectory(tempPath);
-
-	var mouseLeave = getSoValue(target.btn_Ok, 'mouseLeave');
-	var mouseEnter = getSoValue(target.btn_Ok, 'mouseEnter');
-	var shifted = false;
-	var shiftOffset = 26;
-	var symbols = false;
-	var symbolsOffset = 52;
-	var keys = [];	
-	var strShift = "\u2191"; //up arrow
-	var strUnShift = "\u2193"; //down arrow
-	var strBack = "\u2190"; //left arrow
-	var custSel = 1; // OK key
-	var prevSel;
-	
-	var FROTZ = System.applyEnvironment("[prspPath]") + "dfrotz";
+	var hasNumericButtons = kbook.autoRunRoot.hasNumericButtons,
+	getSoValue = kbook.autoRunRoot.getSoValue,
+	setSoValue = kbook.autoRunRoot.setSoValue,
+	getFileContent = kbook.autoRunRoot.getFileContent,
+	setFileContent = kbook.autoRunRoot.setFileContent,
+	listFiles = kbook.autoRunRoot.listFiles,
+	deleteFile = kbook.autoRunRoot.deleteFile,
+	shellExec = kbook.autoRunRoot.shellExec,
+	datPath = kbook.autoRunRoot.gamesSavePath+'Frotz/',
+	tempPath = "/tmp/frotz/",
+	mouseLeave = getSoValue(target.btn_Ok, 'mouseLeave'),
+	mouseEnter = getSoValue(target.btn_Ok, 'mouseEnter'),
+	shifted = false,
+	shiftOffset = 26,
+	symbols = false,
+	symbolsOffset = 52,
+	keys = [],
+	strShift = "\u2191", //up arrow
+	strUnShift = "\u2193", //down arrow
+	strBack = "\u2190", //left arrow
+	custSel = 1, // OK key
+	prevSel,
+	FROTZ = System.applyEnvironment("[prspPath]") + "dfrotz",
 	// FROTZ options: -w: screen width, -h: number of lines,
 	// 				  -R: execute runtime code (cm = compression max, lt0 = line-type display off)
-	var FROTZOPTIONS = " -w 56 -h 40 -R lt0 "; // note there needs to be spaces at start and end of this string
-	var NITFOL = System.applyEnvironment("[prspPath]") + "cheapnitfol";
+	FROTZOPTIONS = " -w 56 -h 40 -R lt0 ", // note there needs to be spaces at start and end of this string
+	NITFOL = System.applyEnvironment("[prspPath]") + "cheapnitfol",
 	// NITFOL options: -q: quiet mode, -i: ignore errors, -expand: expand shorthand
-	var NITFOLOPTIONS = " -q -i -expand "; // note there needs to be spaces at start and end of this string
-	var INTFICIN = tempPath + "intfic.in";
-	var INTFICOUT = tempPath + "intfic.out";
-	var GAMETITLE = "";
-	var CONFIRM = ""; // Frotz asks for confirmation if save file exists, Nitfol does not
-	var EXECUTABLE = "";
-	var workingDir;
-	var tempOutput = "";
-	var chooseGame = false;
-	var savingGame = false;
-	var confirmedName = false;
-	var restoringGame = false;
-	var quittingGame = false;
-	var restartingGame = false;
-	var scoreCheck = false;
-	var getYesNo = false;
-	var checkYesNo = false;
-	var saveName = "story.sav";
-	var titles = [];
-	var pageScroll;
-	var strUp = "\u2191";
-	var strDown = "\u2193";
-	var previousCommands = [];
-	var previousCommandNum = 0;
-	var startGame;
-	var restoreTemp;
-	var restoreUser;
-	var saveTemp;
-	var saveUser;
-	var quitGame;
-	var initialInput;
-	var useFrotz;
-	var quitMessage;
-	var restartMessage;
-	var saveSuccessMessage;
-	var restoreSuccessMessage;
-	var failMessage;
-	var loudRoomDisabled = false;
+	NITFOLOPTIONS = " -q -i -expand ", // note there needs to be spaces at start and end of this string
+	INTFICIN = tempPath + "intfic.in",
+	INTFICOUT = tempPath + "intfic.out",
+	GAMETITLE = "",
+	CONFIRM = "", // Frotz asks for confirmation if save file exists, Nitfol does not
+	EXECUTABLE = "",
+	workingDir,
+	tempOutput = "",
+	chooseGame = false,
+	savingGame = false,
+	confirmedName = false,
+	restoringGame = false,
+	quittingGame = false,
+	restartingGame = false,
+	scoreCheck = false,
+	getYesNo = false,
+	checkYesNo = false,
+	saveName = "story.sav",
+	titles = [],
+	pageScroll,
+	previousCommands = [],
+	previousCommandNum = 0,
+	startGame,
+	restoreTemp,
+	restoreUser,
+	saveTemp,
+	saveUser,
+	quitGame,
+	initialInput,
+	useFrotz,
+	quitMessage,
+	restartMessage,
+	saveSuccessMessage,
+	restoreSuccessMessage,
+	failMessage,
+	loudRoomDisabled = false,
 		
-	var twoDigits = function (i) {
+	twoDigits = function (i) {
 		if (i<10) {return "0"+i}
 		return i;	
-	}
+	};
 
 	target.loadKeyboard = function () {
 		keys[0]="q";
@@ -226,10 +220,12 @@ var tmp = function () {
 			target.ntHandleEventsDlg();
 		}
 		return;
-	}
+	};
 	
 	target.init = function () {
 		//target.bubble("tracelog","initialising...");
+		FileSystem.ensureDirectory(datPath);
+		FileSystem.ensureDirectory(tempPath);
 		this.appTitle.setValue(kbook.autoRunRoot._title);
 		this.appIcon.u = kbook.autoRunRoot._icon;
 		try {
@@ -246,7 +242,7 @@ var tmp = function () {
 		}
 		previousCommands.push(""); // start previous commands list with a blank entry
 		this.loadGameList();
-	}
+	};
 
 	target.setOutput = function (output) {
 		this.frotzText.setValue(output);
@@ -254,10 +250,10 @@ var tmp = function () {
 			pageScroll.call(this.frotzText, true, 1);
 		}
 		catch (ignore) { }
-	}
+	};
 	
 	target.loadGameList = function () {
-		var items, filesMissingError, itemNum, noZeroItemNum, noZeroItemNum2, numRows, rowNum, extraRow, midItem, addSpaces;
+		var items, filesMissingError, currentLine, itemNum, noZeroItemNum, noZeroItemNum2, numRows, rowNum, extraRow, midItem, addSpaces;
 		items = listFiles(datPath);
 		if (items.length == 0) {
 			filesMissingError = "Error:\nThere are no files in the game directory.\nPlease connect your reader to a PC and copy the game files into the Frotz folder located in the PRS+ GamesSave folder."
@@ -312,9 +308,8 @@ var tmp = function () {
 			custSel = 7; // "1" when symbols showing
 			symbols = true;
 			this.refreshKeys();
-		}
-		
-	}
+		}	
+	};
 	
 	target.initialiseGame = function () {
 		var lowerGameTitle, cmd, result;
@@ -528,10 +523,10 @@ var tmp = function () {
 			tempOutput = tempOutput + "\nError:\nNo valid game title found.";
 			this.setOutput(tempOutput);
 		}
-	}
+	};
 	
 	target.doOK = function () {
-		var currentLine, itemNum, stream, timer;
+		var currentLine, itemNum, cmd;
 		// get currentLine
 		currentLine = target.getVariable("current_line");
 		
@@ -757,10 +752,10 @@ var tmp = function () {
 		target.currentText.setValue(currentLine);
 		target.setVariable("current_line",currentLine);		
 		return;
-	}
+	};
 	
 	target.getResponse = function () {
-		var result, lowerGameTitle, charPos, charPos2;
+		var result, cmd, lowerGameTitle, charPos, charPos2;
 		
 		result = getFileContent(INTFICOUT, "222");
 		if (result !== "222") {
@@ -851,10 +846,10 @@ var tmp = function () {
 			tempOutput = tempOutput + "\nNo output found!";
 			this.setOutput(tempOutput);
 		}	
-	}
+	};
 	
 	target.extraCheck = function (previousresult) {
-		var lowerGameTitle, currentLine, result, cmd, getNewResult, charPos, charPos;
+		var lowerGameTitle, currentLine, result, cmd, getNewResult, charPos, charPos2;
 				
 		// check for problematic help (used in more recent IntFic)
 		if (previousresult.indexOf("Q = resume game") > 0) {
@@ -1008,7 +1003,7 @@ var tmp = function () {
 			}
 			return previousresult;
 		}
-	}
+	};
 	
 	target.removeWhiteSpace = function (outputstring) {
 		// remove multiple (more than 2) new line characters
@@ -1019,7 +1014,7 @@ var tmp = function () {
 		outputstring = outputstring.replace("[Hit any key.]", ""); //tangle
 		outputstring = outputstring.replace("[Press a key to continue.]", ""); //905
 		return outputstring;
-	}
+	};
 
 	target.doQuit = function () {	
 		// delete temp save
@@ -1029,20 +1024,20 @@ var tmp = function () {
 		
 		kbook.autoRunRoot.exitIf(kbook.model);
 		return;
-	}
+	};
 
 	target.doRoot = function () {
 		this.doQuit();
 		return;
-	}
+	};
 	
 	target.doHold0 = function () {
 		this.doQuit();
 		return;
-	}
+	};
 	
 	target.doButtonClick = function (sender) {
-		var id, n, numCommands;
+		var id, n, numCommands, currentLine;
 		id = getSoValue(sender, "id");
 		n = id.substring(7, 10);
 		if (n == "PRE") {
@@ -1061,7 +1056,7 @@ var tmp = function () {
 			}
 			return;
 		}		
-	}
+	};
 	
 	target.doPrevious = function () {
 		// scroll frotzText textbox up
@@ -1070,7 +1065,7 @@ var tmp = function () {
 		}
 		catch (ignore) { }
 		return;
-	}
+	};
 
 	target.doNext = function () {
 		// scroll frotzText textbox down
@@ -1079,26 +1074,26 @@ var tmp = function () {
 		}
 		catch (ignore) { }
 		return;
-	}
+	};
 
 	target.doMark = function () {
 		return;
-	}
+	};
 		
 	target.doSize = function () {
 		return;
-	}
+	};
 	
 	target.doOption = function () {
 		return;
-	}
+	};
 	
 	target.doMenu = function () {
 		return;
-	}
+	};
 	
 	target.refreshKeys = function () {
-		var i,n,key;
+		var i, n, key;
 		n = -1;
 		if (shifted) {
 			n = n + shiftOffset;
@@ -1128,9 +1123,9 @@ var tmp = function () {
 		}
 		if (hasNumericButtons) {
 			// highlight active key
-			this.ntHandleEventsDlg
+			this.ntHandleEventsDlg();
 		}
-	}
+	};
 
 	target.doSpace = function () {
 		// ADD A SPACE
@@ -1138,17 +1133,17 @@ var tmp = function () {
 		currentLine = currentLine + " ";
 		target.currentText.setValue(currentLine);
 		target.setVariable("current_line",currentLine);
-	}
+	};
 
 	target.doSymbol = function () {
 		symbols = !symbols;
 		this.refreshKeys();
-	} 
+	};
 
 	target.doShift = function () {
 		shifted = !shifted;
 		this.refreshKeys();
-	}	
+	};
 	
 	target.doBack = function () {
 		// BACKSPACE
@@ -1156,24 +1151,25 @@ var tmp = function () {
 		currentLine = currentLine.slice(0,currentLine.length-1);
 		target.currentText.setValue(currentLine);
 		target.setVariable("current_line",currentLine);
-	}
+	};
 	
 	target.doKeyPress = function (sender) {
 		var id = getSoValue(sender, "id");
 		this.addCharacter(id);
 		return;
-	}
+	};
 	
 	target.addCharacter = function (id) {
-		var n = parseInt(id.substring(3, 5));
+		var n, character, currentLine;
+		n = parseInt(id.substring(3, 5));
 		if (symbols) { n = n + symbolsOffset };
 		if (shifted) { n = n + shiftOffset };
-		var character = keys[n-1];
-		var currentLine = target.getVariable("current_line");
+		character = keys[n-1];
+		currentLine = target.getVariable("current_line");
 		currentLine = currentLine + character;
 		target.currentText.setValue(currentLine);
 		target.setVariable("current_line",currentLine);		
-	}
+	};
 
 	target.ntHandleEventsDlg = function () {
 		if (custSel === 5) {
@@ -1393,133 +1389,133 @@ var tmp = function () {
 			mouseEnter.call(target.BACK);
 		}
 		return;
-	}
+	};
 
 	target.moveCursor = function (direction) {
-	switch (direction) {
-		case "up" : {
-			if (custSel===6) {
-				prevSel=custSel;
-				custSel=5;
-				target.ntHandleEventsDlg();
-			} else if ((custSel>6) && (custSel<17)) {
-				prevSel=custSel;
-				custSel=5;
-				target.ntHandleEventsDlg();
-			} else if ((custSel>16) && (custSel<26)) {
-				prevSel=custSel;
-				custSel=custSel-10;
-				target.ntHandleEventsDlg();
-			} else if (custSel==26) {
-				prevSel=custSel;
-				custSel=17;
-				target.ntHandleEventsDlg();				
-			} else if ((custSel>26) && (custSel<34)) {
-				prevSel=custSel;
-				custSel=custSel-9;
-				target.ntHandleEventsDlg();
-			} else if (custSel==34) {
-				prevSel=custSel;
-				custSel=26;
-				target.ntHandleEventsDlg();				
-			} else if (custSel==35) {
-				prevSel=custSel;
-				custSel=30;
-				target.ntHandleEventsDlg();				
-			} else if (custSel==36) {
-				prevSel=custSel;
-				custSel=33;
-				target.ntHandleEventsDlg();				
+		switch (direction) {
+			case "up" : {
+				if (custSel===6) {
+					prevSel=custSel;
+					custSel=5;
+					target.ntHandleEventsDlg();
+				} else if ((custSel>6) && (custSel<17)) {
+					prevSel=custSel;
+					custSel=5;
+					target.ntHandleEventsDlg();
+				} else if ((custSel>16) && (custSel<26)) {
+					prevSel=custSel;
+					custSel=custSel-10;
+					target.ntHandleEventsDlg();
+				} else if (custSel==26) {
+					prevSel=custSel;
+					custSel=17;
+					target.ntHandleEventsDlg();				
+				} else if ((custSel>26) && (custSel<34)) {
+					prevSel=custSel;
+					custSel=custSel-9;
+					target.ntHandleEventsDlg();
+				} else if (custSel==34) {
+					prevSel=custSel;
+					custSel=26;
+					target.ntHandleEventsDlg();				
+				} else if (custSel==35) {
+					prevSel=custSel;
+					custSel=30;
+					target.ntHandleEventsDlg();				
+				} else if (custSel==36) {
+					prevSel=custSel;
+					custSel=33;
+					target.ntHandleEventsDlg();				
+				}
+				break
 			}
-			break
-		}
-		case "down" : {
-			if (custSel===5) {
-				prevSel=custSel;
-				custSel=6;
-				target.ntHandleEventsDlg();
-			} else if ((custSel>6) && (custSel<16)) {
-				prevSel=custSel;
-				custSel=custSel+10;
-				target.ntHandleEventsDlg();
-			} else if (custSel===16) {
-				prevSel=custSel;
-				custSel=25;
-				target.ntHandleEventsDlg();
-			} else if ((custSel>16) && (custSel<24)) {
-				prevSel=custSel;
-				custSel=custSel+9;
-				target.ntHandleEventsDlg();			
-			} else if ((custSel===24) || (custSel===25)) {
-				prevSel=custSel;
-				custSel=33;
-				target.ntHandleEventsDlg();			
-			} else if ((custSel===26) || (custSel===27)) {
-				prevSel=custSel;
-				custSel=34;
-				target.ntHandleEventsDlg();			
-			} else if ((custSel>27) && (custSel<33)) {
-				prevSel=custSel;
-				custSel=35;
-				target.ntHandleEventsDlg();			
-			} else if (custSel===33) {
-				prevSel=custSel;
-				custSel=36;
-				target.ntHandleEventsDlg();			
+			case "down" : {
+				if (custSel===5) {
+					prevSel=custSel;
+					custSel=6;
+					target.ntHandleEventsDlg();
+				} else if ((custSel>6) && (custSel<16)) {
+					prevSel=custSel;
+					custSel=custSel+10;
+					target.ntHandleEventsDlg();
+				} else if (custSel===16) {
+					prevSel=custSel;
+					custSel=25;
+					target.ntHandleEventsDlg();
+				} else if ((custSel>16) && (custSel<24)) {
+					prevSel=custSel;
+					custSel=custSel+9;
+					target.ntHandleEventsDlg();			
+				} else if ((custSel===24) || (custSel===25)) {
+					prevSel=custSel;
+					custSel=33;
+					target.ntHandleEventsDlg();			
+				} else if ((custSel===26) || (custSel===27)) {
+					prevSel=custSel;
+					custSel=34;
+					target.ntHandleEventsDlg();			
+				} else if ((custSel>27) && (custSel<33)) {
+					prevSel=custSel;
+					custSel=35;
+					target.ntHandleEventsDlg();			
+				} else if (custSel===33) {
+					prevSel=custSel;
+					custSel=36;
+					target.ntHandleEventsDlg();			
+				}
+				break
 			}
-			break
-		}
-		case "left" : {
-			if (custSel===6) {
-				prevSel=custSel;
-				custSel=16;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel>7) && (custSel<17)) {
-				prevSel=custSel;
-				custSel--;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel>17) && (custSel<26)) {
-				prevSel=custSel;
-				custSel--;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel>26) && (custSel<34)) {
-				prevSel=custSel;
-				custSel--;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel===35) || (custSel===36)) {
-				prevSel=custSel;
-				custSel--;
-				target.ntHandleEventsDlg();	
+			case "left" : {
+				if (custSel===6) {
+					prevSel=custSel;
+					custSel=16;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel>7) && (custSel<17)) {
+					prevSel=custSel;
+					custSel--;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel>17) && (custSel<26)) {
+					prevSel=custSel;
+					custSel--;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel>26) && (custSel<34)) {
+					prevSel=custSel;
+					custSel--;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel===35) || (custSel===36)) {
+					prevSel=custSel;
+					custSel--;
+					target.ntHandleEventsDlg();	
+				}
+				break
+			}		
+			case "right" : {
+				if (custSel===16) {
+					prevSel=custSel;
+					custSel=6;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel>6) && (custSel<16)) {
+					prevSel=custSel;
+					custSel++;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel>16) && (custSel<25)) {
+					prevSel=custSel;
+					custSel++;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel>25) && (custSel<33)) {
+					prevSel=custSel;
+					custSel++;
+					target.ntHandleEventsDlg();	
+				} else if ((custSel===34) || (custSel===35)) {
+					prevSel=custSel;
+					custSel++;
+					target.ntHandleEventsDlg();	
+				}
+				break
 			}
-			break
-		}		
-		case "right" : {
-			if (custSel===16) {
-				prevSel=custSel;
-				custSel=6;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel>6) && (custSel<16)) {
-				prevSel=custSel;
-				custSel++;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel>16) && (custSel<25)) {
-				prevSel=custSel;
-				custSel++;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel>25) && (custSel<33)) {
-				prevSel=custSel;
-				custSel++;
-				target.ntHandleEventsDlg();	
-			} else if ((custSel===34) || (custSel===35)) {
-				prevSel=custSel;
-				custSel++;
-				target.ntHandleEventsDlg();	
-			}
-			break
-		}
-		return;
-	  }	
-	}
+			return;
+		}	
+	};
 	
 	target.doCenterF = function () {
 		if (custSel === 5) target.btn_Ok.click();
@@ -1555,8 +1551,7 @@ var tmp = function () {
 		if (custSel === 35) target.SPACE.click();
 		if (custSel === 36) target.BACK.click();
 		return;
-	}
-
+	};
 };
 tmp();
 tmp = undefined;

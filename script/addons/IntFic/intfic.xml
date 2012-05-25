@@ -153,7 +153,7 @@
             </code>
 			
 		  <button id="btn_Exit" left="0" top="-70" height="70" width="70" active="true" visible="false" do="doQuit"/>	  
-		  <text id='frotzText' skin='eventText' left='10' right='30' top='8' bottom='260' active='false' visible='true' />
+		  <text id='frotzText' skin='eventText' left='10' right='32' top='8' bottom='260' active='false' visible='true' />
 		  <scrollbar scroller="frotzText" id="frotzScroll" visible="true" right="10" top="8" bottom="258" />
 		  <label id='touchLabel0'   skin='touchText'    left='5' right='0' bottom='0' height='20' align='left' text='     Page Up               Page Down'/>
 		  <label id='nonTouch0'   skin='touchText'    left='0' right='0' bottom='0' height='20' align='left' text='[Prev] Page Up     [Next] Page Down'/>
