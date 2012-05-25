@@ -10,40 +10,40 @@
 // 	2011-03-01 kartu - Moved into a function, to allow variable name optimizations
 //  2011-03-20 Ben Chenoweth - Moved all labels out of the status bar.
 //  2011-03-25 Ben Chenoweth - Skins changed over to use common AppAssests.
+//  2012-05-22 Ben Chenoweth - Removed unused variables; changed globals to locals; fixed formatting.
 
 var tmp = function () {
-	var Exiting;
-	var gameover;
-	var players = 1;
-	var player1turn;
-	var firstX = 15;
-	var curDX = 50;
-	var firstY = 0;
-	var curDY = 50;
-	var posX;
-	var posY;
-	var maxX = 11;
-	var maxY = 13;
-	var col10m = [];
-	var oMovesX = [];
-	var oMovesY = [];
-	var oMoves;
-	var xMovesX = [];
-	var xMovesY = [];
-	var xMoves;
-	var xFirstX;
-	var xFirstY;
-	var isTouch;
+	var Exiting,
+	gameover,
+	players = 1,
+	player1turn,
+	firstX = 15,
+	curDX = 50,
+	firstY = 0,
+	curDY = 50,
+	posX,
+	posY,
+	maxX = 11,
+	maxY = 13,
+	col10m = [],
+	oMovesX = [],
+	oMovesY = [],
+	oMoves,
+	xMovesX = [],
+	xMovesY = [],
+	xMoves,
+	isTouch,
 	
 	/* Mark Nord - Core workaround 
 	var newEvent = prsp.compile("param", "return new Event(param)");
 	var hasNumericButtons = kbook.autoRunRoot.hasNumericButtons;
 	var getSoValue = kbook.autoRunRoot.getSoValue; */
-	var getSoValue, hasNumericButtons, newEvent;
+	getSoValue, hasNumericButtons;
 	
 	//this.bubble("tracelog","id="+id);
 	
 	target.resetButtons = function () {
+		var x, y, id;
 		for (x = 0; x < maxX; x++) {
 			for (y = 0; y < maxY; y++) {
 				if (x < 10) {
@@ -63,27 +63,27 @@ var tmp = function () {
 				this[id].u = 0;
 			}
 		}
-	}
+	};
 	
 	target.drawgrid1Cursor = function (x, y) {
 		this.grid1Cursor.changeLayout(firstX + x * curDX, undefined, undefined, firstY + y * curDY, undefined, undefined);
-	}
+	};
 	
 	target.drawgrid2Cursor = function (x, y) {
 		this.grid2Cursor.changeLayout(firstX + x * curDX, undefined, undefined, firstY + y * curDY, undefined, undefined);
-	}
+	};
 	
-	target.startPlay = function () {	
+	target.startPlay = function () {
+		var x, y, id;
 		posX = 5;
 		posY = 6;
 		gameover = false;
-		firstmove = true;
 		oMoves = 0;
 		xMoves = 0;
 		
 		// Reset the board - note that the col10m array needs to be initialised to be one column and row larger than the button array (for board-searching purposes)
-		for (var x = 0; x <= maxX; x++) {
-			for (var y = 0; y <= maxY; y++) {
+		for (x = 0; x <= maxX; x++) {
+			for (y = 0; y <= maxY; y++) {
 				col10m[x][y] = 0;
 				if ((x < maxX) && (y < maxY)) {
 					if (x < 10) {
@@ -121,7 +121,7 @@ var tmp = function () {
 				this.grid2Cursor.show(false);
 			}
 		}
-	}
+	};
 	
 	target.init = function () {
 		this.appIcon.u = kbook.autoRunRoot._icon;
@@ -139,7 +139,7 @@ var tmp = function () {
 				}
 				try{
 					var compile = getSoValue(prsp,"compile");
-					newEvent = compile("param", "return new Event(param)");
+					var newEvent = compile("param", "return new Event(param)");
 				} catch(ignore) {}	
 		 }else { /* code is ok with PRS-600 */
 			getSoValue = kbook.autoRunRoot.getSoValue;
@@ -175,14 +175,10 @@ var tmp = function () {
 			col10m[a] = [];
 		}
 		this.startPlay();
-	}
+	};
 	
 	target.placeO = function () {
-		var tempX, tempY;
-		var prevX, prevY;
-		var id, n, cnt;
-		var makemove = false;
-		var distance, direction, choices;
+		var tempX, tempY, prevX, prevY, id, m, n, cnt, makemove = false, distance, direction, choices;
 		
 		// Step 1: Try to complete a win: look for 4 "O"s in a row
 		for (n = 1; n <= oMoves ; n++) {
@@ -194,37 +190,37 @@ var tmp = function () {
 			cnt = 0;
 			// look in the next 3 spaces
 			for (m = 1; m <=3; m++) {
-		    if ((prevX + m < maxX) && (prevY + m < maxY)) {
-			if (col10m[prevX + m][prevY + m] == 2) {
+				if ((prevX + m < maxX) && (prevY + m < maxY)) {
+					if (col10m[prevX + m][prevY + m] == 2) {
 						cnt++;
 					}
-		    }
-		}
+				}
+			}
 			if (cnt == 3) {
-		    // found OOOO, so check if next space is available
+				// found OOOO, so check if next space is available
 				if ((prevX + 4 < maxX) && (prevY + 4 < maxY)) {
-			if (col10m[prevX + 4][prevY + 4] == 0) {
-			    tempX = prevX + 4;
+					if (col10m[prevX + 4][prevY + 4] == 0) {
+						tempX = prevX + 4;
 						tempY = prevY + 4;
 						makemove = true;
 						break;
-			}
-		    }
+					}
+				}
 				// if not, try the previous space
 				if ((prevX - 1 >= 0) && (prevY - 1 >= 0)) {
-			if (col10m[prevX - 1][prevY - 1] == 0) {
-			    tempX = prevX - 1;
+					if (col10m[prevX - 1][prevY - 1] == 0) {
+						tempX = prevX - 1;
 						tempY = prevY - 1;
 						makemove = true;
 						break;
+					}
+				}			
 			}
-		    }			
-		}
 			if (cnt == 2) {
 				// found O-OO, OO-O, or OOO-, so look for O-OOO, OO-OO and OOO-O
-		    if ((prevX + 4 < maxX) && (prevY + 4 < maxY)) {
+				if ((prevX + 4 < maxX) && (prevY + 4 < maxY)) {
 					// first check for that fifth O
-			if (col10m[prevX + 4][prevY + 4] == 2) {
+					if (col10m[prevX + 4][prevY + 4] == 2) {
 						// then check the spaces inbetween
 						if (col10m[prevX + 1][prevY + 1] == 0) {
 							tempX = prevX + 1;
@@ -242,45 +238,45 @@ var tmp = function () {
 							makemove = true;
 							break;
 						}
+					}
+				}
 			}
-		    }
-		}
 			
 			// up and down
 			cnt = 0;
 			// look in the next 3 spaces
 			for (m = 1; m <=3; m++) {
-		    if (prevY + m < maxY) {
-			if (col10m[prevX][prevY + m] == 2) {
+				if (prevY + m < maxY) {
+					if (col10m[prevX][prevY + m] == 2) {
 						cnt++;
 					}
-		    }
-		}
+				}
+			}
 			if (cnt == 3) {
-		    // found OOOO, so check if next space is available
+				// found OOOO, so check if next space is available
 				if (prevY + 4 < maxY) {
-			if (col10m[prevX][prevY + 4] == 0) {
-			    tempX = prevX;
+					if (col10m[prevX][prevY + 4] == 0) {
+						tempX = prevX;
 						tempY = prevY + 4;
 						makemove = true;
 						break;
-			}
-		    }
+					}
+				}
 				// if not, try the previous space
 				if (prevY - 1 >= 0) {
-			if (col10m[prevX][prevY - 1] == 0) {
-			    tempX = prevX;
+					if (col10m[prevX][prevY - 1] == 0) {
+						tempX = prevX;
 						tempY = prevY - 1;
 						makemove = true;
 						break;
+					}
+				}				
 			}
-		    }				
-		}
 			if (cnt == 2) {
 				// found O-OO, OO-O, or OOO-, so look for O-OOO, OO-OO and OOO-O
-		    if (prevY + 4 < maxY) {
+				if (prevY + 4 < maxY) {
 					// first check for that fifth O
-			if (col10m[prevX][prevY + 4] == 2) {
+					if (col10m[prevX][prevY + 4] == 2) {
 						// then check the spaces inbetween
 						if (col10m[prevX][prevY + 1] == 0) {
 							tempX = prevX;
@@ -298,45 +294,45 @@ var tmp = function () {
 							makemove = true;
 							break;
 						}
+					}
+				}
 			}
-		    }
-		}
 			
 			// top right to bottom left diagonal
 			cnt = 0;
 			// look in the next 3 spaces
 			for (m = 1; m <=3; m++) {
-		    if ((prevX - m >= 0) && (prevY + m < maxY)) {
-			if (col10m[prevX - m][prevY + m] == 2) {
+				if ((prevX - m >= 0) && (prevY + m < maxY)) {
+					if (col10m[prevX - m][prevY + m] == 2) {
 						cnt++;
 					}
-		    }
-		}
+				}
+			}
 			if (cnt == 3) {
-		    // found OOOO, so check if next space is available
+				// found OOOO, so check if next space is available
 				if ((prevX - 4 >= 0) && (prevY + 4 < maxY)) {
-			if (col10m[prevX - 4][prevY + 4] == 0) {
-			    tempX = prevX - 4;
+					if (col10m[prevX - 4][prevY + 4] == 0) {
+						tempX = prevX - 4;
 						tempY = prevY + 4;
 						makemove = true;
 						break;
-			}
-		    }
+					}
+				}
 				// if not, try the previous space
 				if ((prevX + 1 < maxX) && (prevY - 1 >= 0)) {
-			if (col10m[prevX + 1][prevY - 1] == 0) {
-			    tempX = prevX + 1;
+					if (col10m[prevX + 1][prevY - 1] == 0) {
+						tempX = prevX + 1;
 						tempY = prevY - 1;
 						makemove = true;
 						break;
+					}
+				}	
 			}
-		    }	
-		}
 			if (cnt == 2) {
 				// found O-OO, OO-O, or OOO-, so look for O-OOO, OO-OO and OOO-O
-		    if ((prevX - 4 >= 0) && (prevY + 4 < maxY)) {
+				if ((prevX - 4 >= 0) && (prevY + 4 < maxY)) {
 					// first check for that fifth O
-			if (col10m[prevX - 4][prevY + 4] == 2) {
+					if (col10m[prevX - 4][prevY + 4] == 2) {
 						// then check the spaces inbetween
 						if (col10m[prevX - 1][prevY + 1] == 0) {
 							tempX = prevX - 1;
@@ -354,45 +350,45 @@ var tmp = function () {
 							makemove = true;
 							break;
 						}
+					}
+				}
 			}
-		    }
-		}
 			
 			// left to right
 			cnt = 0;
 			// look in the next 3 spaces
 			for (m = 1; m <=3; m++) {
-		    if (prevX + m < maxX) {
-			if (col10m[prevX + m][prevY] == 2) {
+				if (prevX + m < maxX) {
+					if (col10m[prevX + m][prevY] == 2) {
 						cnt++;
 					}
-		    }
-		}
+				}
+			}
 			if (cnt == 3) {
 		    // found OOOO, so check if next space is available
 				if (prevX + 4 < maxX) {
-			if (col10m[prevX + 4][prevY] == 0) {
-			    tempX = prevX + 4;
+					if (col10m[prevX + 4][prevY] == 0) {
+						tempX = prevX + 4;
 						tempY = prevY;
 						makemove = true;
 						break;
-			}
-		    }
+					}
+				}
 				// if not, try the previous space
 				if (prevX - 1 >= 0) {
-			if (col10m[prevX - 1][prevY] == 0) {
-			    tempX = prevX - 1;
+					if (col10m[prevX - 1][prevY] == 0) {
+						tempX = prevX - 1;
 						tempY = prevY;
 						makemove = true;
 						break;
+					}
+				}				
 			}
-		    }				
-		}
 			if (cnt == 2) {
 				// found O-OO, OO-O, or OOO-, so look for O-OOO, OO-OO and OOO-O
-		    if (prevX + 4 < maxX) {
+				if (prevX + 4 < maxX) {
 					// first check for that fifth O
-			if (col10m[prevX + 4][prevY] == 2) {
+					if (col10m[prevX + 4][prevY] == 2) {
 						// then check the spaces inbetween
 						if (col10m[prevX + 1][prevY] == 0) {
 							tempX = prevX + 1;
@@ -410,9 +406,9 @@ var tmp = function () {
 							makemove = true;
 							break;
 						}
+					}
+				}
 			}
-		    }
-		}
 		}
 		
 		// Step 2: Try to block X winning: look for 4 "X"s in a row
@@ -1677,16 +1673,15 @@ var tmp = function () {
 		oMovesX[oMoves] = tempX;
 		oMovesY[oMoves] = tempY;
 		return id;
-	}
+	};
 	
 	target.checkWin = function (player) {
-		var x, y, tempX, tempY, n;
-		var tempXA = [];
-		var tempYA = [];
-		
-		var res = false;
-		var winsofar = 0;
-		var inarow;
+		var x, y, tempX, tempY, n, id,
+		tempXA = [],
+		tempYA = [],
+		res = false,
+		winsofar = 0,
+		inarow;
 	
 		//searching for diagonals going from top left to bottom right
 		for (y = 0; y < maxY - 4; y++) {
@@ -1862,12 +1857,10 @@ var tmp = function () {
 			//this.setButtons();
 		}
 		return res;
-	}
+	};
 	
 	target.checkfordraw = function () {
-		var placesleft = 0;
-		var res = false;
-		var x, y;
+		var placesleft = 0, res = false, x, y;
 		for (x = 0; x < maxX; x++) {
 			for (y = 0; y < maxY; y++) {
 				if (col10m[x][y] == 0) {
@@ -1881,13 +1874,10 @@ var tmp = function () {
 			res = true;
 		}
 		return res;
-	}
+	};
 	
 	target.placeXO = function () {
-		var id;
-		var butt;
-		var res = false;
-		var drawres = false;
+		var id, res = false, drawres = false;
 	
 		if (Exiting) {
 			kbook.autoRunRoot.exitIf(kbook.model);
@@ -2002,7 +1992,7 @@ var tmp = function () {
 				return;
 			}
 		}
-	}
+	};
 	
 	target.doGridClick = function (sender) {
 		var id, y, x, u;
@@ -2024,16 +2014,12 @@ var tmp = function () {
 			}
 			this.placeXO();
 		}	
-	}
+	};
 	
 	target.doButtonClick = function (sender) {
-		var id;
+		var id, n;
 	    id = getSoValue(sender, "id");
 		n = id.substring(7, 10);
-/*		if (n == "EXT") {
-			kbook.autoRunRoot.exitIf(kbook.model);
-			return;
-		} */
 		if (n == "ONE") {
 			this.GameOnePlayer();
 			return;
@@ -2042,7 +2028,7 @@ var tmp = function () {
 			this.GameTwoPlayers();
 			return;
 		}	
-	}
+	};
 	
 	target.moveCursor = function (dir) {
 		switch (dir) {
@@ -2076,12 +2062,12 @@ var tmp = function () {
 		} else {
 			this.drawgrid1Cursor(posX, posY);
 		}
-	}
+	};
 	
 	target.doRoot = function (sender) {
 		kbook.autoRunRoot.exitIf(kbook.model);
 		return;
-	}
+	};
 	
 	target.GameOnePlayer = function () {
 		players = 1;
@@ -2089,7 +2075,6 @@ var tmp = function () {
 		posX = 5;
 		posY = 6;
 		gameover = false;
-		firstmove = true;
 		oMoves = 0;
 		xMoves = 0;
 		this.drawgrid1Cursor(posX, posY);
@@ -2100,7 +2085,7 @@ var tmp = function () {
 			this.grid1Cursor.show(true);
 			this.grid2Cursor.show(false);
 		}
-	}
+	};
 	
 	target.GameTwoPlayers = function () {
 		players = 2;
@@ -2108,7 +2093,6 @@ var tmp = function () {
 		posX = 5;
 		posY = 6;
 		gameover = false;
-		firstmove = true;
 		oMoves = 0;
 		xMoves = 0;
 		this.drawgrid1Cursor(posX, posY);
@@ -2119,7 +2103,7 @@ var tmp = function () {
 			this.grid1Cursor.show(true);
 			this.grid2Cursor.show(false);
 		}
-	}
+	};
 	
 	target.newGame = function (digit) {
 		switch (digit*1) {	/* typecast to number */
@@ -2130,7 +2114,6 @@ var tmp = function () {
 				posX = 5;
 				posY = 6;
 				gameover = false;
-				firstmove = true;
 				oMoves = 0;
 				xMoves = 0;
 				this.drawgrid1Cursor(posX, posY);
@@ -2150,7 +2133,6 @@ var tmp = function () {
 				posX = 5;
 				posY = 6;
 				gameover = false;
-				firstmove = true;
 				oMoves = 0;
 				xMoves = 0;
 				this.drawgrid1Cursor(posX, posY);
@@ -2169,11 +2151,11 @@ var tmp = function () {
 				return;
 			}
 		}
-	}
+	};
 	
 	target.doCenterF = function () {
 		return;
-	}
+	};
 };
 tmp();
 tmp = undefined;
