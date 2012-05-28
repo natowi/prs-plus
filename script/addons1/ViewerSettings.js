@@ -131,7 +131,7 @@ tmp = function() {
 			kbook.model.doCenter = oldDoCenter;		
 			Core.addonByName.KeyBindings.overRide = false;
 		};
-1
+
 		// toggle from marginCut to normal 100% view
 		if (marginCut) {
 			marginCut = false;
