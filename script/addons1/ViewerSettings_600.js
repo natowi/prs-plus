@@ -16,21 +16,23 @@ tmp = function() {
 	LX = Core.lang.LX;
 	log = Core.log.getLogger('ViewerSettings_600');
 
-	var opt, autoPageTimer, pageTurnInterval;
+	var opt, autoPageTimer;
 	
 	var autoPageToggle = function () {
 		if (!autoPageTimer) {
 			Core.ui.showMsg(L("AUTO_PAGE_TURNER") + ": " + L("VALUE_TRUE"), 2);
+			ebook.setStandbyWithoutSleep(true);
+			kbook.model.processing(100);
 			autoPageTimer = new Timer();
 			autoPageTimer.target = null;
 			autoPageTimer.onCallback = autoPageCallback;
-			pageTurnInterval = parseInt(opt.AutoPageTurnerTime) * 1000;
-			autoPageTimer.schedule(pageTurnInterval);
-			ebook.setStandbyWithoutSleep(true);
+			autoPageTimer.delay = parseInt(opt.AutoPageTurnerTime) * 1000;
+			autoPageTimer.schedule(autoPageTimer.delay);
 		} else {
 			autoPageTimer.cancel();
 			autoPageTimer.close();
 			autoPageTimer = null;
+			kbook.model.processed(100);
 			ebook.setStandbyWithoutSleep(false);
 			Core.ui.showMsg(L("AUTO_PAGE_TURNER") + ": " + L("VALUE_FALSE"), 2);
 		}
@@ -38,7 +40,7 @@ tmp = function() {
 	
 	var autoPageCallback = function () {
 		if (kbook.model.STATE === 'PAGE') {
-			kbook.model.container.sandbox.PAGE_GROUP.sandbox.PAGE_SUBGROUP.sandbox.PAGE.doNext();
+			kbook.model.container.sandbox.PAGE_GROUP.sandbox.PAGE.doNext();
 		} else {
 			autoPageToggle();
 		}
@@ -47,7 +49,7 @@ tmp = function() {
 	var autoPageRestart = function () {
 		if (autoPageTimer) {
 			autoPageTimer.cancel();
-			autoPageTimer.schedule(pageTurnInterval);
+			autoPageTimer.schedule(autoPageTimer.delay);
 		}
 	}
 	
