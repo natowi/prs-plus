@@ -7,11 +7,13 @@
 //	2011-12-15 quisvir - Initial version ported from x50
 //	2012-02-28 quisvir - Fixed #301 'Pop-up dictionary demands to be closed and opened again to look up'
 //	2012-02-29 quisvir - Fixed #304 'Only assigned gestures should be taken into account'
+//	2012-05-20 Ben Chenoweth - Fix for missing language strings (moved to DictionaryOptions_x50)
 
 tmp = function() {
 
-	var L, LX, log, opt;
+	var L, LL, LX, log, opt;
 	L = Core.lang.getLocalizer('TouchSettings');
+	LL = Core.lang.getLocalizer('DictionaryOptions');
 	LX = Core.lang.LX;
 	log = Core.log.getLogger('TouchSettings');
 	
@@ -294,7 +296,7 @@ tmp = function() {
 				},
 				{
 					name: 'DisableDictionary',
-					title: L('DISABLE_DICT_DOUBLETAP'),
+					title: LL('DISABLE_DICT_DOUBLETAP'),
 					icon: 'NODICTIONARY',
 					defaultValue: 'false',
 					values: ['true', 'false'],
@@ -305,7 +307,7 @@ tmp = function() {
 				},
 				{
 					name: 'PreventPopupOverlap',
-					title: L('PREVENT_POPUP_OVERLAP'),
+					title: LL('AVOID_SELECTION_OVERLAP'),
 					icon: 'NODICTIONARY',
 					defaultValue: 'false',
 					values: ['true', 'false'],
@@ -316,8 +318,8 @@ tmp = function() {
 				},
 				{
 					name: 'ClosePopupByPageTap',
-					title: L('CLOSE_POPUP_BY_PAGE_TAP'),
-					icon: 'NODICTIONARY',
+					title: LL('CLOSE_POPUP_BY_PAGE_TAP'),
+					icon: 'STYLUS',
 					defaultValue: 'false',
 					values: ['true', 'false'],
 					valueTitles: {
