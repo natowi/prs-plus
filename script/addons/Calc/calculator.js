@@ -9,6 +9,7 @@
 //	2012-04-23 drMerry - started with optimizing
 //	2012-04-26 drMerry - more optimizations applied
 //		Chosen for speed over readability
+//	2012-05-30 Mark Nord - fixed target.moveCursor now moves as expected
 
 var tmp = function () {
 	// GLOBAL VARIABLES
@@ -961,11 +962,11 @@ var tmp = function () {
 			//if (posX > 8) {posX = 0; }
 			break;
 		case 'e': //east AKA left
-			posX = (posX + 10) % 9;
+			posX = (posX + 8) % 9;
 			//if (posX < 0) {posX = 8; }
 			break;
 		case 'n': //north AKA up
-			posY = (posY + 11) % 10;
+			posY = (posY + 9) % 10;
 			//if (posY < 0) {posY = 9; }
 			break;
 		case 's': //south AKA down
