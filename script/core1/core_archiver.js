@@ -10,6 +10,7 @@
 //  2011-12-10 Ben Chenoweth - Added list function
 //	2011-12-14 quisvir - Added file function to unpack
 //	2011-12-22 Ben Chenoweth - Added CB7 to supported archives
+//	2012-05-30 Ben Chenoweth - Removed 7ZA from 505/300
 
 try {
 	tmp = function() {
@@ -17,14 +18,22 @@ try {
 		UNRAR = System.applyEnvironment("[prspPath]") + "unrar";
 		P7ZIP = System.applyEnvironment("[prspPath]") + "7za";
 		RETURNED_LIST = "/tmp/returnedlist";
-		supportedArchives = {
-			"7z": true,
-			"rar": true,
-			"zip": true,
-			"cb7": true,
-			"cbz": true,
-			"cbr": true
-		};
+		
+		if (FileSystem.getFileInfo(P7ZIP)) {
+			supportedArchives = {
+				"7z": true,
+				"rar": true,
+				"zip": true,
+				"cb7": true,
+				"cbz": true,
+				"cbr": true
+			};
+		} else {
+			supportedArchives = {
+				"rar": true,
+				"cbr": true
+			};
+		}
 		defaultPassword = "qwerty";
 
 		list = function (path, outputDir, password) {

@@ -18,9 +18,10 @@
 //	2011-12-28 Ben Chenoweth - Initial implementation of audio for 600 and x50
 //	2011-12-29 Ben Chenoweth - Fixes for audio on 600/x50; removed scanDirectory
 //	2012-02-16 quisvir - Call construct of created media nodes
+//	2012-05-30 Ben Chenoweth - Removed 7ZA from 505/300
 
 tmp = function() {
-	var supportedMIMEs, supportedExtensions, supportedComics, supportedAudio, findLibrary, findMedia,
+	var supportedMIMEs, supportedExtensions, P7ZIP, supportedComics, supportedAudio, findLibrary, findMedia,
 		loadMedia, removeMedia, createMediaNode, isImage, startsWith;
 	// Shortcut
 	startsWith = Core.text.startsWith; 
@@ -49,11 +50,18 @@ tmp = function() {
 		"gif": true
 	};
 	
-	supportedComics = {
-		"cb7": true,
-		"cbr": true,
-		"cbz": true
-	};
+	P7ZIP = System.applyEnvironment("[prspPath]") + "7za";
+	if (FileSystem.getFileInfo(P7ZIP)) {
+		supportedComics = {
+			"cb7": true,
+			"cbr": true,
+			"cbz": true
+		};
+	} else {
+		supportedComics = {
+			"cbr": true
+		};
+	}
 	
 	supportedAudio = {
 		"aac": true,
