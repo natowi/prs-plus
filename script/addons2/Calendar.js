@@ -371,7 +371,7 @@ tmp = function() {
 				if (todayevents.length>0) totallines++;
 				if (futureevents.length>0) totallines++;
 				if (totallines < linelimit + 1) {
-					hdiff = 24 * (linelimit + 1 - totallines);
+					hdiff = 23 * (linelimit + 1 - totallines);
 				} else {
 					hdiff = 0;
 				}
@@ -396,12 +396,12 @@ tmp = function() {
 				if (todayevents.length>0) {
 					win.setTextStyle(1);
 					win.setTextAlignment(0, 0);
-					win.drawText(L("TODAYS_EVENTS"), 50, 582+hdiff, w-107, 24);
+					win.drawText(L("TODAYS_EVENTS"), 50, 582+hdiff, w-107, 23);
 					win.setTextStyle(0);
 					win.setTextAlignment(1, 0);
 					for (i=0; i<todayevents.length; i++) {
 						if (i==linelimit) break; // only room for a limited number of lines
-						win.drawText(todayevents[i], 50, (i-1)*22+630+hdiff, w-107, 22);
+						win.drawText(todayevents[i], 50, (i-1)*23+630+hdiff, w-107, 23);
 					}
 				}
 				if (futureevents.length>0) {
@@ -419,9 +419,9 @@ tmp = function() {
 					win.setTextStyle(1);
 					win.setTextAlignment(0, 0);
 					if (i==0) {
-						win.drawText(L("FUTURE_EVENTS"), 50, 582+hdiff, w-107, 24);
+						win.drawText(L("FUTURE_EVENTS"), 50, 582+hdiff, w-107, 23);
 					} else {
-						win.drawText(L("FUTURE_EVENTS"), 50, (i-1)*22+630+hdiff, w-107, 24);
+						win.drawText(L("FUTURE_EVENTS"), 50, (i-1)*23+630+hdiff, w-107, 23);
 						linelimit--;
 					}
 					win.setTextStyle(0);
@@ -446,9 +446,9 @@ tmp = function() {
 								datestring = futureevents[j-i][2]+"/"+futureevents[j-i][1]+"/"+futureevents[j-i][3];
 						}
 						if (i==0) {
-							win.drawText(" "+datestring+" - "+futureevents[j-i][5], 50, (j-1)*22+630+hdiff, w-107, 22);
+							win.drawText(" "+datestring+" - "+futureevents[j-i][5], 50, (j-1)*23+630+hdiff, w-107, 23);
 						} else {
-							win.drawText(" "+datestring+" - "+futureevents[j-i][5], 50, (j-0)*22+630+hdiff, w-107, 22);
+							win.drawText(" "+datestring+" - "+futureevents[j-i][5], 50, (j-0)*23+630+hdiff, w-107, 23);
 						}
 					}
 				}
