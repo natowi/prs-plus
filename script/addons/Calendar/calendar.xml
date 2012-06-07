@@ -101,6 +101,7 @@
 				var f = new Stream.File(path);          
 				var fn = new Function("target", f.toString());
 				fn(target);
+				f.close();
 				delete fn;
 			}
 			catch(e)

@@ -65,6 +65,7 @@
 			var f = new Stream.File(path);          
 			var fn = new Function("target", f.toString(), path, 1);
 			fn(target);
+			f.close();
 			delete fn;
 		}
 		catch(ignore){
