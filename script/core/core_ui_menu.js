@@ -11,10 +11,11 @@
 //	2011-06    Shura1oplot - assign Icons to menu-options
 //	2011-08-01 Mark Nord -  include Core.config.compat.prspMenu.customContainers
 //	2011-08-28 Ben Chenoweth - Custom containers can now have a short name and a comment
-//	2011-11-13 kartu - added support for rootNode being a funciton that returns root node
+//	2011-11-13 kartu - added support for rootNode being a function that returns root node
 //	2011-11-27 Mark Nord - ItemCount in comment for more, multimedia & games-nodes 
 //	2012-01-17 quisvir - Added homekind for moved default nodes
 //	2012-01-18 quisvir - onSettingsChanged, rerun onInit & update root to remove need for reboot
+//	2012-06-07 Ben Chenoweth - Fixes for 'Empty' node (issues #283, #290)
 
 var MenuCustomizer;
 tmp = function() {
@@ -27,12 +28,12 @@ tmp = function() {
 	Core.ui.nodes = nodeMap;
 	
 	//-------------------------------------------------------------------------------------------------------------
-	// Returns node that has no title / action associated with it, just a placeholder (might be usefull to users who want specific menu layout)
+	// Returns node that has no title / action associated with it, just a placeholder (might be useful to users who want specific menu layout)
 	getEmptyNode = function() {
-		var L = Core.lang.getLocalizer("MenuCustomizer");
+		//var L = Core.lang.getLocalizer("MenuCustomizer");
 		if (emptyNode === undefined) {
 			emptyNode = Core.ui.createContainerNode({
-				title: L("NODE_EMPTY"),
+				title: "", //L("NODE_EMPTY")
 				icon: "EMPTY",
 				comment: ""
 			});
@@ -59,8 +60,9 @@ tmp = function() {
 	//-------------------------------------------------------------------------------------------------------------
 	// Initializes node map
 	createListOfStandardNodes = function(nodeMap, values, valueTitles, valueIcons) {
-		var L,standardMenuLayout, standardMenuLayoutIcons, prspMenu, key, path, node, j, m;
+		var L,LL,standardMenuLayout, standardMenuLayoutIcons, prspMenu, key, path, node, j, m;
 		L = Core.lang.getLocalizer("Core");
+		LL = Core.lang.getLocalizer("MenuCustomizer");
 		standardMenuLayoutIcons = {
 			"continue": "CONTINUE",
 			books: "ALL_BOOKS",
@@ -95,7 +97,7 @@ tmp = function() {
 		// Empty node
 		nodeMap.empty = getEmptyNode();
 		values.push("empty");
-		valueTitles.empty = nodeMap.empty.title;
+		valueTitles.empty = LL("NODE_EMPTY"); //nodeMap.empty.title
 		valueIcons["empty"] = "EMPTY";
 		
 		// Standard nodes
@@ -299,14 +301,14 @@ tmp = function() {
 					}
 					node = nodeMap[nodeName];
 					
-					// node might be an actuall node or a function, that creates it
+					// node might be an actual node or a function, that creates it
 					if (typeof node === "function") { 
 						node = node();
 					}
 					
-					// if node is empty (or not found), have to insert empty node, if it is not the last node
+					// if node is empty (or not found), have to insert empty node, if it is not the last node (505/300 only)
 					if (node === undefined || node === getEmptyNode()) {
-						if (stillEmpty) {
+						if ((stillEmpty) && ((Core.config.model === "505") || (Core.config.model === "300"))) {
 							continue;
 						} else {
 							node = getEmptyNode();
@@ -332,7 +334,7 @@ tmp = function() {
 					stillEmpty = false;
 				}
 				
-				// Insert curstom nodes
+				// Insert custom nodes
 				for (i = 0, n = customNodes.length; i < n; i++) {
 					customNode = customNodes[i];
 					nodeName = customNode.name;
@@ -369,10 +371,10 @@ tmp = function() {
 					defaultNodeName = "more"; 
 				}
 				defaultNode = nodeMap[defaultNodeName];
-				// Put  detached nodes into default node
+				// Put detached nodes into default node
 				if (defaultNode !== undefined && defaultNode.nodes !== undefined) {
 					for (nodeName in detachedNodes) {
-						// If node wasnot assigned and can be found and is not itself the default node, attach it to the default
+						// If node was not assigned and can be found and is not itself the default node, attach it to the default
 						if (placedNodes[nodeName] !== true && nodeMap[nodeName] !== undefined && defaultNodeName !== nodeName) {
 							// Pushing
 							node = nodeMap[nodeName];

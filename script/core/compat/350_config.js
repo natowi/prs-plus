@@ -41,6 +41,7 @@
 //	2012-02-16 quisvir - Added CHECKMARK
 //	2012-02-20 quisvir - Added Action Launcher (StandardActions node)
 //	2012-04-23 drMerry - Added Reboot Icon
+//	2012-06-07 Ben Chenoweth - Fixes for 'Empty' node (issues #283, #290)
 
 return {
 	// Menu icon indices 
@@ -149,6 +150,7 @@ return {
 		HOME_MORE: 5,
 		HOME_GAME: 6,
 		HOME_DATE: 7,
+		HOME_EMPTY: 1000,
 		
 		// At least 600 and 900 have more than one type of icons
 		getIcon: function (strKind, type) {

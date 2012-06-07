@@ -37,6 +37,7 @@
 //	2011-12-06 quisvir - Removed BH & BF from customNodes to avoid duplication in More Applications (issue #237)
 //	2011-12-28 Ben Chenoweth - Added audio in BrowseFolders
 //	2012-02-20 quisvir - Added Action Launcher (StandardActions node)
+//	2012-06-07 Ben Chenoweth - Fixes for 'Empty' node (issues #283, #290)
 
 return {
 	// Menu icon indices 
@@ -131,13 +132,15 @@ return {
 		HOME_FOLDER: 9,
 		HOME_GAME: 10,
 		HOME_DATE: 11,
+		HOME_EMPTY: 1000,
 		
 		// big icons shonw in home menu
 		LARGE_BOOK_HISTORY: 3,
 		LARGE_AUTHOR: 3,
 		LARGE_FOLDER: 4,
 		LARGE_GAME: 5,
-		LARGE_DATE: 6,		
+		LARGE_DATE: 6,
+		LARGE_EMPTY: 1000,
 		
 		// At least 600 and 900 have more than one type of icons
 		getIcon: function (strKind, type) {
