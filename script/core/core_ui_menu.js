@@ -16,6 +16,7 @@
 //	2012-01-17 quisvir - Added homekind for moved default nodes
 //	2012-01-18 quisvir - onSettingsChanged, rerun onInit & update root to remove need for reboot
 //	2012-06-07 Ben Chenoweth - Fixes for 'Empty' node (issues #283, #290)
+//	2012-06-09 Ben Chenoweth - Added standard apps: music player, notes, dictionary (issue #219)
 
 var MenuCustomizer;
 tmp = function() {
@@ -42,6 +43,71 @@ tmp = function() {
 			};
 		}
 		return emptyNode;
+	};
+	
+	// Returns node that will activate standard apps on enter
+	getAppNode = function(title) {
+		//var L = Core.lang.getLocalizer("MenuCustomizer");
+		var appNode;
+		switch (title) {
+			case 'musicplayer':
+				appNode = Core.ui.createContainerNode({
+						title: "Music Player", //L("MUSIC_PLAYER");
+						icon: "AUDIO",
+						comment: ""
+					});
+				appNode.enter = function() {
+					var node;
+					if (kbook.model.currentSong) {
+						kbook.model.onEnterNowPlaying(node);
+					} else {
+						kbook.model.doGoToMusic();
+					}
+				};
+				break;
+			case 'musiclibrary':
+				appNode = Core.ui.createContainerNode({
+						title: "Music Library", //L("MUSIC_LIBRARY");
+						icon: "AUDIO",
+						comment: ""
+					});
+				appNode.enter = function() {
+					kbook.model.doGoToMusic();
+				};
+				break;
+			case 'textmemo':
+				appNode = Core.ui.createContainerNode({
+						title: "Text Memos", //L("TEXT_MEMOS");
+						icon: "TEXT_MEMO",
+						comment: ""
+					});
+				appNode.enter = function() {
+					kbook.model.doGoToNotepadsText();
+				};
+				break;
+			case 'freehand':
+				appNode = Core.ui.createContainerNode({
+						title: "Handwritings", //L("HANDWRITINGS");
+						icon: "HANDWRITING",
+						comment: ""
+					});
+				appNode.enter = function() {
+					kbook.model.doGoToNotepadsFreehand();
+				};
+				break;
+			case 'dictionary':
+				appNode = Core.ui.createContainerNode({
+						title: "Dictionary", //L("DICTIONARY");
+						icon: "DICTIONARY",
+						comment: ""
+					});
+				appNode.enter = function() {
+					kbook.model.doGoToDictionary();
+				};
+				break;
+			default:
+		}
+		if (appNode) return appNode;
 	};
 
 	createActivateNode = function (addon) {
@@ -119,18 +185,61 @@ tmp = function() {
 			} catch (e) {
 				log.error("Failed to find node: " + key + " " + e);
 			}
-		}	
-			//include Core.config.compat.prspMenu.customContainers
+		}
+		//include standard apps
+		if (!Core.config.compat.hasNumericButtons) {
 			try {
-				prspMenu = Core.config.compat.prspMenu;
-				for (key in prspMenu.customContainers) {
-					values.push(prspMenu.customContainers[key].name);
-					valueTitles[prspMenu.customContainers[key].name] = L(prspMenu.customContainers[key].title); 
-					valueIcons[prspMenu.customContainers[key].name] = prspMenu.customContainers[key].icon;
-					} 
+				nodeMap.musicplayer = getAppNode("musicplayer");
+				values.push("musicplayer");
+				valueTitles.musicplayer = "Music Player"; //LL("MUSIC_PLAYER");
+				valueIcons["musicplayer"] = "AUDIO";
 			} catch (e) {
-				log.error("Failed to find customContainers: " + key + " " + e);
-			} 
+				log.error("Failed to find music player node: " + e);
+			}
+			try {
+				nodeMap.musiclibrary = getAppNode("musiclibrary");
+				values.push("musiclibrary");
+				valueTitles.musiclibrary = "Music Library"; //LL("MUSIC_LIBRARY");
+				valueIcons["musiclibrary"] = "AUDIO";
+			} catch (e) {
+				log.error("Failed to find music library node: " + e);
+			}
+			try {
+				nodeMap.textmemo = getAppNode("textmemo");
+				values.push("textmemo");
+				valueTitles.textmemo = "Text Memos"; //LL("TEXT_MEMOS");
+				valueIcons["textmemo"] = "TEXT_MEMO";
+			} catch (e) {
+				log.error("Failed to find text memo node: " + e);
+			}
+			try {
+				nodeMap.freehand = getAppNode("freehand");
+				values.push("freehand");
+				valueTitles.freehand = "Handwritings"; //L("HANDWRITINGS");
+				valueIcons["freehand"] = "HANDWRITING";
+			} catch (e) {
+				log.error("Failed to find freehand node: " + e);
+			}
+			try {
+				nodeMap.dictionary = getAppNode("dictionary");
+				values.push("dictionary");
+				valueTitles.dictionary = "Dictionary"; //LL("DICTIONARY");
+				valueIcons["dictionary"] = "DICTIONARY"; 
+			} catch (e) {
+				log.error("Failed to find dictionary node: " + e);
+			}
+		}
+		//include Core.config.compat.prspMenu.customContainers
+		try {
+			prspMenu = Core.config.compat.prspMenu;
+			for (key in prspMenu.customContainers) {
+				values.push(prspMenu.customContainers[key].name);
+				valueTitles[prspMenu.customContainers[key].name] = L(prspMenu.customContainers[key].title); 
+				valueIcons[prspMenu.customContainers[key].name] = prspMenu.customContainers[key].icon;
+				} 
+		} catch (e) {
+			log.error("Failed to find customContainers: " + key + " " + e);
+		} 
 	};
 	
 	/** Creates addon nodes,addon can either provide "activate" function, 

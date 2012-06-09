@@ -88,6 +88,7 @@ return {
 		NODICTIONARY: 40,
 		STYLUS: 41,
 		COLLECTION: 42,
+		HANDWRITING: 49,
 		TEXT_MEMO: 50,
 		KEYBOARD: 51,
 		DICTIONARY: 52,
@@ -144,13 +145,17 @@ return {
 		
 		DEFAULT: 87,
 		
-		// big icons shonw in home menu
+		// big icons shown in home menu
 		HOME_BOOK_HISTORY: 2,
 		HOME_AUTHOR: 2,
 		HOME_FOLDER: 4,
 		HOME_MORE: 5,
 		HOME_GAME: 6,
 		HOME_DATE: 7,
+		HOME_DICTIONARY: 8,
+		HOME_TEXT_MEMO: 9,
+		HOME_AUDIO: 10,
+		HOME_HANDWRITING: 11,
 		HOME_EMPTY: 1000,
 		
 		// At least 600 and 900 have more than one type of icons
