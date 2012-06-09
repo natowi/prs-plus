@@ -47,12 +47,12 @@ tmp = function() {
 	
 	// Returns node that will activate standard apps on enter
 	getAppNode = function(title) {
-		//var L = Core.lang.getLocalizer("MenuCustomizer");
+		var L = Core.lang.getLocalizer("MenuCustomizer");
 		var appNode;
 		switch (title) {
 			case 'musicplayer':
 				appNode = Core.ui.createContainerNode({
-						title: "Music Player", //L("MUSIC_PLAYER");
+						title: L("MUSIC_PLAYER"),
 						icon: "AUDIO",
 						comment: ""
 					});
@@ -67,7 +67,7 @@ tmp = function() {
 				break;
 			case 'musiclibrary':
 				appNode = Core.ui.createContainerNode({
-						title: "Music Library", //L("MUSIC_LIBRARY");
+						title: L("MUSIC_LIBRARY"),
 						icon: "AUDIO",
 						comment: ""
 					});
@@ -77,7 +77,7 @@ tmp = function() {
 				break;
 			case 'textmemo':
 				appNode = Core.ui.createContainerNode({
-						title: "Text Memos", //L("TEXT_MEMOS");
+						title: L("TEXT_MEMOS"),
 						icon: "TEXT_MEMO",
 						comment: ""
 					});
@@ -87,7 +87,7 @@ tmp = function() {
 				break;
 			case 'freehand':
 				appNode = Core.ui.createContainerNode({
-						title: "Handwritings", //L("HANDWRITINGS");
+						title: L("HANDWRITINGS"),
 						icon: "HANDWRITING",
 						comment: ""
 					});
@@ -97,7 +97,7 @@ tmp = function() {
 				break;
 			case 'dictionary':
 				appNode = Core.ui.createContainerNode({
-						title: "Dictionary", //L("DICTIONARY");
+						title: L("DICTIONARY"),
 						icon: "DICTIONARY",
 						comment: ""
 					});
@@ -136,8 +136,6 @@ tmp = function() {
 			collections: "BOOKS",
 			notes: "NOTES",
 			//newdelivery:
-			//textMemo:
-			//handwriting:
 			audio: "AUDIO",
 			music: "AUDIO",
 			pictures: "PICTURES",
@@ -191,7 +189,7 @@ tmp = function() {
 			try {
 				nodeMap.musicplayer = getAppNode("musicplayer");
 				values.push("musicplayer");
-				valueTitles.musicplayer = "Music Player"; //LL("MUSIC_PLAYER");
+				valueTitles.musicplayer = LL("MUSIC_PLAYER");
 				valueIcons["musicplayer"] = "AUDIO";
 			} catch (e) {
 				log.error("Failed to find music player node: " + e);
@@ -199,7 +197,7 @@ tmp = function() {
 			try {
 				nodeMap.musiclibrary = getAppNode("musiclibrary");
 				values.push("musiclibrary");
-				valueTitles.musiclibrary = "Music Library"; //LL("MUSIC_LIBRARY");
+				valueTitles.musiclibrary = LL("MUSIC_LIBRARY");
 				valueIcons["musiclibrary"] = "AUDIO";
 			} catch (e) {
 				log.error("Failed to find music library node: " + e);
@@ -207,7 +205,7 @@ tmp = function() {
 			try {
 				nodeMap.textmemo = getAppNode("textmemo");
 				values.push("textmemo");
-				valueTitles.textmemo = "Text Memos"; //LL("TEXT_MEMOS");
+				valueTitles.textmemo = LL("TEXT_MEMOS");
 				valueIcons["textmemo"] = "TEXT_MEMO";
 			} catch (e) {
 				log.error("Failed to find text memo node: " + e);
@@ -215,7 +213,7 @@ tmp = function() {
 			try {
 				nodeMap.freehand = getAppNode("freehand");
 				values.push("freehand");
-				valueTitles.freehand = "Handwritings"; //L("HANDWRITINGS");
+				valueTitles.freehand = LL("HANDWRITINGS");
 				valueIcons["freehand"] = "HANDWRITING";
 			} catch (e) {
 				log.error("Failed to find freehand node: " + e);
@@ -223,7 +221,7 @@ tmp = function() {
 			try {
 				nodeMap.dictionary = getAppNode("dictionary");
 				values.push("dictionary");
-				valueTitles.dictionary = "Dictionary"; //LL("DICTIONARY");
+				valueTitles.dictionary = LL("DICTIONARY");
 				valueIcons["dictionary"] = "DICTIONARY"; 
 			} catch (e) {
 				log.error("Failed to find dictionary node: " + e);
