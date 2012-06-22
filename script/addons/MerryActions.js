@@ -1,5 +1,7 @@
 //	Merry Actions are actions to update the workflow and/or performance of the reader.
 //	2012-04-23 drMerry - initial release (reboot action)
+//	2012-06-22 drMerry - added flush command
+//				added meminfo command
 var mAcontainer = function () {
 	var L, log, MerryActions;
 	log = Core.log.getLogger("MerryActions");
@@ -16,8 +18,30 @@ var mAcontainer = function () {
 				defaultValue: "False",
 				values: ["True", "False"],
 				valueTitles: {
-					"True": L("REBOOT_TRUE"),
-					"False": L("REBOOT_FALSE")
+					"True": L("OPT_ENABLED"),
+					"False": L("OPT_DISABLED")
+				}
+			},
+            {
+				name: "enableSync",
+				title: L("OPT_SYNC"),
+				icon: "REBOOT",
+				defaultValue: "False",
+				values: ["True", "False"],
+				valueTitles: {
+					"True": L("OPT_ENABLED"),
+					"False": L("OPT_DISABLED")
+				}
+			},
+            {
+				name: "enableMeminfo",
+				title: L("OPT_MEMINFO"),
+				icon: "REBOOT",
+				defaultValue: "True",
+				values: ["True", "False"],
+				valueTitles: {
+					"True": L("OPT_ENABLED"),
+					"False": L("OPT_DISABLED")
 				}
 			}
 		],
@@ -31,11 +55,56 @@ var mAcontainer = function () {
 					if (MerryActions.options.enableReboot === 'True') {
 						Core.shell.exec("reboot");
 					}
+                    else {
+                        Core.ui.showMsg(L("MSG_DISABLED"));
+                        }
+				} catch (e) {
+					log.error("in MerryActions action: " + e);
+				}
+			}
+		},
+        {
+			name: "Sync",
+			title: L("SYNC_TITLE"),
+			group: "System",
+			icon: "REBOOT",
+			action: function () {
+				try {
+					if (MerryActions.options.enableSync=== 'True') {
+                        //Core.popup.showMenu(menu);
+                        //Core.shell.exec("sync; echo 3 > /proc/sys/vm/drop_caches");
+                        Core.ui.showMsg(L("MSG_NOT_IMPLEMENTED"));
+					}
+                    else {
+                        Core.ui.showMsg(L("MSG_DISABLED"));
+                        }
+				} catch (e) {
+					log.error("in MerryActions action: " + e);
+				}
+			}
+		},
+        {
+			name: "MemInfo",
+			title: L("MEMINFO_TITLE"),
+			group: "System",
+			icon: "REBOOT",
+			action: function () {
+				try {
+					if (MerryActions.options.enableMeminfo === 'True') {
+						Core.shell.exec("cat /proc/meminfo > /Data/memdump.txt");
+                        Core.ui.showMsg("See new book memdump.txt for mem-info");
+					}
+                    else {
+                        Core.ui.showMsg(L("MSG_DISABLED"));
+                        }
 				} catch (e) {
 					log.error("in MerryActions action: " + e);
 				}
 			}
 		}]
+        
+        //sync; echo 3 > /proc/sys/vm/drop_caches
+        //cat /proc/meminfo
 	};
 
 	Core.addAddon(MerryActions);
