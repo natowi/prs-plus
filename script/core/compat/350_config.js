@@ -139,6 +139,7 @@ return {
 		COMIC: 116,
 		AUDIO_ALT: 117,
 		CHECKMARK: 118,
+		MEMINFO: 119,
 		
 		REBOOT: 30,
 		

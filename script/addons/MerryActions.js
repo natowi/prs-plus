@@ -25,7 +25,7 @@ var mAcontainer = function () {
             {
 				name: "enableSync",
 				title: L("OPT_SYNC"),
-				icon: "REBOOT",
+				icon: "MEMINFO",
 				defaultValue: "False",
 				values: ["True", "False"],
 				valueTitles: {
@@ -36,7 +36,7 @@ var mAcontainer = function () {
             {
 				name: "enableMeminfo",
 				title: L("OPT_MEMINFO"),
-				icon: "REBOOT",
+				icon: "MEMINFO",
 				defaultValue: "True",
 				values: ["True", "False"],
 				valueTitles: {
@@ -67,13 +67,18 @@ var mAcontainer = function () {
 			name: "Sync",
 			title: L("SYNC_TITLE"),
 			group: "System",
-			icon: "REBOOT",
+			icon: "MEMINFO",
 			action: function () {
 				try {
 					if (MerryActions.options.enableSync=== 'True') {
                         //Core.popup.showMenu(menu);
-                        //Core.shell.exec("sync; echo 3 > /proc/sys/vm/drop_caches");
-                        Core.ui.showMsg(L("MSG_NOT_IMPLEMENTED"));
+						Core.shell.exec("ECHO before\n > /Data/memdump_update.txt");
+						Core.shell.exec("cat /proc/meminfo >> /Data/memdump_update.txt");
+                        Core.shell.exec("sync; echo 3 >> /proc/sys/vm/drop_caches");
+						Core.shell.exec("ECHO after\n >> /Data/memdump_update.txt");
+						Core.shell.exec("cat /proc/meminfo >> /Data/memdump_update.txt");
+                        //Core.ui.showMsg(L("MSG_NOT_IMPLEMENTED"));
+						Core.ui.showMsg(L("MSG_NEW_MEMINFO"));
 					}
                     else {
                         Core.ui.showMsg(L("MSG_DISABLED"));
@@ -87,12 +92,12 @@ var mAcontainer = function () {
 			name: "MemInfo",
 			title: L("MEMINFO_TITLE"),
 			group: "System",
-			icon: "REBOOT",
+			icon: "MEMINFO",
 			action: function () {
 				try {
 					if (MerryActions.options.enableMeminfo === 'True') {
 						Core.shell.exec("cat /proc/meminfo > /Data/memdump.txt");
-                        Core.ui.showMsg("See new book memdump.txt for mem-info");
+                        Core.ui.showMsg(L("MSG_MEMINFO"));
 					}
                     else {
                         Core.ui.showMsg(L("MSG_DISABLED"));

@@ -138,6 +138,8 @@ return {
 		COMIC: 142,
 		AUDIO_ALT: 143,
 		
+		MEMINFO: 144,
+		
 		DEFAULT: 112,
 		
 		// big icons shown in home menu
