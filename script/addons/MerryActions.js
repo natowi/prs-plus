@@ -6,6 +6,7 @@ var mAcontainer = function () {
 	var L, log, MerryActions;
 	log = Core.log.getLogger("MerryActions");
 	L = Core.lang.getLocalizer("MerryActions");
+	LG = Core.lang.getLocalizer("Global");
 	MerryActions = {
 		name: "MerryActions",
 		title: L("MERRY_ACTIONS"),
@@ -18,19 +19,20 @@ var mAcontainer = function () {
 				defaultValue: "False",
 				values: ["True", "False"],
 				valueTitles: {
-					"True": L("OPT_ENABLED"),
-					"False": L("OPT_DISABLED")
+					"True": LG("OPT_ENABLED"),
+					"False": LG("OPT_DISABLED")
 				}
 			},
             {
 				name: "enableSync",
 				title: L("OPT_SYNC"),
 				icon: "MEMINFO",
+				helpText: L("MSG_HELP_SYNC"),
 				defaultValue: "False",
 				values: ["True", "False"],
 				valueTitles: {
-					"True": L("OPT_ENABLED"),
-					"False": L("OPT_DISABLED")
+					"True": LG("OPT_ENABLED"),
+					"False": LG("OPT_DISABLED")
 				}
 			},
             {
@@ -40,8 +42,8 @@ var mAcontainer = function () {
 				defaultValue: "True",
 				values: ["True", "False"],
 				valueTitles: {
-					"True": L("OPT_ENABLED"),
-					"False": L("OPT_DISABLED")
+					"True": LG("OPT_ENABLED"),
+					"False": LG("OPT_DISABLED")
 				}
 			}
 		],
@@ -77,7 +79,7 @@ var mAcontainer = function () {
                         Core.shell.exec("sync; echo 3 >> /proc/sys/vm/drop_caches");
 						Core.shell.exec("echo ''; echo 'after' >> /Data/memdump_update.txt");
 						Core.shell.exec("cat /proc/meminfo >> /Data/memdump_update.txt");
-                        //Core.ui.showMsg(L("MSG_NOT_IMPLEMENTED"));
+                        //Core.ui.showMsg(LG("MSG_NOT_IMPLEMENTED"));
 						Core.ui.showMsg(L("MSG_NEW_MEMINFO"));
 					}
                     else {
