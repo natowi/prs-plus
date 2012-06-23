@@ -25,7 +25,7 @@ tmp = function() {
 		},
 		actions: [{
 			name: "Cli",
-			group: "Games",
+			group: "System",
 			title: "CLI",
 			icon: appIcon,
 			action: function () {

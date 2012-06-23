@@ -72,10 +72,10 @@ var mAcontainer = function () {
 				try {
 					if (MerryActions.options.enableSync=== 'True') {
                         //Core.popup.showMenu(menu);
-						Core.shell.exec("ECHO before\n > /Data/memdump_update.txt");
+						Core.shell.exec("echo 'before' > /Data/memdump_update.txt");
 						Core.shell.exec("cat /proc/meminfo >> /Data/memdump_update.txt");
                         Core.shell.exec("sync; echo 3 >> /proc/sys/vm/drop_caches");
-						Core.shell.exec("ECHO after\n >> /Data/memdump_update.txt");
+						Core.shell.exec("echo ''; echo 'after' >> /Data/memdump_update.txt");
 						Core.shell.exec("cat /proc/meminfo >> /Data/memdump_update.txt");
                         //Core.ui.showMsg(L("MSG_NOT_IMPLEMENTED"));
 						Core.ui.showMsg(L("MSG_NEW_MEMINFO"));
