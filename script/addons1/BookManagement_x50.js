@@ -1112,7 +1112,7 @@ tmp = function() {
 			name: 'BookListPreviousBooks',
 			title: L('BOOKLIST_PREVIOUS_BOOKS'),
 			group: 'Other',
-			icon: 'NEXT',
+			icon: 'PREVIOUS',
 			action: function () {
 				if (numCur < 3 || bookChanged) {
 					model.doBlink();
