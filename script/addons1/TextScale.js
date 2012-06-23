@@ -7,6 +7,8 @@
 //	2010-05-11 kartu - Fixed EPUB zoom. Still has side effects: utils -> clear history resets zoom
 //	2010-05-11 kartu - Changed it, so that addon doesn't hook unless needed. 
 //				Fixed === 0 bugs introduced in previous commit.
+//	2012-06-23 drMerry - Added Global translation
+//	2012-06-23 drMerry - Added var declaration at top of file
 //
 // Note(s):
 //	- Reassigns original kbook.model.onChangeBookCallback()
@@ -16,29 +18,32 @@
 //	- Add TEXT_SCALE icon (ex. magnifier)
 
 tmp = function() {
+	// declare var
+	var log, getSoValue, setSoValue, getFastBookMedia, L, LG, SCALE_SMALL, SCALE_MEDIUM, SCALE_LARGE, TextScale, SMALL, ENABLED, DISABLED, MEDIUM, LARGE, oldOnChangeBookCallback, onChangeBookCallback, doSize, areSettingsDefault, doHook;
 	// Shortcuts
-	var log = Core.log.getLogger("TextScale");
-	var getSoValue = Core.system.getSoValue;
-	var setSoValue = Core.system.setSoValue;
-	var getFastBookMedia = Core.system.getFastBookMedia;
+	log = Core.log.getLogger("TextScale");
+	getSoValue = Core.system.getSoValue;
+	setSoValue = Core.system.setSoValue;
+	getFastBookMedia = Core.system.getFastBookMedia;
 
 	// Localize
-	var L = Core.lang.getLocalizer("TextScale");
+	L = Core.lang.getLocalizer("TextScale");
+	LG = Core.lang.getLocalizer("Global");
 
 	// Scale values
-	var SCALE_SMALL = 0;
-	var SCALE_MEDIUM = 1;
-	var SCALE_LARGE = 2;
+	SCALE_SMALL = 0;
+	SCALE_MEDIUM = 1;
+	SCALE_LARGE = 2;
 
 	// Strings
-	var ENABLED = L("VALUE_ENABLED");
-	var DISABLED = L("VALUE_DISABLED");
-	var SMALL = L("VALUE_SMALL");
-	var MEDIUM = L("VALUE_MEDIUM");
-	var LARGE = L("VALUE_LARGE");
+	ENABLED = LG("VALUE_ENABLED");
+	DISABLED = LG("VALUE_DISABLED");
+	SMALL = L("VALUE_SMALL");
+	MEDIUM = L("VALUE_MEDIUM");
+	LARGE = L("VALUE_LARGE");
 
 	// This addon
-	var TextScale = {
+	TextScale = {
 		name: "TextScale",
 		settingsGroup: "viewer",
 		optionDefs: [
@@ -89,8 +94,8 @@ tmp = function() {
 		}]
 	};
 
-	var oldOnChangeBookCallback = kbook.model.onChangeBookCallback;
-	var onChangeBookCallback = function () {
+	oldOnChangeBookCallback = kbook.model.onChangeBookCallback;
+	onChangeBookCallback = function () {
 		try {
 			if (this.currentBook) {
 				var media = getFastBookMedia(this.currentBook);
@@ -107,13 +112,14 @@ tmp = function() {
 		oldOnChangeBookCallback.apply(this, arguments);
 	};
 	
-	var doSize = function () {
+	doSize = function () {
 		try {
-			var media = getFastBookMedia(kbook.model.currentBook);
+			var media, current, next, browseTo;
+			media = getFastBookMedia(kbook.model.currentBook);
 			//NOTE Original handler used kbook.bookData.textScale but it looks like the same
-			var current = getSoValue(media, "scale");
+			current = getSoValue(media, "scale");
 			// Find next enabled scale...
-			var next = (current == 2) ? 0 : current + 1; // get next
+			next = (current == 2) ? 0 : current + 1; // get next
 			if (TextScale.options[next] == 0) { // next is disabled
 				next = (next == 2) ? 0 : next + 1; // get next
 				if (TextScale.options[next] == 0) { // next is disabled
@@ -122,7 +128,7 @@ tmp = function() {
 				}
 			}
 			// Set new scale
-			var browseTo = getSoValue(media, "browseTo");
+			browseTo = getSoValue(media, "browseTo");
 			browseTo.call(media, kbook.bookData, undefined, undefined, undefined, next);
 		} catch (e) {
 			log.error("doSize(): " + e);
@@ -131,13 +137,13 @@ tmp = function() {
 	
 	// Hooks doSize and onChangeBookCallback
 	// Is safe to call more than once
-	var doHook = function() {
+	doHook = function() {
 		var kbookPage = getSoValue("Fskin.kbookPage");
 		kbookPage.doSize = doSize;
 		kbook.model.onChangeBookCallback = onChangeBookCallback;
 	};
 	
-	var areSettingsDefault = function() {
+	areSettingsDefault = function() {
 		var options = TextScale.options;
 		return options !== undefined && options.scaleDefault == SCALE_SMALL && 
 			options[0] == 1 && options[1] == 1 && options[2] == 1;
@@ -157,10 +163,10 @@ tmp = function() {
 			this.options[newValue] = 1;
 		} else {
 			// "0" | "1" | "2"
-			var next;
+			var next, current;
 			if (!newValue) { // current is disabled
 				// Check up at least one scale is enabled and default scale is enabled...
-				var current = Number(propertyName);
+				current = Number(propertyName);
 				if (this.options[0] == 0 && this.options[1] == 0 && this.options[2] == 0) {
 					// all are disabled
 					next = (current == 2) ? 0 : current + 1; // get next

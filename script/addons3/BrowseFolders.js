@@ -60,9 +60,10 @@
 //	2012-02-28 Ben Chenoweth - Update reader when archive closes not after every item
 //	2012-03-21 Ben Chenoweth - Added Option menu to Archives (x50)
 //	2012-03-31 Ben Chenoweth - Fix for filename as comment and filesize/extension in comment for archives and unscanned files
+//	2012-06-23 drMerry - Added Global translation
 
 tmp = function() {
-	var log, L, startsWith, trim, BrowseFolders, TYPE_SORT_WEIGHTS, compare, sorter, folderConstruct, 
+	var log, L, GL, startsWith, trim, BrowseFolders, TYPE_SORT_WEIGHTS, compare, sorter, folderConstruct, 
 		createFolderNode, createMediaNode, favourites, loadFavFolders, folderRootConstruct,
 		compareFields, supportedMIMEs, supportedArchives, createArchiveNode, createLazyInitNode,
 		constructLazyNode, archiveBookNodeEnter, ACTION_ICON, doCopyAndOpen, doCopy, doOpenHere, doOpenSongHere,
@@ -74,6 +75,7 @@ tmp = function() {
 	DISABLED = "disabled";
 	log = Core.log.getLogger("BrowseFolders");
 	L = Core.lang.getLocalizer("BrowseFolders");
+	LG = Core.lang.getLocalizer("Global");
 	startsWith = Core.text.startsWith;
 	trim = Core.text.trim;
 	supportedMIMEs = Core.media.supportedMIMEs;
@@ -1500,8 +1502,8 @@ tmp = function() {
 				defaultValue: DISABLED,
 				values: [ENABLED, DISABLED],
 				valueTitles: {
-					enabled: L("VALUE_ENABLED"),
-					disabled: L("VALUE_DISABLED")
+					enabled: LG("VALUE_ENABLED"),
+					disabled: LG("VALUE_DISABLED")
 				}				
 			},
 			// Whether to show ".."
@@ -1513,8 +1515,8 @@ tmp = function() {
 				defaultValue: (Core.config.compat.hasNumericButtons ? DISABLED : ENABLED),
 				values: [ENABLED, DISABLED],
 				valueTitles: {
-					enabled: L("VALUE_ENABLED"),
-					disabled: L("VALUE_DISABLED")
+					enabled: LG("VALUE_ENABLED"),
+					disabled: LG("VALUE_DISABLED")
 				}
 			},
 			// Add file size to media comment
@@ -1525,8 +1527,8 @@ tmp = function() {
 				defaultValue: DISABLED,
 				values: [ENABLED, DISABLED],
 				valueTitles: {
-					enabled: L("VALUE_ENABLED"),
-					disabled: L("VALUE_DISABLED")
+					enabled: LG("VALUE_ENABLED"),
+					disabled: LG("VALUE_DISABLED")
 				}
 			}
 		],
@@ -1542,9 +1544,9 @@ tmp = function() {
 					defaultValue: ENABLED,
 					values: [ENABLED, "disabledLoadCache", DISABLED],
 					valueTitles: {
-						enabled: L("VALUE_ENABLED"),
+						enabled: LG("VALUE_ENABLED"),
 						disabledLoadCache: L("VALUE_DISABLED_LOAD_CACHE"),
-						disabled: L("VALUE_DISABLED")
+						disabled: LG("VALUE_DISABLED")
 					}
 				});
 
@@ -1555,8 +1557,8 @@ tmp = function() {
 					defaultValue: ENABLED,
 					values: [ENABLED, DISABLED],
 					valueTitles: {
-						enabled: L("VALUE_ENABLED"),
-						disabled: L("VALUE_DISABLED")
+						enabled: LG("VALUE_ENABLED"),
+						disabled: LG("VALUE_DISABLED")
 					}
 				});
 			}
