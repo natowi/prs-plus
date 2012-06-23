@@ -16,11 +16,13 @@
 //	2011-11-20 kartu - Added sorting to CSS files
 //	2011-12-07 quisvir - Added automatic epub reloading & action to change CSS from within book
 //  2011-12-08 Mark Nord - Use of Core.ui.getCurrentNode in "action"
+//	2012-06-23 drMerry - added use of Global section in lang file
 
 tmp = function() {
-	var L, endsWith, USER_CSS, DISABLED, EpubUserStyle;
+	var L, LG, endsWith, USER_CSS, DISABLED, EpubUserStyle;
 	// Localize
 	L = Core.lang.getLocalizer("EpubUserStyle");
+	LG = Core.lang.getLocalizer("Global");
 	endsWith = Core.text.endsWith;
 
 	// Constants
@@ -41,7 +43,7 @@ tmp = function() {
 				defaultValue: DISABLED,
 				values: [DISABLED],
 				valueTitles: {
-					disabled: L("VALUE_DISABLED")
+					disabled: LG("VALUE_DISABLED")
 				}
 			}
 		],

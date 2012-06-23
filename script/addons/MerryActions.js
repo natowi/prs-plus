@@ -3,7 +3,7 @@
 //	2012-06-22 drMerry - added flush command
 //				added meminfo command
 var mAcontainer = function () {
-	var L, log, MerryActions;
+	var L, LG, log, MerryActions;
 	log = Core.log.getLogger("MerryActions");
 	L = Core.lang.getLocalizer("MerryActions");
 	LG = Core.lang.getLocalizer("Global");
@@ -16,11 +16,12 @@ var mAcontainer = function () {
 				name: "enableReboot",
 				title: L("OPT_REBOOT"),
 				icon: "REBOOT",
+				helpText: L("MSG_HELP_REBOOT"),
 				defaultValue: "False",
 				values: ["True", "False"],
 				valueTitles: {
-					"True": LG("OPT_ENABLED"),
-					"False": LG("OPT_DISABLED")
+					"True": LG("VALUE_ENABLED"),
+					"False": LG("VALUE_DISABLED")
 				}
 			},
             {
@@ -31,8 +32,8 @@ var mAcontainer = function () {
 				defaultValue: "False",
 				values: ["True", "False"],
 				valueTitles: {
-					"True": LG("OPT_ENABLED"),
-					"False": LG("OPT_DISABLED")
+					"True": LG("VALUE_ENABLED"),
+					"False": LG("VALUE_DISABLED")
 				}
 			},
             {
@@ -42,8 +43,8 @@ var mAcontainer = function () {
 				defaultValue: "True",
 				values: ["True", "False"],
 				valueTitles: {
-					"True": LG("OPT_ENABLED"),
-					"False": LG("OPT_DISABLED")
+					"True": LG("VALUE_ENABLED"),
+					"False": LG("VALUE_DISABLED")
 				}
 			}
 		],
@@ -73,7 +74,6 @@ var mAcontainer = function () {
 			action: function () {
 				try {
 					if (MerryActions.options.enableSync=== 'True') {
-                        //Core.popup.showMenu(menu);
 						Core.shell.exec("echo 'before' > /Data/memdump_update.txt");
 						Core.shell.exec("cat /proc/meminfo >> /Data/memdump_update.txt");
                         Core.shell.exec("sync; echo 3 >> /proc/sys/vm/drop_caches");
@@ -109,9 +109,6 @@ var mAcontainer = function () {
 				}
 			}
 		}]
-        
-        //sync; echo 3 > /proc/sys/vm/drop_caches
-        //cat /proc/meminfo
 	};
 
 	Core.addAddon(MerryActions);
