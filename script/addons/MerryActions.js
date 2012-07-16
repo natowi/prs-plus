@@ -2,11 +2,19 @@
 //	2012-04-23 drMerry - initial release (reboot action)
 //	2012-06-22 drMerry - added flush command
 //				added meminfo command
+//	2012-07-16 drMerry - added df-info command
+//				added mnt-info command
+//	2012-07-17 drMerry - made less localizer requests.
+//				changed default value to disabled for all functions.
 var mAcontainer = function () {
-	var L, LG, log, MerryActions;
+	var L, LG, log, MerryActions, TrueValue, FalseValue;
 	log = Core.log.getLogger("MerryActions");
 	L = Core.lang.getLocalizer("MerryActions");
 	LG = Core.lang.getLocalizer("Global");
+	TrueValue = LG("VALUE_ENABLED");
+	FalseValue = LG("VALUE_DISABLED");
+	//Remove LG to clean some memory
+	LG = undefined;
 	MerryActions = {
 		name: "MerryActions",
 		title: L("MERRY_ACTIONS"),
@@ -20,8 +28,8 @@ var mAcontainer = function () {
 				defaultValue: "False",
 				values: ["True", "False"],
 				valueTitles: {
-					"True": LG("VALUE_ENABLED"),
-					"False": LG("VALUE_DISABLED")
+					"True": TrueValue,
+					"False": FalseValue
 				}
 			},
             {
@@ -32,19 +40,41 @@ var mAcontainer = function () {
 				defaultValue: "False",
 				values: ["True", "False"],
 				valueTitles: {
-					"True": LG("VALUE_ENABLED"),
-					"False": LG("VALUE_DISABLED")
+					"True": TrueValue,
+					"False": FalseValue
 				}
 			},
             {
 				name: "enableMeminfo",
 				title: L("OPT_MEMINFO"),
 				icon: "MEMINFO",
-				defaultValue: "True",
+				defaultValue: "False",
 				values: ["True", "False"],
 				valueTitles: {
-					"True": LG("VALUE_ENABLED"),
-					"False": LG("VALUE_DISABLED")
+					"True": TrueValue,
+					"False": FalseValue
+				}
+			},
+            {
+				name: "enableMntinfo",
+				title: L("OPT_MNTINFO"),
+				icon: "MNTINFO",
+				defaultValue: "False",
+				values: ["True", "False"],
+				valueTitles: {
+					"True": TrueValue,
+					"False": FalseValue
+				}
+			},
+            {
+				name: "enableDF",
+				title: L("OPT_DF"),
+				icon: "DF",
+				defaultValue: "False",
+				values: ["True", "False"],
+				valueTitles: {
+					"True": TrueValue,
+					"False": FalseValue
 				}
 			}
 		],
@@ -62,7 +92,7 @@ var mAcontainer = function () {
                         Core.ui.showMsg(L("MSG_DISABLED"));
                         }
 				} catch (e) {
-					log.error("in MerryActions action: " + e);
+					log.error("in MerryActions reboot action: " + e);
 				}
 			}
 		},
@@ -77,6 +107,7 @@ var mAcontainer = function () {
 						Core.shell.exec("echo 'before' > /Data/memdump_update.txt");
 						Core.shell.exec("cat /proc/meminfo >> /Data/memdump_update.txt");
                         Core.shell.exec("sync; echo 3 >> /proc/sys/vm/drop_caches");
+						Core.shell.exec("echo '----------' > /Data/memdump_update.txt");
 						Core.shell.exec("echo ''; echo 'after' >> /Data/memdump_update.txt");
 						Core.shell.exec("cat /proc/meminfo >> /Data/memdump_update.txt");
                         //Core.ui.showMsg(LG("MSG_NOT_IMPLEMENTED"));
@@ -86,7 +117,7 @@ var mAcontainer = function () {
                         Core.ui.showMsg(L("MSG_DISABLED"));
                         }
 				} catch (e) {
-					log.error("in MerryActions action: " + e);
+					log.error("in MerryActions sync action: " + e);
 				}
 			}
 		},
@@ -105,7 +136,45 @@ var mAcontainer = function () {
                         Core.ui.showMsg(L("MSG_DISABLED"));
                         }
 				} catch (e) {
-					log.error("in MerryActions action: " + e);
+					log.error("in MerryActions mem-info action: " + e);
+				}
+			}
+		},
+        {
+			name: "DiskFree",
+			title: L("DF_TITLE"),
+			group: "System",
+			icon: "DF",
+			action: function () {
+				try {
+					if (MerryActions.options.enableDF === 'True') {
+						Core.shell.exec("df > /Data/dfdump.txt");
+                        Core.ui.showMsg(L("MSG_DFINFO"));
+					}
+                    else {
+                        Core.ui.showMsg(L("MSG_DISABLED"));
+                        }
+				} catch (e) {
+					log.error("in MerryActions df-info action: " + e);
+				}
+			}
+		},
+        {
+			name: "MountInfo",
+			title: L("MNTNFO_TITLE"),
+			group: "System",
+			icon: "MNT",
+			action: function () {
+				try {
+					if (MerryActions.options.enableMntinfo === 'True') {
+						Core.shell.exec("mount > /Data/mntdump.txt");
+                        Core.ui.showMsg(L("MSG_MNTINFO"));
+					}
+                    else {
+                        Core.ui.showMsg(L("MSG_DISABLED"));
+                        }
+				} catch (e) {
+					log.error("in MerryActions mnt-info action: " + e);
 				}
 			}
 		}]
