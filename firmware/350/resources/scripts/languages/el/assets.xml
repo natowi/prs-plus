@@ -360,7 +360,7 @@
 		<string id="STR_UI_MENU_BYISSUEDATE" value="κατά ημερομηνία έκδοσης" />
 		<string id="STR_UI_MENU_STORE_HOME" value="Αρχική καταστήματος" />
 		<string id="STR_UI_MENU_MY_ACCOUNT" value="Ο λογαριασμός μου" />
-		<string id="STR_UI_MENU_HELP_AND_SUPPORT" value="Βοήθεια και Εξυπηρέτηση/>
+		<string id="STR_UI_MENU_HELP_AND_SUPPORT" value="Βοήθεια και Εξυπηρέτηση"/>
 		<string id="STR_UI_MENU_LEGALINFO" value="Νομικές πληροφορίες" />
 		<string id="STR_UI_MENU_REFRESH_PAGE" value="Ανανέωση σελίδας" />
 		<string id="STR_UI_MENU_DELETEISSUE" value="Διαγραφή τεύχους" />
