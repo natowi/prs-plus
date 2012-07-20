@@ -41,6 +41,7 @@
 //	2012-01-18 quisvir - Fixed periodicals homekind, continue comment
 //	2012-01-30 quisvir - Fixed #222 Missing font size indicator
 //	2012-02-16 quisvir - Fixed 'latest read' sorting being lost on reboot (Sony bug)
+//	2012-07-19 kartu	- Added Greek locale 
 
 tmp = function () {
 	var localizeKeyboardPopups, updateSiblings, localize, localizeKeyboard, oldSetLocale, 
@@ -134,10 +135,11 @@ tmp = function () {
 			// Fix settings node 
 			settingsNode.multiPage = true;
 			
-			languages = ["ca", "de", "en", "es", "fr", "it", "nl", "pl", "pt", "ru"];
+			languages = ["ca", "de", "el",  "en", "es", "fr", "it", "nl", "pl", "pt", "ru"];
 			langNames = {
 				ca: "Català",
-				de: "Deutsch", 
+				de: "Deutsch",
+				el: "ελληνικά",
 				en: "English",
 				es: "Español",
 				fr: "Français", 
