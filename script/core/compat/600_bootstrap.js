@@ -36,6 +36,7 @@
 //	2011-11-21 quisvir - Moved Standby Image code to addon
 //	2012-12-05 quisvir - Added tapAndHoldAction to available actions
 //	2012-02-24 quisvir - Moved sub-collection support to addon
+//	2012-07-22 Mark Nord - "/" and "." extendes hold-key support (2 new keys left/right frim spacebar);
 //
 //-----------------------------------------------------------------------------------------------------
 // Localization related code is model specific.  
@@ -272,7 +273,7 @@ var tmp = function() {
 			PARAMS.bootLog("in overriden readPreference " + e);
 		}
 	};
-	
+
 	// Disable card scan
 	var originalCanHandleVolume = FskCache.diskSupport.canHandleVolume;
 	FskCache.diskSupport.canHandleVolume = function (volume) {
@@ -328,8 +329,10 @@ var tmp = function() {
 			"У": ["У", "Ў"], 
 			"Е": ["Е", "Ё", "Е", "Є"], 
 			"Г": ["Г", "Ґ"], 
-			"Ъ": ["Ъ", "'"]		
-		};
+			"Ъ": ["Ъ", "'"],
+			"/": ["\\", "+", "-", "<", ">", '"', "(", ")" ],
+			".": [":", ",", ";", "!", "?", "[", "]", "_"]		
+		};		
 		
 		keyboardLayout.isSelectChar = function(key) {
 			if (SEL_CHARS[key] !== undefined) {

@@ -32,8 +32,10 @@
 		<key text="m" shift="M"   left="445" top="135" width="58" height="58"/>
 		<key text="" textCode="8" left="503" top="135" width="87" height="58" bit="8" skin="bsH"/>
 
-		<key set="SYMBOLS"	text="123"				left= "10" top="197" width="145" height="50" bit="8" skin="keyG"/>
-		<key  				text="Space"  textCode="32"	left="154" top="197" width="290" height="50" skin="keyW"/>
+		<key set="SYMBOLS"	text="123"	left= "10" top="197" width="145" height="50" bit="8" skin="keyG"/>
+		<key text="/" shift="/"   		left="155" top="197" width="58" height="50" skin="keyW"/>
+		<key text="Space" textCode="32"	left="212" top="197" width="173" height="50" skin="keyW"/>
+		<key text="." shift="."			left="387" top="197" width="58" height="50" skin="keyW"/>		
 		<key opt="ignore"	text="Return" textCode="13"	left="445" top="197" width="145" height="50" bit="8" skin="keyG"/>
 	</set>
 	<set id="SYMBOLS" orientation="V">
@@ -68,8 +70,10 @@
 		<key text="/"		shift="&gt;" 	left="445" top="135" width="58" height="58"/>
 		<key text="" 		textCode="8" 	left="503" top="135" width="87" height="58" bit="8" skin="bsH"/>
 
-		<key set="ALPHABET"	text="Abc"			 		left= "10" top="197" width="145" height="50" bit="8" skin="keyG"/>
-		<key  				text="Space"  textCode="32"	left="154" top="197" width="290" height="50" skin="keyW"/>
+		<key set="ALPHABET"	text="Abc"	left= "10" top="197" width="145" height="50" bit="8" skin="keyG"/>
+		<key text="/" shift="/"   		left="155" top="197" width="58" height="50" skin="keyW"/>
+		<key text="Space" textCode="32"	left="212" top="197" width="173" height="50" skin="keyW"/>
+		<key text="." shift="."   		left="387" top="197" width="58" height="50" skin="keyW"/>		
 		<key opt="ignore"	text="Return" textCode="13"	left="445" top="197" width="145" height="50" bit="8" skin="keyG"/>
 		
 	</set>
@@ -106,9 +110,11 @@
 		<key text="m" shift="M" left="595" top="134" width="78" height="58"/>
 		<key text="" textCode="8" left="673" top="134" width= "117" height="58" bit="8" skin="bsH"/>
 
-		<key set="SYMBOLS"	text="123"				left= "10" top="196" width="195" height="50" bit="8" skin="keyG"/>
-		<key  				text="Space" textCode="32"	left="204" top="196" width="390" height="50" skin="keyW"/>
-		<key opt="ignore"	text="Return" textCode="13"		left="595" top="196" width="195" height="50" bit="8" skin="keyG"/>
+		<key set="SYMBOLS"	text="123"	left= "10" top="196" width="195" height="50" bit="8" skin="keyG"/>
+		<key text="/" shift="/"   		left="205" top="196" width="78" height="50" skin="keyW"/>
+		<key text="Space" textCode="32"	left="283" top="196" width="234" height="50" skin="keyW"/>
+		<key text="." shift="."   		left="517" top="196" width="78" height="50" skin="keyW"/>		
+		<key opt="ignore"	text="Return" textCode="13"	left="595" top="196" width="195" height="50" bit="8" skin="keyG"/>
 	</set>
 
 	<set id="SYMBOLS" orientation="H">
@@ -143,9 +149,11 @@
 		<key text="/"		shift="&gt;" 	left="595" top="134" width="78"  height="58"/>
 		<key 			 text="" textCode="8"	left="673" top="134" width="117" height="58" bit="8" skin="bsH"/>
 
-		<key set="ALPHABET"	text="Abc"					left= "10" top="196" width="195" height="50" bit="8" skin="keyG"/>
-		<key  				text="Space"  textCode="32"	left="204" top="196" width="390" height="50" skin="keyW"/>
-		<key opt="ignore"	text="Return" textCode="13"	left="595" top="196" width="195" height="50" bit="8" skin="keyG"/>
+		<key set="ALPHABET"	text="Abc"				left= "10" top="196" width="195" height="50" bit="8" skin="keyG"/>
+		<key text="/" shift="/"   left="205" top="196" width="78" height="50" skin="keyW"/>
+		<key  				text="Space" textCode="32"	left="283" top="196" width="234" height="50" skin="keyW"/>
+		<key text="." shift="."   left="517" top="196" width="78" height="50" skin="keyW"/>		
+		<key opt="ignore"	text="Return" textCode="13"		left="595" top="196" width="195" height="50" bit="8" skin="keyG"/>
 
 	</set>
 

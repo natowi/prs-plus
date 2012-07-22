@@ -42,7 +42,7 @@
 //	2012-01-30 quisvir - Fixed #222 Missing font size indicator
 //	2012-02-16 quisvir - Fixed 'latest read' sorting being lost on reboot (Sony bug)
 //	2012-07-19 kartu	- Added Greek locale 
-
+//	2012-07-22 Mark Nord - "/" and "." extendes hold-key support (2 new keys left/right from spacebar for 350/650);
 tmp = function () {
 	var localizeKeyboardPopups, updateSiblings, localize, localizeKeyboard, oldSetLocale, 
 		oldChangeKeyboardType, oldReadPreference, oldCallback, makeRootNodesMovable, bootLog,
@@ -67,7 +67,9 @@ tmp = function () {
 			"У": ["У", "Ў"], 
 			"Е": ["Е", "Ё", "Е", "Є"], 
 			"Г": ["Г", "Ґ"], 
-			"Ъ": ["Ъ", "'"]		
+			"Ъ": ["Ъ", "'"],
+			"/": ["\\", "+", "-", "<", ">", '"', "(", ")" ],
+			".": [":", ",", ";", "!", "?", "[", "]", "_"]		
 		};
 		
 		keyboardLayout.isSelectChar = function (key) {
