@@ -34,6 +34,8 @@
 //	2012-02-06 quisvir - Added option to prevent screen flashing when closing overlays
 //	2012-02-18 quisvir - Add parent items as separate bookmarks in multi-level ToC (FR)
 //	2012-02-21 quisvir - Fixed #291 'Two taps are needed with SHOW_PARENT_ITEMS_IN_TOC enabled'
+//	2012-07-22 Mark Nord - Option to mask overlap in landscape-mode with a white bmp, instead of greying-out
+//				due to a (unresolved Sony-bug) lines may be truncated
 
 tmp = function() {
 
@@ -232,7 +234,11 @@ tmp = function() {
 			if (bitmap && !cache.error) {
 				if (!this.isZooming && (this.isScrollView() && !this.monochrome.isRunning()) ) {
 					try {
-						cutout = this.skin.cutouts[26];
+						if (opt.OverlapWhite  === "true") {
+							cutout = this.skin.cutouts[9];
+						} else {
+							cutout = this.skin.cutouts[26];
+						}
 						xMin = this.getMin(false);	
 						xSize = this.getSize(false);
 						size = this.getSize(true);
@@ -497,6 +503,18 @@ tmp = function() {
 				name: "NotMarkOverlapArea",
 				title: L("OPTION_NOTMARKOVERLAP"),
 				icon: "LANDSCAPE",
+				defaultValue: "false",
+				values: ["true", "false"],
+				valueTitles: {
+					"true": L("VALUE_TRUE"),
+					"false": L("VALUE_FALSE")
+				}
+			},
+			{
+				name: "OverlapWhite",
+				title: L("OPTION_WHITEMASK"),
+				icon: "COLOR",
+				helpText: L("HELP_WHITEMASK"), 
 				defaultValue: "false",
 				values: ["true", "false"],
 				valueTitles: {

@@ -11,6 +11,8 @@
 //	2012-02-21 quisvir - Fixed #291 'Two taps are needed with SHOW_PARENT_ITEMS_IN_TOC enabled'
 //	2012-03-19 Mark Nord - workaround for issue #303; disable keybindings in certain situations
 //	2012-04-01 Mark Nord - MarginCut now also works in landscape-mode
+//	2012-07-22 Mark Nord - Option to mask overlap in landscape-mode with a white bmp, instead of greying-out;
+//				due to a (unresolved Sony-bug) lines may be truncated
 //
 //	ToDo - marginCut: add to Book-Menu; possible enhancements: 4-quadrants view, ...
 
@@ -26,7 +28,9 @@ tmp = function() {
 	var autoPageTimer, oldRender, myRender, setMarginCut, resetMarginCut, rotateMarginCut, myBounds, myHBounds, 
 	dx, dy, hdx, hdy,  myWidth, myHeight, 
 	marginCut = false, 
-	mcLandscape = false;
+	mcLandscape = false,
+	page = kbook.model.container.sandbox.PAGE_GROUP.sandbox.PAGE,
+	cutout10;
 
 
 	setMarginCut = function () {
@@ -319,6 +323,18 @@ tmp = function() {
 				"true": L("VALUE_TRUE"),
 				"false": L("VALUE_FALSE")
 			}
+		},
+		{
+			name: "OverlapWhite",
+			title: L("OPTION_WHITEMASK"),
+			icon: "COLOR",
+			helpText: L("HELP_WHITEMASK"), 
+			defaultValue: "false",
+			values: ["true", "false"],
+			valueTitles: {
+				"true": L("VALUE_TRUE"),
+				"false": L("VALUE_FALSE")
+			}
 		}],
 		actions: [
 		{
@@ -345,6 +361,11 @@ tmp = function() {
 			Core.hook.hookAfter(ebook, "rotate", rotateMarginCut); //function(where, what, newFunction, tag) 
 			Core.hook.hookBefore(Fskin.kbookPage, "doSize", resetMarginCut);
 			Document.Viewer.viewer.render = myRender;
+			try{
+				cutout10 = page.skin.cutouts[10];
+			} catch (e) {
+				log.error("in buffering cutout10", e);
+			}
 		/*	var node;
 			node = Core.ui.createContainerNode({
 				title: L("MARGINCUT"),
@@ -353,7 +374,18 @@ tmp = function() {
 			node.onEnter = 'onEnterPage';
 			kbook.children.marginCut = node; 
 			Core.hook.hookAfter(kbook.children.marginCut, "enter", setMarginCut);	*/
-		}
+		},
+		onSettingsChanged: function (propertyName, oldValue, newValue, object) {
+			switch (propertyName) {
+				case 'OverlapWhite':
+					if (newValue === "true") {
+						page.skin.cutouts[10] = page.skin.cutouts[0];
+					} else {
+						page.skin.cutouts[10] = cutout10;
+					}
+					break;
+			}
+		},
 	};
 
 	Core.addAddon(ViewerSettings);
