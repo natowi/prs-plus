@@ -37,6 +37,7 @@
 //	2012-12-05 quisvir - Added tapAndHoldAction to available actions
 //	2012-02-24 quisvir - Moved sub-collection support to addon
 //	2012-07-22 Mark Nord - "/" and "." extendes hold-key support (2 new keys left/right frim spacebar);
+//	2012-07-22 Mark Nord - added custom FskCache.diskSupport.ignoreDirs - working
 //
 //-----------------------------------------------------------------------------------------------------
 // Localization related code is model specific.  
@@ -274,6 +275,27 @@ var tmp = function() {
 		}
 	};
 
+	// setup custom ignoreDirs
+	//PARAMS.bootLog("ignoreDirs" + FskCache.diskSupport.ignoreDirs);
+	var result, lines, i;
+	try {
+		if (FileSystem.getFileInfo(PARAMS.Core.config.userDontScanPath)) {
+			result = PARAMS.getFileContent(PARAMS.Core.config.userDontScanPath);
+			lines = result.split("\r\n");
+			if (lines) {
+				for (i=0; i<lines.length; i++) {
+					if ((lines[i].indexOf("#")) === -1 && (lines[i].length)) {
+						FskCache.diskSupport.ignoreDir(lines[i]);
+					}
+				}	
+			
+			}
+		}
+	}
+	catch (ee) {
+		PARAMS.bootLog("error applying ignoreDirs " + ee);
+	};
+	
 	// Disable card scan
 	var originalCanHandleVolume = FskCache.diskSupport.canHandleVolume;
 	FskCache.diskSupport.canHandleVolume = function (volume) {

@@ -18,6 +18,7 @@
 //	2011-08-18 Mark Nord - fixed current page as StandbyImage + display of localised "sleeping.." instead of the clock
 //	2011-10-04 quisvir - Always show book covers in portrait mode and keep aspect ratio
 //	2011-10-07 quisvir - Fixed #190 "Continue searching from the begining doesn't work" (Sony bug)
+//	2012-07-22 Mark Nord - added custom FskCache.diskSupport.ignoreDirs - working
 //
 //-----------------------------------------------------------------------------------------------------
 // Localization related code is model specific.  
@@ -47,7 +48,28 @@ var tmp = function() {
 		}
 		this.bubble('doMenuClose');
 	};
-	
+
+	// setup custom ignoreDirs
+	//PARAMS.bootLog("ignoreDirs" + FskCache.diskSupport.ignoreDirs);
+	var result, lines, i;
+	try {
+		if (FileSystem.getFileInfo(PARAMS.Core.config.userDontScanPath)) {
+			result = PARAMS.getFileContent(PARAMS.Core.config.userDontScanPath);
+			lines = result.split("\r\n");
+			if (lines) {
+				for (i=0; i<lines.length; i++) {
+					if ((lines[i].indexOf("#")) === -1 && (lines[i].length)) {
+						FskCache.diskSupport.ignoreDir(lines[i]);
+					}
+				}	
+			
+			}
+		}
+	}
+	catch (ee) {
+		PARAMS.bootLog("error applying ignoreDirs " + ee);
+	};
+
 	// Call code common to x50 models	
 	try {
 		var f = new Function("PARAMS", PARAMS.getFileContent(PARAMS.compatPath + "common_350_650_950.js"));

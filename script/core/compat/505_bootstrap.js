@@ -24,6 +24,7 @@
 //	2011-11-21 quisvir - Moved Standby Image code to addon
 //	2012-02-24 quisvir - Moved sub-collection support to addon
 //	2012-03-19 Mark Nord - workaround for issue #303; disable keybindings in certain situations
+//	2012-07-14 Mark Nord - added custom FskCache.diskSupport.ignoreDirs - depends on FskCache.xsb vers. 1.4
 
 var tmp = function() {
 	var oldReadPreference, oldCallback, bootLog;
@@ -56,6 +57,27 @@ var tmp = function() {
 		} catch (e) {
 			bootLog("in overriden readPreference " + e);
 		}
+	};
+
+	// setup custom ignoreDirs - depends on FskCache.xsb from fw 1.4
+	//PARAMS.bootLog("ignoreDirs" + FskCache.diskSupport.ignoreDirs);
+	var result, lines, i;
+	try {
+		if (FileSystem.getFileInfo(PARAMS.Core.config.userDontScanPath)) {
+			result = PARAMS.getFileContent(PARAMS.Core.config.userDontScanPath);
+			lines = result.split("\r\n");
+			if (lines) {
+				for (i=0; i<lines.length; i++) {
+					if ((lines[i].indexOf("#")) === -1 && (lines[i].length)) {
+						FskCache.diskSupport.ignoreDir(lines[i]);
+					}
+				}	
+			
+			}
+		}
+	}
+	catch (ee) {
+		PARAMS.bootLog("error applying ignoreDirs " + ee);
 	};
 	
 	// Disable card scan
