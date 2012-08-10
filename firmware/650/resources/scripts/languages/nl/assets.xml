@@ -149,7 +149,7 @@
 		<string id="STR_NODE_TITLE_SORTEDBYPAGE" value="op pagina" />
 		<string id="STR_NODE_TITLE_POWERMANAGEMENT" value="Energiebeheer" />
 		<string id="STR_UI_MENU_SORT" value="Sorteren" />
-		<string id="STR_UI_MENU_BYORDER" value="op toevgevoegd" />
+		<string id="STR_UI_MENU_BYORDER" value="op toegevoegd" />
 		<string id="STR_UI_MENU_BYTITLE" value="op titel" />
 		<string id="STR_UI_MENU_BYAUTHOR" value="op auteur" />
 		<string id="STR_UI_MENU_BYDATE" value="op datum" />
