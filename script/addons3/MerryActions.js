@@ -86,6 +86,7 @@ var mAcontainer = function () {
 			action: function () {
 				try {
 					if (MerryActions.options.enableReboot === 'True') {
+						Core.ui.showMsg(L("MSG_REBOOT"));
 						Core.shell.exec("reboot");
 					}
                     else {
