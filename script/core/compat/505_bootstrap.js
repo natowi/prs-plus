@@ -25,16 +25,18 @@
 //	2012-02-24 quisvir - Moved sub-collection support to addon
 //	2012-03-19 Mark Nord - workaround for issue #303; disable keybindings in certain situations
 //	2012-07-14 Mark Nord - added custom FskCache.diskSupport.ignoreDirs - depends on FskCache.xsb vers. 1.4 -> moved to BrowseFolder Addon
+//	2012-08-11 drMerry - Typo (; after catch) combined some vars
 
 var tmp = function() {
-	var oldReadPreference, oldCallback, bootLog;
+	var oldReadPreference, oldCallback, bootLog,
+	  result, lines, i;
 	bootLog = PARAMS.bootLog;
 	
 	// Init core here
 	oldReadPreference = kbook.model.readPreference;
 	kbook.model.readPreference = function() {
 		// Path to 505 specific language files
-		var langPath505 = "/opt/sony/ebook/application/resources/prsp_lang/";
+		var code, lang505, langPath505 = "/opt/sony/ebook/application/resources/prsp_lang/";
 		try {
 			oldReadPreference.apply(this, arguments);
 			// restore "old" readPreference
@@ -44,9 +46,9 @@ var tmp = function() {
 
 			// Init 505 specific lang files
 			try {
-				var code = PARAMS.Core.io.getFileContent(langPath505 + "lang.js", null);
+				code = PARAMS.Core.io.getFileContent(langPath505 + "lang.js", null);
 				if (code !== null) {
-					var lang505 = new Function("Core,loadAddons,langPath505", code);
+					lang505 = new Function("Core,loadAddons,langPath505", code);
 					lang505(PARAMS.Core, PARAMS.loadAddons, langPath505);	
 				} else {
 					bootLog("Error loading lang.js");
