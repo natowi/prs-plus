@@ -61,7 +61,7 @@
 //	2012-03-21 Ben Chenoweth - Added Option menu to Archives (x50)
 //	2012-03-31 Ben Chenoweth - Fix for filename as comment and filesize/extension in comment for archives and unscanned files
 //	2012-06-23 drMerry - Added Global translation
-
+//	2012-08-12 Mark Nord - moved custom FskCache.diskSupport.ignoreDirs froms bootstrap
 tmp = function() {
 	var log, L, GL, startsWith, trim, BrowseFolders, TYPE_SORT_WEIGHTS, compare, sorter, folderConstruct, 
 		createFolderNode, createMediaNode, favourites, loadFavFolders, folderRootConstruct,
@@ -1561,6 +1561,24 @@ tmp = function() {
 						disabled: LG("VALUE_DISABLED")
 					}
 				});
+			}
+			// setup custom ignoreDirs
+			var result, lines, i;
+			try {
+				if (FileSystem.getFileInfo(Core.config.userDontScanPath)) {
+					result = Core.io.getFileContent(Core.config.userDontScanPath);
+					lines = result.split("\r\n");
+					if (lines) {
+						for (i=0; i<lines.length; i++) {
+							if ((lines[i].indexOf("#")) === -1 && (lines[i].length)) {
+								FskCache.diskSupport.ignoreDir(lines[i]);
+							}
+						}	
+					}
+				}
+			}
+			catch (ee) {
+				log.error("error applying ignoreDirs " + ee);
 			}
 		},
 		
