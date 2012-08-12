@@ -55,7 +55,7 @@
 		<key text="€" 		shift="£"			left="155" top="73" width="58" height="58"/>
 		<key text="@" 		shift="¬"			left="213" top="73" width="58" height="58"/>
 		<key text="&amp;"	shift="{"			left="271" top="73" width="58" height="58"/>
-		<key text="/"		shift="}"			left="329" top="73" width="58" height="58"/>
+		<key text="\"		shift="}"			left="329" top="73" width="58" height="58"/>
 		<key text="("		shift="["			left="387" top="73" width="58" height="58"/>
 		<key text=")"		shift="]"			left="445" top="73" width="58" height="58"/>
 		<key text="?"		shift="~"			left="503" top="73" width="58" height="58"/>
@@ -64,7 +64,7 @@
 		<key 			 text=";" shift="|"		left= "97" top="135" width="58" height="58"/>
 		<key 			 text=":" shift="&lt;"	left="155" top="135" width="58" height="58"/>
 		<key 			 text="," shift="&gt;"	left="213" top="135" width="58" height="58"/>
-		<key 			 text="." shift="«"		left="271" top="135" width="58" height="58"/>
+		<key 			 text="|" shift="«"		left="271" top="135" width="58" height="58"/>
 		<key 			 text="-" shift="»"		left="329" top="135" width="58" height="58"/>
 		<key 			 text="*" shift="µ"		left="387" top="135" width="58" height="58"/>
 		<key 			 text="'" shift="_"		left="445" top="135" width="58" height="58"/>
@@ -136,7 +136,7 @@
 		<key text="€" 		shift="£"			left="205" top="72" width="78" height="58"/>
 		<key text="@" 		shift="¬"			left="283" top="72" width="78" height="58"/>
 		<key text="&amp;"	shift="{"			left="361" top="72" width="78" height="58"/>
-		<key text="/"		shift="}"			left="439" top="72" width="78" height="58"/>
+		<key text="\"		shift="}"			left="439" top="72" width="78" height="58"/>
 		<key text="("		shift="["			left="517" top="72" width="78" height="58"/>
 		<key text=")"		shift="]"			left="595" top="72" width="78" height="58"/>
 		<key text="?"		shift="~"			left="673" top="72" width="78" height="58"/>
@@ -145,7 +145,7 @@
 		<key 			 text=";" shift="|"		left="127" top="134" width="78"  height="58"/>
 		<key 			 text=":" shift="&lt;"	left="205" top="134" width="78"  height="58"/>
 		<key 			 text="," shift="&gt;"	left="283" top="134" width="78"  height="58"/>
-		<key 			 text="." shift="«"		left="361" top="134" width="78"  height="58"/>
+		<key 			 text="|" shift="«"		left="361" top="134" width="78"  height="58"/>
 		<key 			 text="-" shift="»"		left="439" top="134" width="78"  height="58"/>
 		<key 			 text="*" shift="µ"		left="517" top="134" width="78"  height="58"/>
 		<key 			 text="'" shift="_"		left="595" top="134" width="78"  height="58"/>

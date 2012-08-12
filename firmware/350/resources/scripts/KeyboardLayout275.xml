@@ -63,11 +63,11 @@
 		<key caps="caps" 	text="&#x25;#$"					 	left="10"  top="135" width="87" height="58" bit="8" skin="keyG_HSMALL"/>
 		<key text="\" 		shift="|"		left= "97" top="135" width="58" height="58"/>
 		<key text="," 		shift="&lt;" 	left="155" top="135" width="58" height="58"/>
-		<key text="."  		shift="&gt;"	left="213" top="135" width="58" height="58"/>
+		<key text="|"  		shift="&gt;"	left="213" top="135" width="58" height="58"/>
 		<key text=":" 		shift="^"		left="271" top="135" width="58" height="58"/>
 		<key text=";"		shift="°"	left="329" top="135" width="58" height="58"/>
 		<key text="?"		shift="&#xBA;" 	left="387" top="135" width="58" height="58"/>
-		<key text="/"		shift="&#xAA;" 	left="445" top="135" width="58" height="58"/>
+		<key text="*"		shift="&#xAA;" 	left="445" top="135" width="58" height="58"/>
 		<key text="" 		textCode="8" 	left="503" top="135" width="87" height="58" bit="8" skin="bsH"/>
 
 		<key set="ALPHABET"	text="Abc"			 		left= "10" top="197" width="145" height="50" bit="8" skin="keyG"/>
@@ -141,11 +141,11 @@
 		<key caps="caps" 	text="&#x25;#$"	left="10"  top="134" width="116" height="58" bit="8" skin="keyG_HSMALL"/>
 		<key text="\" 		shift="|"		left="127" top="134" width="78"  height="58"/>
 		<key text="," 		shift="&lt;" 	left="205" top="134" width="78"  height="58"/>
-		<key text="."  		shift="&gt;"	left="283" top="134" width="78"  height="58"/>
+		<key text="|"  		shift="&gt;"	left="283" top="134" width="78"  height="58"/>
 		<key text=":" 		shift="^"		left="361" top="134" width="78"  height="58"/>
 		<key text=";"		shift="°"		left="439" top="134" width="78"  height="58"/>
 		<key text="?"		shift="&#xBA;" 	left="517" top="134" width="78"  height="58"/>
-		<key text="/"		shift="&#xAA;" 	left="595" top="134" width="78"  height="58"/>
+		<key text="*"		shift="&#xAA;" 	left="595" top="134" width="78"  height="58"/>
 		<key text="" textCode="8"			left="673" top="134" width="117" height="58" bit="8" skin="bsH"/>
 
 		<key set="ALPHABET"	text="Abc"						left= "10" top="196" width="195" height="50" bit="8" skin="keyG"/>

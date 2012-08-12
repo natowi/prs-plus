@@ -57,7 +57,7 @@
 		<key text="5" shift="["		left= "97" top="73" width="58" height="58"/>
 		<key text="6" shift="]"		left="155" top="73" width="58" height="58"/>
 		<key text="+" shift="{"		left="213" top="73" width="58" height="58"/>
-		<key text="/" shift="}"		left="271" top="73" width="58" height="58"/>
+		<key text="\" shift="}"		left="271" top="73" width="58" height="58"/>
 		<key text="!"				left="329" top="73" width="58" height="58"/>
 		<key text=":"				left="387" top="73" width="58" height="58"/>
 		<key text="&quot;"			left="445" top="73" width="58" height="58"/>
@@ -69,7 +69,7 @@
 		<key 			 text="2" shift="&lt;"	left="213" top="135" width="58" height="58"/>
 		<key 			 text="3" shift="&gt;"	left="271" top="135" width="58" height="58"/>
 		<key 			 text=","				left="329" top="135" width="58" height="58"/>
-		<key 			 text="."				left="387" top="135" width="58" height="58"/>
+		<key 			 text="-"				left="387" top="135" width="58" height="58"/>
 		<key 			 text="?"				left="445" top="135" width="58" height="58"/>
 		<key 			 text="" textCode="8"	left="503" top="135" width="87" height="58" bit="8" skin="bsH"/>
 

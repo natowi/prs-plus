@@ -64,10 +64,10 @@
 		<key caps="caps" 	text="@#$"		left="10" top="135" width="87" height="58" bit="8" skin="keyG_HSMALL"/>
 		<key text="?" 		shift="&lt;" 	left= "97" top="135" width="58" height="58"/>
 		<key text="," 		shift="&gt;" 	left="155" top="135" width="58" height="58"/>
-		<key text="." 		shift="&#xAB;" 	left="213" top="135" width="58" height="58"/>
+		<key text="-" 		shift="&#xAB;" 	left="213" top="135" width="58" height="58"/>
 		<key text=";" 		shift="&#xBB;" 	left="271" top="135" width="58" height="58"/>
 		<key text=":"		shift="&#xAC;"	left="329" top="135" width="58" height="58"/>
-		<key text="/"		shift="&#xA7;"	left="387" top="135" width="58" height="58"/>
+		<key text="\"		shift="&#xA7;"	left="387" top="135" width="58" height="58"/>
 		<key text="!"		shift="&#xB5;"	left="445" top="135" width="58" height="58"/>
 		<key text="" textCode="8"		 	left="503" top="135" width= "87" height="58" bit="8" skin="bsH"/>
 

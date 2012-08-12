@@ -57,7 +57,7 @@
 		<key text="5" shift="["		left= "97" top="73" width="58" height="58"/>
 		<key text="6" shift="]"		left="155" top="73" width="58" height="58"/>
 		<key text="+" shift="{"		left="213" top="73" width="58" height="58"/>
-		<key text="/" shift="}"		left="271" top="73" width="58" height="58"/>
+		<key text="\" shift="}"		left="271" top="73" width="58" height="58"/>
 		<key text="!"				left="329" top="73" width="58" height="58"/>
 		<key text=":"				left="387" top="73" width="58" height="58"/>
 		<key text="&quot;"			left="445" top="73" width="58" height="58"/>
@@ -70,7 +70,7 @@
 		<key text="2" shift="&lt;"	left="213" top="135" width="58" height="58"/>
 		<key text="3" shift="&gt;"	left="271" top="135" width="58" height="58"/>
 		<key text=","				left="329" top="135" width="58" height="58"/>
-		<key text="."				left="387" top="135" width="58" height="58"/>
+		<key text="-"				left="387" top="135" width="58" height="58"/>
 		<key text="?"				left="445" top="135" width="58" height="58"/>
 		<key text="" textCode="8"	left="503" top="135" width= "87" height="58" bit="8" skin="bsH"/>
 		
@@ -138,7 +138,7 @@
 		<key text="5" shift="["		left="127" top="72" width="78" height="58"/>
 		<key text="6" shift="]"		left="205" top="72" width="78" height="58"/>
 		<key text="+" shift="{"		left="283" top="72" width="78" height="58"/>
-		<key text="/" shift="}"		left="361" top="72" width="78" height="58"/>
+		<key text="\" shift="}"		left="361" top="72" width="78" height="58"/>
 		<key text="!"				left="439" top="72" width="78" height="58"/>
 		<key text=":"				left="517" top="72" width="78" height="58"/>
 		<key text="&quot;"			left="595" top="72" width="78" height="58"/>
@@ -150,7 +150,7 @@
 		<key text="2" shift="&lt;"	left="283" top="134" width="78" height="58"/>
 		<key text="3" shift="&gt;"	left="361" top="134" width="78" height="58"/>
 		<key text=","				left="439" top="134" width="78" height="58"/>
-		<key text="."				left="517" top="134" width="78" height="58"/>
+		<key text="-"				left="517" top="134" width="78" height="58"/>
 		<key text="?"				left="595" top="134" width="78" height="58"/>
 		<key text="" textCode="8"	left="673" top="134" width= "117" height="58" bit="8" skin="bsH"/>
 		
