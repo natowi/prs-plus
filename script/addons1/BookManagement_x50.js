@@ -50,6 +50,7 @@
 //	2012-04-06 Ben Chenoweth - Added 'User EPUB Style (CSS File)' option in Book Option Menu (EPUB books only)
 //	2012-04-12 Ben Chenoweth - Added 'Reformat Current Book' option in Book Option Menu (LRF books only)
 //	2012-04-28 Ben Chenoweth - 350: Removed audio items from menu
+//	2012-08-11 drMerry - some typo/performance
 
 tmp = function() {
 
@@ -79,7 +80,7 @@ tmp = function() {
 		} else {
 			return oldIsPeriodical.apply(this, arguments);
 		}
-	}
+	};
 	
 	var oldIsNewspaper = FskCache.text.isNewspaper;
 	FskCache.text.isNewspaper = function () {
@@ -88,7 +89,7 @@ tmp = function() {
 		} else {
 			return oldIsNewspaper.apply(this, arguments);
 		}
-	}
+	};
 	
 	var oldOnEnterShortCutBook = model.onEnterShortCutBook;
 	model.onEnterShortCutBook = function (node) {
@@ -114,20 +115,20 @@ tmp = function() {
 			bookChanged = true; // exception for current book on startup
 		}
 		numCur = 0;
-	}
+	};
 	
 	// Book menu option to switch new flag, called from main.xml
 	model.container.sandbox.OPTION_OVERLAY_PAGE.sandbox.doFlagToggle = function () {
 		var book = model.currentBook;
 		this.doOption();
 		book.opened = !book.opened;
-	}
+	};
 	
 	// Book menu option to add book to collection, called from main.xml
 	model.container.sandbox.OPTION_OVERLAY_PAGE.sandbox.doAddToCollection = function () {
 		this.doOption();
 		doSelectCollection('book');
-	}
+	};
 	
 	// Book menu option to change EPUB style, called from main.xml
 	model.container.sandbox.OPTION_OVERLAY_PAGE.sandbox.doChangeEPUBStyle = function () {
@@ -147,7 +148,7 @@ tmp = function() {
 				model.doBlink();
 			}
 		}
-	}
+	};
 	
 	// Show book menu option if preference is set
 	kbook.optMenu.isDisable = function (part) {
@@ -205,7 +206,7 @@ tmp = function() {
 			}
 		}
 		return Fskin.overlayTool.isDisable(part);
-	}
+	};
 	
 	// Hide default collections
 	var oldKbookPlaylistNode = kbook.root.kbookPlaylistNode.construct;
@@ -256,7 +257,7 @@ tmp = function() {
 		if (opt.subCollections === 'true') {
 			createSubCollections(this, this.constNodesCount, opt.subCollSeparator);
 		}
-	}
+	};
 
 	var createSubCollections = function (parent, start, sep) {
 		var i, c, next, node, nodes, newNode, last, idx, coll, title;
@@ -302,7 +303,7 @@ tmp = function() {
 		for (i = nodes.length - 1; i >= start; i--) {
 			if (nodes[i].nodes) createSubCollections(nodes[i], 0, sep);
 		}
-	}
+	};
 	
 	// Draw reading progress instead of 'last read' date/time
 	model.getContinueDate = function (node) {
@@ -319,7 +320,7 @@ tmp = function() {
 			}
 		}
 		return node.nodes[0].lastReadDate;
-	}
+	};
 	
 	// Draw reading progress below thumbnails
 	var oldDrawRecord = Fskin.kbookViewStyleThumbnail.drawRecord;
@@ -395,7 +396,7 @@ tmp = function() {
 			case '7': return page + ' / ' + pages + ' (' + Math.floor((page/pages)*100) + '%)';
 			case '8': return L('PAGE') + ' ' + page + ' / ' + pages + ' (' + Math.floor((page/pages)*100) + '%)';
 		}
-	}
+	};
 
 	// Update deviceroot on enter
 	var oldOnEnterDeviceRoot = model.onEnterDeviceRoot;
@@ -409,7 +410,7 @@ tmp = function() {
 		}
 		oldOnEnterDeviceRoot.apply(this, arguments);
 		homeGroup.focus(true);
-	}
+	};
 	
 	// Update booklist after collection edit
 	var oldFinishCollectionEdit = model.finishCollectionEdit;
@@ -437,7 +438,7 @@ tmp = function() {
 			}
 		}
 		oldFinishCollectionEdit.apply(this, arguments);
-	}
+	};
 	
 	var updateBookList = function () {
 		if (xs.isInstanceOf(model.currentNode, devRoot)) {
@@ -446,7 +447,7 @@ tmp = function() {
 		} else {
 			bookChanged = true;
 		}
-	}
+	};
 	
 	// Get textMasters, exclude memory cards, call filter for home menu booklist
 	var getDB = function (cache) {
@@ -460,7 +461,7 @@ tmp = function() {
 		}
 		result = devRoot.children.books.filter(result);
 		return result;
-	}
+	};
 	
 	// Filter notepads & periodicals for booklists
 	devRoot.children.books.filter = function (result) {
@@ -493,7 +494,7 @@ tmp = function() {
 			}
 		}
 		return result;
-	}
+	};
 	
 	// Customize book list in home menu
 	devRoot.children.bookThumbnails.construct = function () {
@@ -582,7 +583,9 @@ tmp = function() {
 					db2.sort('indexPlaylist');
 					colls = db2.count();
 					if (opt.CurrentCollection) {
-						for (i = 0; i < colls && db2.getRecord(i).title !== opt.CurrentCollection; i++);
+						for (i = 0; i < colls && db2.getRecord(i).title !== opt.CurrentCollection; i++){
+						  //Intentional left empty
+						}
 						if (i === colls) {
 							// CC not found, so start from beginning
 							i = 0;
@@ -662,7 +665,7 @@ tmp = function() {
 		} else {
 			holdKey = false;
 		}
-	}
+	};
 	
 	homeGroup.sandbox.doNext = function () {
 		if (!holdKey) {
@@ -670,18 +673,18 @@ tmp = function() {
 		} else {
 			holdKey = false;
 		}
-	}
+	};
 
 	// HOLD PREV/HOLD NEXT on HOME MENU activate BooklistCycleBackward/Forward
 	homeGroup.sandbox.doPreviousHold = function () {
 		holdKey = true;
 		BookManagement_x50.actions[1 + opt.homeMenuPageButtons].action();
-	}
+	};
 	
 	homeGroup.sandbox.doNextHold = function () {
 		holdKey = true;
 		BookManagement_x50.actions[opt.homeMenuPageButtons].action();
-	}
+	};
 	
 
 	// Functions for booklist option 'Select Collection'
@@ -699,7 +702,7 @@ tmp = function() {
 		tempNode.target = target;
 		tempNode.onSearch = 'onSearchDefault';
 		oldNode.gotoNode(tempNode, model);
-	}
+	};
 	
 	var selectCollectionConstruct = function () {
 		var i, node, nodes, db, c;
@@ -726,13 +729,13 @@ tmp = function() {
 		if (opt.subCollections === 'true') {
 			createSubCollections(this, 0, opt.subCollSeparator);
 		}
-	}
+	};
 	
 	var selectCollectionDestruct = function () {
 		tempNode = null;
 		delete oldNode.redirect;
 		oldNode = null;
-	}
+	};
 	
 	model.collectionSelected = function (node) {
 		var old, coll, id;
@@ -756,7 +759,7 @@ tmp = function() {
 				}
 		}
 		this.currentNode.gotoNode(old, this);
-	}
+	};
 	
 	// Link actions to home menu booklist arrows
 	model.container.sandbox.booklistArrows = function (index) {
@@ -771,7 +774,7 @@ tmp = function() {
 			n[i].media.opened = read;
 		}
 		kbook.root.update(model);
-	}
+	};
 	
 	// Clear page histories, keeping current position (length = 0 crashes home menu)
 	var clearPageHists = function () {
@@ -783,13 +786,13 @@ tmp = function() {
 				if (r.history.length) r.history.length = 1;
 			}
 		}
-	}
+	};
 	
 	var createPageOptionSettings = function () {
 		var group, contents, c, i, id, title, mime, LL;
 		group = {
 			groupTitle: L('PAGE_OPTION_ITEMS'),
-			groupIcon: 'LIST',
+			groupIcon: 'LIST'
 		};
 		group.optionDefs = [];
 		contents = kbook.model.container.sandbox.OPTION_OVERLAY_PAGE.sandbox.OPT_MENU.contents;
@@ -797,7 +800,7 @@ tmp = function() {
 		for (i = 0; i < c; i++) {
 			id = contents[i].textresource;
 			if (id) {
-				if ((Core.config.model === "350") && ((id === "STR_UI_MENU_NOWPLAYING") || (id === "STR_UI_MENU_RESUMELISTENING"))) continue; // 350 has no audio
+				if ((Core.config.model === "350") && ((id === "STR_UI_MENU_NOWPLAYING") || (id === "STR_UI_MENU_RESUMELISTENING"))) { continue; } // 350 has no audio
 				title = ('fskin:/l/strings/' + id).idToString();
 				if (title) {
 					group.optionDefs.push({
@@ -810,7 +813,7 @@ tmp = function() {
 							'true': VALUE_TRUE,
 							'false': VALUE_FALSE
 						}
-					})
+					});
 				}
 			} else {
 				id = contents[i].id;
@@ -829,12 +832,12 @@ tmp = function() {
 							'true': VALUE_TRUE,
 							'false': VALUE_FALSE
 						}
-					})
+					});
 				}
 			}
 		}
 		BookManagement_x50.optionDefs.push(group);
-	}
+	};
 	
 	var enableCheckmarks = function () {
 		
@@ -848,7 +851,7 @@ tmp = function() {
 		model.canNewContentsInHome = function (fields, index) {
 			fields.fields[0].skin.cutouts[0].y = 48;
 			return !oldCanNewContentsInHome.apply(this, arguments);
-		}
+		};
 		
 		// Determine if checkmark shown in regular thumbnails views; don't show in selection mode
 		var oldCanNewContents = model.canNewContents;
@@ -857,7 +860,7 @@ tmp = function() {
 				return false;
 			}
 			return !oldCanNewContents.apply(this, arguments);
-		}
+		};
 		
 		// Set default iconKind for book nodes
 		delete FskCache.tree.bookNode.iconKind;
@@ -893,7 +896,7 @@ tmp = function() {
 				n = nodes[i];
 				n.iconKind = (n.opened) ? checkMarkKind : 66;
 			}
-		}
+		};
 		
 		// In 'latest read' views, sort opened/read books at the bottom, not at the top
 		FskCache.tree.sortableMasterNode.createChildNode4LatestRead = function (result) {
@@ -916,15 +919,15 @@ tmp = function() {
 			if (node.referNode) node = node.referNode;
 			if (node.kind) {
 				kind = node.kind;
-				if (kind == 39) {
+				if (kind === 39) {
 					kind = node.getTargetKind();
 				}
-				if (kind == 1 || kind == 120) {
+				if (kind === 1 || kind === 120) {
 					bins.add(2);
 					bins.add(checkMarkKind);
 				}
 				else {
-					if (kind == 105 || kind == 121) {
+					if (kind === 105 || kind === 121) {
 						bins.add(66);
 						bins.add(checkMarkKind);
 					}
@@ -944,8 +947,8 @@ tmp = function() {
 				}
 			}
 			return bins;
-		}
-	}
+		};
+	};
 	
 	// Book content search
 	var doContentSearch, cSearchTimer;
@@ -960,11 +963,11 @@ tmp = function() {
 		dialog.onOk = function () {
 			doContentSearch = true;
 			oldExecSearch.call(this.target, word);
-		}
+		};
 		dialog.onNo = function () {
 			doContentSearch = false;
 			oldExecSearch.call(this.target, word);
-		}
+		};
 		dialog.openDialog(L('SEARCH_BOOK_CONTENTS'), 0);
 	};
 	
@@ -991,7 +994,7 @@ tmp = function() {
 			}
 			this.target = null;
 			kbook.model.processed(100);
-		}
+		};
 		dialog.openDialog(L('SEARCHING_CONTENTS') + '...', 4);
 		
 		kbook.model.processing(100);
@@ -1025,7 +1028,7 @@ tmp = function() {
 				this.dialog.openDialog('fskin:/l/strings/DIALOGMSG_INFORM_NOHITS'.idToString(), 1);
 			}
 		}
-	}
+	};
 	
 	var searchBookContents = function (path, term) {
 		var mime, viewer, ret;
@@ -1181,7 +1184,7 @@ tmp = function() {
 				values: ['0', '2'],
 				valueTitles: {
 					'0': L('PRESS_SCROLL_HOLD_SWITCH'),
-					'2': L('PRESS_SWITCH_HOLD_SCROLL'),
+					'2': L('PRESS_SWITCH_HOLD_SCROLL')
 				}
 			}]},
 			{
@@ -1259,7 +1262,7 @@ tmp = function() {
 					title: L('SUB_COLLECTIONS_SEPARATOR'),
 					icon: 'BOOKS',
 					defaultValue: '|',
-					values: ['|', '.', ',', ':', ';', '/', '~'],
+					values: ['|', '.', ',', ':', ';', '/', '~']
 				}
 			]},
 			{
@@ -1328,8 +1331,8 @@ tmp = function() {
 				title: L('ONLY_SHOW_FROM_PAGE'),
 				icon: 'SETTINGS',
 				defaultValue: '2',
-				values: ['1', '2', '3', '4', '5', '10', '15', '20', '25', '50'],
-				},
+				values: ['1', '2', '3', '4', '5', '10', '15', '20', '25', '50']
+				}
 			]},
 			{
 				name: 'PeriodicalsAsBooks',
@@ -1406,11 +1409,11 @@ tmp = function() {
 		hiddenOptions: [
 			{
 				name: 'CurrentCollection',
-				defaultValue: '',
+				defaultValue: ''
 			},
 			{
 				name: 'SelectedCollection',
-				defaultValue: '',
+				defaultValue: ''
 			}
 		],
 		onSettingsChanged: function (propertyName, oldValue, newValue, object) {
@@ -1450,6 +1453,7 @@ tmp = function() {
 					break;
 				case 'contentSearch':
 					doContentSearch = false;
+					break;
 			}
 		}
 	};

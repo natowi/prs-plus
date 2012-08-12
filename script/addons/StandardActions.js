@@ -15,7 +15,7 @@
 //	2012-03-13 Ben Chenoweth - Fix for issue #321
 //	2012-04-23 drMerry - Moved shutdown to System folder (actions)
 
-tmp = function() {
+var tmp = function() {
 	var L, log, NAME, StandardActions, model, book, doHistory, isBookEnabled, addBubbleActions, addOptionalActions,
 		doBubble, doBubbleFunc, actionLauncher, actionLauncherConstruct, kbActions;
 		
@@ -28,7 +28,7 @@ tmp = function() {
 	book = model.container.sandbox.PAGE_GROUP.sandbox.PAGE;
 	isBookEnabled = function() {
 		return book.isEnabled();
-	}
+	};
 	
 	// Cross-model do history
 	//	whereTo - integer, positive moves back
@@ -180,10 +180,10 @@ tmp = function() {
 			useIcons: true
 		};
 		parent = this.parent = model.current;
-		if (!parent.nodes) parent.nodes = [];
+		if (!parent.nodes) { parent.nodes = []; }
 		Core.addonByName.PRSPSettings.createSingleSetting(parent, optionDef, StandardActions);
 		this.nodes = parent.nodes.pop().nodes;
-	}
+	};
 	
 	StandardActions = {
 		name: NAME,

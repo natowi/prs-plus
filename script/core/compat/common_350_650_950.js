@@ -43,7 +43,7 @@
 //	2012-02-16 quisvir - Fixed 'latest read' sorting being lost on reboot (Sony bug)
 //	2012-07-19 kartu	- Added Greek locale 
 //	2012-07-22 Mark Nord - "/" and "." extendes hold-key support (2 new keys left/right from spacebar for 350/650);
-tmp = function () {
+var tmp = function () {
 	var localizeKeyboardPopups, updateSiblings, localize, localizeKeyboard, oldSetLocale, 
 		oldChangeKeyboardType, oldReadPreference, oldCallback, makeRootNodesMovable, bootLog,
 		doGetPeriodicalsKind;
@@ -770,7 +770,7 @@ tmp = function () {
 	var oldCloseDictionary = pageDictionaryOverlayModel.closeDictionary;
 	pageDictionaryOverlayModel.closeDictionary = function () {
 		oldCloseDictionary.apply(this, arguments);
-		if (kbook.model.STATE === 'PAGE') kbook.model.container.sandbox.STATUS_GROUP.sandbox.STATUS_GROUP_SUB.sandbox.STATUS_GROUP.sandbox.showBookSizeIndicator(true);
+		if (kbook.model.STATE === 'PAGE') { kbook.model.container.sandbox.STATUS_GROUP.sandbox.STATUS_GROUP_SUB.sandbox.STATUS_GROUP.sandbox.showBookSizeIndicator(true); }
 	};
 	
 	FskCache.text.indexLastestRead = function (id, index) {

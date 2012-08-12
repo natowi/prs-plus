@@ -13,11 +13,12 @@
 //	2012-04-01 Mark Nord - MarginCut now also works in landscape-mode
 //	2012-07-22 Mark Nord - Option to mask overlap in landscape-mode with a white bmp, instead of greying-out;
 //				due to a (unresolved Sony-bug) lines may be truncated
-//
+//	2012-08-11 drMerry - Some typos
+//	
 //	ToDo - marginCut: add to Book-Menu; possible enhancements: 4-quadrants view, ...
 
 
-tmp = function() {
+var tmp = function() {
 
 	// Localize
 	var L, LX, log;
@@ -42,26 +43,27 @@ tmp = function() {
 		clipTop = clipBottom = offsetX = extraX = 0;
 		delta = 5;
 
-		oldRec = new Rectangle;
-		rec = new Rectangle;
+		//Create a rectangle object use Rectangle(0,0) rather than Rectangle in order to avoid errors.
+		oldRec = new Rectangle(0,0);
+		rec = new Rectangle(0,0);
 
 		doDigit = function (sender) {
-			switch (sender.key * 1) {
-			case 1: clipTop -= delta;
+			switch (sender.key) { // * 1) {
+			case '1': clipTop -= delta;
 				break;
-			case 2: clipTop += delta * 2;
+			case '2': clipTop += delta * 2;
 				break;
 		/*	case 3: extraX -= delta;
 				break;
 			case 4: extraX += delta;
 				break;  */
-			case 5: offsetX -= delta;
+			case '5': offsetX -= delta;
 				break;
-			case 6: offsetX += delta;
+			case '6': offsetX += delta;
 				break;
-			case 9: clipBottom += delta * 2;
+			case '9': clipBottom += delta * 2;
 				break;
-			case 0: clipBottom -= delta;
+			case '0': clipBottom -= delta;
 				break;
 			}
 			if (clipTop < 0) {
@@ -91,7 +93,7 @@ tmp = function() {
 			myHeight = Math.floor(754 * f);
 			myWidth = Math.floor(myHeight * factor); 	// 0.7754 = 584 / 754
 			dx = Math.floor((584-myWidth)/2) - offsetX;
-			dy = Math.floor(clipTop * -f) 
+			dy = Math.floor(clipTop * -f);
 			myBounds = new Rectangle(0, 0, myWidth, myHeight);
 			// calculation for landscapemode
 			f = 584/rec.width;
@@ -106,9 +108,9 @@ tmp = function() {
 		};
 
 		drawRect = function (deltaTop, deltaBottom) {
-			var x, y, width, height, color;
-			window.beginDrawing;
-			color = window.getPenColor();
+			//UNUSED var x, y, width, height, color;
+			window.beginDrawing();
+			var color = window.getPenColor();
 			// clear old frame
 			window.setPenColor(Color.white);
 			window.frameRectangle(oldRec.x, oldRec.y, oldRec.width, oldRec.height );
@@ -124,7 +126,7 @@ tmp = function() {
 			window.setPenColor(Color.black);
 			window.frameRectangle(rec.x, rec.y, rec.width, rec.height );
 			window.setPenColor(color);
-			window.endDrawing;
+			window.endDrawing();
 			// needed to trigger a partial screen refresh - FixMe: find a better solution
 			kbook.model.container.sandbox.STATUS_GROUP.sandbox.prspTime.setValue('');
 		};
@@ -144,7 +146,7 @@ tmp = function() {
 		}
 		if (kbook.model.STATE === 'PAGE') {
 			try{
-				mcLandscape = ebook.getOrientation()
+				mcLandscape = ebook.getOrientation();
 				if (mcLandscape) {
 					Core.ui.showMsg(L('MARGINCUT_CUTINPORTRAIT') ,2);	
 				return;
@@ -174,8 +176,8 @@ tmp = function() {
 
 	rotateMarginCut = function () {
 		if (marginCut) {
-			mcLandscape = ebook.getOrientation()}	
-	}
+			mcLandscape = ebook.getOrientation();}	
+	};
 
 	resetMarginCut = function () {
 			marginCut = false;
@@ -197,7 +199,8 @@ tmp = function() {
 			myBitmap = oldRender.call(this);
 			this.set(Document.Property.dimensions, oldBounds);
 			bitmap2 = new Bitmap(oldBounds.width, oldBounds.height);
-			port = new Port(bitmap2);
+			//TODO shouldn't this be port(bitmap2) (lower case?)
+			port = new port(bitmap2);
 			if (mcLandscape) {
 				port.drawBitmap(myBitmap, hdx, hdy, myHBounds.width, myHBounds.height);	
 			} 
@@ -227,7 +230,7 @@ tmp = function() {
 			autoPageTimer = new Timer();
 			autoPageTimer.onCallback = autoPageCallback;
 			autoPageTimer.target = null;
-			autoPageTimer.delay = parseInt(ViewerSettings.options.AutoPageTurnerTime) * 1000;
+			autoPageTimer.delay = parseInt(ViewerSettings.options.AutoPageTurnerTime,10) * 1000;
 			autoPageTimer.schedule(autoPageTimer.delay);
 		} else {
 			autoPageTimer.cancel();
@@ -282,7 +285,7 @@ tmp = function() {
 			node._mycomment = L('PAGE') + ' ' + (this.bookmark._page + 1);
 			this.nodes.unshift(node);
 		}
-	}
+	};
 	
 	var ViewerSettings = {
 		name: "ViewerSettings",
@@ -376,6 +379,7 @@ tmp = function() {
 			Core.hook.hookAfter(kbook.children.marginCut, "enter", setMarginCut);	*/
 		},
 		onSettingsChanged: function (propertyName, oldValue, newValue, object) {
+		  //TODO oldValue + object unused
 			switch (propertyName) {
 				case 'OverlapWhite':
 					if (newValue === "true") {
@@ -385,7 +389,7 @@ tmp = function() {
 					}
 					break;
 			}
-		},
+		}
 	};
 
 	Core.addAddon(ViewerSettings);

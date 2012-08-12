@@ -18,7 +18,7 @@
 //	2012-03-13 Ben Chenoweth - Fix for issue #321
 //	2012-04-23 drMerry - Moved shutdown and standby to System folder (actions)
 
-tmp = function() {
+var tmp = function() {
 	var L, log, NAME, StandardActions, model, book, doHistory, isBookEnabled, addBubbleActions, addOptionalActions,
 		doBubble, doBubbleFunc, actionLauncher, actionLauncherConstruct, kbActions;
 		
@@ -271,7 +271,7 @@ tmp = function() {
 		if (!parent.nodes) parent.nodes = [];
 		Core.addonByName.PRSPSettings.createSingleSetting(parent, optionDef, StandardActions);
 		this.nodes = parent.nodes.pop().nodes;
-	}
+	};
 	
 	StandardActions = {
 		name: NAME,
@@ -490,7 +490,7 @@ tmp = function() {
 										// 600
 										model.doDeleteBook();
 									}
-								}
+								};
 							} else if (model.STATE === 'SONG') {
 								current = true;
 								dialog.onOk = function () {
@@ -507,7 +507,7 @@ tmp = function() {
 										// 600
 										model.onRemove(node);
 									}
-								}
+								};
 							} else if (model.STATE === 'PICTURE') {
 								current = true;
 								if (kbook.standbyPicture.isExist(node)) {
@@ -528,7 +528,7 @@ tmp = function() {
 										FileSystem.deleteFile(media.source.path + media.path);
 										kbook.root.update(model);
 									}
-								}
+								};
 							}
 							if (current) {
 								dialog.openDialog(message, 0);

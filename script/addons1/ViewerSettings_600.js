@@ -8,7 +8,7 @@
 // History:
 //	2012-05-29 Ben Chenoweth - Initial version (based on ViewerSettings_x50)
 
-tmp = function() {
+var tmp = function() {
 
 	// Localize
 	var L, LX, log;
@@ -36,22 +36,22 @@ tmp = function() {
 			ebook.setStandbyWithoutSleep(false);
 			Core.ui.showMsg(L("AUTO_PAGE_TURNER") + ": " + L("VALUE_FALSE"), 2);
 		}
-	}
+	},
 	
-	var autoPageCallback = function () {
+	autoPageCallback = function () {
 		if (kbook.model.STATE === 'PAGE') {
 			kbook.model.container.sandbox.PAGE_GROUP.sandbox.PAGE.doNext();
 		} else {
 			autoPageToggle();
 		}
-	}
+	},
 
-	var autoPageRestart = function () {
+	autoPageRestart = function () {
 		if (autoPageTimer) {
 			autoPageTimer.cancel();
 			autoPageTimer.schedule(autoPageTimer.delay);
 		}
-	}
+	};
 	
 	// No full screen refresh on closing overlays
 	kbook.model.fullScreenUpdate = function () {
@@ -64,7 +64,7 @@ tmp = function() {
 	FskCache.tree.markReferenceNode.construct = function () {
 		oldTocConstruct.apply(this);
 		doCreateBookmarkNode.call(this);
-	}
+	};
 	
 	var doCreateBookmarkNode = function () {
 		var item, prototype, node;
@@ -82,9 +82,9 @@ tmp = function() {
 			node.onEnter = 'onEnterPageOption';
 			this.nodes.unshift(node);
 		}
-	}
+	},
 	
-	var ViewerSettings_600 = {
+	ViewerSettings_600 = {
 		name: "ViewerSettings_600",
 		settingsGroup: "viewer", // "advanced",
 		optionDefs: [
@@ -149,13 +149,14 @@ tmp = function() {
 		],
 		onInit: function () {
 			opt = this.options;
-			if (opt.BorderColor === 'white') kbook.kbookPage.borderColor = Color.rgb.parse('white');
+			if (opt.BorderColor === 'white') { kbook.kbookPage.borderColor = Color.rgb.parse('white'); }
 			Core.events.subscribe(Core.events.EVENTS.BOOK_PAGE_CHANGED, autoPageRestart);
 		},
 		onSettingsChanged: function (propertyName, oldValue, newValue, object) {
 			switch (propertyName) {
 				case 'BorderColor':
 					kbook.kbookPage.borderColor = (newValue === 'grey') ? Color.rgb.parse('#6D6D6D') : Color.rgb.parse('white');
+					break;
 			}
 		},
 		actions: [{

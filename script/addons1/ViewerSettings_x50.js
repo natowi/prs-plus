@@ -36,27 +36,27 @@
 //	2012-02-21 quisvir - Fixed #291 'Two taps are needed with SHOW_PARENT_ITEMS_IN_TOC enabled'
 //	2012-07-22 Mark Nord - Option to mask overlap in landscape-mode with a white bmp, instead of greying-out
 //				due to a (unresolved Sony-bug) lines may be truncated
+//	2012-08-11 drMerry - Typo (; after catch)
 
-tmp = function() {
+var tmp = function() {
 
 	// Localize
-	var L, LX, log;
+	var L, LX, log,
+	  opt, orgOrientation, docWidth, docHeight, oldIsScrollView, falseFunc, toggleTrueLandscape, restoreLandscape,
+	  oldOnEnterOrientation1, oldOnEnterOrientation2, autoPageTimer, activateCustomViewSettings;
 	L = Core.lang.getLocalizer("ViewerSettings_x50");
 	LX = Core.lang.LX;
 	log = Core.log.getLogger('ViewerSettings_x50');
-
-	var opt, orgOrientation, docWidth, docHeight, oldIsScrollView, falseFunc, toggleTrueLandscape, restoreLandscape,
-		oldOnEnterOrientation1, oldOnEnterOrientation2, autoPageTimer, activateCustomViewSettings;
 	
 	oldIsScrollView = kbook.kbookPage.isScrollView;
-	falseFunc = function () { return false };
+	falseFunc = function () { return false; };
 	docWidth = Number(System.applyEnvironment('[kFskDocumentViewerWidth]'));
 	docHeight = Number(System.applyEnvironment('[kFskDocumentViewerHeight]'));
 	orgOrientation = null;
 	
 	toggleTrueLandscape = function () {
 		var book, orient;
-		if (kbook.model.STATE !== 'PAGE') return;
+		if (kbook.model.STATE !== 'PAGE') { return; }
 		book = kbook.bookData.book;
 		book.clearSplitParts();
 		if (orgOrientation === null) {
@@ -68,34 +68,34 @@ tmp = function() {
 			}
 			book.mediaRebrowse(docHeight + 30, docWidth - 30, false, false);
 		} else {
-			if (orgOrientation !== null) ebook.rotate(orgOrientation);
+			if (orgOrientation !== null) { ebook.rotate(orgOrientation); }
 			restoreLandscape(true);
 		}
-	}
+	};
 	
 	restoreLandscape = function (current) {
 		if (orgOrientation !== null) {
 			kbook.kbookPage.isScrollView = oldIsScrollView;
-			if (current === true && kbook.model.currentBook) kbook.bookData.book.mediaRebrowse(docWidth, docHeight, false, false);
+			if (current === true && kbook.model.currentBook) { kbook.bookData.book.mediaRebrowse(docWidth, docHeight, false, false); }
 			orgOrientation = null;
 		}
-	}
+	};
 	
 	oldOnEnterOrientation1 = kbook.model.onEnterOrientation;
 	kbook.model.onEnterOrientation = function (node) {
 		restoreLandscape(true);
 		oldOnEnterOrientation1.apply(this, arguments);
-	}
+	};
 	
 	oldOnEnterOrientation2 = kbook.kbookPage.onEnterOrientation;
 	kbook.kbookPage.onEnterOrientation = function () {
 		restoreLandscape(true);
 		oldOnEnterOrientation2.apply(this, arguments);
-	}
+	};
 	
 	// Change custom contrast variable if user has entered valid number
 	kbook.model.container.doContrastChange = function (text) {
-		var msg, value = parseInt(text);
+		var msg, value = parseInt(text, 10);
 		if (isNaN(value)) {
 			msg = L("ERROR_NOT_A_NUMBER");
 		} else if (value < -127 || value > 127) {
@@ -109,11 +109,11 @@ tmp = function() {
 			Core.ui.showMsg(msg);
 		}
 		Core.settings.saveOptions(ViewerSettings_x50);
-	}
+	};
 	
 	// Change custom brightness variable if user has entered valid number
 	kbook.model.container.doBrightnessChange = function (text) {
-		var msg, value = parseInt(text);
+		var msg, value = parseInt(text, 10);
 		if (isNaN(value)) {
 			msg = L("ERROR_NOT_A_NUMBER");
 		} else if (value < -225 || value > 225) {
@@ -127,14 +127,14 @@ tmp = function() {
 			Core.ui.showMsg(msg);
 		}
 		Core.settings.saveOptions(ViewerSettings_x50);
-	}
+	};
 	
 	// Activate custom values using selected method
 	activateCustomViewSettings = function () {
 		if (!isNaN(opt.customActivate)) {
 			kbook.model.toneCurveTable[opt.customActivate] = opt.CustomContrast + ',' + opt.CustomBrightness;
 		}
-	}
+	};
 
 	// Bind custom contrast & brightness values to Restore button
 	pageOptionToneCurveEditorOverlayModel.initToneCurveEditor = function () {
@@ -246,7 +246,7 @@ tmp = function() {
 						yMinN = this.yMinNatural;
 						yMaxN = this.yMaxNatural;
 						parts = this.partsNatural;
-						if (parts == 2) {
+						if (parts === 2) {
 							/* original (defsk-ed) code
 							minOverlap[0] = yMaxN - size;
 							maxOverlap[0] = yMinN + size; */
@@ -377,7 +377,7 @@ tmp = function() {
 			kbook.model.doSomething('switchNormalPage');
 			kbook.model.doSomething('switchSplitPage', 2);
 			pageSelectStyleOverlayModel.closeCurrentOverlay();
-		}
+		};
 		
 		// add calculations for 1-column split to resize function
 		var oldresizePageSplitPage = kbook.kbookPage.resizePageSplitPage;
@@ -423,9 +423,9 @@ tmp = function() {
 		var oldopenSelectStyle = pageSelectStyleOverlayModel.openSelectStyle;
 		pageSelectStyleOverlayModel.openSelectStyle = function () {
 			oldopenSelectStyle.apply(this, arguments);
-			if (kbook.model.doSomething('getSplitPageColumns') === 1) this.setVariable('PAGE_STYLE_NO', 6);
+			if (kbook.model.doSomething('getSplitPageColumns') === 1) { this.setVariable('PAGE_STYLE_NO', 6); }
 		};
-	};
+	}
 	
 	var autoPageToggle = function () {
 		if (!autoPageTimer) {
@@ -441,7 +441,7 @@ tmp = function() {
 			autoPageTimer = null;
 			Core.ui.showMsg(L("AUTO_PAGE_TURNER") + ": " + L("VALUE_FALSE"), 2);
 		}
-	}
+	};
 	
 	var autoPageCallback = function () {
 		if (kbook.model.STATE === 'PAGE') {
@@ -449,18 +449,18 @@ tmp = function() {
 		} else {
 			autoPageToggle();
 		}
-	}
+	};
 
 	var autoPageRestart = function () {
 		if (autoPageTimer) {
 			autoPageTimer.cancel();
 			autoPageTimer.schedule(autoPageTimer.delay);
 		}
-	}
+	};
 	
 	// No full screen refresh on closing overlays
 	kbook.model.fullScreenUpdate = function () {
-		if (opt.noFlashOnOverlayClose === 'true' && this.STATE !== 'MENU_HOME') return;
+		if (opt.noFlashOnOverlayClose === 'true' && this.STATE !== 'MENU_HOME') { return; }
 		this.container.invalidate();
 	};
 	
@@ -469,13 +469,13 @@ tmp = function() {
 	FskCache.tree.markReferenceNode.construct = function () {
 		oldTocConstruct.apply(this);
 		doCreateBookmarkNode.call(this, false);
-	}
+	};
 	
 	var oldTocConstruct2 = FskCache.tree.markReferenceNode2.construct;
 	FskCache.tree.markReferenceNode2.construct = function () {
 		oldTocConstruct2.apply(this);
 		doCreateBookmarkNode.call(this, true);
-	}
+	};
 	
 	var doCreateBookmarkNode = function (periodical) {
 		var item, prototype, node;
@@ -493,9 +493,9 @@ tmp = function() {
 			node.onEnter = 'onEnterPageOption';
 			this.nodes.unshift(node);
 		}
-	}
+	},
 	
-	var ViewerSettings_x50 = {
+	ViewerSettings_x50 = {
 		name: "ViewerSettings_x50",
 		settingsGroup: "viewer", // "advanced",
 		optionDefs: [
@@ -621,7 +621,7 @@ tmp = function() {
 		onInit: function () {
 			opt = this.options;
 			activateCustomViewSettings();
-			if (opt.BorderColor === 'white') kbook.kbookPage.borderColor = Color.rgb.parse('white');
+			if (opt.BorderColor === 'white') { kbook.kbookPage.borderColor = Color.rgb.parse('white'); }
 			Core.events.subscribe(Core.events.EVENTS.BOOK_CHANGED, restoreLandscape, true);
 			Core.events.subscribe(Core.events.EVENTS.BOOK_PAGE_CHANGED, autoPageRestart);
 		},
@@ -631,14 +631,15 @@ tmp = function() {
 					kbook.kbookPage.borderColor = (newValue === 'grey') ? Color.rgb.parse('#6D6D6D') : Color.rgb.parse('white');
 					break;
 				case 'CustomContrast':
-					if (newValue === "Custom") kbook.model.openLineInput(L("CUSTOM_CONTRAST") + ' [-127 / 127]:', '', 'doContrastChange', '', true, 'number');
+					if (newValue === "Custom") { kbook.model.openLineInput(L("CUSTOM_CONTRAST") + ' [-127 / 127]:', '', 'doContrastChange', '', true, 'number'); }
 					break;
 				case 'CustomBrightness':
-					if (newValue === "Custom") kbook.model.openLineInput(L("CUSTOM_BRIGHTNESS") +  ' [-225 / 225]:', '', 'doBrightnessChange', '', true, 'number');
+					if (newValue === "Custom") { kbook.model.openLineInput(L("CUSTOM_BRIGHTNESS") +  ' [-225 / 225]:', '', 'doBrightnessChange', '', true, 'number'); }
 					break;
 				case 'customActivate':
 					kbook.model.initToneCurveChange();
 					activateCustomViewSettings();
+					break;
 			}
 		},
 		actions: [{

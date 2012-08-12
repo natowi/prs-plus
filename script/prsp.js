@@ -138,12 +138,13 @@ if (!FileSystem.getFileInfo(System.applyEnvironment("[prspSafeModeFile]"))) {
 		
 		// Load core1 & addons, called by model specific bootstrap
 		loadAddons = function() {
-			var addonCode, log, addons, addonsPath, addonsPathX, jsPostfix, lenDiff, idx;
+			var addonCode, log, addons, addonsPath, addonsPathX, jsPostfix, lenDiff, idx, i;
 			jsPostfix = ".js";
 			// Call core1 & addons#
 			try {
 				log = Core.log.getLogger("addons");
-				for (i = -1; i<4; i++) {
+				i = - 1;
+				for (i; i<4; i++) {
 					switch (i) {
 					case -1:
 						addonsPath = config.coreFile;

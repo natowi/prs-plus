@@ -4,8 +4,9 @@
 //
 // History:
 //	2012-02-24 quisvir - Initial version: sub-collections & clear page histories
+//	2012-08-11 drMerry - some typo/performance
 
-tmp = function() {
+var tmp = function() {
 
 	var L, LX, log, opt;
 	
@@ -19,7 +20,7 @@ tmp = function() {
 		if (opt.subCollections === 'true') {
 			createSubCollections(this, 0, opt.subCollSeparator);
 		}
-	}
+	};
 
 	var createSubCollections = function (parent, start, sep) {
 		var i, c, next, node, nodes, newNode, last, idx, coll, title;
@@ -61,19 +62,20 @@ tmp = function() {
 		for (i = nodes.length - 1; i >= start; i--) {
 			if (nodes[i].nodes) createSubCollections(nodes[i], 0, sep);
 		}
-	}
+	};
 	
 	// Clear page histories, keeping current position (length = 0 crashes home menu)
 	var clearPageHists = function () {
 		var db, i, r;
 		if (opt.clearHistsOnShutdown === 'true') {
 			db = model.cache.textMasters;
-			for (i = db.count() - 1; i >= 0; i--) {
+			i = db.count() - 1;
+			for (i; i >= 0; i--) {
 				r = db.getRecord(i);
-				if (r.history.length) r.history.length = 1;
+				if (r.history.length) { r.history.length = 1; }
 			}
 		}
-	}
+	};
 	
 	var BookManagement = {
 		name: 'BookManagement',
@@ -100,7 +102,7 @@ tmp = function() {
 				title: L('SUB_COLLECTIONS_SEPARATOR'),
 				icon: 'BOOKS',
 				defaultValue: '|',
-				values: ['|', '.', ',', ':', ';', '/', '~'],
+				values: ['|', '.', ',', ':', ';', '/', '~']
 			},
 			{
 				name: 'clearHistsOnShutdown',
@@ -120,6 +122,7 @@ tmp = function() {
 				case 'subCollections':
 				case 'subCollSeparator':
 					Core.ui.nodes.collections.update(model);
+					break;
 			}
 		}
 	};
