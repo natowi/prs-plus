@@ -38,7 +38,7 @@ tmp = function() {
 		},
 		actions: [{
 			name: "Calendar",
-			group: "Games",
+			group: "Utils",
 			title: L("TITLE"),
 			icon: appIcon,
 			action: function () {
