@@ -1,4 +1,4 @@
-//	Merry Actions are actions to update the workflow and/or performance of the reader.
+  //	Merry Actions are actions to update the workflow and/or performance of the reader.
 //	2012-04-23 drMerry - initial release (reboot action)
 //	2012-06-22 drMerry - added flush command
 //				added meminfo command
@@ -58,7 +58,7 @@ var mAcontainer = function () {
             {
 				name: "enableMntinfo",
 				title: L("OPT_MNTINFO"),
-				icon: "MNTINFO",
+				icon: "INFO",
 				defaultValue: "False",
 				values: ["True", "False"],
 				valueTitles: {
@@ -69,7 +69,7 @@ var mAcontainer = function () {
             {
 				name: "enableDF",
 				title: L("OPT_DF"),
-				icon: "DF",
+				icon: "INFO",
 				defaultValue: "False",
 				values: ["True", "False"],
 				valueTitles: {
@@ -145,7 +145,7 @@ var mAcontainer = function () {
 			name: "DiskFree",
 			title: L("DF_TITLE"),
 			group: "System",
-			icon: "DF",
+			icon: "INFO",
 			action: function () {
 				try {
 					if (MerryActions.options.enableDF === 'True') {
@@ -164,7 +164,7 @@ var mAcontainer = function () {
 			name: "MountInfo",
 			title: L("MNTNFO_TITLE"),
 			group: "System",
-			icon: "MNT",
+			icon: "INFO",
 			action: function () {
 				try {
 					if (MerryActions.options.enableMntinfo === 'True') {
