@@ -25,6 +25,11 @@
 //	2012-03-08 Ben Chenoweth - Scrollbar added; fixes for '9:05' and 'PartyFoul'
 //	2012-03-14 Ben Chenoweth - Output 'yes' or 'no'; another fix for '9:05'
 //	2012-05-25 Ben Chenoweth - Removed unused variables; changed globals to locals; right margin fix
+//	2012-08-13 drMerry - updated some code changed some globals into local vars. 
+//			split keymap
+//			changed doCenterF from if into case switches
+//			removed a unused var
+//			faster start of games that have only useFrotz set to true
 
 var tmp = function () {
 	
@@ -94,11 +99,20 @@ var tmp = function () {
 	loudRoomDisabled = false,
 		
 	twoDigits = function (i) {
-		if (i<10) {return "0"+i}
+		if (i<10) {return "0"+i;}
 		return i;	
 	};
 
 	target.loadKeyboard = function () {
+	  var i, abcKeys, abcKeysShifted, symKeys, symKeysShifted;
+	  abcKeys = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"];
+	  abcKeysShifted = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M"];
+	  symKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "%", "&", "*", "(", ")", "_", "+", ";", ":", "!", "?", "\"", "\'", ",", ".", "/"];
+	  symKeysShifted = ["~", "@", "#", "$", "^", "-", "`", "=", "{", "}", "\u00AC", "\u00A3", "\u20AC", "\u00A7", "\u00A6", "[", "]", "|", "\\", "\u00B2", "\u00B0", "\u00B5", "\u00AB", "\u00BB", "<", ">"];
+	  keys = abcKeys.concat(abcKeysShifted,symKeys,symKeysShifted);
+	  shiftOffset = abcKeys.length;
+	  symbolsOffset = shiftOffset * 2;
+		/* not used while split keymap is created
 		keys[0]="q";
 		keys[1]="w";
 		keys[2]="e";
@@ -203,9 +217,11 @@ var tmp = function () {
 		keys[101]="\u00BB";
 		keys[102]="<";
 		keys[103]=">";
+		*/
 
 		// put keys on buttons
-		for (i=1; i<=26; i++) {
+		i = 1;
+		for (i; i<=shiftOffset; i++) {
 			setSoValue(target['key'+twoDigits(i)], 'text', keys[i-1]);
 		}
 	
@@ -255,8 +271,8 @@ var tmp = function () {
 	target.loadGameList = function () {
 		var items, filesMissingError, currentLine, itemNum, noZeroItemNum, noZeroItemNum2, numRows, rowNum, extraRow, midItem, addSpaces;
 		items = listFiles(datPath);
-		if (items.length == 0) {
-			filesMissingError = "Error:\nThere are no files in the game directory.\nPlease connect your reader to a PC and copy the game files into the Frotz folder located in the PRS+ GamesSave folder."
+		if (items.length === 0) {
+			filesMissingError = "Error:\nThere are no files in the game directory.\nPlease connect your reader to a PC and copy the game files into the Frotz folder located in the PRS+ GamesSave folder.";
 			this.setOutput(filesMissingError);
 			currentLine = "quit";
 			target.currentText.setValue(currentLine);
@@ -274,14 +290,18 @@ var tmp = function () {
 					extraRow = false;
 					midItem = numRows;
 				}
-				for (rowNum = 0; rowNum < numRows; rowNum++) {
+				rowNum = 0;
+				for (rowNum; rowNum < numRows; rowNum++) {
 					noZeroItemNum = rowNum + 1;
 					noZeroItemNum2 = midItem + rowNum + 1;
 					tempOutput = tempOutput + "\n" + noZeroItemNum + ": " + items[rowNum];
-					for (addSpaces = 0; addSpaces < 28 - items[rowNum].length; addSpaces++) {
+					addSpaces = 0;
+					for (addSpaces; addSpaces < 28 - items[rowNum].length; addSpaces++) {
 						tempOutput = tempOutput + " ";
 					}
-					if (rowNum < 9) tempOutput = tempOutput + " "; // extra space for first 9 rows
+					if (rowNum < 9) {
+					  tempOutput = tempOutput + " "; // extra space for first 9 rows
+					}
 					tempOutput = tempOutput + noZeroItemNum2 + ": " + items[midItem + rowNum];
 				}
 				// handle odd number of entries
@@ -289,12 +309,14 @@ var tmp = function () {
 					tempOutput = tempOutput + "\n" + midItem + ": " + items[midItem - 1];
 				}
 				// now push all titles in order
-				for (itemNum = 0; itemNum < items.length; itemNum++) {
+				itemNum = 0;
+				for (itemNum; itemNum < items.length; itemNum++) {
 					titles.push(items[itemNum]);
 				}
 			} else {
 				// use one column
-				for (itemNum = 0; itemNum < items.length; itemNum++) {
+				itemNum = 0;
+				for (itemNum; itemNum < items.length; itemNum++) {
 					titles.push(items[itemNum]);
 					noZeroItemNum = itemNum + 1;
 					tempOutput = tempOutput + "\n" + noZeroItemNum + ": " + items[itemNum];
@@ -312,7 +334,7 @@ var tmp = function () {
 	};
 	
 	target.initialiseGame = function () {
-		var lowerGameTitle, cmd, result;
+		var lowerGameTitle, cmd, result, gamesForFrotz;
 		if (GAMETITLE !== "") {
 			// set up game-specific save/load/quit commands
 			lowerGameTitle = GAMETITLE.toLowerCase();
@@ -332,6 +354,36 @@ var tmp = function () {
 			failMessage = "Failed.";
 			initialInput = "";
 			
+			// drMerry edit: 
+			// Quick lookup a big part of games that have only the useFrotz parameter set
+			// add * before and after game title to make shure that you have the right game
+			// (e.g. app matches apple and application but *apple* only matches *apple* (while * is an illegal character
+			// for a game title it won't be in the title so it can't accidentally match)
+			/*DEBUG START
+			  tempOutput = tempOutput + "\nuseFrotz "+useFrotz+".\nFor: " + lowerGameTitle + "\nDebug location: before if";
+			  this.setOutput(tempOutput);
+			  //DEBUG END* /
+			gamesForFrotz = ["=infidel=", "=lurking=", "=moonmist=", "=enchanter=", "=ballyhoo=", "=planetfall=",
+			  "=sorcerer=", "=spellbreaker=", "=stationfall=", "=suspect=", "=suspended=",
+			  "=wishbringer=", "=witness=",
+			  "=zork1=", "=zork2=", "=zork3="
+					];
+			if (gamesForFrotz.indexOf("="+lowerGameTitle+"=") > -1)
+			{
+			  useFrotz = true;
+			  initialInput = startGame+saveTemp+quitGame;
+			  CONFIRM = "Y\n";
+			  EXECUTABLE = FROTZ + FROTZOPTIONS;
+			  / * /DEBUG START
+			  tempOutput = tempOutput + "\nuseFrotz "+useFrotz+".\nFor: " + lowerGameTitle + "\nDebug location: if indexOf";
+			  this.setOutput(tempOutput);
+			  //DEBUG END/ * /
+			} else {			
+			  useFrotz = false;
+			  / * /DEBUG START
+			  tempOutput = tempOutput + "\nuseFrotz "+useFrotz+".\nFor: " + lowerGameTitle + "\nDebug location: else";
+			  this.setOutput(tempOutput);
+			  / /DEBUG END*/
 			// modify if needed for specific games
 			switch(lowerGameTitle) {
 				// INFOCOM GAMES
@@ -339,9 +391,11 @@ var tmp = function () {
 					useFrotz = true;
 					startGame = "\n";
 					break;
+				/**/
 				case "ballyhoo":
 					useFrotz = true;
 					break;
+					//*/
 				case "borderzone":
 					useFrotz = true;
 					startGame = "1\n"; // to start Chapter 1
@@ -363,18 +417,21 @@ var tmp = function () {
 						symbols = true;
 						this.refreshKeys();
 						return;
-					} else {
-						initialInput = restoreUser+"userinput.sav\n"+saveTemp+quitGame;
-					}
+					} 
+					//should not be an else while the previous if would exit if true so else is more complex and unneeded
+					else { initialInput = restoreUser+"userinput.sav\n"+saveTemp+quitGame; }
 					break;
+				/**/
 				case "enchanter":
 					useFrotz = true;
 					break;
+					//*/
 				case "hhgg":
 				case "hitchhik":
 					useFrotz = true;
 					quitGame = "quit\nY\nY\n";
 					break;
+				/**/
 				case "infidel":
 					useFrotz = true;
 					break;
@@ -384,17 +441,21 @@ var tmp = function () {
 				case "moonmist":
 					useFrotz = true;
 					break;
+					//*/
 				case "phobos":
 					useFrotz = true;
 					startGame = "\n";
 					break;
+				/**/
 				case "planetfall":
 					useFrotz = true;
 					break;
+					//*/
 				case "plunderer":
 					useFrotz = true;
 					startGame = "\n";
 					break;
+				/**/
 				case "sorcerer":
 					useFrotz = true;
 					break;
@@ -410,11 +471,13 @@ var tmp = function () {
 				case "suspended":
 					useFrotz = true;
 					break;
+					//*/
 				case "trinity":
 					useFrotz = true;
 					FROTZOPTIONS = " -w 112 -h 40 -R lt0 "; // game won't play if width less than 62 (instead use a width that's approximately twice the reader screen width)
 					startGame = "\n";
 					break;
+				/**/
 				case "wishbringer":
 					useFrotz = true;
 					break;
@@ -430,6 +493,7 @@ var tmp = function () {
 				case "zork3":
 					useFrotz = true;
 					break;
+					//*/
 					
 				// INTERACTIVE FICTION
 				case "anchor":
@@ -484,6 +548,7 @@ var tmp = function () {
 				CONFIRM = "";
 				EXECUTABLE = NITFOL + NITFOLOPTIONS;
 			}
+			//}
 			
 			try {
 				// delete old output file if it exists
@@ -888,7 +953,9 @@ var tmp = function () {
 					result = result.substring(0, charPos) + result.substring(charPos2, result.indexOf(">", charPos2 + 1));
 					result = result.replace("few incantations", "two incantations");
 					return result;
-				} else if (result.indexOf("You surrender a silver coin you didn't know you had")>0) {
+				}
+				//should not be an else if while the previous if would exit if true so else if is more complex and unneeded
+				else if (result.indexOf("You surrender a silver coin you didn't know you had")>0) {
 					// player died
 					result = result.substring(result.indexOf(">")+1);
 					result = result.substring(result.indexOf(">")+1);
@@ -944,11 +1011,13 @@ var tmp = function () {
 				break;
 			case "905":
 				result = getFileContent(INTFICOUT, "222");
-				if ((result.indexOf("vanish without a trace")>=0) && (result.indexOf("Please answer yes or no")==-1)) {		
+				if ((result.indexOf("vanish without a trace")>=0) && (result.indexOf("Please answer yes or no")===-1)) {		
 					// replace output (brute force solution!)
 					result = "You merge onto the freeway, crank up the radio, and vanish without a trace.\n\n    *** You have left Las Mesas ***\n\nWould you like to RESTART, RESTORE a saved game or QUIT?\n";
 					return result;
-				} else if (previousresult.indexOf("Would you like to")>=0) {
+				}
+				//should not be an else if while the previous if would exit if true so else if is more complex and unneeded
+				else if (previousresult.indexOf("Would you like to")>=0) {
 					getYesNo = true;
 				} else if (previousresult.indexOf("[Press a key to continue.]")>=0) {
 					setFileContent(INTFICIN, startGame+restoreTemp+currentLine+"\n\n"+saveTemp+CONFIRM+quitGame); // extra return needed
@@ -1040,7 +1109,7 @@ var tmp = function () {
 		var id, n, numCommands, currentLine;
 		id = getSoValue(sender, "id");
 		n = id.substring(7, 10);
-		if (n == "PRE") {
+		if (n === "PRE") {
 			// copy previous command into command box
 			numCommands = previousCommands.length;
 			if (numCommands !== 0) {
@@ -1115,7 +1184,8 @@ var tmp = function () {
 			mouseEnter.call(target.SYMBOL);
 			mouseLeave.call(target.SYMBOL);
 		}
-		for (i=1; i<=26; i++) {
+		i = 1;
+		for (i; i <= shiftOffset; i++) {
 			key = 'key'+twoDigits(i);
 			setSoValue(target[key], 'text', keys[n+i]);
 			mouseEnter.call(target[key]);
@@ -1162,8 +1232,8 @@ var tmp = function () {
 	target.addCharacter = function (id) {
 		var n, character, currentLine;
 		n = parseInt(id.substring(3, 5));
-		if (symbols) { n = n + symbolsOffset };
-		if (shifted) { n = n + shiftOffset };
+		if (symbols) { n = n + symbolsOffset; }
+		if (shifted) { n = n + shiftOffset; }
 		character = keys[n-1];
 		currentLine = target.getVariable("current_line");
 		currentLine = currentLine + character;
@@ -1393,7 +1463,7 @@ var tmp = function () {
 
 	target.moveCursor = function (direction) {
 		switch (direction) {
-			case "up" : {
+			case "up" :
 				if (custSel===6) {
 					prevSel=custSel;
 					custSel=5;
@@ -1406,7 +1476,7 @@ var tmp = function () {
 					prevSel=custSel;
 					custSel=custSel-10;
 					target.ntHandleEventsDlg();
-				} else if (custSel==26) {
+				} else if (custSel===26) {
 					prevSel=custSel;
 					custSel=17;
 					target.ntHandleEventsDlg();				
@@ -1414,22 +1484,21 @@ var tmp = function () {
 					prevSel=custSel;
 					custSel=custSel-9;
 					target.ntHandleEventsDlg();
-				} else if (custSel==34) {
+				} else if (custSel===34) {
 					prevSel=custSel;
 					custSel=26;
 					target.ntHandleEventsDlg();				
-				} else if (custSel==35) {
+				} else if (custSel===35) {
 					prevSel=custSel;
 					custSel=30;
 					target.ntHandleEventsDlg();				
-				} else if (custSel==36) {
+				} else if (custSel===36) {
 					prevSel=custSel;
 					custSel=33;
 					target.ntHandleEventsDlg();				
 				}
-				break
-			}
-			case "down" : {
+				break;
+			case "down" :
 				if (custSel===5) {
 					prevSel=custSel;
 					custSel=6;
@@ -1463,9 +1532,8 @@ var tmp = function () {
 					custSel=36;
 					target.ntHandleEventsDlg();			
 				}
-				break
-			}
-			case "left" : {
+				break;
+			case "left" : 
 				if (custSel===6) {
 					prevSel=custSel;
 					custSel=16;
@@ -1487,9 +1555,8 @@ var tmp = function () {
 					custSel--;
 					target.ntHandleEventsDlg();	
 				}
-				break
-			}		
-			case "right" : {
+				break;
+			case "right" : 
 				if (custSel===16) {
 					prevSel=custSel;
 					custSel=6;
@@ -1511,45 +1578,110 @@ var tmp = function () {
 					custSel++;
 					target.ntHandleEventsDlg();	
 				}
-				break
-			}
-			return;
+				break;
 		}	
+		return;
 	};
 	
 	target.doCenterF = function () {
-		if (custSel === 5) target.btn_Ok.click();
-		if (custSel === 6) target.BUTTON_PRE.click();
-		if (custSel === 7) target.key01.click();
-		if (custSel === 8) target.key02.click();
-		if (custSel === 9) target.key03.click();
-		if (custSel === 10) target.key04.click();
-		if (custSel === 11) target.key05.click();
-		if (custSel === 12) target.key06.click();
-		if (custSel === 13) target.key07.click();
-		if (custSel === 14) target.key08.click();
-		if (custSel === 15) target.key09.click();
-		if (custSel === 16) target.key10.click();
-		if (custSel === 17) target.key11.click();
-		if (custSel === 18) target.key12.click();
-		if (custSel === 19) target.key13.click();
-		if (custSel === 20) target.key14.click();
-		if (custSel === 21) target.key15.click();
-		if (custSel === 22) target.key16.click();
-		if (custSel === 23) target.key17.click();
-		if (custSel === 24) target.key18.click();
-		if (custSel === 25) target.key19.click();
-		if (custSel === 26) target.SHIFT.click();
-		if (custSel === 27) target.key20.click();
-		if (custSel === 28) target.key21.click();
-		if (custSel === 29) target.key22.click();
-		if (custSel === 30) target.key23.click();
-		if (custSel === 31) target.key24.click();
-		if (custSel === 32) target.key25.click();
-		if (custSel === 33) target.key26.click();
-		if (custSel === 34) target.SYMBOL.click();
-		if (custSel === 35) target.SPACE.click();
-		if (custSel === 36) target.BACK.click();
+	    switch (custSel) {
+		case 5:
+			target.btn_Ok.click();
+			break;
+		case 6:
+			target.BUTTON_PRE.click();
+			break;
+		case 7:
+			target.key01.click();
+			break;
+		case 8:
+			target.key02.click();
+			break;
+		case 9:
+			target.key03.click();
+			break;
+		case 10:
+			target.key04.click();
+			break;
+		case 11:
+			target.key05.click();
+			break;
+		case 12:
+			target.key06.click();
+			break;
+		case 13:
+			target.key07.click();
+			break;
+		case 14:
+			target.key08.click();
+			break;
+		case 15:
+			target.key09.click();
+			break;
+		case 16:
+			target.key10.click();
+			break;
+		case 17:
+			target.key11.click();
+			break;
+		case 18:
+			target.key12.click();
+			break;
+		case 19:
+			target.key13.click();
+			break;
+		case 20:
+			target.key14.click();
+			break;
+		case 21:
+			target.key15.click();
+			break;
+		case 22:
+			target.key16.click();
+			break;
+		case 23:
+			target.key17.click();
+			break;
+		case 24:
+			target.key18.click();
+			break;
+		case 25:
+			target.key19.click();
+			break;
+		case 26:
+			target.SHIFT.click();
+			break;
+		case 27:
+			target.key20.click();
+			break;
+		case 28:
+			target.key21.click();
+			break;
+		case 29:
+			target.key22.click();
+			break;
+		case 30:
+			target.key23.click();
+			break;
+		case 31:
+			target.key24.click();
+			break;
+		case 32:
+			target.key25.click();
+			break;
+		case 33:
+			target.key26.click();
+			break;
+		case 34:
+			target.SYMBOL.click();
+			break;
+		case 35:
+			target.SPACE.click();
+			break;
+		case 36:
+			target.BACK.click();
+			break;
+	    }
 		return;
 	};
 };
