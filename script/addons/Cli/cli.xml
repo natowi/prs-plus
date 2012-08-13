@@ -163,6 +163,9 @@
 		  <text id='currentText' skin='eventText' left='10' right='108' height='42' bottom='215' active='false' visible='true' />
 		  <button id="btn_Ok" text="OK" right='10' bottom="215" width="90" height="40" do="doOK"/>
 		  <button id="BUTTON_PRE" active="true" text="^"  right="10" width="40" bottom="170" height="40" do="doButtonClick"/>
+		  <button id="key27" active="true" text="."  right="10" width="40" bottom="120" height="40" do="doKeyPress"/>
+		  <button id="key28" active="true" text="-"  right="10" width="40" bottom="70" height="40" do="doKeyPress"/>
+		  <button id="key29" active="true" text="/"  right="10" width="40" bottom="20" height="40" do="doKeyPress"/>
 		
 			<button id="key01" text="q" left= "75" bottom="170" width="40" height="40" do="doKeyPress"/>
 			<button id="key02" text="w" left="120" bottom="170" width="40" height="40" do="doKeyPress"/>

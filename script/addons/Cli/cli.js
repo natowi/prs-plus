@@ -10,6 +10,9 @@
 //	2012-04-04 Ben Chenoweth - Handle OS error codes; minor fix for 'cd ..' if returning to root
 //	2012-04-05 Ben Chenoweth - Replace tabs with spaces in output
 //	2012-05-22 Ben Chenoweth - Removed unused variables; changed globals to locals
+//	2012-08-13 drMerry - Added . / - keys
+//			optimized some of the code (e.g. changed enormous error-case switch into array).
+// TODO fix the key-loops for non-touch devices (bug introduced by adding more keys. Should be fixed in a non-hardcoded way, e.g. by using something like row/col offset or by grouping keys
 
 var tmp = function () {
 	
@@ -25,9 +28,9 @@ var tmp = function () {
 	mouseLeave = getSoValue(target.btn_Ok, 'mouseLeave'),
 	mouseEnter = getSoValue(target.btn_Ok, 'mouseEnter'),
 	shifted = false,
-	shiftOffset = 26,
+	shiftOffset = 29,
 	symbols = false,
-	symbolsOffset = 52,
+	symbolsOffset = 58,
 	keys = [],
 	strShift = "\u2191", //up arrow
 	strUnShift = "\u2193", //down arrow
@@ -44,12 +47,20 @@ var tmp = function () {
 	previousDir,
 	
 	twoDigits = function (i) {
-		if (i<10) {return "0"+i}
-		return i;	
+		return (i<10) ? "0"+i : i;	
 	};
 
 	target.loadKeyboard = function () {
-		keys[0]="q";
+	  var abcKeys, abcKeysShifted, symKeys, symKeysShifted, i;
+	  abcKeys = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m", ".", "-", "/"];
+	  abcKeysShifted = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M", ".", "-", "/"];
+	  symKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "%", "&", "*", "(", ")", "_", "+", ";", ":", "!", "?", "\"", "\'", ",", ".", "/", ".", "-", "/"];
+	  symKeysShifted = ["~", "@", "#", "$", "^", "-", "`", "=", "{", "}", "\u00AC", "\u00A3", "\u20AC", "\u00A7", "\u00A6", "[", "]", "|", "\\", "\u00B2", "\u00B0", "\u00B5", "\u00AB", "\u00BB", "<", ">", ".", "-", "/"];
+	  keys = abcKeys.concat(abcKeysShifted,symKeys,symKeysShifted);
+	  shiftOffset = abcKeys.length;
+	  symbolsOffset = shiftOffset * 2;
+		/*Disabled as keys are now added separately per group
+		 * keys[0]="q";
 		keys[1]="w";
 		keys[2]="e";
 		keys[3]="r";
@@ -75,87 +86,98 @@ var tmp = function () {
 		keys[23]="b";
 		keys[24]="n";
 		keys[25]="m";
-		keys[26]="Q";
-		keys[27]="W";
-		keys[28]="E";
-		keys[29]="R";
-		keys[30]="T";
-		keys[31]="Y";
-		keys[32]="U";
-		keys[33]="I";
-		keys[34]="O";
-		keys[35]="P";
-		keys[36]="A";
-		keys[37]="S";
-		keys[38]="D";
-		keys[39]="F";
-		keys[40]="G";
-		keys[41]="H";
-		keys[42]="J";
-		keys[43]="K";
-		keys[44]="L";
-		keys[45]="Z";
-		keys[46]="X";
-		keys[47]="C";
-		keys[48]="V";
-		keys[49]="B";
-		keys[50]="N";
-		keys[51]="M";
-		keys[52]="1";
-		keys[53]="2";
-		keys[54]="3";
-		keys[55]="4";
-		keys[56]="5";
-		keys[57]="6";
-		keys[58]="7";
-		keys[59]="8";
-		keys[60]="9";
-		keys[61]="0";
-		keys[62]="%";
-		keys[63]="&";
-		keys[64]="*";
-		keys[65]="(";
-		keys[66]=")";
-		keys[67]="_";
-		keys[68]="+";
-		keys[69]=";";
-		keys[70]=":";
-		keys[71]="!";
-		keys[72]="?";
-		keys[73]="\"";
-		keys[74]="\'";
-		keys[75]=",";
-		keys[76]=".";
-		keys[77]="/";
-		keys[78]="~";
-		keys[79]="@";
-		keys[80]="#";
-		keys[81]="$";
-		keys[82]="^";
-		keys[83]="-";
-		keys[84]="`";
-		keys[85]="=";
-		keys[86]="{";
-		keys[87]="}";
-		keys[88]="\u00AC";
-		keys[89]="\u00A3";
-		keys[90]="\u20AC";
-		keys[91]="\u00A7";
-		keys[92]="\u00A6";
-		keys[93]="[";
-		keys[94]="]";
-		keys[95]="|";
-		keys[96]="\\";
-		keys[97]="\u00B2";
-		keys[98]="\u00B0";
-		keys[99]="\u00B5";
-		keys[100]="\u00AB";
-		keys[101]="\u00BB";
-		keys[102]="<";
-		keys[103]=">";
+		keys[26]=".";
+		keys[27]="-";
+		keys[28]="/";
+		keys[29]="Q";
+		keys[30]="W";
+		keys[31]="E";
+		keys[32]="R";
+		keys[33]="T";
+		keys[34]="Y";
+		keys[35]="U";
+		keys[36]="I";
+		keys[37]="O";
+		keys[38]="P";
+		keys[39]="A";
+		keys[40]="S";
+		keys[41]="D";
+		keys[42]="F";
+		keys[43]="G";
+		keys[44]="H";
+		keys[45]="J";
+		keys[46]="K";
+		keys[47]="L";
+		keys[48]="Z";
+		keys[49]="X";
+		keys[50]="C";
+		keys[51]="V";
+		keys[52]="B";
+		keys[53]="N";
+		keys[54]="M";
+		keys[55]=".";
+		keys[56]="-";
+		keys[57]="/";
+		keys[58]="1";
+		keys[59]="2";
+		keys[60]="3";
+		keys[61]="4";
+		keys[62]="5";
+		keys[63]="6";
+		keys[64]="7";
+		keys[65]="8";
+		keys[66]="9";
+		keys[67]="0";
+		keys[68]="%";
+		keys[69]="&";
+		keys[70]="*";
+		keys[71]="(";
+		keys[72]=")";
+		keys[73]="_";
+		keys[74]="+";
+		keys[75]=";";
+		keys[76]=":";
+		keys[77]="!";
+		keys[78]="?";
+		keys[79]="\"";
+		keys[80]="\'";
+		keys[81]=",";
+		keys[82]=".";
+		keys[83]="/";
+		keys[84]=".";
+		keys[85]="-";
+		keys[86]="/";
+		keys[87]="~";
+		keys[88]="@";
+		keys[89]="#";
+		keys[90]="$";
+		keys[91]="^";
+		keys[92]="-";
+		keys[93]="`";
+		keys[94]="=";
+		keys[95]="{";
+		keys[96]="}";
+		keys[97]="\u00AC";
+		keys[98]="\u00A3";
+		keys[99]="\u20AC";
+		keys[100]="\u00A7";
+		keys[101]="\u00A6";
+		keys[102]="[";
+		keys[103]="]";
+		keys[104]="|";
+		keys[105]="\\";
+		keys[106]="\u00B2";
+		keys[107]="\u00B0";
+		keys[108]="\u00B5";
+		keys[109]="\u00AB";
+		keys[110]="\u00BB";
+		keys[111]="<";
+		keys[112]=">";
+		*/
 
 		// put keys on buttons
-		for (var i=1; i<=26; i++) {
+		i = 1;
+		for (i; i <= shiftOffset; i++) {
 			setSoValue(target['key'+twoDigits(i)], 'text', keys[i-1]);
 		}
 	
@@ -206,10 +228,10 @@ var tmp = function () {
 	};
 	
 	target.doOK = function () {
-		var cmd, result, len, changeDir, exitError, exitCode;
+		var cmd, result, len, changeDir, exitError, exitCode, exitcodeStatusInfo, exitInfo;
 		// get currentLine
 		cmd = target.getVariable("current_line");
-		if (cmd === "exit") target.doQuit();
+		if (cmd === "exit") { target.doQuit(); }
 		
 		// add command to previousCommands array
 		if (cmd !== "") {
@@ -279,7 +301,17 @@ var tmp = function () {
 				currentDir = previousDir;
 				exitError = e.indexOf("exit code: ");
 				if (exitError>0) {
-					exitCode = e.substring(exitError + 11);
+					exitCode = parseInt(e.substring(exitError + 11),10);
+					//change 140 if higher exitcodes are added
+					// added to avoid out of bound exceptions
+					if (exitCode < 140) {
+					  exitcodeStatusInfo = ["","Operation not permitted","No such file or directory","No such process","Interrupted system call","Input/output error","No such device or address","Argument list too long","Exec format error","Bad file number","No child processes","Resource temporarily unavailable","Out of memory","Permission denied","Bad address","Block device required","Device or resource busy","File exists","Invalid cross-device link","No such device","Not a directory","Is a directory","Invalid argument","Too many open files in system","Too many open files","Inappropriate ioctl for device","Text file busy","File too large","No space left on device","Illegal seek","Read-only file system","Too many links","Broken pipe","Numerical argument out of domain","Numerical result out of range","Resource deadlock avoided","File name too long","No record locks available","Function not implemented","Directory not empty","Too many symbolic links encountered","Error 41 no description","No message of desired type","Identifier removed","Channel number out of range","Level 2 not synchronized","Level 3 halted","Level 3 reset","Link number out of range","Protocol driver not attached","No CSI structure available","Level 2 halted","Invalid exchange","Invalid request descriptor","Exchange full","No anode","Invalid request code","Invalid slot","Error 58 no description","Bad font file format","Device not a stream","No data available","Timer expired","Out of streams resources","Machine is not on the network","Package not installed","Object is remote","Link has been severed","Advertise error","Srmount error","Communication error on send","Protocol error","Multihop attempted","RFS specific error","Not a data message","Value too large for defined data type","Name not unique on network","File descriptor in bad state","Remote address changed","Can not access a needed shared library","Accessing a corrupted shared library",".lib section in a.out corrupted","Attempting to link in too many shared libraries","Cannot exec a shared library directly","Illegal byte sequence","Interrupted system call should be restarted","Streams pipe error","Too many users","Socket operation on non-socket","Destination address required","Message too long","Protocol wrong type for socket","Protocol not available","Protocol not supported","Socket type not supported","Operation not supported","Protocol family not supported","Address family not supported by protocol","Address already in use","Cannot assign requested address","Network is down","Network is unreachable","Network dropped connection on reset","Software caused connection abort","Connection reset by peer","No buffer space available","Transport endpoint is already connected","Transport endpoint is not connected","Cannot send after transport endpoint shutdown","Too many references: cannot splice","Connection timed out","Connection refused","Host is down","No route to host","Operation already in progress","Operation now in progress","Stale NFS file handle","Structure needs cleaning","Not a XENIX named type file","No XENIX semaphores available","Is a named type file","Remote I/O error","Disk quota exceeded","No medium found","Wrong medium type","Error 125 no description","Command cannot execute","Command not found","Error 128 no description","Error 129 no description","Error 130 no description","Error 131 no description","Error 132 no description","Error 133 no description","Error 134 no description","Error 135 no description","Error 136 no description","Error 137 no description","Error 138 no description","Segmentation fault"];
+					  exitInfo = exitcodeStatusInfo[exitCode];
+					} else {
+					  exitInfo = "Unknown exception";
+					}
+					/*
+					 * Disabled by drMerry replaced with array
 					switch(exitCode) {
 						case "1":
 							e = "Operation not permitted";
@@ -657,9 +689,10 @@ var tmp = function () {
 							e = "Segmentation fault";
 							break;
 						default:
-					}
+					}*/
 				}
-				tempOutput = tempOutput + cmd + "\nError: " + e + "\n" + currentDir + "> ";
+				//use var rather than changing e.
+				tempOutput = tempOutput + cmd + "\nError: " + exitInfo + "\n" + currentDir + "> ";
 				this.setOutput(tempOutput);
 			}
 		}
@@ -690,8 +723,8 @@ var tmp = function () {
 	target.doButtonClick = function (sender) {
 		var id, n, numCommands, currentLine;
 		id = getSoValue(sender, "id");
-		n = id.substring(7, 10);	
-		if (n == "PRE") {
+		n = id.substring(7, 10);
+		  if (n === "PRE") {
 			// copy previous command into command box
 			numCommands = previousCommands.length;
 			if (numCommands !== 0) {
@@ -706,7 +739,7 @@ var tmp = function () {
 				target.setVariable("current_line",currentLine);
 			}
 			return;
-		}		
+		  }
 	};
 
 	target.doPrevious = function () {
@@ -766,7 +799,7 @@ var tmp = function () {
 			mouseEnter.call(target.SYMBOL);
 			mouseLeave.call(target.SYMBOL);
 		}
-		for (i=1; i<=26; i++) {
+		for (i=1; i <= shiftOffset; i++) {
 			key = 'key'+twoDigits(i);
 			setSoValue(target[key], 'text', keys[n+i]);
 			mouseEnter.call(target[key]);
@@ -774,7 +807,7 @@ var tmp = function () {
 		}
 		if (hasNumericButtons) {
 			// highlight active key
-			this.ntHandleEventsDlg;
+			target.ntHandleEventsDlg();
 		}
 	};
 
@@ -811,18 +844,20 @@ var tmp = function () {
 	};
 	
 	target.addCharacter = function (id) {
-		var n = parseInt(id.substring(3, 5));
-		if (symbols) { n = n + symbolsOffset };
-		if (shifted) { n = n + shiftOffset };
-		var character = keys[n-1];
-		var currentLine = target.getVariable("current_line");
+		var n = parseInt(id.substring(3, 5), 10), character, currentLine;
+		if (symbols) { n = n + symbolsOffset; }
+		if (shifted) { n = n + shiftOffset; }
+		character = keys[n-1];
+		currentLine = target.getVariable("current_line");
 		currentLine = currentLine + character;
 		target.currentText.setValue(currentLine);
 		target.setVariable("current_line",currentLine);		
 	};
 
 	target.ntHandleEventsDlg = function () {
-		if (custSel === 5) {
+	  //FIXME find a way to automate this lookup while adding keys is easier now, but looping through keys isn't yet
+		switch (custSel) {	
+		  case 5: 
 			mouseEnter.call(target.btn_Ok);
 			mouseLeave.call(target.BUTTON_PRE);
 			mouseLeave.call(target.key01);
@@ -835,194 +870,194 @@ var tmp = function () {
 			mouseLeave.call(target.key08);
 			mouseLeave.call(target.key09);
 			mouseLeave.call(target.key10);
-		}
-		if (custSel === 6) {
+			break;
+		  case 6:
 			mouseLeave.call(target.btn_Ok);
 			mouseEnter.call(target.BUTTON_PRE);
 			mouseLeave.call(target.key10);
-		}
-		if (custSel == 7) {
+			break;
+		  case 7:
 			mouseEnter.call(target.key01);
 			mouseLeave.call(target.key02);
 			mouseLeave.call(target.key11);
-		}
-		if (custSel == 8) {
+			break;
+		  case 8:
 			mouseLeave.call(target.key01);
 			mouseEnter.call(target.key02);
 			mouseLeave.call(target.key03);
 			mouseLeave.call(target.key12);
-		}
-		if (custSel == 9) {
+			break;
+		  case 9:
 			mouseLeave.call(target.key02);
 			mouseEnter.call(target.key03);
 			mouseLeave.call(target.key04);
 			mouseLeave.call(target.key13);
-		}
-		if (custSel == 10) {
+			break;
+		  case 10:
 			mouseLeave.call(target.key03);
 			mouseEnter.call(target.key04);
 			mouseLeave.call(target.key05);
 			mouseLeave.call(target.key14);
-		}
-		if (custSel == 11) {
+			break;
+		  case 11:
 			mouseLeave.call(target.key04);
 			mouseEnter.call(target.key05);
 			mouseLeave.call(target.key06);
 			mouseLeave.call(target.key15);
-		}
-		if (custSel == 12) {
+			break;
+		  case 12:
 			mouseLeave.call(target.key05);
 			mouseEnter.call(target.key06);
 			mouseLeave.call(target.key07);
 			mouseLeave.call(target.key16);
-		}
-		if (custSel == 13) {
+			break;
+		  case 13:
 			mouseLeave.call(target.key06);
 			mouseEnter.call(target.key07);
 			mouseLeave.call(target.key08);
 			mouseLeave.call(target.key17);
-		}
-		if (custSel == 14) {
+			break;
+		  case 14:
 			mouseLeave.call(target.key07);
 			mouseEnter.call(target.key08);
 			mouseLeave.call(target.key09);
 			mouseLeave.call(target.key18);
-		}
-		if (custSel == 15) {
+			break;
+		  case 15:
 			mouseLeave.call(target.key08);
 			mouseEnter.call(target.key09);
 			mouseLeave.call(target.key10);
 			mouseLeave.call(target.key19);
-		}
-		if (custSel == 16) {
+			break;
+		  case 16:
 			mouseLeave.call(target.key09);
 			mouseEnter.call(target.key10);
 			mouseLeave.call(target.btn_Ok);
 			mouseLeave.call(target.BUTTON_PRE);
-		}
-		if (custSel == 17) {
+			break;
+		  case 17:
 			mouseLeave.call(target.key01);
 			mouseEnter.call(target.key11);
 			mouseLeave.call(target.key12);
 			mouseLeave.call(target.SHIFT);
-		}
-		if (custSel == 18) {
+			break;
+		  case 18:
 			mouseLeave.call(target.key02);
 			mouseLeave.call(target.key11);
 			mouseEnter.call(target.key12);
 			mouseLeave.call(target.key13);
 			mouseLeave.call(target.key20);
-		}
-		if (custSel == 19) {
+			break;
+		  case 19:
 			mouseLeave.call(target.key03);
 			mouseLeave.call(target.key12);
 			mouseEnter.call(target.key13);
 			mouseLeave.call(target.key14);
 			mouseLeave.call(target.key21);
-		}
-		if (custSel == 20) {
+			break;
+		  case 20:
 			mouseLeave.call(target.key04);
 			mouseLeave.call(target.key13);
 			mouseEnter.call(target.key14);
 			mouseLeave.call(target.key15);
 			mouseLeave.call(target.key22);
-		}
-		if (custSel == 21) {
+			break;
+		  case 21:
 			mouseLeave.call(target.key05);
 			mouseLeave.call(target.key14);
 			mouseEnter.call(target.key15);
 			mouseLeave.call(target.key16);
 			mouseLeave.call(target.key23);
-		}
-		if (custSel == 22) {
+			break;
+		  case 22:
 			mouseLeave.call(target.key06);
 			mouseLeave.call(target.key15);
 			mouseEnter.call(target.key16);
 			mouseLeave.call(target.key17);
 			mouseLeave.call(target.key24);
-		}
-		if (custSel == 23) {
+			break;
+		  case 23:
 			mouseLeave.call(target.key07);
 			mouseLeave.call(target.key16);
 			mouseEnter.call(target.key17);
 			mouseLeave.call(target.key18);
 			mouseLeave.call(target.key25);
-		}
-		if (custSel == 24) {
+			break;
+		  case 24:
 			mouseLeave.call(target.key08);
 			mouseLeave.call(target.key17);
 			mouseEnter.call(target.key18);
 			mouseLeave.call(target.key19);
 			mouseLeave.call(target.key26);
-		}
-		if (custSel == 25) {
+			break;
+		  case 25:
 			mouseLeave.call(target.key09);
 			mouseLeave.call(target.key10);
 			mouseLeave.call(target.key18);
 			mouseEnter.call(target.key19);
-		}
-		if (custSel == 26) {
+			break;
+		  case 26:
 			mouseLeave.call(target.key11);
 			mouseLeave.call(target.key20);
 			mouseEnter.call(target.SHIFT);
 			mouseLeave.call(target.SYMBOL);
-		}
-		if (custSel == 27) {
+			break;
+		  case 27:
 			mouseLeave.call(target.key12);
 			mouseLeave.call(target.SHIFT);
 			mouseEnter.call(target.key20);
 			mouseLeave.call(target.key21);
 			mouseLeave.call(target.SYMBOL);
-		}
-		if (custSel == 28) {
+			break;
+		  case 28:
 			mouseLeave.call(target.key13);
 			mouseLeave.call(target.key20);
 			mouseEnter.call(target.key21);
 			mouseLeave.call(target.key22);
 			mouseLeave.call(target.SPACE);
-		}
-		if (custSel == 29) {
+			break;
+		  case 29:
 			mouseLeave.call(target.key14);
 			mouseLeave.call(target.key21);
 			mouseEnter.call(target.key22);
 			mouseLeave.call(target.key23);
 			mouseLeave.call(target.SPACE);
-		}
-		if (custSel == 30) {
+			break;
+		  case 30:
 			mouseLeave.call(target.key15);
 			mouseLeave.call(target.key22);
 			mouseEnter.call(target.key23);
 			mouseLeave.call(target.key24);
 			mouseLeave.call(target.SPACE);
-		}
-		if (custSel == 31) {
+			break;
+		  case 31:
 			mouseLeave.call(target.key16);
 			mouseLeave.call(target.key23);
 			mouseEnter.call(target.key24);
 			mouseLeave.call(target.key25);
 			mouseLeave.call(target.SPACE);
-		}
-		if (custSel == 32) {
+			break;
+		  case 32:
 			mouseLeave.call(target.key17);
 			mouseLeave.call(target.key24);
 			mouseEnter.call(target.key25);
 			mouseLeave.call(target.key26);
 			mouseLeave.call(target.SPACE);
-		}
-		if (custSel == 33) {
+			break;
+		  case 33:
 			mouseLeave.call(target.key18);
 			mouseLeave.call(target.key19);
 			mouseLeave.call(target.key25);
 			mouseEnter.call(target.key26);
 			mouseLeave.call(target.BACK);
-		}
-		if (custSel == 34) {
+			break;
+		  case 34:
 			mouseLeave.call(target.SHIFT);
 			mouseLeave.call(target.key20);
 			mouseLeave.call(target.SPACE);
 			mouseEnter.call(target.SYMBOL);
-		}
-		if (custSel == 35) {
+			break;
+		  case 35:
 			mouseLeave.call(target.key21);
 			mouseLeave.call(target.key22);
 			mouseLeave.call(target.key23);
@@ -1032,18 +1067,21 @@ var tmp = function () {
 			mouseLeave.call(target.SYMBOL);
 			mouseLeave.call(target.BACK);
 			mouseLeave.call(target.btn_Ok);
-		}	
-		if (custSel == 36) {
+			break;
+		  case 36:
 			mouseLeave.call(target.key26);
 			mouseLeave.call(target.SPACE);
 			mouseEnter.call(target.BACK);
+			break;
 		}
 		return;
 	};
 
 	target.moveCursor = function (direction) {
+	  //FIXME Update the function for the add keys
+	  //Find a better way to automate this.
 		switch (direction) {
-			case "up" : {
+			case "up" :
 				if (custSel===6) {
 					prevSel=custSel;
 					custSel=5;
@@ -1056,7 +1094,7 @@ var tmp = function () {
 					prevSel=custSel;
 					custSel=custSel-10;
 					target.ntHandleEventsDlg();
-				} else if (custSel==26) {
+				} else if (custSel===26) {
 					prevSel=custSel;
 					custSel=17;
 					target.ntHandleEventsDlg();				
@@ -1064,22 +1102,21 @@ var tmp = function () {
 					prevSel=custSel;
 					custSel=custSel-9;
 					target.ntHandleEventsDlg();
-				} else if (custSel==34) {
+				} else if (custSel===34) {
 					prevSel=custSel;
 					custSel=26;
 					target.ntHandleEventsDlg();				
-				} else if (custSel==35) {
+				} else if (custSel===35) {
 					prevSel=custSel;
 					custSel=30;
 					target.ntHandleEventsDlg();				
-				} else if (custSel==36) {
+				} else if (custSel===39) {
 					prevSel=custSel;
 					custSel=33;
 					target.ntHandleEventsDlg();				
 				}
-				break
-			}
-			case "down" : {
+				break;
+			case "down" : 
 				if (custSel===5) {
 					prevSel=custSel;
 					custSel=6;
@@ -1110,16 +1147,16 @@ var tmp = function () {
 					target.ntHandleEventsDlg();			
 				} else if (custSel===33) {
 					prevSel=custSel;
-					custSel=36;
+					custSel=39;
 					target.ntHandleEventsDlg();			
 				}
-				break
-			}
-			case "left" : {
+				break;
+			case "left" : 
 				if (custSel===6) {
 					prevSel=custSel;
 					custSel=16;
 					target.ntHandleEventsDlg();	
+				/*all do the same, so combine and add new keys and exclude the non-involved keys
 				} else if ((custSel>7) && (custSel<17)) {
 					prevSel=custSel;
 					custSel--;
@@ -1136,14 +1173,20 @@ var tmp = function () {
 					prevSel=custSel;
 					custSel--;
 					target.ntHandleEventsDlg();	
+				}*/
+				} else if ((custSel > 7) && (custSel !== 17) && (custSel !== 26) && (custSel !== 34)) {
+					prevSel=custSel;
+					custSel--;
+					target.ntHandleEventsDlg();	
 				}
-				break
-			}		
-			case "right" : {
+				break;
+			case "right" :
 				if (custSel===16) {
 					prevSel=custSel;
 					custSel=6;
 					target.ntHandleEventsDlg();	
+				/*all do the same, so combine and add new keys and exclude the non-involved keys
+				  
 				} else if ((custSel>6) && (custSel<16)) {
 					prevSel=custSel;
 					custSel++;
@@ -1160,46 +1203,125 @@ var tmp = function () {
 					prevSel=custSel;
 					custSel++;
 					target.ntHandleEventsDlg();	
+				}*/
+				} else if ((custSel > 6) && (custSel !== 16) && (custSel !== 25) && (custSel !== 33) && (custSel < 39)) {
+					prevSel=custSel;
+					custSel++;
+					target.ntHandleEventsDlg();	
 				}
-				break
-			}
-			return;
+				break;
 		}
+		return;
 	};
 	
 	target.doCenterF = function () {
-		if (custSel === 5) target.btn_Ok.click();
-		if (custSel === 6) target.BUTTON_PRE.click();
-		if (custSel === 7) target.key01.click();
-		if (custSel === 8) target.key02.click();
-		if (custSel === 9) target.key03.click();
-		if (custSel === 10) target.key04.click();
-		if (custSel === 11) target.key05.click();
-		if (custSel === 12) target.key06.click();
-		if (custSel === 13) target.key07.click();
-		if (custSel === 14) target.key08.click();
-		if (custSel === 15) target.key09.click();
-		if (custSel === 16) target.key10.click();
-		if (custSel === 17) target.key11.click();
-		if (custSel === 18) target.key12.click();
-		if (custSel === 19) target.key13.click();
-		if (custSel === 20) target.key14.click();
-		if (custSel === 21) target.key15.click();
-		if (custSel === 22) target.key16.click();
-		if (custSel === 23) target.key17.click();
-		if (custSel === 24) target.key18.click();
-		if (custSel === 25) target.key19.click();
-		if (custSel === 26) target.SHIFT.click();
-		if (custSel === 27) target.key20.click();
-		if (custSel === 28) target.key21.click();
-		if (custSel === 29) target.key22.click();
-		if (custSel === 30) target.key23.click();
-		if (custSel === 31) target.key24.click();
-		if (custSel === 32) target.key25.click();
-		if (custSel === 33) target.key26.click();
-		if (custSel === 34) target.SYMBOL.click();
-		if (custSel === 35) target.SPACE.click();
-		if (custSel === 36) target.BACK.click();
+	  switch (custSel) {
+		case 5:
+			target.btn_Ok.click();
+			break;
+		case 6:
+			target.BUTTON_PRE.click();
+			break;
+		case 7:
+			target.key01.click();
+			break;
+		case 8:
+			target.key02.click();
+			break;
+		case 9:
+			target.key03.click();
+			break;
+		case 10:
+			target.key04.click();
+			break;
+		case 11:
+			target.key05.click();
+			break;
+		case 12:
+			target.key06.click();
+			break;
+		case 13:
+			target.key07.click();
+			break;
+		case 14:
+			target.key08.click();
+			break;
+		case 15:
+			target.key09.click();
+			break;
+		case 16:
+			target.key10.click();
+			break;
+		case 17:
+			target.key11.click();
+			break;
+		case 18:
+			target.key12.click();
+			break;
+		case 19:
+			target.key13.click();
+			break;
+		case 20:
+			target.key14.click();
+			break;
+		case 21:
+			target.key15.click();
+			break;
+		case 22:
+			target.key16.click();
+			break;
+		case 23:
+			target.key17.click();
+			break;
+		case 24:
+			target.key18.click();
+			break;
+		case 25:
+			target.key19.click();
+			break;
+		case 26:
+			target.SHIFT.click();
+			break;
+		case 27:
+			target.key20.click();
+			break;
+		case 28:
+			target.key21.click();
+			break;
+		case 29:
+			target.key22.click();
+			break;
+		case 30:
+			target.key23.click();
+			break;
+		case 31:
+			target.key24.click();
+			break;
+		case 32:
+			target.key25.click();
+			break;
+		case 33:
+			target.key26.click();
+			break;
+		case 34:
+			target.SYMBOL.click();
+			break;
+		case 35:
+			target.SPACE.click();
+			break;
+		case 36:
+			target.BACK.click();
+			break;
+		case 37:
+		  target.key27.click();
+		  break;
+		case 38:
+		  target.key28.click();
+		  break;
+		case 39:
+		  target.key29.click();
+		  break;
+	  }
 		return;
 	};
 };
