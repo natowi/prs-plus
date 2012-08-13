@@ -62,15 +62,21 @@
 //	2012-03-31 Ben Chenoweth - Fix for filename as comment and filesize/extension in comment for archives and unscanned files
 //	2012-06-23 drMerry - Added Global translation
 //	2012-08-12 Mark Nord - moved custom FskCache.diskSupport.ignoreDirs froms bootstrap
-tmp = function() {
-	var log, L, GL, startsWith, trim, BrowseFolders, TYPE_SORT_WEIGHTS, compare, sorter, folderConstruct, 
+//	2012-08-13 drMerry - Updated some code (combination of speed-up and minimize of code)
+var tmp = function() {
+	var log, L, LG, startsWith, trim, BrowseFolders, TYPE_SORT_WEIGHTS, compare, sorter, folderConstruct, 
 		createFolderNode, createMediaNode, favourites, loadFavFolders, folderRootConstruct,
 		compareFields, supportedMIMEs, supportedArchives, createArchiveNode, createLazyInitNode,
 		constructLazyNode, archiveBookNodeEnter, ACTION_ICON, doCopyAndOpen, doCopy, doOpenHere, doOpenSongHere,
-		supportedExtensions, supportedComics, browsingArchive, currentArchivePath, currentNode, oldCurrentBook,
-		oldCurrentNode, doUnpackHere, doGotoParent, browseFoldersNode, setPictureIndexCount, onEnterPicture,
-		imageZoomOverlayModel_doNext, imageZoomOverlayModel_onCallback, ENABLED, DISABLED;
-	
+		supportedExtensions, supportedComics, supportedAudio, browsingArchive, currentArchivePath, currentNode, oldCurrentBook,
+		oldCurrentNode, doGotoParent, browseFoldersNode, setPictureIndexCount, onEnterPicture,
+		imageZoomOverlayModel_doNext, imageZoomOverlayModel_onCallback, ENABLED, DISABLED,
+		//fuctions
+		archiveRootDestruct, archiveRootConstruct, archiveFolderConstruct, archiveFolderDestruct, archiveItemDestruct,
+		doArchiveCopy, doArchiveCopyAndOpen, oldDoGotoNextPicture, oldDoGotoPreviousPicture, oldOnEnterPicture,
+		oldSetPictureIndexCount, archiveDummyEnter,
+		oldPlaySongCallback, newDoGotoFirstSong, newDoGotoPreviousSong;
+		
 	ENABLED = "enabled";
 	DISABLED = "disabled";
 	log = Core.log.getLogger("BrowseFolders");
@@ -172,7 +178,7 @@ tmp = function() {
 	
 	createLazyInitNode = function (path, title, parent, needsMount) {
 		var node, ext;
-		if (needsMount !== undefined || BrowseFolders.options.cardScan === DISABLED && !startsWith(path, "/Data")) {
+		if ((needsMount !== undefined) || ((BrowseFolders.options.cardScan === DISABLED) && (!startsWith(path, "/Data")))) {
 			// if SD/MS scan is disabled and we are not in internal memory			
 			ext = Core.io.extractExtension(path);
 			if (ext === "mp3") {
@@ -181,7 +187,7 @@ tmp = function() {
 					icon: "AUDIO",
 					parent: parent,
 					construct: constructLazyNode
-				})
+				});
 			} else {
 				node = Core.ui.createContainerNode({
 						title: title,
@@ -240,6 +246,7 @@ tmp = function() {
 	};
 		
 	createMediaNode = function (path, title, parent, dummy, needsMount) {
+	  //TODO dummy is unused
 		var node, mime, extension, size, sizeStr;
 		node = needsMount !== undefined ? null : Core.media.createMediaNode(path, parent);
 		extension = Core.io.extractExtension(path);
@@ -259,13 +266,13 @@ tmp = function() {
 			// Either file that is not a media, or unscanned
 			mime = FileSystem.getMIMEType(path);
 			if ((supportedMIMEs[mime]) || (supportedAudio[extension])) {
-				node = createLazyInitNode(path, title, parent, needsMount);
+			  node = createLazyInitNode(path, title, parent, needsMount);
 			} else if (supportedArchives[extension]) {
- 				node = createArchiveNode(path, title, parent, needsMount);
- 			} else {
-				// or convertable, 
-				// convertable node needs media constructor for converted file
-				node = Core.convert.createMediaNode(path, title, parent, createMediaNode, needsMount);
+			  node = createArchiveNode(path, title, parent, needsMount);
+			} else {
+			  // or convertable, 
+			  // convertable node needs media constructor for converted file
+			  node = Core.convert.createMediaNode(path, title, parent, createMediaNode, needsMount);
 			}
 			if (node) {
 				if (BrowseFolders.options.sortMode === "filenameAsComment") {
@@ -404,7 +411,7 @@ tmp = function() {
 						parent.shuffleList.initialize(parent.nodes.length);
 					}
 				}
-			} catch(ignore) {}
+			} catch(ignored) {}
 			
 			this.gotoNode(mediaNode, kbook.model);
 		}
@@ -471,8 +478,8 @@ tmp = function() {
 		}
 	};
 	
-	var archiveRootConstruct = function () {
-		var d, f, list;
+	archiveRootConstruct = function () {
+		var d, f, list, i;
 		
 		try {
 			this.insidePath = '';
@@ -503,16 +510,17 @@ tmp = function() {
 			}
 			
 			list = Core.archiver.list(kbook.model.currentArchive.path).split('\n');
-
-			for (i = 0; i < list.length; i++) {
+			i = 0;
+			for (i; i < list.length; i++) {
 				switch (list[i].slice(0,1)) {
 					case 'f':
 						f.push(list[i].split('\t')[2]);
 						break;
 					case 'd':
 						d.push(list[i].split('\t')[2]);
+						break;
 				}
-			};
+			}
 			d.sort();
 			f.sort();
 		} catch(e) {
@@ -527,8 +535,8 @@ tmp = function() {
 		archiveFolderConstruct.call(this);		
 	};
 
-	var archiveRootDestruct = function () {
-		var parent;
+	archiveRootDestruct = function () {
+		var parent, path;
 		try {
 			browsingArchive = false;
 			parent = this.parent;
@@ -540,7 +548,7 @@ tmp = function() {
 		} catch(e) {
 			log.error("Error in archiveRootDestruct", e);
 		}
-	}
+	};
 	
 	// Archive menu option to delete current archive, called from main.xml (x50)
 	if (kbook.iconKindField) {
@@ -576,16 +584,17 @@ tmp = function() {
 					} else {
 						this.gotoNode(foldersNode, kbook.model);
 					}
-				}
+				};
 				dialog.onNo = function () {
 					Core.ui.doBlink();
-				}
+				};
 				dialog.openDialog(L('DELETE_ARCHIVE'), 0);
 			}
-		}
+		};
 		
 		kbook.model.container.sandbox.OPTION_OVERLAY_COLLECTION.sandbox.doDeleteArchive = function () {
-			var currentArchive, path, cn, dialog;
+			var currentArchive, path, dialog;
+			//unused cn
 			currentArchive = kbook.model.currentArchive;
 			path = currentArchive.path;
 			this.doOption();
@@ -616,25 +625,28 @@ tmp = function() {
 					} else {
 						this.gotoNode(foldersNode, kbook.model);
 					}
-				}
+				};
 				dialog.onNo = function () {
 					Core.ui.doBlink();
-				}
+				};
 				dialog.openDialog(L('DELETE_ARCHIVE'), 0);
 			}
-		}
+		};
 	}
 	
-	var archiveFolderConstruct = function () {
-		var currentArchive, node, nodes, d, f, path, i, ext, fileIcon, bookNode;
+	archiveFolderConstruct = function () {
+		var currentArchive, node, nodes, d, f, path, i, ext, fileIcon, fLength, dLength,
+		enterAction;
 		currentArchive = kbook.model.currentArchive;
 		nodes = this.nodes = [];
 		d = currentArchive.dirs;
 		f = currentArchive.files;
 		path = this.insidePath;
 		
+		i=0;
+		dLength = d.length;
 		// Create folder nodes
-		for (i = 0; i < d.length; i++) {
+		for (i; i < dLength; i++) {
 			idx = d[i].indexOf(path);
 			if (idx === 0) {
 				rest = d[i].slice(idx + path.length);
@@ -664,8 +676,10 @@ tmp = function() {
 			}
 		}
 		
+		i=0;
+		fLength = f.length;
 		// Create file nodes
-		for (i = 0; i < f.length; i++) {
+		for (i; i < fLength; i++) {
 			idx = f[i].indexOf(path);
 			if (idx === 0) {
 				rest = f[i].slice(idx + path.length);
@@ -715,8 +729,9 @@ tmp = function() {
 		}
 	};
 	
-	var archiveFolderDestruct = function () {
-		var currentArcive, nodes, n, i, file, item, source;
+	archiveFolderDestruct = function () {
+		var currentArchive, nodes;
+		//unused i, file, item, n, source, bookNode
 		currentArchive = kbook.model.currentArchive;
 		try {
 			browsingArchive = false;
@@ -730,8 +745,9 @@ tmp = function() {
 		}
 	};
 	
-	var archiveItemDestruct = function (model) {
-		var node, current, path, item, media, source;
+	archiveItemDestruct = function (model) {
+		var node, current, path, media, source;
+		//unused item
 		try {
 			node = this;
 			current = kbook.model.currentBook;
@@ -769,8 +785,8 @@ tmp = function() {
 				Core.io.emptyDirectory(path);
 				Core.io.deleteDirectory(path);
 			}
-		} catch(e) {
-			log.error("Error in archiveItemDestruct trying to delete temp directory", e);
+		} catch(err) {
+			log.error("Error in archiveItemDestruct trying to delete temp directory", err);
 		}
 		// standard node.exit code:
 		if (this.onExit) {
@@ -782,9 +798,9 @@ tmp = function() {
 			kbook.model.onChangeBook(oldCurrentBook);
 		}
 		//kbook.root.update(kbook.model);
-	}
+	};
 	
-	var archiveDummyEnter = function () {
+	archiveDummyEnter = function () {
 		var currentArchive, path, file, node, needsMount, mime, media, source;
 		currentArchive = kbook.model.currentArchive;
 		try {
@@ -834,7 +850,7 @@ tmp = function() {
 			} else {
 				Core.ui.showMsg(L("MSG_ERROR_UNPACK"));
 			}
-		} catch (ignore) {
+		} catch (ignoring) {
 			Core.ui.showMsg(L("MSG_ERROR_UNPACK"));
 			Core.shell.umount(needsMount);
 		} finally {
@@ -842,10 +858,11 @@ tmp = function() {
 				Core.shell.umount(needsMount);
 			}		
 		}
-	}
+	};
 
 	doArchiveCopy = function () {
-		var fileDestination, fileTemp, path, currentArchive, needsMount, node;
+		var fileDestination, fileTemp, path, currentArchive, needsMount;
+		//unused node
 		Core.ui.showMsg(L("MSG_COPYING_BOOK"), 1);
 		try {
 			// mount, if needed
@@ -880,7 +897,7 @@ tmp = function() {
 		} catch (ignore) {
 			Core.ui.showMsg(L("MSG_ERROR_COPYING_BOOK"));	
 		}
-	}
+	};
 	
 	doArchiveCopyAndOpen = function () {
 		var success, fileDestination, currentArchive, fileTemp, path, needsMount, foldersNode, nodes, targetFolder, imNode, i, n;
@@ -947,12 +964,12 @@ tmp = function() {
 				this.gotoNode(foldersNode, kbook.model);
 			}
 		}
-	}
+	};
 	
 	//-----------------------------------------------------------------------------------------------------------------------------
 	// functions for BrowseComics
 	//-----------------------------------------------------------------------------------------------------------------------------
-	var oldDoGotoNextPicture = kbook.model.doGotoNextPicture;
+	oldDoGotoNextPicture = kbook.model.doGotoNextPicture;
 	kbook.model.doGotoNextPicture = function () {
 		var parent, nodes, nextNode, i, n, cn;
 		if (browsingArchive) {
@@ -975,9 +992,9 @@ tmp = function() {
 		} else {
 			oldDoGotoNextPicture.apply(this);
 		}
-	}
+	};
 	
-	var oldDoGotoPreviousPicture = kbook.model.doGotoPreviousPicture;
+	oldDoGotoPreviousPicture = kbook.model.doGotoPreviousPicture;
 	kbook.model.doGotoPreviousPicture = function () {
 		var parent, nodes, prevNode, i, n, cn;
 		if (browsingArchive) {
@@ -1000,10 +1017,11 @@ tmp = function() {
 		} else {
 			oldDoGotoPreviousPicture.apply(this);
 		}
-	}
+	};
 	
-	var oldOnEnterPicture = kbook.model.onEnterPicture;
+	oldOnEnterPicture = kbook.model.onEnterPicture;
 	onEnterPicture = function (node) {
+	  //TODO node is unused
 	var parent, nodes, i, n, val, picture, LL;
 		oldOnEnterPicture.apply(this, arguments);
 		if (browsingArchive) {
@@ -1020,47 +1038,52 @@ tmp = function() {
 			// 505/300/600
 			parent = currentNode.parent;
 			nodes = parent.nodes;
-			for (i = 0, n = nodes.length; i < n; i++) {
+			i = 0;
+			n = nodes.length;
+			for (i, n; i < n; i++) {
 				if (nodes[i].insidePath === currentNode.insidePath) {
 					break;
 				}
 			}
 			i++;
 			val = i + " " + LL("OF")+ " " + n;
-			if (this.PICTURE_INDEX_COUNT != val) {
+			if (this.PICTURE_INDEX_COUNT !== val) {
 				this.PICTURE_INDEX_COUNT = val;
 				this.changed();
 			}			
 		}
-	}
+	};
 	
-	var oldSetPictureIndexCount = kbook.model.setPictureIndexCount;
+	oldSetPictureIndexCount = kbook.model.setPictureIndexCount;
 	setPictureIndexCount = function (node) {
+	  //TODO node is unused
 		var parent, nodes, i, n, val;
 		if (browsingArchive) {
 			parent = currentNode.parent;
 			nodes = parent.nodes;
-			for (i = 0, n = nodes.length; i < n; i++) {
+			i = 0;
+			n = nodes.length;
+			for (i, n; i < n; i++) {
 				if (nodes[i].insidePath === currentNode.insidePath) {
 					break;
 				}
 			}
 			i++;
 			val = i + 'fskin:/l/strings/STR_UI_PARTS_OF'.idToString() + n;
-			if (this.PICTURE_INDEX_COUNT != val) {
+			if (this.PICTURE_INDEX_COUNT !== val) {
 				this.PICTURE_INDEX_COUNT = val;
 				this.changed();
 			}		
 		} else {
 			oldSetPictureIndexCount.apply(this, arguments);
 		}
-	}
+	};
 
 	// move to top on next page for 600/x50
 	imageZoomOverlayModel_doNext = function () {
 		var timer;
 		if (browsingArchive) {
-			if (this.SHOW == true) {
+			if (this.SHOW === true) {
 				this.container.target.bubble('doNext');
 				this.container.zoomChange();
 				try {
@@ -1068,7 +1091,7 @@ tmp = function() {
 				} catch(ignore) {}
 				try {
 					timer = this.timer = new HardwareTimer(); //x50
-				} catch(ignore) {}
+				} catch(isIgnore) {}
 				timer.target = this;
 				timer.onCallback = imageZoomOverlayModel_onCallback;
 				timer.onClockChange = imageZoomOverlayModel_onCallback;
@@ -1081,20 +1104,21 @@ tmp = function() {
 			this.closeCurrentOverlay();
 			this.container.target.bubble('doNext');
 		}
-	}
+	};
 
 	imageZoomOverlayModel_onCallback = function () {
 		var target;
 		target = this.target;
 		target.timer = null;
 		kbook.model.doSomething('scrollTo', -100, -100);
-	}
+	};
 	
 	//-----------------------------------------------------------------------------------------------------------------------------
 	// Functions for BrowseMusic
 	//-----------------------------------------------------------------------------------------------------------------------------
-	var oldPlaySongCallback = kbook.model.playSongCallback;
+	oldPlaySongCallback = kbook.model.playSongCallback;
 	kbook.model.playSongCallback = function (data) {
+	  //TODO data is unused
 		var current, parent, nodes, i, n, LL;
 		oldPlaySongCallback.apply(this, arguments);
 		try {
@@ -1136,7 +1160,7 @@ tmp = function() {
 		if (child) {
 			if ((Core.config.model === '350') || (Core.config.model === '650') || (Core.config.model === '950')) {
 				time = kbook.movieData.getTime();
-				if (time != undefined && this.doPrevAcceptTime < time) {
+				if (time !== undefined && this.doPrevAcceptTime < time) {
 					kbook.movieData.setTime(0);
 					if (!this.getVariable('CONTROL')) {
 						this.container.sandbox.control = 1;
@@ -1191,7 +1215,7 @@ tmp = function() {
 	
 	// Construct "copy to IM", "copy to IM and open", "preview" node
 	archiveBookNodeEnter = function() {
-		var node, nodes, bookNodes, copyNode, copyAndOpenNode, previewNode;
+		var node, nodes, bookNodes, copyNode, copyAndOpenNode, previewNode, title;
 		title = Core.io.extractFileName(this.insidePath);
 		nodes = this.nodes = [];
 		node = Core.ui.createContainerNode({
@@ -1394,7 +1418,9 @@ tmp = function() {
 			
 			// Number of nodes created
 			nNodes = 0;
-			for (i = 0, n = roots.length; i < n; i++) {
+			i = 0;
+			n = roots.length;
+			for (i, n; i < n; i++) {
 				if (FileSystem.getFileInfo(roots[i] + "/")) {
 					idx = i;
 					nNodes++;
@@ -1406,7 +1432,9 @@ tmp = function() {
 				folderConstruct.call(this);
 				return;
 			} else {
-				for (i = 0, n = roots.length; i < n; i++) {
+			  i = 0
+			  n = roots.length;
+				for (i, n; i < n; i++) {
 					if (FileSystem.getFileInfo(roots[i] + "/")) {
 						nodes.push(createFolderNode(roots[i], rootTitles[i], this, rootIcons[i]));
 					}
