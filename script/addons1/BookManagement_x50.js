@@ -51,11 +51,18 @@
 //	2012-04-12 Ben Chenoweth - Added 'Reformat Current Book' option in Book Option Menu (LRF books only)
 //	2012-04-28 Ben Chenoweth - 350: Removed audio items from menu
 //	2012-08-11 drMerry - some typo/performance
+//	2012-08-13 drMerry - Updated some code for performance
 
-tmp = function() {
+var tmp = function() {
 
 	var L, LX, log, opt, bookChanged, trigger1, trigger2, trigger3, trigger4, tempNode, oldNode,
-		numCur, holdKey, model, devRoot, thumbnailsNode, homeGroup, constructRun, VALUE_TRUE, VALUE_FALSE;
+		numCur, holdKey, model, devRoot, thumbnailsNode, homeGroup, constructRun, VALUE_TRUE, VALUE_FALSE,
+		//Functions
+		oldOnEnterShortCutBook, oldIsNewspaper, oldIsPeriodical, oldOnChangeBook, createSubCollections,
+		oldKbookPlaylistNode, oldDrawRecord, readingProgressComment, oldOnEnterDeviceRoot, oldFinishCollectionEdit,
+		updateBookList, getDB, doSelectCollection, selectCollectionConstruct, selectCollectionDestruct, markAllBooks,
+		clearPageHists, createPageOptionSettings, enableCheckmarks, doContentSearch, cSearchTimer, oldExecSearch,
+		BookManagement_x50, searchBookContents, cSearchCallback, oldDoSearch;
 	
 	L = Core.lang.getLocalizer('BookManagement');
 	LX = Core.lang.LX;
@@ -73,7 +80,7 @@ tmp = function() {
 	VALUE_FALSE = L('VALUE_FALSE');
 	
 	// Treat Periodicals as Books	
-	var oldIsPeriodical = FskCache.text.isPeriodical;
+	oldIsPeriodical = FskCache.text.isPeriodical;
 	FskCache.text.isPeriodical = function () {
 		if (opt.PeriodicalsAsBooks === 'true') {
 			return false;
@@ -82,7 +89,7 @@ tmp = function() {
 		}
 	};
 	
-	var oldIsNewspaper = FskCache.text.isNewspaper;
+	oldIsNewspaper = FskCache.text.isNewspaper;
 	FskCache.text.isNewspaper = function () {
 		if (opt.PeriodicalsAsBooks === 'true') {
 			return false;
@@ -91,7 +98,7 @@ tmp = function() {
 		}
 	};
 	
-	var oldOnEnterShortCutBook = model.onEnterShortCutBook;
+	oldOnEnterShortCutBook = model.onEnterShortCutBook;
 	model.onEnterShortCutBook = function (node) {
 		if (opt.PeriodicalsAsBooks === 'true' && node.periodicalName) {
 			this.currentNode.gotoNode(node, this);
@@ -101,7 +108,7 @@ tmp = function() {
 	};
 	
 	// Keep new flag as is on opening book
-	var oldOnChangeBook = model.onChangeBook;
+	oldOnChangeBook = model.onChangeBook;
 	model.onChangeBook = function (node) {
 		var flag = node.opened;
 		if (this.currentBook) {
@@ -172,6 +179,7 @@ tmp = function() {
 				case 'manualCheck':
 					part.text = (opened) ? L('MARK_AS_UNREAD') : L('MARK_AS_READ');
 					part.u = (opened) ? 31 : 30;
+					break;
 			}
 		}
 		if (part.id === 'changeEPUBStyle') {
@@ -209,7 +217,7 @@ tmp = function() {
 	};
 	
 	// Hide default collections
-	var oldKbookPlaylistNode = kbook.root.kbookPlaylistNode.construct;
+	oldKbookPlaylistNode = kbook.root.kbookPlaylistNode.construct;
 	kbook.root.kbookPlaylistNode.construct = function () {
 		oldKbookPlaylistNode.apply(this, arguments);
 		var node, nodes, c, p;
@@ -259,7 +267,7 @@ tmp = function() {
 		}
 	};
 
-	var createSubCollections = function (parent, start, sep) {
+	createSubCollections = function (parent, start, sep) {
 		var i, c, next, node, nodes, newNode, last, idx, coll, title;
 		nodes = parent.nodes;
 		for (i = next = start, c = nodes.length; i < c; i++) {
@@ -299,9 +307,10 @@ tmp = function() {
 				}
 			}
 		}
-		if (last) nodes[next-1].separator = 1;
-		for (i = nodes.length - 1; i >= start; i--) {
-			if (nodes[i].nodes) createSubCollections(nodes[i], 0, sep);
+		if (last) { nodes[next-1].separator = 1; }
+		i = nodes.length - 1;
+		for (i; i >= start; i--) {
+			if (nodes[i].nodes) { createSubCollections(nodes[i], 0, sep); }
 		}
 	};
 	
@@ -313,7 +322,7 @@ tmp = function() {
 			media = cb.media;
 			if (media.currentPosition) {
 				page = media.currentPosition.page + 1;
-				if (page >= parseInt(opt.OnlyShowFromPage)) {
+				if (page >= parseInt(opt.OnlyShowFromPage,10)) {
 					pages = media.history[0].pages;
 					return readingProgressComment(page, pages, opt.progressFormatCurrent);
 				}
@@ -323,10 +332,11 @@ tmp = function() {
 	};
 	
 	// Draw reading progress below thumbnails
-	var oldDrawRecord = Fskin.kbookViewStyleThumbnail.drawRecord;
+	oldDrawRecord = Fskin.kbookViewStyleThumbnail.drawRecord;
 	Fskin.kbookViewStyleThumbnail.drawRecord = function (offset, x, y, width, height, tabIndex, parts) {
+	  //TODO tabIndex is unused
 		oldDrawRecord.apply(this, arguments);
-		if (!constructRun) return;
+		if (!constructRun) { return; }
 		
 		var win, menu, home, list, idx, record, media, page, pages, msg, n, comX, comY, comWidth, comHeight;
 		win = this.getWindow();
@@ -348,7 +358,7 @@ tmp = function() {
 				// Replace | with : for sub-collections
 				if (opt.subCollections === 'true') {
 					idx = msg.lastIndexOf(opt.subCollSeparator);
-					if (idx !== -1) msg = msg.slice(idx + 1);
+					if (idx !== -1) { msg = msg.slice(idx + 1); }
 				}
 				// Add position in current booklist
 				n = thumbnailsNode.nodes.length;
@@ -365,27 +375,29 @@ tmp = function() {
 			case 'false':
 				return;
 			case 'home':
-				if (!home) return;
+				if (!home) { return; }
+				break;
 			case 'all':
 				record = menu.getRecord(offset);
-				if (!record || record.kind !== 2) return;
+				if (!record || record.kind !== 2) { return; }
 				media = record.media;
 				if (!media.history.length || (this.statusVisible && (media.sourceid > 1 || menu.getFixSelectPosition() || record.expiration))) {
 					return;
 				}
 				page = (media.currentPosition) ? media.currentPosition.page + 1 : media.ext.currentPosition.page + 1;
-				if (page < parseInt(opt.OnlyShowFromPage)) return;
+				if (page < parseInt(opt.OnlyShowFromPage,10)) { return; }
 				pages = media.history[0].pages;
 				msg = readingProgressComment(page, pages, opt.progressFormatThumbs);
 				comX = x + this.marginWidth;
 				comY = this.getNy(this.getTy(y), Math.min(this.getTh(height), this.thumbnailHeight)) + this.textNameHeight + this.marginNameAndComment + 23;
 				comWidth = this.getCw(width, Fskin.scratchRectangle.width);
 				parts.commentStyle.draw(win, msg, comX, comY, comWidth, comHeight);
+				break;
 		}
 	};
 	
 	// Format reading progress comment
-	var readingProgressComment = function (page, pages, format) {
+	readingProgressComment = function (page, pages, format) {
 		switch (format) {
 			case '1': return L('PAGE') + ' ' + page + ' ' + L('OF') + ' ' + pages;
 			case '2': return L('PAGE') + ' ' + page + ' ' + L('OF') + ' ' + pages + ' (' + Math.floor((page/pages)*100) + '%)';
@@ -399,7 +411,7 @@ tmp = function() {
 	};
 
 	// Update deviceroot on enter
-	var oldOnEnterDeviceRoot = model.onEnterDeviceRoot;
+	oldOnEnterDeviceRoot = model.onEnterDeviceRoot;
 	model.onEnterDeviceRoot = function () {
 		if (bookChanged) {
 			// Don't update if opt = 0 and no trigger has been used
@@ -413,7 +425,7 @@ tmp = function() {
 	};
 	
 	// Update booklist after collection edit
-	var oldFinishCollectionEdit = model.finishCollectionEdit;
+	oldFinishCollectionEdit = model.finishCollectionEdit;
 	model.finishCollectionEdit = function () {
 		var i, node, change, current, kind, items;
 		node = this.colManTgtNode;
@@ -440,7 +452,7 @@ tmp = function() {
 		oldFinishCollectionEdit.apply(this, arguments);
 	};
 	
-	var updateBookList = function () {
+	updateBookList = function () {
 		if (xs.isInstanceOf(model.currentNode, devRoot)) {
 			thumbnailsNode.update(model);
 			kbook.menuHomeThumbnailBookData.setNode(thumbnailsNode);
@@ -450,7 +462,7 @@ tmp = function() {
 	};
 	
 	// Get textMasters, exclude memory cards, call filter for home menu booklist
-	var getDB = function (cache) {
+	getDB = function (cache) {
 		var result, s, i;
 		result = new xdb.Result(cache);
 		s = cache.sources;
@@ -507,7 +519,7 @@ tmp = function() {
 		nodes = this.nodes = [];
 		db = getDB(cache);
 		c = db.count();
-		if (!c) return;
+		if (!c) { return; }
 		if (model.currentBook) {
 			current = model.currentBook.media;
 		} else if (model.currentPath) {
@@ -552,13 +564,14 @@ tmp = function() {
 					}
 					break;
 				case 2: // Books by same author
-					if (!current) break;
+					if (!current) { break; }
 					id = current.id;
 					author = current.author;
-					if (!author) break;
+					if (!author) { break; }
 					list = [];
 					// Find other books by same author, excluding current book
-					for (i = 0; i < c; i++) {
+					i = 0;
+					for (i; i < c; i++) {
 						book = db.getRecord(i);
 						if (book.author === author && book.id !== id) {
 							list.push(i);
@@ -568,14 +581,15 @@ tmp = function() {
 					if (numCur && numCur >= books) {
 						numCur -= 3;
 					}
-					for (i = numCur; nodes.length < 3 && i < books; i++) {
+					i = numCur;
+					for (i; nodes.length < 3 && i < books; i++) {
 						node = nodes[nodes.length] = xs.newInstanceOf(prototype);
 						node.cache = cache;
 						node.media = db.getRecord(list[i]);
 					}
 					break;
 				case 3: // Next books in collection
-					if (!current) break;
+					if (!current) { break; }
 					id = current.id;
 					i = 0;
 					// Switch to collections cache
@@ -618,17 +632,18 @@ tmp = function() {
 					opt.CurrentCollection = (nodes.length) ? coll.title : '';
 					break;
 				case 4: // Select collection
-					if (!opt.SelectedCollection) break;
+					if (!opt.SelectedCollection) {  break; }
 					books = [];
 					if (current) {
 						id = current.id;
 					}
 					db2 = cache.playlistMasters.db.search('indexPlaylist', opt.SelectedCollection);
-					if (!db2.count()) break;
+					if (!db2.count()) { break; }
 					// Selected Collection found
 					items = db2.getRecord(0).items;
 					j = items.length;
-					for (i = 0; i < j; i++) {
+					i = 0;
+					for (i; i < j; i++) {
 						id2 = items[i].id;
 						if (id2 !== id) {
 							books.push(id2);
@@ -638,11 +653,13 @@ tmp = function() {
 					if (numCur && numCur >= j) {
 						numCur -= 3;
 					}
-					for (i = numCur; nodes.length < 3 && i < j; i++) {
+					i = numCur;
+					for (i; nodes.length < 3 && i < j; i++) {
 						node = nodes[nodes.length] = xs.newInstanceOf(prototype);
 						node.cache = cache;
 						node.media = cache.getRecord(books[i]);
 					}
+					break;
 			}
 			if (!nodes.length) {
 				if (trigger1) {
@@ -688,8 +705,8 @@ tmp = function() {
 	
 
 	// Functions for booklist option 'Select Collection'
-	var doSelectCollection = function (target) {
-		if (target === 'book' && !model.currentBook) return;
+	doSelectCollection = function (target) {
+		if (target === 'book' && !model.currentBook) { return; }
 		oldNode = model.currentNode;
 		oldNode.redirect = true;
 		tempNode = Core.ui.createContainerNode({
@@ -704,13 +721,14 @@ tmp = function() {
 		oldNode.gotoNode(tempNode, model);
 	};
 	
-	var selectCollectionConstruct = function () {
-		var i, node, nodes, db, c;
+	selectCollectionConstruct = function () {
+		var i, node, nodes, db, c, coll;
 		nodes = this.nodes = [];
 		db = model.cache.playlistMasters;
 		db.sort('indexPlaylist');
 		c = db.count();
-		for (i = 0; i < c; i++) {
+		i = 0;
+		for (i; i < c; i++) {
 			coll = db.getRecord(i);
 			node = nodes[i] = Core.ui.createContainerNode({
 				title: coll.title,
@@ -731,7 +749,7 @@ tmp = function() {
 		}
 	};
 	
-	var selectCollectionDestruct = function () {
+	selectCollectionDestruct = function () {
 		tempNode = null;
 		delete oldNode.redirect;
 		oldNode = null;
@@ -757,6 +775,7 @@ tmp = function() {
 				if (old.title === L('BOOK_SELECTION')) {
 					old = old.parent;
 				}
+				break;
 		}
 		this.currentNode.gotoNode(old, this);
 	};
@@ -767,7 +786,7 @@ tmp = function() {
 	};
 	
 	// Mark all books as read/unread (uses books node to avoid periodicals)
-	var markAllBooks = function (read) {
+	markAllBooks = function (read) {
 		var n, i;
 		n = kbook.root.getBooksNode().nodes;
 		for (i = n.length - 1; i >= 0; i--) {
@@ -777,19 +796,21 @@ tmp = function() {
 	};
 	
 	// Clear page histories, keeping current position (length = 0 crashes home menu)
-	var clearPageHists = function () {
+	clearPageHists = function () {
 		var db, i, r;
 		if (opt.clearHistsOnShutdown === 'true') {
 			db = model.cache.textMasters;
-			for (i = db.count() - 1; i >= 0; i--) {
+			i = db.count() - 1;
+			for (i; i >= 0; i--) {
 				r = db.getRecord(i);
-				if (r.history.length) r.history.length = 1;
+				if (r.history.length) { r.history.length = 1; }
 			}
 		}
 	};
 	
-	var createPageOptionSettings = function () {
-		var group, contents, c, i, id, title, mime, LL;
+	createPageOptionSettings = function () {
+		var group, contents, c, i, id, title, LL;
+		//unused mime
 		group = {
 			groupTitle: L('PAGE_OPTION_ITEMS'),
 			groupIcon: 'LIST'
@@ -839,23 +860,26 @@ tmp = function() {
 		BookManagement_x50.optionDefs.push(group);
 	};
 	
-	var enableCheckmarks = function () {
+	enableCheckmarks = function () {
 		
-		var checkMarkKind = Core.config.compat.NodeKinds.CHECKMARK;
+		var checkMarkKind = Core.config.compat.NodeKinds.CHECKMARK,
+		oldCanNewContentsInHome, oldCanNewContents, oldGetBins;
 		
 		// Hijack newIcon cutout, regular thumbnail views
 		model.container.cutouts['newIcon'].x = 3100;
 		
 		// Determine if checkmark shown for thumbnails in home; hijack cutout each time, as xml is reloaded
-		var oldCanNewContentsInHome = model.canNewContentsInHome;
+		oldCanNewContentsInHome = model.canNewContentsInHome;
 		model.canNewContentsInHome = function (fields, index) {
+		  //TODO index unused
 			fields.fields[0].skin.cutouts[0].y = 48;
 			return !oldCanNewContentsInHome.apply(this, arguments);
 		};
 		
 		// Determine if checkmark shown in regular thumbnails views; don't show in selection mode
-		var oldCanNewContents = model.canNewContents;
+		oldCanNewContents = model.canNewContents;
 		model.canNewContents = function (fields, index) {
+		  //TODO index unused
 			if (fields.canFieldCommand('multipleCheckbox')) {
 				return false;
 			}
@@ -905,7 +929,7 @@ tmp = function() {
 		};
 		
 		// In 'latest read' views, use changed iconKinds for navbar
-		var oldGetBins = kbook.menuData.getBins;
+		oldGetBins = kbook.menuData.getBins;
 		kbook.menuData.getBins = function () {
 			var node, bins, i, c, record, field, val, bin, kind;
 			node = this.node;
@@ -916,7 +940,7 @@ tmp = function() {
 				return oldGetBins.apply(this, arguments);
 			}
 			bins = new Fskin.kbookNavbar.BinSet(1);
-			if (node.referNode) node = node.referNode;
+			if (node.referNode) { node = node.referNode; }
 			if (node.kind) {
 				kind = node.kind;
 				if (kind === 39) {
@@ -951,9 +975,7 @@ tmp = function() {
 	};
 	
 	// Book content search
-	var doContentSearch, cSearchTimer;
-	
-	var oldExecSearch = commonSearchOverlayModel.execSearch;
+	oldExecSearch = commonSearchOverlayModel.execSearch;
 	commonSearchOverlayModel.execSearch = function (word) {
 		if (opt.contentSearch === 'false') {
 			return oldExecSearch.apply(this, arguments);
@@ -971,7 +993,7 @@ tmp = function() {
 		dialog.openDialog(L('SEARCH_BOOK_CONTENTS'), 0);
 	};
 	
-	var oldDoSearch = FskCache.tree.searchResultsNode.doSearch;
+	oldDoSearch = FskCache.tree.searchResultsNode.doSearch;
 	FskCache.tree.searchResultsNode.doSearch = function () {
 		if (!doContentSearch) {
 			return oldDoSearch.apply(this, arguments);
@@ -1011,7 +1033,7 @@ tmp = function() {
 		return 1;
 	};
 	
-	var cSearchCallback = function () {
+	cSearchCallback = function () {
 		var n, path;
 		n = this.nodes1[this.i++];
 		if (n && this.dialog.active) {
@@ -1030,7 +1052,7 @@ tmp = function() {
 		}
 	};
 	
-	var searchBookContents = function (path, term) {
+	searchBookContents = function (path, term) {
 		var mime, viewer, ret;
 		try {
 			mime = FileSystem.getMIMEType(path);
@@ -1047,7 +1069,7 @@ tmp = function() {
 		return ret;
 	};
 	
-	var BookManagement_x50 = {
+	BookManagement_x50 = {
 		name: 'BookManagement_x50',
 		title: L('TITLE'),
 		icon: 'BOOKS',
@@ -1060,7 +1082,7 @@ tmp = function() {
 			opt.BookList = parseInt(opt.BookList);
 			opt.homeMenuPageButtons = parseInt(opt.homeMenuPageButtons);
 			Core.events.subscribe(Core.events.EVENTS.SHUTDOWN, clearPageHists, true);
-			if (opt.bookFlags === 'manualCheck') enableCheckmarks();
+			if (opt.bookFlags === 'manualCheck') { enableCheckmarks(); }
 		},
 		actions: [{
 			name: 'BookListCycleForward',
@@ -1417,6 +1439,7 @@ tmp = function() {
 			}
 		],
 		onSettingsChanged: function (propertyName, oldValue, newValue, object) {
+		  //TODO object unused
 			numCur = 0;
 			switch (propertyName) {
 				case 'homeMenuArrows':
@@ -1424,11 +1447,11 @@ tmp = function() {
 					kbook.root.getDeviceRootNode().update(model);
 					break;
 				case 'homeMenuPageButtons':
-					opt.homeMenuPageButtons = parseInt(newValue);
+					opt.homeMenuPageButtons = parseInt(newValue, 10);
 					break;
 				case 'BookList':
-					opt.BookList = parseInt(newValue);
-					if (newValue === '4') doSelectCollection('booklist');
+					opt.BookList = parseInt(newValue, 10);
+					if (newValue === '4') { doSelectCollection('booklist'); }
 				case 'IgnoreCards':
 				case 'hideNotepads':
 					opt.CurrentCollection = '';
@@ -1436,7 +1459,7 @@ tmp = function() {
 					updateBookList();
 					break;
 				case 'bookFlags':
-					if (oldValue === 'manualCheck' || newValue === 'manualCheck') Core.ui.showMsg(L('MSG_RESTART'));
+					if (oldValue === 'manualCheck' || newValue === 'manualCheck') { Core.ui.showMsg(L('MSG_RESTART')); }
 					break;
 				case 'markAllBooks':
 					markAllBooks(newValue === 'read');

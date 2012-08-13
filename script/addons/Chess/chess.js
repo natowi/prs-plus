@@ -75,7 +75,8 @@ var tmp = function () {
 	datPath0 = kbook.autoRunRoot.gamesSavePath + 'Chess/',
 
     //DrMerry: Added game-scope vars
-	merryMessage, t, n, x, y, s, z, custSel,
+	merryMessage, t, n, x, y, s, custSel,
+	//unused z
 
     //DrMerry: Added text string array
     chessGame = {
@@ -93,7 +94,8 @@ var tmp = function () {
     target.init = function () {
         /* set translated appTitle and appIcon */
         var stream, cMateIn2, cMateIn3, cMateIn4,
-				tempnum, x, y, z, t, mz;
+				tempnum, t;
+				// unused x, y, z, mz
         this.appTitle.setValue(kbook.autoRunRoot._title);
         this.appIcon.u = kbook.autoRunRoot._icon;
 		this.enable(true);
@@ -169,11 +171,11 @@ var tmp = function () {
         // this allows for 10 undos
         currundo = 0;
         undoboard = new Array(undodepth);
-		undosettings = new Array(undodepth);
+	undosettings = new Array(undodepth);
         t = 0;
         for (t; t < undodepth; t++) {
-            undoboard[t] = new Array(120);
-			undosettings[t] = new Array(7);
+	  undoboard[t] = new Array(120);
+	  undosettings[t] = new Array(7);
         }
         this.updateUndo();
 		
@@ -855,8 +857,8 @@ var tmp = function () {
     };
 
     target.tryingToCastle = function (nTargetY, nDiffX, nDiffY, flagPcColor) {
-        var ourRook = etc.lookAt(30 - nDiffX >> 2 & 7, nTargetY);
-		var kingHasMoved = (flagPcColor === 8) ? wHasMoved : bHasMoved;
+        var ourRook = etc.lookAt(30 - nDiffX >> 2 & 7, nTargetY),
+		kingHasMoved = (flagPcColor === 8) ? wHasMoved : bHasMoved;
         return (nDiffX + 2 | 4) === 4 && nDiffY === 0 && !bCheck && !kingHasMoved && ourRook > 0 && Boolean(ourRook & 16);
     };
 
@@ -883,10 +885,12 @@ var tmp = function () {
     };
 
     target.doSelectClick = function (sender) {
+      //TODO sender unused
         return;
     };
 
     target.doRoot = function (sender) {
+      //TODO sender unused
         /*var stream;
 		if (debugOutput !== "") {
 			try {
@@ -902,11 +906,13 @@ var tmp = function () {
     };
 
     target.doMark = function (sender) {
+      //TODO sender unused
         this.loadGame(datPath);
         return;
     };
 
     target.doHoldMark = function (sender) {
+      //TODO sender unused
         this.saveGame();
         return;
     };
@@ -950,35 +956,37 @@ var tmp = function () {
     };
 
     target.doUndo = function (sender) {
-        if (!bGameNotOver) return;
+      //TODO sender unused
+        if (!bGameNotOver) { return; }
 
         // do undo
-        if (currundo < 2) return;
+        if (currundo < 2) { return; }
 
         // retrieve most recent undo
-        for (t = 0; t < 120; t++) {
+        t = 0;
+        for (t; t < 120; t++) {
             if (automode) {
                 etc.aBoard[t] = undoboard[currundo - 3][t];
-                if (etc.aBoard[t] === 18) kings[0] = t;
-                if (etc.aBoard[t] === 26) kings[1] = t;
+                if (etc.aBoard[t] === 18) { kings[0] = t; }
+                if (etc.aBoard[t] === 26) { kings[1] = t; }
             } else {
                 etc.aBoard[t] = undoboard[currundo - 2][t];
-                if (etc.aBoard[t] === 18) kings[0] = t;
-                if (etc.aBoard[t] === 26) kings[1] = t;
+                if (etc.aBoard[t] === 18) { kings[0] = t; }
+                if (etc.aBoard[t] === 26) { kings[1] = t; }
             }
         }
 
 		if (automode) {
-			wHasMoved = (undosettings[currundo - 3][0] === "true") ? true : false;
-			bHasMoved = (undosettings[currundo - 3][1] === "true") ? true : false;
+			wHasMoved = (undosettings[currundo - 3][0] === "true");// ? true : false;
+			bHasMoved = (undosettings[currundo - 3][1] === "true");// ? true : false;
 			wOldKing = undosettings[currundo - 3][2] * 1;
 			bOldKing = undosettings[currundo - 3][3] * 1;
 			enPassant = (undosettings[currundo - 3][4] !== "") ? undosettings[currundo - 3][4] * 1 : "";
 			wRooks = undosettings[currundo - 3][5];
 			bRooks = undosettings[currundo - 3][6];
 		} else {
-			wHasMoved = (undosettings[currundo - 2][0] === "true") ? true : false;
-			bHasMoved = (undosettings[currundo - 2][1] === "true") ? true : false;
+			wHasMoved = (undosettings[currundo - 2][0] === "true");// ? true : false;
+			bHasMoved = (undosettings[currundo - 2][1] === "true");// ? true : false;
 			wOldKing = undosettings[currundo - 2][2] * 1;
 			bOldKing = undosettings[currundo - 2][3] * 1;
 			enPassant = (undosettings[currundo - 2][4] !== "") ? undosettings[currundo - 2][4] * 1 : "";
@@ -988,7 +996,7 @@ var tmp = function () {
 
         // decrement current undo
         currundo--;
-        if (automode) currundo--;
+        if (automode) { currundo--; }
 
         // update board
         this.writePieces();
@@ -1121,7 +1129,7 @@ var tmp = function () {
                         //this.debugOut("Apparently, this is a valid move.  Piece at X="+iExamX+", Y="+iExamY+", to X="+iTempX+", Y="+iTempY);
                         noOfMoves++;
                         foundmove = [noOfMoves, iExamX, iExamY, iTempX, iTempY];
-                        if (noOfMoves > 1) break;
+                        if (noOfMoves > 1) { break; }
                     }
                 }
             }
@@ -1140,26 +1148,24 @@ var tmp = function () {
     };
 
     target.doButtonClick = function (sender) {
-        var id;
-        id = getSoValue(sender, "id");
-        n = id.substring(7, 10);
-        if (n === "RES") {
-			this.doHold9();
+        //var id;
+        //id = getSoValue(sender, "id");
+        //n = id.substring(7, 10);
+        n = getSoValue(sender, "id").substring(7, 10);
+	switch (n) {
+	  case "RES":
+	    this.doHold9();
             return;
-        }
-        if (n === "EXT") {
+	  case "EXT":
             kbook.autoRunRoot.exitIf(kbook.model);
             return;
-        }
-        if (n === "LOA") {
+	  case "LOA":
             this.loadGame(datPath);
             return;
-        }
-        if (n === "SAV") {
+	  case "SAV":
             this.saveGame();
             return;
-        }
-        if (n === "PUZ") {
+	  case "PUZ":
             this.PUZZLE_DIALOG.open();
             return;
         }
@@ -1168,7 +1174,7 @@ var tmp = function () {
     target.saveGame = function () {
         var stream;
         try {
-            if (FileSystem.getFileInfo(datPath)) FileSystem.deleteFile(datPath);
+            if (FileSystem.getFileInfo(datPath)) { FileSystem.deleteFile(datPath); }
             stream = new Stream.File(datPath, 1);
             // save board to file
             t = 22;
@@ -1209,8 +1215,11 @@ var tmp = function () {
                         //tempnum = stream.readLine();
                         etc.aBoard[t] = Math.floor(stream.readLine());
                         // convert string to integer
-                        if (etc.aBoard[t] === 18) kings[0] = t;
-                        if (etc.aBoard[t] === 26) kings[1] = t;
+                        if (etc.aBoard[t] === 18) {
+			  kings[0] = t;
+			} else if (etc.aBoard[t] === 26) {
+			  kings[1] = t;
+			}
                     }
                 }
                 //tempboolean = stream.readLine();
@@ -1376,7 +1385,7 @@ var tmp = function () {
         var currentLabel;
 		// initiate new game
 		currentLabel = getSoValue(target.BUTTON_RES, 'text');
-		if (currentLabel == "As Black") {
+		if (currentLabel === "As Black") {
 			playAsBlack = true;
 			setSoValue(target.BUTTON_RES, 'text', "New Game");
 			this.nonTouch.setValue("[Hold 9] New Game");
@@ -1455,7 +1464,7 @@ var tmp = function () {
 
 	// AI functions
     target.doSize = function () {
-        var x, y, z;
+        //unused var x, y, z;
 		//this.debugOut("doSize");
         if (!bGameNotOver) {
             return;
@@ -1517,7 +1526,7 @@ var tmp = function () {
             bestmove = this.callChessEngine();
         }
 		
-		if (bestmove == null) return (false);
+		if (bestmove === null) { return (false); }
 		
 		return (this.processMove(bestmove));
     };
@@ -1533,9 +1542,11 @@ var tmp = function () {
 		} else {
 			inputText += "position fen ";
 			// convert board to FEN format
-			for (y=0; y<8; y++) {
+			y = 0;
+			for (y; y<8; y++) {
 				emptyCount = 0;
-				for (x=0; x<8; x++) {
+				x = 0;
+				for (x; x<8; x++) {
 					boardSquare = (y + 2) * 10 + 2 + x;
 					contentSquare = etc.aBoard[boardSquare];
 					if (contentSquare === 0) {
@@ -1588,7 +1599,7 @@ var tmp = function () {
 				if (emptyCount > 0) {
 					inputText += emptyCount;
 				}
-				if (y !== 7) inputText += "/";
+				if (y !== 7) { inputText += "/"; }
 			}
 			
 			// add who's turn it is to move
@@ -1612,8 +1623,10 @@ var tmp = function () {
 			// add en passant info
 			if (enPassant !== "") {
 				inputText += " ";
-				x = (enPassant % 10) - 2;			
-				switch (x) {
+				x = (enPassant % 10) - 2;		
+				inputText += "abcdefgh".substring(x,x+1);
+				/* replaced by 1 line, see above drMerry
+				 switch (x) {
 					case 0:
 						inputText += "a";
 						break;
@@ -1639,8 +1652,11 @@ var tmp = function () {
 						inputText += "h";
 						break;
 				}
+				*/
 				y = Math.floor((enPassant - 20) / 10);
-				switch (y) {
+				inputText += (8-y);
+				/* replaced  by 1 line see above drMerry 
+				 switch (y) {
 					case 0:
 						inputText += "8";
 						break;
@@ -1666,6 +1682,7 @@ var tmp = function () {
 						inputText += "1";
 						break;
 				}
+				*/
 			} else {
 				inputText += " -";
 			}
@@ -1998,34 +2015,36 @@ var tmp = function () {
     };
 
     target.ntHandlePuzzDlg = function () {
-        if (custSel === 0) {
+      switch (custSel) {
+	case 0:
             target.PUZZLE_DIALOG.checkmateIn_2.enable(true);
             target.PUZZLE_DIALOG.checkmateIn_3.enable(false);
             target.PUZZLE_DIALOG.checkmateIn_4.enable(false);
             mouseLeave.call(target.PUZZLE_DIALOG.btn_Ok);
-        }
-        if (custSel === 1) {
+	    break;
+	case 1:
             target.PUZZLE_DIALOG.checkmateIn_2.enable(false);
             target.PUZZLE_DIALOG.checkmateIn_3.enable(true);
             target.PUZZLE_DIALOG.checkmateIn_4.enable(false);
             mouseLeave.call(target.PUZZLE_DIALOG.btn_Ok);
-        }
-        if (custSel === 2) {
+	    break;
+	case 2:
             target.PUZZLE_DIALOG.checkmateIn_2.enable(false);
             target.PUZZLE_DIALOG.checkmateIn_3.enable(false);
             target.PUZZLE_DIALOG.checkmateIn_4.enable(true);
             mouseLeave.call(target.PUZZLE_DIALOG.btn_Ok);
-        }
-        if (custSel === 3) {
+	    break;
+	case 3:
             target.PUZZLE_DIALOG.checkmateIn_2.enable(false);
             target.PUZZLE_DIALOG.checkmateIn_3.enable(false);
             target.PUZZLE_DIALOG.checkmateIn_4.enable(false);
             mouseLeave.call(target.PUZZLE_DIALOG.btn_Cancel);
             mouseEnter.call(target.PUZZLE_DIALOG.btn_Ok);
-        }
-        if (custSel === 4) {
+	    break;
+	case 4:
             mouseLeave.call(target.PUZZLE_DIALOG.btn_Ok);
             mouseEnter.call(target.PUZZLE_DIALOG.btn_Cancel);
+	    break;
         }
     };
 
@@ -2044,10 +2063,10 @@ var tmp = function () {
                 }
                 break;
             case "left":
-                if (custSel === 0 || custSel === 1 || custSel === 2) target.PUZZLE_DIALOG["checkmateIn_" + (custSel + 2) + "-"].click();
+                if (custSel === 0 || custSel === 1 || custSel === 2) { target.PUZZLE_DIALOG["checkmateIn_" + (custSel + 2) + "-"].click(); }
                 break;
             case "right":
-                if (custSel === 0 || custSel === 1 || custSel === 2) target.PUZZLE_DIALOG["checkmateIn_" + (custSel + 2) + "+"].click();
+                if (custSel === 0 || custSel === 1 || custSel === 2) { target.PUZZLE_DIALOG["checkmateIn_" + (custSel + 2) + "+"].click(); }
                 break;
         }
     };
@@ -2067,21 +2086,22 @@ var tmp = function () {
         cMateIn3 = parseInt(target.getVariable("checkmate_3"), 10);
         cMateIn4 = parseInt(target.getVariable("checkmate_4"), 10);
         //this.debugOut( "senderID=" + senderID + ", step=" + step + ", cMateIn2=" + cMateIn2 + ", cMateIn3=" + cMateIn3 + ", cMateIn4=" + cMateIn4);
+	
         switch (senderID) {
             case "checkmateIn_2":
-                if (cMateIn2 <= maxMateIn2 - step && cMateIn2 > 0 - step) {
+                if ((cMateIn2 <= (maxMateIn2 - step)) && (cMateIn2 > (-1 * step))) {
                     cMateIn2 = cMateIn2 + step;
                 }
                 this.container.setVariable("checkmate_2", cMateIn2);
                 break;
             case "checkmateIn_3":
-                if (cMateIn3 <= maxMateIn3 - step && cMateIn3 > 0 - step) {
+                if ((cMateIn3 <= (maxMateIn3 - step)) && (cMateIn3 > (-1 * step))) {
                     cMateIn3 = cMateIn3 + step;
                 }
                 this.container.setVariable("checkmate_3", cMateIn3);
                 break;
             case "checkmateIn_4":
-                if (cMateIn4 <= maxMateIn4 - step && cMateIn4 > 0 - step) {
+                if ((cMateIn4 <= (maxMateIn4 - step)) && (cMateIn4 > (-1 * step))) {
                     cMateIn4 = cMateIn4 + step;
                 }
                 this.container.setVariable("checkmate_4", cMateIn4);
@@ -2090,6 +2110,7 @@ var tmp = function () {
     };
 
     target.PUZZLE_DIALOG.setPuzzleType = function (t) {
+      //TODO t unused
 		/*target.debugOut(t);
 		if ( t == "2" || t == "3" || t == "4" )
 		{
@@ -2135,7 +2156,7 @@ var tmp = function () {
 
         // save current puzzle numbers to puzDatPath
         try {
-            if (FileSystem.getFileInfo(puzDatPath)) FileSystem.deleteFile(puzDatPath);
+            if (FileSystem.getFileInfo(puzDatPath)) { FileSystem.deleteFile(puzDatPath); }
             stream = new Stream.File(puzDatPath, 1);
             stream.writeLine(cMateIn2);
             stream.writeLine(cMateIn3);
@@ -2167,8 +2188,11 @@ var tmp = function () {
                         dataItemNum++;
                         etc.aBoard[t] = Math.floor(tempnum);
                         // convert string to integer
-                        if (etc.aBoard[t] === 18) kings[0] = t;
-                        if (etc.aBoard[t] === 26) kings[1] = t;
+                        if (etc.aBoard[t] === 18) { 
+			  kings[0] = t;
+			} else if (etc.aBoard[t] === 26) {
+			  kings[1] = t;
+			}
                     }
                 }
                 tempboolean = puzzleData[dataItemNum];
@@ -2225,7 +2249,7 @@ var tmp = function () {
                 flagWhoMoved ^= 8;
                 etc.bBlackSide = !etc.bBlackSide;
             }
-        } catch (e) {
+        } catch (err) {
             this.checkStatus.setValue("Puzzle load failed");
         }
         return;

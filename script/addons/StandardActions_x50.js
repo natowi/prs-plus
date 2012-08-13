@@ -58,10 +58,12 @@ var tmp = function() {
 	
 	// Adds "bubblable" actions, if model supports them
 	addBubbleActions = function (actions) {
-		var bubbles, bubble, icons, i, m, n;
+		var bubbles, bubble, icons, i, m, n, rotateFuncX50;
 		bubbles = ["doOption", "doSearch", "doRotate", "doMenu", "doSize"    , "doRoot"   ];
 		icons   = ["EMPTY"   , "SEARCH"  , "EMPTY"   , "BACK" ,  "TEXT_SCALE", "ROOT_MENU"];
-		for (i = 0, n = bubbles.length; i < n; i ++) {
+		i = 0;
+		n = bubbles.length;
+		for (i, n; i < n; i ++) {
 			bubble = bubbles[i];
 			if (model[bubble]) {
 				actions.push( {
@@ -78,7 +80,7 @@ var tmp = function() {
 		
 		// doRotate for x50
 		if (model.onEnterOrientation) {
-			var rotateFuncX50 = function() {
+			rotateFuncX50 = function() {
 				var orientation = model.container.getVariable("ORIENTATION");
 				if (this.closeCurrentOverlay) {
 					this.closeCurrentOverlay();
@@ -268,7 +270,7 @@ var tmp = function() {
 			useIcons: true
 		};
 		parent = this.parent = model.currentNode;
-		if (!parent.nodes) parent.nodes = [];
+		if (!parent.nodes) { parent.nodes = []; }
 		Core.addonByName.PRSPSettings.createSingleSetting(parent, optionDef, StandardActions);
 		this.nodes = parent.nodes.pop().nodes;
 	};
@@ -282,6 +284,7 @@ var tmp = function() {
 			kbActions = Core.addonByName.KeyBindings.getActionDefs();
 		},
 		onSettingsChanged: function (propertyName, oldValue, newValue, object) {
+		  //TODO olValue is unused, object is unused
 			// Action Launcher
 			if (propertyName === 'tempOption') {
 				var actionName2action, parent;
