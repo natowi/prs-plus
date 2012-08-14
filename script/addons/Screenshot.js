@@ -91,7 +91,7 @@ tmp = function() {
 		actions: [{
 			name: "takeScreenshoot",
 			title: L("ACTION_TITLE"),
-			group: "Utils",
+			group: "Screen",
 			icon: "PICTURE_ALT",
 			action: function () {
 				var root, saveFilename, savePath, stream, msg1, msg2, bitmap;

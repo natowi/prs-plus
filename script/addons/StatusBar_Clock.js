@@ -11,6 +11,7 @@
 //	2010-04-25 kartu - Marked updateDate as constructor
 //	2010-07-21 kartu - Refactored as Statusbar "plugin"
 //	2012-02-10 Ben Chenoweth - Remove leading '0' in 12 hour mode
+//	2012-08-14 drMerry - Moved to group system
 
 tmp = function () {
 	var L = Core.lang.getLocalizer("StatusBar_Clock");
@@ -101,7 +102,7 @@ tmp = function () {
 		actions: [{
 			name: "toggleClock",
 			title: L("ACTION_TOGGLE_CLOCK"),
-			group: "Utils",
+			group: "System",
 			icon: "CLOCK",
 			action: function (ignore, context, ignore2) {
 				// Quick & dirty...

@@ -23,12 +23,13 @@
 //	2011-10-13 quisvir - Fixed "Remaining Time: 2:60" (thanks flobauke)
 //	2011-12-19 quisvir - Added option "pages to next chapter"
 //	2012-01-06 quisvir - Added next/previous chapter actions
+//	2012-08-13 drMerry - some code improvement
 
-tmp = function() {
+var tmp = function() {
 	var log, L, lastTime, lastPage, ppmHistory, ppmIdx, MAX_PPM_HISTORY, MAX_DELAY, NA,
 		resetCounter, getPpm, getTimeLeft, updateIndexBook, updateIndexMenu, toc, nextChapter,
 		prevChapter, getChapterPages, getToc, resetToC, jumpToNextChapter, jumpToPrevChapter;
-	log = Core.log.getLogger("StatusBar_PageIndex");
+	log = Core.log.getLogger("FBar_PageIndex");
 	L = Core.lang.getLocalizer("StatusBar_PageIndex");
 
 	MAX_PPM_HISTORY = 3;
@@ -52,7 +53,8 @@ tmp = function() {
 				lastPage = currentPage;
 				ppmIdx = 0;
 				ppmHistory = new Array(MAX_PPM_HISTORY);
-				for (i = 0; i < MAX_PPM_HISTORY; i++) {
+				i = 0;
+				for (i; i < MAX_PPM_HISTORY; i++) {
 					ppmHistory[i] = 0;
 				}
 				return NA;
@@ -77,7 +79,8 @@ tmp = function() {
 
 			result = 0;
 			n = 0;
-			for (i = 0; i < MAX_PPM_HISTORY; i++) {
+			i = 0;
+			for (i; i < MAX_PPM_HISTORY; i++) {
 				if (ppmHistory[i] !== 0) {
 					n++;
 					result = result + ppmHistory[i];
@@ -107,29 +110,32 @@ tmp = function() {
 				minutes = "0" + minutes;
 			}
 			return hours + ":" + minutes;
-		} else {
-			return minutes;
 		}
+		// no else needed here because if will always quit function when true
+		return minutes;
 	};
 	
 	resetToC = function () {
 		toc = nextChapter = prevChapter = undefined;
-	}
+	};
 	
 	// Returns number of pages to next chapter
 	getChapterPages = function (i) {
-		var j;
+		var j, tocLength;
 		if (toc === undefined) {
 			toc = [];
 			getToc(kbook.model.currentBook.media.content.bookmarks);
-			toc.sort(function (a,b) { return a-b });
+			toc.sort(function (a,b) { return a-b; });
 		}
 		if (nextChapter && nextChapter > i) {
 			if (!prevChapter || prevChapter <= i) {
 				return nextChapter - i - 1;
 			}
 		}
-		for (j = 0; j < toc.length; j++) {
+		j = 0;
+		//only use a . lookup once in stead of every loop
+		tocLength = toc.length;
+		for (j; j < tocLength; j++) {
 			if (toc[j] > i) {
 				prevChapter = (j > 0) ? toc[j - 1] : undefined;
 				nextChapter = toc[j];
@@ -137,12 +143,15 @@ tmp = function() {
 			}
 		}
 		return null;
-	}
+	};
 
 	// Creates array of bookmarks entry page numbers
 	getToc = function (bm) {
-		var j;
-		for (j = 0; j < bm.length; j++) {
+		var j, bmLength;
+		j = 0;
+		//only use a . lookup once in stead of every loop
+		bmLength = bm.length;
+		for (j; j < bmLength; j++) {
 			try {
 				toc.push(bm[j].mark.getPage());
 			} catch(ignore) {}
@@ -150,10 +159,10 @@ tmp = function() {
 				getToc(bm[j].bookmarks);
 			}
 		}
-	}
+	};
 	
 	jumpToNextChapter = function (book) {
-		var i, j, page;
+		var i, j, page, tocLength;
 		i = book.getPage();
 		if (nextChapter) {
 			page = nextChapter;
@@ -161,9 +170,12 @@ tmp = function() {
 			if (toc === undefined) {
 				toc = [];
 				getToc(kbook.model.currentBook.media.content.bookmarks);
-				toc.sort(function (a,b) { return a-b });
+				toc.sort(function (a,b) { return a-b; });
 			}
-			for (j = 0; j < toc.length; j++) {
+			j = 0;
+			//only use a . lookup once in stead of every loop
+			tocLength = toc.length;
+			for (j; j < tocLength; j++) {
 				if (toc[j] > i) {
 					page = toc[j];
 					break;
@@ -176,10 +188,10 @@ tmp = function() {
 		} else {
 			kbook.model.doBlink();
 		}
-	}
+	};
 	
 	jumpToPrevChapter = function (book) {
-		var i, j, page;
+		var i, j, page, tocLength;
 		i = book.getPage();
 		if (prevChapter && prevChapter < i) {
 			page = prevChapter;
@@ -187,11 +199,14 @@ tmp = function() {
 			if (toc === undefined) {
 				toc = [];
 				getToc(kbook.model.currentBook.media.content.bookmarks);
-				toc.sort(function (a,b) { return a-b });
+				toc.sort(function (a,b) { return a-b; });
 			}
-			for (j = 0; j < toc.length; j++) {
+			j = 0;
+			//only use a . lookup once in stead of every loop
+			tocLength = toc.length;
+			for (j; j < tocLength; j++) {
 				if (toc[j] >= i) {
-					if (j > 0) page = toc[j-1];
+					if (j > 0) { page = toc[j-1]; }
 					break;
 				}
 			}
@@ -202,7 +217,7 @@ tmp = function() {
 		} else {
 			kbook.model.doBlink();
 		}
-	}
+	};
 	
 	updateIndexBook = function () {
 		try {
@@ -262,10 +277,9 @@ tmp = function() {
 					break;
 				case "XdivYchapt":
 					pages = getChapterPages(i - 1);
+					show = ii + " / " + c;
 					if (pages !== null) {
-						show = ii + " / " + c +  " (" + pages + ")";
-					} else {
-						show = ii + " / " + c;
+						show += " (" + pages + ")";
 					}
 					break;
 				default:
@@ -300,7 +314,6 @@ tmp = function() {
 						StatusBar.setMenuIndex("");
 						return;
 					}
-					break;
 				case "never":
 					StatusBar.setMenuIndex("");
 					return;

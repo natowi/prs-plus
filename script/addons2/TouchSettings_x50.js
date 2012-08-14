@@ -16,10 +16,22 @@
 //	2011-12-17 quisvir - Some options moved to DictionaryOptions_x50
 //	2012-02-28 quisvir - Fixed #301 'Pop-up dictionary demands to be closed and opened again to look up'
 //	2012-02-29 quisvir - Fixed #304 'Only assigned gestures should be taken into account'
+//	2012-08-14 drMerry - updated some code. Moved touch actions to system
+var tmp = function() {
 
-tmp = function() {
-
-	var L, LX, log, opt;
+	var L, LX, log, opt,
+	//GENERAL
+	touchAction, actionName2action, createTouchOptions,
+	//TAPRELATED
+	readingTapX, readingTapY, oldSelectNoneWithoutUpdate, oldDoBlink, doNothingFunc,
+	//SWIPERELATED
+	oldLine,
+	//Functions
+	pageTapAction, oldReadingTrackerTap, oldReadingTrackerDoubleTap,
+	SwitchPageTaps, oldOnPageTapped, oldHitLink, newHitLink,
+	zoomLockOld, oldZoomOverlayDoDoubleTap, oldZoomOverlayDoDrag,
+	TouchSettings, oldGetCandidate, oldZoomOverlaydone;
+	
 	L = Core.lang.getLocalizer('TouchSettings');
 	LX = Core.lang.LX;
 	log = Core.log.getLogger('TouchSettings');
@@ -27,17 +39,18 @@ tmp = function() {
 	
 	/*** GENERAL ***/
 	
-	var touchAction, actionName2action, createTouchOptions;
-	
 	actionName2action = {};
 	
 	createTouchOptions = function () {
-		var i, j, options, actions, target;
+		var i, j, options, actions, target, optionsLength;
 		actions = Core.addonByName.KeyBindings.getActionDefs();
 		actionName2action = actions[4];
 		options = ['SINGLE_TAP_TOP_LEFT', 'SINGLE_TAP_TOP_RIGHT', 'SINGLE_TAP_BOTTOM_LEFT', 'SINGLE_TAP_BOTTOM_RIGHT'];
-		for (j=0;j<2;j++) {
-			for (i=0;i<options.length;i++) {
+		j = 0;
+		for (j;j<2;j++) {
+			i = 0;
+			optionsLength = options.length;
+			for (i;i<optionsLength;i++) {
 				TouchSettings.optionDefs[j].optionDefs[0].optionDefs.push({
 					name: options[i],
 					title: L(options[i]),
@@ -52,12 +65,10 @@ tmp = function() {
 			}
 			options = ['SWIPE_LEFT', 'SWIPE_RIGHT', 'SWIPE_UP', 'SWIPE_DOWN'];
 		}
-	}
+	};
 	
 	
 	/*** TAP RELATED ***/
-	
-	var readingTapX, readingTapY, oldSelectNoneWithoutUpdate, oldDoBlink, doNothingFunc;
 	
 	// Functions used for page tap actions
 	oldSelectNoneWithoutUpdate = kbook.kbookPage.selectNoneWithoutUpdate;
@@ -65,20 +76,20 @@ tmp = function() {
 	doNothingFunc = function () {};
 	
 	// On tap, get coordinates from readingTracker
-	var oldReadingTrackerTap = kbook.kbookPage.readingTracker.tap;
+	oldReadingTrackerTap = kbook.kbookPage.readingTracker.tap;
 	kbook.kbookPage.readingTracker.tap = function (target, x, y) {
 		readingTapX = x;
 		readingTapY = y;
 		oldReadingTrackerTap.apply(this, arguments);
 	};
 	
-	var oldReadingTrackerDoubleTap = kbook.kbookPage.readingTracker.doubleTap;
+	oldReadingTrackerDoubleTap = kbook.kbookPage.readingTracker.doubleTap;
 	kbook.kbookPage.readingTracker.doubleTap = function (target, x, y) {
 		Core.addonByName.DictionaryOptions.pageDoubleTap(x, y);
 		oldReadingTrackerDoubleTap.apply(this, arguments);
-	}
+	};
 	
-	var SwitchPageTaps = function () {
+	SwitchPageTaps = function () {
 		var rt, dummy;
 		rt = kbook.kbookPage.readingTracker;
 		dummy = rt.tap;
@@ -88,10 +99,10 @@ tmp = function() {
 		pageShortcutOverlayModel.doTap = pageShortcutOverlayModel.doDoubleTap;
 		pageShortcutOverlayModel.doDoubleTap = dummy;
 		dummy = null;
-	}
+	};
 	
 	// Call pageTapAction, but only if tap is not a link, highlight etc.
-	var oldOnPageTapped = kbook.kbookPage.onPageTapped;
+	oldOnPageTapped = kbook.kbookPage.onPageTapped;
 	kbook.kbookPage.onPageTapped = function (cache, bookmark, highlight, markupIcon, link) {
 		if (!this.selection.length) {
 			this.selectNoneWithoutUpdate = pageTapAction;
@@ -105,7 +116,7 @@ tmp = function() {
 	};
 	
 	// Execute tap action based on coordinates
-	var pageTapAction = function () {
+	pageTapAction = function () {
 		var area, actionName;
 		if (readingTapX < (this.width / 2)) {
 			if (readingTapY < (this.height / 2)) {
@@ -148,10 +159,9 @@ tmp = function() {
 		}
 		obj0 = { x: x, y: y };
 		if (rct.contains(obj0)) return cache;
-	}
+	};
 	
 	// Extend tap area for links in books
-	var oldHitLink, newHitLink;
 	oldHitLink = Fskin.bookScroller.hitLink;
 	newHitLink = function (cache) {
 		var links, d, j, link, bounds, c, i, r;
@@ -186,7 +196,7 @@ tmp = function() {
 	};
 	
 	// Execute swipe action based on direction
-	var oldLine = kbook.kbookPage.readingTracker.line;
+	oldLine = kbook.kbookPage.readingTracker.line;
 	kbook.kbookPage.readingTracker.line = function (target, dir, p1, p2) {
 		var dir2, swipe, actionName;
 		if (opt.DisableAllSwipes === 'true') return;
@@ -211,6 +221,7 @@ tmp = function() {
 					break;
 				case Gesture.bottomDirection:
 					swipe = 'SWIPE_DOWN';
+					break;
 			}
 			actionName = opt[swipe];
 			if (actionName === 'default') {
@@ -235,10 +246,10 @@ tmp = function() {
 	
 	/*** ZOOM RELATED ***/
 	
-	var zoomLockOld = false;
+	zoomLockOld = false;
 	
 	// In Zoom Lock, execute action on single tap
-	var oldZoomOverlayDoTap = Fskin.kbookZoomOverlay.doTap;
+	oldZoomOverlayDoTap = Fskin.kbookZoomOverlay.doTap;
 	Fskin.kbookZoomOverlay.doTap = function (x, y) {
 		if (this.isZoomLock) {
 			switch (opt.ZoomLockSingleTap) {
@@ -257,7 +268,7 @@ tmp = function() {
 	};
 	
 	// In Zoom Lock, execute action on double tap
-	var oldZoomOverlayDoDoubleTap = Fskin.kbookZoomOverlay.doDoubleTap;
+	oldZoomOverlayDoDoubleTap = Fskin.kbookZoomOverlay.doDoubleTap;
 	Fskin.kbookZoomOverlay.doDoubleTap = function (x, y) {
 		if (this.isZoomLock) {
 			switch (opt.ZoomLockDoubleTap) {
@@ -279,10 +290,10 @@ tmp = function() {
 	Fskin.kbookZoomOverlay.doNext = function () {
 		this.getModel().doNext();
 		if (this.isZoomLock && opt.ZoomLockMoveToTop === 'true') kbook.model.doSomething('scrollTo', 0, 0);
-	}
+	};
 	
 	// In Zoom Lock, enable panning
-	var oldZoomOverlayDoDrag = Fskin.kbookZoomOverlay.doDrag;
+	oldZoomOverlayDoDrag = Fskin.kbookZoomOverlay.doDrag;
 	Fskin.kbookZoomOverlay.doDrag = function (x, y, type, tapCount) {
 		if (opt.ZoomLockPanning === 'true' && this.isZoomLock) {
 			zoomLockOld = this.isZoomLock;
@@ -293,7 +304,7 @@ tmp = function() {
 		} else oldZoomOverlayDoDrag.apply(this, arguments);
 	};
 	
-	var oldZoomOverlaydone = Fskin.kbookZoomOverlay.done;
+	oldZoomOverlaydone = Fskin.kbookZoomOverlay.done;
 	Fskin.kbookZoomOverlay.done = function () {
 		if (zoomLockOld) this.isZoomLock = true;
 		oldZoomOverlaydone.apply(this);
@@ -310,18 +321,17 @@ tmp = function() {
 	
 	
 	/*** OTHER ***/
-	
-	var oldGetCandidate = FskPredictive.group.getCandidate;
+	oldGetCandidate = FskPredictive.group.getCandidate;
 	FskPredictive.group.getCandidate = function (prefix, index) {
 		if (opt.DisablePredictive === 'true') {
 			return null;
 		} else {
 			return oldGetCandidate.apply(this, arguments);
 		}
-	}
+	};
 	
 	
-	var TouchSettings = {
+	TouchSettings = {
 		name: 'TouchSettings',
         title: L('TITLE'),
 		icon: 'STYLUS',
@@ -364,7 +374,7 @@ tmp = function() {
 					icon: 'STYLUS',
 					helpText: L('DOUBLETAP_SPEED_HELPTEXT'),
 					defaultValue: '500',
-					values: ['50', '125', '250', '375', '500', '625', '750', '875', '1000'],
+					values: ['50', '125', '250', '375', '500', '625', '750', '875', '1000']
 				},
 				{
 					name: 'switchPageTaps',
@@ -462,7 +472,7 @@ tmp = function() {
 					'true': L('VALUE_TRUE'),
 					'false': L('VALUE_FALSE')
 				}
-			},
+			}
 		],
 		onPreInit: function () {
 			createTouchOptions();
@@ -471,8 +481,10 @@ tmp = function() {
 			opt = this.options;
 			if (opt.ExtendTapAreas === 'true') Fskin.bookScroller.hitLink = newHitLink;
 			if (opt.DoubleTapSpeed !== '500') {
-				BookUtil.gesture.tracker.gesture.actions[3].time = parseInt(opt.DoubleTapSpeed);
-				BookUtil.gesture.tracker.gesture.actions[4].time = parseInt(opt.DoubleTapSpeed);
+				//only parse once
+				var timeTemp = parseInt(opt.DoubleTapSpeed);
+				BookUtil.gesture.tracker.gesture.actions[3].time = timeTemp;
+				BookUtil.gesture.tracker.gesture.actions[4].time = timeTemp;
 			}
 			if (opt.switchPageTaps === 'true') SwitchPageTaps();
 		},
@@ -485,14 +497,17 @@ tmp = function() {
 					Fskin.bookScroller.hitLink = (newValue === 'true') ? newHitLink : oldHitLink;
 					break;
 				case 'DoubleTapSpeed':
-					BookUtil.gesture.tracker.gesture.actions[3].time = parseInt(newValue);
-					BookUtil.gesture.tracker.gesture.actions[4].time = parseInt(newValue);
+					//only parse once
+					var timeTemp = parseInt(newValue);
+					BookUtil.gesture.tracker.gesture.actions[3].time = timeTemp;
+					BookUtil.gesture.tracker.gesture.actions[4].time = timeTemp;
+					break;
 			}
 		},
 		actions: [{
 			name: 'SwipingToggle',
 			title: L('TOGGLE_SWIPING'),
-			group: 'Utils',
+			group: 'Screen',
 			icon: 'GESTURE',
 			action: function () {
 				opt.DisableAllSwipes = (opt.DisableAllSwipes === 'true') ? 'false' : 'true';
@@ -503,7 +518,7 @@ tmp = function() {
 		{
 			name: 'TouchscreenToggle',
 			title: L('TOGGLE_TOUCHSCREEN'),
-			group: 'Utils',
+			group: 'Screen',
 			icon: 'STYLUS',
 			action: function () {
 				if (touchAction) {
@@ -540,7 +555,7 @@ tmp = function() {
 		{
 			name: 'SwitchPageTaps',
 			title: L('SWITCH_PAGE_TAPS'),
-			group: 'Utils',
+			group: 'Screen',
 			icon: 'STYLUS',
 			action: function () {
 				opt.switchPageTaps = (opt.switchPageTaps === 'true') ? 'false' : 'true';

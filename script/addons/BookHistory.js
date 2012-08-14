@@ -45,9 +45,9 @@
 //	2011-09-20 quisvir - Added getBookList to make booklist available to other addons (thanks kartu)
 //	2011-09-24 quisvir - Fixed #178: Deleting books present in Book History deletes current book from Book History as well
 //	2012-01-19 quisvir - Added "Go to Previous Book" action
+//	2012-08-13 drMerry - updated some code. Moved bookhistory to books rather than utils
 
-
-tmp = function() {
+var tmp = function() {
 	var L, LX, log, trim, model, BH_TITLE, BH_SHORT_TITLE, BH_FILE, BookHistory, bookList, mustSave, bookHistoryNode,
 		fromParentFlag, createBookNode, enterBook, constructNodes, loadFromFile,
 		doSave, save, bookChanged, bookDeleted;
@@ -176,7 +176,9 @@ tmp = function() {
 			path = media.source.path + media.path;
 			
 			// Check, if path is already in the list
-			for (i = 0, n = bookList.length; i < n; i++) {
+			i = 0;
+			n = bookList.length;
+			for (i,n; i < n; i++) {
 				if (path === bookList[i]) {
 					if (i !== 0) {
 						// move book to the top of the list
@@ -223,10 +225,13 @@ tmp = function() {
 	// Called when book is deleted. Removes book from history node and from book list
 	bookDeleted = function (not_commit, deleteNode) {
 		var media, path, i, n;
+		//TODO not_commit unused
 		try {
 			media = (deleteNode) ? deleteNode.media : kbook.model.currentBook.media;
 			path = media.source.path + media.path;
-			for (i = 0, n = bookList.length; i < n; i++) {
+			i = 0;
+			n = bookList.length;
+			for (i, n; i < n; i++) {
 				if (path === bookList[i]) {
 					bookList.splice(i, 1);
 					mustSave = true;
@@ -306,12 +311,15 @@ tmp = function() {
 		},
 		
 		onSettingsChanged: function(propertyName, oldValue, newValue) {
-			var size, i, n;
+			var i, n;
+			//size obsolete
 			if (oldValue === newValue || propertyName !== "size") {
 				return;
 			}
-			size = Number(newValue);
-			for (i = 0, n = bookList.length - size; i < n; i++) {
+			//size = Number(newValue);
+			i = 0;
+			n = bookList.length - Number(newValue); //size;
+			for (i, n; i < n; i++) {
 				bookList.pop();
 				// if nodes are initialized, also move book nodes
 				if (bookHistoryNode && bookHistoryNode.nodes) {
@@ -340,7 +348,7 @@ tmp = function() {
 		actions: [{
 			name: "BookHistory",
 			title: BH_TITLE,
-			group: "Utils",
+			group: "Book",
 			icon: "LIST",
 			action: function () {
 				var current = Core.ui.getCurrentNode();

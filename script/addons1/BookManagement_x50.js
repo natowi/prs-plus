@@ -1087,7 +1087,7 @@ var tmp = function() {
 		actions: [{
 			name: 'BookListCycleForward',
 			title: L('BOOKLIST_CYCLE_FORWARD'),
-			group: 'Other',
+			group: 'book',
 			icon: 'BOOKS',
 			action: function () {
 				trigger1 = true;
@@ -1105,7 +1105,7 @@ var tmp = function() {
 		{
 			name: 'BookListCycleBackward',
 			title: L('BOOKLIST_CYCLE_BACKWARD'),
-			group: 'Other',
+			group: 'book',
 			icon: 'BOOKS',
 			action: function () {
 				trigger2 = true;
@@ -1123,7 +1123,7 @@ var tmp = function() {
 		{
 			name: 'BookListNextBooks',
 			title: L('BOOKLIST_NEXT_BOOKS'),
-			group: 'Other',
+			group: 'book',
 			icon: 'NEXT',
 			action: function () {
 				if (!bookChanged) {
@@ -1136,7 +1136,7 @@ var tmp = function() {
 		{
 			name: 'BookListPreviousBooks',
 			title: L('BOOKLIST_PREVIOUS_BOOKS'),
-			group: 'Other',
+			group: 'book',
 			icon: 'PREVIOUS',
 			action: function () {
 				if (numCur < 3 || bookChanged) {
@@ -1151,7 +1151,7 @@ var tmp = function() {
 		{
 			name: 'BookListSelectCollection',
 			title: L('BOOKLIST_SELECT_COLLECTION'),
-			group: 'Other',
+			group: 'book',
 			icon: 'BOOKS',
 			action: function () {
 				doSelectCollection('booklist');

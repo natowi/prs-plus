@@ -11,6 +11,7 @@
 //	2011-12-20 quisvir - Added clock updates during apps/games
 //	2011-12-22 qusivir - Changed to TIME.setValue for autorun, removed TIME.invalidate()
 //	2012-01-06 quisvir - Added next/previous chapter actions
+//	2012-08-14 drMerry - Moved to other group
 
 // Available to sub-addons
 var StatusBar;

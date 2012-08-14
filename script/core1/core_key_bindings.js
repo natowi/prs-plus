@@ -167,7 +167,9 @@ tmp = function() {
 		values.push(defVal);
 		valueTitles[defVal] = L("DEFAULT_VALUE");
 		actions = Core.actions;
-		for (i = 0, n = actions.length; i < n; i++) {
+		i = 0;
+		n = actions.length;
+		for (i, n; i < n; i++) {
 			action = actions[i];
 			if (action && action.hasOwnProperty("name")) {
 				values.push(action.name);
@@ -186,8 +188,8 @@ tmp = function() {
 	};
 	
 	createButtonOptions = function(keys, opDefs) {
-		var i, n, key, keyCode;
-		for (i = 0, n = keys.length; i < n; i++) {
+		var i = 0, n = keys.length, key, keyCode;
+		for (i, n; i < n; i++) {
 			// simple key press	
 			key = keys[i];
 			keyCode = keyCodes[key]; 

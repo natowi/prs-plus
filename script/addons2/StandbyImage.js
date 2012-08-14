@@ -25,9 +25,11 @@
 //	2011-12-30 quisvir - Use popup menu on all models, stop usb charging on disconnect
 //	2012-03-29 Ben Chenoweth - Added mini cover overlay option (on standby and/or shutdown); aspect ratio preserved
 //	2012-03-30 Ben Chenoweth - Added option for background colour
+//	2012-08-14 drMerry - Updated som code
 
-tmp = function() {
-	var L, LX, log, orgOrientation, shutdown, oldStandbyImageDraw, getBookCover, usbConnected, standbyState;
+var tmp = function() {
+	var L, LX, log, orgOrientation, shutdown, oldStandbyImageDraw, getBookCover, usbConnected, standbyState,
+	oldSuspend, oldResume, oldDoDeviceShutdown, oldDoQuit, getBookCoverNew, getBookCoverOld;
 	
 	// Localize
 	L = Core.lang.getLocalizer("StandbyImage");
@@ -39,7 +41,7 @@ tmp = function() {
 	orgOrientation = 0;
 
 	// Suspend: set orientation to portrait, call standbyimage if necessary
-	var oldSuspend = kbook.model.suspend;
+	oldSuspend = kbook.model.suspend;
 	kbook.model.suspend = function () {
 		oldSuspend.apply(this);
 		try {
@@ -64,7 +66,7 @@ tmp = function() {
 	};
 	
 	// Resume: restore orientation if necessary
-	var oldResume = kbook.model.resume;
+	oldResume = kbook.model.resume;
 	kbook.model.resume = function () {
 		if (orgOrientation) {
 			ebook.rotate(orgOrientation);
@@ -75,7 +77,7 @@ tmp = function() {
 	};
 	
 	// Shutdown: set orientation to portrait
-	var oldDoDeviceShutdown = kbook.model.doDeviceShutdown;
+	oldDoDeviceShutdown = kbook.model.doDeviceShutdown;
 	kbook.model.doDeviceShutdown = function () {
 		var orient = ebook.getOrientation();
 		if (orient) {
@@ -84,10 +86,10 @@ tmp = function() {
 			ebook.rotate(0);
 		}
 		oldDoDeviceShutdown.apply(this, arguments);
-	}
+	};
 	
 	// Quit: if no exit code already set, call standbyimage, set exit code 6
-	var oldDoQuit = Fskin.window.doQuit;
+	oldDoQuit = Fskin.window.doQuit;
 	Fskin.window.doQuit = function () {
 		var container = kbook.model.container;
 		// If device is in standby (auto-shutdown), wake it up first
@@ -108,7 +110,7 @@ tmp = function() {
 	};
 	
 	// getBookCover for 600+ and for epub on 300/505
-	var getBookCoverNew = function (path, w, h) {
+	getBookCoverNew = function (path, w, h) {
 		var bitmap, viewer, bounds, natural, clip, rects, rect, scaled, ratio, bitmap2, port;
 		try {
 			viewer = new Document.Viewer.URL('file://' + path, FileSystem.getMIMEType(path));
@@ -126,7 +128,7 @@ tmp = function() {
 					natural = bounds;
 				}
 				rects = viewer.get(Document.Property.imageRects);
-				if (rects && rects.length == 1) {
+				if (rects && rects.length === 1) {
 					rect = rects[0];
 					rect.intersect(natural);
 					if (scaled || rect.width * rect.height >= natural.width * natural.height * 0.8) {
@@ -157,7 +159,7 @@ tmp = function() {
 	};
 	
 	// getBookCover for 300/505, calls getBookCoverNew for epub
-	var getBookCoverOld = function (path, w, h) {
+	getBookCoverOld = function (path, w, h) {
 		var bitmap, page, oldpage;
 		if (FileSystem.getMIMEType(path) === "application/x-sony-bbeb") { // it's a LRF BBeB-Book 
 			if (orgOrientation) {
@@ -252,6 +254,7 @@ tmp = function() {
 						path = kbook.model.currentBook.media.source.path + kbook.model.currentBook.media.path;
 						bitmap = getBookCover(path, w, h);						
 					}
+					break;
 				case 'random':
 				case 'standby':
 					if (!bitmap) {
@@ -286,7 +289,7 @@ tmp = function() {
 						height = Math.floor(bounds.height * ratio);
 						x = (w > width) ? Math.floor((w - width) / 2) : 0;
 						y = (h > height) ? Math.floor((h - height) / 2) : 0;
-						if (opt.BackgroundColour === 'black') {
+						if (opt.BacksndColour === 'black') {
 							win.setPenColor(Color.black);
 							win.fillRectangle(win);
 						}
@@ -323,7 +326,8 @@ tmp = function() {
 				if (content !== null) {
 					lines = content.split('\n');
 					match = (shutdown) ? 'Enter Shutdown Text below this line' : 'Enter Standby Text below this line';
-					for (i=0; i < lines.length - 1 && lines[i].indexOf(match) === -1; i++);
+					i = 0;
+					for (i; i < lines.length - 1 && lines[i].indexOf(match) === -1; i++);
 					if (i !== lines.length - 1) customText = lines[i+1].replace('\r','');
 				}
 				if (!customText || customText === '') customText = L('CUSTOM_TEXT_NOT_FOUND');

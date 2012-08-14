@@ -53,7 +53,7 @@ tmp = function() {
 			log.error("Save as SVG failed!", e);
 			return false;
 		}
-	}
+	};
 	
 	var saveHandwritingJPG = function (name, svg, width, height) {
 		var folder, path, maker, bitmap, stream;
@@ -78,7 +78,7 @@ tmp = function() {
 			log.error("Save as JPG failed!", e);
 			return false;
 		}
-	}
+	};
 	
 	// Save NOTES and HANDWRITINGS
 	var oldNotepadDataSave = kbook.notepadData.save;
@@ -125,13 +125,12 @@ tmp = function() {
 							}
 							if ((SaveNotepadData.options.showSaveProgress === "on") || (!path)) {
 								folder = SaveNotepadData.options.saveTo;
-								if (path) {
-									msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];
-									msg2 = path;
-								} else {
+								msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];
+								msg2 = path ? path : L("FAILED_TO_SAVE");
+								/*} else {
 									msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
 									msg2 = L("FAILED_TO_SAVE");
-								}
+								}*/
 								Core.ui.showMsg([msg1, msg2]);
 							}
 						} catch (e) { }
@@ -140,7 +139,7 @@ tmp = function() {
 			} catch (e) { log.error("Save failed!", e); }
 		}
 		return oldNotepadDataSave.apply(this);
-	}
+	};
 	
 	// save CONTENTS OF HIGHLIGHTS
 	var oldNoteFromHighlight = FskCache.text.noteFromHighlight;
@@ -197,7 +196,7 @@ tmp = function() {
 			catch (e) { log.error("Highlight save failed!", e); }
 		}
 		return oldNoteFromHighlight.apply(this, arguments);
-	}
+	};
 	
 	// Save BOOKMARK COMMENTS
 	var oldPageCommentEditorOverlayModelCloseAnnotationEditor = pageCommentEditorOverlayModel.closeAnnotationEditor;
@@ -265,13 +264,8 @@ tmp = function() {
 							}
 							if ((SaveNotepadData.options.showSaveProgress === "on") || (failed)) {
 								folder = SaveNotepadData.options.saveTo;
-								if (msg1 === undefined) {
-									msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];
-									msg2 = path;
-								} else {
-									msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
-									msg2 = L("FAILED_TO_SAVE");
-								}
+								msg2 = (msg1 === undefined) ? path : L("FAILED_TO_SAVE");
+								msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];
 								Core.ui.showMsg([msg1, msg2]);
 							}
 						}
@@ -280,7 +274,7 @@ tmp = function() {
 			} catch (e) { log.error("Bookmark Note save failed!", e); }
 		}
 		oldPageCommentEditorOverlayModelCloseAnnotationEditor.apply(this, arguments);
-	}
+	};
 	
 	// Save BOOKMARK SCRIBBLES
 	var oldPageScribbleEditorOverlayModelCloseAnnotationEditor = pageScribbleEditorOverlayModel.closeAnnotationEditor;

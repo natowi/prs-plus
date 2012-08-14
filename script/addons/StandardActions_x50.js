@@ -58,9 +58,10 @@ var tmp = function() {
 	
 	// Adds "bubblable" actions, if model supports them
 	addBubbleActions = function (actions) {
-		var bubbles, bubble, icons, i, m, n, rotateFuncX50;
+		var bubbles, bubble, icons, i, m, n, rotateFuncX50, groups;
 		bubbles = ["doOption", "doSearch", "doRotate", "doMenu", "doSize"    , "doRoot"   ];
 		icons   = ["EMPTY"   , "SEARCH"  , "EMPTY"   , "BACK" ,  "TEXT_SCALE", "ROOT_MENU"];
+		groups = ["System"   , "Book"  , "Screen"   , "Other" ,  "Book", "Shortcut"];
 		i = 0;
 		n = bubbles.length;
 		for (i, n; i < n; i ++) {
@@ -69,7 +70,7 @@ var tmp = function() {
 				actions.push( {
 					name: "BubbleAction_" + bubble,
 					title: L("ACTION_" + bubble),
-					group: "Book",
+					group: groups[i],
 					icon: icons[i],
 					bubble: bubble,
 					action: doBubbleFunc
@@ -135,7 +136,7 @@ var tmp = function() {
 				actions.push( {
 					name: "BubbleAction_" + bubble,
 					title: L("ACTION_" + bubble),
-					group: "Other",
+					group: "Screen",
 					bubble: i, 
 					action: rotateFuncX50
 				});
@@ -163,7 +164,7 @@ var tmp = function() {
 			actions.push({
 				name: "NextSong",
 				title: L("ACTION_NEXT_SONG"),
-				group: "Other",
+				group: "Utils",
 				icon: "NEXT_SONG",
 				action: function () {
 					model.doGotoNextSong();
@@ -172,7 +173,7 @@ var tmp = function() {
 			{
 				name: "PreviousSong",
 				title: L("ACTION_PREVIOUS_SONG"),
-				group: "Other",
+				group: "Utils",
 				icon: "PREVIOUS_SONG",
 				action: function () {
 					model.doGotoPreviousSong();
@@ -181,7 +182,7 @@ var tmp = function() {
 			{
 				name: "GotoAudioNode",
 				title: L("ACTION_MUSIC_NODE"),
-				group: "Other",
+				group: "Shortcut",
 				icon: "AUDIO",
 				action: function () {
 					var node = kbook.music ? kbook.music : kbook.root.getMusicNode();
@@ -191,7 +192,7 @@ var tmp = function() {
 			{
 				name: "PausePlayAudio",
 				title: L("ACTION_PAUSE_PLAY_AUDIO"),
-				group: "Other",
+				group: "Utils",
 				icon: "PAUSE",
 				action: function () {
 					// code adapted from x50's songGroup.xml (function "doControl")
@@ -245,7 +246,7 @@ var tmp = function() {
 			actions.push({
 				name: "GotoPeriodicalsNode",
 				title: L("ACTION_PERIODICALS_NODE"),
-				group: "Other",
+				group: "Shortcut",
 				icon: "PERIODICALS",
 				action: function () {
 					model.currentNode.gotoNode(kbook.root.getPeriodicalListNode(), model);
@@ -402,7 +403,7 @@ var tmp = function() {
 			{
 				name: "GotoMoreNode",
 				title: L("ACTION_MORE_NODE"),
-				group: "Other",
+				group: "Shortcut",
 				icon: "ROOT_MENU",
 				action: function () {
 					model.currentNode.gotoNode(Core.ui.nodes.more, model);
@@ -411,7 +412,7 @@ var tmp = function() {
 			{
 				name: "GotoGameNode",
 				title: L("ACTION_GAME_NODE"),
-				group: "Other",
+				group: "Shortcut",
 				icon: "GAME",
 				action: function () {
 					model.currentNode.gotoNode(Core.ui.nodes.games, model);
@@ -420,7 +421,7 @@ var tmp = function() {
 			{
 				name: "GotoPicturesNode",
 				title: L("ACTION_PICTURES_NODE"),
-				group: "Other",
+				group: "Shortcut",
 				icon: "PICTURE_ALT",
 				action: function () {
 					var node = kbook.pictures ? kbook.pictures : kbook.root.getPicturesNode();
@@ -430,7 +431,7 @@ var tmp = function() {
 			{
 				name: "GotoCollectionsNode",
 				title: L("ACTION_COLLECTIONS_NODE"),
-				group: "Other",
+				group: "Shortcut",
 				icon: "COLLECTION",
 				action: function () {
 					model.currentNode.gotoNode(Core.ui.nodes.collections, model);
@@ -439,7 +440,7 @@ var tmp = function() {
 			{
 				name: "GotoNotesNode",
 				title: L("ACTION_NOTES_NODE"),
-				group: "Other",
+				group: "Shortcut",
 				icon: "TEXT_MEMO",
 				action: function () {
 					var node = kbook.notepadsText ? kbook.notepadsText : kbook.root.getNotepadsTextNode();
@@ -449,7 +450,7 @@ var tmp = function() {
 			{
 				name: "GotoFreehandNode",
 				title: L("ACTION_FREEHAND_NODE"),
-				group: "Other",
+				group: "Shortcut",
 				icon: "HANDWRITING_ALT",
 				action: function () {
 					var node = kbook.notepadsFreehand ? kbook.notepadsFreehand : kbook.root.getNotepadsFreehandNode();

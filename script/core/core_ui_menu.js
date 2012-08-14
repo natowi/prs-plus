@@ -18,10 +18,10 @@
 //	2012-06-07 Ben Chenoweth - Fixes for 'Empty' node (issues #283, #290)
 //	2012-06-09 Ben Chenoweth - Added standard apps: music player, notes, dictionary (issue #219)
 
-var MenuCustomizer;
+var MenuCustomizer, tmp;
 tmp = function() {
 	var defVal, nodeMap, emptyNode, getEmptyNode, createActivateNode, 
-		createListOfStandardNodes, createListOfAddonNodes;
+		createListOfStandardNodes, createListOfAddonNodes, getAppNode;
 	defVal = "default";
 	// Name => node or getNode function map
 	nodeMap = {};
@@ -47,8 +47,7 @@ tmp = function() {
 	
 	// Returns node that will activate standard apps on enter
 	getAppNode = function(title) {
-		var L = Core.lang.getLocalizer("MenuCustomizer");
-		var appNode;
+		var L = Core.lang.getLocalizer("MenuCustomizer"), appNode;
 		switch (title) {
 			case 'musicplayer':
 				appNode = Core.ui.createContainerNode({
@@ -107,7 +106,7 @@ tmp = function() {
 				break;
 			default:
 		}
-		if (appNode) return appNode;
+		if (appNode) { return appNode; }
 	};
 
 	createActivateNode = function (addon) {
@@ -170,7 +169,9 @@ tmp = function() {
 				path = standardMenuLayout[key];
 				if (path !== undefined) {
 					node = kbook.root;
-					for (j = 0, m = path.length; j < m; j++) {
+					j = 0;
+					m = path.length;
+					for (j, m; j < m; j++) {
 						node = node.nodes[path[j]];
 					}
 					nodeMap[key] = node;
@@ -191,40 +192,40 @@ tmp = function() {
 				values.push("musicplayer");
 				valueTitles.musicplayer = LL("MUSIC_PLAYER");
 				valueIcons["musicplayer"] = "AUDIO";
-			} catch (e) {
-				log.error("Failed to find music player node: " + e);
+			} catch (e1) {
+				log.error("Failed to find music player node: " + e1);
 			}
 			try {
 				nodeMap.musiclibrary = getAppNode("musiclibrary");
 				values.push("musiclibrary");
 				valueTitles.musiclibrary = LL("MUSIC_LIBRARY");
 				valueIcons["musiclibrary"] = "AUDIO";
-			} catch (e) {
-				log.error("Failed to find music library node: " + e);
+			} catch (e2) {
+				log.error("Failed to find music library node: " + e2);
 			}
 			try {
 				nodeMap.textmemo = getAppNode("textmemo");
 				values.push("textmemo");
 				valueTitles.textmemo = LL("TEXT_MEMOS");
 				valueIcons["textmemo"] = "TEXT_MEMO";
-			} catch (e) {
-				log.error("Failed to find text memo node: " + e);
+			} catch (e3) {
+				log.error("Failed to find text memo node: " + e3);
 			}
 			try {
 				nodeMap.freehand = getAppNode("freehand");
 				values.push("freehand");
 				valueTitles.freehand = LL("HANDWRITINGS");
 				valueIcons["freehand"] = "HANDWRITING";
-			} catch (e) {
-				log.error("Failed to find freehand node: " + e);
+			} catch (e4) {
+				log.error("Failed to find freehand node: " + e4);
 			}
 			try {
 				nodeMap.dictionary = getAppNode("dictionary");
 				values.push("dictionary");
 				valueTitles.dictionary = LL("DICTIONARY");
 				valueIcons["dictionary"] = "DICTIONARY"; 
-			} catch (e) {
-				log.error("Failed to find dictionary node: " + e);
+			} catch (e5) {
+				log.error("Failed to find dictionary node: " + e5);
 			}
 		}
 		//include Core.config.compat.prspMenu.customContainers
@@ -235,8 +236,8 @@ tmp = function() {
 				valueTitles[prspMenu.customContainers[key].name] = L(prspMenu.customContainers[key].title); 
 				valueIcons[prspMenu.customContainers[key].name] = prspMenu.customContainers[key].icon;
 				} 
-		} catch (e) {
-			log.error("Failed to find customContainers: " + key + " " + e);
+		} catch (e6) {
+			log.error("Failed to find customContainers: " + key + " " + e6);
 		} 
 	};
 	
@@ -244,8 +245,8 @@ tmp = function() {
 	 * or getAddonNode function, returning node to show
 	 */
 	createListOfAddonNodes = function(addons, addonNodes, values, valueTitles, valueIcons) {
-		var addon, node, i, n;
-		for (i = 0, n = addons.length; i < n; i++) {
+		var addon, node, i = 0, n = addons.length;
+		for (i, n; i < n; i++) {
 			addon = addons[i];
 			if (typeof addon.activate === "function") {
 				node = createActivateNode(addon);
@@ -267,7 +268,7 @@ tmp = function() {
 		name: "MenuCustomizer",
 		icon: "ROOT_MENU",
 		onPreInit: function() {
-			var L, i, movableNodes, optionValues, optionValueTitles, optionValueIcons, menuOptionValues, menuOptionValueTitles, values, title;
+			var L, i, movableNodes, optionValues, optionValueTitles, optionValueIcons, menuOptionValues, menuOptionValueTitles, values, title, movableNodesLength;
 			L = Core.lang.getLocalizer("MenuCustomizer");
 			this.title = L("TITLE");
 			this.optionDefs = [];
@@ -292,7 +293,9 @@ tmp = function() {
 			createListOfAddonNodes(Core.addons, nodeMap, optionValues, optionValueTitles, optionValueIcons);
 			
 			this.optionDefs = [];
-			for (i = 0; i < movableNodes.length; i++) {
+			i = 0;
+			movableNodesLength = movableNodes.length;
+			for (i; i < movableNodesLength; i++) {
 				// Don't show impossible values on unmovable nodes
 				if (movableNodes[i] === 0) {
 					values = [defVal];
@@ -361,7 +364,9 @@ tmp = function() {
 				standardMenuIcons = Core.config.compat.standardMenuIcons;
 				
 				// Create prs+ containers ("Multimedia", "Games & Utils" etc)
-				for (i = 0, n = customContainers.length; i < n; i++) {
+				i = 0;
+				n = customContainers.length;
+				for (i, n; i < n; i++) {
 					container = customContainers[i];
 					nodeMap[container.name] = Core.ui.createContainerNode({
 						title: coreL(container.title),
@@ -388,7 +393,8 @@ tmp = function() {
 				// Set root menu nodes, remembering which were placed and which were not
 				// was a non empty node inserted
 				stillEmpty = true; 
-				for (i  = defaultLayout.length - 1; i >= 0; i--) {
+				i = defaultLayout.length - 1;
+				for (i; i >= 0; i--) {
 					nodeName = options["slot_" + i];
 					isSeparator = options["slot_sep_" + i] === "true";
 					isShortName = Boolean(defaultLayout[i].shortName);
@@ -442,7 +448,9 @@ tmp = function() {
 				}
 				
 				// Insert custom nodes
-				for (i = 0, n = customNodes.length; i < n; i++) {
+				i = 0;
+				n = customNodes.length;
+				for (i, n; i < n; i++) {
 					customNode = customNodes[i];
 					nodeName = customNode.name;
 					if (placedNodes[nodeName] === true) {
@@ -496,6 +504,7 @@ tmp = function() {
 		},
 		
 		onSettingsChanged: function (propertyName, oldValue, newValue) {
+		  //TODO propertyName unused
 			if (oldValue !== newValue) {
 				this.onInit();
 				nodeMap.root.update(kbook.model);

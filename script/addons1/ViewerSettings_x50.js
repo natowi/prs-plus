@@ -645,7 +645,7 @@ var tmp = function() {
 		actions: [{
 			name: "toggleTrueLandscape",
 			title: L("TOGGLE_TRUE_LANDSCAPE"),
-			group: "Book",
+			group: "Screen",
 			icon: "LANDSCAPE",
 			action: function () {
 				toggleTrueLandscape();

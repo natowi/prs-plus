@@ -14,6 +14,7 @@
 //	2012-02-20 quisvir - Added Action Launcher; code cleaning
 //	2012-03-13 Ben Chenoweth - Fix for issue #321
 //	2012-04-23 drMerry - Moved shutdown to System folder (actions)
+//	2012-08-14 drMerry - Rearanged actions
 
 var tmp = function() {
 	var L, log, NAME, StandardActions, model, book, doHistory, isBookEnabled, addBubbleActions, addOptionalActions,
@@ -92,7 +93,7 @@ var tmp = function() {
 			actions.push({
 				name: "NextSong",
 				title: L("ACTION_NEXT_SONG"),
-				group: "Other",
+				group: "Utils",
 				icon: "NEXT_SONG",
 				action: function () {
 					model.doGotoNextSong();
@@ -101,7 +102,7 @@ var tmp = function() {
 			{
 				name: "PreviousSong",
 				title: L("ACTION_PREVIOUS_SONG"),
-				group: "Other",
+				group: "Utils",
 				icon: "PREVIOUS_SONG",
 				action: function () {
 					model.doGotoPreviousSong();
@@ -110,7 +111,7 @@ var tmp = function() {
 			{
 				name: "GotoAudioNode",
 				title: L("ACTION_MUSIC_NODE"),
-				group: "Other",
+				group: "Shortcut",
 				icon: "AUDIO",
 				action: function () {
 					model.current.gotoNode(Core.ui.nodes.music, model);
@@ -119,7 +120,7 @@ var tmp = function() {
 			{
 				name: "PausePlayAudio",
 				title: L("ACTION_PAUSE_PLAY_AUDIO"),
-				group: "Other",
+				group: "Utils",
 				icon: "PAUSE",
 				action: function () {
 					var container, sandbox, SONG;
@@ -155,7 +156,7 @@ var tmp = function() {
 			{
 				name: "GotoPicturesNode",
 				title: L("ACTION_PICTURES_NODE"),
-				group: "Other",
+				group: "Shortcut",
 				icon: "PICTURE_ALT",
 				action: function () {
 					model.current.gotoNode(Core.ui.nodes.pictures, model);
@@ -321,7 +322,7 @@ var tmp = function() {
 			{
 				name: "doRotate",
 				title: L("ACTION_doRotate"),
-				group: "Other",
+				group: "Screen",
 				icon: 23,
 				action: function () {
 					ebook.rotate();
@@ -339,7 +340,7 @@ var tmp = function() {
 			{
 				name: "GotoGameNode",
 				title: L("ACTION_GAME_NODE"),
-				group: "Other",
+				group: "Shortcut",
 				icon: "GAME",
 				action: function () {
 					model.current.gotoNode(Core.ui.nodes.gamesAndUtils, model);
@@ -348,7 +349,7 @@ var tmp = function() {
 			{
 				name: "GotoCollectionsNode",
 				title: L("ACTION_COLLECTIONS_NODE"),
-				group: "Other",
+				group: "Shortcut",
 				icon: "COLLECTION",
 				action: function () {
 					model.current.gotoNode(Core.ui.nodes.collections, model);
