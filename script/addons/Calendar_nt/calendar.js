@@ -6,280 +6,295 @@
 // Initial version: 2011-07-14
 // Latest update:
 // 2012-05-22 Ben Chenoweth - Removed unused variables; changed globals to locals.
+// 2012-08-14 drMerry - optimized the code somewhat
 
 var tmp = function () {
-	var L = kbook.autoRunRoot.L;
-	var wordMonth = new Array(L("MONTH_JANUARY"),L("MONTH_FEBRUARY"),L("MONTH_MARCH"),L("MONTH_APRIL"),L("MONTH_MAY"),L("MONTH_JUNE"),L("MONTH_JULY"),L("MONTH_AUGUST"),L("MONTH_SEPTEMBER"),L("MONTH_OCTOBER"),L("MONTH_NOVEMBER"),L("MONTH_DECEMBER"));
-	var wordDays = new Array(L("ABBRV_SUNDAY"),L("ABBRV_MONDAY"),L("ABBRV_TUESDAY"),L("ABBRV_WEDNESDAY"),L("ABBRV_THURSDAY"),L("ABBRV_FRIDAY"),L("ABBRV_SATURDAY"));
-	var cardinals = new Array(L("CARDINAL_ONE"), L("CARDINAL_TWO"), L("CARDINAL_THREE"), L("CARDINAL_FOUR"), L("CARDINAL_FIVE"));
-	var STR_TODAY = L("STR_TODAY");
-	var STR_MONTH = L("STR_MONTH");
-	var STR_YEAR = L("STR_YEAR");
-	var STR_OPTIONS = L("STR_OPTIONS");
-	var STR_QUIT = L("STR_QUIT");
-	var STR_EDIT_EVENTS = L("STR_EDIT_EVENTS");
-	var STR_EVENTS = L("STR_EVENTS");
-	var STR_EVENT = L("STR_EVENT");
-	var STR_OK = L("STR_OK");
-	var STR_CANCEL = L("STR_CANCEL");
-	var STR_DELETE = L("STR_DELETE");
-	var STR_CALENDAR_SETTINGS = L("STR_CALENDAR_SETTINGS");
-	var STR_WEEK_STARTS_ON = L("STR_WEEK_STARTS_ON");
-	var FULL_MONDAY = L("FULL_MONDAY");
-	var FULL_SUNDAY = L("FULL_SUNDAY");
-	var STR_TYPE = L("STR_TYPE");
-	var STR_ONE_OFF = L("STR_ONE_OFF");
-	var STR_YEARLY = L("STR_YEARLY");
-	var STR_MONTHLY = L("STR_MONTHLY");
-	var STR_WEEKLY = L("STR_WEEKLY");
-	var STR_FLOATING = L("STR_FLOATING");
-	var STR_DATE = L("STR_DATE");
-	var STR_CARDINAL = L("STR_CARDINAL");
-	var STR_WEEKDAY = L("STR_WEEKDAY");
-	var STR_DESCRIPTION = L("STR_DESCRIPTION");
-	var STR_SYMBOLS = L("STR_SYMBOLS");
-	var STR_LETTERS = L("STR_LETTERS");
-	var STR_NEWYEARSDAY = L("STR_NEWYEARSDAY");
-	var STR_VALENTINESDAY = L("STR_VALENTINESDAY");
-	var STR_EASTERSUNDAY = L("STR_EASTERSUNDAY");
-	var STR_STPATRICKSDAY = L("STR_STPATRICKSDAY");
-	var STR_THANKSGIVING = L("STR_THANKSGIVING");
-	var STR_CHRISTMAS = L("STR_CHRISTMAS");
+	var L = kbook.autoRunRoot.L,
+	//wordMonth = new Array(L("MONTH_JANUARY"),L("MONTH_FEBRUARY"),L("MONTH_MARCH"),L("MONTH_APRIL"),L("MONTH_MAY"),L("MONTH_JUNE"),L("MONTH_JULY"),L("MONTH_AUGUST"),L("MONTH_SEPTEMBER"),L("MONTH_OCTOBER"),L("MONTH_NOVEMBER"),L("MONTH_DECEMBER")),
+	wordMonth = [L("MONTH_JANUARY"),L("MONTH_FEBRUARY"),L("MONTH_MARCH"),L("MONTH_APRIL"),L("MONTH_MAY"),L("MONTH_JUNE"),L("MONTH_JULY"),L("MONTH_AUGUST"),L("MONTH_SEPTEMBER"),L("MONTH_OCTOBER"),L("MONTH_NOVEMBER"),L("MONTH_DECEMBER")],
+	//wordDays = new Array(L("ABBRV_SUNDAY"),L("ABBRV_MONDAY"),L("ABBRV_TUESDAY"),L("ABBRV_WEDNESDAY"),L("ABBRV_THURSDAY"),L("ABBRV_FRIDAY"),L("ABBRV_SATURDAY")),
+	wordDays = [L("ABBRV_SUNDAY"),L("ABBRV_MONDAY"),L("ABBRV_TUESDAY"),L("ABBRV_WEDNESDAY"),L("ABBRV_THURSDAY"),L("ABBRV_FRIDAY"),L("ABBRV_SATURDAY")],
+	//cardinals = new Array(L("CARDINAL_ONE"), L("CARDINAL_TWO"), L("CARDINAL_THREE"), L("CARDINAL_FOUR"), L("CARDINAL_FIVE")),
+	cardinals = [L("CARDINAL_ONE"), L("CARDINAL_TWO"), L("CARDINAL_THREE"), L("CARDINAL_FOUR"), L("CARDINAL_FIVE")],
+	STR_TODAY = L("STR_TODAY"),
+	STR_MONTH = L("STR_MONTH"),
+	STR_YEAR = L("STR_YEAR"),
+	STR_OPTIONS = L("STR_OPTIONS"),
+	STR_QUIT = L("STR_QUIT"),
+	STR_EDIT_EVENTS = L("STR_EDIT_EVENTS"),
+	STR_EVENTS = L("STR_EVENTS"),
+	STR_EVENT = L("STR_EVENT"),
+	STR_OK = L("STR_OK"),
+	STR_CANCEL = L("STR_CANCEL"),
+	STR_DELETE = L("STR_DELETE"),
+	STR_CALENDAR_SETTINGS = L("STR_CALENDAR_SETTINGS"),
+	STR_WEEK_STARTS_ON = L("STR_WEEK_STARTS_ON"),
+	FULL_MONDAY = L("FULL_MONDAY"),
+	FULL_SUNDAY = L("FULL_SUNDAY"),
+	STR_TYPE = L("STR_TYPE"),
+	STR_ONE_OFF = L("STR_ONE_OFF"),
+	STR_YEARLY = L("STR_YEARLY"),
+	STR_MONTHLY = L("STR_MONTHLY"),
+	STR_WEEKLY = L("STR_WEEKLY"),
+	STR_FLOATING = L("STR_FLOATING"),
+	STR_DATE = L("STR_DATE"),
+	STR_CARDINAL = L("STR_CARDINAL"),
+	STR_WEEKDAY = L("STR_WEEKDAY"),
+	STR_DESCRIPTION = L("STR_DESCRIPTION"),
+	STR_SYMBOLS = L("STR_SYMBOLS"),
+	STR_LETTERS = L("STR_LETTERS"),
+	STR_NEWYEARSDAY = L("STR_NEWYEARSDAY"),
+	STR_VALENTINESDAY = L("STR_VALENTINESDAY"),
+	STR_EASTERSUNDAY = L("STR_EASTERSUNDAY"),
+	STR_STPATRICKSDAY = L("STR_STPATRICKSDAY"),
+	STR_THANKSGIVING = L("STR_THANKSGIVING"),
+	STR_CHRISTMAS = L("STR_CHRISTMAS"),
 	
-	var thisDate = 1;							// Tracks current date being written in calendar
-	var today = new Date();							// Date object to store the current date
-	var todaysDay = today.getDay() + 1;					// Stores the current day number 1-7
-	var todaysDate = today.getDate();					// Stores the current numeric date within the month
-	var todaysMonth = today.getUTCMonth() + 1;				// Stores the current month 1-12
-	var todaysYear = today.getFullYear();					// Stores the current year
-	var monthNum = todaysMonth;						// Tracks the current month being displayed
-	var yearNum = todaysYear;						// Tracks the current year being displayed
-	var firstDate;					// Object Storing the first day of the current month
-	var firstDay;					// Tracks the day number 1-7 of the first day of the current month
-	var lastDate;					// Tracks the last date of the current month
-	var numbDays = 0;
-	var eastermonth = 0;
-	var easterday = 0;
-	var events = [];
+	thisDate = 1,							// Tracks current date being written in calendar
+	today = new Date(),							// Date object to store the current date
+	todaysDay = today.getDay() + 1,					// Stores the current day number 1-7
+	todaysDate = today.getDate(),					// Stores the current numeric date within the month
+	todaysMonth = today.getUTCMonth() + 1,				// Stores the current month 1-12
+	todaysYear = today.getFullYear(),					// Stores the current year
+	monthNum = todaysMonth,						// Tracks the current month being displayed
+	yearNum = todaysYear,						// Tracks the current year being displayed
+	firstDate,					// Object Storing the first day of the current month
+	firstDay,					// Tracks the day number 1-7 of the first day of the current month
+	lastDate,					// Tracks the last date of the current month
+	numbDays = 0,
+	eastermonth = 0,
+	easterday = 0,
+	events = [],
 	
-	var hasNumericButtons = kbook.autoRunRoot.hasNumericButtons;
-	var getSoValue = kbook.autoRunRoot.getSoValue;
-	var setSoValue = kbook.autoRunRoot.setSoValue;
-	var getFileContent = kbook.autoRunRoot.getFileContent;
-	var startsWith = kbook.autoRunRoot.startsWith;
-	var datPath0 = kbook.autoRunRoot.gamesSavePath+'Calendar/';
-	FileSystem.ensureDirectory(datPath0);  
-	var datPath  = datPath0 + 'calendar.dat';
-	var settingsPath = datPath0 + 'settings.dat';
-	var selectionDate;
-	var selectionDay;
-	var selectionMonth;
-	var selectionYear;
-	var settingsDlgOpen = false;
-	var eventsDlgOpen = false;
-	var weekBeginsWith = "Sun";
-	var custSel;
-	var prevSel;
-	var maxEventNum;
-	var maxEventType = 5;
-	var maxEventMonth = 12;
-	var maxEventDay;
-	var maxEventYear = 2100;
-	var maxEventIcon = 17; // Change this when adding icons
-	var tempEvents = [];
-	var tempEventsNum = [];
-	var currentTempEvent;
-	var mouseLeave = getSoValue( target.SETTINGS_DIALOG.btn_Cancel,'mouseLeave');
-	var mouseEnter = getSoValue( target.SETTINGS_DIALOG.btn_Cancel,'mouseEnter');
-	var shifted = false;
-	var shiftOffset = 26;
-	var symbols = false;
-	var symbolsOffset = 52;
-	var keys = [];
-	var customKbdPath = datPath0 + 'custom_nt.kbd';	
-	var currentNumEvents = 0;
-	var currentOffset = 0;
-	var upenabled = false;
-	var downenabled = false;
+	hasNumericButtons = kbook.autoRunRoot.hasNumericButtons,
+	getSoValue = kbook.autoRunRoot.getSoValue,
+	setSoValue = kbook.autoRunRoot.setSoValue,
+	getFileContent = kbook.autoRunRoot.getFileContent,
+	startsWith = kbook.autoRunRoot.startsWith,
+	datPath0 = kbook.autoRunRoot.gamesSavePath+'Calendar/';
+	
+	FileSystem.ensureDirectory(datPath0);
+	
+	var datPath  = datPath0 + 'calendar.dat',
+	settingsPath = datPath0 + 'settings.dat',
+	selectionDate,
+	selectionDay,
+	selectionMonth,
+	selectionYear,
+	settingsDlgOpen = false,
+	eventsDlgOpen = false,
+	weekBeginsWith = "Sun",
+	custSel,
+	prevSel,
+	maxEventNum,
+	maxEventType = 5,
+	maxEventMonth = 12,
+	maxEventDay,
+	maxEventYear = 2100,
+	maxEventIcon = 17, // Change this when adding icons
+	tempEvents = [],
+	tempEventsNum = [],
+	currentTempEvent,
+	mouseLeave = getSoValue( target.SETTINGS_DIALOG.btn_Cancel,'mouseLeave'),
+	mouseEnter = getSoValue( target.SETTINGS_DIALOG.btn_Cancel,'mouseEnter'),
+	shifted = false,
+	shiftOffset = 26,
+	symbols = false,
+	symbolsOffset = 52,
+	keys = [],
+	customKbdPath = datPath0 + 'custom_nt.kbd',	
+	currentNumEvents = 0,
+	currentOffset = 0,
+	upenabled = false,
+	downenabled = false,
 	
 	// the following strings work on all readers except the 600 because the characters are missing from the font
-	var strShift = "\u2191"; //up arrow
-	var strUnShift = "\u2193"; //down arrow
-	var strBack = "\u2190"; //left arrow
-	var strUp = "\u2191";
-	var strDown = "\u2193";
+	strShift = "\u2191", //up arrow
+	strUnShift = "\u2193", //down arrow
+	strBack = "\u2190", //left arrow
+	strUp = "\u2191",
+	strDown = "\u2193";
 	
 	// variables to be saved to a file
 	target.settings = {	
 		WeekBeginsWith : "Sun"
 	};        
-
+	
 	// reads values of target.settings.xx from file
 	target.loadSettings = function () {
-		var stream, inpLine;
-		var values = [];
-      	try {
-      		if (FileSystem.getFileInfo(settingsPath)) {
-      			stream = new Stream.File(settingsPath);    			
-		      	while (stream.bytesAvailable) {
-      				inpLine = stream.readLine();
-      				values = inpLine.split(':');
-      				if ((values[1] == 'true') || (values[1] == 'false')) {   					
- 					target.settings[values[0]] = values[1] == 'true';
-      				} else {
-      					target.settings[values[0]]=values[1];  
-      				}
-      			}
-      		}	
-      		stream.close();
-      	} catch (e) {}	
+		var stream, inpLine,
+		values = [];
+		try {
+			if (FileSystem.getFileInfo(settingsPath)) {
+				stream = new Stream.File(settingsPath);    			
+				while (stream.bytesAvailable) {
+					inpLine = stream.readLine();
+					values = inpLine.split(':');
+					if ((values[1] === 'true') || (values[1] === 'false')) {   					
+						target.settings[values[0]] = values[1] === 'true';
+					} else {
+						target.settings[values[0]]=values[1];  
+					}
+				}
+			}	
+			stream.close();
+		} catch (e) {}	
 	};    
-
+	
 	// writes values of target.settings.xx to file         
 	target.saveSettings = function () { 
 		var o, stream;
-      	try {
-      		if (FileSystem.getFileInfo(settingsPath)) FileSystem.deleteFile(settingsPath);
-      		stream = new Stream.File(settingsPath, 1);
-      		for (o in target.settings) {
-      			stream.writeLine(o+':'+target.settings[o]);
-      		}
-      		stream.close();
-      	} catch (e) { }         
-    };
-
+		try {
+			if (FileSystem.getFileInfo(settingsPath)) { FileSystem.deleteFile(settingsPath); }
+			stream = new Stream.File(settingsPath, 1);
+			for (o in target.settings) {
+				stream.writeLine(o+':'+target.settings[o]);
+			}
+			stream.close();
+		} catch (e) { }         
+	};
+	
 	// Load settings from save file once at startup
 	target.loadSettings();
 	
 	// assign model-variables
-	with (target.settings) {
+	with(target.settings) {
 		weekBeginsWith = WeekBeginsWith;
 		target.setVariable("week_begins",WeekBeginsWith);
-	}
-
-	var twoDigits = function (i) {
-		if (i<10) {return "0"+i}
-		return i;	
 	};
-
+	
+	var twoDigits = function (i) {
+		//if (i<10) {return "0"+i;}
+		//return i;	
+		return (i<10) ? "0"+i : i;
+	};
+	
 	target.loadWesternKeys = function () {
-		keys[0]="q";
-		keys[1]="w";
-		keys[2]="e";
-		keys[3]="r";
-		keys[4]="t";
-		keys[5]="y";
-		keys[6]="u";
-		keys[7]="i";
-		keys[8]="o";
-		keys[9]="p";
-		keys[10]="a";
-		keys[11]="s";
-		keys[12]="d";
-		keys[13]="f";
-		keys[14]="g";
-		keys[15]="h";
-		keys[16]="j";
-		keys[17]="k";
-		keys[18]="l";
-		keys[19]="z";
-		keys[20]="x";
-		keys[21]="c";
-		keys[22]="v";
-		keys[23]="b";
-		keys[24]="n";
-		keys[25]="m";
-		keys[26]="Q";
-		keys[27]="W";
-		keys[28]="E";
-		keys[29]="R";
-		keys[30]="T";
-		keys[31]="Y";
-		keys[32]="U";
-		keys[33]="I";
-		keys[34]="O";
-		keys[35]="P";
-		keys[36]="A";
-		keys[37]="S";
-		keys[38]="D";
-		keys[39]="F";
-		keys[40]="G";
-		keys[41]="H";
-		keys[42]="J";
-		keys[43]="K";
-		keys[44]="L";
-		keys[45]="Z";
-		keys[46]="X";
-		keys[47]="C";
-		keys[48]="V";
-		keys[49]="B";
-		keys[50]="N";
-		keys[51]="M";
-		keys[52]="1";
-		keys[53]="2";
-		keys[54]="3";
-		keys[55]="4";
-		keys[56]="5";
-		keys[57]="6";
-		keys[58]="7";
-		keys[59]="8";
-		keys[60]="9";
-		keys[61]="0";
-		keys[62]="%";
-		keys[63]="&";
-		keys[64]="*";
-		keys[65]="(";
-		keys[66]=")";
-		keys[67]="_";
-		keys[68]="+";
-		keys[69]=";";
-		keys[70]=":";
-		keys[71]="!";
-		keys[72]="?";
-		keys[73]="\"";
-		keys[74]="\'";
-		keys[75]=",";
-		keys[76]=".";
-		keys[77]="/";
-		keys[78]="~";
-		keys[79]="@";
-		keys[80]="#";
-		keys[81]="$";
-		keys[82]="^";
-		keys[83]="-";
-		keys[84]="`";
-		keys[85]="=";
-		keys[86]="{";
-		keys[87]="}";
-		keys[88]="\u00AC";
-		keys[89]="\u00A3";
-		keys[90]="\u20AC";
-		keys[91]="\u00A7";
-		keys[92]="\u00A6";
-		keys[93]="[";
-		keys[94]="]";
-		keys[95]="|";
-		keys[96]="\\";
-		keys[97]="\u00B2";
-		keys[98]="\u00B0";
-		keys[99]="\u00B5";
-		keys[100]="\u00AB";
-		keys[101]="\u00BB";
-		keys[102]="<";
-		keys[103]=">";
+		var abcKeys = ["q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"],
+		abcShiftedKeys = ["Q","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M"],
+		symKeys = ["1","2","3","4","5","6","7","8","9","0","%","&","*","(",")","_","+",";",":","!","?","\"","\'",",",".","/"],
+		symShiftedKeys = ["~","@","#","$","^","-","`","=","{","}","\u00AC","\u00A3","\u20AC","\u00A7","\u00A6","[","]","|","\\","\u00B2","\u00B0","\u00B5","\u00AB","\u00BB","<",">"];
+		keys = abcKeys.concat(abcShiftedKeys,symKeys,symShiftedKeys);
+		//Combined keys
+		/*
+		 k eys[0]="q";  *
+		 keys[1]="w";
+		 keys[2]="e";
+		 keys[3]="r";
+		 keys[4]="t";
+		 keys[5]="y";
+		 keys[6]="u";
+		 keys[7]="i";
+		 keys[8]="o";
+		 keys[9]="p";
+		 keys[10]="a";
+		 keys[11]="s";
+		 keys[12]="d";
+		 keys[13]="f";
+		 keys[14]="g";
+		 keys[15]="h";
+		 keys[16]="j";
+		 keys[17]="k";
+		 keys[18]="l";
+		 keys[19]="z";
+		 keys[20]="x";
+		 keys[21]="c";
+		 keys[22]="v";
+		 keys[23]="b";
+		 keys[24]="n";
+		 keys[25]="m";
+		 keys[26]="Q";
+		 keys[27]="W";
+		 keys[28]="E";
+		 keys[29]="R";
+		 keys[30]="T";
+		 keys[31]="Y";
+		 keys[32]="U";
+		 keys[33]="I";
+		 keys[34]="O";
+		 keys[35]="P";
+		 keys[36]="A";
+		 keys[37]="S";
+		 keys[38]="D";
+		 keys[39]="F";
+		 keys[40]="G";
+		 keys[41]="H";
+		 keys[42]="J";
+		 keys[43]="K";
+		 keys[44]="L";
+		 keys[45]="Z";
+		 keys[46]="X";
+		 keys[47]="C";
+		 keys[48]="V";
+		 keys[49]="B";
+		 keys[50]="N";
+		 keys[51]="M";
+		 keys[52]="1";
+		 keys[53]="2";
+		 keys[54]="3";
+		 keys[55]="4";
+		 keys[56]="5";
+		 keys[57]="6";
+		 keys[58]="7";
+		 keys[59]="8";
+		 keys[60]="9";
+		 keys[61]="0";
+		 keys[62]="%";
+		 keys[63]="&";
+		 keys[64]="*";
+		 keys[65]="(";
+		 keys[66]=")";
+		 keys[67]="_";
+		 keys[68]="+";
+		 keys[69]=";";
+		 keys[70]=":";
+		 keys[71]="!";
+		 keys[72]="?";
+		 keys[73]="\"";
+		 keys[74]="\'";
+		 keys[75]=",";
+		 keys[76]=".";
+		 keys[77]="/";
+		 keys[78]="~";
+		 keys[79]="@";
+		 keys[80]="#";
+		 keys[81]="$";
+		 keys[82]="^";
+		 keys[83]="-";
+		 keys[84]="`";
+		 keys[85]="=";
+		 keys[86]="{";
+		 keys[87]="}";
+		 keys[88]="\u00AC";
+		 keys[89]="\u00A3";
+		 keys[90]="\u20AC";
+		 keys[91]="\u00A7";
+		 keys[92]="\u00A6";
+		 keys[93]="[";
+		 keys[94]="]";
+		 keys[95]="|";
+		 keys[96]="\\";
+		 keys[97]="\u00B2";
+		 keys[98]="\u00B0";
+		 keys[99]="\u00B5";
+		 keys[100]="\u00AB";
+		 keys[101]="\u00BB";
+		 keys[102]="<";
+		 keys[103]=">";
+		 */
 		return;
 	};
 	
 	target.saveCustomKeyboard = function () {
 		var o, stream;
-      	try {
-      		if (FileSystem.getFileInfo(customKbdPath)) FileSystem.deleteFile(customKbdPath);
-      		stream = new Stream.File(customKbdPath, 1);
-      		for (o=0; o<=103; o++) {
-      			stream.writeLine(keys[o]);
-      		}
-      		stream.close();
-      	} catch (e) { }   
+		try {
+			if (FileSystem.getFileInfo(customKbdPath)) { FileSystem.deleteFile(customKbdPath); }
+			stream = new Stream.File(customKbdPath, 1);
+			for (o=0; o<=103; o++) {
+				stream.writeLine(keys[o]);
+			}
+			stream.close();
+		} catch (e) { }   
 		return;
 	};
 	
@@ -290,7 +305,7 @@ var tmp = function () {
 		if (FileSystem.getFileInfo(filename)) {
 			// read whole file in first to count how many events there are
 			var tempfile = getFileContent(filename,'keyboard missing');
-			if (tempfile!='keyboard missing') {
+			if (tempfile!=='keyboard missing') {
 				keys = tempfile.split("\r\n");	// CR LF is used by stream.writeLine()
 			} else {
 				// fallback
@@ -322,15 +337,15 @@ var tmp = function () {
 		//target.bubble("tracelog","initialising...");
 		this.appTitle.setValue(kbook.autoRunRoot._title);
 		this.appIcon.u = kbook.autoRunRoot._icon;
-
+		
 		// Load events from save file
 		try {
 			if (FileSystem.getFileInfo(datPath)) {
 				// read whole file in first to count how many events there are
 				var tempfile = getFileContent(datPath,'savefile missing');
-				if (tempfile!='savefile missing') {
-					var lines = tempfile.split("\r\n");	// CR LF is used by stream.writeLine()
-					var tempnumevents = (lines.length-1);
+				if (tempfile!=='savefile missing') {
+					var lines = tempfile.split("\r\n"),	// CR LF is used by stream.writeLine()
+					tempnumevents = (lines.length-1);
 					//target.bubble("tracelog","Events="+tempnumevents);
 					for (i=0; i<tempnumevents; i++) {
 						// check for rem-character
@@ -342,8 +357,8 @@ var tmp = function () {
 							if (isNaN(events[j][4]-0)) {
 								events[j][5]=events[i][4];
 								events[j][4]=3;
-								}
-							}	
+							}
+						}	
 					}
 				}
 			} else {
@@ -359,10 +374,10 @@ var tmp = function () {
 		
 		// hide unwanted graphics
 		this.selection1.changeLayout(0, 0, uD, 0, 0, uD);
-
+		
 		//target.bubble("tracelog","Today: "+today);
 		
-		if (weekBeginsWith=="Mon") {
+		if (weekBeginsWith === "Mon") {
 			this.labelSun.setValue(wordDays[1]);
 			this.labelMon.setValue(wordDays[2]);
 			this.labelTue.setValue(wordDays[3]);
@@ -371,7 +386,7 @@ var tmp = function () {
 			this.labelFri.setValue(wordDays[6]);
 			this.labelSat.setValue(wordDays[0]);
 			todaysDay = today.getDay();
-			if (todaysDay==0) todaysDay=7;
+			if (todaysDay === 0) { todaysDay=7; }
 		} else {
 			this.labelSun.setValue(wordDays[0]);
 			this.labelMon.setValue(wordDays[1]);
@@ -424,7 +439,7 @@ var tmp = function () {
 		target.BUTTON_DWN.enable(false);
 		this.nonTouch9.setValue('');
 		this.nonTouch0.setValue('');
-	
+		
 		//simplify some labels
 		setSoValue(target.EVENTS_DIALOG.BACK, 'text', strBack);
 		setSoValue(target.EVENTS_DIALOG.SHIFT, 'text', strShift);
@@ -472,7 +487,7 @@ var tmp = function () {
 		
 		// fix for Prev/Next month for 300
 		if (!kbook.simEnviro) {
-			if (kbook.autoRunRoot.model=="300") {
+			if (kbook.autoRunRoot.model === "300") {
 				this.nonTouch2.setValue("");
 				this.nonTouch5.setValue("");
 				this.nonTouch3.setValue("[Hold Right] +" + STR_MONTH);
@@ -481,20 +496,21 @@ var tmp = function () {
 		}
 		return;
 	};
-
+	
 	target.dateChanged = function() {
-		if (monthNum == 0) {
+		var i, j, daycounter, x, y;
+		if (monthNum === 0) {
 			monthNum = 12;
 			yearNum--;
 		}
-		else if (monthNum == 13) {
+		else if (monthNum === 13) {
 			monthNum = 1;
-			yearNum++
+			yearNum++;
 		}
 		
 		this.displayMonth.setValue(wordMonth[monthNum-1]);
 		this.bigYear.setValue(yearNum);
-
+		
 		lastDate = new Date(yearNum,monthNum);
 		lastDate.setDate(lastDate.getDate()-1);
 		numbDays = lastDate.getDate();
@@ -513,20 +529,22 @@ var tmp = function () {
 		this.nonTouch9.setValue('');
 		this.nonTouch0.setValue('');		
 		
-		if (selectionDate > numbDays) selectionDate=numbDays;
-		var daycounter = 0;
+		if (selectionDate > numbDays) { selectionDate=numbDays; }
+		daycounter = 0;
 		thisDate = 1;
-		var x = -1;
-		var y = -1;
-		for (var i = 1; i <= 6; i++) {
-			for (var j = 1; j <= 7; j++) {
-				if (weekBeginsWith=="Sun") {
+		x = -1;
+		y = -1;
+		i = 1;
+		for (i; i <= 6; i++) {
+			j = 1;
+			for (j; j <= 7; j++) {
+				if (weekBeginsWith === "Sun") {
 					daycounter = (thisDate - firstDay)+1;
 				} else {
 					daycounter = (thisDate - firstDay)+2;
-					if (firstDay==1) daycounter -= 7;
+					if (firstDay === 1) { daycounter -= 7; }
 				}
-				if (selectionDate==daycounter) {
+				if (selectionDate === daycounter) {
 					x=j;
 					y=i;
 					selectionDay=i;
@@ -541,7 +559,7 @@ var tmp = function () {
 		if ((selectionDate>0) && (hasNumericButtons)) {
 			//place selection square
 			this.gridCursor.changeLayout((x-1)*70+50, 70, uD, (y-1)*70+80, 70, uD);
-
+			
 			if (this.checkevents(selectionDate,monthNum,yearNum,y,x)>0) {
 				// events in selection square
 				this.showevents(selectionDate,monthNum,yearNum,y,x,0);
@@ -554,32 +572,32 @@ var tmp = function () {
 		//target.bubble("tracelog","firstDate="+firstDate+", lastDate="+lastDate+", firstDay="+firstDay);
 		return;	
 	};
-
+	
 	target.easter = function (year) {
 		// feed in the year it returns the month and day of Easter using two GLOBAL variables: eastermonth and easterday
-		var a = year % 19;
-		var b = Math.floor(year/100);
-		var c = year % 100;
-		var d = Math.floor(b/4);
-		var e = b % 4;
-		var f = Math.floor((b+8) / 25);
-		var g = Math.floor((b-f+1) / 3);
-		var h = (19*a + b - d - g + 15) % 30;
-		var i = Math.floor(c/4);
-		var j = c % 4;
-		var k = (32 + 2*e + 2*i - h - j) % 7;
-		var m = Math.floor((a + 11*h + 22*k) / 451);
-		var month = Math.floor((h + k - 7*m + 114) / 31);
-		var day = ((h + k - 7*m +114) % 31) + 1;
+		var a = year % 19,
+		b = Math.floor(year/100),
+		c = year % 100,
+		d = Math.floor(b/4),
+		e = b % 4,
+		f = Math.floor((b+8) / 25),
+		g = Math.floor((b-f+1) / 3),
+		h = (19*a + b - d - g + 15) % 30,
+		i = Math.floor(c/4),
+		j = c % 4,
+		k = (32 + 2*e + 2*i - h - j) % 7,
+		m = Math.floor((a + 11*h + 22*k) / 451),
+		month = Math.floor((h + k - 7*m + 114) / 31),
+		day = ((h + k - 7*m +114) % 31) + 1;
 		eastermonth = month;
 		easterday = day;
 	};
-
+	
 	target.setSquare = function (row, column, type, date, numevents) {
-		var id;
+		var id,i,x;
 		id=(row - 1) * 7 + (column - 1);
 		this['square' + id].u = type;
-		if (date=="0") {
+		if (date === "0") {
 			this['day' + id].setValue("");
 		} else {
 			this['day' + id].setValue(date);
@@ -593,20 +611,22 @@ var tmp = function () {
 	};
 	
 	target.createCalendar = function () {
-		var daycounter = 0;
-		var eventtype;
+		var daycounter = 0,
+		eventtype, x, i;
 		thisDate = 1;
 		
 		//hide today marker
 		this.selection1.changeLayout(0, 0, uD, 0, 0, uD);
-		for (var i = 1; i <= 6; i++) {
-			for (var x = 1; x <= 7; x++) {
+		i = 1;
+		for (i; i <= 6; i++) {
+			x = 1;
+			for (x; x <= 7; x++) {
 				
-				if (weekBeginsWith=="Sun") {
+				if (weekBeginsWith === "Sun") {
 					daycounter = (thisDate - firstDay)+1;
 				} else {
 					daycounter = (thisDate - firstDay)+2;
-					if (firstDay==1) daycounter -= 7;
+					if (firstDay === 1) { daycounter -= 7; }
 				}
 				thisDate++;
 				if ((daycounter > numbDays) || (daycounter < 1)) {
@@ -614,8 +634,8 @@ var tmp = function () {
 					this.setSquare(i,x,0,"0",0);
 				} else {
 					var numevents=this.checkevents(daycounter,monthNum,yearNum,i,x);
-					if (numevents>0 || ((todaysDay == x) && (todaysDate == daycounter) && (todaysMonth == monthNum))){
-						if ((todaysDay == x) && (todaysDate == daycounter) && (todaysMonth == monthNum)) {
+					if (numevents>0 || ((todaysDay === x) && (todaysDate === daycounter) && (todaysMonth === monthNum))){
+						if ((todaysDay === x) && (todaysDate === daycounter) && (todaysMonth === monthNum)) {
 							// today
 							if (numevents>0) {
 								// event on this day
@@ -623,15 +643,15 @@ var tmp = function () {
 								this.setSquare(i,x,eventtype,daycounter,numevents);
 							} else {
 								// blank day
-								if (weekBeginsWith=="Sun") {
-									if ((x==1) || (x==7)) {
+								if (weekBeginsWith === "Sun") {
+									if ((x === 1) || (x === 7)) {
 										// weekend
 										this.setSquare(i,x,2,daycounter,0);
 									} else {
 										this.setSquare(i,x,1,daycounter,0);
 									}
 								} else {
-									if ((x==6) || (x==7)) {
+									if ((x === 6) || (x === 7)) {
 										// weekend
 										this.setSquare(i,x,2,daycounter,0);
 									} else {
@@ -649,15 +669,15 @@ var tmp = function () {
 						}
 					} else {
 						// blank day
-						if (weekBeginsWith=="Sun") {
-							if ((x==1) || (x==7)) {
+						if (weekBeginsWith === "Sun") {
+							if ((x === 1) || (x === 7)) {
 								// weekend
 								this.setSquare(i,x,2,daycounter,0);
 							} else {
 								this.setSquare(i,x,1,daycounter,0);
 							}
 						} else {
-							if ((x==6) || (x==7)) {
+							if ((x === 6) || (x === 7)) {
 								// weekend
 								this.setSquare(i,x,2,daycounter,0);
 							} else {
@@ -671,151 +691,165 @@ var tmp = function () {
 		thisDate = 1;
 		return;
 	};
-
+	
 	target.checkevents = function (day,month,year,week,dayofweek) {
-		var numevents = 0;
-		var floater = 0;
-		var altdayofweek;
+		var numevents = 0,
+		floater = 0,
+		altdayofweek, i;
 		
 		altdayofweek = dayofweek+1;
-		if (altdayofweek==8) altdayofweek=1;
-
-		for (var i = 0; i < events.length; i++) {
-			if (events[i][0] == "W") {
-				if (weekBeginsWith=="Sun") {
-					if ((events[i][3] == dayofweek)) numevents++;
+		if (altdayofweek === 8) { altdayofweek=1; }
+		i = 0;
+		for (i; i < events.length; i++) {
+			if (events[i][0] === "W") {
+				if (weekBeginsWith === "Sun") {
+					if ((events[i][3] === dayofweek)) { numevents++; }
 				} else {
-					if ((events[i][3] == altdayofweek)) numevents++;
+					if ((events[i][3] === altdayofweek)) { numevents++; }
 				}
 			}
-			else if (events[i][0] == "M") {
-				if ((events[i][2] == day) && (events[i][3] <= year)) numevents++;
+			else if (events[i][0] === "M") {
+				if ((events[i][2] === day) && (events[i][3] <= year)) { numevents++; }
 			}
-			else if ((events[i][0] == "Y") || (events[i][0] == "C") || (events[i][0] == "B") || (events[i][0] == "V") || (events[i][0] == "A")) {
-				if ((events[i][2] == day) && (events[i][1] == month) && (events[i][3] <= year)) numevents++;
+			else if ((events[i][0] === "Y") || (events[i][0] === "C") || (events[i][0] === "B") || (events[i][0] === "V") || (events[i][0] === "A")) {
+				if ((events[i][2] === day) && (events[i][1] === month) && (events[i][3] <= year)) { numevents++; }
 			}
-			else if (events[i][0] == "F") {
-				if ((events[i][1] == 3) && (events[i][2] == 0) && (events[i][3] == 0) ) {
+			else if (events[i][0] === "F") {
+				if ((events[i][1] === 3) && (events[i][2] === 0) && (events[i][3] === 0) ) {
 					this.easter(year);
-					if (easterday == day && eastermonth == month) numevents++;
+					if (easterday === day && eastermonth === month) { numevents++; }
 				} else {
 					floater = this.floatingholiday(year,events[i][1],events[i][2],events[i][3]);
-					if ((month == 5) && (events[i][1] == 5) && (events[i][2] == 4) && (events[i][3] == 2)) {
-						if ((floater + 7 <= 31) && (day == floater + 7)) {
+					if ((month === 5) && (events[i][1] === 5) && (events[i][2] === 4) && (events[i][3] === 2)) {
+						if ((floater + 7 <= 31) && (day === floater + 7)) {
 							numevents++;
-						} else if ((floater + 7 > 31) && (day == floater)) numevents++;
-					} else if ((events[i][1] == month) && (floater == day)) numevents++;
+						} else if ((floater + 7 > 31) && (day === floater)) { numevents++; }
+					} else if ((events[i][1] === month) && (floater === day)) { numevents++; }
 				}
 			}
-			else if ((events[i][2] == day) && (events[i][1] == month) && (events[i][3] == year)) {
+			else if ((events[i][2] === day) && (events[i][1] === month) && (events[i][3] === year)) {
 				numevents++;
 			}
 		}
 		
 		return numevents;
 	};
-
+	
 	target.getevent = function (day,month,year,week,dayofweek) {
-		var altdayofweek, floater;
+		var altdayofweek, floater, i, eL;
 		
-		altdayofweek = dayofweek+1;
-		if (altdayofweek==8) altdayofweek=1;
+		//altdayofweek = dayofweek+1;
+		//if (altdayofweek === 8) altdayofweek=1;
+		altdayofweek = ( dayofweek % 7 ) + 1;
 		
 		// Only one icon can be shown, so we have to prioritise them
 		// Also, the icon of the first event of each type will be the one displayed
 		// yearly events are first
-		for (var i = 0; i < events.length; i++) {
-			if (events[i][0] == "Y") {
-				if ((events[i][2] == day) && (events[i][1] == month) && (events[i][3] <= year)) {
+		i = 0;
+		eL = events.length;
+		for (i; i < eL; i++) {
+			if (events[i][0] === "Y") {
+				if ((events[i][2] === day) && (events[i][1] === month) && (events[i][3] <= year)) {
 					return events[i][4];
 				}
 			}
 		}
 		// floating events are next
-		for ( i = 0; i < events.length; i++) {
-			if (events[i][0] == "F") {
-				if ((events[i][1] == 3) && (events[i][2] == 0) && (events[i][3] == 0) ) {
-					if (easterday == day && eastermonth == month) {
+		i = 0;
+		eL = events.length;
+		for (i; i < eL; i++) {
+			if (events[i][0] === "F") {
+				if ((events[i][1] === 3) && (events[i][2] === 0) && (events[i][3] === 0) ) {
+					if (easterday === day && eastermonth === month) {
 						return events[i][4];
 					} 
 				} else {
 					floater = this.floatingholiday(year,events[i][1],events[i][2],events[i][3]);
-
-					if ((month == 5) && (events[i][1] == 5) && (events[i][2] == 4) && (events[i][3] == 2)) {
-						if ((floater + 7 <= 31) && (day == floater + 7)) {
+					
+					if ((month === 5) && (events[i][1] === 5) && (events[i][2] === 4) && (events[i][3] === 2)) {
+						if ((floater + 7 <= 31) && (day === floater + 7)) {
 							return events[i][4];
-						} else if ((floater + 7 > 31) && (day == floater)) {
+						} else if ((floater + 7 > 31) && (day === floater)) {
 							return events[i][4];								
 						}
-					} else if ((events[i][1] == month) && (floater == day)) {
+					} else if ((events[i][1] === month) && (floater === day)) {
 						return events[i][4];
 					}
 				}
 			}
 		}
 		// one off events are next
-		for ( i = 0; i < events.length; i++) {
-			if (events[i][0] == "") {
-				if ((events[i][2] == day) && (events[i][1] == month) && (events[i][3] == year)) {
+		i = 0;
+		eL = events.length;
+		for (i; i < eL; i++) {
+			if (events[i][0] === "") {
+				if ((events[i][2] === day) && (events[i][1] === month) && (events[i][3] === year)) {
 					return events[i][4];
 				}
 			}
 		}		
 		// monthly events are next
-		for ( i = 0; i < events.length; i++) {
-			if (events[i][0] == "M") {
-				if ((events[i][2] == day) && (events[i][3] <= year)) {
+		i = 0;
+		eL = events.length;
+		for (i; i < eL; i++) {
+			if (events[i][0] === "M") {
+				if ((events[i][2] === day) && (events[i][3] <= year)) {
 					return events[i][4];
 				}
 			}
 		}
 		// weekly events are last
-		for ( i = 0; i < events.length; i++) {
-			if (events[i][0] == "W") {
-				if (weekBeginsWith=="Sun") {
-					if ((events[i][3] == dayofweek)) return events[i][4];
+		i = 0;
+		eL = events.length;
+		for (i; i < eL; i++) {
+			if (events[i][0] === "W") {
+				if (weekBeginsWith === "Sun") {
+					if ((events[i][3] === dayofweek)) { return events[i][4]; }
 				} else {
-					if ((events[i][3] == altdayofweek)) return events[i][4];
+					if ((events[i][3] === altdayofweek)) { return events[i][4]; }
 				}				
 			}
 		}
-
+		
 		// default event icon
 		return 3;
 	};
 	
 	target.showevents = function (day,month,year,week,dayofweek,offset) {
-		var theevent = "";
-		var floater = 0;
-		var altdayofweek;
-		var preoffset = 0;
-
-		altdayofweek = dayofweek+1;
-		if (altdayofweek==8) altdayofweek=1;
-
+		var theevent = "",
+		floater = 0,
+		altdayofweek, i, eL,
+		preoffset = 0;
+		
+		//altdayofweek = dayofweek+1;
+		//if (altdayofweek === 8) altdayofweek=1;
+		altdayofweek = (dayofweek % 7) + 1;
+		
 		// reset the temporary array
 		if (tempEvents.length>0) {
 			tempEvents.length=0;
 			tempEventsNum.length=0;
 		}
 		
-		for (var i = 0; i < events.length; i++) {
+		i = 0;
+		eL = events.length;
+		for (i; i < eL; i++) {
 			// First we'll process recurring events (if any):
-			if (events[i][0] != "") {
+			if (events[i][0] !== "") {
 				// repeating event
-				if (events[i][0] == "W") {
-					if ((events[i][3] == dayofweek)) {
+				if (events[i][0] === "W") {
+					if ((events[i][3] === dayofweek)) {
 						
 					}
-					if (weekBeginsWith=="Sun") {
-						if ((events[i][3] == dayofweek)) {
+					if (weekBeginsWith === "Sun") {
+						if ((events[i][3] === dayofweek)) {
 							preoffset++;
 							if (preoffset > offset) { theevent += events[i][5] + '\n'; }
 							tempEvents=tempEvents.concat(events.slice(i,i+1));
 							tempEventsNum.push(i);
 						}
 					} else {
-						if ((events[i][3] == altdayofweek)) {
+						if ((events[i][3] === altdayofweek)) {
 							preoffset++;
 							if (preoffset > offset) { theevent += events[i][5] + '\n'; }
 							tempEvents=tempEvents.concat(events.slice(i,i+1));
@@ -823,25 +857,25 @@ var tmp = function () {
 						}
 					}						
 				}
-				if (events[i][0] == "M") {
-					if ((events[i][2] == day) && (events[i][3] <= year)) {
+				if (events[i][0] === "M") {
+					if ((events[i][2] === day) && (events[i][3] <= year)) {
 						preoffset++;
 						if (preoffset > offset) { theevent += events[i][5] + '\n'; }
 						tempEvents=tempEvents.concat(events.slice(i,i+1));
 						tempEventsNum.push(i);
 					}
 				}
-				if ((events[i][0] == "Y") || (events[i][0] == "C") || (events[i][0] == "B") || (events[i][0] == "V") || (events[i][0] == "A")) {
-					if ((events[i][2] == day) && (events[i][1] == month) && (events[i][3] <= year)) {
+				if ((events[i][0] === "Y") || (events[i][0] === "C") || (events[i][0] === "B") || (events[i][0] === "V") || (events[i][0] === "A")) {
+					if ((events[i][2] === day) && (events[i][1] === month) && (events[i][3] <= year)) {
 						preoffset++;
 						if (preoffset > offset) { theevent += events[i][5] + '\n'; }
 						tempEvents=tempEvents.concat(events.slice(i,i+1));
 						tempEventsNum.push(i);
 					}
 				}
-				if (events[i][0] == "F") {
-					if ((events[i][1] == 3) && (events[i][2] == 0) && (events[i][3] == 0) ) {
-						if (easterday == day && eastermonth == month) {
+				if (events[i][0] === "F") {
+					if ((events[i][1] === 3) && (events[i][2] === 0) && (events[i][3] === 0) ) {
+						if (easterday === day && eastermonth === month) {
 							preoffset++;
 							if (preoffset > offset) { theevent += events[i][5] + '\n'; }
 							tempEvents=tempEvents.concat(events.slice(i,i+1));
@@ -849,20 +883,20 @@ var tmp = function () {
 						} 
 					} else {
 						floater = this.floatingholiday(year,events[i][1],events[i][2],events[i][3]);
-
-						if ((month == 5) && (events[i][1] == 5) && (events[i][2] == 4) && (events[i][3] == 2)) {
-							if ((floater + 7 <= 31) && (day == floater + 7)) {
+						
+						if ((month === 5) && (events[i][1] === 5) && (events[i][2] === 4) && (events[i][3] === 2)) {
+							if ((floater + 7 <= 31) && (day === floater + 7)) {
 								preoffset++;
 								if (preoffset > offset) { theevent += events[i][5] + '\n'; }
 								tempEvents=tempEvents.concat(events.slice(i,i+1));
 								tempEventsNum.push(i);
-							} else if ((floater + 7 > 31) && (day == floater)) {
+							} else if ((floater + 7 > 31) && (day === floater)) {
 								preoffset++;
 								if (preoffset > offset) { theevent += events[i][5] + '\n'; }
 								tempEvents=tempEvents.concat(events.slice(i,i+1));
 								tempEventsNum.push(i);
 							}
-						} else if ((events[i][1] == month) && (floater == day)) {
+						} else if ((events[i][1] === month) && (floater === day)) {
 							preoffset++;
 							if (preoffset > offset) { theevent += events[i][5] + '\n'; }
 							tempEvents=tempEvents.concat(events.slice(i,i+1));
@@ -872,7 +906,7 @@ var tmp = function () {
 				}
 			}
 			// Now we'll process any One Time events happening on the matching month, day, year:
-			else if ((events[i][2] == day) && (events[i][1] == month) && (events[i][3] == year)) {
+			else if ((events[i][2] === day) && (events[i][1] === month) && (events[i][3] === year)) {
 				// one-off event
 				preoffset++;
 				if (preoffset > offset) { theevent += events[i][5] + '\n'; }
@@ -880,7 +914,7 @@ var tmp = function () {
 				tempEventsNum.push(i);
 			}
 		}
-
+		
 		this.eventsText.setValue(theevent);
 		currentNumEvents = tempEvents.length;
 		currentOffset = offset;
@@ -904,7 +938,7 @@ var tmp = function () {
 		}
 		return;
 	};
-
+	
 	target.floatingholiday = function (targetyr,targetmo,cardinaloccurrence,targetday) {
 		// Floating holidays/events uses:
 		//	the Month field for the Month (here it becomes the targetmo field)
@@ -928,18 +962,18 @@ var tmp = function () {
 		// Example: targetyr = 2052; targetmo = 5; cardinaloccurrence = 4; targetday = 1
 		//	This is the same as saying our floating holiday in the year 2052, is during May, on the 4th Monday
 		//
-		var firstdate = new Date(targetyr, targetmo-1, 1);	// Object Storing the first day of the current month.
-		var firstday = firstdate.getDay() + 1;	// The first day (0-6) of the target month.
-		var dayofmonth = 0;	// zero out our calendar day variable.
-
-			//targetday = targetday - 1;
-
-			if (targetday >= firstday) {
-				cardinaloccurrence--;	// Subtract 1 from cardinal day.
-				dayofmonth = (cardinaloccurrence * 7) + ((targetday - firstday)+1);
-			} else {
-				dayofmonth = (cardinaloccurrence * 7) + ((targetday - firstday)+1);
-			}
+		var firstdate = new Date(targetyr, targetmo-1, 1),	// Object Storing the first day of the current month.
+		firstday = firstdate.getDay() + 1,	// The first day (0-6) of the target month.
+		dayofmonth = 0;	// zero out our calendar day variable.
+		
+		//targetday = targetday - 1;
+		
+		if (targetday >= firstday) {
+			cardinaloccurrence--;	// Subtract 1 from cardinal day.
+			dayofmonth = (cardinaloccurrence * 7) + ((targetday - firstday)+1);
+		} else {
+			dayofmonth = (cardinaloccurrence * 7) + ((targetday - firstday)+1);
+		}
 		return dayofmonth;
 	};
 	
@@ -947,54 +981,63 @@ var tmp = function () {
 		var id, n, x, y;
 		id = getSoValue(sender, "id");
 		n = id.substring(7, 10);
-		if (n == "TDY") {
+		switch (n) {
+		//if (n === "TDY") {
+			case "TDY":
 			monthNum=todaysMonth;
 			yearNum=todaysYear;
 			this.gridCursor.changeLayout(0, 0, uD, 0, 0, uD);			
 			this.dateChanged();			
 			return;
-		}
-		if (n == "PYR") {
+		//}
+		//if (n === "PYR") {
+			case "PYR":
 			// previous year
 			yearNum--;
 			this.gridCursor.changeLayout(0, 0, uD, 0, 0, uD);
 			this.dateChanged();
 			return;
-		}
-		if (n == "PMN") {
+		//}
+		//if (n === "PMN") {
+			case "PMN":
 			// previous month
 			monthNum--;
 			this.gridCursor.changeLayout(0, 0, uD, 0, 0, uD);			
 			this.dateChanged();
 			return;
-		}
-		if (n == "NMN") {
+		//}
+		//if (n === "NMN") {
+			case "NMN":
 			// next month
 			monthNum++;
 			this.gridCursor.changeLayout(0, 0, uD, 0, 0, uD);			
 			this.dateChanged();
 			return;
-		}
-		if (n == "NYR") {
+		//}
+		//if (n === "NYR") {
+			case "NYR":
 			// next year
 			yearNum++;
 			this.gridCursor.changeLayout(0, 0, uD, 0, 0, uD);			
 			this.dateChanged();
 			return;
-		}
-		if (n == "EDT") {
+		//}
+		//if (n === "EDT") {
+			case "EDT":
 			// edit events
 			this.doEditEvents();
 			return;
-		}
-		if (n == "UPP") {
+		//}
+		//if (n === "UPP") {
+			case "UPP":
 			// scroll events textbox up
 			currentOffset = currentOffset - 6;
 			if (currentOffset < 0) { currentOffset=0; }
 			this.showevents(selectionDate,monthNum,yearNum,y,x,currentOffset);
 			return;
-		}
-		if (n == "DWN") {
+		//}
+		//if (n === "DWN") {
+			case "DWN":
 			// scroll events textbox down
 			var oldCurrentOffset = currentOffset;
 			currentOffset = currentOffset + 6;
@@ -1003,17 +1046,17 @@ var tmp = function () {
 			return;
 		}		
 	};
-
+	
 	target.digitF = function (key) {
 		var x, y;
-		if ((key==8) && upenabled) {
+		if ((key === 8) && upenabled) {
 			// scroll events textbox up
 			currentOffset = currentOffset - 6;
 			if (currentOffset < 0) { currentOffset=0; }
 			this.showevents(selectionDate,monthNum,yearNum,y,x,currentOffset);
 			return;
 		}
-		if ((key==9) && downenabled) {
+		if ((key === 9) && downenabled) {
 			// scroll events textbox down
 			var oldCurrentOffset = currentOffset;			
 			currentOffset = currentOffset + 6;
@@ -1025,23 +1068,25 @@ var tmp = function () {
 	};
 	
 	target.doSquareClick = function (sender) {
-		var id, n, x, y;
+		var id, n, x, y, i, j, daycounter;
 		id = getSoValue(sender, "id");
 		n = id.substring(6, 8);
 		x = (n % 7) + 1; // find column
 		y = (Math.floor(n / 7)) + 1; // find row
-			
-		var daycounter = 0;
+		
+		daycounter = 0;
 		thisDate = 1;
-		for (var i = 1; i <= 6; i++) {
-			for (var j = 1; j <= 7; j++) {
-				if (weekBeginsWith=="Sun") {
+		i = 1;
+		for (i; i <= 6; i++) {
+			j = 1;
+			for (j; j <= 7; j++) {
+				if (weekBeginsWith === "Sun") {
 					daycounter = (thisDate - firstDay)+1;
 				} else {
 					daycounter = (thisDate - firstDay)+2;
-					if (firstDay==1) daycounter -= 7;
+					if (firstDay === 1) { daycounter -= 7; }
 				}
-				if ((x==j) && (y==i)) {
+				if ((x === j) && (y === i)) {
 					selectionDate=daycounter;
 					selectionDay=j;
 				}
@@ -1049,7 +1094,7 @@ var tmp = function () {
 			}
 		}
 		thisDate = 1;	
-		if ((selectionDate < 1) || (selectionDate > numbDays)) selectionDate=0;
+		if ((selectionDate < 1) || (selectionDate > numbDays)) { selectionDate=0; }
 		
 		if (selectionDate>0) {
 			//place selection square
@@ -1069,7 +1114,7 @@ var tmp = function () {
 		} else {
 			this.eventsText.setValue("");
 		}
-
+		
 		//target.bubble("tracelog","n="+n+", column="+x+", row="+y+", date="+selectionDate);
 		return;
 	};
@@ -1077,7 +1122,7 @@ var tmp = function () {
 	target.doSelectClick = function (sender) {
 		return;
 	};
-
+	
 	target.doNext = function (sender) {
 		// next month
 		monthNum++;
@@ -1087,7 +1132,7 @@ var tmp = function () {
 		this.dateChanged();	
 		return;
 	};
-
+	
 	target.doPrev = function (sender) {
 		// previous month
 		monthNum--;
@@ -1097,7 +1142,7 @@ var tmp = function () {
 		this.dateChanged();	
 		return;
 	};
-
+	
 	target.doRoot = function (sender) {
 		this.saveEvents();
 		kbook.autoRunRoot.exitIf(kbook.model);
@@ -1109,12 +1154,12 @@ var tmp = function () {
 		kbook.autoRunRoot.exitIf(kbook.model);
 		return;
 	};
-
+	
 	target.saveEvents = function () {
-		var stream, event;
+		var stream, event, i;
 		// save events to file
 		try {
-			if (FileSystem.getFileInfo(datPath)) FileSystem.deleteFile(datPath); 
+			if (FileSystem.getFileInfo(datPath)) { FileSystem.deleteFile(datPath); }
 			stream = new Stream.File(datPath, 1);
 			stream.writeLine("# General Event-Format is: Type; Month; Day; Year; Icon; Text");
 			stream.writeLine("# Type can be: Y<early, M<onthly, W<eekly, F<loating, BLANK for one-off events");
@@ -1123,7 +1168,8 @@ var tmp = function () {
 			stream.writeLine("# Icons: 3=Default, 4=Birthday, 5=Christmas, 6=Two Hearts, 7=Anniversary, 8=Airplane, 9=Car");
 			stream.writeLine("# Icons: 10=St. Patrick's Day, 11=Thanksgiving, 12=New Year's Day, 13=R.I.P., 14=Easter");
 			stream.writeLine("# Icons: 15=Work, 16=School, 17=Meeting");
-			for (var i = 0; i < events.length; i++) {
+			i = 0;
+			for (i; i < events.length; i++) {
 				event=events[i][0]+';'+events[i][1]+';'+events[i][2]+';'+events[i][3]+';'+events[i][4]+';'+events[i][5];
 				stream.writeLine(event);
 			}		
@@ -1135,7 +1181,7 @@ var tmp = function () {
 	target.doLast = function () {
 		// fix for Prev/Next month for 300
 		if (!kbook.simEnviro) {
-			if (kbook.autoRunRoot.model=="300") {
+			if (kbook.autoRunRoot.model === "300") {
 				// next month by holding right
 				monthNum++;
 				this.dateChanged();	
@@ -1155,7 +1201,7 @@ var tmp = function () {
 	target.doFirst = function () {
 		// fix for Prev/Next month for 300
 		if (!kbook.simEnviro) {
-			if (kbook.autoRunRoot.model=="300") {
+			if (kbook.autoRunRoot.model === "300") {
 				// previous month by holding left
 				monthNum--;	
 				this.dateChanged();	
@@ -1171,7 +1217,7 @@ var tmp = function () {
 		this.dateChanged();	
 		return;
 	};
-
+	
 	target.doCenterF = function () {
 		if (settingsDlgOpen) {
 			this.SETTINGS_DIALOG.doCenterF();
@@ -1196,28 +1242,20 @@ var tmp = function () {
 			return;
 		}	
 		switch (dir) {
-		case "down":
-			{
+			case "down":
 				selectionDate += 7;
 				break;
-			}
-		case "up":
-			{
+			case "up":
 				selectionDate -= 7;
 				break;
-			}
-		case "left":
-			{
+			case "left":
 				selectionDate -= 1;
-				if (selectionDate==0) selectionDate=numbDays;
+				if (selectionDate === 0) { selectionDate=numbDays; }
 				break;
-			}
-		case "right":
-			{
+			case "right":
 				selectionDate += 1;
-				if (selectionDate==numbDays+1) selectionDate=1;
+				if (selectionDate === numbDays+1) { selectionDate=1; }
 				break;
-			}
 		}
 		
 		if (selectionDate > numbDays) {
@@ -1228,15 +1266,15 @@ var tmp = function () {
 			}
 		}
 		if (selectionDate < 1) {
-			if (numbDays==28) {
+			if (numbDays === 28) {
 				selectionDate +=28;
-			} else if (numbDays==29) {
+			} else if (numbDays === 29) {
 				if (selectionDate < -5) {
 					selectionDate += 35;
 				} else {
 					selectionDate += 28;
 				}
-			} else if (numbDays==30) {
+			} else if (numbDays === 30) {
 				if (selectionDate < -4) {
 					selectionDate += 35;
 				} else {
@@ -1275,9 +1313,9 @@ var tmp = function () {
 	
 	
 	// Settings pop-up panel stuff
-    target.doOption = function(sender) {
+	target.doOption = function(sender) {
 		target.SETTINGS_DIALOG.week_starts.setValue(STR_WEEK_STARTS_ON + ":");
-		if (weekBeginsWith=="Sun") {
+		if (weekBeginsWith === "Sun") {
 			target.setVariable("week_begins","1");
 		} else {
 			target.setVariable("week_begins","2");
@@ -1291,22 +1329,22 @@ var tmp = function () {
 		settingsDlgOpen = true;
 		target.SETTINGS_DIALOG.show(true);
 		return;
-    };
+	};
 	
 	target.closeDlg = function () {
 		settingsDlgOpen = false;
 		eventsDlgOpen = false;
 		return;
 	};
-
+	
 	target.changeSettings = function () {
 		settingsDlgOpen = false;
 		var t = target.getVariable("week_begins");
 		
-		if (t == "1") {
+		if (t === "1") {
 			weekBeginsWith="Sun";
 		}
-		if (t == "2") {
+		if (t === "2") {
 			weekBeginsWith="Mon";
 		}
 		
@@ -1315,7 +1353,7 @@ var tmp = function () {
 		this.saveSettings();
 		
 		// change calendar
-		if (weekBeginsWith=="Mon") {
+		if (weekBeginsWith === "Mon") {
 			this.labelSun.setValue(wordDays[1]);
 			this.labelMon.setValue(wordDays[2]);
 			this.labelTue.setValue(wordDays[3]);
@@ -1324,7 +1362,7 @@ var tmp = function () {
 			this.labelFri.setValue(wordDays[6]);
 			this.labelSat.setValue(wordDays[0]);
 			todaysDay = today.getDay();
-			if (todaysDay==0) todaysDay=7;
+			if (todaysDay === 0) { todaysDay=7; }
 		} else {
 			this.labelSun.setValue(wordDays[0]);
 			this.labelMon.setValue(wordDays[1]);
@@ -1358,56 +1396,52 @@ var tmp = function () {
 		}
 		return;
 	};
-
+	
 	target.SETTINGS_DIALOG.moveCursor = function (direction) {
 		switch (direction) {
-			case "up" : {
+			case "up" : 
 				if (custSel>0) {
 					custSel--;
 					target.ntHandleSettingsDlg();
 				}
-				break
-			}
-			case "down" : {
+				break;
+			case "down" : 
 				if (custSel<2) {
 					custSel++;
 					target.ntHandleSettingsDlg();
 				}
-				break
-			}
-			case "left" : {
-				if (custSel==0) {
+				break;
+			case "left" : 
+				if (custSel === 0) {
 					target.setVariable("week_begins","1");
 				}
-				break
-			}		
-			case "right" : {
-				if (custSel==0) {
+				break;
+			case "right" : 
+				if (custSel === 0) {
 					target.setVariable("week_begins","2");
 				}
-				break
-			}
-			return;
-		}	
+				break;
+		}
+		return;
 	};
 	
 	target.SETTINGS_DIALOG.doCenterF = function () {
-		if (custSel === 1) target.SETTINGS_DIALOG.btn_Ok.click();	
-		if (custSel === 2) target.SETTINGS_DIALOG.btn_Cancel.click();
+		if (custSel === 1) { target.SETTINGS_DIALOG.btn_Ok.click(); }
+		else if (custSel === 2) { target.SETTINGS_DIALOG.btn_Cancel.click(); }
 		return;
 	};
-
+	
 	target.SETTINGS_DIALOG.settingsType = function (t) {
 		return;
 	};
 	
 	// events popup stuff
-    target.doEditEvents = function () {
+	target.doEditEvents = function () {
 		// reset labels
 		maxEventNum=tempEvents.length+1; // need to add +1 if a blank event can be added
 		maxEventDay=numbDays;
 		
-		if (tempEvents.length==0) {
+		if (tempEvents.length === 0) {
 			// prepare textboxes for new event
 			currentTempEvent=0;
 			target.EVENTS_DIALOG.eventNum.setValue("1");
@@ -1447,7 +1481,7 @@ var tmp = function () {
 			target.EVENTS_DIALOG.loadTempEvent();
 			target.EVENTS_DIALOG.btn_Delete.enable(true);
 		}
-
+		
 		if (hasNumericButtons) {
 			custSel = 0;
 			prevSel = 0;
@@ -1457,8 +1491,8 @@ var tmp = function () {
 		eventsDlgOpen = true;
 		target.EVENTS_DIALOG.show(true);
 		return;
-    };
-
+	};
+	
 	target.EVENTS_DIALOG.loadTempEvent = function () {
 		var eventMonth, eventYear, eventDay;
 		target.EVENTS_DIALOG.eventDayText.setValue(STR_DATE + ":");
@@ -1467,7 +1501,7 @@ var tmp = function () {
 		target.EVENTS_DIALOG.cardinalDay.show(false);
 		target.EVENTS_DIALOG.eventMonth.show(true);
 		target.EVENTS_DIALOG.eventDay.show(true);
-		if (tempEvents[currentTempEvent][0]=="") {
+		if (tempEvents[currentTempEvent][0] === "") {
 			target.EVENTS_DIALOG.eventType.setValue("1");
 			target.setVariable("event_type","1");
 			target.EVENTS_DIALOG.eventTypeText.setValue(STR_ONE_OFF);
@@ -1477,7 +1511,7 @@ var tmp = function () {
 			target.setVariable("event_day",tempEvents[currentTempEvent][2]);
 			target.EVENTS_DIALOG.eventYear.setValue(tempEvents[currentTempEvent][3]);
 			target.setVariable("event_year",tempEvents[currentTempEvent][3]);				
-		} else if (tempEvents[currentTempEvent][0]=="Y") {
+		} else if (tempEvents[currentTempEvent][0] === "Y") {
 			target.EVENTS_DIALOG.eventType.setValue("2");
 			target.setVariable("event_type","2");
 			target.EVENTS_DIALOG.eventTypeText.setValue(STR_YEARLY);
@@ -1487,7 +1521,7 @@ var tmp = function () {
 			target.setVariable("event_day",tempEvents[currentTempEvent][2]);
 			target.EVENTS_DIALOG.eventYear.setValue(tempEvents[currentTempEvent][3]);
 			target.setVariable("event_year",tempEvents[currentTempEvent][3]);				
-		} else if (tempEvents[currentTempEvent][0]=="M") {
+		} else if (tempEvents[currentTempEvent][0] === "M") {
 			// monthly event (therefore don't need the month label)
 			target.EVENTS_DIALOG.eventType.setValue("3");
 			target.setVariable("event_type","3");
@@ -1502,13 +1536,13 @@ var tmp = function () {
 			target.EVENTS_DIALOG.eventDay.show(true);
 			eventYear=tempEvents[currentTempEvent][3];
 			eventDay=tempEvents[currentTempEvent][2];
-			if (eventYear<1900) eventYear=todaysYear; // if original event was a floating event
+			if (eventYear<1900) { eventYear=todaysYear; } // if original event was a floating event
 			target.setVariable("event_year",eventYear);
 			target.EVENTS_DIALOG.eventYear.setValue(eventYear);
-			if (eventDay==0) eventDay=1; // if original event was a floating event
+			if (eventDay === 0) { eventDay=1; } // if original event was a floating event
 			target.setVariable("event_day",eventDay);
 			target.EVENTS_DIALOG.eventDay.setValue(eventDay);
-		} else if (tempEvents[currentTempEvent][0]=="W") {
+		} else if (tempEvents[currentTempEvent][0] === "W") {
 			// weekly event (therefore don't need the month or date, and yearly becomes week day)
 			target.EVENTS_DIALOG.eventType.setValue("4");
 			target.setVariable("event_type","4");
@@ -1523,26 +1557,35 @@ var tmp = function () {
 			target.EVENTS_DIALOG.eventYearText.setValue(STR_WEEKDAY);
 			target.EVENTS_DIALOG.weekDay.show(true);
 			eventYear=tempEvents[currentTempEvent][3];
-			if (eventYear>7) eventYear=1;
+			if (eventYear>7) { eventYear=1; }
 			target.setVariable("event_year",eventYear);
-			if (eventYear==0) {
+			switch (eventYear) {
+				case 0:
 				target.EVENTS_DIALOG.weekDay.setValue("0");
-			} else if (eventYear==1) {
+				break;
+				case 1:
 				target.EVENTS_DIALOG.weekDay.setValue(wordDays[0]);				
-			} else if (eventYear==2) {
+				break;
+				case 2:
 				target.EVENTS_DIALOG.weekDay.setValue(wordDays[1]);
-			} else if (eventYear==3) {
+				break;
+				case 3:
 				target.EVENTS_DIALOG.weekDay.setValue(wordDays[2]);
-			} else if (eventYear==4) {
+				break;
+				case 4:
 				target.EVENTS_DIALOG.weekDay.setValue(wordDays[3]);
-			} else if (eventYear==5) {
+				break;
+				case 5:
 				target.EVENTS_DIALOG.weekDay.setValue(wordDays[4]);
-			} else if (eventYear==6) {
+				break;
+				case 6:
 				target.EVENTS_DIALOG.weekDay.setValue(wordDays[5]);
-			} else if (eventYear==7) {
+				break;
+				case 7:
 				target.EVENTS_DIALOG.weekDay.setValue(wordDays[6]);
+				break;
 			}
-		} else if (tempEvents[currentTempEvent][0]=="F") {
+		} else if (tempEvents[currentTempEvent][0] === "F") {
 			target.EVENTS_DIALOG.eventType.setValue("5");
 			target.setVariable("event_type","5");
 			target.EVENTS_DIALOG.eventTypeText.setValue(STR_FLOATING);	
@@ -1550,13 +1593,13 @@ var tmp = function () {
 			target.EVENTS_DIALOG.eventDayText.setValue(STR_CARDINAL + ":");
 			target.EVENTS_DIALOG.eventYearText.setValue(STR_WEEKDAY + ":");
 			target.EVENTS_DIALOG.weekDay.show(true);
-			if (tempEvents[currentTempEvent][3]=="0") {
+			if (tempEvents[currentTempEvent][3] === "0") {
 				target.EVENTS_DIALOG.weekDay.setValue("0");
 			} else if (tempEvents[currentTempEvent][3]>="1" && tempEvents[currentTempEvent][3]<="6" ) {
 				target.EVENTS_DIALOG.weekDay.setValue(wordDays[(tempEvents[currentTempEvent][3])-1]);				
 			}
 			target.EVENTS_DIALOG.cardinalDay.show(true);
-			if (tempEvents[currentTempEvent][2]=="0") {
+			if (tempEvents[currentTempEvent][2] === "0") {
 				target.EVENTS_DIALOG.cardinalDay.setValue("0");
 			} else if (tempEvents[currentTempEvent][2]>="1" && tempEvents[currentTempEvent][2]<="5" ) {
 				target.EVENTS_DIALOG.cardinalDay.setValue(cardinals[(tempEvents[currentTempEvent][2])-1]);
@@ -1577,33 +1620,32 @@ var tmp = function () {
 	};
 	
 	target.EVENTS_DIALOG.doPlusMinus = function (sender) {
-	    var senderID;
-	    senderID = getSoValue(sender,"id");
+		var senderID;
+		senderID = getSoValue(sender,"id");
 		target.EVENTS_DIALOG.doPlusMinusF(senderID);
 		return;
 	};
 	
 	target.EVENTS_DIALOG.doPlusMinusF = function (senderID) {
 		var step, eventNum, eventType, eventMonth, eventDay, eventYear, eventIcon;
-		step = ( senderID.lastIndexOf("+") != -1) ? 1 : -1;
+		step = ( senderID.lastIndexOf("+") !== -1) ? 1 : -1;
 		senderID = senderID.slice(0,senderID.length-1);
-	    eventNum = parseInt(target.getVariable("event_num"));
-	    eventType = parseInt(target.getVariable("event_type"));
-	    eventMonth = parseInt(target.getVariable("event_month"));
-	    eventDay = parseInt(target.getVariable("event_day"));
-	    eventYear = parseInt(target.getVariable("event_year"));
+		eventNum = parseInt(target.getVariable("event_num"));
+		eventType = parseInt(target.getVariable("event_type"));
+		eventMonth = parseInt(target.getVariable("event_month"));
+		eventDay = parseInt(target.getVariable("event_day"));
+		eventYear = parseInt(target.getVariable("event_year"));
 		eventIcon = parseInt(target.getVariable("event_icon"));
 		
-	    switch (senderID) {
+		switch (senderID) {
 			case "eventNum" :
-			{
 				if (eventNum<=maxEventNum-step && eventNum>0-step) {
 					eventNum = eventNum+step;
 				}
 				target.setVariable("event_num",eventNum);
 				target.EVENTS_DIALOG.eventNum.setValue(eventNum);
 				currentTempEvent=eventNum-1;
-				if (currentTempEvent==tempEventsNum.length) {
+				if (currentTempEvent === tempEventsNum.length) {
 					// new event
 					target.EVENTS_DIALOG.eventNum.setValue(eventNum);
 					target.setVariable("event_num",eventNum);
@@ -1628,27 +1670,25 @@ var tmp = function () {
 					target.EVENTS_DIALOG.eventDay.show(true);
 					target.EVENTS_DIALOG.cardinalDay.show(false);
 					target.EVENTS_DIALOG.btn_Delete.enable(false);
-			} else {
+				} else {
 					// load existing event
 					target.EVENTS_DIALOG.loadTempEvent();
 					target.EVENTS_DIALOG.btn_Delete.enable(true);
 				}
 				break;
-			}
 			case "eventType" :
-			{
 				if (eventType<=maxEventType-step && eventType>0-step) {
 					eventType = eventType+step;
 				}
 				target.setVariable("event_type",eventType);
 				target.EVENTS_DIALOG.eventType.setValue(eventType);
-				if (eventType=="1") target.EVENTS_DIALOG.eventTypeText.setValue(STR_ONE_OFF);
-				if (eventType=="2") target.EVENTS_DIALOG.eventTypeText.setValue(STR_YEARLY);
-				if (eventType=="3") target.EVENTS_DIALOG.eventTypeText.setValue(STR_MONTHLY);
-				if (eventType=="4") target.EVENTS_DIALOG.eventTypeText.setValue(STR_WEEKLY);
-				if (eventType=="5") target.EVENTS_DIALOG.eventTypeText.setValue(STR_FLOATING);
+				if (eventType === "1") { target.EVENTS_DIALOG.eventTypeText.setValue(STR_ONE_OFF); }
+				if (eventType === "2") { target.EVENTS_DIALOG.eventTypeText.setValue(STR_YEARLY); }
+				if (eventType === "3") { target.EVENTS_DIALOG.eventTypeText.setValue(STR_MONTHLY); }
+				if (eventType === "4") { target.EVENTS_DIALOG.eventTypeText.setValue(STR_WEEKLY); }
+				if (eventType === "5") { target.EVENTS_DIALOG.eventTypeText.setValue(STR_FLOATING); }
 				// change labels if necessary
-				if (eventType=="3") {
+				if (eventType === "3") {
 					// monthly event (therefore don't need the month label)
 					target.EVENTS_DIALOG.eventMonth.show(false);
 					eventMonth=0;
@@ -1658,7 +1698,7 @@ var tmp = function () {
 					target.EVENTS_DIALOG.weekDay.show(false);
 					target.EVENTS_DIALOG.cardinalDay.show(false);
 					target.EVENTS_DIALOG.eventDay.show(true);
-					if (currentTempEvent==tempEventsNum.length) {
+					if (currentTempEvent === tempEventsNum.length) {
 						// new event
 						eventYear=selectionYear;
 						eventDay=selectionDate;
@@ -1666,13 +1706,13 @@ var tmp = function () {
 						eventYear=tempEvents[currentTempEvent][3];
 						eventDay=tempEvents[currentTempEvent][2];
 					}
-					if (eventYear<1900) eventYear=todaysYear; // if original event was a floating event
+					if (eventYear<1900) { eventYear=todaysYear; } // if original event was a floating event
 					target.setVariable("event_year",eventYear);
 					target.EVENTS_DIALOG.eventYear.setValue(eventYear);
-					if (eventDay==0) eventDay=1; // if original event was a floating event
+					if (eventDay === 0) { eventDay=1; } // if original event was a floating event
 					target.setVariable("event_day",eventDay);
 					target.EVENTS_DIALOG.eventDay.setValue(eventDay);					
-				} else if (eventType=="4") {
+				} else if (eventType === "4") {
 					// weekly event (therefore don't need the month or date, and yearly becomes week day)
 					target.EVENTS_DIALOG.eventMonth.show(false);
 					eventMonth=0;
@@ -1683,25 +1723,25 @@ var tmp = function () {
 					target.setVariable("event_day",eventDay);
 					target.EVENTS_DIALOG.eventYearText.setValue(STR_WEEKDAY + ":");
 					target.EVENTS_DIALOG.weekDay.show(true);
-					if (currentTempEvent==tempEventsNum.length) {
+					if (currentTempEvent === tempEventsNum.length) {
 						// new event
-						if (weekBeginsWith=="Sun") {
+						if (weekBeginsWith === "Sun") {
 							eventYear=selectionDay;
 						} else {
 							eventYear=selectionDay+1;
-							if (selectionDay==8) selectionDay=1;
+							if (selectionDay === 8) { selectionDay=1; }
 						}
 					} else {
 						eventYear=tempEvents[currentTempEvent][3];
 					}
-					if (eventYear>7) eventYear=1;
+					if (eventYear>7) { eventYear=1; }
 					target.setVariable("event_year",eventYear);
-					if (eventYear==0) {
+					if (eventYear === 0) {
 						target.EVENTS_DIALOG.weekDay.setValue("0");
 					} else if (eventYear>=1 && eventYear<=7) {
 						target.EVENTS_DIALOG.weekDay.setValue(wordDays[eventYear-1]);				
 					}
-				} else if (eventType=="5") {
+				} else if (eventType === "5") {
 					// floating event (therefore date becomes cardinal and yearly becomes week day)
 					target.EVENTS_DIALOG.eventDayText.setValue(STR_CARDINAL + ":");
 					target.EVENTS_DIALOG.eventYearText.setValue(STR_WEEKDAY + ":");
@@ -1709,25 +1749,25 @@ var tmp = function () {
 					target.EVENTS_DIALOG.cardinalDay.show(true);
 					target.EVENTS_DIALOG.eventMonth.show(true);
 					target.EVENTS_DIALOG.eventDay.show(true);
-					if (currentTempEvent==tempEventsNum.length) {
+					if (currentTempEvent === tempEventsNum.length) {
 						// new event
 						eventYear=1;
 						eventDay=1;
 					} else {
 						eventYear=tempEvents[currentTempEvent][3];
 						eventDay=tempEvents[currentTempEvent][2];
-						if (eventDay>5) eventDay=1;
+						if (eventDay>5) { eventDay=1; }
 					}
-					if (eventYear>7) eventYear=1;
+					if (eventYear>7) { eventYear=1; }
 					target.setVariable("event_year",eventYear);
-					if (eventYear==0) {
+					if (eventYear === 0) {
 						target.EVENTS_DIALOG.weekDay.setValue("0");
 					} else if (eventYear>=1 && eventYear<=7) {
 						target.EVENTS_DIALOG.weekDay.setValue(wordDays[eventYear-1]);				
 					}
 					target.setVariable("event_day",eventDay);
 					target.EVENTS_DIALOG.eventDay.setValue(eventDay);					
-					if (eventDay=="0") {
+					if (eventDay === "0") {
 						target.EVENTS_DIALOG.cardinalDay.setValue("0");
 					} else if (eventDay>="1" && eventDay<="5") {
 						target.EVENTS_DIALOG.cardinalDay.setValue(cardinals[eventDay-1]);				
@@ -1739,7 +1779,7 @@ var tmp = function () {
 					target.EVENTS_DIALOG.cardinalDay.show(false);
 					target.EVENTS_DIALOG.eventMonth.show(true);
 					target.EVENTS_DIALOG.eventDay.show(true);
-					if (currentTempEvent==tempEventsNum.length) {
+					if (currentTempEvent === tempEventsNum.length) {
 						// new event
 						eventYear=selectionYear;
 						eventDay=selectionDate;
@@ -1749,105 +1789,96 @@ var tmp = function () {
 						eventDay=tempEvents[currentTempEvent][2];
 						eventMonth=tempEvents[currentTempEvent][1];
 					}
-					if (eventYear<1900) eventYear=todaysYear; // if original event was a floating event
+					if (eventYear<1900) { eventYear=todaysYear; } // if original event was a floating event
 					target.setVariable("event_year",eventYear);
 					target.EVENTS_DIALOG.eventYear.setValue(eventYear);
-					if (eventDay==0) eventDay=1; // if original event was a floating event
+					if (eventDay === 0) { eventDay=1; } // if original event was a floating event
 					target.setVariable("event_day",eventDay);
 					target.EVENTS_DIALOG.eventDay.setValue(eventDay);
-					if (eventMonth==0) eventMonth=1; // if original event was a floating event
+					if (eventMonth === 0) { eventMonth=1; } // if original event was a floating event
 					target.setVariable("event_month",eventMonth);
 					target.EVENTS_DIALOG.eventMonth.setValue(eventMonth);
 				}
 				break;
-			}
 			case "eventMonth" :
-			{
-				if ((eventType==3) || (eventType==4)) break;
+				if ((eventType === 3) || (eventType === 4)) { break; }
 				if (eventMonth<=maxEventMonth-step && eventMonth>0-step) {
 					eventMonth = eventMonth+step;
 				}
 				target.setVariable("event_month",eventMonth);
 				target.EVENTS_DIALOG.eventMonth.setValue(eventMonth);
-				if ((eventMonth==1) || (eventMonth==3) || (eventMonth==5) || (eventMonth==7) || (eventMonth==8) || (eventMonth==10) || (eventMonth==12)) maxEventDay=31;
-				if ((eventMonth==4) || (eventMonth==6) || (eventMonth==9) || (eventMonth==11)) maxEventDay=30;
-				if (eventMonth==2) maxEventDay=28; //problem for leap years!
+				if ((eventMonth === 1) || (eventMonth === 3) || (eventMonth === 5) || (eventMonth === 7) || (eventMonth === 8) || (eventMonth === 10) || (eventMonth === 12)) { maxEventDay=31; }
+				if ((eventMonth === 4) || (eventMonth === 6) || (eventMonth === 9) || (eventMonth === 11)) { maxEventDay=30; }
+				if (eventMonth === 2) { maxEventDay=28; } //problem for leap years!
 				if (eventDay>maxEventDay) {
 					eventDay=maxEventDay;
 					target.setVariable("event_day",eventDay);
 					target.EVENTS_DIALOG.eventDay.setValue(eventDay);						
 				}
 				break;
-			}
 			case "eventDay" :
-			{
-				if (eventType==4) break;
-				if (eventType==5) {
+				if (eventType === 4) { break; }
+				if (eventType === 5) {
 					if (eventDay<=5-step && eventDay>=0) {
 						eventDay = eventDay+step;
-						if (eventDay<1) eventDay=1;
+						if (eventDay<1) { eventDay=1; }
 					}
 				}	else {			
 					if (eventDay<=maxEventDay-step && eventDay>=0) {
 						eventDay = eventDay+step;
-						if (eventDay<1) eventDay=1;
+						if (eventDay<1) { eventDay=1; }
 					}
 				}
 				target.setVariable("event_day",eventDay);
-				if (eventDay==0) {
+				if (eventDay === 0) {
 					target.EVENTS_DIALOG.eventDay.setValue("0");
 				} else {
 					target.EVENTS_DIALOG.eventDay.setValue(eventDay);
 				}
-				if (eventType==5) {
-					if (eventDay=="0") {
+				if (eventType === 5) {
+					if (eventDay === "0") {
 						target.EVENTS_DIALOG.cardinalDay.setValue("0");
 					} else if (eventDay>="1" && eventDay<="5") {
 						target.EVENTS_DIALOG.cardinalDay.setValue(cardinals[eventDay-1]);				
 					}
 				}
 				break;
-			}
 			case "eventYear" :
-			{
-				if ((eventType==4) || (eventType==5)) {
+				if ((eventType === 4) || (eventType === 5)) {
 					if (eventYear<=7-step && eventYear>=0) {
 						eventYear = eventYear+step;
-						if (eventYear<1) eventYear=1;
+						if (eventYear<1) { eventYear=1; }
 					}
 				}	else {
 					if (eventYear<=maxEventYear-step && eventYear>=1900) {
 						eventYear = eventYear+step;
-						if (eventYear<1900) eventYear=1900;
+						if (eventYear<1900) { eventYear=1900; }
 					}
 				}
 				target.setVariable("event_year",eventYear);
-				if (eventYear==0) {
+				if (eventYear === 0) {
 					target.EVENTS_DIALOG.eventYear.setValue("0");
 				} else {
 					target.EVENTS_DIALOG.eventYear.setValue(eventYear);
 				}
-				if ((eventType==4) || (eventType==5)) {
-					if (eventYear==0) {
+				if ((eventType === 4) || (eventType === 5)) {
+					if (eventYear === 0) {
 						target.EVENTS_DIALOG.weekDay.setValue("0");
 					} else if (eventYear>=1 && eventYear<=7) {
 						target.EVENTS_DIALOG.weekDay.setValue(wordDays[eventYear-1]);				
 					}
 				}
 				break;
-			}
 			case "eventIcon" :
-			{
 				if (eventIcon<=maxEventIcon && eventIcon>=3) {
 					eventIcon = eventIcon+step;
 				}
-				if (eventIcon<3) eventIcon=3;
-				if (eventIcon>maxEventIcon) eventIcon=maxEventIcon;
+				if (eventIcon<3) { eventIcon=3; }
+				if (eventIcon>maxEventIcon) { eventIcon=maxEventIcon; }
 				target.setVariable("event_icon",eventIcon);
 				this.square42.u=eventIcon;
 				break;
 			}
-	    }
 		return;
 	};
 	
@@ -1855,36 +1886,36 @@ var tmp = function () {
 		var eventType;
 		// work out direction of movement and check if item is available
 		eventType = parseInt(target.getVariable("event_type"));
-		if ((eventType=="3") && (custSel==3)) {
+		if ((eventType === "3") && (custSel === 3)) {
 			// no month item
-			if (prevSel==2) custSel=4;
-			if (prevSel==4) custSel=2;
+			if (prevSel === 2) { custSel=4; }
+			if (prevSel === 4) { custSel=2; }
 		}
-		if ((eventType=="4") && ((custSel==4) || (custSel==3))) {
+		if ((eventType === "4") && ((custSel === 4) || (custSel === 3))) {
 			// no month or date item
-			if (prevSel==2) custSel=5;
-			if (prevSel==5) custSel=2;
+			if (prevSel === 2) { custSel=5; }
+			if (prevSel === 5) { custSel=2; }
 		}
-		if (custSel==1) {
-			if (currentTempEvent==tempEventsNum.length) {
+		if (custSel === 1) {
+			if (currentTempEvent === tempEventsNum.length) {
 				// new event, so skip delete button
-				if (prevSel==0) custSel=2;
-				if (prevSel==2) custSel=0;
+				if (prevSel === 0) { custSel=2; }
+				if (prevSel === 2) { custSel=0; }
 			}
 		}
-		if (custSel == 0) {
+		if (custSel === 0) {
 			target.EVENTS_DIALOG.eventNum.enable(true);
 			target.EVENTS_DIALOG.eventTypeText.enable(false);
 			mouseLeave.call(target.EVENTS_DIALOG.btn_Delete);
 			mouseLeave.call(target.EVENTS_DIALOG.btn_Ok);
 			mouseLeave.call(target.EVENTS_DIALOG.btn_Cancel);
 		}
-		if (custSel == 1) {
+		if (custSel === 1) {
 			target.EVENTS_DIALOG.eventNum.enable(false);
 			target.EVENTS_DIALOG.eventTypeText.enable(false);
 			mouseEnter.call(target.EVENTS_DIALOG.btn_Delete);
 		}
-		if (custSel == 2) {
+		if (custSel === 2) {
 			target.EVENTS_DIALOG.eventNum.enable(false); 
 			target.EVENTS_DIALOG.eventTypeText.enable(true);
 			target.EVENTS_DIALOG.eventMonth.enable(false);
@@ -1894,13 +1925,13 @@ var tmp = function () {
 			target.EVENTS_DIALOG.weekDay.enable(false);
 			mouseLeave.call(target.EVENTS_DIALOG.btn_Delete);
 		}
-		if (custSel == 3) {
+		if (custSel === 3) {
 			target.EVENTS_DIALOG.eventTypeText.enable(false);
 			target.EVENTS_DIALOG.eventMonth.enable(true);
 			target.EVENTS_DIALOG.eventDay.enable(false);
 			target.EVENTS_DIALOG.cardinalDay.enable(false);
 		}
-		if (custSel == 4) {
+		if (custSel === 4) {
 			target.EVENTS_DIALOG.eventTypeText.enable(false);
 			target.EVENTS_DIALOG.eventMonth.enable(false);
 			target.EVENTS_DIALOG.eventDay.enable(true);
@@ -1908,7 +1939,7 @@ var tmp = function () {
 			target.EVENTS_DIALOG.eventYear.enable(false);
 			target.EVENTS_DIALOG.weekDay.enable(false);
 		}
-		if (custSel == 5) {
+		if (custSel === 5) {
 			target.EVENTS_DIALOG.eventTypeText.enable(false);
 			target.EVENTS_DIALOG.eventMonth.enable(false);
 			target.EVENTS_DIALOG.eventDay.enable(false);
@@ -1917,7 +1948,7 @@ var tmp = function () {
 			target.EVENTS_DIALOG.weekDay.enable(true);
 			target.EVENTS_DIALOG.eventIcon.enable(false);
 		}
-		if (custSel == 6) {
+		if (custSel === 6) {
 			target.EVENTS_DIALOG.eventYear.enable(false);
 			target.EVENTS_DIALOG.weekDay.enable(false);
 			target.EVENTS_DIALOG.eventIcon.enable(true);
@@ -1932,30 +1963,30 @@ var tmp = function () {
 			mouseLeave.call(target.EVENTS_DIALOG.key09);
 			mouseLeave.call(target.EVENTS_DIALOG.key10);
 		}
-		if (custSel == 7) {
+		if (custSel === 7) {
 			mouseEnter.call(target.EVENTS_DIALOG.key01);
 			mouseLeave.call(target.EVENTS_DIALOG.key02);
 			mouseLeave.call(target.EVENTS_DIALOG.key11);
 		}
-		if (custSel == 8) {
+		if (custSel === 8) {
 			mouseLeave.call(target.EVENTS_DIALOG.key01);
 			mouseEnter.call(target.EVENTS_DIALOG.key02);
 			mouseLeave.call(target.EVENTS_DIALOG.key03);
 			mouseLeave.call(target.EVENTS_DIALOG.key12);
 		}
-		if (custSel == 9) {
+		if (custSel === 9) {
 			mouseLeave.call(target.EVENTS_DIALOG.key02);
 			mouseEnter.call(target.EVENTS_DIALOG.key03);
 			mouseLeave.call(target.EVENTS_DIALOG.key04);
 			mouseLeave.call(target.EVENTS_DIALOG.key13);
 		}
-		if (custSel == 10) {
+		if (custSel === 10) {
 			mouseLeave.call(target.EVENTS_DIALOG.key03);
 			mouseEnter.call(target.EVENTS_DIALOG.key04);
 			mouseLeave.call(target.EVENTS_DIALOG.key05);
 			mouseLeave.call(target.EVENTS_DIALOG.key14);
 		}
-		if (custSel == 11) {
+		if (custSel === 11) {
 			target.EVENTS_DIALOG.eventNum.enable(false);
 			target.EVENTS_DIALOG.eventTypeText.enable(false);
 			target.EVENTS_DIALOG.eventMonth.enable(false);
@@ -1970,157 +2001,157 @@ var tmp = function () {
 			mouseLeave.call(target.EVENTS_DIALOG.key06);
 			mouseLeave.call(target.EVENTS_DIALOG.key15);
 		}
-		if (custSel == 12) {
+		if (custSel === 12) {
 			mouseLeave.call(target.EVENTS_DIALOG.key05);
 			mouseEnter.call(target.EVENTS_DIALOG.key06);
 			mouseLeave.call(target.EVENTS_DIALOG.key07);
 			mouseLeave.call(target.EVENTS_DIALOG.key16);
 		}
-		if (custSel == 13) {
+		if (custSel === 13) {
 			mouseLeave.call(target.EVENTS_DIALOG.key06);
 			mouseEnter.call(target.EVENTS_DIALOG.key07);
 			mouseLeave.call(target.EVENTS_DIALOG.key08);
 			mouseLeave.call(target.EVENTS_DIALOG.key17);
 		}
-		if (custSel == 14) {
+		if (custSel === 14) {
 			mouseLeave.call(target.EVENTS_DIALOG.key07);
 			mouseEnter.call(target.EVENTS_DIALOG.key08);
 			mouseLeave.call(target.EVENTS_DIALOG.key09);
 			mouseLeave.call(target.EVENTS_DIALOG.key18);
 		}
-		if (custSel == 15) {
+		if (custSel === 15) {
 			mouseLeave.call(target.EVENTS_DIALOG.key08);
 			mouseEnter.call(target.EVENTS_DIALOG.key09);
 			mouseLeave.call(target.EVENTS_DIALOG.key10);
 			mouseLeave.call(target.EVENTS_DIALOG.key19);
 		}
-		if (custSel == 16) {
+		if (custSel === 16) {
 			mouseLeave.call(target.EVENTS_DIALOG.key09);
 			mouseEnter.call(target.EVENTS_DIALOG.key10);
 		}
-		if (custSel == 17) {
+		if (custSel === 17) {
 			mouseLeave.call(target.EVENTS_DIALOG.key01);
 			mouseEnter.call(target.EVENTS_DIALOG.key11);
 			mouseLeave.call(target.EVENTS_DIALOG.key12);
 			mouseLeave.call(target.EVENTS_DIALOG.SHIFT);
 		}
-		if (custSel == 18) {
+		if (custSel === 18) {
 			mouseLeave.call(target.EVENTS_DIALOG.key02);
 			mouseLeave.call(target.EVENTS_DIALOG.key11);
 			mouseEnter.call(target.EVENTS_DIALOG.key12);
 			mouseLeave.call(target.EVENTS_DIALOG.key13);
 			mouseLeave.call(target.EVENTS_DIALOG.key20);
 		}
-		if (custSel == 19) {
+		if (custSel === 19) {
 			mouseLeave.call(target.EVENTS_DIALOG.key03);
 			mouseLeave.call(target.EVENTS_DIALOG.key12);
 			mouseEnter.call(target.EVENTS_DIALOG.key13);
 			mouseLeave.call(target.EVENTS_DIALOG.key14);
 			mouseLeave.call(target.EVENTS_DIALOG.key21);
 		}
-		if (custSel == 20) {
+		if (custSel === 20) {
 			mouseLeave.call(target.EVENTS_DIALOG.key04);
 			mouseLeave.call(target.EVENTS_DIALOG.key13);
 			mouseEnter.call(target.EVENTS_DIALOG.key14);
 			mouseLeave.call(target.EVENTS_DIALOG.key15);
 			mouseLeave.call(target.EVENTS_DIALOG.key22);
 		}
-		if (custSel == 21) {
+		if (custSel === 21) {
 			mouseLeave.call(target.EVENTS_DIALOG.key05);
 			mouseLeave.call(target.EVENTS_DIALOG.key14);
 			mouseEnter.call(target.EVENTS_DIALOG.key15);
 			mouseLeave.call(target.EVENTS_DIALOG.key16);
 			mouseLeave.call(target.EVENTS_DIALOG.key23);
 		}
-		if (custSel == 22) {
+		if (custSel === 22) {
 			mouseLeave.call(target.EVENTS_DIALOG.key06);
 			mouseLeave.call(target.EVENTS_DIALOG.key15);
 			mouseEnter.call(target.EVENTS_DIALOG.key16);
 			mouseLeave.call(target.EVENTS_DIALOG.key17);
 			mouseLeave.call(target.EVENTS_DIALOG.key24);
 		}
-		if (custSel == 23) {
+		if (custSel === 23) {
 			mouseLeave.call(target.EVENTS_DIALOG.key07);
 			mouseLeave.call(target.EVENTS_DIALOG.key16);
 			mouseEnter.call(target.EVENTS_DIALOG.key17);
 			mouseLeave.call(target.EVENTS_DIALOG.key18);
 			mouseLeave.call(target.EVENTS_DIALOG.key25);
 		}
-		if (custSel == 24) {
+		if (custSel === 24) {
 			mouseLeave.call(target.EVENTS_DIALOG.key08);
 			mouseLeave.call(target.EVENTS_DIALOG.key17);
 			mouseEnter.call(target.EVENTS_DIALOG.key18);
 			mouseLeave.call(target.EVENTS_DIALOG.key19);
 			mouseLeave.call(target.EVENTS_DIALOG.key26);
 		}
-		if (custSel == 25) {
+		if (custSel === 25) {
 			mouseLeave.call(target.EVENTS_DIALOG.key09);
 			mouseLeave.call(target.EVENTS_DIALOG.key10);
 			mouseLeave.call(target.EVENTS_DIALOG.key18);
 			mouseEnter.call(target.EVENTS_DIALOG.key19);
 		}
-		if (custSel == 26) {
+		if (custSel === 26) {
 			mouseLeave.call(target.EVENTS_DIALOG.key11);
 			mouseLeave.call(target.EVENTS_DIALOG.key20);
 			mouseEnter.call(target.EVENTS_DIALOG.SHIFT);
 			mouseLeave.call(target.EVENTS_DIALOG.SYMBOL);
 		}
-		if (custSel == 27) {
+		if (custSel === 27) {
 			mouseLeave.call(target.EVENTS_DIALOG.key12);
 			mouseLeave.call(target.EVENTS_DIALOG.SHIFT);
 			mouseEnter.call(target.EVENTS_DIALOG.key20);
 			mouseLeave.call(target.EVENTS_DIALOG.key21);
 			mouseLeave.call(target.EVENTS_DIALOG.SYMBOL);
 		}
-		if (custSel == 28) {
+		if (custSel === 28) {
 			mouseLeave.call(target.EVENTS_DIALOG.key13);
 			mouseLeave.call(target.EVENTS_DIALOG.key20);
 			mouseEnter.call(target.EVENTS_DIALOG.key21);
 			mouseLeave.call(target.EVENTS_DIALOG.key22);
 			mouseLeave.call(target.EVENTS_DIALOG.SPACE);
 		}
-		if (custSel == 29) {
+		if (custSel === 29) {
 			mouseLeave.call(target.EVENTS_DIALOG.key14);
 			mouseLeave.call(target.EVENTS_DIALOG.key21);
 			mouseEnter.call(target.EVENTS_DIALOG.key22);
 			mouseLeave.call(target.EVENTS_DIALOG.key23);
 			mouseLeave.call(target.EVENTS_DIALOG.SPACE);
 		}
-		if (custSel == 30) {
+		if (custSel === 30) {
 			mouseLeave.call(target.EVENTS_DIALOG.key15);
 			mouseLeave.call(target.EVENTS_DIALOG.key22);
 			mouseEnter.call(target.EVENTS_DIALOG.key23);
 			mouseLeave.call(target.EVENTS_DIALOG.key24);
 			mouseLeave.call(target.EVENTS_DIALOG.SPACE);
 		}
-		if (custSel == 31) {
+		if (custSel === 31) {
 			mouseLeave.call(target.EVENTS_DIALOG.key16);
 			mouseLeave.call(target.EVENTS_DIALOG.key23);
 			mouseEnter.call(target.EVENTS_DIALOG.key24);
 			mouseLeave.call(target.EVENTS_DIALOG.key25);
 			mouseLeave.call(target.EVENTS_DIALOG.SPACE);
 		}
-		if (custSel == 32) {
+		if (custSel === 32) {
 			mouseLeave.call(target.EVENTS_DIALOG.key17);
 			mouseLeave.call(target.EVENTS_DIALOG.key24);
 			mouseEnter.call(target.EVENTS_DIALOG.key25);
 			mouseLeave.call(target.EVENTS_DIALOG.key26);
 			mouseLeave.call(target.EVENTS_DIALOG.SPACE);
 		}
-		if (custSel == 33) {
+		if (custSel === 33) {
 			mouseLeave.call(target.EVENTS_DIALOG.key18);
 			mouseLeave.call(target.EVENTS_DIALOG.key19);
 			mouseLeave.call(target.EVENTS_DIALOG.key25);
 			mouseEnter.call(target.EVENTS_DIALOG.key26);
 			mouseLeave.call(target.EVENTS_DIALOG.BACK);
 		}
-		if (custSel == 34) {
+		if (custSel === 34) {
 			mouseLeave.call(target.EVENTS_DIALOG.SHIFT);
 			mouseLeave.call(target.EVENTS_DIALOG.key20);
 			mouseLeave.call(target.EVENTS_DIALOG.SPACE);
 			mouseEnter.call(target.EVENTS_DIALOG.SYMBOL);
 		}
-		if (custSel == 35) {
+		if (custSel === 35) {
 			mouseLeave.call(target.EVENTS_DIALOG.key21);
 			mouseLeave.call(target.EVENTS_DIALOG.key22);
 			mouseLeave.call(target.EVENTS_DIALOG.key23);
@@ -2131,29 +2162,29 @@ var tmp = function () {
 			mouseLeave.call(target.EVENTS_DIALOG.BACK);
 			mouseLeave.call(target.EVENTS_DIALOG.btn_Ok);
 		}	
-		if (custSel == 36) {
+		if (custSel === 36) {
 			mouseLeave.call(target.EVENTS_DIALOG.key26);
 			mouseLeave.call(target.EVENTS_DIALOG.SPACE);
 			mouseLeave.call(target.EVENTS_DIALOG.btn_Cancel);
 			mouseEnter.call(target.EVENTS_DIALOG.BACK);
 		}
-		if (custSel == 37) {
+		if (custSel === 37) {
 			mouseLeave.call(target.EVENTS_DIALOG.SHIFT);
 			mouseLeave.call(target.EVENTS_DIALOG.SPACE);
 			mouseLeave.call(target.EVENTS_DIALOG.btn_Cancel);
 			mouseEnter.call(target.EVENTS_DIALOG.btn_Ok);
 		}	
-		if (custSel == 38) {
+		if (custSel === 38) {
 			mouseLeave.call(target.EVENTS_DIALOG.BACK);
 			mouseLeave.call(target.EVENTS_DIALOG.btn_Ok);
 			mouseEnter.call(target.EVENTS_DIALOG.btn_Cancel);
 		}
 		return;
 	};
-
+	
 	target.EVENTS_DIALOG.moveCursor = function (direction) {
 		switch (direction) {
-			case "up" : {
+			case "up" :
 				if ((custSel>0) && (custSel<7)) {
 					prevSel=custSel;
 					custSel--;
@@ -2166,7 +2197,7 @@ var tmp = function () {
 					prevSel=custSel;
 					custSel=custSel-10;
 					target.ntHandleEventsDlg();
-				} else if (custSel==26) {
+				} else if (custSel === 26) {
 					prevSel=custSel;
 					custSel=17;
 					target.ntHandleEventsDlg();				
@@ -2174,35 +2205,34 @@ var tmp = function () {
 					prevSel=custSel;
 					custSel=custSel-9;
 					target.ntHandleEventsDlg();
-				} else if (custSel==34) {
+				} else if (custSel === 34) {
 					prevSel=custSel;
 					custSel=26;
 					target.ntHandleEventsDlg();				
-				} else if (custSel==35) {
+				} else if (custSel === 35) {
 					prevSel=custSel;
 					custSel=30;
 					target.ntHandleEventsDlg();				
-				} else if (custSel==36) {
+				} else if (custSel === 36) {
 					prevSel=custSel;
 					custSel=33;
 					target.ntHandleEventsDlg();				
-				} else if (custSel==37) {
+				} else if (custSel === 37) {
 					prevSel=custSel;
 					custSel=35;
 					target.ntHandleEventsDlg();				
-				} else if (custSel==38) {
+				} else if (custSel === 38) {
 					prevSel=custSel;
 					custSel=36;
 					target.ntHandleEventsDlg();				
 				}
-				break
-			}
-			case "down" : {
+				break;
+			case "down" : 
 				if (custSel<6) {
 					prevSel=custSel;
 					custSel++;
 					target.ntHandleEventsDlg();
-				} else if (custSel==6) {
+				} else if (custSel === 6) {
 					prevSel=custSel;
 					custSel=11;
 					target.ntHandleEventsDlg();
@@ -2210,7 +2240,7 @@ var tmp = function () {
 					prevSel=custSel;
 					custSel=custSel+10;
 					target.ntHandleEventsDlg();
-				} else if (custSel==16) {
+				} else if (custSel === 16) {
 					prevSel=custSel;
 					custSel=25;
 					target.ntHandleEventsDlg();
@@ -2218,11 +2248,11 @@ var tmp = function () {
 					prevSel=custSel;
 					custSel=custSel+9;
 					target.ntHandleEventsDlg();			
-				} else if ((custSel==24) || (custSel==25)) {
+				} else if ((custSel === 24) || (custSel === 25)) {
 					prevSel=custSel;
 					custSel=33;
 					target.ntHandleEventsDlg();			
-				} else if ((custSel==26) || (custSel==27)) {
+				} else if ((custSel === 26) || (custSel === 27)) {
 					prevSel=custSel;
 					custSel=34;
 					target.ntHandleEventsDlg();			
@@ -2230,33 +2260,32 @@ var tmp = function () {
 					prevSel=custSel;
 					custSel=35;
 					target.ntHandleEventsDlg();			
-				} else if (custSel==33) {
+				} else if (custSel === 33) {
 					prevSel=custSel;
 					custSel=36;
 					target.ntHandleEventsDlg();			
-				} else if ((custSel==34) || (custSel==35)) {
+				} else if ((custSel === 34) || (custSel === 35)) {
 					prevSel=custSel;
 					custSel=37;
 					target.ntHandleEventsDlg();			
-				} else if (custSel==36) {
+				} else if (custSel === 36) {
 					prevSel=custSel;
 					custSel=38;
 					target.ntHandleEventsDlg();			
 				}
-				break
-			}
-			case "left" : {
-				if (custSel==0) {
+				break;
+			case "left" : 
+				if (custSel === 0) {
 					target.EVENTS_DIALOG.doPlusMinusF("eventNum-");
-				} else if (custSel==2) {
+				} else if (custSel === 2) {
 					target.EVENTS_DIALOG.doPlusMinusF("eventType-");
-				} else if (custSel==3) {
+				} else if (custSel === 3) {
 					target.EVENTS_DIALOG.doPlusMinusF("eventMonth-");
-				} else if (custSel==4) {
+				} else if (custSel === 4) {
 					target.EVENTS_DIALOG.doPlusMinusF("eventDay-");
-				} else if (custSel==5) {
+				} else if (custSel === 5) {
 					target.EVENTS_DIALOG.doPlusMinusF("eventYear-");
-				} else if (custSel==6) {
+				} else if (custSel === 6) {
 					target.EVENTS_DIALOG.doPlusMinusF("eventIcon-");
 				} else if ((custSel>7) && (custSel<17)) {
 					prevSel=custSel;
@@ -2270,29 +2299,28 @@ var tmp = function () {
 					prevSel=custSel;
 					custSel--;
 					target.ntHandleEventsDlg();	
-				} else if ((custSel==35) || (custSel==36)) {
+				} else if ((custSel === 35) || (custSel === 36)) {
 					prevSel=custSel;
 					custSel--;
 					target.ntHandleEventsDlg();	
-				} else if (custSel==38) {
+				} else if (custSel === 38) {
 					prevSel=custSel;
 					custSel--;
 					target.ntHandleEventsDlg();	
 				}
-				break
-			}		
-			case "right" : {
-				if (custSel==0) {
+				break;
+			case "right" : 
+				if (custSel === 0) {
 					target.EVENTS_DIALOG.doPlusMinusF("eventNum+");
-				} else if (custSel==2) {
+				} else if (custSel === 2) {
 					target.EVENTS_DIALOG.doPlusMinusF("eventType+");
-				} else if (custSel==3) {
+				} else if (custSel === 3) {
 					target.EVENTS_DIALOG.doPlusMinusF("eventMonth+");
-				} else if (custSel==4) {
+				} else if (custSel === 4) {
 					target.EVENTS_DIALOG.doPlusMinusF("eventDay+");
-				} else if (custSel==5) {
+				} else if (custSel === 5) {
 					target.EVENTS_DIALOG.doPlusMinusF("eventYear+");
-				} else if (custSel==6) {
+				} else if (custSel === 6) {
 					target.EVENTS_DIALOG.doPlusMinusF("eventIcon+");
 				} else if ((custSel>6) && (custSel<16)) {
 					prevSel=custSel;
@@ -2306,76 +2334,178 @@ var tmp = function () {
 					prevSel=custSel;
 					custSel++;
 					target.ntHandleEventsDlg();	
-				} else if ((custSel==34) || (custSel==35)) {
+				} else if ((custSel === 34) || (custSel === 35)) {
 					prevSel=custSel;
 					custSel++;
 					target.ntHandleEventsDlg();	
-				} else if (custSel==37) {
+				} else if (custSel === 37) {
 					prevSel=custSel;
 					custSel++;
 					target.ntHandleEventsDlg();	
 				}
-				break
-			}
-			return;
+				break;
 		}	
+		return;
 	};
 	
 	target.EVENTS_DIALOG.doCenterF = function () {
-		if (custSel === 1) target.EVENTS_DIALOG.btn_Delete.click();
-		if (custSel === 7) target.EVENTS_DIALOG.key01.click();
-		if (custSel === 8) target.EVENTS_DIALOG.key02.click();
-		if (custSel === 9) target.EVENTS_DIALOG.key03.click();
-		if (custSel === 10) target.EVENTS_DIALOG.key04.click();
-		if (custSel === 11) target.EVENTS_DIALOG.key05.click();
-		if (custSel === 12) target.EVENTS_DIALOG.key06.click();
-		if (custSel === 13) target.EVENTS_DIALOG.key07.click();
-		if (custSel === 14) target.EVENTS_DIALOG.key08.click();
-		if (custSel === 15) target.EVENTS_DIALOG.key09.click();
-		if (custSel === 16) target.EVENTS_DIALOG.key10.click();
-		if (custSel === 17) target.EVENTS_DIALOG.key11.click();
-		if (custSel === 18) target.EVENTS_DIALOG.key12.click();
-		if (custSel === 19) target.EVENTS_DIALOG.key13.click();
-		if (custSel === 20) target.EVENTS_DIALOG.key14.click();
-		if (custSel === 21) target.EVENTS_DIALOG.key15.click();
-		if (custSel === 22) target.EVENTS_DIALOG.key16.click();
-		if (custSel === 23) target.EVENTS_DIALOG.key17.click();
-		if (custSel === 24) target.EVENTS_DIALOG.key18.click();
-		if (custSel === 25) target.EVENTS_DIALOG.key19.click();
-		if (custSel === 26) target.EVENTS_DIALOG.SHIFT.click();
-		if (custSel === 27) target.EVENTS_DIALOG.key20.click();
-		if (custSel === 28) target.EVENTS_DIALOG.key21.click();
-		if (custSel === 29) target.EVENTS_DIALOG.key22.click();
-		if (custSel === 30) target.EVENTS_DIALOG.key23.click();
-		if (custSel === 31) target.EVENTS_DIALOG.key24.click();
-		if (custSel === 32) target.EVENTS_DIALOG.key25.click();
-		if (custSel === 33) target.EVENTS_DIALOG.key26.click();
-		if (custSel === 34) target.EVENTS_DIALOG.SYMBOL.click();
-		if (custSel === 35) target.EVENTS_DIALOG.SPACE.click();
-		if (custSel === 36) target.EVENTS_DIALOG.BACK.click();
-		if (custSel === 37) target.EVENTS_DIALOG.btn_Ok.click();
-		if (custSel === 38) target.EVENTS_DIALOG.btn_Cancel.click();
+		switch (custSel) {
+			case 1:
+				target.EVENTS_DIALOG.btn_Delete.click();
+				break;
+			case 7:
+				target.EVENTS_DIALOG.key01.click();
+				break;
+			case 8:
+				target.EVENTS_DIALOG.key02.click();
+				break;
+			case 9:
+				target.EVENTS_DIALOG.key03.click();
+				break;
+			case 10:
+				target.EVENTS_DIALOG.key04.click();
+				break;
+			case 11:
+				target.EVENTS_DIALOG.key05.click();
+				break;
+			case 12:
+				target.EVENTS_DIALOG.key06.click();
+				break;
+			case 13:
+				target.EVENTS_DIALOG.key07.click();
+				break;
+			case 14:
+				target.EVENTS_DIALOG.key08.click();
+				break;
+			case 15:
+				target.EVENTS_DIALOG.key09.click();
+				break;
+			case 16:
+				target.EVENTS_DIALOG.key10.click();
+				break;
+			case 17:
+				target.EVENTS_DIALOG.key11.click();
+				break;
+			case 18:
+				target.EVENTS_DIALOG.key12.click();
+				break;
+			case 19:
+				target.EVENTS_DIALOG.key13.click();
+				break;
+			case 20:
+				target.EVENTS_DIALOG.key14.click();
+				break;
+			case 21:
+				target.EVENTS_DIALOG.key15.click();
+				break;
+			case 22:
+				target.EVENTS_DIALOG.key16.click();
+				break;
+			case 23:
+				target.EVENTS_DIALOG.key17.click();
+				break;
+			case 24:
+				target.EVENTS_DIALOG.key18.click();
+				break;
+			case 25:
+				target.EVENTS_DIALOG.key19.click();
+				break;
+			case 26:
+				target.EVENTS_DIALOG.SHIFT.click();
+				break;
+			case 27:
+				target.EVENTS_DIALOG.key20.click();
+				break;
+			case 28:
+				target.EVENTS_DIALOG.key21.click();
+				break;
+			case 29:
+				target.EVENTS_DIALOG.key22.click();
+				break;
+			case 30:
+				target.EVENTS_DIALOG.key23.click();
+				break;
+			case 31:
+				target.EVENTS_DIALOG.key24.click();
+				break;
+			case 32:
+				target.EVENTS_DIALOG.key25.click();
+				break;
+			case 33:
+				target.EVENTS_DIALOG.key26.click();
+				break;
+			case 34:
+				target.EVENTS_DIALOG.SYMBOL.click();
+				break;
+			case 35:
+				target.EVENTS_DIALOG.SPACE.click();
+				break;
+			case 36:
+				target.EVENTS_DIALOG.BACK.click();
+				break;
+			case 37:
+				target.EVENTS_DIALOG.btn_Ok.click();
+				break;
+			case 38:
+				target.EVENTS_DIALOG.btn_Cancel.click();
+				break;
+		}
+		/*
+		 i f (custSel ==*= 1) target.EVENTS_DIALOG.btn_Delete.click();
+		 if (custSel === 7) target.EVENTS_DIALOG.key01.click();
+		 if (custSel === 8) target.EVENTS_DIALOG.key02.click();
+		 if (custSel === 9) target.EVENTS_DIALOG.key03.click();
+		 if (custSel === 10) target.EVENTS_DIALOG.key04.click();
+		 if (custSel === 11) target.EVENTS_DIALOG.key05.click();
+		 if (custSel === 12) target.EVENTS_DIALOG.key06.click();
+		 if (custSel === 13) target.EVENTS_DIALOG.key07.click();
+		 if (custSel === 14) target.EVENTS_DIALOG.key08.click();
+		 if (custSel === 15) target.EVENTS_DIALOG.key09.click();
+		 if (custSel === 16) target.EVENTS_DIALOG.key10.click();
+		 if (custSel === 17) target.EVENTS_DIALOG.key11.click();
+		 if (custSel === 18) target.EVENTS_DIALOG.key12.click();
+		 if (custSel === 19) target.EVENTS_DIALOG.key13.click();
+		 if (custSel === 20) target.EVENTS_DIALOG.key14.click();
+		 if (custSel === 21) target.EVENTS_DIALOG.key15.click();
+		 if (custSel === 22) target.EVENTS_DIALOG.key16.click();
+		 if (custSel === 23) target.EVENTS_DIALOG.key17.click();
+		 if (custSel === 24) target.EVENTS_DIALOG.key18.click();
+		 if (custSel === 25) target.EVENTS_DIALOG.key19.click();
+		 if (custSel === 26) target.EVENTS_DIALOG.SHIFT.click();
+		 if (custSel === 27) target.EVENTS_DIALOG.key20.click();
+		 if (custSel === 28) target.EVENTS_DIALOG.key21.click();
+		 if (custSel === 29) target.EVENTS_DIALOG.key22.click();
+		 if (custSel === 30) target.EVENTS_DIALOG.key23.click();
+		 if (custSel === 31) target.EVENTS_DIALOG.key24.click();
+		 if (custSel === 32) target.EVENTS_DIALOG.key25.click();
+		 if (custSel === 33) target.EVENTS_DIALOG.key26.click();
+		 if (custSel === 34) target.EVENTS_DIALOG.SYMBOL.click();
+		 if (custSel === 35) target.EVENTS_DIALOG.SPACE.click();
+		 if (custSel === 36) target.EVENTS_DIALOG.BACK.click();
+		 if (custSel === 37) target.EVENTS_DIALOG.btn_Ok.click();
+		 if (custSel === 38) target.EVENTS_DIALOG.btn_Cancel.click();
+		 */
 		return;
 	};
-
+	
 	target.doUpdateEvent = function () {
 		var eventNum, eventType, eventTypeCode, eventMonth, eventDay, eventYear, eventDescription, eventIcon;
 		eventsDlgOpen = false;
 		
 		// create new array item from stored variables
 		eventType = parseInt(target.getVariable("event_type"));
-		if (eventType=="1") eventTypeCode="";
-		if (eventType=="2") eventTypeCode="Y";
-		if (eventType=="3") eventTypeCode="M";
-		if (eventType=="4") eventTypeCode="W";
-		if (eventType=="5") eventTypeCode="F";
+		if (eventType === "1") { eventTypeCode=""; }
+		if (eventType === "2") { eventTypeCode="Y"; }
+		if (eventType === "3") { eventTypeCode="M"; } 
+		if (eventType === "4") { eventTypeCode="W"; }
+		if (eventType === "5") { eventTypeCode="F"; }
 		eventMonth = target.getVariable("event_month");
 		eventDay = target.getVariable("event_day");
 		eventYear = target.getVariable("event_year");
 		eventIcon = target.getVariable("event_icon");
 		eventDescription = target.getVariable("event_description");
 		
-		if (currentTempEvent==tempEventsNum.length) {
+		if (currentTempEvent === tempEventsNum.length) {
 			// new event
 			//target.bubble("tracelog","Add event");
 			var addTo=[eventTypeCode, eventMonth, eventDay, eventYear, eventIcon, eventDescription];
@@ -2385,12 +2515,12 @@ var tmp = function () {
 			var replaceWith=[eventTypeCode, eventMonth, eventDay, eventYear, eventIcon, eventDescription];
 			events.splice(tempEventsNum[currentTempEvent],1,replaceWith);
 		}
-
+		
 		this.dateChanged();
 		target.BUTTON_EDT.enable(true);
 		return;
 	};
-
+	
 	target.doDeleteEvent = function () {
 		//target.bubble("tracelog","Delete event "+tempEventsNum[currentTempEvent]);
 		eventsDlgOpen = false;
@@ -2434,7 +2564,7 @@ var tmp = function () {
 			mouseLeave.call(target.EVENTS_DIALOG[key]);
 		}	
 	};
-
+	
 	target.doSpace = function () {
 		// ADD A SPACE
 		var eventDescription = target.getVariable("event_description");
@@ -2442,12 +2572,12 @@ var tmp = function () {
 		target.EVENTS_DIALOG.eventDescription.setValue(eventDescription);
 		target.setVariable("event_description",eventDescription);
 	};
-
+	
 	target.doSymbol = function () {
 		symbols = !symbols;
 		this.refreshKeys();
 	};
-
+	
 	target.doShift = function () {
 		shifted = !shifted;
 		this.refreshKeys();
@@ -2470,8 +2600,8 @@ var tmp = function () {
 	target.addCharacter = function (id) {
 		var n = parseInt(id.substring(3, 5));
 		//target.bubble("tracelog","id="+id+", n="+n);
-		if (symbols) { n = n + symbolsOffset };
-		if (shifted) { n = n + shiftOffset };
+		if (symbols) { n = n + symbolsOffset; }
+		if (shifted) { n = n + shiftOffset; }
 		var character = keys[n-1];
 		//target.bubble("tracelog","n="+n+", character="+character);
 		var eventDescription = target.getVariable("event_description");

@@ -83,7 +83,8 @@ var tmp = function () {
 	symbols = false,
 	symbolsOffset = 76,
 	keys = [],
-	kbdPath = target.calendarRoot, twoDigits;
+	kbdPath = target.calendarRoot,
+	twoDigits;
 	
 	FileSystem.ensureDirectory(kbdPath);
 	
@@ -1584,7 +1585,7 @@ var tmp = function () {
 		
 		switch (senderID) {
 			case "eventNum" :
-				if ((eventNum <= (maxEventNum-step)) && (eventNum > -step)) { // -step == 0 - step
+				if ((eventNum <= (maxEventNum-step)) && (eventNum > 0 - step)) { // -step == 0 - step
 					eventNum = eventNum+step;
 				}
 				target.setVariable("event_num",eventNum);
@@ -1622,7 +1623,7 @@ var tmp = function () {
 				}
 				break;
 			case "eventType" :
-				if ((eventType <= (maxEventType-step)) && (eventType > -step)) { // -step == 0 - step
+				if ((eventType <= (maxEventType-step)) && (eventType > 0 - step)) { // -step == 0 - step
 					eventType = eventType+step;
 				}
 				target.setVariable("event_type",eventType);
@@ -1754,7 +1755,7 @@ var tmp = function () {
 				break;
 			case "eventMonth" :
 				if ((eventType === 3) || (eventType === 4)) { break; }
-				if ((eventMonth <= (maxEventMonth-step)) && (eventMonth > -step)) { // -step == 0 - step
+				if ((eventMonth <= (maxEventMonth-step)) && (eventMonth > 0 - step)) { // -step == 0 - step
 					eventMonth = eventMonth+step;
 				}
 				target.setVariable("event_month",eventMonth);
@@ -1868,16 +1869,14 @@ var tmp = function () {
 	
 	target.doUpdateEvent = function () {
 		var eventType, eventTypeCode, eventMonth, eventDay, eventYear, eventDescription, eventIcon,
-		eventTypeCodeList = "YMWF", addTo, replaceWith;
+		eventTypeCodeList = ["","Y","M","W","F"], addTo, replaceWith;
 		//unused eventNum
 		eventsDlgOpen = false;
 		
 		// create new array item from stored variables
 		eventType = parseInt(target.getVariable("event_type"));
-		if (eventType === "1") { 
-			eventTypeCode=""; 
-		} else if ((eventType > 1) && (eventType < 6)){ //TODO Can it be outside this range? if not, change in else
-			eventTypeCode = eventTypeCodeList.substring(eventType - 2, eventType - 1);
+		if ((eventType > 0) && (eventType < 6)){ //TODO Can it be outside this range? if not, remove if
+			eventTypeCode = eventTypeCodeList[eventType - 1];
 		}
 		/*
 		if (eventType === "2") { eventTypeCode="Y"; }
