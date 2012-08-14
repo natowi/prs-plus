@@ -17,6 +17,7 @@
 //	2012-02-23 Ben Chenoweth - Added Toggle Notes Toolbar
 //	2012-03-13 Ben Chenoweth - Fix for issue #321
 //	2012-04-23 drMerry - Moved shutdown and standby to System folder (actions)
+//	2012-08-14 drMerry - Minimized some code
 
 var tmp = function() {
 	var L, log, NAME, StandardActions, model, book, doHistory, isBookEnabled, addBubbleActions, addOptionalActions,
@@ -91,25 +92,34 @@ var tmp = function() {
 					case 1:
 					case 2:
 					case 3:
+					  orientation = (orientation === this.bubble) ? 0 : this.bubble;
+					  /*
 						if (orientation === this.bubble) {
 							orientation = 0;
 						} else {
 							orientation = this.bubble;
 						}
+						*/
 						break;
 					case -1:
 						// clock wise
+						orientation = (orientation + 3) % 4;
+						/*
 						orientation -= 1;
 						if (orientation < 0) {
 							orientation = 3;
 						}
+						*/
 						break;
 					case -2:
 						// counter clock wise
+						orientation = (orientation + 1) % 4;
+						/*
 						orientation += 1;
 						if (orientation > 3) {
 							orientation = 0;
 						}
+						*/
 						break;
 				}
 				doBubble("doRotate", orientation);

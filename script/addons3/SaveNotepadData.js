@@ -17,26 +17,39 @@
 //  2011-12-11 Ben Chenoweth - Added error code to log.error calls
 //	2012-03-13 Ben Chenoweth - Fixed #318: 'Failed to save' message appearing incorrectly
 //	2012-03-17 Ben Chenoweth - Added saving Contents of Highlights; fix for page numbers
+//	2012-08-14 drMerry - Minimized some code
 
-tmp = function() {
-	var L, log, oldNotepadDataSave, oldNotepadFreehandDataSave;
-	L = Core.lang.getLocalizer("Screenshot");
-	log = Core.log.getLogger("SaveNotepadData");
-
-	var saveHandwritingSVG = function (name, svg, width, height) {
-		var folder, path, stream, chr34, tab, count, x;
+var tmp = function() {
+	var L = Core.lang.getLocalizer("Screenshot"), 
+	log = Core.log.getLogger("SaveNotepadData"), oldNotepadDataSave, oldNoteFromHighlight, oldNotepadDataSetData, saveHandwritingSVG, 
+	oldPageCommentEditorOverlayModelCloseAnnotationEditor, SaveNotepadData, saveToValueTitles,
+	saveHandwritingJPG, oldPageScribbleEditorOverlayModelCloseAnnotationEditor, 
+	fbOn = L("FEEDBACK_ON"), 
+	fbOff = L("FEEDBACK_OFF"),
+	saveMsg = L("SAVING_TO") + " ",
+	saveFailMsg = L("FAILED_TO_SAVE"),
+	onOff = ["on", "off"],
+	//vars used in all(most) functions and initialized in those functions so needed to create only once
+	//NOTE msg1 should not be placed here while it is used to check for empty by errors if placed here it can be non-empty
+	//caused by another function while an error still occured in the last used function
+	folder, path, msg2;
+	//unused oldNotepadFreehandDataSave, 
+	
+	saveHandwritingSVG = function (name, svg, width, height) {
+		var stream, chr34, tab, count, x, points;
 		try {
 			folder = SaveNotepadData.options.saveTo + "Notepads/";
 			FileSystem.ensureDirectory(folder);
 			path = folder + name + ".svg";
-			if (FileSystem.getFileInfo(path)) FileSystem.deleteFile(path);
+			if (FileSystem.getFileInfo(path)) { FileSystem.deleteFile(path); }
 			stream = new Stream.File(path, 1);
 			chr34 = String.fromCharCode(34); // "
 			tab = String.fromCharCode(9); // TAB
 			stream.writeLine("<?xml version="+chr34+"1.0"+chr34+" encoding="+chr34+"utf-8"+chr34+" ?>");
 			stream.writeLine("<svg width="+chr34+width+chr34+" base="+chr34+"undefined"+chr34+" shape-rendering="+chr34+"optimizeQuality"+chr34+" height="+chr34+height+chr34+" transform="+chr34+chr34+">");
 			count = svg.contents.length;
-			for (x=0; x<count; x++) {
+			x = 0;
+			for (x; x<count; x++) {
 				points = svg.contents[x].points.toString();
 				points=points.replace("x: ","");
 				points=points.replace("y: ","");
@@ -55,14 +68,14 @@ tmp = function() {
 		}
 	};
 	
-	var saveHandwritingJPG = function (name, svg, width, height) {
-		var folder, path, maker, bitmap, stream;
+	saveHandwritingJPG = function (name, svg, width, height) {
+		var maker, bitmap, stream;
 		try {
 			folder = SaveNotepadData.options.saveTo + "Notepads/";
 			FileSystem.ensureDirectory(folder);
 			path = folder + name + ".jpg";
-			if (FileSystem.getFileInfo(path)) FileSystem.deleteFile(path);
-			maker = BookUtil.thumbnail.notepadThumbnailMaker;					
+			if (FileSystem.getFileInfo(path)) { FileSystem.deleteFile(path); }
+			maker = BookUtil.thumbnail.notepadThumbnailMaker;
 			bitmap = maker.makeThumbnail(new Bitmap(width, height), svg, width, height, true);
 			stream = new Stream.File(path, 1);
 			bitmap.writeJPEG(stream);
@@ -74,16 +87,18 @@ tmp = function() {
 				kbook.root.update();
 			} catch (ignore) { }
 			return path;
-		} catch (e) {
-			log.error("Save as JPG failed!", e);
+		} catch (e1) {
+			log.error("Save as JPG failed!", e1);
 			return false;
 		}
 	};
 	
 	// Save NOTES and HANDWRITINGS
-	var oldNotepadDataSave = kbook.notepadData.save;
+	oldNotepadDataSave = kbook.notepadData.save;
 	kbook.notepadData.save = function () {
-		var folder, media, name, path, msg1, msg2, failed, width, height, stream, chr34, tab, svg, count, x, points, maker, bitmap, stream;
+		var media, name, msg1, failed, width, height, svg;
+		//unused chr34, tab, count, x, points, maker, bitmap, stream
+		//mentioned duplicate stream 
 		failed = false;
 		if ((SaveNotepadData.options.saveTextMemo === 'on') || (SaveNotepadData.options.saveHandwritingSVG === 'on') || (SaveNotepadData.options.saveHandwritingJPG === 'on')) {
 			try {
@@ -98,14 +113,14 @@ tmp = function() {
 							folder = SaveNotepadData.options.saveTo;
 							Core.io.setFileContent(path, media.note.text);
 						} catch (ee) {
-							msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
-							msg2 = L("FAILED_TO_SAVE");
+							msg1 = saveMsg + saveToValueTitles[folder];					
+							msg2 = saveFailMsg;
 							failed = true;
 							log.error("Save as TXT failed!", ee);
 						}
 						if ((SaveNotepadData.options.showSaveProgress === "on") || (failed)) {
 							if (msg1 === undefined) {
-								msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];
+								msg1 = saveMsg + saveToValueTitles[folder];
 								msg2 = path;
 							}
 							Core.ui.showMsg([msg1, msg2]);
@@ -115,8 +130,8 @@ tmp = function() {
 						try {
 							name = media.path.substring(media.path.lastIndexOf('/') + 1);
 							svg = media.note.drawing.pages[0].svg;
-							width = parseInt(media.note.drawing.width);
-							height = parseInt(media.note.drawing.height);
+							width = parseInt(media.note.drawing.width,10);
+							height = parseInt(media.note.drawing.height,10);
 							if (SaveNotepadData.options.saveHandwritingSVG === 'on') {
 								path = saveHandwritingSVG(name, svg, width, height);
 							}
@@ -125,8 +140,8 @@ tmp = function() {
 							}
 							if ((SaveNotepadData.options.showSaveProgress === "on") || (!path)) {
 								folder = SaveNotepadData.options.saveTo;
-								msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];
-								msg2 = path ? path : L("FAILED_TO_SAVE");
+								msg1 = saveMsg + saveToValueTitles[folder];
+								msg2 = path ? path : saveFailMsg;
 								/*} else {
 									msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
 									msg2 = L("FAILED_TO_SAVE");
@@ -136,15 +151,15 @@ tmp = function() {
 						} catch (e) { }
 					}
 				}
-			} catch (e) { log.error("Save failed!", e); }
+			} catch (e2) { log.error("Save failed!", e2); }
 		}
 		return oldNotepadDataSave.apply(this);
 	};
 	
 	// save CONTENTS OF HIGHLIGHTS
-	var oldNoteFromHighlight = FskCache.text.noteFromHighlight;
+	oldNoteFromHighlight = FskCache.text.noteFromHighlight;
 	FskCache.text.noteFromHighlight = function (ann, viewer) {
-		var failed, folder, media, name, path, title, author, stream, span, highlightText, page, msg1, msg2;
+		var failed, media, name, title, author, stream, span, highlightText, page, msg1;
 		if (SaveNotepadData.options.saveHighlights === 'on') {
 			failed = false;
 			folder = SaveNotepadData.options.saveTo + "Notepads/";
@@ -174,14 +189,17 @@ tmp = function() {
 						stream.writeLine("Page: "+page);
 						stream.writeLine(highlightText);
 						stream.close();
-					} catch(e) {
+					} catch(e3) {
 							stream.close();
-							msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
-							msg2 = L("FAILED_TO_SAVE");
+							msg1 = saveMsg + saveToValueTitles[folder];					
+							msg2 = saveFailMsg;
 							failed = true;
 					}
 					if ((SaveNotepadData.options.showSaveProgress === "on") || (failed)) {
 						folder = SaveNotepadData.options.saveTo;
+						msg2 = (msg1 === undefined) ? path : saveFailMsg;
+						msg1 = saveMsg + saveToValueTitles[folder];
+						/*
 						if (msg1 === undefined) {
 							msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];
 							msg2 = path;
@@ -189,19 +207,20 @@ tmp = function() {
 							msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
 							msg2 = L("FAILED_TO_SAVE");
 						}
+						*/
 						Core.ui.showMsg([msg1, msg2]);
 					}
 				}
 			}
-			catch (e) { log.error("Highlight save failed!", e); }
+			catch (e4) { log.error("Highlight save failed!", e4); }
 		}
 		return oldNoteFromHighlight.apply(this, arguments);
 	};
 	
 	// Save BOOKMARK COMMENTS
-	var oldPageCommentEditorOverlayModelCloseAnnotationEditor = pageCommentEditorOverlayModel.closeAnnotationEditor;
+	oldPageCommentEditorOverlayModelCloseAnnotationEditor = pageCommentEditorOverlayModel.closeAnnotationEditor;
 	pageCommentEditorOverlayModel.closeAnnotationEditor = function (saveflag) {
-		var folder, note, media, name, path, title, author, stream, bookmark, page, date, str, failed, msg1, msg2;
+		var note, media, name, title, author, stream, bookmark, page, date, str, failed, msg1;
 		failed = false;
 		if (SaveNotepadData.options.saveTextMemo === 'on') {
 			folder = SaveNotepadData.options.saveTo + "Notepads/";
@@ -244,8 +263,8 @@ tmp = function() {
 										str = this.VAR_KEYBUF;
 										Core.io.setFileContent(path, str);
 									} catch(ee) {
-										msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
-										msg2 = L("FAILED_TO_SAVE");
+										msg1 = saveMsg + saveToValueTitles[folder];					
+										msg2 = saveFailMsg;
 										failed = true;
 									}
 								}
@@ -256,30 +275,30 @@ tmp = function() {
 									path = folder + name + ".txt";
 									str = this.VAR_KEYBUF;
 									Core.io.setFileContent(path, str);
-								} catch (ee) {
-									msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
-									msg2 = L("FAILED_TO_SAVE");
+								} catch (e5) {
+									msg1 = saveMsg + saveToValueTitles[folder];					
+									msg2 = saveFailMsg;
 									failed = true;
 								}
 							}
 							if ((SaveNotepadData.options.showSaveProgress === "on") || (failed)) {
 								folder = SaveNotepadData.options.saveTo;
-								msg2 = (msg1 === undefined) ? path : L("FAILED_TO_SAVE");
-								msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];
+								msg2 = (msg1 === undefined) ? path : saveFailMsg;
+								msg1 = saveMsg + saveToValueTitles[folder];
 								Core.ui.showMsg([msg1, msg2]);
 							}
 						}
 					}
 				}
-			} catch (e) { log.error("Bookmark Note save failed!", e); }
+			} catch (e6) { log.error("Bookmark Note save failed!", e6); }
 		}
 		oldPageCommentEditorOverlayModelCloseAnnotationEditor.apply(this, arguments);
 	};
 	
 	// Save BOOKMARK SCRIBBLES
-	var oldPageScribbleEditorOverlayModelCloseAnnotationEditor = pageScribbleEditorOverlayModel.closeAnnotationEditor;
+	oldPageScribbleEditorOverlayModelCloseAnnotationEditor = pageScribbleEditorOverlayModel.closeAnnotationEditor;
 	pageScribbleEditorOverlayModel.closeAnnotationEditor = function (saveflag) {
-		var note, svg, width, height, name, path;
+		var note, svg, width, height, name, msg1;
 		if ((SaveNotepadData.options.saveHandwritingSVG === 'on') || (SaveNotepadData.options.saveHandwritingJPG === 'on')) {
 			folder = SaveNotepadData.options.saveTo + "Notepads/";
 			FileSystem.ensureDirectory(folder);
@@ -302,13 +321,15 @@ tmp = function() {
 								}
 								if ((SaveNotepadData.options.showSaveProgress === "on") || (!path)) {
 									folder = SaveNotepadData.options.saveTo;
-									if (path) {
+									msg1 = saveMsg + saveToValueTitles[folder];
+									msg2 = path ? path : saveFailMsg;
+									/*if (path) {
 										msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];
 										msg2 = path;
 									} else {
 										msg1 = L("SAVING_TO") + " " + saveToValueTitles[folder];					
 										msg2 = L("FAILED_TO_SAVE");
-									}
+									}*/
 									Core.ui.showMsg([msg1, msg2]);
 								}
 							}
@@ -321,9 +342,9 @@ tmp = function() {
 	};
 	
 	// Override contents of TEXT NOTE using changed TXT file
-	var oldNotepadDataSetData = kbook.notepadData.setData;
+	oldNotepadDataSetData = kbook.notepadData.setData;
 	kbook.notepadData.setData = function (media) {
-		var folder, name, path;
+		var name, msg1, content, loadMsg = L("LOADING_FROM") + " ";
 		try {
 			if (media) {
 				if ((media.type === 'text') && (SaveNotepadData.options.overrideTextMemo === 'on')) {
@@ -340,7 +361,7 @@ tmp = function() {
 							if (media.note.text !== content) {
 								// content is different
 								media.note.text = content;
-								msg1 = L("LOADING_FROM") + " " + saveToValueTitles[folder];
+								msg1 = loadMsg + saveToValueTitles[folder];
 								msg2 = path;
 								Core.ui.showMsg([msg1, msg2]);
 							}
@@ -349,7 +370,7 @@ tmp = function() {
 				}
 			}
 		} catch (e) {
-			msg1 = L("LOADING_FROM") + " " + saveToValueTitles[folder];					
+			msg1 = loadMsg + saveToValueTitles[folder];					
 			msg2 = L("FAILED_TO_LOAD");
 			Core.ui.showMsg([msg1, msg2]);
 			log.error("Override NOTE with TXT failed!", e);
@@ -357,13 +378,13 @@ tmp = function() {
 		oldNotepadDataSetData.apply(this, arguments);
 	};
 	
-	var saveToValueTitles = {
+	saveToValueTitles = {
 		"a:/": L("MEMORY_STICK"),
 		"b:/": L("SD_CARD"),
 		"/Data/": L("INTERNAL_MEMORY")
 	};
 	
-	var SaveNotepadData = {
+	SaveNotepadData = {
 		name: "SaveNotepadData",
 		title: L("SAVE_NOTEPAD_TITLE"),
 		icon: "TEXT_MEMO",
@@ -373,10 +394,10 @@ tmp = function() {
 				title: L("SAVE_TEXT_MEMO"),
 				icon: "TEXT_MEMO",
 				defaultValue: "off",
-				values: ["on", "off"],
+				values: onOff,
 				valueTitles: {
-					"on": L("FEEDBACK_ON"),
-					"off": L("FEEDBACK_OFF")
+					"on": fbOn,
+					"off": fbOff
 				}
 			},
 			{
@@ -384,10 +405,10 @@ tmp = function() {
 				title: L("OVERRIDE_TEXT_MEMO"),
 				icon: "TEXT_MEMO",
 				defaultValue: "off",
-				values: ["on", "off"],
+				values: onOff,
 				valueTitles: {
-					"on": L("FEEDBACK_ON"),
-					"off": L("FEEDBACK_OFF")
+					"on": fbOn,
+					"off": fbOff
 				}
 			},
 			{
@@ -395,10 +416,10 @@ tmp = function() {
 				title: L("SAVE_HANDWRITING"),
 				icon: "HANDWRITING_ALT",
 				defaultValue: "off",
-				values: ["on", "off"],
+				values: onOff,
 				valueTitles: {
-					"on": L("FEEDBACK_ON"),
-					"off": L("FEEDBACK_OFF")
+					"on": fbOn,
+					"off": fbOff
 				}
 			},
 			{
@@ -406,10 +427,10 @@ tmp = function() {
 				title: L("SAVE_HANDWRITING_JPG"),
 				icon: "HANDWRITING_ALT",
 				defaultValue: "off",
-				values: ["on", "off"],
+				values: onOff,
 				valueTitles: {
-					"on": L("FEEDBACK_ON"),
-					"off": L("FEEDBACK_OFF")
+					"on": fbOn,
+					"off": fbOff
 				}
 			},
 			{
@@ -417,10 +438,10 @@ tmp = function() {
 				title: L("SAVE_HIGHLIGHTS"),
 				icon: "HIGHLIGHT",
 				defaultValue: "off",
-				values: ["on", "off"],
+				values: onOff,
 				valueTitles: {
-					"on": L("FEEDBACK_ON"),
-					"off": L("FEEDBACK_OFF")
+					"on": fbOn,
+					"off": fbOff
 				}
 			},
 			{
@@ -428,10 +449,10 @@ tmp = function() {
 				title: L("OPT_FEEDBACK"),
 				icon: "SETTING",
 				defaultValue: "on",
-				values: ["on", "off"],
+				values: onOff,
 				valueTitles: {
-					"on": L("FEEDBACK_ON"),
-					"off": L("FEEDBACK_OFF")
+					"on": fbOn,
+					"off": fbOff
 				}
 			}
 		],

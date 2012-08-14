@@ -6,17 +6,22 @@
 //				added mnt-info command
 //	2012-07-17 drMerry - made less localizer requests.
 //				changed default value to disabled for all functions.
+//	2012-08-14 drMerry - minimized some Code
+//				changed some vars to match rules (no capital)
+//				renamed enableSync into enableSyncMem while enableSync is seen as a Sync-action
 var mAcontainer = function () {
-	var L, LG, log, MerryActions, TrueValue, FalseValue;
-	log = Core.log.getLogger("MerryActions");
-	L = Core.lang.getLocalizer("MerryActions");
-	LG = Core.lang.getLocalizer("Global");
-	TrueValue = LG("VALUE_ENABLED");
-	FalseValue = LG("VALUE_DISABLED");
+	var merryActions, 
+	log = Core.log.getLogger("merryActions"),
+	L = Core.lang.getLocalizer("MerryActions"),
+	LG = Core.lang.getLocalizer("Global"),
+	trueVal = LG("VALUE_ENABLED"),
+	falseVal = LG("VALUE_DISABLED"),
+	trueFalse = ["True", "False"],
+	dumpUpdate = "cat /proc/meminfo >> /Data/memdump_update.txt";
 	//Remove LG to clean some memory
 	LG = undefined;
-	MerryActions = {
-		name: "MerryActions",
+	merryActions = {
+		name: "merryActions",
 		title: L("MERRY_ACTIONS"),
 		icon: "REBOOT",
 		optionDefs: [
@@ -26,22 +31,22 @@ var mAcontainer = function () {
 				icon: "REBOOT",
 				helpText: L("MSG_HELP_REBOOT"),
 				defaultValue: "False",
-				values: ["True", "False"],
+				values: trueFalse,
 				valueTitles: {
-					"True": TrueValue,
-					"False": FalseValue
+					"True": trueVal,
+					"False": falseVal
 				}
 			},
             {
-				name: "enableSync",
+				name: "enableSyncMem",
 				title: L("OPT_SYNC"),
 				icon: "MEMINFO",
 				helpText: L("MSG_HELP_SYNC"),
 				defaultValue: "False",
-				values: ["True", "False"],
+				values: trueFalse,
 				valueTitles: {
-					"True": TrueValue,
-					"False": FalseValue
+					"True": trueVal,
+					"False": falseVal
 				}
 			},
             {
@@ -49,10 +54,10 @@ var mAcontainer = function () {
 				title: L("OPT_MEMINFO"),
 				icon: "MEMINFO",
 				defaultValue: "False",
-				values: ["True", "False"],
+				values: trueFalse,
 				valueTitles: {
-					"True": TrueValue,
-					"False": FalseValue
+					"True": trueVal,
+					"False": falseVal
 				}
 			},
             {
@@ -60,10 +65,10 @@ var mAcontainer = function () {
 				title: L("OPT_MNTINFO"),
 				icon: "INFO",
 				defaultValue: "False",
-				values: ["True", "False"],
+				values: trueFalse,
 				valueTitles: {
-					"True": TrueValue,
-					"False": FalseValue
+					"True": trueVal,
+					"False": falseVal
 				}
 			},
             {
@@ -71,10 +76,10 @@ var mAcontainer = function () {
 				title: L("OPT_DF"),
 				icon: "INFO",
 				defaultValue: "False",
-				values: ["True", "False"],
+				values: trueFalse,
 				valueTitles: {
-					"True": TrueValue,
-					"False": FalseValue
+					"True": trueVal,
+					"False": falseVal
 				}
 			}
 		],
@@ -85,7 +90,7 @@ var mAcontainer = function () {
 			icon: "REBOOT",
 			action: function () {
 				try {
-					if (MerryActions.options.enableReboot === 'True') {
+					if (merryActions.options.enableReboot === 'True') {
 						Core.ui.showMsg(L("MSG_REBOOT"));
 						Core.shell.exec("reboot");
 					}
@@ -93,7 +98,7 @@ var mAcontainer = function () {
                         Core.ui.showMsg(L("MSG_DISABLED"));
                         }
 				} catch (e) {
-					log.error("in MerryActions reboot action: " + e);
+					log.error("in merryActions reboot action: " + e);
 				}
 			}
 		},
@@ -104,13 +109,13 @@ var mAcontainer = function () {
 			icon: "MEMINFO",
 			action: function () {
 				try {
-					if (MerryActions.options.enableSync=== 'True') {
+					if (merryActions.options.enableSyncMem === 'True') {
 						Core.shell.exec("echo 'before' > /Data/memdump_update.txt");
-						Core.shell.exec("cat /proc/meminfo >> /Data/memdump_update.txt");
+						Core.shell.exec(dumpUpdate);
                         Core.shell.exec("sync; echo 3 >> /proc/sys/vm/drop_caches");
 						Core.shell.exec("echo '----------' > /Data/memdump_update.txt");
 						Core.shell.exec("echo ''; echo 'after' >> /Data/memdump_update.txt");
-						Core.shell.exec("cat /proc/meminfo >> /Data/memdump_update.txt");
+						Core.shell.exec(dumpUpdate);
                         //Core.ui.showMsg(LG("MSG_NOT_IMPLEMENTED"));
 						Core.ui.showMsg(L("MSG_NEW_MEMINFO"));
 					}
@@ -118,7 +123,7 @@ var mAcontainer = function () {
                         Core.ui.showMsg(L("MSG_DISABLED"));
                         }
 				} catch (e) {
-					log.error("in MerryActions sync action: " + e);
+					log.error("in merryActions sync action: " + e);
 				}
 			}
 		},
@@ -129,7 +134,7 @@ var mAcontainer = function () {
 			icon: "MEMINFO",
 			action: function () {
 				try {
-					if (MerryActions.options.enableMeminfo === 'True') {
+					if (merryActions.options.enableMeminfo === 'True') {
 						Core.shell.exec("cat /proc/meminfo > /Data/memdump.txt");
                         Core.ui.showMsg(L("MSG_MEMINFO"));
 					}
@@ -137,7 +142,7 @@ var mAcontainer = function () {
                         Core.ui.showMsg(L("MSG_DISABLED"));
                         }
 				} catch (e) {
-					log.error("in MerryActions mem-info action: " + e);
+					log.error("in merryActions mem-info action: " + e);
 				}
 			}
 		},
@@ -148,7 +153,7 @@ var mAcontainer = function () {
 			icon: "INFO",
 			action: function () {
 				try {
-					if (MerryActions.options.enableDF === 'True') {
+					if (merryActions.options.enableDF === 'True') {
 						Core.shell.exec("df > /Data/dfdump.txt");
                         Core.ui.showMsg(L("MSG_DFINFO"));
 					}
@@ -156,7 +161,7 @@ var mAcontainer = function () {
                         Core.ui.showMsg(L("MSG_DISABLED"));
                         }
 				} catch (e) {
-					log.error("in MerryActions df-info action: " + e);
+					log.error("in merryActions df-info action: " + e);
 				}
 			}
 		},
@@ -167,7 +172,7 @@ var mAcontainer = function () {
 			icon: "INFO",
 			action: function () {
 				try {
-					if (MerryActions.options.enableMntinfo === 'True') {
+					if (merryActions.options.enableMntinfo === 'True') {
 						Core.shell.exec("mount > /Data/mntdump.txt");
                         Core.ui.showMsg(L("MSG_MNTINFO"));
 					}
@@ -175,13 +180,13 @@ var mAcontainer = function () {
                         Core.ui.showMsg(L("MSG_DISABLED"));
                         }
 				} catch (e) {
-					log.error("in MerryActions mnt-info action: " + e);
+					log.error("in merryActions mnt-info action: " + e);
 				}
 			}
 		}]
 	};
 
-	Core.addAddon(MerryActions);
+	Core.addAddon(merryActions);
 };
 try {
 	mAcontainer();
@@ -189,6 +194,6 @@ try {
 } catch (e) {
 	var log;
 	// Core's log
-	log.error("in MerryActions.js", e);
+	log.error("in merryActions.js", e);
 	mAcontainer = undefined;
 }
