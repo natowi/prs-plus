@@ -25,7 +25,8 @@
 //	2011-12-30 quisvir - Use popup menu on all models, stop usb charging on disconnect
 //	2012-03-29 Ben Chenoweth - Added mini cover overlay option (on standby and/or shutdown); aspect ratio preserved
 //	2012-03-30 Ben Chenoweth - Added option for background colour
-//	2012-08-14 drMerry - Updated som code
+//	2012-08-14 drMerry - Updatede some code
+//	2012-08-24 Ben Chenoweth - Fixed two minor regressions
 
 var tmp = function() {
 	var L, LX, log, orgOrientation, shutdown, oldStandbyImageDraw, getBookCover, usbConnected, standbyState,
@@ -254,7 +255,7 @@ var tmp = function() {
 						path = kbook.model.currentBook.media.source.path + kbook.model.currentBook.media.path;
 						bitmap = getBookCover(path, w, h);						
 					}
-					break;
+					// break; - if a bitmap is not found, "standby" needs to run, so we don't want to break here.
 				case 'random':
 				case 'standby':
 					if (!bitmap) {
@@ -289,7 +290,7 @@ var tmp = function() {
 						height = Math.floor(bounds.height * ratio);
 						x = (w > width) ? Math.floor((w - width) / 2) : 0;
 						y = (h > height) ? Math.floor((h - height) / 2) : 0;
-						if (opt.BacksndColour === 'black') {
+						if (opt.BackgroundColour === 'black') {
 							win.setPenColor(Color.black);
 							win.fillRectangle(win);
 						}
