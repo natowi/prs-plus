@@ -15,8 +15,9 @@
 //	2011-02-07 kartu - Added Core.config.userCSSFile support (instead of hardcoded style.css)
 //	2011-11-20 kartu - Added sorting to CSS files
 //	2011-12-07 quisvir - Added automatic epub reloading & action to change CSS from within book
-//  2011-12-08 Mark Nord - Use of Core.ui.getCurrentNode in "action"
+//	2011-12-08 Mark Nord - Use of Core.ui.getCurrentNode in "action"
 //	2012-06-23 drMerry - added use of Global section in lang file
+//	2012-09-01 Mark Nord - exported reloadBook(), added functionality epub CSS tweaking(credits to Analogus)
 
 tmp = function() {
 	var L, LG, endsWith, USER_CSS, DISABLED, EpubUserStyle;
@@ -47,9 +48,28 @@ tmp = function() {
 				}
 			}
 		],
+		
+		// Reload current book if it is an epub file
+		reloadBook : function (extraCSS) {
+			var current, password, buffer;
+			current = kbook.model.currentBook;
+			if (current && current.media.mime === 'application/epub+zip') {
+				// merge extern CSS
+				buffer = Core.io.getFileContent(EpubUserStyle.root + '_' + USER_CSS, '\n');
+				var i;
+				for (i=0; i<6; i++) {
+					buffer += extraCSS[i] + "\n";
+				};
+				Core.io.setFileContent(EpubUserStyle.root + USER_CSS, buffer); 
+				current.media.close(kbook.bookData);
+				kbook.bookData.setData(null);
+				password = (kbook.model.protectedBookInfo) ? kbook.model.protectedBookInfo.password : null; // only used on x50
+				current.media.load(current.cache, kbook.model, kbook.model.onChangeBookCallback, password);
+			}
+		},
 		/**
 		* @constructor
-		*/
+		*/		
 		onPreInit : function () {
 			var i, n, od, path, cssFiles;
 			this.root = Core.config.userCSSPath;
@@ -65,27 +85,21 @@ tmp = function() {
 			od = this.optionDefs[0];
 			for (i = 0, n = cssFiles.length; i < n; i++) {
 				path = cssFiles[i];
-				if (path !== USER_CSS) {
+				if (path !== USER_CSS && path !== "_"+USER_CSS && path !== "extern.css") {
 					od.values.push(path);
 					od.valueTitles[path]  = path;
 				}
 			}			
 		},
 		onSettingsChanged: function (propertyName, oldValue, newValue, object) {
-			var current, password;
 			if (newValue === DISABLED) {
 				FileSystem.deleteFile(EpubUserStyle.root + USER_CSS);
+				FileSystem.deleteFile(EpubUserStyle.root + '_' + USER_CSS);
+				exec('touch /Data/database/system/PRSPlus/epub/_style.css');  //produces empty style.css to remain compatible with CSS-changing-options on the fly 
 			} else {
-				Core.io.copyFile(EpubUserStyle.root + newValue, EpubUserStyle.root + USER_CSS);
+				Core.io.copyFile(EpubUserStyle.root + newValue, EpubUserStyle.root + '_' + USER_CSS);
 			}
-			// Reload current book if it is an epub file
-			current = kbook.model.currentBook;
-			if (current && current.media.mime === 'application/epub+zip') {
-				current.media.close(kbook.bookData);
-				kbook.bookData.setData(null);
-				password = (kbook.model.protectedBookInfo) ? kbook.model.protectedBookInfo.password : null; // only used on x50
-				current.media.load(current.cache, kbook.model, kbook.model.onChangeBookCallback, password);
-			}
+			this.reloadBook();			
 		},
 		actions: [{
 			name: 'ChangeEpubCSS',

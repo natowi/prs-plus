@@ -9,6 +9,7 @@
 //	2011-12-20 Mark Nord - enabled for 600/x50
 //	2011-12-30 Mark Nord - added menu.titel to error.trace in doCenter() 
 //	2012-02-19 Mark Nord - use of visible Button
+//	2012-09-01 Mark Nord - us of Core.addonByName.KeyBindings.overRide (in case 6/7 are assigned to nxtPg/prfPg
 //		ToDo: handle more then 10 menu-items
 
 /**
@@ -131,6 +132,7 @@ tmp = function() {
 	* @param menu menu previosly created by one of Core.popup.create* methods
 	*/
 	Core.popup.showMenu = function (menu) {
+		Core.addonByName.KeyBindings.overRide = true;
 		constructMenu(menu);
 		// Dynamic resizing + layouts = need to do it 2 times
 		constructMenu(menu);
@@ -222,6 +224,7 @@ tmp = function() {
 		}
 		popupMenu.show(false);
 		win.invalidate();
+		Core.addonByName.KeyBindings.overRide = false;
 		return;
 	};
 	
