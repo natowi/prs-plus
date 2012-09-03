@@ -24,7 +24,8 @@ tmp = function() {
 	// Localize
 	L = Core.lang.getLocalizer("EpubUserStyle");
 	LG = Core.lang.getLocalizer("Global");
-	endsWith = Core.text.endsWith;
+	endsWith = Core.text.endsWith,
+	exec = Core.shell.exec;
 
 	// Constants
 	USER_CSS = Core.config.userCSSFile;
@@ -51,15 +52,17 @@ tmp = function() {
 		
 		// Reload current book if it is an epub file
 		reloadBook : function (extraCSS) {
-			var current, password, buffer;
+			var current, password, buffer, i, n;
 			current = kbook.model.currentBook;
 			if (current && current.media.mime === 'application/epub+zip') {
-				// merge extern CSS
-				buffer = Core.io.getFileContent(EpubUserStyle.root + '_' + USER_CSS, '\n');
-				var i;
-				for (i=0; i<6; i++) {
-					buffer += extraCSS[i] + "\n";
-				};
+				try {	// merge extern CSS
+					buffer = Core.io.getFileContent(EpubUserStyle.root + '_' + USER_CSS, '\n');
+					i = 0;
+					n = extraCSS.length;
+					for (i=0; i < n; i++) {
+						buffer += extraCSS[i] + "\n";
+					}
+				} catch (ignore) {}
 				Core.io.setFileContent(EpubUserStyle.root + USER_CSS, buffer); 
 				current.media.close(kbook.bookData);
 				kbook.bookData.setData(null);
@@ -95,7 +98,7 @@ tmp = function() {
 			if (newValue === DISABLED) {
 				FileSystem.deleteFile(EpubUserStyle.root + USER_CSS);
 				FileSystem.deleteFile(EpubUserStyle.root + '_' + USER_CSS);
-				exec('touch /Data/database/system/PRSPlus/epub/_style.css');  //produces empty style.css to remain compatible with CSS-changing-options on the fly 
+				exec('touch /Data/database/system/PRSPlus/epub/_style.css');  //produces empty _style.css to remain compatible with CSS-changing-options on the fly 
 			} else {
 				Core.io.copyFile(EpubUserStyle.root + newValue, EpubUserStyle.root + '_' + USER_CSS);
 			}

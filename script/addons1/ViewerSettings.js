@@ -289,7 +289,7 @@ var tmp = function() {
 		}
 	};
 
-	// PopUpMenu for use with Size (Magnifier Button)
+	// PopUpMenu for use with Size (Magnifier) Button
 	var myDoSize = function (scale) {
 		var page, data, media, s;
 		page = kbook.model.container.sandbox.PAGE_GROUP.sandbox.PAGE;	
@@ -302,27 +302,21 @@ var tmp = function() {
 		}
 		resetMarginCut();
 		media.browseTo(data, undefined, undefined, undefined, s);
-		myFineFontSize("1.00em")
-		return true;
+		handleExtraCSS(0, "default"); // reset extra-fontsize
 	};
 
-	//var myFineFontSize = function (fine) {
 	var handleExtraCSS = function (index, value) {
 		var currentPage;
-	//	log.trace('fine: '+fine );
-	//	log.trace('externCSS: '+externCSS );
 		if (value !== "default") {
 			userStyleexternCSS[index] = externCSS[index].replace(/placeholder/, value) +'\n';
 		} else {
 			userStyleexternCSS[index] = ''
 		};
-	//	log.trace('userStyleexternCSS: '+userStyleexternCSS);
-	//	log.trace(Core.addonByName.EpubUserStyle.reloadBook);
 		currentPage = page.data.get(Document.Property.page);
 		Core.addonByName.EpubUserStyle.reloadBook(userStyleexternCSS);
 		page.data.set(Document.Property.page, currentPage);
 		page.dataChanged();
-	//	log.trace('Core.addonByName.EpubUserStyle.reloadBook done');
+		return true;
 	};
 
 	var sizeMenu, sizeActions, sizeTitles, simpleSizeMenu,
@@ -357,8 +351,8 @@ var tmp = function() {
 	sizeMenu.addChild(cssMargin);
 	// Subsubmenus
 	cssFontSizeMenu.addChild(createMenuItem("default", function() {handleExtraCSS(0, "default");}  ));
-	cssFontSizeMenu.addChild(createMenuItem(" 96%", function() {handleExtraCSS(0, "0.96em");}  ));
-	cssFontSizeMenu.addChild(createMenuItem(" 98%", function() {handleExtraCSS(0, "0.98em");}  ));
+	cssFontSizeMenu.addChild(createMenuItem(" 94%", function() {handleExtraCSS(0, "0.94em");}  ));
+	cssFontSizeMenu.addChild(createMenuItem(" 97%", function() {handleExtraCSS(0, "0.97em");}  ));
 	cssFontSizeMenu.addChild(createMenuItem("100%", function() {handleExtraCSS(0, "1.00em");}  ));
 	cssFontSizeMenu.addChild(createMenuItem("103%", function() {handleExtraCSS(0, "1.03em");}  ));
 	cssFontSizeMenu.addChild(createMenuItem("106%", function() {handleExtraCSS(0, "1.06em");}  ));
@@ -392,12 +386,22 @@ var tmp = function() {
 	};
 
 	loadExtraCSS = function () {
-		var filePath, content, line, name, path, i, n, icon;
+		var filePath, content, lines, path, i, n;
 		// load externCSS
 			filePath = Core.config.userCSSPath + "extern.css";
 			content = Core.io.getFileContent(filePath, null);
 			if (content !== null) {
-				externCSS = content.split("\n");
+				externCSS = [];
+				lines = content.split("\n");
+				if (lines) {
+					i = 0;
+					n = lines.length;
+						for (i; i < n; i++) {
+							if ((lines[i].indexOf("#")) === -1 && (lines[i].length)) {
+								externCSS.push(lines[i]);
+							}
+						}	
+					}
 			} else {
 				externCSS = ['','','','','',''];
 			}

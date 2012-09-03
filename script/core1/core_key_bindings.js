@@ -13,6 +13,8 @@
 //	2012-01-08 Mark Nord - PageGroup wasn't created for 505 -> keybindings faild to start
 //	2012-01-10 quisvir - Fixed bug with hold prev/next icw state change; removed State event swallowing
 //	2012-03-19 Mark Nord - workaround for issue #303; disable keybindings in certain situations
+//
+//	TODO Keybindings.overRide only for numeric-keys
 
 tmp = function() {
 	var KeyBindings, STATE_GLOBAL, contexts, contextsLen, defVal, contextLabels,
@@ -61,11 +63,11 @@ tmp = function() {
 			key = event.getKey();
 			state = kbook.model.STATE;
 			action = getBoundAction(key, state);
-                        if ((action !== undefined) && !KeyBindings.overRide ){
+                        if (action !== undefined  && !KeyBindings.overRide) {
 				try {
-					if (!action.action()) {
-						return;
-					}
+						if (!action.action()) {
+							return;
+						}
 				} catch (e0) {
 					log.error("executing action: " + key + "." + state, e0);
 				}
