@@ -27,6 +27,7 @@
 //	2012-03-30 Ben Chenoweth - Added option for background colour
 //	2012-08-14 drMerry - Updatede some code
 //	2012-08-24 Ben Chenoweth - Fixed two minor regressions
+//	2012-09-08 Mark Nord - fix #345 PRS 300/505 - No White/Black Stand-By-Screen when rotated 90° 
 
 var tmp = function() {
 	var L, LX, log, orgOrientation, shutdown, oldStandbyImageDraw, getBookCover, usbConnected, standbyState,
@@ -44,10 +45,12 @@ var tmp = function() {
 	// Suspend: set orientation to portrait, call standbyimage if necessary
 	oldSuspend = kbook.model.suspend;
 	kbook.model.suspend = function () {
+		var opt = StandbyImage.options.StandbyMode;
 		oldSuspend.apply(this);
 		try {
-			standbyState = 0;
-			if (StandbyImage.options.StandbyMode !== 'act_page') {
+			standbyState = 0;			
+			// for cover and random wallpaper rotate back to portrait
+			if (opt !== 'act_page' && opt !== 'white' && opt !== 'black') {
 				orgOrientation = ebook.getOrientation();
 				if (orgOrientation) {
 					ebook.rotate(0);
@@ -220,7 +223,7 @@ var tmp = function() {
 		
 		//Model sniffing: 300/505
 		//win.width / win.height isn't update after ebook.rotate!? giving w:800 h:600 
-		if (!standbyImage.color && mode !== 'act_page') {
+		if (!standbyImage.color && mode !== 'act_page' && mode !== 'white' && mode !== 'black') {
 			w = 600; 
 			h = 800; 
 		} else {
