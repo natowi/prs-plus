@@ -86,7 +86,7 @@ tmp = function() {
 			}
 			return numevents;
 		},
-		drawStandbyWidget: function (win, eventsonly) {
+		drawStandbyWidget: function (win, showcalendar, showevents) {
 			var w, h, hdiff;
 			w = win.width;
 			h = win.height;
@@ -117,7 +117,7 @@ tmp = function() {
 			if (altTodaysDay==8) altTodaysDay=1;
 			var linelimit = 7;
 	
-			if (!eventsonly) {
+			if (showcalendar) {
 				// window is already blank, so start with the top bar
 				win.setPenColor(Color.black);
 				win.fillRectangle(0, 0, w, 70);
@@ -159,7 +159,7 @@ tmp = function() {
 				if (todaysDay==0) todaysDay=7;
 			}
 			
-			if (!eventsonly) {
+			if (showcalendar) {
 				// WEEKDAY ABBREVIATIONS
 				win.setTextSize(12);
 				win.setTextAlignment(0, 0);
@@ -305,7 +305,7 @@ tmp = function() {
 				}
 			}
 			
-			if (!eventsonly) {
+			if (showcalendar) {
 				// output current month (with event icons)
 				lastDate = new Date(yearNum,monthNum);
 				lastDate.setDate(lastDate.getDate()-1);
@@ -364,8 +364,8 @@ tmp = function() {
 					}
 				}
 			}
-			
-			if ((!eventsonly) || (todayevents.length>0) || (futureevents.length>0)) {
+						
+			if (showevents && ((todayevents.length>0) || (futureevents.length>0))) {
 				// calculate required dimensions
 				var totallines = todayevents.length + futureevents.length;
 				if (todayevents.length>0) totallines++;
@@ -379,7 +379,7 @@ tmp = function() {
 				// output today's events
 				win.setPenColor(Color.black);
 				win.frameRectangle(47, 579+hdiff, w-101, h-608-hdiff);
-				if (!eventsonly) {
+				if (showcalendar) {
 					win.setPenColor(Color.white);
 					win.fillRectangle(48, 580+hdiff, w-103, h-610-hdiff);					
 				} else {
@@ -413,7 +413,6 @@ tmp = function() {
 					
 					// sort events
 					futureevents.sort(Calendar.sortEvents);
-					
 				
 					// output future events
 					win.setTextStyle(1);

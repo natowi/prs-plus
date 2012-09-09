@@ -28,6 +28,7 @@
 //	2012-08-14 drMerry - Updatede some code
 //	2012-08-24 Ben Chenoweth - Fixed two minor regressions
 //	2012-09-08 Mark Nord - fix #345 PRS 300/505 - No White/Black Stand-By-Screen when rotated 90° 
+//	2012-09-09 Ben Chenoweth - Allow events to be hidden in calendar mode
 
 var tmp = function() {
 	var L, LX, log, orgOrientation, shutdown, oldStandbyImageDraw, getBookCover, usbConnected, standbyState,
@@ -216,7 +217,7 @@ var tmp = function() {
 	
 	standbyImage.draw = function () {
 	
-		var opt, mode, win, w, h, path, bitmap, bounds, ratio, width, height, x, y, oldPencolor, oldTextStyle, oldTextSize, oldTextAlignmentX, oldTextAlignmentY, icon, iconX, file, content, lines, match, i, eventsonly, customText;
+		var opt, mode, win, w, h, path, bitmap, bounds, ratio, width, height, x, y, oldPencolor, oldTextStyle, oldTextSize, oldTextAlignmentX, oldTextAlignmentY, icon, iconX, file, content, lines, match, i, customText;
 		opt = StandbyImage.options;
 		mode = (shutdown) ? opt.ShutdownMode : opt.StandbyMode;
 		win = this.getWindow();
@@ -277,8 +278,11 @@ var tmp = function() {
 					break;
 				case 'calendar':
 					try {
-						eventsonly=false;
-						Core.addonByName.Calendar.drawStandbyWidget(win, eventsonly);
+						if ((shutdown && opt.DisplayShutdownEvents === 'true') || (!shutdown && opt.DisplayStandbyEvents === 'true')) {
+							Core.addonByName.Calendar.drawStandbyWidget(win, true, true);
+						} else {
+							Core.addonByName.Calendar.drawStandbyWidget(win, true, false);
+						}
 					} catch (e) { log.error(e); }
 					break;
 			}
@@ -340,8 +344,7 @@ var tmp = function() {
 			
 			// Display events overlay
 			if (((shutdown && opt.DisplayShutdownEvents === 'true') || (!shutdown && opt.DisplayStandbyEvents === 'true')) && (mode !== 'calendar')) {
-				eventsonly=true;
-				Core.addonByName.Calendar.drawStandbyWidget(win, eventsonly);
+				Core.addonByName.Calendar.drawStandbyWidget(win, false, true);
 			}
 			
 			// Display mini-cover
