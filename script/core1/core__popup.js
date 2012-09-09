@@ -10,7 +10,8 @@
 //	2011-12-30 Mark Nord - added menu.titel to error.trace in doCenter() 
 //	2012-02-19 Mark Nord - use of visible Button
 //	2012-09-01 Mark Nord - us of Core.addonByName.KeyBindings.overRide (in case 6/7 are assigned to nxtPg/prfPg
-//		ToDo: handle more then 10 menu-items
+//	2912-09-08 Mark Nord - redraw menu on numeric key, focus popup if menu.action returns true
+//		ToDo: proper handle more then 10 menu-items
 
 /**
  Sample code:
@@ -153,6 +154,8 @@ tmp = function() {
 					var f = menu.action;
 					if (f(menu) !== true) { // passing menu to enable access menu.title in item's function
 						hideMenu();
+					} else { 
+						popupMenu.focus(true);
 					}
 				}
 			}
@@ -188,6 +191,7 @@ tmp = function() {
 		key = (10 - parseInt(key, 10)) % 10;
 		if (key < currentMenu.children.length) {
 			currentMenu.selected = key;
+			redrawMenu();
 			doCenter();
 			return;
 		}

@@ -14,9 +14,10 @@
 //	2012-07-22 Mark Nord - Option to mask overlap in landscape-mode with a white bmp, instead of greying-out;
 //				due to a (unresolved Sony-bug) lines may be truncated
 //	2012-08-11 drMerry - Some typos
-//	2012-09-01 Mark Nord - PopUpMenu on doSize - epub CSS tweaking (credits to Analogus)
+//	2012-09-01 - 2012-09-09 Mark Nord - PopUpMenu on doSize - epub CSS tweaking (credits to Analogus)
 //	
 //	ToDo - marginCut: add to Book-Menu; possible enhancements: 4-quadrants view, ...
+//	ToDo - ExtraCSS: localize, store/restor settings as option-values
 
 
 var tmp = function() {
@@ -33,7 +34,7 @@ var tmp = function() {
 	mcLandscape = false,
 	page = kbook.model.container.sandbox.PAGE_GROUP.sandbox.PAGE,
 	cutout10,
-	userStyleexternCSS = ['','','','','',''],
+	userStyleexternCSS = ['','','','','','',''],
 	// Constants
 
 	setMarginCut = function () {
@@ -303,14 +304,21 @@ var tmp = function() {
 		resetMarginCut();
 		media.browseTo(data, undefined, undefined, undefined, s);
 		handleExtraCSS(0, "default"); // reset extra-fontsize
+		return true;
 	};
 
 	var handleExtraCSS = function (index, value) {
 		var currentPage;
 		if (value !== "default") {
 			userStyleexternCSS[index] = externCSS[index].replace(/placeholder/, value) +'\n';
+			if (index  === 2) { // workaround handle @page {margin: }
+				userStyleexternCSS[index+1] = externCSS[index+1].replace(/placeholder/, value) +'\n';
+			}
 		} else {
-			userStyleexternCSS[index] = ''
+			userStyleexternCSS[index] = '';
+			if (index  === 2) { // workaround handle @page {margin: }
+				userStyleexternCSS[index+1] = '';
+			}
 		};
 		currentPage = page.data.get(Document.Property.page);
 		Core.addonByName.EpubUserStyle.reloadBook(userStyleexternCSS);
@@ -319,6 +327,21 @@ var tmp = function() {
 		return true;
 	};
 
+	mcDelayed = function () {
+		var timer;
+		try {
+			timer = this.timer = new Timer();
+		} catch(ignore) {}
+		timer.target = this;
+		timer.onCallback = mcDelayed_onCallback;
+		timer.schedule(100);
+	};
+
+	mcDelayed_onCallback = function () {
+		setMarginCut();
+	};
+
+	// PopUpMenu definition
 	var sizeMenu, sizeActions, sizeTitles, simpleSizeMenu,
 	LTS = Core.lang.getLocalizer("TextScale"),
 	LSA = Core.lang.getLocalizer("StandardActions");
@@ -327,8 +350,8 @@ var tmp = function() {
 	sizeActions.push( function () {myDoSize('S');	});
 	sizeActions.push( function () {myDoSize('M');	});
 	sizeActions.push( function () {myDoSize('L');	});
-	sizeActions.push( function () {ebook.rotate(); rotateMarginCut(); });
-	sizeActions.push( function () {setMarginCut();	});
+	sizeActions.push( function () {ebook.rotate(); });
+	sizeActions.push( function () {mcDelayed(); });
 	simpleSizeMenu = Core.popup.createSimpleMenu(sizeTitles, sizeActions); // for non-epubs
 
  	// not to type Core.popup X times
@@ -339,7 +362,7 @@ var tmp = function() {
 	sizeMenu.addChild(createMenuItem(LTS('VALUE_MEDIUM'),  function () {myDoSize('M');}  )); 
 	sizeMenu.addChild(createMenuItem(LTS('VALUE_LARGE'),   function () {myDoSize('L');}  )); 
 	sizeMenu.addChild(createMenuItem(LSA('ACTION_doRotate'),  function () {ebook.rotate();} )); 
-	sizeMenu.addChild(createMenuItem(L('MARGINCUT'),    function () {setMarginCut(); rotateMarginCut();} )); 
+	sizeMenu.addChild(createMenuItem(L('MARGINCUT'),    function () {mcDelayed();} )); 
 	// Submenus - TODO Localize
 	var cssFontSizeMenu = createMenuItem("Extra Font Size");
 	var cssLineHightMenu = createMenuItem("Line Hight");
@@ -350,32 +373,32 @@ var tmp = function() {
 	sizeMenu.addChild(cssIndent);
 	sizeMenu.addChild(cssMargin);
 	// Subsubmenus
-	cssFontSizeMenu.addChild(createMenuItem("default", function() {handleExtraCSS(0, "default");}  ));
-	cssFontSizeMenu.addChild(createMenuItem(" 94%", function() {handleExtraCSS(0, "0.94em");}  ));
-	cssFontSizeMenu.addChild(createMenuItem(" 97%", function() {handleExtraCSS(0, "0.97em");}  ));
-	cssFontSizeMenu.addChild(createMenuItem("100%", function() {handleExtraCSS(0, "1.00em");}  ));
-	cssFontSizeMenu.addChild(createMenuItem("103%", function() {handleExtraCSS(0, "1.03em");}  ));
-	cssFontSizeMenu.addChild(createMenuItem("106%", function() {handleExtraCSS(0, "1.06em");}  ));
-	cssFontSizeMenu.addChild(createMenuItem("109%", function() {handleExtraCSS(0, "1.09em");}  ));
-	cssFontSizeMenu.addChild(createMenuItem("112%", function() {handleExtraCSS(0, "1.20em");}  ));
+	cssFontSizeMenu.addChild(createMenuItem("default", function() {return handleExtraCSS(0, "default");}  ));
+	cssFontSizeMenu.addChild(createMenuItem(" 94%", function() {return handleExtraCSS(0, "0.94em");}  ));
+	cssFontSizeMenu.addChild(createMenuItem(" 97%", function() {return handleExtraCSS(0, "0.97em");}  ));
+	cssFontSizeMenu.addChild(createMenuItem("100%", function() {return handleExtraCSS(0, "1.00em");}  ));
+	cssFontSizeMenu.addChild(createMenuItem("103%", function() {return handleExtraCSS(0, "1.03em");}  ));
+	cssFontSizeMenu.addChild(createMenuItem("106%", function() {return handleExtraCSS(0, "1.06em");}  ));
+	cssFontSizeMenu.addChild(createMenuItem("109%", function() {return handleExtraCSS(0, "1.09em");}  ));
+	cssFontSizeMenu.addChild(createMenuItem("112%", function() {return handleExtraCSS(0, "1.20em");}  ));
 
-	cssLineHightMenu.addChild(createMenuItem("default", function() {handleExtraCSS(1, "default");}  ));
-	cssLineHightMenu.addChild(createMenuItem("1.00em", function() {handleExtraCSS(1, "1.00em");}  ));
-	cssLineHightMenu.addChild(createMenuItem("1.25em", function() {handleExtraCSS(1, "1.25em");}  ));
-	cssLineHightMenu.addChild(createMenuItem("1.50em", function() {handleExtraCSS(1, "1.50em");}  ));
-	cssLineHightMenu.addChild(createMenuItem("1.75em", function() {handleExtraCSS(1, "1.75em");}  ));
-	cssLineHightMenu.addChild(createMenuItem("2.00em", function() {handleExtraCSS(1, "2.00em");}  ));
+	cssLineHightMenu.addChild(createMenuItem("default", function() {return handleExtraCSS(1, "default");}  ));
+	cssLineHightMenu.addChild(createMenuItem("1.00em", function() {return handleExtraCSS(1, "1.00em");}  ));
+	cssLineHightMenu.addChild(createMenuItem("1.25em", function() {return handleExtraCSS(1, "1.25em");}  ));
+	cssLineHightMenu.addChild(createMenuItem("1.50em", function() {return handleExtraCSS(1, "1.50em");}  ));
+	cssLineHightMenu.addChild(createMenuItem("1.75em", function() {return handleExtraCSS(1, "1.75em");}  ));
+	cssLineHightMenu.addChild(createMenuItem("2.00em", function() {return handleExtraCSS(1, "2.00em");}  ));
 
-	cssIndent.addChild(createMenuItem("default", function() {handleExtraCSS(4, "dafault");}  ));
-	cssIndent.addChild(createMenuItem("0.5em", function() {handleExtraCSS(4, "0.5em");}  ));
-	cssIndent.addChild(createMenuItem("1.0em", function() {handleExtraCSS(4, "1.00em");}  ));
-	cssIndent.addChild(createMenuItem("1.5em", function() {handleExtraCSS(4, "1.50em");}  ));
-	cssIndent.addChild(createMenuItem("2.0em", function() {handleExtraCSS(4, "2.00em");}  ));
+	cssIndent.addChild(createMenuItem("default", function() {return handleExtraCSS(5, "default");}  ));
+	cssIndent.addChild(createMenuItem("0.5em", function() {return handleExtraCSS(5, "0.5em");}  ));
+	cssIndent.addChild(createMenuItem("1.0em", function() {return handleExtraCSS(5, "1.00em");}  ));
+	cssIndent.addChild(createMenuItem("1.5em", function() {return handleExtraCSS(5, "1.50em");}  ));
+	cssIndent.addChild(createMenuItem("2.0em", function() {return handleExtraCSS(5, "2.00em");}  ));
 
-	cssMargin.addChild(createMenuItem("default", function() {handleExtraCSS(2, "dafault");}  ));
-	cssMargin.addChild(createMenuItem(" 0px", function() {handleExtraCSS(2, "0px");}  ));
-	cssMargin.addChild(createMenuItem(" 5px", function() {handleExtraCSS(2, "5px");}  ));
-	cssMargin.addChild(createMenuItem("10px", function() {handleExtraCSS(2, "10px");}  ));
+	cssMargin.addChild(createMenuItem("default", function() {return handleExtraCSS(2, "default");}  ));
+	cssMargin.addChild(createMenuItem(" 0px", function() {return handleExtraCSS(2, "0px");}  ));
+	cssMargin.addChild(createMenuItem(" 5px", function() {return handleExtraCSS(2, "5px");}  ));
+	cssMargin.addChild(createMenuItem("10px", function() {return handleExtraCSS(2, "10px");}  ));
 
 	Fskin.kbookPage.doSize = function() {
 		current = kbook.model.currentBook;
@@ -403,7 +426,7 @@ var tmp = function() {
 						}	
 					}
 			} else {
-				externCSS = ['','','','','',''];
+				externCSS = ['','','','','','',''];
 			}
 	};
 	
@@ -486,6 +509,9 @@ var tmp = function() {
 			Document.Viewer.viewer.render = myRender;
 			try{
 				cutout10 = page.skin.cutouts[10];
+				if (ViewerSettings.options.OverlapWhite === "true") {
+					page.skin.cutouts[10] = page.skin.cutouts[0];
+				}
 			} catch (e) {
 				log.error("in buffering cutout10", e);
 			}

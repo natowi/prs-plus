@@ -65,9 +65,9 @@ tmp = function() {
 			action = getBoundAction(key, state);
                         if (action !== undefined  && !KeyBindings.overRide) {
 				try {
-						if (!action.action()) {
-							return;
-						}
+					if (!action.action()) {
+						return;
+					}
 				} catch (e0) {
 					log.error("executing action: " + key + "." + state, e0);
 				}
