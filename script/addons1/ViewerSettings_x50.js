@@ -23,7 +23,7 @@
 //	2011-10-05 quisvir - Added 1-Column split for 350 & 650
 //	2011-10-09 Mark Nord - fixed #182 MaskOverlap for PRS-950
 //	2011-10-13 quisvir - Fixed #196 "No Page Turn with Gestures" doesn't disable Multi-Page Turn
-//  2011-10-13 Ben Chenoweth - assigned more icons
+//	2011-10-13 Ben Chenoweth - assigned more icons
 //	2011-10-24 quisvir - Fixed #203 "Book rotation scribbled notes origin incorrect"
 //	2011-11-26 quisvir - Fixed Issue #228 "No Page Turn with Gestures" doesn't disable page turns through pageShortcutOverlayModel
 //	2011-11-28 quisvir - Moved touch-related code to Touch Settings addon
@@ -37,6 +37,7 @@
 //	2012-07-22 Mark Nord - Option to mask overlap in landscape-mode with a white bmp, instead of greying-out
 //				due to a (unresolved Sony-bug) lines may be truncated
 //	2012-08-11 drMerry - Typo (; after catch)
+//	2012-10-02 Mark Nord - preserve PAGE_STYLE_NO for current book
 
 var tmp = function() {
 
@@ -53,6 +54,9 @@ var tmp = function() {
 	docWidth = Number(System.applyEnvironment('[kFskDocumentViewerWidth]'));
 	docHeight = Number(System.applyEnvironment('[kFskDocumentViewerHeight]'));
 	orgOrientation = null;
+
+	// overload to preserve PAGE_STYPE_NO for the current book
+	kbook.bookData.book.resetPageStyle = function () {};
 	
 	toggleTrueLandscape = function () {
 		var book, orient;

@@ -1,6 +1,6 @@
 // This file allows you to move addon's directory anywhere you want.
 // ****************************************************************************
-//    PRS-505: It MUST be located in the root of your SD card (rename it to user.config)
+// PRS-300: It MUST be located in folder /Beta/ in IM (rename it to user.config)
 // ****************************************************************************
 // Note:
 //	/Data - is a root of internal memory

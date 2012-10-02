@@ -997,7 +997,8 @@
 			</code>
 		</group>
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenuClose"/>
+		<kbookHotspot do="doMenuClose" left="70" right="0" top="0" height="70" visible="false"/>
+		<button2 skin="button_home" left="5" top="5" width="61" height="61" do="doRoot"/>
 	</group>
 	
 	<group id="INFO_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
@@ -1019,7 +1020,8 @@
 		<kbookStatus left="0" right="0" height="33" bottom="0"/>
 		<kbookLabel skin="label-statusBar" clock="true" left="157" right="157" height="30" bottom="0" align="center" variable="INFO_INDEX_COUNT" active="true"/>
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenuClose"/>
+		<kbookHotspot do="doMenuClose" left="70" right="0" top="0" height="70" visible="false"/>
+		<button2 skin="button_home" left="5" top="5" width="61" height="61" do="doRoot"/>
 	</group>
 	
 	<group id="MENU_DETAILS_GROUP" left="0" right="0" top="0" bottom="0">
@@ -1139,7 +1141,8 @@
 		<kbookLabel skin="label-statusBar" clock="true" left="157" right="157" height="30" bottom="0" align="center" variable="MENU_INDEX_COUNT" active="true"/>
 
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" can="canBack" do="doMenuClose"/>
+		<kbookHotspot do="doMenuClose" left="0" right="70" top="0" height="70" visible="false"/>
+		<button2 skin="button_home" left="5" top="5" width="61" height="61" can="canBack" do="doRoot"/>
 
 		// multi delete
 		<!-- num of selected item -->
@@ -1224,7 +1227,8 @@
 		<kbookStatus left="0" right="0" height="33" bottom="0"/>
 		<kbookLabel skin="label-statusBar" clock="true" left="157" right="157" height="30" bottom="0" align="center" variable="SETTING_INDEX_COUNT" active="true"/>
 
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenuClose2"/>
+		<kbookHotspot do="doMenuClose2" left="0" right="70" top="0" height="70" visible="false"/>
+		<!-- <button2 skin="button_home" left="5" top="5" width="61" height="61" do="doMenuClose2"/>  Analogus: remove button -->
 	</group>
 
 	<kbookPanel id="PAGE_GROUP" toolbar="OPTION_OVERLAY_PAGE_TOOLBAR" offset="60" main="PAGE_SUBGROUP" left="0" right="0" top="0" bottom="0" visible="false">
@@ -1571,7 +1575,8 @@
 		<kbookLabel skin="label-statusBar" clock="true" left="157" right="157" height="30" bottom="0" align="center" textresource="STR_UI_MESSAGE_SINGLEPAGE" active="true"/>
 
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" can="canBack" do="doMenuClose"/>
+		<kbookHotspot do="doMenuClose" left="0" right="70" top="0" height="70" visible="false"/>
+		<button2 skin="button_home" left="5" top="5" width="61" height="61" can="canBack" do="doRoot"/>
 	</group>
 
 	<view href="bootWizard.xml" id="COLD_BOOT_WIZARD_GROUP" left="0" right="0" top="0" bottom="0"/>
@@ -1600,7 +1605,8 @@
 			</group>
 		</group>
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenuClose"/>
+		<kbookHotspot do="doMenuClose" left="70" right="0" top="0" height="70" visible="false"/>
+		<button2 skin="button_home" left="5" top="5" width="61" height="61" do="doRoot"/>
 	</group>
 
 	<group id="FORMAT_DEVICE_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
@@ -1631,7 +1637,8 @@
 			</group>
 		</group>
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenuClose"/>
+		<kbookHotspot do="doMenuClose" left="70" right="0" top="0" height="70" visible="false"/>
+		<button2 skin="button_home" left="5" top="5" width="61" height="61" do="doRoot"/>
 	</group>
 
 	<group id="FORMAT_MS_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
@@ -1662,7 +1669,8 @@
 			</group>
 		</group>
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenuClose"/>
+		<kbookHotspot do="doMenuClose" left="70" right="0" top="0" height="70" visible="false"/>
+		<button2 skin="button_home" left="5" top="5" width="61" height="61" do="doRoot"/>
 	</group>
 
 	<group id="FORMAT_SD_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
@@ -1693,7 +1701,8 @@
 			</group>
 		</group>
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenuClose"/>
+		<kbookHotspot do="doMenuClose" left="70" right="0" top="0" height="70" visible="false"/>
+		<button2 skin="button_home" left="5" top="5" width="61" height="61" do="doRoot"/>
 	</group>
 
 	<group id="DELETE_BOOK_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
@@ -1721,7 +1730,8 @@
 			</group>
 		</group>
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenuClose"/>
+		<kbookHotspot do="doMenuClose" left="70" right="0" top="0" height="70" visible="false"/>
+		<button2 skin="button_home" left="5" top="5" width="61" height="61" do="doRoot"/>
 	</group>
 
 	<group id="DELETE_BOOK_GROUP_ERR" left="0" right="0" top="0" bottom="0" visible="false">
@@ -1756,7 +1766,8 @@
 		<sprite skin="delete-book" left="0" width="70" top="0" height="70" active="false"/>
 		<kbookLabel skin="title" left="70" right="0" top="0" height="70" align="left" variable="DELETEBOOK_TITLE"/>
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenuClose"/>
+		<kbookHotspot do="doMenuClose" left="70" right="0" top="0" height="70" visible="false"/>
+		<button2 skin="button_home" left="5" top="5" width="61" height="61" do="doRoot"/>
 
 		<group id="DELETE_BOOK_ERR" left="0" right="0" height="300">
 			<code>
@@ -1798,7 +1809,8 @@
 			</group>
 		</group>
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenuClose"/>
+		<kbookHotspot do="doMenuClose" left="70" right="0" top="0" height="70" visible="false"/>
+		<button2 skin="button_home" left="5" top="5" width="61" height="61" do="doRoot"/>
 	</group>
 	
 	<group id="DEVICE_SHUTDOWN_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
@@ -1835,7 +1847,8 @@
 			</group>
 		</group>
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenuClose"/>
+		<kbookHotspot do="doMenuClose" left="70" right="0" top="0" height="70" visible="false"/>
+		<button2 skin="button_home" left="5" top="5" width="61" height="61" do="doRoot"/>
 	</group>
 
 	<group id="HARD_RESET_GROUP" left="0" right="0" top="0" bottom="0" visible="false" active="true">
@@ -1888,7 +1901,8 @@
 			</group>
 		</group>
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenuClose"/>
+		<kbookHotspot do="doMenuClose" left="70" right="0" top="0" height="70" visible="false"/>
+		<button2 skin="button_home" left="5" top="5" width="61" height="61" do="doRoot"/>
 	</group>
 
 	<kbookPanel2 id="NOTEPAD_FREEHAND_GROUP" toolbar="OVERLAY_NOTEPAD_FREEHAND_TOOLBAR" main="NOTEPAD_FREEHAND" left="0" right="0" top="0" bottom="0" visible="false">
@@ -2172,7 +2186,7 @@
 			</code>
 			<panel skin="kbookDemoMode" left="0" right="0" top="0" bottom="0"/>
 			<!-- Back button -->
-			<button2 skin="button_back" id="DEMO_BACK" left="5" top="5" width="61" height="61" do="doDemoClose"/>
+			<button2 skin="button_home" id="DEMO_BACK" left="5" top="5" width="61" height="61" do="doDemoClose"/>
 			
 			<!-- Title of Demo Mode -->
 			<kbookLabel id="SETTING" skin="title" left="70" right="0" top="0" height="70" align="left" variable ="DEMO_TITLE" />
@@ -3491,13 +3505,13 @@
 			<group id="VIEW_SHORTCUT2" left="0" right="0" top="0" height="60" visible="true" active="true">
 				<exButton skin="fontClose" right="10" width="50" height="50" do="doCloseShortcut" bw="4"/>
 				<button2icon id="BTN_SEARCH"    skin="btn_search"    right="90"  width="50" height="50" do="doShortcutSearch" bw="4"/>
-				<button2icon id="BTN_HIGHLIGHT" skin="btn_highlight" right="140" width="50" height="50" do="doShortcutHighlight" bw="4"/>
+				<button2icon id="BTN_HIGHLIGHT" skin="btn_highlight" right="190" width="50" height="50" do="doShortcutHighlight" bw="4"/>
 				<button2icon id="BTN_CALLPEDIA" skin="btn_callPedia" right="190" width="50" height="50" do="doCallPedia" visible="false" active="false" bw="4"/>
 				<button2icon id="BTN_DICVIEWER" skin="btn_callDic"   left="10"   width="50" height="50" variableUpdate="VAR_UPDATE" do="doShortcutDictionary" bw="4"/>
 				<button2icon id="BTN_DICEDIT"   skin="btn_callDic"   left="10"   width="50" height="50" variableUpdate="VAR_UPDATE" do="doDicOthers" bw="4"/>
 				<button2icon id="BTN_DICOTHERS" skin="btn_dicOthers" left="60"   width="50" height="50" variableUpdate="VAR_UPDATE" do="doDicOthers" bw="4"/>
-				<button2icon id="BTN_PREVDICENTRY" skin="keyLeft"    left="140" width="42"  height="42" do="doNextPrevDicEntry"/> <!-- PRS+ added -->
-				<button2icon id="BTN_NEXTDICENTRY" skin="keyRight"   left="190" width="42"  height="42" do="doNextPrevDicEntry"/> <!-- PRS+ added -->
+				<button2icon id="BTN_PREVDICENTRY" skin="keyLeft"    left="160" width="42"  height="42" do="doNextPrevDicEntry"/> <!-- PRS+ added; 42 -->
+				<button2icon id="BTN_NEXTDICENTRY" skin="keyRight"   left="230" width="42"  height="42" do="doNextPrevDicEntry"/> <!-- PRS+ added; left: 190; 42 -->
 				<group id="adjustFont_SHORTCUT" left="110" right="240" top="0" bottom="0" visible="false" active="false">
 					<label skin="number-ToneCurve" left="0"  width="32"  height="42" align="center" variable="VAR_DATABASE"/>
 					<button2icon skin="keyLeft"    left="40" width="42"  height="42" can="canDatabasePrev" do="doDatabasePrev" variableUpdate="VAR_UPDATE_DATABASE"/>
@@ -3781,8 +3795,9 @@
 			<variable id="VAR_RADIO_TONETYPE" value="0"/>
 		</model>
 		<code>
+		<!-- Analogus: war: false: wenn false kein Closing-Tab des Tonkurve-Editors  -->
 			<function id="canTap">
-				return false;
+				return true;
 			</function>
 			<function id="canDoubleTap">
 				return false;
@@ -3822,7 +3837,7 @@
 				</group>
 			</group>
 
-			<button2icon skin="fontClose" 	 right="20" top="12" width="50" height="50" bw="4" do="doToneCurveClose"/>
+			<!-- <button2icon skin="fontClose" 	 right="20" top="12" width="50" height="50" bw="4" do="doToneCurveClose"/>	Analogus: remove close button -->
 		</group>
 	</kbookOverlay>
 
@@ -3852,7 +3867,7 @@
 		</model>
 		<code>
 			<function id="canTap">
-				return false;
+				return true;
 			</function>
 			<function id="canDoubleTap">
 				return false;
@@ -3873,32 +3888,32 @@
 			</code>
 			<panel skin="kbarea" left="0" right="0" top="0" bottom="0" active="true"/>
 			
-			<group left="24" top="14" width="42" height="42">
+			<group left="10" top="14" width="42" height="42">
 				<panel1part skin="image_tonecurve_contrast" width="33" height="33"/>
 			</group>
-			<group left="24" bottom="12" width="42" height="42">
+			<group left="10" bottom="12" width="42" height="42">
 				<panel1part skin="image_tonecurve_brightness" width="33" height="33"/>
 			</group>
 
-			<button2icon skin="fontClose" 	 right="20" top="8" width="50" height="50" bw="4" do="doToneCurveClose"/>
-			<button2icon skin="keyW2" right="20" width="163" bottom="8" height="50" bw="4" variableUpdate="VAR_UPDATE_RESET" can="canToneReset" do="doToneReset" text="fskin:/l/strings/STR_UI_BUTTON_TONE_CURVE_RESET"/>
+			<!-- <button2icon skin="fontClose" 	 right="20" top="8" width="50" height="50" bw="4" do="doToneCurveClose"/>	-->
+			<button2icon skin="keyW2" right="20" width="50" bottom="8" height="50" bw="4" variableUpdate="VAR_UPDATE_RESET" can="canToneReset" do="doToneReset" text="D"/>
 
-			<kbookSlider id="toneCurveSlider1"	left="128" top   ="15" right="300" variable="VAR_TONECURVE_SLIDER_1" skin="jumpBar" axis="x" min="-127" max="127" cast="1:0,1:0" do="toneCurveDo1" track="toneCurveTrack1"/>
-			<kbookSlider id="toneCurveSlider2"	left="128" bottom="13" right="300" variable="VAR_TONECURVE_SLIDER_2" skin="jumpBar" axis="x" min="-255" max="255" cast="1:0,1:0" do="toneCurveDo2" track="toneCurveTrack2"/>
+			<kbookSlider id="toneCurveSlider1"	left="108" top   ="15" right="180" variable="VAR_TONECURVE_SLIDER_1" skin="jumpBar" axis="x" min="-127" max="127" cast="1:0,1:0" do="toneCurveDo1" track="toneCurveTrack1"/>
+			<kbookSlider id="toneCurveSlider2"	left="108" bottom="13" right="180" variable="VAR_TONECURVE_SLIDER_2" skin="jumpBar" axis="x" min="-255" max="255" cast="1:0,1:0" do="toneCurveDo2" track="toneCurveTrack2"/>
 			
-			<button2icon skin="keyLeft"  right="250" top="14"    width="42"  height="42" can="canTone1Prev" do="doTone1Prev" variableUpdate="VAR_UPDATE_BTN1"/>
-			<button2icon skin="keyRight" right="200" top="14"    width="42"  height="42" can="canTone1Next" do="doTone1Next" variableUpdate="VAR_UPDATE_BTN1"/>
+			<button2icon skin="keyLeft"  right="130" top="14"    width="42"  height="42" can="canTone1Prev" do="doTone1Prev" variableUpdate="VAR_UPDATE_BTN1"/>
+			<button2icon skin="keyRight" right="80" top="14"    width="42"  height="42" can="canTone1Next" do="doTone1Next" variableUpdate="VAR_UPDATE_BTN1"/>
 	
-			<button2icon skin="keyLeft"  right="250" bottom="12" width="42"  height="42" can="canTone2Prev" do="doTone2Prev" variableUpdate="VAR_UPDATE_BTN2"/>
-			<button2icon skin="keyRight" right="200" bottom="12" width="42"  height="42" can="canTone2Next" do="doTone2Next" variableUpdate="VAR_UPDATE_BTN2"/>
+			<button2icon skin="keyLeft"  right="130" bottom="12" width="42"  height="42" can="canTone2Prev" do="doTone2Prev" variableUpdate="VAR_UPDATE_BTN2"/>
+			<button2icon skin="keyRight" right="80" bottom="12" width="42"  height="42" can="canTone2Next" do="doTone2Next" variableUpdate="VAR_UPDATE_BTN2"/>
 
-			<label skin="number-ToneCurve" top   ="14" left= "66" height="42" width="7"  align="right" text="("/>
-			<label skin="number-ToneCurve" top   ="14" left= "73" height="42" width="42" align="right" variable="VAR_TONECURVE_SLIDER_1"/>
-			<label skin="number-ToneCurve" top   ="14" left="115" height="42" width="7"  align="right" text=")"/>
+			<!-- <label skin="number-ToneCurve" top   ="14" left= "66" height="42" width="7"  align="right" text="("/>	-->
+			<label skin="number-ToneCurve" top   ="14" left= "50" height="42" width="42" align="right" variable="VAR_TONECURVE_SLIDER_1"/>
+			<!--<label skin="number-ToneCurve" top   ="14" left="115" height="42" width="7"  align="right" text=")"/>	-->
 
-			<label skin="number-ToneCurve" bottom="12" left= "66" height="42" width="7"  align="right" text="("/>
-			<label skin="number-ToneCurve" bottom="12" left= "73" height="42" width="42" align="right" variable="VAR_TONECURVE_SLIDER_2"/>
-			<label skin="number-ToneCurve" bottom="12" left="115" height="42" width="7"  align="right" text=")"/>
+			<!-- <label skin="number-ToneCurve" bottom="12" left= "66" height="42" width="7"  align="right" text="("/>	-->
+			<label skin="number-ToneCurve" bottom="12" left= "50" height="42" width="42" align="right" variable="VAR_TONECURVE_SLIDER_2"/>
+			<!-- <label skin="number-ToneCurve" bottom="12" left="115" height="42" width="7"  align="right" text=")"/>	-->
 			
 		</group>
 
@@ -4657,7 +4672,7 @@
 				</function>
 			</code>
 			<panel skin="kbarea" left="0" right="0" top="0" bottom="0" active="true"/>
-			<button2icon skin="fontClose" 	right="24" top="12" width="50" height="50" bw="4" do="doJumpBarClose"/>
+			<!--  <button2icon skin="fontClose" 	right="24" top="12" width="50" height="50" bw="4" do="doJumpBarClose"/>	 Analogus: remove button -->
 			<button2icon id="DirectJumpButtonNormal" skin="keyDirect"	left= "24" top="12" width="222" height="50" text="fskin:/l/strings/STR_UI_BUTTON_ENTERPAGE"  do="doDirectJump" bw="4" visible="false" active="false"/>
 			<button2icon id="DirectJumpButtonLarge" skin="keyDirect"	left= "24" top="12" width="340" height="50" text="fskin:/l/strings/STR_UI_BUTTON_ENTERPAGE"  do="doDirectJump" bw="4" visible="false" active="false"/>
 			<slider id="jumpSlider"		left= "24" top="72" right="24" variable="VAR_JUMP_SLIDER" skin="jumpBar" axis="x" min="0" max="1000" do="jumpBarDo" track="jumpBarTrack"/>
@@ -5985,7 +6000,8 @@
 			</group>
 		</group>
 		<!-- Back button -->
-		<button2 skin="button_back" left="5" top="5" width="61" height="61" do="doMenu"/>
+		<kbookHotspot do="doMenuClose" left="0" right="70" top="0" height="70" visible="false"/>
+		<!-- <button2 skin="button_home" left="5" top="5" width="61" height="61" do="doMenu"/>	Analogus: remove button. -->
 	</group>
 		
 	<group id="DISK_GROUP" left="0" right="0" top="0" bottom="0" visible="false">

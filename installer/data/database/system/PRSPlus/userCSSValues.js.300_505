@@ -1,0 +1,7 @@
+// base-settings for CSS-tweaking; change values but keep number of arguments!!
+return {
+	"t_ffont"  : ['default', '0.94em', '0.97em', '1.00em', '1.033em', '1.066em', '1.10em', '1.20em'],
+	"t_lheight": ['default', '1.0em', '1.2em', '1.4em', '1.6em', '1.8em'],
+	"t_indent" : ['default', '0em', '0.5em', '1.0em', '1.5em'],
+	"t_margin" : ['default', '0em', '0.5em', '1.0em', '1.5em']
+}

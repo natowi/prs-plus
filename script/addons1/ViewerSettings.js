@@ -14,10 +14,9 @@
 //	2012-07-22 Mark Nord - Option to mask overlap in landscape-mode with a white bmp, instead of greying-out;
 //				due to a (unresolved Sony-bug) lines may be truncated
 //	2012-08-11 drMerry - Some typos
-//	2012-09-01 - 2012-09-09 Mark Nord - PopUpMenu on doSize - epub CSS tweaking (credits to Analogus)
+//	2012-09-01 - 2012-10-02 Mark Nord - PopUpMenu on doSize - epub CSS tweaking (credits to Analogus)
 //	
 //	ToDo - marginCut: add to Book-Menu; possible enhancements: 4-quadrants view, ...
-//	ToDo - ExtraCSS: localize, store/restor settings as option-values
 
 
 var tmp = function() {
@@ -29,13 +28,17 @@ var tmp = function() {
 	log = Core.log.getLogger('ViewerSettings');
 
 	var autoPageTimer, oldRender, myRender, setMarginCut, resetMarginCut, rotateMarginCut, myBounds, myHBounds, 
-	dx, dy, hdx, hdy,  myWidth, myHeight, externCSS,
+	dx, dy, hdx, hdy,  myWidth, myHeight, externCSS, delayTimer,
 	marginCut = false, 
 	mcLandscape = false,
 	page = kbook.model.container.sandbox.PAGE_GROUP.sandbox.PAGE,
 	cutout10,
 	userStyleexternCSS = ['','','','','','',''],
-	// Constants
+	buildDoSizeMenus, sizeMenu, sizeActions, sizeTitles, simpleSizeMenu,
+	t_ffont =  ['default', '0.94em', '0.97em', '1.00em', '1.033em', '1.066em', '1.10em', '1.20em'],
+	t_lheight =['default', '1.0em', '1.25em', '1.5em', '1.75em', '2.0em'],
+	t_indent = ['default', '0em', '1.0em', '1.5em', '2.0em'],
+	t_margin = ['default', '0em', '0.5em', '1.0em', '1.5em'],
 
 	setMarginCut = function () {
 		var oldDoDigit, oldDoMenu, oldDoCenter, window, factor, drawRect, page,
@@ -327,78 +330,99 @@ var tmp = function() {
 		return true;
 	};
 
-	mcDelayed = function () {
-		var timer;
+	callDelayed = function (what) {
 		try {
-			timer = this.timer = new Timer();
+			delayTimer = new Timer();
 		} catch(ignore) {}
-		timer.target = this;
-		timer.onCallback = mcDelayed_onCallback;
-		timer.schedule(100);
+		delayTimer.target = this;
+		switch (what) {
+			case 'setMarginCut' : 	
+				delayTimer.onCallback = mcDelayed_onCallback;
+				break;
+			case 'cssFont' :
+			 	delayTimer.onCallback = cssFont_onCallback;
+				break;
+		}
+		delayTimer.schedule(100);
 	};
 
 	mcDelayed_onCallback = function () {
+		delayTimer.cancel();
+		delayTimer.close();
+		delayTimer = null;
 		setMarginCut();
+
 	};
 
-	// PopUpMenu definition
-	var sizeMenu, sizeActions, sizeTitles, simpleSizeMenu,
-	LTS = Core.lang.getLocalizer("TextScale"),
-	LSA = Core.lang.getLocalizer("StandardActions");
-	sizeActions = [];
-	sizeTitles = [LTS('VALUE_SMALL'), LTS('VALUE_MEDIUM'), LTS('VALUE_LARGE'), LSA('ACTION_doRotate'), L('MARGINCUT')];
-	sizeActions.push( function () {myDoSize('S');	});
-	sizeActions.push( function () {myDoSize('M');	});
-	sizeActions.push( function () {myDoSize('L');	});
-	sizeActions.push( function () {ebook.rotate(); });
-	sizeActions.push( function () {mcDelayed(); });
-	simpleSizeMenu = Core.popup.createSimpleMenu(sizeTitles, sizeActions); // for non-epubs
+	cssFont_onCallback = function () {
+		delayTimer.cancel();
+		delayTimer.close();
+		delayTimer = null;
+		Core.addonByName.EpubUserStyle.actions[0].action();
+	};
 
- 	// not to type Core.popup X times
-	var createMenuItem = Core.popup.createMenuItem;
-	// Root menu for epubs
-	sizeMenu = createMenuItem();
-	sizeMenu.addChild(createMenuItem(LTS('VALUE_SMALL'),   function () {myDoSize('S');}  )); 
-	sizeMenu.addChild(createMenuItem(LTS('VALUE_MEDIUM'),  function () {myDoSize('M');}  )); 
-	sizeMenu.addChild(createMenuItem(LTS('VALUE_LARGE'),   function () {myDoSize('L');}  )); 
-	sizeMenu.addChild(createMenuItem(LSA('ACTION_doRotate'),  function () {ebook.rotate();} )); 
-	sizeMenu.addChild(createMenuItem(L('MARGINCUT'),    function () {mcDelayed();} )); 
-	// Submenus - TODO Localize
-	var cssFontSizeMenu = createMenuItem("Extra Font Size");
-	var cssLineHightMenu = createMenuItem("Line Hight");
-	var cssIndent = createMenuItem("Indent");
-	var cssMargin = createMenuItem("Margin");
-	sizeMenu.addChild(cssFontSizeMenu);
-	sizeMenu.addChild(cssLineHightMenu);
-	sizeMenu.addChild(cssIndent);
-	sizeMenu.addChild(cssMargin);
-	// Subsubmenus
-	cssFontSizeMenu.addChild(createMenuItem("default", function() {return handleExtraCSS(0, "default");}  ));
-	cssFontSizeMenu.addChild(createMenuItem(" 94%", function() {return handleExtraCSS(0, "0.94em");}  ));
-	cssFontSizeMenu.addChild(createMenuItem(" 97%", function() {return handleExtraCSS(0, "0.97em");}  ));
-	cssFontSizeMenu.addChild(createMenuItem("100%", function() {return handleExtraCSS(0, "1.00em");}  ));
-	cssFontSizeMenu.addChild(createMenuItem("103%", function() {return handleExtraCSS(0, "1.03em");}  ));
-	cssFontSizeMenu.addChild(createMenuItem("106%", function() {return handleExtraCSS(0, "1.06em");}  ));
-	cssFontSizeMenu.addChild(createMenuItem("109%", function() {return handleExtraCSS(0, "1.09em");}  ));
-	cssFontSizeMenu.addChild(createMenuItem("112%", function() {return handleExtraCSS(0, "1.20em");}  ));
+	buildDoSizeMenus = function () {
+		// PopUpMenu definition
+		LTS = Core.lang.getLocalizer("TextScale"),
+		LSA = Core.lang.getLocalizer("StandardActions");
+		sizeActions = [];
+		sizeTitles = [LTS('VALUE_SMALL'), LTS('VALUE_MEDIUM'), LTS('VALUE_LARGE'), LSA('ACTION_doRotate'), L('MARGINCUT')];
+		sizeActions.push( function () {myDoSize('S');	});
+		sizeActions.push( function () {myDoSize('M');	});
+		sizeActions.push( function () {myDoSize('L');	});
+		sizeActions.push( function () {ebook.rotate(); });
+		sizeActions.push( function () {callDelayed('setMarginCut'); });
+		simpleSizeMenu = Core.popup.createSimpleMenu(sizeTitles, sizeActions); // for non-epubs
 
-	cssLineHightMenu.addChild(createMenuItem("default", function() {return handleExtraCSS(1, "default");}  ));
-	cssLineHightMenu.addChild(createMenuItem("1.00em", function() {return handleExtraCSS(1, "1.00em");}  ));
-	cssLineHightMenu.addChild(createMenuItem("1.25em", function() {return handleExtraCSS(1, "1.25em");}  ));
-	cssLineHightMenu.addChild(createMenuItem("1.50em", function() {return handleExtraCSS(1, "1.50em");}  ));
-	cssLineHightMenu.addChild(createMenuItem("1.75em", function() {return handleExtraCSS(1, "1.75em");}  ));
-	cssLineHightMenu.addChild(createMenuItem("2.00em", function() {return handleExtraCSS(1, "2.00em");}  ));
+ 		// not to type Core.popup X times
+		var createMenuItem = Core.popup.createMenuItem;
+		// Root menu for epubs
+		sizeMenu = createMenuItem();
+		sizeMenu.addChild(createMenuItem(LTS('VALUE_SMALL'), function () {myDoSize('S');}  )); 
+		sizeMenu.addChild(createMenuItem(LTS('VALUE_MEDIUM'), function () {myDoSize('M');}  )); 
+		sizeMenu.addChild(createMenuItem(LTS('VALUE_LARGE'), function () {myDoSize('L');}  )); 
+		sizeMenu.addChild(createMenuItem(LSA('ACTION_doRotate'), function () {ebook.rotate();} )); 
+		sizeMenu.addChild(createMenuItem(L('MARGINCUT'), function () {callDelayed('setMarginCut');} )); 
+		sizeMenu.addChild(createMenuItem(L('CHANGEFONT'), function () {callDelayed('cssFont')} )); 
+		// Submenus - TODO Localize
+	
+		cssFontSizeMenu = createMenuItem(L('OPTION_FONTSIZE')),
+		cssLineHightMenu = createMenuItem(L('OPTION_LINEHEIGHT')),
+		cssIndent = createMenuItem(L('OPTION_TEXTINDENT')),
+		cssMargin = createMenuItem(L('OPTION_PAGEMARGIN'));
 
-	cssIndent.addChild(createMenuItem("default", function() {return handleExtraCSS(5, "default");}  ));
-	cssIndent.addChild(createMenuItem("0.5em", function() {return handleExtraCSS(5, "0.5em");}  ));
-	cssIndent.addChild(createMenuItem("1.0em", function() {return handleExtraCSS(5, "1.00em");}  ));
-	cssIndent.addChild(createMenuItem("1.5em", function() {return handleExtraCSS(5, "1.50em");}  ));
-	cssIndent.addChild(createMenuItem("2.0em", function() {return handleExtraCSS(5, "2.00em");}  ));
+		sizeMenu.addChild(cssFontSizeMenu);
+		sizeMenu.addChild(cssLineHightMenu);
+		sizeMenu.addChild(cssIndent);
+		sizeMenu.addChild(cssMargin);
+		// Subsubmenus
+		cssFontSizeMenu.addChild(createMenuItem(t_ffont[0], function() {return handleExtraCSS(0, t_ffont[0]);}  ));
+		cssFontSizeMenu.addChild(createMenuItem(t_ffont[1], function() {return handleExtraCSS(0, t_ffont[1]);}  ));
+		cssFontSizeMenu.addChild(createMenuItem(t_ffont[2], function() {return handleExtraCSS(0, t_ffont[2]);}  ));
+		cssFontSizeMenu.addChild(createMenuItem(t_ffont[3], function() {return handleExtraCSS(0, t_ffont[3]);}  ));
+		cssFontSizeMenu.addChild(createMenuItem(t_ffont[4], function() {return handleExtraCSS(0, t_ffont[4]);}  ));
+		cssFontSizeMenu.addChild(createMenuItem(t_ffont[5], function() {return handleExtraCSS(0, t_ffont[5]);}  ));
+		cssFontSizeMenu.addChild(createMenuItem(t_ffont[6], function() {return handleExtraCSS(0, t_ffont[6]);}  ));
+		cssFontSizeMenu.addChild(createMenuItem(t_ffont[7], function() {return handleExtraCSS(0, t_ffont[7]);}  ));
 
-	cssMargin.addChild(createMenuItem("default", function() {return handleExtraCSS(2, "default");}  ));
-	cssMargin.addChild(createMenuItem(" 0px", function() {return handleExtraCSS(2, "0px");}  ));
-	cssMargin.addChild(createMenuItem(" 5px", function() {return handleExtraCSS(2, "5px");}  ));
-	cssMargin.addChild(createMenuItem("10px", function() {return handleExtraCSS(2, "10px");}  ));
+		cssLineHightMenu.addChild(createMenuItem(t_lheight[0], function() {return handleExtraCSS(1, t_lheight[0]);}  ));
+		cssLineHightMenu.addChild(createMenuItem(t_lheight[1], function() {return handleExtraCSS(1, t_lheight[1]);}  ));
+		cssLineHightMenu.addChild(createMenuItem(t_lheight[2], function() {return handleExtraCSS(1, t_lheight[2]);}  ));
+		cssLineHightMenu.addChild(createMenuItem(t_lheight[3], function() {return handleExtraCSS(1, t_lheight[3]);}  ));
+		cssLineHightMenu.addChild(createMenuItem(t_lheight[4], function() {return handleExtraCSS(1, t_lheight[4]);}  ));
+		cssLineHightMenu.addChild(createMenuItem(t_lheight[5], function() {return handleExtraCSS(1, t_lheight[5]);}  ));
+
+		cssIndent.addChild(createMenuItem(t_indent[0], function() {return handleExtraCSS(5, t_indent[0]);}  ));
+		cssIndent.addChild(createMenuItem(t_indent[1], function() {return handleExtraCSS(5, t_indent[1]);}  ));
+		cssIndent.addChild(createMenuItem(t_indent[2], function() {return handleExtraCSS(5, t_indent[2]);}  ));
+		cssIndent.addChild(createMenuItem(t_indent[3], function() {return handleExtraCSS(5, t_indent[3]);}  ));
+		cssIndent.addChild(createMenuItem(t_indent[4], function() {return handleExtraCSS(5, t_indent[4]);}  ));
+
+		cssMargin.addChild(createMenuItem(t_margin[0], function() {return handleExtraCSS(2, t_margin[0]);}  ));
+		cssMargin.addChild(createMenuItem(t_margin[1], function() {return handleExtraCSS(2, t_margin[1]);}  ));
+		cssMargin.addChild(createMenuItem(t_margin[2], function() {return handleExtraCSS(2, t_margin[2]);}  ));
+		cssMargin.addChild(createMenuItem(t_margin[3], function() {return handleExtraCSS(2, t_margin[3]);}  ));
+	};
 
 	Fskin.kbookPage.doSize = function() {
 		current = kbook.model.currentBook;
@@ -502,6 +526,7 @@ var tmp = function() {
 			}
 		}],
 		onInit: function () {
+			var result;
 			Core.events.subscribe(Core.events.EVENTS.BOOK_PAGE_CHANGED, autoPageRestart);
 			Core.events.subscribe(Core.events.EVENTS.BOOK_CHANGED, resetMarginCut);
 			Core.hook.hookAfter(ebook, "rotate", rotateMarginCut); //function(where, what, newFunction, tag) 
@@ -515,15 +540,17 @@ var tmp = function() {
 			} catch (e) {
 				log.error("in buffering cutout10", e);
 			}
+			// load externCSS
 			loadExtraCSS();
-		/*	var node;
-			node = Core.ui.createContainerNode({
-				title: L("MARGINCUT"),
-				icon: 'SEARCH_ALT' 
-			});
-			node.onEnter = 'onEnterPage';
-			kbook.children.marginCut = node; 
-			Core.hook.hookAfter(kbook.children.marginCut, "enter", setMarginCut);	*/
+			// load userCSSValues - if any	- there should be a simpler way !?
+			result = Core.system.callScript(Core.config.userCSSValues, log);
+			if (result) { 
+				t_ffont = result.t_ffont;
+				t_lheight = result.t_lheight;
+				t_indent = result.t_indent;
+				t_margin = result.t_margin;
+			}
+			buildDoSizeMenus();
 		},
 		onSettingsChanged: function (propertyName, oldValue, newValue, object) {
 		  //TODO oldValue + object unused

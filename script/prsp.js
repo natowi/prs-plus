@@ -29,7 +29,8 @@ if (!FileSystem.getFileInfo(System.applyEnvironment("[prspSafeModeFile]"))) {
 			userScreenShotPath: "ScreenShots/", 
 			userDontScanPath: System.applyEnvironment("[prspPublicPath]")+"dontscan.cfg",
 			coreFile: System.applyEnvironment("[prspCoreFile]"),
-			addonsFile: System.applyEnvironment("[prspAddonsFile]")
+			addonsFile: System.applyEnvironment("[prspAddonsFile]"),
+			userCSSValues: System.applyEnvironment("[prspPublicPath]")+"userCSSValues.js"
 		};
 		
 		// Bootstrap logger

@@ -102,7 +102,7 @@ tmp = function() {
 	
 	// forward declaration
 	var constructMenu, redrawMenu, hideMenu;	
-	
+
 	/**
 	* Create single menu item.
 	*
@@ -139,7 +139,7 @@ tmp = function() {
 		constructMenu(menu);
 		redrawMenu();
 	};
-	
+
 	// Key event handlers
 	//
 	// joypad center
@@ -164,6 +164,10 @@ tmp = function() {
 		}
 	};
 	popupMenu.sandbox.doCenter = doCenter;
+	
+	popupMenu.sandbox.doSize = function() {
+		popupMenu.sandbox.doMenu();
+	};
 	// menu
 	popupMenu.sandbox.doMenu = function() {
 		if (currentMenu.parent !== undefined) {

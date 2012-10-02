@@ -18,21 +18,23 @@
 //	2011-12-08 Mark Nord - Use of Core.ui.getCurrentNode in "action"
 //	2012-06-23 drMerry - added use of Global section in lang file
 //	2012-09-01 Mark Nord - exported reloadBook(), added functionality epub CSS tweaking(credits to Analogus)
+//	2012-10-01 Mark Nord - Preserve PAGE_STYLE_NO while reload (e.g. keeps marginRemove)
 
 tmp = function() {
-	var L, LG, endsWith, USER_CSS, DISABLED, EpubUserStyle;
+	var L, LG, endsWith, USER_CSS, DISABLED, EpubUserStyle,
 	// Localize
-	L = Core.lang.getLocalizer("EpubUserStyle");
-	LG = Core.lang.getLocalizer("Global");
+	L = Core.lang.getLocalizer("EpubUserStyle"),
+	LG = Core.lang.getLocalizer("Global"),
 	endsWith = Core.text.endsWith,
-	exec = Core.shell.exec;
-
+	exec = Core.shell.exec,
+	log = Core.log.getLogger('EpubUserStyle'),
 	// Constants
+	DISABLED = "disabled";
 	USER_CSS = Core.config.userCSSFile;
 	if (USER_CSS === undefined) {
 		USER_CSS = "style.css";
 	}
-	DISABLED = "disabled";
+
 
 	EpubUserStyle = {
 		name: "EpubUserStyle",
@@ -50,9 +52,9 @@ tmp = function() {
 			}
 		],
 		
-		// Reload current book if it is an epub file
+		// Reload current book if it is an epub file and retain PAGE-STYLE_NO
 		reloadBook : function (extraCSS) {
-			var current, password, buffer, i, n;
+			var current, password, buffer, i, n, pageStyleNo;
 			current = kbook.model.currentBook;
 			if (current && current.media.mime === 'application/epub+zip') {
 				try {	// merge extern CSS
@@ -64,10 +66,30 @@ tmp = function() {
 					}
 				} catch (ignore) {}
 				Core.io.setFileContent(EpubUserStyle.root + USER_CSS, buffer); 
+				pageStyleNo = 0;
+				if (pageSelectStyleOverlayModel) {
+					pageStyleNo = pageSelectStyleOverlayModel.getVariable('PAGE_STYLE_NO');
+				}
 				current.media.close(kbook.bookData);
 				kbook.bookData.setData(null);
 				password = (kbook.model.protectedBookInfo) ? kbook.model.protectedBookInfo.password : null; // only used on x50
 				current.media.load(current.cache, kbook.model, kbook.model.onChangeBookCallback, password);
+				if (pageStyleNo) {
+					pageSelectStyleOverlayModel.setVariable('PAGE_STYLE_NO', pageStyleNo);
+					kbook.model.doSomething('switchNormalPage');
+					switch(pageStyleNo) {
+					case '1' : kbook.model.doSomething('switchSplitPage', 4);
+						break;
+					case '2' : kbook.model.doSomething('switchFitPage'); 
+						break;
+					case '3' : kbook.model.doSomething('switchMarginRemove'); 
+						break;
+					case '4' : kbook.model.doSomething('switchSplitPage', 6);
+						break;
+					case '5' : kbook.model.doSomething('switch2upView');
+						break;
+					}
+				}
 			}
 		},
 		/**
