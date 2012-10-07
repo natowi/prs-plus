@@ -49,6 +49,8 @@ History:
 		<exclude name="TouchSettings_600.js" />
 		<exclude name="TouchSettings_x50.js" />
 		<exclude name="DictionaryOptions_x50.js" />
+		<exclude name="Extra_CSS_x50.js" />
+		<exclude name="Interface_x50.js" />		
 	</patternset>
 	<patternset id="addons_600_x50">
 		<include name="**/*" />
@@ -75,6 +77,8 @@ History:
 		<exclude name="BookManagement_x50.js" />
 		<exclude name="TouchSettings_x50.js" />
 		<exclude name="DictionaryOptions_x50.js" />
+		<exclude name="Extra_CSS_x50.js" />
+		<exclude name="Interface_x50.js" />		
 	</patternset>
 	<patternset id="addons_350" >
 		<patternset refid="addons_600_x50" />

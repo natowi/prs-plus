@@ -3,6 +3,7 @@
 
 // History:
 // 	Initial version: 2012-10-01
+//	2012-10-07 Mark Nord - PopUpMenu on middle button
 
 tmp = function() 
 {
@@ -15,9 +16,12 @@ tmp = function()
 		L = Core.lang.getLocalizer("ViewerSettings_x50"),
 		log = Core.log.getLogger(NAME),
 		exec = Core.shell.exec,
+		isEpub,
 		doFineFontSize,
 		doLineHeight,
 		doAlign,
+		doVariable,
+		buildMoreCSSMenu,
 		Extra_CSS_x50,
 		changeValueTitles,
 		t_align = ['default', 'left', 'center', 'right', 'justify'],
@@ -27,8 +31,8 @@ tmp = function()
 		t_margin = ['default', '0em', '0.5em', '1.0em', '1.5em'],
 		externCSS,
 		userStyleexternCSS = ['','','','','','',''],
-
-
+		cssMenu,
+		
 	handleExtraCSS = function (index, value) {
 		var currentPage;
 		if (value !== "default") {
@@ -46,18 +50,17 @@ tmp = function()
 		return true;
 	},
 
-	ResetCss = function ()
-		{
-			exec('rm -f /Data/CSS/addstyle.css; touch /Data/CSS/addstyle.css; rm -f /Data/database/system/PRSPlus/epub/style.css; touch /Data/database/system/PRSPlus/epub/style.css');	
-			Extra_CSS_x50.options.Option_Fontsize = '0';
-			Extra_CSS_x50.options.Option_Lineheight = '0';
-			Extra_CSS_x50.options.Option_Pagemargin = '0';
-			Extra_CSS_x50.options.Option_Textalign = '0';
-			Extra_CSS_x50.options.Option_Textindent = '0';					
-			Extra_CSS_x50.options.Option_Padding = '0';
-			Core.settings.saveOptions(Extra_CSS_x50);
-			BookReload();
-		};
+	ResetCss = function ()	{
+		Extra_CSS_x50.options.Option_Fontsize = '0';
+		Extra_CSS_x50.options.Option_Lineheight = '0';
+		Extra_CSS_x50.options.Option_Pagemargin = '0';
+		Extra_CSS_x50.options.Option_Textalign = '0';
+		Extra_CSS_x50.options.Option_Textindent = '0';					
+		Extra_CSS_x50.options.Option_Padding = '0';
+		Core.settings.saveOptions(Extra_CSS_x50);
+		userStyleexternCSS = ['','','','','','',''];
+		Core.addonByName.EpubUserStyle.reloadBook(userStyleexternCSS);
+	};
 
 	oldInitSizeMenu = pageSizeOverlayModel.initSizeMenu;
 
@@ -66,13 +69,17 @@ tmp = function()
 		myLineHeight = Extra_CSS_x50.options.Option_Lineheight * 1;
 		myAlign = Extra_CSS_x50.options.Option_Textalign * 1;
 		try{
-			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox.FONTSIZEFINE.sandbox.ff_title, "text", L("OPTION_FONTSIZE"));
-			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox.LINEHEIGHT.sandbox.lh_title, "text", L("OPTION_LINEHEIGHT"));
-			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox.ALIGN.sandbox.lh_align, "text", L("OPTION_TEXTALIGN"));
+			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox.FONTSIZEFINE.sandbox.ff_title, 'text', L('OPTION_FONTSIZE'));
+			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox.LINEHEIGHT.sandbox.lh_title, 'text', L('OPTION_LINEHEIGHT'));
+			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox.ALIGN.sandbox.lh_align, 'text', L('OPTION_TEXTALIGN'));
+			PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox.FONTSIZE.sandbox.varBtn.setText(L('MORE_CSS'));
+			PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox.FONTSIZE.sandbox.varBtn.canCommand = 'isEpub'; // fix for missing property in xml
 
-			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox.FONTSIZEFINE.sandbox.ff_title, "text", L("OPTION_FONTSIZE"));
-			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox.LINEHEIGHT.sandbox.lh_title, "text", L("OPTION_LINEHEIGHT"));
-			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox.ALIGN.sandbox.lh_align, "text", L("OPTION_TEXTALIGN"));
+			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox.FONTSIZEFINE.sandbox.ff_title, 'text', L('OPTION_FONTSIZE'));
+			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox.LINEHEIGHT.sandbox.lh_title, 'text', L('OPTION_LINEHEIGHT'));
+			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox.ALIGN.sandbox.lh_align, 'text', L('OPTION_TEXTALIGN'));
+			PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox.FONTSIZE.sandbox.varBtn.setText(L('MORE_CSS'));
+			PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox.FONTSIZE.sandbox.varBtn.canCommand = 'isEpub';
 		} catch (e) { log.trace('writing to sandbox-values e: '+e) 
 		}
 		PATH_SIZEOVERLAY.setVariable('VAR_RADIO_LINEHEIGHT', myLineHeight);
@@ -116,22 +123,6 @@ tmp = function()
 		Core.settings.saveOptions(Extra_CSS_x50);
 	};
 
-	PATH_SIZEOVERLAYSANDBOX.doLineHeight = doLineHeight;
-
-	PATH_SIZEOVERLAYSANDBOX.doFontSize = doFineFontSize;
-
-	PATH_SIZEOVERLAYSANDBOX.doAlign = doAlign;
-
-	PATH_SIZEOVERLAYSANDBOX.isEpub = function () {
-		var current = kbook.model.currentBook;
-		return (current && current.media.mime === 'application/epub+zip');
-	};
-
-	/*/Activates Zoom-Lock (former: normal zoom-mode) over Font_Size_Overlay		
-	PATH_SIZEOVERLAYSANDBOX.goZoomMode = function () {
-		Core.addonByName.TouchSettings.actions[2].action();
-	}; */
-
 	loadExtraCSS = function () {
 		var filePath, content, lines, path, i, n;
 		// load externCSS
@@ -152,6 +143,49 @@ tmp = function()
 			} else {
 				externCSS = ['','','','','','',''];
 			}
+	};
+
+	buildMoreCSSMenu = function () {
+		// PopUpMenu definition
+		var cssMargin, cssPadding, cssIndent, 
+		LSA = Core.lang.getLocalizer("StandardActions"),
+		createMenuItem = Core.popup.createMenuItem; // not to type Core.popup X times
+
+		// Root menu for epubs
+		cssMenu = createMenuItem();
+		cssMenu.addChild(createMenuItem(LSA('ACTION_doRotate'), function () {kbook.model.onEnterOrientation();} )); 
+		cssMenu.addChild(createMenuItem(L('CHANGEFONT'), function () {
+			pageSizeOverlayModel.closeCurrentOverlay();
+			Core.addonByName.EpubUserStyle.actions[0].action(); } )); 
+		// Submenus
+		cssMargin = createMenuItem(L('OPTION_PAGEMARGIN'));
+		cssPadding = createMenuItem(L('OPTION_PADDING'));
+		cssIndent = createMenuItem(L('OPTION_TEXTINDENT')),
+		cssMenu.addChild(cssIndent);
+		cssMenu.addChild(cssMargin);
+		cssMenu.addChild(cssPadding);
+
+		// Subsubmenus
+		cssIndent.addChild(createMenuItem(t_indent[0], function() {return handleExtraCSS(5, t_indent[0]);}  ));
+		cssIndent.addChild(createMenuItem(t_indent[1], function() {return handleExtraCSS(5, t_indent[1]);}  ));
+		cssIndent.addChild(createMenuItem(t_indent[2], function() {return handleExtraCSS(5, t_indent[2]);}  ));
+		cssIndent.addChild(createMenuItem(t_indent[3], function() {return handleExtraCSS(5, t_indent[3]);}  ));
+		cssIndent.addChild(createMenuItem(t_indent[4], function() {return handleExtraCSS(5, t_indent[4]);}  ));
+
+		cssMargin.addChild(createMenuItem(t_margin[0], function() {return handleExtraCSS(2, t_margin[0]);}  ));
+		cssMargin.addChild(createMenuItem(t_margin[1], function() {return handleExtraCSS(2, t_margin[1]);}  ));
+		cssMargin.addChild(createMenuItem(t_margin[2], function() {return handleExtraCSS(2, t_margin[2]);}  ));
+		cssMargin.addChild(createMenuItem(t_margin[3], function() {return handleExtraCSS(2, t_margin[3]);}  ));
+
+		cssPadding.addChild(createMenuItem(t_margin[0], function() {return handleExtraCSS(6, t_margin[0]);}  ));
+		cssPadding.addChild(createMenuItem(t_margin[1], function() {return handleExtraCSS(6, t_margin[1]);}  ));
+		cssPadding.addChild(createMenuItem(t_margin[2], function() {return handleExtraCSS(6, t_margin[2]);}  ));
+		cssPadding.addChild(createMenuItem(t_margin[3], function() {return handleExtraCSS(6, t_margin[3]);}  ));
+	};
+
+	isEpub = function () {
+		var current = kbook.model.currentBook;
+		return (current && current.media.mime === 'application/epub+zip');
 	};
 
 	changeValueTitles = function () {
@@ -178,9 +212,31 @@ tmp = function()
 		}
 		n = t_intend.length;
 		for (i=0; i<n; i++) {	
-			optionDefs.optionDefs[2].valueTitles[i.toSting()] = t_intend[i];
+			optionDefs.optionDefs[5].valueTitles[i.toSting()] = t_intend[i];
 		}
 	};
+
+	doVariable = function () {
+		pageSizeOverlayModel.closeCurrentOverlay();
+		if (isEpub) {
+			Core.popup.showMenu(cssMenu);
+		} /* else { show anothet menu if we like } */
+	};
+
+	PATH_SIZEOVERLAYSANDBOX.doVariable = doVariable;
+
+	PATH_SIZEOVERLAYSANDBOX.doLineHeight = doLineHeight;
+
+	PATH_SIZEOVERLAYSANDBOX.doFontSize = doFineFontSize;
+
+	PATH_SIZEOVERLAYSANDBOX.doAlign = doAlign;
+
+	PATH_SIZEOVERLAYSANDBOX.isEpub = isEpub;
+
+	/*/Activates Zoom-Lock (former: normal zoom-mode) over Font_Size_Overlay		
+	PATH_SIZEOVERLAYSANDBOX.goZoomMode = function () {
+		Core.addonByName.TouchSettings.actions[2].action();
+	}; */
 //-----------------------------------------------------------------------------------------------------
 	Extra_CSS_x50 = 
 	{
@@ -257,9 +313,9 @@ tmp = function()
 						valueTitles: 
 							{
 							'0': t_margin[0], 
-							'1': t_margin[1], //no margins					
-							'2': t_margin[2],
-							'3': t_margin[3]
+							'1':   t_margin[1], //no margins					
+							'2':   t_margin[2],
+							'3':   t_margin[3]
 							}		
 					},					
 										
@@ -317,6 +373,7 @@ tmp = function()
 		onInit: function () {
 			var result;
 			loadExtraCSS();
+			buildMoreCSSMenu();
 			// load userCSSValues - if any
 			result = Core.system.callScript(Core.config.userCSSValues, log);
 			if (result) { 
