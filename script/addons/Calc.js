@@ -26,6 +26,7 @@ tmp = function() {
 		},
 		actions: [{
 			name: "Calc",
+			title: L("TITLE"),
 			group: "Utils",
 			icon: "CALC",
 			action: function () {
