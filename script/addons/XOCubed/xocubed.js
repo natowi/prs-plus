@@ -14,6 +14,7 @@
 // 2012-03-03 DrMerry - Optimized some code; removed unused: oMovesX = [], oMovesY = [], oMovesZ = []
 // 2012-03-05 DrMerry - futher optimization; removed unused: whammyinplay; difficulty is now a number so it can be checked faster and more easily expanded.
 // 2012-03-08 Ben Chenoweth - Removed commented code (including triple whammies code)
+// 2012-10-22 Ben Chenoweth - Fixed bug in random AI move
 
 var tmp = function () {
     var Exiting, gameover, players = 1, player1turn, previousplayers = 1, lastwinner = 0, difficulty = 0, difficultyLabel = ["Easy", "Hard"], firstX = 110, curDX = 98, firstY = 16, curDY = 36, curDZ = 154, pos1X, pos1Y, pos1Z, pos2X, pos2Y, pos2Z, maxX = 4, maxY = 4, maxZ = 4, board = [], oMoves, xMovesX = [], xMovesY = [], xMovesZ = [], lines = [], planes = [], centre, numlines, numplanes, isTouch, uD,
@@ -690,7 +691,7 @@ var tmp = function () {
         // Last step - do random move
         while (!foundmove) {
             z = Math.floor(Math.random() * 4);
-            Math.floor(Math.random() * 4);
+            x = Math.floor(Math.random() * 4);
             y = Math.floor(Math.random() * 4);
             //this.bubble("tracelog","x="+x+", y="+y+", z="+z+", board[x][y][z]="+board[x][y][z]);
             if (board[x][y][z] === 0) {
