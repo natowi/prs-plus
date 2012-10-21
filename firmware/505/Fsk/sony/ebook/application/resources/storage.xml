@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<fsk xmlns="http://www.kinoma.com/Fsk/1">
+	<vm name="storage" sync="false" alloc="737280,65536,65536,32768">
+		<bytecode href="[applicationPath]storage"/>
+		<document href="storageStart.xml"/>
+	</vm>
+</fsk>

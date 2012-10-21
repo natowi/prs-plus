@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="BROWSER_GROUP_SUB" >
+	<group id="BROWSER_GROUP" left="0" right="0" top="0" bottom="0">
+		<group id="BROWSER_STORE" left="0" right="0" top="0" bottom="30"/>
+		<group id="BROWSER_OPEN" left="0" right="0" top="0" bottom="30"/>
+	</group>
+	<kbookOverlay id="OPTION_OVERLAY_BROWSER_STORE"  left="0" right="0" top="0" bottom="30" visible="false"/>
+	<kbookOverlay id="OPTION_OVERLAY_BROWSER_OPEN"  left="0" right="0" top="0" bottom="30" visible="false"/>
+</document>

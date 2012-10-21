@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+
+	<group left="0" right="0" top="0" bottom="0">
+		<!-- Continue Reading -->
+		<group left="5" right="5" top="5" bottom="5">
+			<sprite skin="shortcutContinueButton" left="10" top="5" width="50" height="50" active="false"/>
+			<kbookLabel skin="title" active="false" left="70" right="0" top="13" height="30" textresource="STR_NODE_TITLE_CONTINUEREADINGBOOK"/>
+			<!-- title -->
+			<kbookLogoImage left="47" width="240" top="92" height="37" align="left" href="x-id://continueLogoData"/>
+
+			<kbookLabelBookAll skin="continueReadingBookAll" title1="20" author1="65" date1="131" title2="40" author2="86" date2="131" active="false" top="72" height="90" left="47" right="263" align="left" variable="CONTINUE_LOGO" continueAuthor="CONTINUE_PUBLICATION_DATE" continueDate="CONTINUE_DATE"/>
+
+			<!--kbookLabel2Line skin="continueReadingTitle" active="false" top="55" height="90" left="39" width="320" align="left" variable="CONTINUE_LOGO"/-->
+			<!--kbookLabel skin="continueReadingAuthor" active="false" top="145" height="30" left="47" right="226" align="left" variable="CONTINUE_PUBLICATION_DATE"/-->
+			<!-- Date-->
+			<!--kbookLabel skin="continueReadingDate" active="false" left="47" top="215" height="30" right="226" align="left" variable="CONTINUE_DATE"/-->
+			<!-- thumbnail -->
+			<kbookThumbnailImage skin="kbookHomeThumbnail" top="26" right="51" width="168" height="217" href="x-id://continueThumbnailData" />
+			<kbookHotspot do="doGoToContinueReading" left="0" top="0" right="0" bottom="0" />
+		</group>
+	</group>
+</document>

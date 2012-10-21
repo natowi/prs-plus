@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<fsk xmlns="http://www.kinoma.com/Fsk/1">
+	<vm name="storage" sync="false" alloc="737280,65536,65536,32768">
+		<environment>
+			<variable name="drmXmlURI" value="[applicationPath]storageDRM.xml"/>
+		</environment>
+
+		<bytecode href="[applicationPath]storage"/>
+		<bytecode href="[applicationPath]httpPatchUSB"/>
+		<document href="storageStart.xml"/>
+	</vm>
+</fsk>

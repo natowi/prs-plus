@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="VIEW">
+		<model>
+			<!--PRS+ Analogus: additional variables for new buttons: -->			
+			<variable id="VAR_RADIO_LINEHEIGHT" value="0"/>
+			<variable id="VAR_RADIO_FONTSIZEFINE" value="0"/>
+			<variable id="VAR_RADIO_ALIGN" value="0"/>
+		</model>
+		
+	<kbookOverlay id="SIZE_OVERLAY"  right="0" left="0" top="0" bottom="30" visible="false">
+		<!--model>
+			<variable id="VAR_MAX_FONTSCALE" value="0" />
+			<variable id="VAR_MIN_FONTSCALE" value="0" />
+			<variable id="VAR_RADIO_FONTSIZE" value="0"/>
+			<variable id="VAR_ENABLE_ZOOM" value="true"/>
+			<variable id="VAR_ENABLE_STYLE" value="true"/>
+			<variable id="VAR_UPDATE_FONTSIZE" value="false"/>
+		</model-->
+		<code>
+			<function id="canZoomMode"><![CDATA[
+				return this.getVariable("VAR_ENABLE_ZOOM");
+			]]></function>
+			<function id="canStyleMode"><![CDATA[
+				return this.getVariable("VAR_ENABLE_STYLE");
+			]]></function>
+			<function id="canFontSize0"><![CDATA[
+				var ret = this.getVariable("VAR_MAX_FONTSCALE")>=0 && this.getVariable("VAR_MIN_FONTSCALE")<=0;
+				return ret
+			]]></function>
+			<function id="canFontSize1"><![CDATA[
+				var ret = this.getVariable("VAR_MAX_FONTSCALE")>=1 && this.getVariable("VAR_MIN_FONTSCALE")<=1;
+				return ret
+			]]></function>
+			<function id="canFontSize2"><![CDATA[
+				var ret = this.getVariable("VAR_MAX_FONTSCALE")>=2 && this.getVariable("VAR_MIN_FONTSCALE")<=2;
+				return ret
+			]]></function>
+			<function id="canFontSize3"><![CDATA[
+				var ret=  this.getVariable("VAR_MAX_FONTSCALE")>=3 && this.getVariable("VAR_MIN_FONTSCALE")<=3;
+				return ret
+			]]></function>
+			<function id="canFontSize4"><![CDATA[
+				var ret=  this.getVariable("VAR_MAX_FONTSCALE")>=4 && this.getVariable("VAR_MIN_FONTSCALE")<=4;
+				return ret
+			]]></function>
+			<function id="canFontSize5"><![CDATA[
+				var ret=  this.getVariable("VAR_MAX_FONTSCALE")>=5 && this.getVariable("VAR_MIN_FONTSCALE")<=5;
+				return ret
+			]]></function>
+			
+			<function id="doGestureFail">
+				this.bubble("doBlink")
+			</function>
+			<function id="initBtnShowHide" params="dicFlag">
+				var btnShow = (dicFlag?false:true)
+				this.sizeV.FONTSIZE.zoomBtn.show(btnShow);
+				this.sizeV.FONTSIZE.StyleBtn.show(btnShow);
+				this.sizeV.FONTSIZE.varBtn.show(btnShow);
+				this.sizeH.FONTSIZE.zoomBtn.show(btnShow);
+				this.sizeH.FONTSIZE.StyleBtn.show(btnShow);
+				this.sizeV.FONTSIZE.varBtn.show(btnShow);
+			</function>
+		</code>
+		<exGroup id="sizeV" bottom="0" height="265" left="0" right="0" playing="V"> <!--Analogus: former: height. 128 / 215-->
+			<panel skin="kbarea" left="0" right="0" top="0" bottom="0" active="true"/>
+			<group id="FONTSIZE" top="0" bottom="0" left="0" right="0">
+				<button2icon id="zoomBtn" skin="zoomBtn" 	text="fskin:/l/strings/STR_UI_BUTTON_ZOOMIN"   	 left="24" top="6" width="181" 		height="50" do="goZoomMode" 	can="canZoomMode"			bw1y="4" bw2y="4"/>
+				<button2icon id="varBtn" skin="styleBtn" 	text=" " 										 right="215" top= "6" width="172" 	height="50" do="doVariable" 						bw="4"	bw1y="4" bw2y="4"/>
+				<button2icon id="StyleBtn" skin="styleBtn" 	text="fskin:/l/strings/STR_UI_BUTTON_PAGE_STYLE" right="30" top= "6" width="181" 	height="50" do="doSelectStyle" 	can="canStyleMode" 	bw="4" 	bw1y="4" bw2y="4"/>
+
+				<!--Sony Size-Buttons: -->
+				<radio2icon id="font0" text="XS" skin="fontSizeL" stylesOffset="2" bottom="9" left= "24" width="91" height="53" on="0" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize0" bw1x="2" bw1y="6" bw2y="5"/>
+				<radio2icon id="font1" text="S" skin="fontSizeC" stylesOffset="2" bottom="9" left="115" width="91" height="53" on="1" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize1"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font2" text="M" skin="fontSizeC" stylesOffset="2" bottom="9" left="206" width="91" height="53" on="2" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize2"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font3" text="L" skin="fontSizeC" stylesOffset="2" bottom="9" left="297" width="91" height="53" on="3" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize3"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font4" text="XL" skin="fontSizeC" stylesOffset="2" bottom="9" left="388" width="91" height="53" on="4" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize4"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font5" text="XXL" skin="fontSizeR" stylesOffset="2" bottom="9" left="479" width="91" height="53" on="5" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize5" bw2x="3" bw1y="6" bw2y="5"/>				
+			</group>	
+			
+			<group id="ALIGN" top="0" bottom="0" left="0" right="0">	
+				<!--PRS+  Additional Align-Buttons: -->
+				<label id="lh_align" skin="number-ToneCurve" bottom="160" left= "24" height="53" width="180" text="" />
+				<radio2icon id="align0" skin="fontSizeL" text="X" stylesOffset="2" bottom="160" right="394" width="40" height="53"  on="0" variable="VAR_RADIO_ALIGN" variableUpdate="VAR_UPDATE_FONTSIZE" do="doAlign" can="isEpub"  bw1x="2" bw1y="6" bw2y="5"/>
+				<radio2icon id="align1" skin="alignLeft"  bottom="160" right="303" width="91" height="53"  on="1" variable="VAR_RADIO_ALIGN" variableUpdate="VAR_UPDATE_FONTSIZE" do="doAlign" can="isEpub" bw1x="2" bw1y="6" bw2y="5"/>
+				<radio2icon id="align2" skin="alignCenter" bottom="160" right="212" width="91" height="53"  on="2" variable="VAR_RADIO_ALIGN" variableUpdate="VAR_UPDATE_FONTSIZE" do="doAlign" can="isEpub"  		 bw1y="6" bw2y="5"/>
+				<radio2icon id="align3" skin="alignRight" bottom="160" right="121" width="91" height="53"  on="3" variable="VAR_RADIO_ALIGN" variableUpdate="VAR_UPDATE_FONTSIZE" do="doAlign" can="isEpub"  		 bw1y="6" bw2y="5"/>
+				<radio2icon id="align4" skin="alignJustify" bottom="160" right="30"  width="91" height="53"  on="4" variable="VAR_RADIO_ALIGN" variableUpdate="VAR_UPDATE_FONTSIZE" do="doAlign" can="isEpub" bw2x="3" bw1y="6" bw2y="5"/>			
+			</group>
+
+			<group id="LINEHEIGHT" top="0" bottom="0" left="0" right="0">	
+				<!--PRS+ Analogus: Additional Line-Height-Buttons: -->
+				<label id="lh_title" skin="number-ToneCurve" bottom="110" left= "24" height="53" width="180" text="" />
+				<radio2icon id="line0" text="X"    skin="fontSizeL" stylesOffset="2" bottom="110" right="394" width="40" height="53"  on="0" variable="VAR_RADIO_LINEHEIGHT" variableUpdate="VAR_UPDATE_FONTSIZE" do="doLineHeight" can="isEpub" bw1x="2" bw1y="6" bw2y="5"/>
+				<radio2icon id="line1" text="1.00" skin="fontSizeC" stylesOffset="2" bottom="110" right="303" width="91" height="53"  on="1" variable="VAR_RADIO_LINEHEIGHT" variableUpdate="VAR_UPDATE_FONTSIZE" do="doLineHeight" can="isEpub"          bw1y="6" bw2y="5"/>
+				<radio2icon id="line2" text="1.25" skin="fontSizeC" stylesOffset="2" bottom="110" right="212" width="91" height="53"  on="2" variable="VAR_RADIO_LINEHEIGHT" variableUpdate="VAR_UPDATE_FONTSIZE" do="doLineHeight" can="isEpub"  		  bw1y="6" bw2y="5"/>
+				<radio2icon id="line3" text="1.50" skin="fontSizeC" stylesOffset="2" bottom="110" right="121" width="91" height="53"  on="3" variable="VAR_RADIO_LINEHEIGHT" variableUpdate="VAR_UPDATE_FONTSIZE" do="doLineHeight" can="isEpub"  		  bw1y="6" bw2y="5"/>
+				<radio2icon id="line4" text="2.00" skin="fontSizeR" stylesOffset="2" bottom="110" right="30"  width="91" height="53"  on="4" variable="VAR_RADIO_LINEHEIGHT" variableUpdate="VAR_UPDATE_FONTSIZE" do="doLineHeight" can="isEpub" bw2x="3" bw1y="6" bw2y="5"/>			
+			</group>
+				
+			<group id="FONTSIZEFINE" top="0" bottom="0" left="0" right="0">
+				<!--PRS+ Analogus: Additional Size-Buttons: -->
+				<label id="ff_title" skin="number-ToneCurve" bottom="60" left= "24" height="53" width="180" text="" />
+				<radio2icon id="ffont0" text="X" skin="fontSizeL" stylesOffset="2" bottom="60" right= "394"  width="40" height="53" on="0" variable="VAR_RADIO_FONTSIZEFINE" variableUpdate="VAR_UPDATE_FONTSIZE" do="doFontSize" can="isEpub" bw1x="2" bw1y="6" bw2y="5"/>
+				<radio2icon id="ffont1" text="1" skin="fontSizeC" stylesOffset="2" bottom="60" right= "303"  width="91" height="53" on="1" variable="VAR_RADIO_FONTSIZEFINE" variableUpdate="VAR_UPDATE_FONTSIZE" do="doFontSize" can="isEpub"          bw1y="6" bw2y="5"/>
+				<radio2icon id="ffont2" text="2" skin="fontSizeC" stylesOffset="2" bottom="60" right= "212"  width="91" height="53" on="2" variable="VAR_RADIO_FONTSIZEFINE" variableUpdate="VAR_UPDATE_FONTSIZE" do="doFontSize" can="isEpub"			bw1y="6" bw2y="5"/>
+				<radio2icon id="ffont3" text="3" skin="fontSizeC" stylesOffset="2" bottom="60" right= "121"  width="91" height="53" on="3" variable="VAR_RADIO_FONTSIZEFINE" variableUpdate="VAR_UPDATE_FONTSIZE" do="doFontSize" can="isEpub"			bw1y="6" bw2y="5"/>
+				<radio2icon id="ffont4" text="4" skin="fontSizeR" stylesOffset="2" bottom="60" right= "30"   width="91" height="53" on="4" variable="VAR_RADIO_FONTSIZEFINE" variableUpdate="VAR_UPDATE_FONTSIZE" do="doFontSize" can="isEpub" bw2x="3" bw1y="6" bw2y="5"/>	
+			</group>	
+				
+		</exGroup>
+		
+		<exGroup id="sizeH" bottom="0" height="265" left="0" right="0" playing="H">
+			<panel skin="kbarea" left="0" right="0" top="0" bottom="0" active="true"/>
+			<group id="FONTSIZE" top="0" bottom="0" left="0" right="0">
+				<button2icon id="zoomBtn" skin="zoomBtn" text="fskin:/l/strings/STR_UI_BUTTON_ZOOMIN"   left="24" top="6" width="181" height="50" do="goZoomMode" can="canZoomMode" bw1y="4" bw2y="4"/>
+				<button2icon id="varBtn" skin="styleBtn" 	text=" " 										 right="222" top= "6" width="172" 	height="50" do="doVariable" 						bw="4"	bw1y="4" bw2y="4"/>				
+				<button2icon id="StyleBtn" skin="styleBtn" text="fskin:/l/strings/STR_UI_BUTTON_PAGE_STYLE" right="30" top= "6" width="190" height="50" do="doSelectStyle" can="canStyleMode" bw="4" bw1y="4" bw2y="4"/>
+
+				<!--Sony Size-Buttons: -->
+				<radio2icon id="font0" text="XS" skin="fontSizeL" stylesOffset="2" bottom="9" left= "24" width="124" height="53" on="0" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize0" bw1x="2" bw1y="6" bw2y="5"/>
+				<radio2icon id="font1" text="S" skin="fontSizeC" stylesOffset="2" bottom="9" left="148" width="124" height="53" on="1" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize1"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font2" text="M" skin="fontSizeC" stylesOffset="2" bottom="9" left="272" width="124" height="53" on="2" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize2"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font3" text="L" skin="fontSizeC" stylesOffset="2" bottom="9" left="396" width="124" height="53" on="3" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize3"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font4" text="XL" skin="fontSizeC" stylesOffset="2" bottom="9" left="520" width="124" height="53" on="4" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize4"          bw1y="6" bw2y="5"/>
+				<radio2icon id="font5" text="XXL" skin="fontSizeR" stylesOffset="2" bottom="9" left="644" width="124" height="53" on="5" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize5" bw2x="3" bw1y="6" bw2y="5"/>					
+			</group>
+			
+			<group id="ALIGN" top="0" bottom="0" left="0" right="0">	
+				<!--PRS+: Additional Align-Buttons: -->
+				<label id="lh_align" skin="number-ToneCurve" bottom="160" left= "24" height="53" width="180" text="" />
+				<radio2icon id="align0" skin="fontSizeL" text="X" stylesOffset="2" bottom="160" right="394" width="40" height="53"  on="0" variable="VAR_RADIO_ALIGN" variableUpdate="VAR_UPDATE_FONTSIZE" do="doAlign" can="isEpub"  bw1x="2" bw1y="6" bw2y="5"/>
+				<radio2icon id="align1" skin="alignLeft"    bottom="160" right="303" width="91" height="53"  on="1" variable="VAR_RADIO_ALIGN" variableUpdate="VAR_UPDATE_FONTSIZE" do="doAlign" can="isEpub"   		bw1y="6" bw2y="5"/>
+				<radio2icon id="align2" skin="alignCenter"  bottom="160" right="212" width="91" height="53"  on="2" variable="VAR_RADIO_ALIGN" variableUpdate="VAR_UPDATE_FONTSIZE" do="doAlgin" can="isEpub"   		bw1y="6" bw2y="5"/>
+				<radio2icon id="align3" skin="alignRight"   bottom="160" right="121" width="91" height="53"  on="3" variable="VAR_RADIO_ALIGN" variableUpdate="VAR_UPDATE_FONTSIZE" do="doAlign" can="isEpub"  			bw1y="6" bw2y="5"/>
+				<radio2icon id="align4" skin="alignJustify" bottom="160" right="30"  width="91" height="53"  on="4" variable="VAR_RADIO_ALIGN" variableUpdate="VAR_UPDATE_FONTSIZE" do="doAlign" can="isEpub"  bw2x="3" bw1y="6" bw2y="5"/>	
+			</group>
+			<group id="LINEHEIGHT" top="0" bottom="0" left="0" right="0">	
+				<!--PRS+ Analogus: Additional Line-Height-Buttons: -->
+				<label id="lh_title" skin="number-ToneCurve" bottom="110" left= "24" height="53" width="180" text="" />
+				<radio2icon id="line0" text="X"    skin="fontSizeL" stylesOffset="2" bottom="110" right="394" width="40" height="53"  on="0" variable="VAR_RADIO_LINEHEIGHT" variableUpdate="VAR_UPDATE_FONTSIZE" do="doLineHeight" can="isEpub"  bw1x="2" bw1y="6" bw2y="5"/>
+				<radio2icon id="line1" text="1.00" skin="fontSizeC" stylesOffset="2" bottom="110" right="303" width="91" height="53"  on="1" variable="VAR_RADIO_LINEHEIGHT" variableUpdate="VAR_UPDATE_FONTSIZE" do="doLineHeight" can="isEpub"           bw1y="6" bw2y="5"/>
+				<radio2icon id="line2" text="1.25" skin="fontSizeC" stylesOffset="2" bottom="110" right="212" width="91" height="53"  on="2" variable="VAR_RADIO_LINEHEIGHT" variableUpdate="VAR_UPDATE_FONTSIZE" do="doLineHeight" can="isEpub"  	 	   bw1y="6" bw2y="5"/>
+				<radio2icon id="line3" text="1.50" skin="fontSizeC" stylesOffset="2" bottom="110" right="121" width="91" height="53"  on="3" variable="VAR_RADIO_LINEHEIGHT" variableUpdate="VAR_UPDATE_FONTSIZE" do="doLineHeight" can="isEpub"   		   bw1y="6" bw2y="5"/>
+				<radio2icon id="line4" text="2.00" skin="fontSizeR" stylesOffset="2" bottom="110" right="30"  width="91" height="53"  on="4" variable="VAR_RADIO_LINEHEIGHT" variableUpdate="VAR_UPDATE_FONTSIZE" do="doLineHeight" can="isEpub"  bw2x="3" bw1y="6" bw2y="5"/>	
+			</group>
+				
+			<group id="FONTSIZEFINE" top="0" bottom="0" left="0" right="0">
+				<!--PRS+ Analogus: Additional Size-Buttons: -->
+				<label id="ff_title" skin="number-ToneCurve" bottom="60" left= "24" height="53" width="180" text="" />
+				<radio2icon id="ffont0" text="X" skin="fontSizeL" stylesOffset="2" bottom="60" right= "394"  width="40" height="53" on="0" variable="VAR_RADIO_FONTSIZEFINE" variableUpdate="VAR_UPDATE_FONTSIZE" do="doFontSize" can="isEpub" bw1x="2" bw1y="6" bw2y="5"/>
+				<radio2icon id="ffont1" text="1" skin="fontSizeC" stylesOffset="2" bottom="60" right= "303"  width="91" height="53" on="1" variable="VAR_RADIO_FONTSIZEFINE" variableUpdate="VAR_UPDATE_FONTSIZE" do="doFontSize" can="isEpub" 		    bw1y="6" bw2y="5"/>
+				<radio2icon id="ffont2" text="2" skin="fontSizeC" stylesOffset="2" bottom="60" right= "212"  width="91" height="53" on="2" variable="VAR_RADIO_FONTSIZEFINE" variableUpdate="VAR_UPDATE_FONTSIZE" do="doFontSize" can="isEpub"  	    bw1y="6" bw2y="5"/>
+				<radio2icon id="ffont3" text="3" skin="fontSizeC" stylesOffset="2" bottom="60" right= "121"  width="91" height="53" on="3" variable="VAR_RADIO_FONTSIZEFINE" variableUpdate="VAR_UPDATE_FONTSIZE" do="doFontSize" can="isEpub"  	    bw1y="6" bw2y="5"/>
+				<radio2icon id="ffont4" text="4" skin="fontSizeR" stylesOffset="2" bottom="60" right= "30"   width="91" height="53" on="4" variable="VAR_RADIO_FONTSIZEFINE" variableUpdate="VAR_UPDATE_FONTSIZE" do="doFontSize" can="isEpub" bw2x="3" bw1y="6" bw2y="5"/>	
+			</group>	
+			
+		</exGroup>
+	</kbookOverlay>
+
+</document>

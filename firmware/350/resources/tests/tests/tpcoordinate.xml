@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<model>
+		<variable id="COORDINATE" value="Screen Coordinate"/>
+		<variable id="RAWCOORDINATE" value="Raw Coordinate"/>
+		<variable id="PRESSURE" value="Pressure"/>
+		<code>
+			<function id="initialized">
+				this.container.PANEL.GRID.focus(true)
+			</function>
+		</code>
+	</model>
+	<group id="PANEL" left="0" right="0" top="0" bottom="0">
+		<code>
+			<function id="doRoot"><![CDATA[
+				if (ebook) {
+					ebook.setCoordinateMode(1)
+				}
+				this.GRID.end()
+				this.bubble("finishTest")
+			]]></function>
+		</code>
+		<sprite id="GRID" left="0" right="0" top="0" bottom="0" canFocus="true">
+			<property id="file"/>
+			<property id="point"/>
+			<code>
+				<function id="start"><![CDATA[
+					if (!this.file.value) {
+						var autoRunView = this.container.container.container.container
+						var file = autoRunView.getVariable("DATA_FOLDER") + "log/coordinate.txt"
+						try {
+							FileSystem.ensureDirectory(file)
+							var stream = this.file.value = new Stream.File(file, 1)
+							stream.writeLine("---------------------------------------------------")
+							stream.writeLine(new Date)
+						}
+						catch (e) {
+						}
+					}
+					if (ebook) {
+						ebook.setCoordinateMode(7)
+					}
+				]]></function>
+				<function id="end">
+					try {
+						if (this.file.value) {
+							this.file.value.close()
+						}
+					}
+					catch (e) {
+					}
+				</function>
+			</code>
+			<script on="initialized">
+				this.point.value = new Point
+			</script>
+			<script on="mouseDown" params="event">
+				this.start()
+				var point = this.point.value
+				var z1 = 0, z2 = 0
+				if ("getRawMouse" in event) {
+					event.getRawMouse(point)
+					z1 = event.getZ1Pressure()
+					z2 = event.getZ2Pressure()
+				}
+				this.setVariable("COORDINATE", "x = " + event.x + ", y = " + event.y)
+				this.setVariable("RAWCOORDINATE", "rx = " + point.x + ", ry = " + point.y)
+				this.setVariable("PRESSURE", "z1 = " + z1 + ", z2 = " + z2)
+				try {
+					this.file.value.writeString("DOWN x, y , rx, ry, z1, z2 = " + event.x + ", " + event.y) 
+					this.file.value.writeString(", " + point.x + ", " + point.y) 
+					this.file.value.writeLine(", " + z1 + ", " + z2) 
+				}
+				catch (e) {
+				}
+			</script>
+			<script on="mouseMoved" params="event">
+				var point = this.point.value
+				var z1 = 0, z2 = 0
+				if ("getRawMouse" in event) {
+					event.getRawMouse(point)
+					z1 = event.getZ1Pressure()
+					z2 = event.getZ2Pressure()
+				}
+				try {
+					this.file.value.writeString("MOVE x, y , rx, ry, z1, z2 = " + event.x + ", " + event.y) 
+					this.file.value.writeString(", " + point.x + ", " + point.y) 
+					this.file.value.writeLine(", " + z1 + ", " + z2) 
+				}
+				catch (e) {
+				}
+			</script>
+			<script on="mouseUp" params="event">
+				var point = this.point.value
+				var z1 = 0, z2 = 0
+				if ("getRawMouse" in event) {
+					event.getRawMouse(point)
+					z1 = event.getZ1Pressure()
+					z2 = event.getZ2Pressure()
+				}
+				this.setVariable("COORDINATE", "x = " + event.x + ", y = " + event.y)
+				this.setVariable("RAWCOORDINATE", "rx = " + point.x + ", ry = " + point.y)
+				this.setVariable("PRESSURE", "z1 = " + z1 + ", z2 = " + z2)
+				try {
+					this.file.value.writeString("UP   x, y , rx, ry, z1, z2 = " + event.x + ", " + event.y) 
+					this.file.value.writeString(", " + point.x + ", " + point.y) 
+					this.file.value.writeLine(", " + z1 + ", " + z2) 
+				}
+				catch (e) {
+				}
+			</script>
+
+			<script on="draw" params="window, index, u, v, x, y, width, height"><![CDATA[
+				window.setPenColor(Color.white)
+				window.fillRectangle(this)
+				window.setPenColor(Color.black)
+				for (var i = -5; i < 600; i += 100)
+					window.fillRectangle(x + i, y, 10, 800)
+				for (var i = -5; i < 800; i += 100)
+					window.fillRectangle(x, y + i, 600, 10)
+			]]></script>
+		</sprite>
+		<sprite id="COORDINATE" width="300" height="50" top="220" skin="labelSkin">
+			<behave like="label"/>
+			<property id="variable" value="COORDINATE"/>
+			<property id="frame" value="true"/>
+			<code>
+				<function id="hitBounds"/>
+			</code>
+		</sprite>
+		<sprite id="COORDINATE" width="300" height="50" top="320" skin="labelSkin">
+			<behave like="label"/>
+			<property id="variable" value="RAWCOORDINATE"/>
+			<property id="frame" value="true"/>
+			<code>
+				<function id="hitBounds"/>
+			</code>
+		</sprite>
+		<sprite id="COORDINATE" width="300" height="50" top="420" skin="labelSkin">
+			<behave like="label"/>
+			<property id="variable" value="PRESSURE"/>
+			<property id="frame" value="true"/>
+			<code>
+				<function id="hitBounds"/>
+			</code>
+		</sprite>
+	</group>
+</document>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+<!--
+notificationAdviseHeader.xml
+	Previous/Next page buttons View extension for kbookMenuDetails.
+	DOM relation:
+			<kbookMenuDetails id="THUMBNAIL_FREEHAND" ... />
+			<view href="kbookMenuDetailsPaging.xml"		left="0" right="0" top="110"	height="60"/>
+-->
+	
+	<group left="0" right="0" height="60" top="0" >
+		<sprite skin="advise-icon" left="7" top="9" width="32" height="32" active="false" />
+			
+		<kbookLabel skin="advise-title" active="false" left="38" right="0" top="5" height="28" variable="RECOMMENDATION_TITLE"/>
+		<group right="3" top="3" left="3" bottom="3">
+			<button do="closeAdvise"  skin="advise-close" 	right="0" top="0" width="50" height="50"	/>
+			
+			<!-- Width/height of radio is definde by radio.draw as skin.cutout[0].width/height...
+				Max number of radiobuttons shall match the width of this group. Otherwise they will be placed beyound of area to the left and right.
+				With small cutouts size the number of radiobuttons could be increased.
+			-->
+			<kBookModelWatcher variable="AdviseOffset"  left="30" right="30" top="37" height="45" >
+				<!--fillBackground color="#101010" left="0" right="0" top="0" bottom="0" /-->
+				<radio	skin="advise-pg" variable="AdviseOffset" on="0"		text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="3"		text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="6"		text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="9"		text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="12"	text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="15"	text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="18"	text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="21"	text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="24"	text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="27"	text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="30"	text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="33"	text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="36"	text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="39"	text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="42"	text=""		width="12" top="0" height="10"/>
+				<radio	skin="advise-pg" variable="AdviseOffset" on="45"	text=""		width="12" top="0" height="10"/>
+				<code>
+					<function id="onVariableChanged" params="value" >
+						kbook.model.OnRGroup_variableChanged( value, this )
+					</function>
+					<function id="initialized" >
+						kbook.model.OnRGroup_variableChanged( kbook.model.AdviseOffset, this )
+					</function>
+				</code>
+			</kBookModelWatcher>
+			
+			<code>
+				<function id="closeAdvise" >
+					kbook.model.Advise2Hide = WebAPI.recommendations.getHash()
+					kbook.model.setVariable("HOME_COVER","CONTINUE_BOOK")
+				</function>
+			</code>
+		</group>
+	</group>
+</document>

@@ -1,0 +1,109 @@
+<fsk xmlns="http://www.kinoma.com/Fsk/1">
+	<rootvm alloc="786432,16384,98304,4096">
+		<environment>
+			<variable name="switcherPath" value="[applicationPath]/resources/"/>
+			<variable name="securityPath" value="[applicationPath]" /> 
+			<variable name="octopusPath" value="[applicationPath]" /> 
+			<variable name="keyPath" value="/opt0/mc/keys/" />
+			<variable name="octopusRoot" value="/opt0/mc/keys/f/" />
+			<variable name="registrationStatusPath" value="/opt0/mc/keys/Registration Status/" />
+			<variable name="adeptKeyPath" value="/opt0/adept/" />
+			<variable name="PRSVersion" value="1.0.00.24180"/>
+
+			<variable name="homePath" value="[applicationPath]/kbook/"/>
+			<variable name="dataPath" value="/Data/database/"/>
+			<variable name="mediaPath" value="/Data/"/>
+			<variable name="demoPath" value="/demo/"/>
+			<variable name="bbebFontPath" value="[applicationPath]../FONT/"/>
+			<variable name="bbebLevelNoLayout" value="850"/>
+			<variable name="bbebJustification" value="true"/>
+			<variable name="kFskDocumentViewerDefaultDPI" value="200"/>
+			<variable name="kFskDocumentViewerWidth" value="584"/>
+			<variable name="kFskDocumentViewerHeight" value="754"/>
+			<variable name="kFskDocumentViewerMaxTextScale" value="2"/>
+			<variable name="kFskDocumentViewerMinTextScale" value="0"/>
+			<variable name="PreferencesDir" value="/opt0/preferences/"/>
+			<variable name="kFskPlatformGrayEffectiveBit" value="3"/>
+		</environment>
+
+		<debug>
+			<debugger url="10.0.1.128"/>
+			<console visible="true"/>
+			<source keep="true"/>
+			<breakpoints href="breakpoints.txt"/>
+		</debug>
+
+		<httpserver port="3456">
+			 <root href="c:/test/"/>
+		</httpserver>
+
+		<proxy>
+			 <http href=""/>
+		</proxy>
+
+		<ui>
+			<font face="Swis721 BT" href="[applicationPath]../FONT/">
+				<!-- RTF names -->
+					<family name="roman" uses="Dutch801 Rm BT"/>
+					<family name="swiss" uses="Swis721 BT"/>
+					<family name="modern" uses="Courier10 BT"/>
+					<family name="script" uses="Dutch801 Rm BT"/>
+					<family name="decor" uses="Dutch801 Rm BT"/>
+					<family name="tech" uses="Courier10 BT"/>
+			</font>
+		</ui>
+
+		<mime>
+			<media type="application">
+				<subtype name="pdf" extension="pdf"/>
+				<subtype name="epub+zip" extension="epub"/>
+				<subtype name="rtf" extension="rtf"/>
+				<subtype name="x-sony-bbeb" extension="lrf,lrx" /> 
+			</media>
+
+			<media type="audio">
+				<subtype name="mpeg" extension="mp3"/>
+				<subtype name="mp4" extension="m4a,mp4,mov,qt"/>
+			</media>
+
+			<media type="image">
+				<subtype name="bmp" extension="bmp"/>
+				<subtype name="gif" extension="gif"/>
+				<subtype name="jpeg" extension="jpg,jpeg"/>
+				<subtype name="png" extension="png"/>
+			</media>
+
+			<media type="text">
+				<subtype name="plain" extension="txt"/>
+			</media>
+		</mime>
+
+		<extension href="FskImage"/>
+		<extension href="coreaudiofilters"/>
+		<extension href="FskMediaPlayers"/>
+		<extension href="Fskin"/>
+		<bytecode href="FskinLocalize"/>		
+		<extension href="FskBookUtil"/>
+		
+		<extension href="FskSecurity"/>
+		<bytecode href="drm.xsb"/>
+		<bytecode href="FskDMF.xsb"/>
+		<bytecode href="octopus.xsb"/>
+
+		<extension href="ebook"/>
+
+		<extension href="[applicationPath]FskDocumentViewer"/>
+		<extension href="[applicationPath]FskDocumentViewerAdobe"/>
+		<extension href="[applicationPath]FskDocumentViewerRTF"/>
+		<bytecode href="[applicationPath]FskBBeBViewer.xso"/>
+
+		<bytecode href="[applicationPath]drmDocviewer.xsb"/>
+		<bytecode href="[applicationPath]octDocviewer.xsb"/>
+
+		<extension href="ebookConfig"/>
+		<extension href="UCA"/>
+		<bytecode href="[applicationPath]language"/>
+	</rootvm>
+
+	<include href="[switcherPath]switcher.xml"/>
+</fsk>

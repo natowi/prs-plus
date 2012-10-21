@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<group left="0" right="0" top="0" bottom="0">
+		<!-- New Delivery -->
+		<group left="5" top="5" width="715" height="146">
+			<sprite skin="shortcutNewDeliveryButton" left="10" top="3" width="50" height="50" active="false"/>
+			<kbookLabel skin="title" active="false" left="70" right="0" top="13" height="30" textresource="STR_NODE_TITLE_NEWDELIVERY"/>
+			<!-- title -->
+			<kbookLogoImage width="226" right="134" top="57" height="36" align="right" href="x-id://notifiableLogoData"/>
+			
+			<kbookLabelBookAll skin="continueReadingBookAllNewDelivery" title1="15" author1="62" date1="57" title2="32" author2="70" date2="47" active="false" top="42" height="90" left="75" right="134" align="right" variable="NOTIFICATION_LOGO" continueAuthor="NOTIFICATION_PUBLICATION_DATE" continueDate=""/>
+			
+			<!--kbookLabel2Line skin="continueReadingTitle2up" active="false" top="38" height="70" width="226" right="150" align="right" variable="NOTIFICATION_LOGO"/-->
+			<!--kbookLabel skin="continueReadingAuthor2up" active="false" top="103" height="30" left="33" right="150" align="right" variable="NOTIFICATION_PUBLICATION_DATE"/-->
+			<!-- thumbnail -->
+			<kbookThumbnailImage skin="kbookHomeThumbnail" top="16" right="10" width="89" height="116" href="x-id://notifiableThumbnailData" />
+			<kbookHotspot do="doGoToNotification" left="0" top="0" right="0" bottom="0" />
+		</group>
+		<fillBackground color="#646464" left="8" right="8" top="156" height="1"/>
+		<!-- Continue Reading -->
+		<group left="5" right="5" top="161" bottom="4">
+			<sprite skin="shortcutContinueButton" left="10" top="10" width="50" height="50" active="false"/>
+			<kbookLabel skin="title" active="false" left="71" right="0" top="8" height="30" textresource="STR_NODE_TITLE_CONTINUEREADINGBOOK"/>
+			<kbookLabel skin="comment" active="false" bottom="13" height="20" left="71" right="42" align="left" variable="CONTINUE_COMMENT"/>
+			<kbookHotspot do="doGoToContinueReading" left="0" top="0" right="0" bottom="0" />
+		</group>
+	</group>
+</document>

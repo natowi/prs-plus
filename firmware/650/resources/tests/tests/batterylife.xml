@@ -1,0 +1,203 @@
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<behavior id="button">
+			<script on="draw" params="window, index, u, v, x, y, width, height">
+				this.drawText(this.text.value, v, x, y, width, height)
+			</script>
+			<script on="mouseUp" params="event">
+				if (this.hitBounds(event.x, event.y)) {
+					this.v = 1
+					this.bubble(this.func.value);
+				}
+			</script>
+		</behavior>
+	</assets>
+
+	<model>
+		<variable id="DURATION" value="0"/>
+		<code>
+			<function id="initialized">
+				//this test needs state retaintion
+				this.container.bubble("processed", 1000)
+			</function>
+			<function id="terminating">
+				this.container.bubble("processing", 1000)
+			</function>
+
+			<function id="doRoot">
+				this.container.bubble("finishTest")
+			</function>
+
+			<function id="startReading">
+				this.container.PANEL.show(false)
+				this.container.BOOK.show(true)
+				this.container.BOOK.BOOKS.focus(true)
+				this.container.BOOK.BOOKS.trigger("start")
+			</function>
+
+			<function id="startReadingAll">
+				this.container.PANEL.show(false)
+				this.container.BOOK.show(true)
+				this.container.BOOK.BOOKS.focus(true)
+				this.container.BOOK.BOOKS.trigger("startAll")
+			</function>
+		</code>
+	</model>
+
+	<group id="BOOK" left="0" right="0" top="0" bottom="0" visible="false">
+		<code>
+			<function id="terminating">
+				this.BOOKS.trigger("terminating")
+			</function>
+		</code>
+
+		<book id="PAGE" left="0" right="0" top="0" bottom="0" />
+
+		<sprite id="BOOKS" left="0" right="0" top="0" bottom="0" canFocus="true">
+			<behave like="fileList"/>
+			<property id="mimeText" value="application/"/>
+			<property id="counter" value="0"/>
+			<script on="initialized">
+				var autoRunView = this.container.container.container.container
+				this.folder.value = autoRunView.getVariable("DATA_FOLDER") + "books/"
+				this.trigger("initializeFileList")
+				
+				if (FileSystem.getFileInfo(this.folder.value + "counter")) {
+					FileSystem.deleteFile(this.folder.value + "counter")
+				}
+				autoRunView.setVariable("BATTERY_LIFE", "0")
+				
+				this.timer = null
+			</script>
+			<script on="terminating">
+				if (this.timer) {
+					this.timer.cancel()
+					this.timer.close()
+				}
+			</script>
+			<script on="doNext"><![CDATA[
+				this.bubble("processing", 1000)
+				var page = this.container.PAGE
+				var view = page.getNextView(page.getPage(), page.getPageOffset(), page.getPart())
+				if (view) {
+					trace("page:"+view.page+" offset:"+view.pageOffset+" part:"+view.part+"\n")
+					page.setPage(view.page, view.part)
+					page.setPageOffset(view.pageOffset)
+				}
+				else {
+					if (this.allFiles)
+						this.trigger("nextFile")
+					this.trigger("changeBook")
+				}
+				page.fitPage()
+				
+				if ((this.counter.value%100)==0) {
+					var stream = new Stream.File(this.folder.value + "counter", 1)
+					if (stream) {
+						stream.writeLine(this.counter.value)
+						stream.close()
+						
+						var autoRunView = this.container.container.container.container
+						autoRunView.setVariable("BATTERY_LIFE", this.counter.value)
+					}
+				}
+				this.counter.value++
+
+				this.bubble("processed", 1000)
+			]]></script>
+
+			<script on="doPrevious"><![CDATA[
+				this.bubble("processing", 1000)
+				var page = this.container.PAGE
+				var view = page.getPrevView(page.getPage(), page.getPageOffset(), page.getPart())
+				if (view) {
+					trace("page:"+view.page+" offset:"+view.pageOffset+" part:"+view.part+"\n")
+					page.setPage(view.page, view.part)
+					page.setPageOffset(view.pageOffset)
+				}
+				page.fitPage()
+				this.bubble("processed", 1000)
+			]]></script>
+
+			<script on="start"><![CDATA[
+				this.allFiles = false
+				this.trigger("changeBook")
+				this.trigger("startTimer")
+			]]></script>
+
+			<script on="startAll"><![CDATA[
+				this.allFiles = true
+				this.trigger("changeBook")
+				this.trigger("startTimer")
+			]]></script>
+
+			<script on="changeBook"><![CDATA[
+				var index = this.fileIndex.value
+				if (index != -1) {
+					var files = this.files.value
+					var file = "file://" + files[index]
+					var page = this.container.PAGE
+					page.setURI(file, FileSystem.getMIMEType(file))
+					trace(file + "\n")
+					trace("page:"+page.getPage()+" offset:"+page.getPageOffset()+" part:"+page.getPart()+"\n")
+				}
+			]]></script>
+
+			<script on="startTimer"><![CDATA[
+				var duration = this.getVariable("DURATION")
+				this.timer = new HardwareTimer()
+				this.timer.target = this
+				this.timer.func = this.trigger
+				this.timer.duration = duration
+				this.timer.onCallback = function () {
+					this.func.call(this.target, "doNext")
+					this.schedule(this.duration*1000)
+				}
+				this.timer.schedule(duration*1000)
+			]]></script>
+		</sprite>
+	</group>
+
+	<group id="PANEL" left="0" right="0" top="0" bottom="0">
+		<code>
+			<function id="initialized">
+				this.show(true)
+				this.focus(true)
+			</function>
+			<function id="doNext"><![CDATA[
+				var duration = this.getVariable("DURATION")
+				duration++
+				this.setVariable("DURATION", duration)
+			]]></function>
+			<function id="doPrevious"><![CDATA[
+				var duration = this.getVariable("DURATION")
+				duration--
+				if (duration < 0) {
+					duration = 0
+				}
+				this.setVariable("DURATION", duration)
+			]]></function>
+		</code>
+		<sprite id="BACKGROUND" left="0" right="0" top="0" bottom="0" canFocus="true">
+			<behave like="background"/>
+		</sprite>
+		<sprite id="ONE" left="100" top="100" width="200" height="50" skin="keySkin" skinType="horizontal">
+			<property id="text" value="ONE"/>
+			<behave like="button"/>
+			<property id="func" value="startReading"/>
+		</sprite>
+		<sprite id="ALL" left="300" top="100" width="200" height="50" skin="keySkin" skinType="horizontal">
+			<property id="text" value="ALL"/>
+			<behave like="button"/>
+			<property id="func" value="startReadingAll"/>
+		</sprite>
+		<sprite id="DURATION" left="100" top="50" width="50" height="50" skin="labelSkin">
+			<behave like="label"/>
+			<property id="variable" value="DURATION"/>
+		</sprite>
+		<sprite id="SECONDS" left="150" top="50" width="100" height="50" skin="labelSkin">
+			<behave like="label"/>
+			<property id="text" value="seconds"/>
+		</sprite>
+	</group>
+</document>

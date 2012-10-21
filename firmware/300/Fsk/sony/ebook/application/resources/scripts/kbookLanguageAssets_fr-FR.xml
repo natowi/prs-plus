@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="Continuer la lecture" />
+		<string id="STR_NODE_TITLE_BEGIN" value="Début" />
+		<string id="STR_NODE_TITLE_END" value="Fin" />
+		<string id="STR_NODE_TITLE_BOOKMARKS" value="Signets" />
+		<string id="STR_NODE_TITLE_TOC" value="Table des matières" />
+		<string id="STR_NODE_TITLE_HISTORY" value="Historique" />
+		<string id="STR_NODE_TITLE_INFO" value="Infos" />
+		<string id="STR_NODE_TITLE_UTILITIES" value="Utilitaires" />
+		<string id="STR_NODE_TITLE_REMOVEALLBOOKMARKS" value="Supprimer tous les signets" />
+		<string id="STR_NODE_TITLE_CLEARHISTORY" value="Effacer l'historique" />
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="Supprimer le livre" />
+		<string id="STR_NODE_TITLE_CONTINUEREADING" value="Continuer la lecture" />
+		<string id="STR_NODE_TITLE_BOOKSBYTITLE" value="Livres par titre" />
+		<string id="STR_NODE_TITLE_BOOKSBYAUTHOR" value="Livres par auteur" />
+		<string id="STR_NODE_TITLE_BOOKSBYDATE" value="Livres par date" />
+		<string id="STR_NODE_TITLE_TODAY" value="Aujourd'hui" />
+		<string id="STR_NODE_TITLE_EARLIERTHISWEEK" value="Plus tôt cette semaine" />
+		<string id="STR_NODE_TITLE_LASTWEEK" value="La semaine dernière" />
+		<string id="STR_NODE_TITLE_EARLIERTHISMONTH" value="Plus tôt ce mois-ci" />
+		<string id="STR_NODE_TITLE_LASTMONTH" value="Le mois dernier" />
+		<string id="STR_NODE_TITLE_EARLIERTHISQUARTER" value="Plus tôt ce trimestre" />
+		<string id="STR_NODE_TITLE_LASTQUARTER" value="Le trimestre dernier" />
+		<string id="STR_NODE_TITLE_EARLIERTHISYEAR" value="Plus tôt cette année" />
+		<string id="STR_NODE_TITLE_LASTYEAR" value="L'année dernière" />
+		<string id="STR_NODE_TITLE_OLDER" value="Plus ancien" />
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="Collections" />
+		<string id="STR_NODE_TITLE_ALLBOOKMARKS" value="Tous les signets" />
+		<string id="STR_NODE_TITLE_NOWPLAYING" value="Lecture en cours" />
+		<string id="STR_NODE_TITLE_AUDIO" value="Audio" />
+		<string id="STR_NODE_TITLE_PICTURE" value="Images" />
+		<string id="STR_NODE_TITLE_SETTINGS" value="Paramètres" />
+		<string id="STR_NODE_TITLE_ORIENTATION" value="Orientation" />
+		<string id="STR_NODE_COMMENT_HORIZONTAL" value="Horizontale" />
+		<string id="STR_NODE_COMMENT_VERTICAL" value="Verticale" />
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="Date et heure" />
+		<string id="STR_NODE_TITLE_YEAR" value="Année" />
+		<string id="STR_NODE_TITLE_MONTH" value="Mois" />
+		<string id="STR_NODE_TITLE_DATE" value="Jour" />
+		<string id="STR_NODE_TITLE_HOUR" value="Heure" />
+		<string id="STR_NODE_TITLE_MINUTE" value="Minute" />
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="Verrouillage de l'appareil" />
+		<string id="STR_NODE_TITLE_ENTERCODE" value="Entrez le code" />
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="Diaporama" />
+		<string id="STR_NODE_TITLE_TURN" value="Activer" />
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="Intervalle" />
+		<string id="STR_NODE_TITLE_SLEEPMODE" value="Mode veille" />
+		<string id="STR_NODE_TITLE_ADBANCEDSETTINGS" value="Paramètres avancés" />
+		<string id="STR_NODE_TITLE_FORMATINTERNALMEMORY" value="Formater la mémoire interne" />
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="Arrêt de l'appareil" />
+		<string id="STR_NODE_TITLE_ABOUT" value="A propos" />
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="Rétablir par défaut" />
+		<string id="STR_NODE_TITLE_CODE" value="Code" />
+		<string id="#STR_NODE_TITLE_AUTORUN" value="Exécution automatique" />
+		<string id="#STR_NODE_TITLE_HARDRESET" value="Réinitialisation" />
+		<string id="STR_COUNTER_BOOKMARK_N" value=" signets" />
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 signet" />
+		<string id="STR_COUNTER_BOOKMARK_0" value="Aucun signet" />
+		<string id="STR_COUNTER_ITEM_N" value=" éléments" />
+		<string id="STR_COUNTER_ITEM_1" value="1 élément" />
+		<string id="STR_COUNTER_ITEM_0" value="Aucun élément" />
+		<string id="STR_COUNTER_PAGE_N" value=" pages" />
+		<string id="STR_COUNTER_PAGE_1" value="1 page" />
+		<string id="STR_COUNTER_PAGE_0" value="Aucune page" />
+		<string id="STR_COUNTER_UTILITIES_N" value=" utilitaires" />
+		<string id="STR_COUNTER_UTILITIES_1" value="1 utilitaire" />
+		<string id="STR_COUNTER_UTILITIES_0" value="Aucun utilitaire" />
+		<string id="STR_COUNTER_BOOK_N" value=" livres" />
+		<string id="STR_COUNTER_BOOK_1" value="1 livre" />
+		<string id="STR_COUNTER_BOOK_0" value="Aucun livre" />
+		<string id="STR_COUNTER_COLLECTION_N" value=" collections" />
+		<string id="STR_COUNTER_COLLECTION_1" value="1 collection" />
+		<string id="STR_COUNTER_COLLECTION_0" value="Aucune collection" />
+		<string id="STR_COUNTER_SONG_N" value=" chansons" />
+		<string id="STR_COUNTER_SONG_1" value="1 chanson" />
+		<string id="STR_COUNTER_SONG_0" value="Aucune chanson" />
+		<string id="STR_COUNTER_PICTURE_N" value=" images" />
+		<string id="STR_COUNTER_PICTURE_1" value="1 image" />
+		<string id="STR_COUNTER_PICTURE_0" value="Aucune image" />
+		<string id="STR_COUNTER_SETTING_N" value=" paramètres" />
+		<string id="STR_COUNTER_SETTING_1" value="1 paramètre" />
+		<string id="STR_COUNTER_SETTING_0" value="0 paramètre" />
+		<string id="STR_UI_BUTTON_OK" value="OK" />
+		<string id="STR_UI_BUTTON_On" value="Activé" />
+		<string id="STR_UI_BUTTON_Off" value="Désactivé" />
+		<string id="STR_UI_BUTTON_ABLE" value="Oui" />
+		<string id="STR_UI_BUTTON_DISABLE" value="Non" />
+		<string id="STR_UI_UNITNAME_SECONDS" value="secondes" />
+		<string id="STR_UI_UNITNAME_SIZEKB" value="Ko" />
+		<string id="STR_UI_UNITNAME_SIZEMB" value="Mo" />
+		<string id="STR_UI_UNITNAME_SIZEGB" value="Go" />
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
+		<string id="STR_UI_DELIMITER_POINT" value="," />
+		<string id="STR_UI_PARTS_PART" value="Partie " />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Page " />
+		<string id="STR_UI_PARTS_OF" value=" de " />
+		<string id="STR_UI_PARTS_UNKNOWN" value="?" />
+		<string id="STR_UI_PARTS_VERSION" value="Version : " />
+		<string id="STR_UI_PARTS_DEVICE" value="Appareil : " />
+		<string id="STR_UI_GOTOPAGE" value="PAGE" />
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="Page non valide !" />
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="Page protégée !" />
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="Erreur sur la page !" />
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="Format non valide !" />
+		<string id="STR_UI_MESSAGE_FORMATTING" value="Formatage…" />
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="Limité" />
+		<string id="STR_UI_MESSAGE_DRMFULL" value="Complet, consultable" />
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="Carte mémoire" />
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="Mémoire interne" />
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="Expiré" />
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="Aujourd'hui" />
+		<string id="STR_UI_MESSAGE_FORMATTINGINTERNALMEMORY" value="Formatage de la mémoire…" />
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="Arrêt en cours…" />
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDYES" value="Autorisé pour la Boutique eBook" />
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDNO" value="Non autorisé pour la Boutique eBook" />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDYES" value="Cet appareil est autorisé pour le contenu protégé par DRM Adobe" />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="Cet appareil n'est pas autorisé pour le contenu protégé par DRM Adobe" />
+		<string id="STR_UI_MESSAGE_RESTOREDEFAULTSOPERATION" value="Appuyez sur Signet pour rétablir les paramètres par défaut." />
+		<string id="STR_UI_MESSAGE_FORMATOPERATION" value="Appuyez sur Signet pour formater la mémoire interne." />
+		<string id="STR_UI_MESSAGE_REMOVEALLBOOKMARKSOPERATION" value="Press MARK to remove all bookmarks. (Translate!)"/>
+		<string id="STR_UI_MESSAGE_CLEARHISTORYOPERATION" value="Press MARK to clear history. (Translate!)"/>
+		<string id="STR_UI_MESSAGE_DELETEBOOKOPERATION" value="Appuyez sur Signet pour supprimer le livre." />
+		<string id="STR_UI_MESSAGE_SHUTDOWNOPERATION" value="Appuyez sur Signet pour arrêter l'appareil" />
+		<string id="STR_UI_MESSAGE_HARDRESET" value="Réinitialiser tout" />
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="Voulez-vous SUPPRIMER tout le contenu, rétablir tous les paramètres d'origine et effacer l'état d'autorisation DRM ?&#xA;&#xA;Oui - Appuyez sur 5&#xA;Non - Appuyez sur MENU" />
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="Batterie faible !" />
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="Aucune batterie !" />
+		<string id="STR_UI_MESSAGE_LOADING" value="Chargement…" />
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 de 1" />
+		<string id="STR_UI_MESSAGE_CANNOTDELETEBOOK" value="Impossible de supprimer le livre. &#xA;Appuyez sur MENU pour revenir en arrière." />
+		<string id="STR_UI_FORMAT_RTF" value="Rich Text Format" />
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF" />
+		<string id="STR_UI_FORMAT_EPUB" value="Document EPUB" />
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB Book" />
+		<string id="STR_UI_FORMAT_TXT" value="Texte ordinaire" />
+		<string id="STR_UI_TITLESORTLABEL1" value="0-9" />
+		<string id="STR_UI_TITLESORTLABEL2" value="A B C" />
+		<string id="STR_UI_TITLESORTLABEL3" value="D E F" />
+		<string id="STR_UI_TITLESORTLABEL4" value="G H I" />
+		<string id="STR_UI_TITLESORTLABEL5" value="J K L" />
+		<string id="STR_UI_TITLESORTLABEL6" value="M N O" />
+		<string id="STR_UI_TITLESORTLABEL7" value="P Q R S" />
+		<string id="STR_UI_TITLESORTLABEL8" value="T U V" />
+		<string id="STR_UI_TITLESORTLABEL9" value="W X Y Z" />
+		<string id="STR_UI_TITLESORTLABEL10" value="Autre" />
+		<string id="STR_VAL_TITLESORTCRITERION1" value="a" />
+		<string id="STR_VAL_TITLESORTCRITERION2" value="d" />
+		<string id="STR_VAL_TITLESORTCRITERION3" value="g" />
+		<string id="STR_VAL_TITLESORTCRITERION4" value="j" />
+		<string id="STR_VAL_TITLESORTCRITERION5" value="m" />
+		<string id="STR_VAL_TITLESORTCRITERION6" value="p" />
+		<string id="STR_VAL_TITLESORTCRITERION7" value="t" />
+		<string id="STR_VAL_TITLESORTCRITERION8" value="w" />
+		<string id="STR_VAL_TITLESORTCRITERION9" value="&#x1d22;" />
+		<string id="STR_UI_AUTHORSORTLABEL1" value="0-9" />
+		<string id="STR_UI_AUTHORSORTLABEL2" value="A B C" />
+		<string id="STR_UI_AUTHORSORTLABEL3" value="D E F" />
+		<string id="STR_UI_AUTHORSORTLABEL4" value="G H I" />
+		<string id="STR_UI_AUTHORSORTLABEL5" value="J K L" />
+		<string id="STR_UI_AUTHORSORTLABEL6" value="M N O" />
+		<string id="STR_UI_AUTHORSORTLABEL7" value="P Q R S" />
+		<string id="STR_UI_AUTHORSORTLABEL8" value="T U V" />
+		<string id="STR_UI_AUTHORSORTLABEL9" value="W X Y Z" />
+		<string id="STR_UI_AUTHORSORTLABEL10" value="Autre" />
+		<string id="STR_VAL_AUTHORSORTCRITERION1" value="a" />
+		<string id="STR_VAL_AUTHORSORTCRITERION2" value="d" />
+		<string id="STR_VAL_AUTHORSORTCRITERION3" value="g" />
+		<string id="STR_VAL_AUTHORSORTCRITERION4" value="j" />
+		<string id="STR_VAL_AUTHORSORTCRITERION5" value="m" />
+		<string id="STR_VAL_AUTHORSORTCRITERION6" value="p" />
+		<string id="STR_VAL_AUTHORSORTCRITERION7" value="t" />
+		<string id="STR_VAL_AUTHORSORTCRITERION8" value="w" />
+		<string id="STR_VAL_AUTHORSORTCRITERION9" value="&#x1d22;" />
+		<string id="STR_FORMAT_DATE" value="DD/MM/YY" />
+		<string id="STR_UI_MESSAGE_USBDONOT" value="Ne pas déconnecter" />
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="USB connecté" />
+		<string id="STR_UI_MESSAGE_LOCKED" value="Appareil verrouillé" />
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,&apos;,&quot;" />
+		<string id="STR_SORT_IGNOREARTICLES" value="l',la ,le ,les ,un ,une " />
+		<string id="infoTitles" value="Couverture,Titre,Auteur,Editeur,Catégorie,ID eBook,Type,Date,Taille,Emplacement,Fichier,Droits,Expire" />
+		<string id="STR_UPDATE_SUCCESS" value="Mise à jour du micrtologiciel en cours…" />
+		<string id="STR_UPDATE_FAIL" value="La mise à jour du micrologiciel est incomplète. Réesayez." />
+	</assets>
+</document>

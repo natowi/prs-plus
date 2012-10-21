@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<model>
+		<variable id="ERROR_MSG" value=""/>
+		<variable id="VAR_UPDATE_BTN" value="false"/>
+		<variable id="STORE_HOME_ERROR" value=""/>
+		<code>
+			<function id="initialized" params="">
+				this.container.bubble("doStoreHomeInitialized",this)
+				this.changed()//refered this code from Fskin.model
+			</function>
+		</code>
+	</model>
+	<code>
+		<function id="variableChanged" params="id, value"><![CDATA[
+			arguments.callee.grammar.call(this, id, value);
+			if(id=="VAR_SHOW_RECOMMEND"){
+				this.RECOMMEND.show(value)
+				this.STORE.show(!value)
+				return;
+			}
+			if(id=="STORE_HOME_ERROR" && value !=""){
+				if(kbook.model.DEMO_MODE){
+					this.container.bubble("doDemoSlideShow",this)
+				}else{
+					switch(value){
+					case "prohibited":
+						var text = "fskin:/l/strings/STR_UI_MESSAGE_BROWSE_ERROR_1".idToString()
+						this.setVariable("ERROR_MSG", text)
+						this.setVariable("VAR_UPDATE_BTN","retry")
+						break
+					case "impossible":
+						var text = "fskin:/l/strings/STR_UI_MESSAGE_STORE_NETWORK_OFF".idToString()
+						this.setVariable("ERROR_MSG", text)
+						this.setVariable("VAR_UPDATE_BTN","setting")
+						break
+					case "unavailable":
+					default:
+						var text = "fskin:/l/strings/STR_UI_MESSAGE_BROWSE_ERROR_2".idToString()
+						this.setVariable("ERROR_MSG", text)
+						this.setVariable("VAR_UPDATE_BTN","retry")
+						break
+					}
+				}
+			}else if(id=="VAR_UPDATE_BTN"){
+				if(value=="retry"){
+					this.STORE.RETRY.show(true)
+				}else if(value=="setting"){
+					this.STORE.RETRY.show(false)
+				}else{
+					var text = "fskin:/l/strings/STR_HOME_MESSAGE_ACCESSING".idToString()
+					this.setVariable("ERROR_MSG", text)
+					this.STORE.RETRY.show(false)
+				}
+			}
+		]]></function>
+		<function id="canRetryBtn">
+			var btnState = (this.getVariable("VAR_UPDATE_BTN")=="retry")?true:false
+			return btnState
+		</function>
+		<function id="doRetryBtn">
+			this.setVariable("VAR_UPDATE_BTN","off")
+			this.bubble("doBrowserStop")
+			this.bubble("doNavigateTo")
+		</function>
+		<function id="doSettingBtn">
+			this.setVariable("VAR_UPDATE_BTN","off")
+			this.bubble("doGoToWlanSetting")
+		</function>
+		<function id="doSetup">
+			this.bubble("doGoToWlanSetting")
+		</function>
+		<function id="doRemind">
+			this.bubble("doNavigateTo")
+		</function>
+		<function id="doNeverShow">
+			this.bubble("doNeverShowRecommend")
+			this.bubble("doNavigateTo")
+		</function>
+	</code>
+	<group id="RECOMMEND" left="0" right="75" top="0" bottom="0" visible="false">
+		<fillBackground color="white" left="0" right="0" top="0" bottom="0"/>
+		<kbookText skin="wifiRecommendTitleText" active="false" top="25" left="70" right="70" height="45" value="fskin:/l/strings/STR_UI_MESSAGE_WIFI_SETUP"/>
+		<kbookText skin="storeHomeLeftText" active="false" top="85" left="70" right="70" height="267" value="fskin:/l/strings/STR_UI_MESSAGE_WIFI_SETUP_EXPLANATIONS"/>
+		<button2icon id="SETUP"  skin="keyWStore" top="362" width="454" height="50" text="fskin:/l/strings/STR_UI_BUTTON_CONTINUE_WIFI_SETUP" bw="4" do="doSetup" active="true"/>
+		<button2icon id="REMIND" skin="keyWStore" top="412" width="454" height="50" text="fskin:/l/strings/STR_UI_BUTTON_REMIND_LATER" bw="4" do="doRemind" active="true"/>
+		<button2icon id="NEVER"  skin="keyWStore" top="462" width="454" height="50" text="fskin:/l/strings/STR_UI_BUTTON_NEVER_SHOW" bw="4" do="doNeverShow" active="true"/>
+		<kbookText skin="storeHomeSmallText" active="false" top="526" left="70" right="70" height="100" value="fskin:/l/strings/STR_UI_MESSAGE_WIFI_SETUP_NOTE"/>
+	</group>
+	<group id="STORE" left="0" right="75" top="0" bottom="0">
+		<fillBackground color="white" left="0" right="0" top="0" bottom="0"/>
+		<sprite skin="storeHome" top="190" left="275" width="400" height="100" active="false"/> 
+		<kbookText skin="storeHomeText" active="false" left="137" right="137" top="320" height="200" variable="ERROR_MSG" />
+		<button2icon id="RETRY" skin="keyWStore" left="361" top="479" width="225" height="50" text="fskin:/l/strings/STR_UI_BUTTON_RETRY" bw="4" do="doRetryBtn" can="canRetryBtn" active="true" variableUpdate="VAR_UPDATE_BTN"/>
+	</group>
+</document>

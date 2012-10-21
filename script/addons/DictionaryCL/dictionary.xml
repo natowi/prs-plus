@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="DOCUMENT" >
+	<assets>		
+		<style font="Courier10 BT">
+			<style id="sometext" size="20" color="#000000"/>
+		</style>
+		<skin id="sometext" styles="sometext"/>
+		<style font="Courier10 BT">
+			<style id="sometext" size="40" style="bold" color="#000000"/>
+			<style id="digits" size="28" style="bold" color="#000000"/>
+		</style>
+		<style font="Swis721 BT">
+			<style id="textkl" size="28" style="bold" color="#000000"/>
+			<style id="textks" size="20" style="bold" color="#000000" halign="left"/>
+			<style id="statusLine" size="22" style="" color="#000000"/>
+		</style>
+
+		<style font="Swis721 BT">
+			<style id="textbtn" size="40" style="bold" color="#FFFFFF"/>
+		</style>
+		<texture href="dictSkins/labels.png">
+			<!--cutout id="gCursor" x="0" y="80" width="44" height="44"/-->
+			<cutout id="l_Cursor" x="317" y="11" width="48" height="75"/>
+			<cutout id="hGlass" x="249" y="168" width="84" height="84"/>
+			<cutout id="btn-l" x="0" y="0" width="5" height="70"/>
+			<cutout id="btn-c" x="5" y="1" width="10" height="70"/>
+			<cutout id="btn-r" x="45" y="1" width="5" height="70"/>
+			
+			<cutout id="panel_tl" x="0" y="0" width="5" height="5" /> 
+			<cutout id="panel_tm" x="5" y="0" width="40" height="5" /> 
+			<cutout id="panel_tr" x="45" y="0" width="5" height="5" /> 						
+			<cutout id="panel_cl" x="0" y="5" width="5" height="60" /> 
+			<cutout id="panel_cm" x="5" y="5" width="40" height="60" /> 
+			<cutout id="panel_cr" x="45" y="5" width="5" height="60" /> 			
+			<cutout id="panel_bl" x="0" y="67" width="5" height="5" /> 
+			<cutout id="panel_bm" x="5" y="67" width="40" height="5" /> 
+			<cutout id="panel_br" x="45" y="67" width="5" height="5" /> 
+		</texture>
+
+		<texture href="dictSkins/skinMain505.png">
+			<cutout id="dizioHeader-l" x="350" y="0" width="70" height="65"/>
+			<cutout id="dizioHeader-c" x="421" y="0" width="70" height="65"/>
+			<cutout id="dizioHeader-r" x="492" y="0" width="70" height="65"/>
+			<cutout id="dizioInfo-l" x="0" y="66" width="1" height="702"/>
+			<cutout id="dizioInfo-c" x="0" y="66" width="598" height="702"/>
+			<cutout id="dizioInfo-r" x="0" y="66" width="1" height="702"/>
+			<cutout id="dizioStatus-l" x="0" y="766" width="600" height="33"/>
+			<cutout id="dizioStatus-c" x="599" y="666" width="0" height="0"/>
+			<cutout id="dizioStatus-r" x="600" y="666" width="0" height="0"/>					
+		</texture>
+
+		<texture href="dictSkins/Empty505.png">
+			<cutout id="xSkin-lt" x="0" y="0" width="9" height="9" lines="10"/>
+			<cutout id="xSkin-ct" x="0" y="0" width="30" height="9" lines="10"/>
+			<cutout id="xSkin-rt" x="0" y="0" width="9" height="9" lines="10"/>
+			<cutout id="xSkin-lm" x="0" y="0" width="9" height="30" lines="10"/>
+			<cutout id="xSkin-cm" x="0" y="0" width="30" height="30" lines="10"/>
+			<cutout id="xSkin-rm" x="0" y="0" width="9" height="30" lines="10"/>
+			<cutout id="xSkin-lb" x="0" y="0" width="9" height="9" lines="10"/>
+			<cutout id="xSkin-cb" x="0" y="0" width="30" height="9" lines="10"/>
+			<cutout id="xSkin-rb" x="0" y="0" width="9" height="9" lines="10"/>
+		</texture>
+
+		<skin id="sometext" styles="sometext"/>
+		<skin id="textkl" styles="textkl"/>
+		<skin id="textks" styles="textks"/>
+		<skin id="statusLine" styles="statusLine"/>
+		<skin id="digits" styles="digits"/>
+		<skin id="lineCursor" cutouts="l_Cursor"/>
+		<!--skin id="gridCursor" cutouts="gCursor"/-->
+		<skin id="hourGlass" cutouts="hGlass"/>
+		<skin id="dizioSkin" 
+		    cutouts="dizioHeader-l,dizioHeader-c,dizioHeader-r,dizioInfo-l,dizioInfo-c,dizioInfo-r,dizioStatus-l,dizioStatus-c,dizioStatus-r"/>
+
+		<skin id="button" 
+			cutouts = "btn-l,btn-c,btn-r"
+			styles = "textbtn,textbtn,textbtn,textbtn"/>
+
+		<skin id="panel" cutouts="panel_tl,panel_tm,panel_tr,panel_cl,panel_cm,panel_cr,panel_bl,panel_bm,panel_bl"/>
+
+		<skin id="xSkin"
+				cutouts="xSkin-lt,xSkin-ct,xSkin-rt,xSkin-lm,xSkin-cm,xSkin-rm,xSkin-lb,xSkin-cb,xSkin-rb"
+				styles="textks,textks,textks,textks"/>
+	</assets>
+<code>
+	<function id="trace" params="message">
+		try { 
+			//kbook.autoRunRoot.dictionaryParams.log.trace(message);
+			this.bubble('tracelog', message);
+		} catch (ignore) {
+		}
+	</function>
+
+	<function id="runJs" params="path,target">
+		try {
+			var f = new Stream.File(path);
+			//var fn = new Function("target,params", f.toString(), path, 1);
+			//fn(target, kbook.autoRunRoot.dictionaryParams);
+			var fn = new Function("target", f.toString());
+			fn(target);
+			delete fn;
+		} catch(e) {
+			this.trace("error running script "+path+": "+e.toString()+"\n");
+		}
+	</function>
+	
+	<function id="loadScript">
+		try {
+			if (!this.hasOwnProperty('_scriptLoaded')) {
+				this._scriptLoaded = false;
+			}
+			if (!this._scriptLoaded)  {
+				if(kbook.autoRunRoot.path==undefined){
+				var path = this.getBaseURI().slice(7); 	
+				kbook.model = this;	
+				}else{
+				 var path = kbook.autoRunRoot.path;
+				}
+				var index = path.lastIndexOf('/');
+				if (index > 0) {
+					path = path.substring(0, index + 1);
+				}
+				this.driveroot = path.substring(0,2);
+				var target = this.AUTORUN_GROUP.AUTORUN;
+				target.driveroot = this.driveroot;
+				this.runJs(path+"dictionary.js",target);
+			}
+			this._scriptLoaded = true;
+		} catch (e) {
+			this.trace("Error in loadScript: " + e);
+		}
+	</function>
+
+    <function id="modelChanged">
+		 try {
+		 arguments.callee.grammar.call(this);
+		 var state = this.getVariable("STATE");
+		 var target;
+		 if (this.state != state) {
+		 	this.focus(true)
+			 this.AUTORUN_GROUP.show(false)
+			 switch(state) {
+				 case "AUTORUN":
+					 this.loadScript();
+					 this.AUTORUN_GROUP.show(true);
+					 target = this.AUTORUN_GROUP.AUTORUN;
+					 break;
+				 }
+			 this.state = state;
+			 target.init();
+			 if (target.isEnabled())
+			 target.focus(true)
+		 	}
+		 } catch (e) {
+		 this.trace("Error in modelChanged: " + e);
+		 }
+	 </function>
+</code>
+
+<clock/>
+<group id="AUTORUN_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+	<panel skin="dizioSkin" left="0" right="0" top="0" bottom="0"/>
+	<sprite skin="hard-reset" left="0" width="70" top="0" height="70" active="false"/>
+	<label skin="title" left="70" right="0" top="0" height="70" align="left" text="DictioLauncher"/>
+	<group id="AUTORUN" width="600" top="70" bottom="38">
+        <code>
+        	<function id="doDigit" params="part">
+			<![CDATA[
+			this['pressDigit'](part.key)
+			]]>			
+		</function>
+    
+		<function id="doMenu">
+			this.exitApp();
+		</function>
+		<function id="doCenter">
+			this.centerKey();	
+		</function>
+		<function id="doMark">
+		  this.clearInput();
+		  this.clearLines();
+		</function>
+		<function id="doNext">
+		 	this.arrowKey("right");
+		</function>
+		<function id="doPrevious">
+		  	this.arrowKey("left");
+		</function>
+		<function id="doLast">
+		 	this.arrowKey("left");
+		</function>
+		<function id="doFirst">
+		  	this.arrowKey("right");
+		</function>
+		<function id="doLeft">
+			this.moveCursor("left");
+		</function>
+		<function id="doRight">
+			this.moveCursor("right");
+		</function>
+		<function id="doUp">
+			this.arrowKey("up");
+		</function>
+		<function id="doDown">
+			this.arrowKey("down");
+		</function>
+		<function id="doSize">
+			this.changeSize();
+		</function>
+		  </code>
+
+		<label id="inputLine" skin="sometext" left="30" right="150" top="75" height="60" align="left" text=""/>
+
+		<text id="textlines" skin="xSkin" left="20" right="157" top="208" height="393" align="left" active="false" value=""/>
+		<!--<scrollbar id="myTest" scroller="textlines" autoHide="false" right="157" top="207" height="395"/>-->
+		<!--<text id="log" skin="xSkin" left="344" right="157" top="208" height="393" align="left" active="false" value="log"/>-->
+		<label id="statusLine" skin="statusLine" left="15" right="160" top="597" height="40" align="left" text=""/>
+
+		<!--sprite skin="gridCursor" id="gridCursor"  left="-100" width="44" top="15" height="44" u="0" active="false" canFocus="true"/-->
+		<sprite skin="lineCursor" id="lineCursor"  left="505" width="48" top="627" height="75" active="false" canFocus="true"/>
+		<sprite skin="hourGlass" id="hourGlass"  left="230" width="84" top="300" height="84" active="false" canFocus="false" visible="false"/>
+
+		<!--group id="PopUp" left="480" width="100" top="0" bottom="0" visible="false"-->
+			<panel id="PopUp" skin="panel" left="480" width="100" top="0" bottom="0" visible="false">
+				<button id="key1" top=  "5" width="50" hight="40" active="true" />
+				<button id="key2" top= "75" width="50" hight="40" active="true" />
+				<button id="key3" top="145" width="50" hight="40" active="true" />
+				<button id="key4" top="215" width="50" hight="40" active="true" />
+				<button id="key5" top="285" width="50" hight="40" active="true" />												
+				<button id="key6" top="355" width="50" hight="40" active="true" />				
+				<button id="key7" top="425" width="50" hight="40" active="true" />				
+				<button id="key8" top="495" width="50" hight="40" active="true" />				
+			</panel>
+	    <!--/group-->
+    </group>
+</group>
+</document>
+

@@ -1,0 +1,93 @@
+<deviceConfig xmlns="http://www.sony.com/xmlns/product/prs/device/1">
+	<pm pmPath="/dev/npm"/>
+	<watchdog/>
+	<nand/>
+	<register version="2"/>
+	<rtc rtcPath="/dev/rtc0" timeZonePath="/opt0/preferences/tz" clockPath="/opt0/preferences/clock">
+		<initial year="2010" month="1" day="1" hour="0" minute="0" second="0"/>
+		<autoStandby time="600"/>
+		<autoShutdown time="259200" lowCaseTime="3600"/>
+	</rtc>
+	<log devicePath="/dev/ebklog" bufferSize="1048576"/>
+	<util orgFolder="/opt/sony/ebook/Preload/Data/" dstFolder="/" checkedPath=""/>
+	<usb vbusPath="/proc/target_vbus"/>
+	<subcpu subcpuPath="/dev/subcpu">
+		<system exitCodeFile="/tmp/exitcode"/>
+		<key>
+			<map>
+				<item code="0x1" event="kHome" hold="kHome-hold" state="kHomeState" type="" property=""/>
+				<item code="0x2" event="kNextCustom" hold="kNextCustom" state="kNextState" type="custom" property=""/>
+				<item code="0x3" event="kPreviousCustom" hold="kPreviousCustom" state="kPreviousState" type="custom" property=""/>
+				<item code="0xb" event="kVolumePlus" hold="kVolumePlus-hold" state="kVolumePlusState" type="" property=""/>
+				<item code="0xc" event="kVolumeMinus" hold="kVolumeMinus-hold" state="kVolumeMinusState" type="" property=""/>
+				<item code="0xd" event="kOption" hold="kOption-hold" state="kOptionState" type="" property=""/>
+				<item code="0xe" event="kSize" hold="kSize-hold" state="kSizeState" type="" property=""/>
+				<item code="0x1e" event="kWANSwitch" hold="kWANSwitch" state="kWANSwitch" type="" property="kFskMediaPropertyWireless"/>
+				<item code="0x1f" event="kWiFiSwitch" hold="kWiFiSwitch" state="kWiFiSwitch" type="" property="kFskMediaPropertyWireless"/>
+				<item code="0x20" event="kPowerSwitch" hold="kPowerSwitch" state="kPowerSwitchState" type="custom" property=""/>
+				<item code="0x21" event="3" hold="kHold3" state="" type="string" property=""/>
+				<item code="0x22" event="4" hold="kHold4" state="" type="string" property=""/>
+				<item code="0x23" event="5" hold="kHold5" state="" type="string" property=""/>
+				<item code="0x24" event="6" hold="kHold6" state="" type="string" property=""/>
+				<item code="0x25" event="7" hold="kHold7" state="" type="string" property=""/>
+				<item code="0x26" event="8" hold="kHold8" state="" type="string" property=""/>
+				<item code="0x27" event="9" hold="kHold9" state="" type="string" property=""/>
+			</map>
+		</key>
+		<touchpanel width="600" height="1024" sampling="30" breakThreshold="1" hysteresis="3" maxFilter="1024" junk="0" pressureFilter="2.0" orientation="1"><!-- junk="0" is for IR touch panel -->
+			<default>
+				<calibrationPoint>
+					<raw x="400" y="3411"/>
+					<screen x="100" y="100"/>
+				</calibrationPoint>
+				<calibrationPoint>
+					<raw x="4003" y="677"/>
+					<screen x="500" y="1000"/>
+				</calibrationPoint>
+			</default>
+			<activeArea x="0" y="0" width="600" height="1024"/>
+		</touchpanel>
+		<led/>
+		<battery version="2">
+			<level min="0" max="31" logicalMin="0" logicalMax="100" threshold="13">
+				<lessOrEqual logical="74" value="24"/>
+				<lessOrEqual logical="50" value="19"/>
+				<lessOrEqual logical="25" value="17"/>
+				<lessOrEqual logical="1" value="13"/>
+				<lessOrEqual logical="0" value="9"/>
+			</level>
+		</battery>
+		<powersource/>
+	</subcpu>
+	<framebuffer width="600" height="1024" depth="8" orientation="3" devicePath="/dev/fb0" checkPath="/proc/e-ink" firstFlash="true" version="3"/>
+	<audio>
+		<level min="0" max="50" logicalMin="0" logicalMax="256">
+			<lessOrEqual logical="255" value="45"/>
+			<lessOrEqual logical="242" value="43"/>
+			<lessOrEqual logical="229" value="41"/>
+			<lessOrEqual logical="216" value="39"/>
+			<lessOrEqual logical="203" value="37"/>
+			<lessOrEqual logical="191" value="35"/>
+			<lessOrEqual logical="178" value="33"/>
+			<lessOrEqual logical="165" value="31"/>
+			<lessOrEqual logical="152" value="29"/>
+			<lessOrEqual logical="139" value="27"/>
+			<lessOrEqual logical="127" value="25"/>
+			<lessOrEqual logical="114" value="23"/>
+			<lessOrEqual logical="101" value="21"/>
+			<lessOrEqual logical="88" value="19"/>
+			<lessOrEqual logical="75" value="17"/>
+			<lessOrEqual logical="64" value="15"/>
+			<lessOrEqual logical="50" value="13"/>
+			<lessOrEqual logical="37" value="10"/>
+			<lessOrEqual logical="24" value="4"/>
+			<lessOrEqual logical="11" value="0"/>
+		</level>
+	</audio>
+	<memorycard/>
+	<wirelessnet/>
+	<error/>
+	<browser/>
+	<application/>
+</deviceConfig>
+

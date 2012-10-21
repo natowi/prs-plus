@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" 
+  title="kBook" width="600" height="800" 
+		minWidth="600" minHeight="600" 
+		maxWidth="800" maxHeight="800">
+	<ebook xmlns="http://www.kinoma.com/fskin/1">
+		<code>
+			<function id="doProcessing" params="value">
+				this.processing(value);
+			</function>
+			<function id="doProcessed" params="value">
+				this.processed(value);
+			</function>
+			<function id="doRotate">
+				this.rotate();
+			</function>
+			<function id="doTest" params="value">
+				this.test(value);
+			</function>
+			<function id="doUpdateWaveform" params="value">
+				this.updateWaveform(value);
+			</function>
+			<function id="doTestHardReset">
+				return ebook.testHardReset();
+			</function>
+			<function id="doPerformHardReset">
+				ebookConfig.FactoryDefault(0);
+			</function>
+		</code>
+		<parts>
+			<number key="kDate" poke="setDateTime" id="DATE_TIME"/>
+			<integer key="kBattery" peek="getBattery" id="BATTERY"/>
+			<string key="kDeviceID" peek="getDeviceID" id="DEVICE_ID"/>
+			<string key="kFirmwareVersion" peek="getFirmwareVersion" id="FIRMWARE_VERSION"/>
+			<boolean key="kOrientation" peek="getOrientation" id="ORIENTATION"/>
+			<boolean key="kPower" peek="getPower" id="POWER"/>
+			<boolean key="kStoreStatus" peek="getStoreStatus" id="STORE_STATUS"/>
+			<boolean key="kAdobeStatus" peek="getAdobeStatus" id="ADOBE_STATUS"/>
+      			<string key="kWaveformVersion" peek="getWaveformVersion" id="WAVEFORM_VERSION"/>
+			
+			<boolean key="kResume" do="doResume"/>
+			<boolean key="kSleep" do="doSleep"/>
+			<boolean key="kSuspend" do="doSuspend"/>
+			<boolean key="kTestMode" do="doTestMode"/>
+			<boolean key="kWakeup" do="doWakeup"/>
+	
+			<boolean key="0x00" do="doQuit"/>
+	
+			<boolean key="0x21" do="doMenu"/>
+			<boolean key="0x21-hold" do="doRoot"/>
+			
+			<boolean key="0x27" do="doCenter"/>
+			<boolean key="0x27-hold" do="doCenter"/>
+			<boolean key="kLeft" do="doLeft"/>
+			<boolean key="kRight" do="doRight"/>
+			<boolean key="kUp" do="doUp"/>
+			<boolean key="kDown" do="doDown"/>
+	
+			<boolean key="0x31" do="doPrevious"/>
+			<boolean key="0x31-hold" do="doFirst"/>
+			<boolean key="0x30" do="doNext"/>
+			<boolean key="0x30-hold" do="doLast"/>
+			
+			<boolean key="kPrevious" do="doPrevious"/>
+			<boolean key="kFirst" do="doFirst"/>
+			<boolean key="kNext" do="doNext"/>
+			<boolean key="kLast" do="doLast"/>
+			
+			<boolean key="0x42" do="doSize"/>
+			<boolean key="0x42-hold" do="doRotate"/>
+			
+			<boolean key="0x32" do="doMark"/>
+			<boolean key="0x32-hold" do="doMarkMenu"/>
+	
+			<string key="1" do="doDigit" />
+			<string key="2" do="doDigit" />
+			<string key="3" do="doDigit" />
+			<string key="4" do="doDigit" />
+			<string key="5" do="doDigit" />
+			<string key="6" do="doDigit" />
+			<string key="7" do="doDigit" />
+			<string key="8" do="doDigit" />
+			<string key="9" do="doDigit" />
+			<string key="0" do="doDigit" />
+
+			<string key="kHold1" do="doHold1"/>
+			<string key="kHold2" do="doHold2"/>
+			<string key="kHold3" do="doHold3"/>
+			<string key="kHold4" do="doHold4"/>
+			<string key="kHold5" do="doHold5"/>
+			<string key="kHold6" do="doHold6"/>
+			<string key="kHold7" do="doHold7"/>
+			<string key="kHold8" do="doHold8"/>
+			<string key="kHold9" do="doHold9"/>
+			<string key="kHold0" do="doHold0"/>
+			
+			<boolean key="0x41" do="doQuiet"/>
+			<boolean key="0x41-hold" do="doMute"/>
+			<boolean key="0x40" do="doLoud"/>
+			<boolean key="0x40-hold" do="doMute"/>
+		</parts>
+	</ebook>	
+	<code>
+		<function id="callScript" params="path">
+			if (FileSystem.getFileInfo(path)) {
+				var file = new Stream.File(path);
+				var code = file.toString();
+				file.close();
+				var f = prsp.compile("", code);				
+				f();
+				delete f;
+			}	
+		</function>
+		<function id="initialized">
+			USBDispatcher.doRegister(this.getWindow());
+			this.getDevice().doProcessed(100);
+			this.getDevice().enableBlueLED(true);
+			try {
+				if (FileSystem.getFileInfo(System.applyEnvironment('[prspSafeModeFile]')) === undefined) {
+					if (FileSystem.getFileInfo(System.applyEnvironment('[prspBetaStartupFile]'))) {
+						this.callScript(System.applyEnvironment('[prspBetaStartupFile]'));
+					} else {
+						this.callScript(System.applyEnvironment('[prspStartupFile]'));
+					}
+				}
+			} catch(ignore) {
+			}
+		</function>
+		<function id="terminating">
+			this.getDevice().resetOrientation();
+			this.getDevice().doProcessing(100);
+			USBDispatcher.doUnregister()
+		</function>
+	</code>
+	<view id="MAIN" href="scripts/main.xml" left="0" right="0" top="0" bottom="0"/>
+</document>

@@ -1,0 +1,137 @@
+<fsk xmlns="http://www.kinoma.com/Fsk/1">
+	<rootvm alloc="1376256,65536,126976,16384">
+		<environment>
+			<variable name="switcherPath" value="[applicationPath]/resources/"/>
+			<variable name="securityPath" value="[applicationPath]" /> 
+			<variable name="octopusPath" value="[applicationPath]" /> 
+			<variable name="keyPath" value="/opt0/mc/keys/" />
+			<variable name="octopusRoot" value="/opt0/mc/keys/f/" />
+			<variable name="registrationStatusPath" value="/opt0/mc/keys/Registration Status/" />
+			<variable name="adeptKeyPath" value="/opt0/adept/" />
+			<variable name="schemaPath" value="/opt0/schema/" />
+			<variable name="capabilitiesPath" value="[applicationPath]/resources/capabilities.xml"/>
+			<variable name="PRSVersion" value="1.0.01.08040"/>
+
+			<variable name="homePath" value="[applicationPath]/kbook/"/>
+			<variable name="dataPath" value="/Data/database/"/>
+			<variable name="mediaPath" value="/Data/"/>
+			<variable name="demoPath" value="/demo/"/>
+			<variable name="bbebFontPath" value="[applicationPath]../FONT/"/>
+			<variable name="bbebDictionaryRootFile" value="/opt1/dict/LIBRARY.MBF"/>
+			<variable name="bbebDictionaryContentIdUS" value="CDUS125D0000101Y"/>
+			<variable name="bbebDictionaryContentIdUK" value="CDUS125D0000201Z"/>
+			<variable name="bbebLevelNoLayout" value="850"/>
+			<variable name="bbebJustification" value="true"/>
+			<variable name="kFskDocumentViewerDefaultDPI" value="167"/>
+<!-- target is luge -->
+			<variable name="kFskDocumentViewerWidth" value="584"/>
+			<variable name="kFskDocumentViewerHeight" value="754"/>
+			<variable name="kFskLegacyDocumentViewerWidth" value="584"/>
+			<variable name="kFskLegacyDocumentViewerHeight" value="754"/>
+			<variable name="kFskDocumentViewerMaxTextScale" value="4"/>
+			<variable name="kFskDocumentViewerMinTextScale" value="0"/>
+			<variable name="keyboardLayoutPath" value="[applicationPath]/resources/scripts/"/>
+			<variable name="TestModePath" value="[applicationPath]resources/test/"/>
+
+<!-- -->
+			<variable name="PreferencesDir" value="/opt0/preferences/"/>
+			<variable name="kFskPlatformGrayEffectiveBit" value="3"/>
+			<variable name="predictivePath"  value="/opt0/predictive/" />
+			<variable name="demoMode"  value="false"/>
+
+			<variable name="keyboardTypeUS"      value="English-US"/>
+			<variable name="keyboardTypeUK"      value="English-UK"/>
+			<variable name="keyboardTypeFR"      value="French-France"/>
+			<variable name="keyboardTypeGE"      value="German-Germany"/>
+			<variable name="keyboardTypeNL"      value="Dutch-Netherlands"/>
+			<variable name="keyboardType"        value="English-US"/>
+
+			<variable name="DateFormat"        	value="Month-Day-Year"/>
+			<variable name="Timeformat"        	value="24 hour"/>
+			
+
+		</environment>
+
+		<debug>
+			<debugger url="10.0.1.128"/>
+			<console visible="true"/>
+			<source keep="true"/>
+			<breakpoints href="breakpoints.txt"/>
+		</debug>
+
+		<httpserver port="3456">
+			 <root href="c:/test/"/>
+		</httpserver>
+
+		<proxy>
+			 <http href=""/>
+		</proxy>
+
+		<ui>
+			<font face="Swis721 BT" href="[applicationPath]../FONT/">
+				<!-- RTF names -->
+					<family name="roman" uses="Dutch801 Rm BT"/>
+					<family name="swiss" uses="Swis721 BT"/>
+					<family name="modern" uses="Courier10 Win95BT"/>
+					<family name="script" uses="Dutch801 Rm BT"/>
+					<family name="decor" uses="Dutch801 Rm BT"/>
+					<family name="tech" uses="Courier10 Win95BT"/>
+			</font>
+		</ui>
+
+		<mime>
+			<media type="application">
+				<subtype name="pdf" extension="pdf"/>
+				<subtype name="epub+zip" extension="epub"/>
+				<subtype name="rtf" extension="rtf"/>
+				<subtype name="x-sony-bbeb" extension="lrf,lrx" /> 
+				<subtype name="x-sony-notepad" extension="note"/>
+				<subtype name="x-sony-notepad-text" extension="ntxt"/>
+				<subtype name="x-sony-notepad-svg" extension="nsvg"/>
+			</media>
+
+			<media type="audio">
+				<subtype name="mpeg" extension="mp3"/>
+				<subtype name="mp4" extension="m4a,mp4,mov,qt"/>
+			</media>
+
+			<media type="image">
+				<subtype name="bmp" extension="bmp"/>
+				<subtype name="gif" extension="gif"/>
+				<subtype name="jpeg" extension="jpg,jpeg"/>
+				<subtype name="png" extension="png"/>
+			</media>
+
+			<media type="text">
+				<subtype name="plain" extension="txt"/>
+			</media>
+		</mime>
+
+		<extension href="FskImage"/>
+		<extension href="coreaudiofilters"/>
+		<extension href="FskMediaPlayers"/>
+		<extension href="Fskin"/>
+		<extension href="FskinLocalize"/>
+
+		<extension href="FskSecurity"/>
+		<bytecode href="drm.xsb"/>
+		<bytecode href="FskDMF.xsb"/>
+		<bytecode href="octopus.xsb"/>
+
+		<extension href="ebookSystem"/>
+		<document href="deviceConfig.xml"/>
+
+		<extension href="[applicationPath]FskPredictive"/>
+		<extension href="[applicationPath]FskDocumentViewer"/>
+		<extension href="[applicationPath]FskDocumentViewerAdobe"/>
+		<extension href="[applicationPath]FskDocumentViewerRTF"/>
+		<bytecode href="[applicationPath]FskBBeBViewer.xso"/>
+		<!--extension href="[applicationPath]FskBBeBDictionary"/-->
+
+		<bytecode href="[applicationPath]drmDocviewer.xsb"/>
+		<bytecode href="[applicationPath]octDocviewer.xsb"/>
+		<extension href="UCA"/>
+	</rootvm>
+
+	<include href="[switcherPath]switcher.xml"/>
+</fsk>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="VIEW">
+
+	<group id="SETTING_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<code>
+			<function id="doGestureFail">
+				this.bubble("doBlink")
+			</function>
+		</code>
+		<panel skin="kbookFormatFlash" left="0" right="0" top="0" bottom="0"/>
+		<kbookLabel skin="title2" left="70" right="0" top="0" height="70" align="left" text="Wireless LAN Setting"/>
+
+		<group top="192" width="296" height="42">
+			<button2icon id="OK" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_OK" top="0" width="206" height="42" do="doMenuClose"/>
+		</group>
+
+		<button2 skin="button_back" left="5" top="5" width="61" height="61" can="canBack" do="doMenuClose"/>
+	</group>
+
+	<group id="WPS_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<model>
+			<variable id="TEXT_TITLE" value="Wireless LAN Settingg"/>
+			<variable id="TEXT_WPS_PIN"/>
+			<variable id="TIME_PROGRESS_VALUE" value="0"/>
+			<variable id="TEXT_AP_INFO" value=""/>
+			<variable id="VAR_BUTTONUPDATE"/>
+		</model>
+		<code>
+			<function id="doGestureFail">
+				this.bubble("doBlink")
+			</function>
+			<function id="doWPSPin">
+				this.bubble("doStartWPSPin");
+			</function>
+			<function id="sizeBy" params="dx, dy">
+				arguments.callee.grammar.call(this, dx, dy)
+				this.bubble("changeOrientation");
+			</function>
+			<function id="canWPSPin">
+				return this.bubble("canWPSPIN");
+			</function>
+		</code>
+		<panel skin="kbookFormatFlash" left="0" right="0" top="0" bottom="0"/>
+		<kbookLabel skin="title2" left="70" right="0" top="0" height="70" align="left" variable="TEXT_TITLE"/>
+
+		<group id="AUTO" left="0" right="0" top="0" bottom="0" visible="false">
+			<exGroup id="AUTO_V" left="0" right="0" top="0" bottom="0" visible="false" playing="V">
+				<kbookText skin="wlansettingText" active="false" width="435" top="445" height="86" value="fskin:/l/strings/DIALOGMSG_PRESS_WPS_BUTTON"/>
+				<kbookTimeProgress id="TIME_PROGRESS" skin="timeprogress" width="435" height="40" top="530" variable="TIME_PROGRESS_VALUE"/>
+				<!--kbookLabel skin="wlansettingText" width="435" top="550" height="100" align="center" variable="TIME_PROGRESS_VALUE"/-->
+			</exGroup>
+			<exGroup id="AUTO_H" left="0" right="0" top="0" bottom="0" visible="false" playing="H">
+				<kbookText skin="wlansettingText" active="false" width="435" top="228" height="86" value="fskin:/l/strings/DIALOGMSG_PRESS_WPS_BUTTON"/>
+				<kbookTimeProgress id="TIME_PROGRESS" skin="timeprogress" top="315" width="435" height="40" variable="TIME_PROGRESS_VALUE"/>
+				<!--kbookLabel skin="wlansettingText" width="435" top="355" height="100" align="center" variable="TIME_PROGRESS_VALUE"/-->
+			</exGroup>
+			<button2 skin="button_back" left="5" top="5" width="61" height="61" can="canBack" do="doMenuClose"/>
+		</group>
+		<group id="PIN" left="0" right="0" top="0" bottom="0" visible="false">
+			<exGroup id="PIN_V" left="0" right="0" top="0" bottom="0" visible="false" playing="V">
+				<kbookText skin="wlansettingText" active="false" left="70" right="70" top="343" height="120" value="fskin:/l/strings/DIALOGMSG_ENTER_THIS_PIN_CODE"/>
+				<kbookText skin="wlansettingText" active="false" left="70" right="70" top="464" height="56" variable="TEXT_WPS_PIN"/>
+				<button2icon id="OK" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_OK" width="206" height="50" top="540" do="doWPSPin" can="canWPSPin" variableUpdate="VAR_BUTTONUPDATE"/>
+			</exGroup>
+			<exGroup id="PIN_H" left="0" right="0" top="0" bottom="0" visible="false" playing="H">
+				<kbookText skin="wlansettingText" active="false" left="70" right="70" top="194" height="100" value="fskin:/l/strings/DIALOGMSG_ENTER_THIS_PIN_CODE"/>
+				<kbookText skin="wlansettingText" active="false" left="70" right="70" top="300" height="50" variable="TEXT_WPS_PIN"/>
+				<button2icon id="OK" skin="keyW2" text="fskin:/l/strings/STR_UI_BUTTON_OK" width="206" height="50" top="400" do="doWPSPin" can="canWPSPin" variableUpdate="VAR_BUTTONUPDATE"/>
+			</exGroup>
+			<button2 skin="button_back" left="5" top="5" width="61" height="61" can="canBack" do="doMenuClose"/>
+		</group>
+		<group id="EXCHANGE" left="0" right="0" top="0" bottom="0" visible="false">
+			<sprite id="WAIT" skin="diskSprite" width="140" height="140" active="false">
+				<kbookAnimation id="WAIT" duration="4" loop="true">
+					<frames>
+						<frame>
+							<setU u="0"/>
+						</frame>
+						<frame>
+							<setU u="1"/>
+						</frame>
+						<frame>
+							<setU u="2"/>
+						</frame>
+						<frame>
+							<setU u="3"/>
+						</frame>
+					</frames>
+				</kbookAnimation>
+			</sprite>
+			<exGroup id="EXCHANGE_V" left="0" right="0" top="0" bottom="0" visible="true" playing="V">
+				<kbookText skin="wlansettingText" active="false" width="435" top="360" height="86" value="fskin:/l/strings/DIALOGMSG_EXCHANGING_INFO_WITH_ACCESS_POINT"/>
+			</exGroup>
+			<exGroup id="EXCHANGE_H" left="0" right="0" top="0" bottom="0" visible="true" playing="H">
+				<kbookText skin="wlansettingText" active="false" width="435" top="140" height="86" value="fskin:/l/strings/DIALOGMSG_EXCHANGING_INFO_WITH_ACCESS_POINT"/>
+			</exGroup>
+			<button2 skin="button_back" left="5" top="5" width="61" height="61" can="canBack" do="doMenuClose"/>
+		</group>
+		<group id="EXCHANGE_PIN" left="0" right="0" top="0" bottom="0" visible="false">
+			<group left="0" right="0" top="40" bottom="0">
+				<sprite id="WAIT_PIN" skin="diskSprite" width="140" height="140" active="false">
+					<kbookAnimation id="WAIT_PIN" duration="4" loop="true">
+						<frames>
+							<frame>
+								<setU u="0"/>
+							</frame>
+							<frame>
+								<setU u="1"/>
+							</frame>
+							<frame>
+								<setU u="2"/>
+							</frame>
+							<frame>
+								<setU u="3"/>
+							</frame>
+						</frames>
+					</kbookAnimation>
+				</sprite>
+			</group>
+			<exGroup id="EXCHANGE_PIN_V" left="0" right="0" top="0" bottom="0" visible="true" playing="V">
+				<kbookText skin="wlansettingText" active="false" left="70" right="70" top="310" height="86" value="fskin:/l/strings/DIALOGMSG_EXCHANGING_INFO_WITH_ACCESS_POINT"/>
+				<kbookText skin="wlansettingText" active="false" left="70" right="70" top="400" height="86" variable="TEXT_WPS_PIN"/>
+			</exGroup>
+			<exGroup id="EXCHANGE_PIN_H" left="0" right="0" top="0" bottom="0" visible="true" playing="H">
+				<kbookText skin="wlansettingText" active="false" width="475" top="90" height="86" value="fskin:/l/strings/DIALOGMSG_EXCHANGING_INFO_WITH_ACCESS_POINT"/>
+				<kbookText skin="wlansettingText" active="false" width="475" top="185" height="86" variable="TEXT_WPS_PIN"/>
+			</exGroup>
+			<button2 skin="button_back" left="5" top="5" width="61" height="61" can="canBack" do="doMenuClose"/>
+		</group>
+	</group>
+
+	<group id="FW_UPDATE_GROUP" left="0" right="0" top="0" bottom="0" visible="false" active="false">
+		<model>
+			<variable id="TEXT_TITLE" value=""/>
+			<variable id="TEXT_LOADING" value=""/>
+		</model>
+		<code>
+			<function id="doMenu">
+				this.bubble("doEscapeUpdate","doMenu")
+			</function>
+			<function id="doRoot">
+				this.bubble("doEscapeUpdate","doRoot")
+			</function>
+		</code>
+		<panel skin="kbookFormatFlash" left="0" right="0" top="0" bottom="0"/>
+		<kbookLabel skin="title2" left="70" right="0" top="0" height="70" align="left" variable="TEXT_TITLE"/>
+		<sprite id="SPINNING" skin="diskSprite" width="140" height="140" active="false">
+			<kbookAnimation id="SPINNING" duration="4" loop="true">
+				<frames>
+					<frame>
+						<setU u="0"/>
+					</frame>
+					<frame>
+						<setU u="1"/>
+					</frame>
+					<frame>
+						<setU u="2"/>
+					</frame>
+					<frame>
+						<setU u="3"/>
+					</frame>
+				</frames>
+			</kbookAnimation>
+		</sprite>
+		<exGroup id="LOADING" width="400" height="350" visible="true">
+			<kbookText skin="wlansettingText" active="false" left="0" right="0" top="0" bottom="0" variable="TEXT_LOADING"/>
+		</exGroup>
+		<button2 skin="button_back" left="5" top="5" width="61" height="61" can="canBack" do="doMenu"/>
+	</group>
+
+	<kbookOverlay id="OPTION_OVERLAY_SETTING_NETWORK"  left="0" right="0" top="0" bottom="30" visible="false">
+		// multi delete
+		<code>
+			<function id="showDeleteContents">
+				this.getModel().doCloseOptMenu();
+				var view = this.container.container.container.MENU_DETAILS_GROUP.MENU.detailsView;
+				this.bubble("showDeleteAPs", false, view);
+			</function>
+			<function id="showChangeOrderAPTop">
+				this.getModel().doCloseOptMenu();
+				var view = this.container.container.container.MENU_DETAILS_GROUP.MENU.detailsView;
+				this.bubble("showChangeOrderAP", true, view);
+			</function>
+			<function id="showChangeOrderAPBottom">
+				this.getModel().doCloseOptMenu();
+				var view = this.container.container.container.MENU_DETAILS_GROUP.MENU.detailsView;
+				this.bubble("showChangeOrderAP", false, view);
+			</function>
+			<function id="checkAll">
+				this.getModel().doCloseOptMenu();
+				var view = this.container.container.container.MENU_DETAILS_GROUP.MENU.detailsView;
+				this.bubble("checkAllItemWithoutConnect", view, true);
+			</function>
+			<function id="uncheckAll">
+				this.getModel().doCloseOptMenu();
+				var view = this.container.container.container.MENU_DETAILS_GROUP.MENU.detailsView;
+				this.bubble("checkAllItemWithoutConnect", view, false);
+			</function>
+			<function id="doConnectInfomation">
+				this.getModel().doCloseOptMenu();
+				this.bubble("showProfileInfoDialog");
+			</function>
+		</code>
+
+		<focusBounds skin="background" left="0" right="0" top="0" bottom="0" variable="" visible="true"/>
+
+		<optCloseBtn do="doCloseOptMenu"/>
+		<optMenu>
+			<optItemButton skin="dicMenuPrev" playing="prev"/>
+			<optItemButton u= "5" textresource="STR_UI_MENU_DELETE_ACCESS_POINTS"	do="showDeleteContents" playing="canDeleteAndOneitem"/>
+			<optItemButton u="30" textresource="STR_UI_MENU_SELECT_ALL"		do="checkAll" playing="canMultiSelectAndItem"/>
+			<optItemButton u="31" textresource="STR_UI_MENU_UNSELECT_ALL"	do="uncheckAll" playing="canMultiSelectAndItem"/>
+			<optItemButton u="67" id="order" textresource="STR_UI_MENU_CHANGE_ORDER" playing="canChangeOrder,sub"/>
+			<optItemButton u= "4" textresource="STR_UI_MENU_CONNECT_INFO"	do="doConnectInfomation" playing="canConnectInfo"/>
+			<optItemButton u= "6" textresource="STR_UI_MENU_NOWPLAYING"		do="doGoToNowPlaying" playing="audio,!canMultiSelect"/>
+			<optItemButton u="54" textresource="STR_UI_MENU_RESUMELISTENING" do="doResumeSong" playing="resume,!canMultiSelect"/>
+			<optItemButton u="11" textresource="STR_UI_MENU_ORIENTATION"	do="doOrientation" playing="canOrientation"/>
+			<optItemButton skin="dicMenuNext" playing="next"/>
+			<optSubMenu>
+				<optItemButton parentItem="order" u="68" textresource="STR_UI_MENU_TO_FIRST" do="showChangeOrderAPTop" playing="!canMultiSelect"/>
+				<optItemButton parentItem="order" u="69" textresource="STR_UI_MENU_TO_LAST"	do="showChangeOrderAPBottom" playing="!canMultiSelect"/>
+			</optSubMenu>
+		</optMenu>
+	</kbookOverlay>
+	<kbookOverlay id="OPTION_OVERLAY_SETTING_NETWORK_DETAIL"  left="0" right="0" top="0" bottom="30" visible="false">
+		<code>
+			<function id="doDeleteContent">
+				this.getModel().doCloseOptMenu();
+				this.bubble("doDeleteAccessPoint");
+			</function>
+		</code>
+
+		<focusBounds skin="background" left="0" right="0" top="0" bottom="0" variable="" visible="true"/>
+
+		<optCloseBtn do="doCloseOptMenu"/>
+		<optMenu>
+			<optItemButton skin="dicMenuPrev" playing="prev"/>
+			<optItemButton u= "5" textresource="STR_UI_MENU_DELETE"	do="doDeleteContent" playing="canDeleteAndOneitem,!connecting"/>
+			<optItemButton u= "6" textresource="STR_UI_MENU_NOWPLAYING"		do="doGoToNowPlaying" playing="audio"/>
+			<optItemButton u="54" textresource="STR_UI_MENU_RESUMELISTENING" do="doResumeSong" playing="resume"/>
+			<optItemButton u="11" textresource="STR_UI_MENU_ORIENTATION"	do="doOrientation"/>
+			<optItemButton skin="dicMenuNext" playing="next"/>
+		</optMenu>
+	</kbookOverlay>
+	<kbookOverlay id="OPTION_OVERLAY_SETTING_NETWORK_DETAIL_ADVANCED"  left="0" right="0" top="0" bottom="30" visible="false">
+		<focusBounds skin="background" left="0" right="0" top="0" bottom="0" variable="" visible="true"/>
+
+		<optCloseBtn do="doCloseOptMenu"/>
+		<optMenu>
+			<optItemButton u= "6" textresource="STR_UI_MENU_NOWPLAYING"		do="doGoToNowPlaying" playing="audio"/>
+			<optItemButton u="54" textresource="STR_UI_MENU_RESUMELISTENING" do="doResumeSong" playing="resume"/>
+			<optItemButton u="11" textresource="STR_UI_MENU_ORIENTATION"	do="doOrientation"/>
+		</optMenu>
+	</kbookOverlay>
+</document>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+######################################################
+ !!! Attension !!!
+ Please Check Product side !!
+######################################################
+-->
+<document xmlns="http://www.kinoma.com/fskin/1" id="VIEW">
+
+	<kbookOverlay id="SELECT_STYLE_OVERLAY" left="0" right="0" top="0" bottom="0" visible="false">
+		<code>
+			<function id="variableChanged" params="id, value">
+				arguments.callee.grammar.call(this, id, value);
+				if (id == "SHOW") {
+					this.show(value);
+					if(value) {
+						var num = this.getModel().getVariable("PAGE_STYLE_NO");
+						this.SELECT_STYLE_V.setVariable("VAR_SelectPageStyle", num);
+						this.SELECT_STYLE_H.setVariable("VAR_SelectPageStyle", num);
+					}
+				}
+			</function>
+		</code>
+		<focusBounds skin="background" left="0" right="0" top="0" bottom="30" variable="" visible="true"/>
+		<exButton id="SELECT_STYLE_CLOSE" skin="optClose" width="42" height="42" do="doCloseSelectStyle"/>
+		<exPanel id="SELECT_STYLE_V" skin="opt_frame" width="495" height="548" playing="match">
+			<model>
+				<variable id="VAR_SelectPageStyle" value="0"/>
+			</model>
+			<exGroup left="12" right="12" top= "12" bottom="12">
+				<kbookPageStyleButton skin="pageStyle_normal"		left=  "0" top=  "0" width="235" height="174" text="fskin:/l/strings/STR_UI_RADIOBUTTON_PAGE_STYLE_ORIGINAL"		on="0" variable="VAR_SelectPageStyle" do="doNormalPage" />
+				<kbookPageStyleButton skin="pageStyle_splitPage2x2"	left=  "0" top="175" width="235" height="174" text="fskin:/l/strings/STR_UI_RADIOBUTTON_PAGE_STYLE_2COLUMN_SPLIT"	on="1" variable="VAR_SelectPageStyle" do="doSplitPage2x2" />
+				<kbookPageStyleButton skin="pageStyle_fitPage"		left=  "0" top="350" width="235" height="174" text="fskin:/l/strings/STR_UI_RADIOBUTTON_PAGE_STYLE_FULL_PAGE"		on="2" variable="VAR_SelectPageStyle" do="doFitPage" />
+				<kbookPageStyleButton skin="pageStyle_marginRemove"	left="236" top=  "0" width="235" height="174" text="fskin:/l/strings/STR_UI_RADIOBUTTON_PAGE_STYLE_MARGIN_CUT"		on="3" variable="VAR_SelectPageStyle" do="doMarginRemove" />
+				<kbookPageStyleButton skin="pageStyle_splitPage3x2"	left="236" top="175" width="235" height="174" text="fskin:/l/strings/STR_UI_RADIOBUTTON_PAGE_STYLE_3COLUMN_SPLIT"	on="4" variable="VAR_SelectPageStyle" do="doSplitPage2x3" />
+				<kbookPageStyleButton skin="pageStyle_2PageView"	left="236" top="350" width="235" height="174" text="1-Column Split"	on="6" variable="VAR_SelectPageStyle" do="doSplitPage2x1" />
+				<kbookFill color="black" left="0" right="0" top="174" height="1"/>
+				<kbookFill color="black" left="0" right="0" top="349" height="1"/>
+				<kbookFill color="black" top="0" bottom="0" left="235" width="1"/>
+			</exGroup>
+		</exPanel>
+		<exPanel id="SELECT_STYLE_H" skin="opt_frame" top="16" width="495"  height="548" playing="match">
+			<model>
+				<variable id="VAR_SelectPageStyle" value="0"/>
+			</model>
+			<exGroup left="12" right="12" top= "12" bottom="12">
+				<kbookPageStyleButton skin="pageStyle_normal"		left=  "0" top=  "0" width="235" height="174" text="fskin:/l/strings/STR_UI_RADIOBUTTON_PAGE_STYLE_ORIGINAL"		on="0" variable="VAR_SelectPageStyle" do="doNormalPage" />
+				<kbookPageStyleButton skin="pageStyle_splitPage2x2"	left=  "0" top="175" width="235" height="174" text="fskin:/l/strings/STR_UI_RADIOBUTTON_PAGE_STYLE_2COLUMN_SPLIT"	on="1" variable="VAR_SelectPageStyle" do="doSplitPage2x2" />
+				<kbookPageStyleButton skin="pageStyle_fitPage"		left=  "0" top="350" width="235" height="174" text="fskin:/l/strings/STR_UI_RADIOBUTTON_PAGE_STYLE_FULL_PAGE"		on="2" variable="VAR_SelectPageStyle" do="doFitPage" />
+				<kbookPageStyleButton skin="pageStyle_marginRemove"	left="236" top=  "0" width="235" height="174" text="fskin:/l/strings/STR_UI_RADIOBUTTON_PAGE_STYLE_MARGIN_CUT"		on="3" variable="VAR_SelectPageStyle" do="doMarginRemove" />
+				<kbookPageStyleButton skin="pageStyle_splitPage3x2"	left="236" top="175" width="235" height="174" text="fskin:/l/strings/STR_UI_RADIOBUTTON_PAGE_STYLE_3COLUMN_SPLIT"	on="4" variable="VAR_SelectPageStyle" do="doSplitPage2x3" />
+				<kbookPageStyleButton skin="pageStyle_2PageView"	left="236" top="350" width="235" height="174" text="1-Column Split"	on="6" variable="VAR_SelectPageStyle" do="doSplitPage2x1" />
+				<kbookFill color="black" left="0" right="0" top="174" height="1"/>
+				<kbookFill color="black" left="0" right="0" top="349" height="1"/>
+				<kbookFill color="black" top="0" bottom="0" left="235" width="1"/>
+			</exGroup>
+		</exPanel>
+	</kbookOverlay>
+
+</document>

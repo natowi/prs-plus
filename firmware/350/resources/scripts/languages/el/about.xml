@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<code>
+		<function id="variableChanged" params="id, value"><![CDATA[
+			arguments.callee.grammar.call(this, id, value);
+			if(id=="DO_ABOUT_FUNCTION"){
+				if(value=="doNext")
+					this.ABOUT.doNext()
+				else if(value=="doPrevious")
+					this.ABOUT.doPrevious()
+				else if(value=="pageChanged")
+					this.ABOUT.pageChanged()
+			}
+		]]></function>
+	</code>
+	<kbookAbout id="ABOUT" left="0" right="0" top="0" bottom="0">
+		<records>
+			<record><number name="kind" value="30"/><string name="text" value="Available Space"/></record>
+			<record><number name="kind" value="-2"/><string name="text" value=""/></record>
+			<record><number name="kind" value="11"/><string name="text" value="Internal Memory"/></record>
+			<record><number name="kind" value="12"/><string name="text" value="Memory Stick&#8482;"/></record>
+			<record><number name="kind" value="13"/><string name="text" value="SD Card"/></record>
+			<record><number name="kind" value="-2"/><string name="text" value=""/></record>
+
+			<record><number name="kind" value="30"/><string name="text" value="Device Information"/></record>
+			<record><number name="kind" value="-2"/><string name="text" value=""/></record>
+			<record><number name="kind" value="20"/><string name="text" value="Version"/></record>
+			<record><number name="kind" value="21"/><string name="text" value="Device"/></record>
+			<record><number name="kind" value="23"/><string name="text" value="IMEI"/></record>
+			<record><number name="kind" value="24"/><string name="text" value="ICCID"/></record>
+			<record><number name="kind" value="22"/><string name="text" value="Adobe DRM"/></record>
+			<record><number name="kind" value="-2"/><string name="text" value=""/></record>
+
+			<record><number name="kind" value="30"/><string name="text" value="Legal Information"/></record>
+			<record><number name="kind" value="-2"/><string name="text" value=""/></record>
+			<record><number name="kind" value="0"/><string name="text" value="Copyright &#169;2006-2010 Sony Corporation"/></record>
+			<record><number name="kind" value="1"/><string name="text" value="Contains Reader&#174; Mobile technology by Adobe Systems Incorporated"/></record>
+			<record><number name="kind" value="-1"/><string name="text" value=""/></record>
+			<record><number name="kind" value="3"/><string name="text" value="Application software designed and implemented by Kinoma (www.kinoma.com). Portions Copyright &#169;2006,2007 Kinoma, Inc."/></record>
+			<record><number name="kind" value="-1"/><string name="text" value=""/></record>
+			<record><number name="kind" value="4"/><string name="text" value="You are reading this on an E Ink&#174; Vizplex&#8482; display.  E Ink&#174; Vizplex&#8482; imaging films enable paper-like displays for the ultimate digital reading experience."/></record>
+			<record><number name="kind" value="-1"/><string name="text" value=""/></record>
+			<record><number name="kind" value="9"/><string name="text" value="Bitstream is a registered trademark, and Dutch, Font Fusion, and Swiss are trademarks, of Bitstream, Inc."/></record>
+			<record><number name="kind" value="-1"/><string name="text" value=""/></record>
+			<record><number name="kind" value="9"/><string name="text" value="Portions of this software are Copyright &#169;2005 The FreeType Project (www.freetype.org). All rights reserved."/></record>
+			<record><number name="kind" value="9"/><string name="text" value="This software is based in part on the work of the Independent JPEG Group."/></record>
+			<record><number name="kind" value="9"/><string name="text" value="The New Oxford American Dictionary, Second Edition &#169; 2005 Oxford University Press, Inc.&#13;Oxford Dictionary of English, Second Edition, Revised &#169; 2005 Oxford University Press&#13;Oxford-Hachette French Dictionary, fourth edition &#169; Oxford University Press and Hachette Livre 2007&#13;Oxford Spanish Dictionary, fourth edition &#169; Oxford University Press 2008"/></record>
+			<record><number name="kind" value="-1"/><string name="text" value=""/></record>
+			<record><number name="kind" value="9"/><string name="text" value="&#34;Collins German Dictionary - Complete and Unabridged&#8221; 7th edition &#169; HarperCollins Publishers 2007 including matching German Lemmatized Lists (German and English) &#169; HarperCollins Publishers 2010&#13;&#34;Collins Italian Dictionary&#8221; 2nd Edition 2005 &#169; HarperCollins Publishers 1995, 2005 including matching Italian Lemmatized Lists (Italian and English) &#169; HarperCollins Publishers 2010"/></record>
+			<record><number name="kind" value="-1"/><string name="text" value=""/></record>
+			<record><number name="kind" value="9"/><string name="text" value="Van Dale Pocketwoordenboek Engels-Nederlands &#169; 2009 Van Dale Uitgevers, Utrecht/Antwerpen Alle rechten voorbehouden/All rights reserved.&#13;Van Dale Pocketwoordenboek Nederlands-Engels &#169; 2009 Van Dale Uitgevers, Utrecht/Antwerpen Alle rechten voorbehouden/All rights reserved.&#13;"/></record>
+			<record><number name="kind" value="9"/><string name="text" value="De uitgever kan geen aansprakelijkheid aanvaarden voor eventuele schade, die zou kunnen voortvloeien uit enige fout die in deze uitgave zou kunnen voorkomen. Deze uitgave is specifiek ontwikkeld voor de Nederlandstalige markt en bevat mogelijk termen en omschrijvingen die op verschillende wijzen geïnterpreteerd kunnen worden, afhankelijk van de cultuur, gewoonten of het juridische systeem van een bepaald gebied.&#13;"/></record>
+			<record><number name="kind" value="9"/><string name="text" value="Dit woordenboek bevat enkele trefwoorden die ingeschreven merk zijn of die van een dergelijke merknaam zijn afgeleid.  Zulke woorden zijn te herkennen aan de aanduiding MERK. Uit opname van deze woorden kan niet worden afgeleid dat afstand wordt gedaan van bepaalde (eigendoms)rechten, dan wel dat Van Dale zulke rechten miskent. Meer informatie vindt u op www.vandale.nl/merknamen.&#13;"/></record>
+			<record><number name="kind" value="9"/><string name="text" value="De wijze waarop zoekresultaten in de Van Dale-digitale woordenboeken worden getoond, hangt samen met de zoekfunctionaliteit van uw Reader. Zo worden mogelijk door de gebruiker bedoelde zoektermen getoond met een pijl die verwijst naar mogelijk verwante artikelen.&#13;"/></record>
+			<record><number name="kind" value="9"/><string name="text" value="The publisher can not be held responsible for any damage resulting from any error in this publication."/></record>
+			<record><number name="kind" value="9"/><string name="text" value="This publication was specifically developed for the native Dutch speaking market and may also include terms and descriptions which may be valued in different manners depending on the culture, habits and legal system of a certain region.&#13;"/></record>
+			<record><number name="kind" value="9"/><string name="text" value="This dictionary contains certain headwords which are registered trademarks or deduced from registered trademarks. Such entries are recognizable by the indication MERK. The inclusion of these entries does not imply the waiver of any (ownership) rights, nor failure of Van Dale to recognize such rights. Please consult http://www.vandale.nl/merknamen for more information on this subject.&#13;"/></record>
+			<record><number name="kind" value="9"/><string name="text" value="Search results of the Van Dale digital dictionaries are displayed according to the search functionality of your Reader. For example, possible user search query variants are presented followed by a reference (arrow symbol) to potentially related articles."/></record>
+			<record><number name="kind" value="9"/><string name="text" value="This product includes Iwata Mincho Font designed by IWATA Corporation."/></record>
+		</records>
+		<code>
+			<function id="getKind">
+				return 25;
+			</function>
+			<function id="getTitle">
+				return "fskin:/l/strings/STR_NODE_TITLE_ABOUT".idToString();
+			</function>
+			<function id="getValue" params="record, field"><![CDATA[
+				return arguments.callee.grammar.call(this, record, field);
+			]]></function>
+			<function id="pageChanged">
+				var c = this.countPages();
+				var i = this.getPage() + 1;
+				if (!c) c++;
+				this.setVariable("ABOUT_INDEX_COUNT", i + "fskin:/l/strings/STR_UI_PARTS_OF".idToString() + c);
+				this.checkStrage();
+			</function>
+		</code>
+	</kbookAbout>
+</document>

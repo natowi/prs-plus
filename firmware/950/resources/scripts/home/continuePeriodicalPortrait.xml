@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+
+	<group left="0" right="0" top="0" bottom="0">
+		<!-- Continue Reading -->
+		<group left="6" right="7" top="5" bottom="5">
+			<sprite skin="shortcutContinueButton" left="5" top="3" width="50" height="50" active="false"/>
+			<kbookLabel skin="title" active="false" left="70" right="0" top="13" height="30" textresource="STR_NODE_TITLE_CONTINUEREADINGBOOK"/>
+			<!-- title -->
+			<kbookLogoImage left="39" width="320" top="136" height="51" align="left" href="x-id://continueLogoData"/>
+			<kbookLabel2Line skin="continueReadingTitle" active="false" top="99" height="90" left="39" width="320" align="left" variable="CONTINUE_LOGO"/>
+			<kbookLabel skin="continueReadingAuthor" active="false" top="200" height="30" left="39" right="226" align="left" variable="CONTINUE_PUBLICATION_DATE"/>
+			<!-- Date-->
+			<kbookLabel skin="continueReadingDate" active="false" left="39" top="290" height="30" right="226" align="left" variable="CONTINUE_DATE"/>
+			<!-- thumbnail -->
+			<kbookThumbnailImage skin="kbookHomeThumbnail" top="98" right="42" width="168" height="217" href="x-id://continueThumbnailData" />
+			<kbookHotspot do="doGoToContinueReading" left="0" top="0" right="0" bottom="0" />
+		</group>
+	</group>
+</document>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+	<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="Продовжити читання"/>
+	<string id="STR_NODE_TITLE_BEGIN" value="На початок"/>
+	<string id="STR_NODE_TITLE_END" value="В кінець"/>
+	<string id="STR_NODE_TITLE_BOOKMARKS" value="Закладинки"/>
+	<string id="STR_NODE_TITLE_TOC" value="Зміст"/>
+	<string id="STR_NODE_TITLE_HISTORY" value="Історія"/>
+	<string id="STR_NODE_TITLE_INFO" value="Інформація"/>
+	<string id="STR_NODE_TITLE_UTILITIES" value="Інструменти"/>
+	<string id="STR_NODE_TITLE_REMOVEALLBOOKMARKS" value="Знищити всі закладинки"/>
+	<string id="STR_NODE_TITLE_CLEARHISTORY" value="Очистити історію"/>
+	<string id="STR_NODE_TITLE_DELETEBOOK" value="Видалити книгу"/>
+	<string id="STR_NODE_TITLE_CONTINUEREADING" value="Продовжити читання"/>
+	<string id="STR_NODE_TITLE_BOOKSBYTITLE" value="Книги по назві"/>
+	<string id="STR_NODE_TITLE_BOOKSBYAUTHOR" value="Книги по авторам "/>
+	<string id="STR_NODE_TITLE_BOOKSBYDATE" value="Книги по даті"/>
+	<string id="STR_NODE_TITLE_TODAY" value="Сьогодні"/>
+	<string id="STR_NODE_TITLE_EARLIERTHISWEEK" value="Раніше на цьому тижні"/>
+	<string id="STR_NODE_TITLE_LASTWEEK" value="Минулого тижня"/>
+	<string id="STR_NODE_TITLE_EARLIERTHISMONTH" value="Раніше цього місяця "/>
+	<string id="STR_NODE_TITLE_LASTMONTH" value="Минулого тижня"/>
+	<string id="STR_NODE_TITLE_EARLIERTHISQUARTER" value="Раніше цього кварталу"/>
+	<string id="STR_NODE_TITLE_LASTQUARTER" value="Минулого кварталу"/>
+	<string id="STR_NODE_TITLE_EARLIERTHISYEAR" value="Раніше цього року"/>
+	<string id="STR_NODE_TITLE_LASTYEAR" value="Минулого року"/>
+	<string id="STR_NODE_TITLE_OLDER" value="Старше"/>
+	<string id="STR_NODE_TITLE_COLLECTIONS" value="Колекції"/>
+	<string id="STR_NODE_TITLE_ALLBOOKMARKS" value="Всі закладинки"/>
+	<string id="STR_NODE_TITLE_NOWPLAYING" value="Зараз програється"/>
+	<string id="STR_NODE_TITLE_AUDIO" value="Аудіо"/>
+	<string id="STR_NODE_TITLE_PICTURE" value="Малюнки"/>
+	<string id="STR_NODE_TITLE_SETTINGS" value="Налаштування"/>
+	<string id="STR_NODE_TITLE_ORIENTATION" value="Орієнтація"/>
+	<string id="STR_NODE_COMMENT_HORIZONTAL" value="Горизонтальна"/>
+	<string id="STR_NODE_COMMENT_VERTICAL" value="Вертикальна"/>
+	<string id="STR_NODE_TITLE_DATEANDTIME" value="Час та дата"/>
+	<string id="STR_NODE_TITLE_YEAR" value="Рік"/>
+	<string id="STR_NODE_TITLE_MONTH" value="Місяць"/>
+	<string id="STR_NODE_TITLE_DATE" value="День"/>
+	<string id="STR_NODE_TITLE_HOUR" value="Година"/>
+	<string id="STR_NODE_TITLE_MINUTE" value="Хвилина"/>
+	<string id="STR_NODE_TITLE_DEVICELOCK" value="Захист паролем"/>
+	<string id="STR_NODE_TITLE_ENTERCODE" value="Введіть код"/>
+	<string id="STR_NODE_TITLE_SLIDESHOW" value="Слайдшоу"/>
+	<string id="STR_NODE_TITLE_TURN" value="Повернутися"/>
+	<string id="STR_NODE_TITLE_SLIDEDURATION" value="Тривалість слайда"/>
+	<string id="STR_NODE_TITLE_SLEEPMODE" value="Режим очікування"/>
+	<string id="STR_NODE_TITLE_ADBANCEDSETTINGS" value="Додаткові налаштування"/>
+	<string id="STR_NODE_TITLE_FORMATINTERNALMEMORY" value="Форматування внутрішньої пам'яті"/>
+	<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="Вимкнення пристрою"/>
+	<string id="STR_NODE_TITLE_ABOUT" value="Про пристрій"/>
+	<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="Скидання налаштувань"/>
+	<string id="STR_NODE_TITLE_CODE" value="Код"/>
+	<string id="#STR_NODE_TITLE_AUTORUN" value="Автозапуск"/>
+	<string id="#STR_NODE_TITLE_HARDRESET" value="Перезавантаження"/>
+	<string id="STR_COUNTER_BOOKMARK_N" value=" закл."/>
+	<string id="STR_COUNTER_BOOKMARK_1" value="1 закладинка"/>
+	<string id="STR_COUNTER_BOOKMARK_0" value="Немає закладинок"/>
+	<string id="STR_COUNTER_ITEM_N" value=" пункт."/>
+	<string id="STR_COUNTER_ITEM_1" value="1 пункт"/>
+	<string id="STR_COUNTER_ITEM_0" value="Порожньо"/>
+	<string id="STR_COUNTER_PAGE_N" value=" стор."/>
+	<string id="STR_COUNTER_PAGE_1" value="1 стор."/>
+	<string id="STR_COUNTER_PAGE_0" value="Порожньо"/>
+	<string id="STR_COUNTER_UTILITIES_N" value=" інстр."/>
+	<string id="STR_COUNTER_UTILITIES_1" value="1 інстр."/>
+	<string id="STR_COUNTER_UTILITIES_0" value="Порожньо"/>
+	<string id="STR_COUNTER_BOOK_N" value=" книги"/>
+	<string id="STR_COUNTER_BOOK_1" value="1 книга"/>
+	<string id="STR_COUNTER_BOOK_0" value="Порожньо"/>
+	<string id="STR_COUNTER_COLLECTION_N" value=" колекц."/>
+	<string id="STR_COUNTER_COLLECTION_1" value="1 колекц."/>
+	<string id="STR_COUNTER_COLLECTION_0" value="Порожньо"/>
+	<string id="STR_COUNTER_SONG_N" value=" "/>
+	<string id="STR_COUNTER_SONG_1" value="1 композ."/>
+	<string id="STR_COUNTER_SONG_0" value="Порожньо"/>
+	<string id="STR_COUNTER_NOSONG" value="Немає композицій"/>
+	<string id="STR_COUNTER_PICTURE_N" value=" мал."/>
+	<string id="STR_COUNTER_PICTURE_1" value="1 мал."/>
+	<string id="STR_COUNTER_PICTURE_0" value="Порожньо"/>
+	<string id="STR_COUNTER_SETTING_N" value=" налашт."/>
+	<string id="STR_COUNTER_SETTING_1" value="1 налашт."/>
+	<string id="STR_COUNTER_SETTING_0" value="Порожньо"/>
+	<string id="STR_UI_BUTTON_OK" value="OK"/>
+	<string id="STR_UI_BUTTON_On" value="On"/>
+	<string id="STR_UI_BUTTON_Off" value="Off"/>
+	<string id="STR_UI_BUTTON_ABLE" value="On"/>
+	<string id="STR_UI_BUTTON_DISABLE" value="Off"/>
+	<string id="STR_UI_UNITNAME_SECONDS" value="секунди"/>
+	<string id="STR_UI_UNITNAME_SIZEKB" value="KB"/>
+	<string id="STR_UI_UNITNAME_SIZEMB" value="MB"/>
+	<string id="STR_UI_UNITNAME_SIZEGB" value="GB"/>
+	<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--"/>
+	<string id="STR_UI_DELIMITER_POINT" value="."/>
+	<string id="STR_UI_PARTS_PART" value="Частина "/>
+	<string id="STR_UI_PARTS_DIVIDER" value=" - "/>
+	<string id="STR_UI_PARTS_PAGE" value="Сторінка "/>
+	<string id="STR_UI_PARTS_OF" value=" з "/>
+	<string id="STR_UI_PARTS_UNKNOWN" value="?"/>
+	<string id="STR_UI_PARTS_VERSION" value="Версія: "/>
+	<string id="STR_UI_PARTS_DEVICE" value="Пристрій: "/>
+	<string id="STR_UI_GOTOPAGE" value="Сторінка"/>
+	<string id="STR_UI_MESSAGE_INVALIDPAGE" value="Невірна сторінка!"/>
+	<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="Захищена сторінка!"/>
+	<string id="STR_UI_MESSAGE_ERRORPAGE" value="Помилка сторінки!"/>
+	<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="Неправильний формат!"/>
+	<string id="STR_UI_MESSAGE_FORMATTING" value="Форматуємо..."/>
+	<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="Обмежено"/>
+	<string id="STR_UI_MESSAGE_DRMFULL" value="Повний, переглядаємо"/>
+	<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="Карта пам'яті"/>
+	<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="Внутрішня пам'ять"/>
+	<string id="STR_UI_MESSAGE_DRMEXPIRED" value="Минулий"/>
+	<string id="STR_UI_MESSAGE_DRMTODAY" value="Сьогодні"/>
+	<string id="STR_UI_MESSAGE_FORMATTINGINTERNALMEMORY" value="Форматуємо внутрішню пам'ять..."/>
+	<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="Повне вимкнення..."/>
+	<string id="STR_UI_MESSAGE_SONYAUTHORIZEDYES" value="Авторизовано для eBook Store."/>
+	<string id="STR_UI_MESSAGE_SONYAUTHORIZEDNO" value="Не авторизовано для eBook Store."/>
+	<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDYES" value="Цей пристрій авторизовано для захищеного Adobe DRM."/>
+	<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="Цей пристрій не авторизовано для захищеного Adobe DRM."/>
+	<string id="STR_UI_MESSAGE_RESTOREDEFAULTSOPERATION" value="Натисність XXMARKXX кнопку (Закладинка) для відновлення налаштувань за змовчуванням."/>
+	<string id="STR_UI_MESSAGE_CLEARHISTORYOPERATION" value="Натисність XXMARKXX кнопку (Закладинка) для очищення історії."/>
+	<string id="STR_UI_MESSAGE_FORMATOPERATION" value="Натисність XXMARKXX кнопку (Закладинка) для форматування внутрішньої пам'яті."/>
+	<string id="STR_UI_MESSAGE_DELETEBOOKOPERATION" value="Натисність XXMARKXX кнопку (Закладинка) для знищення книги."/>
+	<string id="STR_UI_MESSAGE_REMOVEALLBOOKMARKSOPERATION" value="Натисність XXMARKXX кнопку (Закладинка) для знищення закладинок"/>
+	<string id="STR_UI_MESSAGE_SHUTDOWNOPERATION" value="Натисність XXMARKXX кнопку (Закладинка) для вимикання пристрою."/>
+	<string id="STR_UI_MESSAGE_HARDRESET" value="Перезавантаження"/>
+	<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="Ви дійсно бажаєте знищити весь вміст і повернути початкові налаштування? Так - натисніть 5 Ні - натисніть XXRETURNXX(Повернутися)"/>
+	<string id="STR_UI_MESSAGE_LOWBATTERY" value="Низький заряд!"/>
+	<string id="STR_UI_MESSAGE_NOBATTERY" value="Батарея повністю розряджена!"/>
+	<string id="STR_UI_MESSAGE_LOADING" value="Заванта-а-а-жуємо…"/>
+	<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 з 1"/>
+	<string id="STR_UI_MESSAGE_CANNOTDELETEBOOK" value="Не можна видалити книгу."/>
+	<string id="STR_UI_FORMAT_RTF" value="Документ (RTF)"/>
+	<string id="STR_UI_FORMAT_PDF" value="Adobe PDF"/>
+	<string id="STR_UI_FORMAT_EPUB" value="EPUB document"/>
+	<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB Book"/>
+	<string id="STR_UI_FORMAT_TXT" value="Звичайний текст"/>
+	<string id="STR_UI_TITLESORTLABEL1" value="0-9"/>
+	<string id="STR_UI_TITLESORTLABEL2" value="А Б В"/>
+	<string id="STR_UI_TITLESORTLABEL3" value="Г Д Е Є"/>
+	<string id="STR_UI_TITLESORTLABEL4" value="Ж З И І Ї"/>
+	<string id="STR_UI_TITLESORTLABEL5" value="Й К Л"/>
+	<string id="STR_UI_TITLESORTLABEL6" value="М Н О"/>
+	<string id="STR_UI_TITLESORTLABEL7" value="П Р С"/>
+	<string id="STR_UI_TITLESORTLABEL8" value="T У Ф Х Ц"/>
+	<string id="STR_UI_TITLESORTLABEL9" value="Ч Ш Щ Ю Я"/>
+	<string id="STR_UI_TITLESORTLABEL10" value="Інші"/>
+	<string id="STR_VAL_TITLESORTCRITERION1" value="9"/>
+	<string id="STR_VAL_TITLESORTCRITERION2" value="В"/>
+	<string id="STR_VAL_TITLESORTCRITERION3" value="Є"/>
+	<string id="STR_VAL_TITLESORTCRITERION4" value="Ї"/>
+	<string id="STR_VAL_TITLESORTCRITERION5" value="Л"/>
+	<string id="STR_VAL_TITLESORTCRITERION6" value="О"/>
+	<string id="STR_VAL_TITLESORTCRITERION7" value="С"/>
+	<string id="STR_VAL_TITLESORTCRITERION8" value="Ц"/>
+	<string id="STR_VAL_TITLESORTCRITERION9" value="Я"/>
+	<string id="STR_UI_AUTHORSORTLABEL1" value="0-9"/>
+	<string id="STR_UI_AUTHORSORTLABEL2" value="A B C"/>
+	<string id="STR_UI_AUTHORSORTLABEL3" value="D E F"/>
+	<string id="STR_UI_AUTHORSORTLABEL4" value="G H I"/>
+	<string id="STR_UI_AUTHORSORTLABEL5" value="J K L"/>
+	<string id="STR_UI_AUTHORSORTLABEL6" value="M N O"/>
+	<string id="STR_UI_AUTHORSORTLABEL7" value="P Q R S"/>
+	<string id="STR_UI_AUTHORSORTLABEL8" value="T U V"/>
+	<string id="STR_UI_AUTHORSORTLABEL9" value="W X Y Z"/>
+	<string id="STR_UI_AUTHORSORTLABEL10" value="Other"/>
+	<string id="STR_VAL_AUTHORSORTCRITERION1" value="9"/>
+	<string id="STR_VAL_AUTHORSORTCRITERION2" value="C"/>
+	<string id="STR_VAL_AUTHORSORTCRITERION3" value="F"/>
+	<string id="STR_VAL_AUTHORSORTCRITERION4" value="I"/>
+	<string id="STR_VAL_AUTHORSORTCRITERION5" value="L"/>
+	<string id="STR_VAL_AUTHORSORTCRITERION6" value="O"/>
+	<string id="STR_VAL_AUTHORSORTCRITERION7" value="S"/>
+	<string id="STR_VAL_AUTHORSORTCRITERION8" value="V"/>
+	<string id="STR_VAL_AUTHORSORTCRITERION9" value="Z"/>
+	<string id="STR_FORMAT_DATE" value="MM/ДД/РР"/>
+	<string id="STR_UI_MESSAGE_USBDONOT" value="Не відключайте"/>
+	<string id="STR_UI_MESSAGE_USBCONNECTED" value="USB з'єднання"/>
+	<string id="STR_UI_MESSAGE_LOCKED" value="Пристрій заблоковано"/>
+	<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,‘,’,“,”" />
+	<string id="STR_SORT_IGNOREARTICLES" value="a ,an ,the "/>
+	<string id="infoTitles" value="Cover,Title,Author,Publisher,Category,eBook ID,Kind,Date,Size,File,Digital Rights,Expires"/>
+	<string id="STR_UPDATE_SUCCESS" value="Обновлюємо прошивку..."/>
+	<string id="STR_UPDATE_FAIL" value="Оновлення прошивки було завершено невдало. Будь ласка, спробуйте ще раз."/>
+	<string id="STR_NODE_TITLE_PREVIOUS_VIEW" value="Переглянути попередню"/>
+	<string id="STR_NODE_TITLE_NEXT_VIEW" value="Переглянути далі"/>
+	<string id="STR_NODE_TITLE_WELCOME" value="Ласкаво просимо!"/>
+	<string id="STR_UI_MESSAGE_WELCOME" value="Привіт від Sony. Те, що ви тримаєте в руках майбутнє читання. Для продовження натисніть кнопку Enter."/>
+	<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Меню вибору мов"/>
+	<string id="STR_UI_LANG" value="Мова"/>
+	<string id="STR_UI_LANG_EN" value="English"/>
+	<string id="STR_UI_LANG_FR" value="Francais"/>
+	<string id="STR_UI_LANG_DE" value="Deutsch"/>
+	<string id="STR_UI_LANG_NL" value="Nederlands"/>
+	<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="Виберіть потрібну мову та натисніть ОК. Примітка: пристрій можна налаштувати і змінити в меню &quot;Настройки&quot; пізніше."/>
+	<string id="STR_UI_PARTS_DELIMITER" value="/"/>
+	<string id="STR_UI_MESSAGE_DEMOMODE" value="(Demo Mode)"/>
+	<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value="Demo Screensaver"/>
+	<string id="STR_NODE_TITLE_HOME" value="Домівка"/>
+	<string id="STR_NODE_TITLE_OPTIONS" value="Опції"/>
+	<string id="STR_UI_MESSAGE_DELETEALLBOOKMARKS" value="Ця сторінка містить закладку(и) відзначені в інших розмірах шрифту або в інших пристроях. Ви впевнені, що хочете видалити закладку(и) на цій сторінці?"/>
+	<string id="STR_DEMO_NOTAVAILABLE" value="Цей параметр недоступний у демо-режимі. Натисніть XXRETURNXX кнопку (Повернутися), щоб вийти до попереднього екрану."/>
+	<string id="STR_DEMO_TITLE" value="DEMO MODE"/>
+	<string id="STR_UI_MESSAGE_REMOVEBOOKMARKSOPERATION" value="Натисніть XXMARKXX кнопку(Закладинка) щоб видалити закладинку."/>
+	<string id="STR_UI_MESSAGE_NOTE_BOOKMARKOPERATION" value="Примітка: Ця сторінка містить закладинки більш ніж в один  розмір тексту. Якщо ви продовжите всі закладинки на цій сторінці буде видалено."/>
+	<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="Назва: &quot;XXTITLEXX&quot;"/>
+	<string id="STR_NODE_TITLE_REMOVEBOOKMARK" value="Видалити закладинку"/>
+	<string id="STR_UI_MESSAGE_MENURETURN" value="Натисніть XXRETURNXX кнопку(Повернутися) для повернення"/>
+	<string id="STR_NODE_TITLE_DATE_TIME_FORMAT_SETTINGS" value="Формат Дати і Часу"/>
+	<string id="STR_UI_DATE" value="Дата"/>
+	<string id="STR_UI_BUTTON_MMDDYY" value="Місяць- День-Рік"/>
+	<string id="STR_UI_BUTTON_DDMMYY" value="День-Місяць-Рік"/>
+	<string id="STR_UI_TIME" value="Час"/>
+	<string id="STR_UI_BUTTON_12HR" value="12 годин"/>
+	<string id="STR_UI_BUTTON_24HR" value="24 годин"/>
+	<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / "/>
+	<string id="STR_UI_MESSAGE_NOTE_DELETE_ALL_CONTENTS" value="Попередження: Весь вміст буде знищено."/>
+	<string id="STR_UI_MESSAGE_NOBOOK" value="Немає книги"/>
+</assets>
+</document>

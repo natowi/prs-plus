@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+<!--
+kbookMenuDetailsPaging.xml
+	Previous/Next page buttons View extension for kbookMenuDetails.
+	DOM relation protocol:
+			<kbookMenuDetails id="THUMBNAIL_FREEHAND"	... />
+			<view href="kbookMenuDetailsPaging.xml"		... />
+-->
+
+	<group left="0" right="0" top="0" bottom="0">
+		<button do="doBackward"	skin="advise-prev" 	left="7"	top="0" width="50" height="60"	/>
+		<button do="doForward"	skin="advise-next" 	right="0"	top="0" width="50" height="60"	/>
+		
+		<code>
+				<function id="doBackward">
+					var table = this.container.container.container.THUMBNAIL_CONTAINER.THUMBNAIL_FREEHAND;
+					if( table.getPage() > 0 )
+						table.doPrevious();
+					else
+						table.doLast();
+					kbook.model.updateAdviseOffset( table );
+				</function>
+				<function id="doForward">
+					var table = this.container.container.container.THUMBNAIL_CONTAINER.THUMBNAIL_FREEHAND;
+					if( table.countPages()-1 > table.getPage() )
+						table.doNext();
+					else
+						table.doFirst();
+					kbook.model.updateAdviseOffset( table );
+				</function>
+		</code>
+	</group>
+</document>

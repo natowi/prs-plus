@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="DOCUMENT">
+    <assets>
+		<import href="../AppAssets/AppAssets.xml"/>
+		
+        <style font="Swis721 BT">
+          <style id="sumText" size="40" style="bold" color="#000000"/>
+          <style id="sometext" size="22" style="bold" color="#000000"/>
+          <style id="digits" size="22" style="bold" color="#666666"/>
+          <style id="klWeis" size="18" style="bold" color="#FFFFFF" align="center"/>
+          <style id="touchText" size="12" style="bold" color="#000000"/>
+			<style id="copyText" size="11" style="" color="#BBBBBB"/>
+			<style id="tinyText" size="10" style="bold" color="#000000"/>
+			<style id="versText" size="40" style="bold" color="#FFFFFF"/>
+
+			<style id="swis24gry" size="24" style="" right="15" halign="right" top="5" color="#6D6D6D"/>
+			<style id="swis32blk" size="32" style="" color="#000000"/>
+			<style id="swis24blk" size="24" style="" right="20" halign="right" top="5" color="#000000"/>
+			<style id="swis16blk" size="16" style="bold" color="#000000"/>		
+        </style>	
+		
+  		<style font="Swis721 BT" size="20" style="">
+			<style id="etext-e" halign="left" left="8" top="8" right="8" bottom="8">
+				<style id="etext-d" color="#959595" background="#6D6D6D"/>
+				<style id="etext-p" background="#B49AFF"/>
+				<style id="etext-s" background="#B49AFF"/>
+			</style>	
+		</style>		
+	
+        <texture href="../AppAssets/AppLabels.png">
+			<cutout id="null32h" x="0" y="75" width="1" height="32" lines="1"/>
+        </texture>
+		
+        <skin id="klWeis" 		styles="klWeis"/>
+        <skin id="sumText" 		styles="sumText"/>
+        <skin id="sometext" 	styles="sometext"/>
+        <skin id="digits" 		styles="digits"/>
+        <skin id="touchText" styles="touchText"/>
+		<skin id="tinyText" styles="tinyText"/>
+		<skin id="copyText" styles="copyText"/>
+      	<skin id="eventText"
+				cutouts="htext-lt,htext-ct,htext-rt,htext-lm,htext-cm,htext-rm,htext-lb,htext-cb,htext-rb" 
+				styles="etext-e,etext-e,etext-p,etext-s"/>
+				
+		<skin id="swis16blk" styles="swis16blk"/>	
+		<skin id="swis20blk" styles="menu_e"/>
+		<skin id="swis24gry" styles="swis24gry"/>	
+		<skin id="swis24blk" styles="swis24blk"/>
+		<skin id="swis32blk" styles="swis32blk"/>
+		<skin id="customText"
+			cutouts="htext-lt,htext-ct,htext-rt,htext-lm,htext-cm,htext-rm,htext-lb,htext-cb,htext-rb" 
+			styles="swis24blk,swis24blk,swis24blk,swis24blk"/>
+		<skin id="nullButton" 
+			cutouts="null32h,null32h,null32h"
+			styles="button-d,button-e,button-p,button-s"/>			
+    </assets>
+	
+	<model>
+		<variable id="current_line" value=""/>
+	</model>
+	
+    <code>
+		<function id="runJs" params="path,target">
+		try {
+			var f = new Stream.File(path);          
+			var fn = new Function("target", f.toString(), path, 1);
+			fn(target);
+			f.close();
+			delete fn;
+		}
+		catch(ignore){
+		}
+		</function>
+		
+		<function id="loadScript">
+		if (!this.hasOwnProperty('_scriptLoaded'))
+		    this._scriptLoaded = false;
+		if (!this._scriptLoaded)
+		{
+            if(kbook.autoRunRoot.path==undefined){
+				var path = this.getBaseURI().slice(7); 	
+				kbook.model = this;	
+				}else{
+				 var path = kbook.autoRunRoot.path;
+				}
+		    var index = path.lastIndexOf('/');
+		    if (index > 0)
+		       path = path.substring(0, index + 1);
+		    this.driveroot = path.substring(0,2);
+		    var target = this.AUTORUN_GROUP.AUTORUN;
+		    target.driveroot = this.driveroot;
+		    target.intficRoot = path; 
+		    this.runJs(path+"intfic.js",target);
+		}
+		this._scriptLoaded = true;
+		</function>
+		<function id="modelChanged">
+        arguments.callee.grammar.call(this);
+        var state = this.getVariable("STATE");
+        var target;
+	    //  	this.bubble("tracelog","this.state: "+this.state);
+	    //   	this.bubble("tracelog","state: "+state);
+        if (this.state != state) {
+            this.focus(true)
+	    //    this.bubble("tracelog","enter if "+this);
+            this.AUTORUN_GROUP.show(false)
+            switch(state) {
+            case "AUTORUN":
+                this.loadScript();
+                this.AUTORUN_GROUP.show(true);
+                target = this.AUTORUN_GROUP.AUTORUN;
+           //	    target.enable(true);    
+                break;
+            }
+            this.state = state;
+            target.init();
+             if (target.isEnabled())
+                {
+                target.focus(true);
+          	        this.bubble("tracelog","focus set");
+                };
+        }
+		</function>
+    </code>
+
+    <group id="AUTORUN_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+        <panel skin="AppMainSkin" left="0" right="0" top="0" bottom="0"/>
+        <group id="AUTORUN" width="600" top="70" bottom="30">
+        	<sprite id="appIcon" skin="kbookMenuIcon" left="0" width="70" top="-70" height="70" u="0" v="1" canFocus="true" />
+			<label id="appTitle" skin="title" left="70" right="0" top="-78" height="70" align="left" text="Interactive Fiction"/>
+			<label id="copyright" skin="copyText" left="70" right="0" top="-20" height="20" align="left" text="(C) Ben Chenoweth 2012"/>
+			
+            <code>
+				<function id="doLeft">		this.moveCursor("left");	</function>
+				<function id="doRight">		this.moveCursor("right");	</function>
+				<function id="doUp">      	this.moveCursor("up");	</function>
+				<function id="doDown">		this.moveCursor("down");	</function>
+				<function id="doPrevious">	this.doPrevious();	</function>
+				<function id="doNext">		this.doNext();	</function> 
+				<function id="doCenter">	this.doCenterF();	</function>
+				<function id="doMark">		this.doMark();	</function>
+				<function id="doSize">		this.doSize();	</function>
+                <function id="doOption">	this.doOption();	</function>
+                <function id="doQuit">      this.doQuit(); </function>
+				<function id="doRoot">		this.doRoot();	</function>
+				<function id="doMenu">		this.doOption();	</function>
+				<function id="doDigit" params="part"> this.digitF(part.key);	</function>
+				<function id="doOK">		this.doOK();	</function>
+				<function id="doShift">		this.doShift();	</function>
+				<function id="doSpace">		this.doSpace();	</function>
+				<function id="doSymbol">	this.doSymbol();	</function>
+				<function id="doBack">		this.doBack();	</function>
+				<function id="doKeyPress" params="sender"> this.doKeyPress(sender);	</function>
+            </code>
+			
+		  <button id="btn_Exit" left="0" top="-70" height="70" width="70" active="true" visible="false" do="doQuit"/>	  
+		  <text id='frotzText' skin='eventText' left='10' right='32' top='8' bottom='260' active='false' visible='true' />
+		  <scrollbar scroller="frotzText" id="frotzScroll" visible="true" right="10" top="8" bottom="258" />
+		  <label id='touchLabel0'   skin='touchText'    left='5' right='0' bottom='0' height='20' align='left' text='     Page Up               Page Down'/>
+		  <label id='nonTouch0'   skin='touchText'    left='0' right='0' bottom='0' height='20' align='left' text='[Prev] Page Up     [Next] Page Down'/>
+		  <label id='touchLabel1'   skin='touchText'    left='285' right='0' bottom='3' height='15' align='left' text='Quit'/>
+		  <label id='nonTouch1'   skin='touchText'    left='490' right='0' bottom='3' height='15' align='left' text='[Hold 0] Quit'/>
+		  <text id='currentText' skin='eventText' left='10' right='108' height='42' bottom='215' active='false' visible='true' />
+		  <button id="btn_Ok" text="OK" right='10' bottom="215" width="90" height="40" do="doOK"/>
+		  <button id="BUTTON_PRE" active="true" text="^"  right="10" width="40" bottom="170" height="40" do="doButtonClick"/>
+		  
+			<button id="key01" text="q" left= "75" bottom="170" width="40" height="40" do="doKeyPress"/>
+			<button id="key02" text="w" left="120" bottom="170" width="40" height="40" do="doKeyPress"/>
+			<button id="key03" text="e" left="165" bottom="170" width="40" height="40" do="doKeyPress"/>
+			<button id="key04" text="r" left="210" bottom="170" width="40" height="40" do="doKeyPress"/>
+			<button id="key05" text="t" left="255" bottom="170" width="40" height="40" do="doKeyPress"/>
+			<button id="key06" text="y" left="300" bottom="170" width="40" height="40" do="doKeyPress"/>
+			<button id="key07" text="u" left="345" bottom="170" width="40" height="40" do="doKeyPress"/>
+			<button id="key08" text="i" left="390" bottom="170" width="40" height="40" do="doKeyPress"/>
+			<button id="key09" text="o" left="435" bottom="170" width="40" height="40" do="doKeyPress"/>
+			<button id="key10" text="p" left="480" bottom="170" width="40" height="40" do="doKeyPress"/>
+			
+			<button id="key11" text="a" left= "95" bottom="120" width="40" height="40" do="doKeyPress"/>
+			<button id="key12" text="s" left="140" bottom="120" width="40" height="40" do="doKeyPress"/>
+			<button id="key13" text="d" left="185" bottom="120" width="40" height="40" do="doKeyPress"/>
+			<button id="key14" text="f" left="230" bottom="120" width="40" height="40" do="doKeyPress"/>
+			<button id="key15" text="g" left="275" bottom="120" width="40" height="40" do="doKeyPress"/>
+			<button id="key16" text="h" left="320" bottom="120" width="40" height="40" do="doKeyPress"/>
+			<button id="key17" text="j" left="365" bottom="120" width="40" height="40" do="doKeyPress"/>
+			<button id="key18" text="k" left="410" bottom="120" width="40" height="40" do="doKeyPress"/>
+			<button id="key19" text="l" left="455" bottom="120" width="40" height="40" do="doKeyPress"/>			
+
+			<button id="key20" text="z" left="140" bottom="70" width="40" height="40" do="doKeyPress"/>
+			<button id="key21" text="x" left="185" bottom="70" width="40" height="40" do="doKeyPress"/>
+			<button id="key22" text="c" left="230" bottom="70" width="40" height="40" do="doKeyPress"/>
+			<button id="key23" text="v" left="275" bottom="70" width="40" height="40" do="doKeyPress"/>
+			<button id="key24" text="b" left="320" bottom="70" width="40" height="40" do="doKeyPress"/>
+			<button id="key25" text="n" left="365" bottom="70" width="40" height="40" do="doKeyPress"/>
+			<button id="key26" text="m" left="410" bottom="70" width="40" height="40" do="doKeyPress"/>
+			
+			<button id="SHIFT" text="Shft" left="70" bottom="70" width="65" height="40" do="doShift"/>
+			<button id="SYMBOL" text="Symbols" left="70" bottom="20" width="110" height="40" do="doSymbol"/>
+			<button id="SPACE" text="Space" left="185" bottom="20" width="220" height="40" do="doSpace"/>
+			<button id="BACK" text="Back" left="410" bottom="20" width="110" height="40" do="doBack"/>
+		
+		
+        </group>
+    </group>
+</document>

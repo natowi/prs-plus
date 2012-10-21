@@ -1,0 +1,136 @@
+<project default="build.lang">
+	<target name="build.lang">
+    	<script language="beanshell">
+    		<!-- Shooting birds with... weapons of mass destruction. -->
+    		<classpath>
+    			<fileset file="tools/bsh-2.0b5.jar" />
+    			<fileset file="tools/odfdom-java-0.8.7.jar" />
+    			<fileset file="tools/xercesImpl.jar" />
+				<fileset file="tools/xml-apis.jar" />
+			</classpath>
+			<![CDATA[
+    		import java.io.PrintStream;
+    		import java.util.ArrayList;
+    		import org.odftoolkit.odfdom.doc.OdfSpreadsheetDocument;
+    		import org.odftoolkit.odfdom.doc.table.OdfTable;
+    		import org.odftoolkit.odfdom.doc.table.OdfTableCell;
+    		
+    		static final String ENCODING = "UTF8";
+    		static String PATH = "../script/core/lang/";
+    		static String LANG_FILE = PATH + "lang.ods";
+    		static int COL_GROUP = 0;
+    		static int COL_KEY = 1;
+    		static int COL_LANG = 2;
+    		static int ROW_LANG = 0;
+    		static int COL_DEFAULT_LANG = 2;
+    		// List languages
+    		static ArrayList languages = new ArrayList();
+
+    		private static final void pr(Object msg) {
+    			for (Object o : languages) {
+    				PrintStream langFile = (PrintStream) o;
+    				langFile.print(msg);
+    			}
+    		}
+    		
+    		// Main
+			OdfSpreadsheetDocument ods = OdfSpreadsheetDocument.loadDocument(LANG_FILE);
+			OdfTable sheet = ods.getTableByName("PRS_");
+			
+			for (OdfTable t: ods.getTableList()) {
+				System.out.println(t.getTableName());
+			}
+
+			for (int i = COL_LANG; true; i++) {
+				OdfTableCell cell = sheet.getCellByPosition(i, ROW_LANG); 
+				String lang = cell.getStringValue();
+				if ("".equals(lang)) {
+					break;
+				}
+				languages.add(new PrintStream(PATH + lang + ".js", ENCODING));
+			}
+			
+			pr("return {\n");
+			
+			boolean inGroup = false;
+			boolean xGroup = false;
+			boolean firstKey = true;
+			
+    		// Determine row count, seek two empty rows in a row
+    		int nRowCount = 0;
+    		for (int i = ROW_LANG + 2; true; i++) {
+				String nextRow = sheet.getCellByPosition(COL_KEY, i + 1).getStringValue();
+				String nextRow2 = sheet.getCellByPosition(COL_KEY, i + 2).getStringValue();
+				String nextRow3 = sheet.getCellByPosition(COL_KEY, i + 3).getStringValue();
+				if ("".equals(nextRow) && "".equals(nextRow2) && "".equals(nextRow3)) {
+    				nRowCount = i + 1;
+    				break;
+    			}
+    		}
+    		
+    		System.out.println("Found " + nRowCount + " rows");
+    		
+    		for (int i = 1; i < nRowCount; i++) {				if (inGroup) {
+					String key = sheet.getCellByPosition(COL_KEY, i).getStringValue();
+					if ("".equals(key)) {
+						pr("\n}");
+						inGroup = false;
+					} else {
+						// first key needs no heading comma
+						if (firstKey) {
+							pr("\t" + key);
+							firstKey = false;
+						} else {
+							pr(",\n\t" + key);
+						}
+						pr(":");
+						for (int j = 0, m = languages.size(); j < m; j++) {
+							String value = sheet.getCellByPosition(COL_LANG + j, i).getStringValue();
+							if ("".equals(value)) {
+								value = sheet.getCellByPosition(COL_DEFAULT_LANG, i).getStringValue();
+							}
+
+							// X group is an array
+							if (xGroup) {
+								String[] values = value.split(",");
+								value = "[";
+								for (int k = 0, l = values.length; k < l; k++) {
+									if (k != 0) {
+										value += ",";
+									}
+									value += "\"" + values[k] + "\"";
+								}
+								value += "]";
+								((PrintStream) languages.get(j)).print(value);
+							}  else {
+								((PrintStream) languages.get(j)).print("\"" + value + "\"");
+							}
+						}
+					}
+				} 
+				
+				if (!inGroup) {
+					String group = sheet.getCellByPosition(COL_GROUP, i).getStringValue();
+					// first line needs no heading comma
+					if (i == 1) {
+						pr(group + ": {\n");
+					} else {
+						pr(",\n" + group + ": {\n");
+					}
+					inGroup = true;
+					firstKey = true;
+					xGroup = "X".equals(group);
+				}
+			}
+			pr("\n}\n};");
+			ods.close();
+			
+			for (Object o : languages) {
+				PrintStream langFile = (PrintStream) o;
+				langFile.close();
+			}
+    		]]>
+    	</script>
+    </target>
+
+</project>

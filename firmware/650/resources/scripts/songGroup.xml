@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="VIEW" >
+
+	<group id="SONG_GROUP" left="0" right="0" top="0" bottom="0" visible="false">
+		<code>
+			<function id="doTrack">
+				var value = this.SLIDER.getValue()
+				var document = this.container.container.container.getDocument();
+				if (document.control) {
+					this.setVariable("CONTROL_INVALID", 1)
+					this.SONG.stop();
+				}
+				this.doAdjust(value)
+			</function>
+			<function id="doJump">
+				var value = this.SLIDER.getValue()
+				this.doAdjust(value)
+				var document = this.container.container.container.getDocument();
+				if (document.control) {
+					if (this.getVariable("STANDBY_STATE"))
+						this.SONG.start();
+					this.setVariable("CONTROL_INVALID", 0)
+				}
+			</function>
+			<function id="doAdjust" params="value"><![CDATA[
+				var ratio = value
+				var duration = this.SONG.getDuration()
+				var oldTime = this.SONG.getTime()
+				var newTime = duration * (ratio / 100)
+				if (newTime < 0)
+					newTime = 0;
+				if (newTime != oldTime)
+					this.SONG.setTime(newTime)
+			]]></function>
+			<function id="doControl"><![CDATA[
+				var document = this.container.container.container.getDocument();
+				if (this.SONG.isPlaying()) {
+						this.SONG.stop();
+						if (this.getVariable("STANDBY_STATE"))
+							document.control = 0;
+				}
+				else {
+					if (!this.getVariable("STANDBY_STATE")) {
+							this.setVariable("CONTROL", 0)
+							return
+					}
+					if (this.SONG.getDuration() <= this.SONG.getTime()) {
+						if (!this.bubble("doGotoNextSong", this, true)) {
+							this.bubble("doGotoFirstSong");
+							this.SONG.stop();
+							document.control = 0;
+							this.setVariable("CONTROL", 0)
+							return
+						}
+					}
+					if (!this.getVariable("FIRST_SONG_STOP_FLAG")) {
+						this.SONG.start();
+						document.control = 1;
+					} else {
+						this.setVariable("FIRST_SONG_STOP_FLAG", false)
+						document.control = 0;
+					}
+				}
+				document.volumeVisibilityChanged();
+			]]></function>
+			<function id="sizeBy" params="dx, dy">
+				arguments.callee.grammar.call(this, dx, dy)
+				this.ART.sizeBy(dy, dy)
+				if (dx > 0) {
+					this.ART.moveBy(400, 50)
+					this.H_INFO.show(true)
+					this.V_INFO.show(false)
+				}
+				else {
+					this.ART.moveBy(-400, -50)
+					this.H_INFO.show(false)
+					this.V_INFO.show(true)
+				}
+			</function>
+		</code>
+		<fillBackground color="black" left="0" right="0" top="0" bottom="0"/>
+		<fillBackground color="#C5C5C5" left="0" right="0" height="70" bottom="30"/>
+		<kbookStatus left="0" right="0" height="33" bottom="0"/>
+		<movie id="SONG" left="0" right="0" top="0" bottom="30" volume="1" href="x-id://movieData" active="false">
+			<code>
+				<function id="doFirst">
+					this.bubble("doGotoFirstSong");
+				</function>
+				<function id="doLast">
+					this.bubble("doGotoLastSong");
+				</function>
+				<function id="doNext">
+					if (!this.bubble("doGotoNextSong", this))
+						this.bubble("doBlink")
+				</function>
+				<function id="doPrevious">
+					this.bubble("doGotoPreviousSong");
+				</function>
+				<function id="finished">
+					if (!this.bubble("doGotoNextSong", this, true)) {
+						this.bubble("doGotoFirstSong");
+						this.bubble("doControl")
+					}
+				</function>
+				<function id="doGestureFail">
+					this.bubble("doBlink")
+				</function>
+			</code>
+		</movie>
+		<image id="ART" left="50" top="50" width="500" height="500" href="x-id://artData"/>
+		<group id="H_INFO" left="0" right="0" top="0" bottom="0" visible="false">
+			<kbookSelectionIndicator left="50" top="327" width="108" height="36" align="left">
+				<variable name="SHUFFLE" on="true"/>
+				<variable name="REPEAT" on="1"/>
+				<variable name="REPEAT" on="2"/>
+			</kbookSelectionIndicator>
+			<kbookLabel id="TITLE_H" skin="label-song" left="50" right="355" height="40" top="172" align="left" variable="SONG"/>
+			<kbookLabel id="ARTIST_H" left="50" right="355" height="35" top="215" align="left" variable="ARTIST"/>
+			<kbookLabel id="ALBUM_H" left="50" right="355" height="35" top="242" align="left" variable="ALBUM"/>
+			<kbookLabel id="SONG_ALL_H" align="left" left="50" width="250"  top="297" height="40" variable="SONG_ALL_STRING"/>
+		</group>
+		<group id="V_INFO" left="0" right="0" top="0" bottom="0">
+			<kbookSelectionIndicator right="50" top="600" width="108" height="36" align="right">
+				<variable name="SHUFFLE" on="true"/>
+				<variable name="REPEAT" on="1"/>
+				<variable name="REPEAT" on="2"/>
+			</kbookSelectionIndicator>
+			<kbookLabel id="TITLE_V" skin="label-song" left="50" right="50" height="40" top="562" align="left" variable="SONG"/>
+			<kbookLabel id="ARTIST_V" left="50" right="260" height="35" top="605" align="left" variable="ARTIST"/>
+			<kbookLabel id="ALBUM_V" left="50" right="260" height="35" top="632" align="left" variable="ALBUM"/>
+			<kbookLabel id="SONG_ALL_V" align="right" right="50" width="250"  top="632" height="40" variable="SONG_ALL_STRING"/>
+		</group>
+		<group id="MOUSE_TARGET" top="0" bottom="100" left="0" right="0" active="true">
+			<code>
+				<function id="canLine">
+					return true
+				</function>
+				<function id="doLine" params="dir">
+					var settings = this.getVariable("gestureDirectionFlag")
+					dir = settings ? (dir == Gesture.leftDirection ? Gesture.rightDirection : Gesture.leftDirection) : dir 
+					if (dir == Gesture.leftDirection)
+						this.container.SONG.doPrevious.call(this)
+					else if (dir == Gesture.rightDirection)
+						this.container.SONG.doNext.call(this)
+				</function>
+				<function id="doGestureFail">
+					this.bubble("doBlink")
+				</function>
+			</code>
+		</group>
+		<button2icon skin="AudioPrev"  left="12" width="68"  height="42" bottom="43" do="doGotoPreviousSong"/>
+		<kbookCheck skin="kbookPlay" left="92" width="114" height="42" bottom="43" do="doControl" variable="CONTROL" on="0" off="1"/>
+		<button2icon skin="AudioNext"  left="218" width="68"  height="42" bottom="43" do="doNext">
+			<code>
+				<function id="doNext">
+					if (!this.bubble("doGotoNextSong", this))
+						this.bubble("doBlink")
+				</function>
+			</code>
+		</button2icon>
+		<slider id="SLIDER" skin="jumpBar" axis="x" left="298" right="12" bottom="45" track="doTrack" do="doJump" variable="SEEK"/>
+		<kbookLabel skin="label-statusBar" clock="true" left="157" right="157" height="30" bottom="0" align="center" variable="SONG_INDEX_COUNT" active="true"/>
+	</group>
+
+</document>

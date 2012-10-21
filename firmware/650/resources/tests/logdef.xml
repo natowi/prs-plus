@@ -1,0 +1,999 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<logdef xmlns="http://www.sony.com/xmlns/product/prs/device/1">
+	<module name="log" id="0">
+		<entry name="start" id="1"/>
+		<entry name="loop flush" id="2"/>
+		<entry name="pm flush" id="3"/>
+	</module>
+	<module name="appDevice" id="1">
+		<entry name="reset" id="1"/>
+		<entry name="processing" id="2"/>
+		<entry name="processed" id="3"/>
+	</module>
+	<module name="card" id="2">
+		<entry name="MS" id="1"/>
+		<entry name="SD" id="2"/>
+		<entry name="cannotUmount" id="3"/>
+		<entry name="cannotMount" id="4">
+			<entry name="MS" id="0"/>
+			<entry name="SD" id="1"/>
+		</entry>
+		<entry name="information" id="5"/>
+		<entry name="error" id="6">
+			<entry name="none" id="0"/>
+			<entry name="memFull" id="-1"/>
+			<entry name="invalidParameter" id="-7"/>
+			<entry name="tooManyOpenFiles" id="-40"/>
+			<entry name="fileNotFound" id="-41"/>
+			<entry name="filePermissions" id="-42"/>
+			<entry name="isDirectory" id="-45"/>
+			<entry name="notDirectory" id="-46"/>
+			<entry name="diskFull" id="-48"/>
+			<entry name="volumeLocked" id="-55"/>
+			<entry name="volumeUnavailable" id="-56"/>
+			<entry name="unknown" id="-9999"/>
+		</entry>
+	</module>
+	<module name="AC" id="3">
+		<entry name="state" id="1"/>
+	</module>
+	<module name="pm" id="4">
+		<entry name="stateChangeReq" id="1">
+			<entry name="state" do="convertPowerState"/>
+		</entry>
+		<entry name="stateChangeLockReq" id="2">
+			<entry name="state" do="convertPowerState"/>
+		</entry>
+		<entry name="stateChangeWait" id="3">
+			<entry name="Start" id="1">
+				<entry name="state" do="convertPowerState"/>
+			</entry>
+			<entry name="Finish" id="2">
+				<entry name="state" do="convertPowerState"/>
+			</entry>
+		</entry>
+		<entry name="cannotStateChange" id="4">
+			<entry name="state" do="convertPowerState"/>
+		</entry>
+		<entry name="cannotStateChangeManyTimes" id="5">
+			<entry name="state" do="convertPowerState"/>
+		</entry>
+		<entry name="doStateChange" id="6">
+			<entry name="state" do="convertPowerState">
+				<entry name="state" do="convertPowerState"/>
+			</entry>
+		</entry>
+		<entry name="doneStateChange" id="7">
+			<entry name="state" do="convertPowerState">
+				<entry name="state" do="convertPowerState">
+					<entry name="state" do="convertPowerState"/>
+				</entry>
+			</entry>
+		</entry>
+		<entry name="deviceStateChange" id="8">
+			<entry name="Start" id="1">
+				<entry name="state" do="convertPowerState"/>
+			</entry>
+			<entry name="Finish" id="2">
+				<entry name="state" do="convertPowerState"/>
+			</entry>
+		</entry>
+	</module>
+	<module name="USB" id="5">
+		<entry name="charge" id="1"/>
+		<entry name="connectInStandby" id="2"/>
+		<entry name="toUSBDoze" id="3"/>
+		<entry name="fromUSBDoze" id="4"/>
+		<entry name="massStrage" id="5"/>
+		<entry name="deviceLock" id="6"/>
+	</module>
+	<module name="key" id="6">
+		<entry name="down" id="1"/>
+		<entry name="up" id="2"/>
+		<entry name="count" id="3"/>
+	</module>
+	<module name="battery" id="7">
+		<entry name="level" id="1"/>
+		<entry name="state" id="2">
+			<entry name="normal" id="1"/>
+			<entry name="no" id="2"/>
+			<entry name="dead" id="3"/>
+			<entry name="unknown" id="4"/>
+		</entry>
+		<entry name="low" id="3"/>
+	</module>
+	<module name="touchpanel" id="8">
+		<entry name="down" id="1"/>
+		<entry name="up" id="2"/>
+		<entry name="workaround" id="3"/>
+	</module>
+	<module name="audio" id="9">
+		<entry name="open" id="1"/>
+		<entry name="start" id="2"/>
+		<entry name="stop" id="3"/>
+		<entry name="volumet" id="4"/>
+	</module>
+	<module name="framebuffer" id="10">
+		<entry name="initState" id="1"/>
+		<entry name="termState" id="2"/>
+		<entry name="EInkInit" id="3"/>
+	</module>
+	<module name="NAND" id="11">
+		<entry name="mount" id="1"/>
+		<entry name="umount" id="2"/>
+		<entry name="alreadyMount" id="3"/>
+		<entry name="cannotMount" id="4"/>
+		<entry name="cannotUmount" id="5"/>
+		<entry name="dataError" id="6"/>
+	</module>
+	<module name="RTC" id="12">
+		<entry name="initialize" id="1"/>
+		<entry name="tzLoad" id="2"/>
+		<entry name="tzSave" id="3"/>
+		<entry name="iMX31Read" id="4"/>
+		<entry name="iMX31Write" id="5"/>
+		<entry name="wm8350Read" id="6"/>
+		<entry name="wm8350Write" id="7"/>
+		<entry name="setMinTime" id="8"/>
+		<entry name="setAlarm" id="9"/>
+		<entry name="clockLoad" id="10"/>
+		<entry name="clockSave" id="11"/>
+		<entry name="autoStandby" id="12"/>
+		<entry name="autoShutdown" id="13"/>
+	</module>
+	<module name="subCPU" id="13">
+		<entry name="send" id="1">
+			<entry name="system" id="1">
+				<entry name="lowBattery" id="1"/>
+				<entry name="sleepRequest" id="2"/>
+				<entry name="powerOff" id="3"/>
+				<entry name="bootFinish" id="4"/>
+			</entry>
+			<entry name="status" id="2">
+				<entry name="getStatus" id="1"/>
+			</entry>
+			<entry name="key" id="3">
+				<entry name="data" id="1"/>
+				<entry name="onOff" id="2"/>
+			</entry>
+			<entry name="battery" id="4">
+				<entry name="level" id="1"/>
+				<entry name="queryLevel" id="2"/>
+				<entry name="charge" id="3"/>
+				<entry name="queryCharge" id="4"/>
+				<entry name="state" id="5"/>
+				<entry name="queryState" id="6"/>
+			</entry>
+			<entry name="LED" id="5">
+				<entry name="LED" id="1"/>
+			</entry>
+			<entry name="touchpanel" id="6">
+				<entry name="sampling" id="1"/>
+				<entry name="breaktime" id="2"/>
+				<entry name="onOff" id="3"/>
+				<entry name="data" id="4"/>
+				<entry name="penOff" id="5"/>
+				<entry name="pressure" id="6"/>
+			</entry>
+			<entry name="GSensor" id="7">
+				<entry name="sampling" id="1"/>
+				<entry name="onOff" id="2"/>
+				<entry name="data" id="3"/>
+			</entry>
+			<entry name="powerSource" id="8">
+				<entry name="AC" id="5"/>
+				<entry name="queryAC" id="6"/>
+				<entry name="USB" id="7"/>
+				<entry name="queryUSB" id="8"/>
+			</entry>
+		</entry>
+		<entry name="receive" id="2">
+			<entry name="system" id="1">
+				<entry name="lowBattery" id="1"/>
+				<entry name="sleepRequest" id="2"/>
+				<entry name="powerOff" id="3"/>
+				<entry name="bootFinish" id="4"/>
+			</entry>
+			<entry name="status" id="2">
+				<entry name="getStatus" id="1"/>
+			</entry>
+			<entry name="key" id="3">
+				<entry name="data" id="1"/>
+				<entry name="onOff" id="2"/>
+			</entry>
+			<entry name="battery" id="4">
+				<entry name="level" id="1"/>
+				<entry name="queryLevel" id="2"/>
+				<entry name="charge" id="3"/>
+				<entry name="queryCharge" id="4"/>
+				<entry name="state" id="5"/>
+				<entry name="queryState" id="6"/>
+			</entry>
+			<entry name="LED" id="5">
+				<entry name="LED" id="1"/>
+			</entry>
+			<entry name="touchpanel" id="6">
+				<entry name="sampling" id="1"/>
+				<entry name="breaktime" id="2"/>
+				<entry name="onOff" id="3"/>
+				<entry name="data" id="4"/>
+				<entry name="penOff" id="5"/>
+				<entry name="pressure" id="6"/>
+			</entry>
+			<entry name="GSensor" id="7">
+				<entry name="sampling" id="1"/>
+				<entry name="onOff" id="2"/>
+				<entry name="data" id="3"/>
+			</entry>
+			<entry name="powerSource" id="8">
+				<entry name="AC" id="5"/>
+				<entry name="queryAC" id="6"/>
+				<entry name="USB" id="7"/>
+				<entry name="queryUSB" id="8"/>
+			</entry>
+		</entry>		
+		<entry name="ackRecieveWithoutSend" id="3"/>
+		<entry name="invalidPacket" id="4"/>
+		<entry name="sendWait" id="5"/>
+	</module>
+	<module name="charging" id="14">
+		<entry name="state" id="1"/>
+	</module>
+	<module name="NM" id="15">
+		<entry name="NM" id="0">
+			<entry name="Call API" id="1">
+				<entry name="CreateInstance"  			id="1"/>
+				<entry name="DestroyInstance" 			id="2"/>
+				<entry name="Start"						id="3">
+					<entry name="Normal"	id="0"/>
+					<entry name="Partial"	id="1"/>
+				</entry>
+				<entry name="Stop"							id="4">
+					<entry name="Normal"	id="0"/>
+					<entry name="Partial"	id="1"/>
+				</entry>
+				<entry name="GetInformation"				id="5">
+					<entry name="WWAN_PROFILE"			id="0"/>
+					<entry name="WWAN_IMEI"				id="1"/>
+					<entry name="WWAN_IMSI"				id="2"/>
+					<entry name="WWAN_ICCID"				id="3"/>
+					<entry name="WWAN_MSISDN"				id="4"/>
+					<entry name="WWAN_RADIO_TYPE"			id="5"/>
+					<entry name="WWAN_ROAMING"			id="6"/>
+					<entry name="WWAN_HOME_MCC"			id="7"/>
+					<entry name="WWAN_HOME_MNC"			id="8"/>
+					<entry name="WWAN_SERVING_MCC"		id="9"/>
+					<entry name="WWAN_SERVING_MNC"		id="10"/>
+					<entry name="WLAN_PROFILE"			id="11"/>
+					<entry name="WLAN_CURRENT_PROFILE"	id="12"/>
+					<entry name="WLAN_SCAN_LIST"			id="13"/>
+				</entry>
+				<entry name="SetInformation"				id="6">
+					<entry name="WWAN_PROFILE"			id="0"/>
+					<entry name="WWAN_IMEI"				id="1"/>
+					<entry name="WWAN_IMSI"				id="2"/>
+					<entry name="WWAN_ICCID"				id="3"/>
+					<entry name="WWAN_MSISDN"				id="4"/>
+					<entry name="WWAN_RADIO_TYPE"			id="5"/>
+					<entry name="WWAN_ROAMING"			id="6"/>
+					<entry name="WWAN_HOME_MCC"			id="7"/>
+					<entry name="WWAN_HOME_MNC"			id="8"/>
+					<entry name="WWAN_SERVING_MCC"		id="9"/>
+					<entry name="WWAN_SERVING_MNC"		id="10"/>
+					<entry name="WLAN_PROFILE"			id="11"/>
+					<entry name="WLAN_CURRENT_PROFILE"	id="12"/>
+					<entry name="WLAN_SCAN_LIST"			id="13"/>
+				</entry>
+				<entry name="Reselec Device"				id="7">
+					<entry name="Reset"	id="0"/>
+					<entry name="Next"		id="1"/>
+				</entry>
+				<entry name="SelectionMode"				id="8">
+					<entry name="WWAN"		id="0"/>
+					<entry name="WLAN"		id="1"/>
+					<entry name="AUTO"		id="2"/>
+				</entry>
+				<entry name="AutoSelection"				id="9">
+					<entry name="ON"		id="0"/>
+					<entry name="OFF"		id="1"/>
+				</entry>
+				<entry name="RegisterCallback"			id="10"/>
+				<entry name="CanSleep"						id="11"/>
+				<entry name="Scan"							id="12"/>
+				<entry name="GenerateWPAPIN"  			id="13"/>
+				<entry name="StartWPA"						id="14"/>
+				<entry name="CanncelSettingFunction"  	id="15"/>
+				<entry name="AddProfile"  				id="16"/>
+				<entry name="RemoveProfile"				id="17"/>
+				<entry name="UpdateProfile"				id="18"/>
+				<entry name="Connect"  					id="19"/>
+			</entry>
+			<entry name="State" id="2">
+				<entry name="Change Main State to" id="1">
+					<entry name="Power Off"			id="0"/>
+					<entry name="Init module"			id="1"/>
+					<entry name="Radio Off"			id="2"/>
+					<entry name="Init Radio"			id="3"/>
+					<entry name="Processing"			id="4"/>
+					<entry name="Term Radio"			id="5"/>
+					<entry name="Term Module"			id="6"/>
+					<entry name="Critical Error"		id="7"/>
+				</entry>
+				<entry name="Change Sub State to"  id="2">
+					<entry name="No Active Dev"		id="0"/>
+					<entry name="Change Dev"  		id="1"/>
+					<entry name="Disconnected"		id="2"/>
+					<entry name="Connected"			id="3"/>
+					<entry name="Change connection"	id="4"/>
+				</entry>
+				<entry name="VCM Event" 		id="3"/>
+				<entry name="IP Lease Time" 	id="4"/>
+			</entry>
+
+			<entry name="Current selection" id="3">
+				<entry name="WLAN"		id="0"/>
+				<entry name="WWAN"		id="1"/>
+			</entry>
+
+			<entry name="Error" id="-1">
+				<entry name="API" 						id="201"/>
+				<entry name="NotifyNetworkStatus" 	id="202"/>
+			</entry>
+		</entry>
+
+		<entry name="WLAN CM" id="1">
+			<entry name="Call API" id="1">
+				<entry name="WCMInitialize"		id="0"/>
+				<entry name="WCMFinalize"			id="1"/>
+				<entry name="WCMStart"				id="2"/>
+				<entry name="WCMStop"				id="3"/>
+				<entry name="WCMCancel"			id="4"/>
+				<entry name="WCMWPSPBCStart"		id="5"/>
+				<entry name="WCMWPSPINStart"		id="6"/>
+				<entry name="WCMScanStart"		id="7"/>
+				<entry name="WCMConnect" 	 		id="8"/>
+				<entry name="WCMDisconnect"		id="9"/>
+			</entry>
+
+			<entry name="Event" id="2">
+				<entry name="SYSTEM_ERROR" 		id="0"/>
+				<entry name="STATE_CHANGE" 		id="1"/>
+				<entry name="UPDATE_SCANLIST" 	id="2"/>
+				<entry name="DISCONNECTED"		id="3"/>
+				<entry name="CONNECTED"			id="4"/>
+				<entry name="UNABLE_TO_CONNECT"	id="5"/>
+				<entry name="WARNING_NOTIFIED"	id="6"/>
+				<entry name="WPS_SUCCESS"			id="7"/>
+				<entry name="WPS_ERROR"			id="8"/>
+				<entry name="WPS_PROCESSING"		id="9"/>
+			</entry>
+
+			<entry name="Supplicant" id="3">
+				<entry name="CONNECTED"				id="0"/>
+				<entry name="DISCONNECTED"			id="1"/>
+				<entry name="SCANRESULT"				id="2"/>
+				<entry name="WPS_SUCCESS"				id="3"/>
+				<entry name="WPS_CRED_RECEIVED"		id="4"/>
+				<entry name="WPS_PIN_MISMATCH"		id="5"/>
+				<entry name="WPS_TIMEOUT"				id="6"/>
+				<entry name="WPS_OVERLAP_DETECTED"	id="7"/>
+				<entry name="ASSOCIATED"				id="8"/>
+				<entry name="INVALID_PSK"				id="9"/>
+				<entry name="SCAN_CACHED"				id="10"/>
+				<entry name="EAP_START"				id="11"/>
+				<entry name="UNKNOWN"					id="12"/>
+			</entry>
+
+			<entry name="Error" id="-1">
+				<entry name="WCMInitialize"				id="200"/>
+				<entry name="WCMFinalize"					id="201"/>
+				<entry name="WCMSetCallback"				id="202"/>
+				<entry name="WCMSetSupplicantConfPath"	id="203"/>
+				<entry name="WCMSetSupplicantWPSInfo"	id="204"/>
+				<entry name="WCMSetInterfaceName"		id="205"/>
+				<entry name="WCMCanSleep"					id="206"/>
+				<entry name="WCMSetConnectType"			id="207"/>
+				<entry name="WCMGetConnectType"			id="208"/>
+				<entry name="WCMSetAutoConnect"			id="209"/>
+				<entry name="WCMSetTimer"					id="210"/>
+				<entry name="WCMGetTimer"					id="211"/>
+				<entry name="WCMSetDeviceOpt"				id="212"/>
+				<entry name="WCMSetStateReportLevel"		id="213"/>
+				<entry name="WCMGetStateReportLevel"		id="214"/>
+				<entry name="WCMStart"						id="215"/>
+				<entry name="WCMStop"						id="216"/>
+				<entry name="WCMCancel"					id="217"/>
+				<entry name="WCMWPSPINCreate"				id="218"/>
+				<entry name="WCMWPSPBCStart"				id="219"/>
+				<entry name="WCMWPSPINStart"				id="220"/>
+				<entry name="WCMScanStart"				id="221"/>
+				<entry name="WCMConnect"					id="222"/>
+				<entry name="WCMDisconnect"				id="223"/>
+				<entry name="WCMGetScanList"				id="224"/>
+				<entry name="WCMGetProfileList"			id="225"/>
+				<entry name="WCMAddProfile"				id="226"/>
+				<entry name="WCMRemoveProfile"			id="227"/>
+				<entry name="WCMUpdateProfile"			id="228"/>
+				<entry name="WCMClearProfileList"		id="229"/>
+				<entry name="WCMGetCurrentProfile"		id="230"/>
+				<entry name="WCMGetState"					id="231"/>
+				<entry name="WCMGetSubState"				id="232"/>
+				<entry name="WCMGetRssi"					id="233"/>
+			</entry>
+		</entry>
+
+		<entry name="WWAN CM" id="2">
+			<entry name="Call API" id="1">
+				<entry name="CreateInstance"  			id="1"/>
+				<entry name="DestroyInstance" 			id="2"/>
+				<entry name="Start"						id="3"/>
+				<entry name="Stop"							id="4"/>
+				<entry name="GetInformation"  			id="5"/>
+			</entry>
+
+			<entry name="Platform func" id="2">
+				<entry name="FWDL"					id="1"/>
+				<entry name="Radio On"				id="2"/>
+				<entry name="Radio Off"			id="3"/>
+				<entry name="Wait for reboot"		id="4"/>
+				<entry name="Status"				id="5"/>
+			</entry>
+
+			<entry name="Platform func" id="2">
+				<entry name="FWDL"					id="1"/>
+				<entry name="Radio On"				id="2"/>
+				<entry name="Radio Off"			id="3"/>
+				<entry name="Wait for reboot"		id="4"/>
+				<entry name="Status"				id="5"/>
+			</entry>
+
+			<entry name="CM API out" id="4">
+				<entry name="SET_SESSION_STATE_CB"		id="1"/>
+				<entry name="SET_POWER_CB"				id="2"/>
+				<entry name="SET_ROAMING_INDICATOR_CB"	id="3"/>
+				<entry name="SET_SIGNAL_STRENGTH_CB"		id="4"/>
+				<entry name="QCWWAN_ENUMERATE_DEVICES"	id="5"/>
+				<entry name="QCWWAN_CONNECT"				id="6"/>
+				<entry name="QCWWAN_DISCONNET"			id="7"/>
+				<entry name="START_DATA_SESSION"			id="8"/>
+				<entry name="STOP_DATA_SESSION"			id="9"/>
+				<entry name="SET_POWER"					id="10"/>
+				<entry name="UIM_GET_PIN_STATUS"			id="11"/>
+				<entry name="GET_SERIAL_NUM"				id="12"/>
+				<entry name="UIM_GET_ICCID"				id="13"/>
+				<entry name="GET_HOME_NETWORK"			id="14"/>
+				<entry name="GET_SERVING_NETWORK"		id="15"/>
+				<entry name="GET_SIGNAL_STRENGTHS"		id="16"/>
+				<entry name="GET_VOICE_NUMBER"			id="17"/>
+				<entry name="GET_IMSI"						id="18"/>
+				<entry name="GET_POWER"					id="19"/>
+			</entry>
+
+			<entry name="Command" id="5">
+				<entry name="Start"				id="1"/>
+				<entry name="Partial Start" 		id="2"/>
+				<entry name="Stop"					id="3"/>
+				<entry name="Pertial Stop"		id="4"/>
+				<entry name="Get Info"				id="5"/>
+				<entry name="Try To Connect"		id="6"/>
+				<entry name="Shutdown"				id="7"/>
+				<entry name="Wait for reboot"		id="8"/>
+				<entry name="Check Attaching"		id="9"/>
+				<entry name="Check Detaching"		id="10"/>
+			</entry>
+
+			<entry name="Info" id="6">
+				<entry name="Sleep Mode"		id="1"/>
+				<entry name="Not attach yet"	id="2"/>
+				<entry name="Reboot timeout"	id="3"/>
+			</entry>
+
+			<entry name="CM API Callback" id="7">
+				<entry name="Settion state"		id="1"/>
+				<entry name="Power state" 		id="2"/>
+				<entry name="Roaming Indicator"	id="3"/>
+				<entry name="Signal Strength"		id="4"/>
+			</entry>
+
+			<entry name="Error" id="-1">
+				<entry name="CM API"			id="201"/>
+				<entry name="Platform"			id="202"/>
+				<entry name="Timeout"			id="203"/>
+				<entry name="Open Lib"			id="204"/>
+				<entry name="Load Symbol"		id="205"/>
+				<entry name="Close Lib"		id="206"/>
+			</entry>
+		</entry>
+	</module>
+
+	<module name="WAN" id="16">
+		<entry name="lock"  id="1"/>
+		<entry name="unlock"  id="2"/>
+		<entry name="stateChange"  id="3">
+			<entry name="off"  id="0"/>
+			<entry name="waitStart"  id="1"/>
+			<entry name="on"  id="2"/>
+			<entry name="partialOn"  id="3"/>
+			<entry name="waitStop"  id="4"/>
+			<entry name="waitOff"  id="5"/>
+		</entry>
+		<entry name="ntpdate"  id="4"/>
+		<entry name="autopoweroff"  id="5"/>
+		<entry name="notifyState"  id="6">
+			<entry name="off" id="0"/>
+			<entry name="prohibit" id="1"/>
+			<entry name="searching" id="2"/>
+			<entry name="registered" id="3"/>
+			<entry name="connected" id="4"/>
+			<entry name="disconnected" id="5"/>
+			<entry name="timeout" id="6"/>
+			<entry name="error" id="7"/>
+		</entry>
+		<entry name="start"  id="7"/>
+		<entry name="partialStart"  id="8"/>
+		<entry name="stop"  id="9"/>
+		<entry name="getInfo"  id="10"/>
+		<entry name="enable"  id="11"/>
+	</module>
+	<module name="tasks" id="17">
+		<entry name="cancel all" id="100">
+			<entry name="start" id="1"/>
+			<entry name="finish" id="2"/>
+		</entry>
+		<entry name="queued" id="101">
+			<entry name="start" id="1"/>
+			<entry name="finish" id="2"/>
+		</entry>
+		<entry name="downloadTask" id="1">
+			<entry name="func" do="convertTaskFunc"/>
+		</entry>
+		<entry name="registerTask" id="2">
+			<entry name="func" do="convertTaskFunc"/>
+		</entry>
+		<entry name="deregisterTask" id="3">
+			<entry name="func" do="convertTaskFunc"/>
+		</entry>
+		<entry name="notifyTask" id="4">
+			<entry name="func" do="convertTaskFunc"/>
+		</entry>
+	</module>
+        <module name="web" id="18">
+	  <entry name="net" id="1">
+	    <entry name="lock" id="1" />
+	    <entry name="getConnection" id="2" >
+	      <entry name="prohibited"  id="-1"/>
+	      <entry name="processing"  id="1"/>
+	      <entry name="unavailable" id="0" />
+	      <entry name="available"   id="2" />
+	      <entry name="incomplete"  id="3" />
+	    </entry>
+	    <entry name="unlock" id="3" />
+	    <entry name="callback" id="4">
+	      <entry name="prohibited"  id="-1"/>
+	      <entry name="processing"  id="1"/>
+	      <entry name="unavailable" id="0" />
+	      <entry name="available"   id="2" />
+	      <entry name="incomplete"  id="3" />
+	    </entry>
+	    <entry name="neton_silk" id="5"/>
+	    <entry name="netoff_silk" id="6"/>
+	  </entry>
+
+	  <entry name="ope" id="2">
+	    <entry name="navigateTo" id="1"/>
+	    <entry name="nav_status" id="2">
+	      <entry name="start" id="1" />
+	      <entry name="stop"  id="4" />
+	    </entry>
+	    <entry name="finalize" id="3">
+	      <entry name="begin" id="0"/>
+	      <entry name="end"   id="1"/>
+	    </entry>
+	  </entry>
+
+	  <entry name="mouse" id="3">
+	    <entry name="down" id="0" />
+	    <entry name="up"   id="1" />
+	    <entry name="move" id="2" />
+	  </entry>
+	  <entry name="socket" id="4">
+	    <entry name="connect" id="0"/>
+	    <entry name="send"    id="1" />
+	    <entry name="recv"    id="2" />
+	    <entry name="select"  id="3" />
+	    <entry name="create"  id="4" />
+	    <entry name="shutdown"  id="5" />
+	    <entry name="close"     id="6" />
+	  </entry>
+	  <entry name="condwait" id="5">
+	    <entry name="start" id="0">
+	      <entry name="0" id="0">
+		<entry name="0" id="0">
+		  <entry name="finalize"     id="1"/>
+		  <entry name="getSilkState" id="2"/>
+		  <entry name="reqeustConnection" id="3"/>
+		  <entry name="close"        id="4"/>
+		  <entry name="syncCall"     id="5"/>
+		  <entry name="eventHandler" id="6"/>
+		</entry>
+	      </entry>
+	    </entry>
+	    <entry name="end"   id="1">
+	      <entry name="0" id="0">
+		<entry name="0" id="0">
+		  <entry name="finalize"     id="1"/>
+		  <entry name="getSilkState" id="2"/>
+		  <entry name="reqeustConnection" id="3"/>
+		  <entry name="close"        id="4"/>
+		  <entry name="syncCall"     id="5"/>
+		  <entry name="eventHandler" id="6"/>
+		</entry>
+	      </entry>
+	    </entry>
+	    <entry name="cont"  id="2">
+	      <entry name="0" id="0">
+		<entry name="0" id="0">
+		  <entry name="finalize"     id="1"/>
+		  <entry name="getSilkState" id="2"/>
+		  <entry name="reqeustConnection" id="3"/>
+		  <entry name="close"        id="4"/>
+		  <entry name="syncCall"     id="5"/>
+		  <entry name="eventHandler" id="6"/>
+		</entry>
+	      </entry>
+	    </entry>
+	    <entry name="other" id="3">
+	      <entry name="0" id="0">
+		<entry name="0" id="0">
+		  <entry name="finalize"     id="1"/>
+		  <entry name="getSilkState" id="2"/>
+		  <entry name="reqeustConnection" id="3"/>
+		  <entry name="close"        id="4"/>
+		  <entry name="syncCall"     id="5"/>
+		  <entry name="eventHandler" id="6"/>
+		</entry>
+	      </entry>
+	    </entry>
+	  </entry>
+	  <entry name="wlbl" id="6">
+	    <entry name="upd_init" id="1" />
+	    <entry name="upd_fin"  id="2" />
+	    <entry name="acc_init" id="3" />
+	    <entry name="acc_fin"  id="4" />
+	    <entry name="hit_bl"   id="5" />
+	    <entry name="mis_wl"   id="6" />
+	    <entry name="bl_cnt"   id="7" />
+	    <entry name="wl_cnt"   id="8" />
+	  </entry>
+	  <entry name="misc" id="9">
+	    <entry name="sleep_ok" id="0"/>
+	    <entry name="receive=0" id="1" />
+	  </entry>
+	</module>
+	<module name="ticket" id="19">
+		<entry name="ticketSystem" id="1">
+			<entry name="start" id="1">
+				<entry name="not initialized" id="501"/>
+				<entry name="already started" id="-501"/>
+			</entry>
+			<entry name="stop" id="1">
+				<entry name="not initialized" id="501"/>
+			</entry>
+			<entry name="reschedule" id="3"/>
+		</entry>
+		<entry name="notify" id="3">
+			<entry name="set timer" id="1">
+				<entry name="alive" id="0"/>
+				<entry name="expired" id="1"/>
+			</entry>
+			<entry name="timer callback" id="2"/>
+			<entry name="cancel" id="3">
+				<entry name="start" id="0"/>
+				<entry name="task in" id="1"/>
+				<entry name="task out" id="2"/>
+				<entry name="finish" id="3"/>
+			</entry>
+			<entry name="succeed" id="4"/>
+			<entry name="fail" id="5"/>
+			<entry name="schedule" id="6">
+				<entry name="action ID" id="0"/>
+				<entry name="now" id="1"/>
+				<entry name="publication" id="2"/>
+				<entry name="execution" id="3"/>
+				<entry name="expiration" id="4"/>
+				<entry name="gave up" id="5"/>
+				<entry name="schedule" id="6"/>
+			</entry>
+			<entry name="receive" id="7">
+				<entry name="ticket xml" id="1"/>
+				<entry name="error xml" id="2">
+					<entry name="Reset" id="1"/>
+					<entry name="Retry" id="2"/>
+					<entry name="Stop" id="3"/>
+				</entry>
+			</entry>
+		</entry>
+		<entry name="execute"	id="4">
+			<entry name="set timer" id="1">
+				<entry name="alive" id="0"/>
+				<entry name="expired" id="1"/>
+			</entry>
+			<entry name="timer callback" id="2"/>
+			<entry name="cancel" id="3">
+				<entry name="start" id="0"/>
+				<entry name="task in" id="1"/>
+				<entry name="task out" id="2"/>
+				<entry name="finish" id="3"/>
+			</entry>
+			<entry name="succeed" id="4"/>
+			<entry name="fail" id="5"/>
+			<entry name="schedule" id="6">
+				<entry name="action ID" id="0"/>
+				<entry name="now" id="1"/>
+				<entry name="publication" id="2"/>
+				<entry name="execution" id="3"/>
+				<entry name="expiration" id="4"/>
+				<entry name="gave up" id="5"/>
+				<entry name="schedule" id="6"/>
+			</entry>
+			<entry name="receive" id="7">
+				<entry name="ticket xml" id="1"/>
+				<entry name="error xml" id="2">
+					<entry name="Reset" id="1"/>
+					<entry name="Retry" id="2"/>
+					<entry name="Stop" id="3"/>
+				</entry>
+			</entry>
+		</entry>
+		<entry name="ticket"	id="5">
+			<entry name="check alive" id="1"/>
+			<entry name="dead" id="2"/>
+		</entry>
+		<entry name="service"	id="6">
+			<entry name="reset" id="1"/>
+		</entry>
+	</module>
+	<module name="watchdog" id="20">
+		<entry name="terminate" id="1">
+			<entry name="start" id="1"/>
+			<entry name="finish"	id="2"/>
+		</entry>
+		<entry name="count" id="2">
+			<entry name="none" id="0"/>
+			<entry name="reset"	id="1"/>
+			<entry name="shutdown"	id="2"/>
+		</entry>
+		<entry name="fire"	id="3">
+			<entry name="none" id="0"/>
+			<entry name="reset"	id="1"/>
+			<entry name="shutdown"	id="2"/>
+		</entry>
+		<entry name="start" id="4">
+			<entry name="none" id="0"/>
+			<entry name="reset"	id="1"/>
+			<entry name="shutdown"	id="2"/>
+		</entry>		
+		<entry name="stop" id="5"/>
+	</module>
+	<module name="wirelessnet" id="21">
+		<entry name="lock"  id="1"/>
+		<entry name="unlock"  id="2"/>
+		<entry name="start"  id="3"/>
+		<entry name="stop"  id="4"/>
+		<entry name="stateChange"  id="5">
+			<entry name="off"  id="0"/>
+			<entry name="waitStart"  id="1"/>
+			<entry name="on"  id="2"/>
+			<entry name="partialOn"  id="3"/>
+			<entry name="waitStop"  id="4"/>
+			<entry name="waitOff"  id="5"/>
+		</entry>
+		<entry name="ntpdate"  id="6"/>
+		<entry name="autopoweroff"  id="7"/>
+		<entry name="enable"  id="8"/>
+		<entry name="selectionmode"  id="9"/>
+		<entry name="autoselection"  id="10"/>
+		<entry name="connectTo"  id="11"/>
+		<entry name="setProxy"  id="12"/>
+		<entry name="authentication"  id="13">
+			<entry name="start"  id="0"/>
+			<entry name="result"  id="1">
+				<entry name="SUCCESS"  id="0"/>
+				<entry name="REQUIRED"  id="1"/>
+				<entry name="FAILED"  id="2"/>
+				<entry name="ERROR"  id="3"/>
+			</entry>
+		</entry>
+	</module>
+	<module name="http client" id="50">
+		<entry name="start" id="1"/>
+		<entry name="actual start" id="2"/>
+		<entry name="onHeaders"	id="3"/>
+		<entry name="onDataReady" id="4"/>
+		<entry name="onTransferComplete" id="5"/>
+	</module>
+	<module name="database" id="51">
+		<entry name="cacheExt" id="1">
+			<entry name="succeed" id="1"/>
+			<entry name="fail" id="2"/>
+			<entry name="done" id="3"/>
+		</entry>
+		<entry name="mediaxml" id="2">
+			<entry name="succeed" id="1"/>
+			<entry name="fail" id="2"/>
+			<entry name="done" id="3"/>
+		</entry>
+		<entry name="cachexml" id="3">
+			<entry name="succeed" id="1"/>
+			<entry name="fail" id="2"/>
+			<entry name="done" id="3"/>
+		</entry>
+	</module>
+	<module name="kbook" id="100"/>
+	<module name="kbookSeq" id="101">
+		<entry name="onQuit" id="1"/>
+		<entry name="doQuit" id="2"/>
+		<entry name="modelInit" id="5"/>
+		<entry name="modelTerm" id="6"/>
+		<entry name="usbEnd" id="9"/>
+		<entry name="onRestart" id="10"/>
+		<entry name="doRestart" id="11"/>
+	</module>
+	<module name="kbookError" id="102">
+		<entry name="networkType" id="0">
+			<entry name="noSIM" id="1"/>
+			<entry name="pinRequired" id="2"/>
+			<entry name="pukRequired" id="3"/>
+			<entry name="registrationFail" id="4"/>
+			<entry name="invalidConfig" id="5"/>
+			<entry name="simUnknownLock" id="6"/>
+			<entry name="device" id="23"/>
+			<entry name="system" id="999"/>
+		</entry>
+		<entry name="browseType" id="1">
+			<entry name="clockInvalid" id="7"/>
+		</entry>
+		<entry name="downloadType" id="2">
+			<entry name="clockInvalid" id="7"/>
+			<entry name="diskFull" id="8"/>
+			<entry name="network" id="9"/>
+			<entry name="other" id="10"/>
+			<entry name="suspend" id="22"/>
+			<entry name="system" id="999"/>
+		</entry>
+		<entry name="msType" id="3">
+			<entry name="diskFull" id="8"/>
+			<entry name="damaged" id="11"/>
+			<entry name="volumeUnavailable" id="12"/>
+			<entry name="becomeVolumeUnavailable" id="13"/>
+			<entry name="readOnly" id="14"/>
+			<entry name="badFormat" id="15"/>
+			<entry name="fileCorruption" id="16"/>
+			<entry name="volumeLocked" id="17"/>
+			<entry name="noCard" id="18"/>
+			<entry name="incompatibleDataOpen" id="19"/>
+			<entry name="incompatibleDataPlay" id="20"/>
+			<entry name="accessControl" id="21"/>
+			<entry name="suspend" id="22"/>
+		</entry>
+		<entry name="sdType" id="4">
+			<entry name="diskFull" id="8"/>
+			<entry name="damaged" id="11"/>
+			<entry name="volumeUnavailable" id="12"/>
+			<entry name="becomeVolumeUnavailable" id="13"/>
+			<entry name="readOnly" id="14"/>
+			<entry name="badFormat" id="15"/>
+			<entry name="fileCorruption" id="16"/>
+			<entry name="volumeLocked" id="17"/>
+			<entry name="noCard" id="18"/>
+			<entry name="incompatibleDataOpen" id="19"/>
+			<entry name="incompatibleDataPlay" id="20"/>
+			<entry name="accessControl" id="21"/>
+		</entry>
+		<entry name="internalType" id="5">
+			<entry name="diskFull" id="8"/>
+			<entry name="damaged" id="11"/>
+			<entry name="volumeUnavailable" id="12"/>
+			<entry name="becomeVolumeUnavailable" id="13"/>
+			<entry name="readOnly" id="14"/>
+			<entry name="badFormat" id="15"/>
+			<entry name="fileCorruption" id="16"/>
+			<entry name="volumeLocked" id="17"/>
+			<entry name="noCard" id="18"/>
+			<entry name="incompatibleDataOpen" id="19"/>
+			<entry name="incompatibleDataPlay" id="20"/>
+			<entry name="accessControl" id="21"/>
+		</entry>
+	</module>
+	<module name="hook api" id="110">
+		<entry name="start" id="1">
+			<entry name="get" id="1">
+				<entry name="ACS4Status" id="1"/>
+				<entry name="authenticationToken" id="2"/>
+				<entry name="AdobeID" id="3"/>
+				<entry name="GUID" id="4"/>
+				<entry name="firstName" id="5"/>
+				<entry name="ICCID" id="6"/>
+				<entry name="IMEI" id="7"/>
+				<entry name="deviceID" id="8"/>
+				<entry name="modelName" id="9"/>
+			</entry>
+			<entry name="set" id="2">
+				<entry name="ACS4Status" id="1"/>
+				<entry name="authenticationToken" id="2"/>
+				<entry name="AdobeID" id="3"/>
+				<entry name="GUID" id="4"/>
+				<entry name="firstName" id="5"/>
+				<entry name="ICCID" id="6"/>
+				<entry name="IMEI" id="7"/>
+				<entry name="deviceID" id="8"/>
+				<entry name="modelName" id="9"/>
+			</entry>
+			<entry name="download" id="3"/>
+			<entry name="register" id="4"/>
+			<entry name="deregister" id="5"/>
+			<entry name="startTicket" id="6"/>
+			<entry name="stopTicket" id="7"/>
+			<entry name="countAttachedDevice" id="8"/>
+			<entry name="hasActiveTicket" id="9"/>
+		</entry>
+		<entry name="finish" id="2">
+			<entry name="get" id="1">
+				<entry name="ACS4Status" id="1"/>
+				<entry name="authenticationToken" id="2"/>
+				<entry name="AdobeID" id="3"/>
+				<entry name="GUID" id="4"/>
+				<entry name="firstName" id="5"/>
+				<entry name="ICCID" id="6"/>
+				<entry name="IMEI" id="7"/>
+				<entry name="deviceID" id="8"/>
+				<entry name="modelName" id="9"/>
+			</entry>
+			<entry name="set" id="2">
+				<entry name="ACS4Status" id="1"/>
+				<entry name="authenticationToken" id="2"/>
+				<entry name="AdobeID" id="3"/>
+				<entry name="GUID" id="4"/>
+				<entry name="firstName" id="5"/>
+				<entry name="ICCID" id="6"/>
+				<entry name="IMEI" id="7"/>
+				<entry name="deviceID" id="8"/>
+				<entry name="modelName" id="9"/>
+			</entry>
+			<entry name="download" id="3"/>
+			<entry name="register" id="4"/>
+			<entry name="deregister" id="5"/>
+			<entry name="startTicket" id="6"/>
+			<entry name="stopTicket" id="7"/>
+			<entry name="countAttachedDevice" id="8"/>
+			<entry name="hasActiveTicket" id="9"/>
+		</entry>
+	</module>
+	<module name="updater" id="120">
+		<entry name="stateFUN" id="0">
+			<entry name="none" id="0"/>
+			<entry name="updating" id="1"/>
+			<entry name="downloading" id="2"/>
+			<entry name="downloadstop" id="3"/>
+			<entry name="downfail" id="4"/>
+			<entry name="downloaded" id="5"/>
+			<entry name="failed" id="6"/>
+			<entry name="success" id="7"/>
+			<entry name="cancel" id="8"/>
+			<entry name="eulafail" id="9"/>
+			<entry name="impossible" id="999"/>
+		</entry>
+		<entry name="finish" id="0">
+			<entry name="NO_UPDATE" id="0"/>
+			<entry name="INTERNAL_FORMAT" id="3"/>
+			<entry name="SD_FORMAT" id="4"/>
+			<entry name="MS_FORMAT" id="5"/>
+			<entry name="NO_PACKAGE" id="10"/>
+			<entry name="SUCCESS" id="11"/>
+			<entry name="OLD_VERSION" id="12"/>
+			<entry name="PACKAGE_ERR" id="13"/>
+			<entry name="AC_NG" id="14"/>
+			<entry name="BATTERY_NG" id="15"/>
+		</entry>
+	</module>
+</logdef>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="VIEW">
+
+	<group id="PAGE_NEWSNAVIBAR" left="0" right="0" height="48" bottom="0" visible="false">
+		<code>
+			<function id="canLine">
+				return false;
+			</function>
+			<function id="canLineAndHold">
+				return false;
+			</function>
+			<function id="doNavibar" params="obj">
+				this.container.container.container.PAGE.doNavibar(obj);
+			</function>
+		</code>
+		<fillBackground color="#000000" left="0" right="0" top="0" height="2"/>
+		<fillBackground color="#C5C5C5" left="0" right="0" height="46" bottom="0"/>
+		<group id="PAGE_NEWSNAVIBAR_V" left="0" right="0" top="0" bottom="0">
+			<button2 id="LEFT" skin="navibtn_left" left="10" width="110" top="7" height="36" do="doNavibar"/>
+			<button2 id="HOME" skin="navibtn_home" left="128" width="157" top="7" height="36" do="doNavibar"/>
+			<button2 id="TOC" skin="navibtn_toc" width="179" right="128" top="7" height="36" do="doNavibar"/>
+			<button2 id="RIGHT" skin="navibtn_right" width="110" right="10" top="7" height="36" do="doNavibar"/>
+		</group>
+		<group id="PAGE_NEWSNAVIBAR_H" left="0" right="0" top="0" bottom="0">
+			<button2 id="LEFT" skin="navibtn_left" left="10" width="115" top="7" height="36" do="doNavibar"/>
+			<button2 id="HOME" skin="navibtn_home" left="345" width="157" top="7" height="36" do="doNavibar"/>
+			<button2 id="TOC" skin="navibtn_toc" width="179" right="323" top="7" height="36" do="doNavibar"/>
+			<button2 id="RIGHT" skin="navibtn_right" width="115" right="10" top="7" height="36" do="doNavibar"/>
+		</group>
+	</group>
+
+</document>

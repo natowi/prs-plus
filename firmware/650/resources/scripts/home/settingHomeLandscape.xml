@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<group left="0" right="75" top="0" bottom="0">
+		<fillBackground color="white" left="0" right="0" top="0" bottom="0"/>
+		<kbookMenuDetails id="MENU_SETTING" left="0" width="722" top="0" bottom="20" bufferZone="20" href="x-id://menuHomeSettingData">
+			<views>
+				<viewStyleDetails name="details" left="0" right="0" top="0" bottom="0" fixItemHeight="true" titleVisible="false" lineHeight="2" noRecordLine="false" spacing="4" default="true">
+					<!-- add skin data for Menu List-->
+					<fields>
+						<fieldIconSubList skin="optSubItem" type="fieldIconSubList" do="" can="canDisplaySubListMark" />
+					</fields>
+				</viewStyleDetails>
+			</views>
+			<code>
+				<function id="doPrevious">
+					this.bubble("doBlink")
+				</function>
+				<function id="doNext">
+					this.bubble("doBlink")
+				</function>
+				<function id="doMenu">
+					this.bubble("doBlink")
+				</function>
+			</code>
+		</kbookMenuDetails>
+	</group>
+</document>

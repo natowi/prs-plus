@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="name" value="United States"/>
+		<string id="defaultLanguage" value="en"/>
+		<string id="languages" value="all"/>
+
+		<string id="format_date_short" value="$MM$/$dd$/$yyyy$"/>
+		<string id="format_date_long" value="$ddd$, $dd$ $MMM$ $yyyy$"/>
+		<string id="format_time" value="$hh$:$mm$:$ss$"/>
+
+		<string id="storeType" value="internal"/>
+		<string id="internetURI" value="http://ebookstore.sony.com/store/$ktPartnerID$"/>
+		<string id="customerSupportURI" value="http://ebookstore.sony.com/store/$ktPartnerID$/CustomerSupport.flow"/>
+		<string id="updateNoticeURI" value="http://download.sony.com/prs/notices/update-notice-info.xml"/>
+
+		<!-- US specific -->
+		<string id="clientInitiatedURI" value="http://ebookstore.sony.com/store/$ktPartnerID$/ClientInitiatedAction.flow"/>
+		<string id="errorURI" value="http://ebookstore.sony.com/store/$ktPartnerID$/ErrorFlow.flow"/>
+		<string id="internetPartnerID" value="sony"/>
+		<string id="internetPartnerIDBR" value="borders"/>
+	</assets>
+</document>

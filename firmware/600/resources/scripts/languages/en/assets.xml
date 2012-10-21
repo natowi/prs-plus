@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="Continue Reading" />
+		<string id="STR_NODE_TITLE_BEGIN" value="Begin" />
+		<string id="STR_NODE_TITLE_END" value="End" />
+		<string id="STR_NODE_TITLE_BOOKMARKS" value="Bookmarks" />
+		<string id="STR_NODE_TITLE_TOC" value="Table of Contents" />
+		<string id="STR_NODE_TITLE_HISTORY" value="History" />
+		<string id="STR_NODE_TITLE_INFO" value="Info" />
+		<string id="STR_NODE_TITLE_UTILITIES" value="Utilities" />
+		<string id="STR_NODE_TITLE_REMOVEALLBOOKMARKS" value="Remove All Bookmarks" />
+		<string id="STR_NODE_TITLE_CLEARHISTORY" value="Clear History" />
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="Delete Book" />
+		<string id="STR_NODE_TITLE_CONTINUEREADING" value="Continue Reading" />
+		<string id="STR_NODE_TITLE_BOOKSBYTITLE" value="Books by Title" />
+		<string id="STR_NODE_TITLE_BOOKSBYAUTHOR" value="Books by Author" />
+		<string id="STR_NODE_TITLE_BOOKSBYDATE" value="Books by Date" />
+		<string id="STR_NODE_TITLE_TODAY" value="Today" />
+		<string id="STR_NODE_TITLE_EARLIERTHISWEEK" value="Earlier This Week" />
+		<string id="STR_NODE_TITLE_LASTWEEK" value="Last Week" />
+		<string id="STR_NODE_TITLE_EARLIERTHISMONTH" value="Earlier This Month" />
+		<string id="STR_NODE_TITLE_LASTMONTH" value="Last Month" />
+		<string id="STR_NODE_TITLE_EARLIERTHISQUARTER" value="Earlier This Quarter" />
+		<string id="STR_NODE_TITLE_LASTQUARTER" value="Last Quarter" />
+		<string id="STR_NODE_TITLE_EARLIERTHISYEAR" value="Earlier This Year" />
+		<string id="STR_NODE_TITLE_LASTYEAR" value="Last Year" />
+		<string id="STR_NODE_TITLE_OLDER" value="Older" />
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="Collections" />
+		<string id="STR_NODE_TITLE_ALLBOOKMARKS" value="All Bookmarks" />
+		<string id="STR_NODE_TITLE_NOWPLAYING" value="Now Playing" />
+		<string id="STR_NODE_TITLE_AUDIO" value="Audio" />
+		<string id="STR_NODE_TITLE_PICTURE" value="Pictures" />
+		<string id="STR_NODE_TITLE_SETTINGS" value="Settings" />
+		<string id="STR_NODE_TITLE_ORIENTATION" value="Orientation" />
+		<string id="STR_NODE_COMMENT_HORIZONTAL" value="Horizontal" />
+		<string id="STR_NODE_COMMENT_VERTICAL" value="Vertical" />
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="Date and Time" />
+		<string id="STR_NODE_TITLE_YEAR" value="Year" />
+		<string id="STR_NODE_TITLE_MONTH" value="Month" />
+		<string id="STR_NODE_TITLE_DATE" value="Day" />
+		<string id="STR_NODE_TITLE_HOUR" value="Hour" />
+		<string id="STR_NODE_TITLE_MINUTE" value="Minute" />
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="Device Lock" />
+		<string id="STR_NODE_TITLE_ENTERCODE" value="Enter Code" />
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="Slideshow" />
+		<string id="STR_NODE_TITLE_TURN" value="Turn" />
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="Slide Duration" />
+		<string id="STR_NODE_TITLE_SLEEPMODE" value="Sleep Mode" />
+		<string id="STR_NODE_TITLE_ADBANCEDSETTINGS" value="Advanced Settings" />
+		<string id="STR_NODE_TITLE_FORMATINTERNALMEMORY" value="Format Internal Memory" />
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="Device Shutdown" />
+		<string id="STR_NODE_TITLE_ABOUT" value="About" />
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="Restore Defaults" />
+		<string id="STR_NODE_TITLE_CODE" value="Code" />
+		<string id="#STR_NODE_TITLE_AUTORUN" value="autoRun" />
+		<string id="#STR_NODE_TITLE_HARDRESET" value="hardReset" />
+		<string id="STR_COUNTER_BOOKMARK_N" value=" bookmarks" />
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 bookmark" />
+		<string id="STR_COUNTER_BOOKMARK_0" value="No bookmarks" />
+		<string id="STR_COUNTER_ITEM_N" value=" items" />
+		<string id="STR_COUNTER_ITEM_1" value="1 item" />
+		<string id="STR_COUNTER_ITEM_0" value="No items" />
+		<string id="STR_COUNTER_PAGE_N" value=" pages" />
+		<string id="STR_COUNTER_PAGE_1" value="1 page" />
+		<string id="STR_COUNTER_PAGE_0" value="No page" />
+		<string id="STR_COUNTER_UTILITIES_N" value=" utilities" />
+		<string id="STR_COUNTER_UTILITIES_1" value="1 utility" />
+		<string id="STR_COUNTER_UTILITIES_0" value="No utilities" />
+		<string id="STR_COUNTER_BOOK_N" value=" books" />
+		<string id="STR_COUNTER_BOOK_1" value="1 book" />
+		<string id="STR_COUNTER_BOOK_0" value="No books" />
+		<string id="STR_COUNTER_COLLECTION_N" value=" collections" />
+		<string id="STR_COUNTER_COLLECTION_1" value="1 collection" />
+		<string id="STR_COUNTER_COLLECTION_0" value="No collections" />
+		<string id="STR_COUNTER_SONG_N" value=" songs" />
+		<string id="STR_COUNTER_SONG_1" value="1 song" />
+		<string id="STR_COUNTER_SONG_0" value="No songs" />
+		<string id="STR_COUNTER_NOSONG" value="No songs" />
+		<string id="STR_COUNTER_PICTURE_N" value=" pictures" />
+		<string id="STR_COUNTER_PICTURE_1" value="1 picture" />
+		<string id="STR_COUNTER_PICTURE_0" value="No pictures" />
+		<string id="STR_COUNTER_SETTING_N" value=" settings" />
+		<string id="STR_COUNTER_SETTING_1" value="1 setting" />
+		<string id="STR_COUNTER_SETTING_0" value="0 setting" />
+		<string id="STR_UI_BUTTON_OK" value="OK" />
+		<string id="STR_UI_BUTTON_On" value="On" />
+		<string id="STR_UI_BUTTON_Off" value="Off" />
+		<string id="STR_UI_BUTTON_ABLE" value="On" />
+		<string id="STR_UI_BUTTON_DISABLE" value="Off" />
+		<string id="STR_UI_UNITNAME_SECONDS" value="seconds" />
+		<string id="STR_UI_UNITNAME_SIZEKB" value="KB" />
+		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
+		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
+		<string id="STR_UI_DELIMITER_POINT" value="." />
+		<string id="STR_UI_PARTS_PART" value="Part " />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Page " />
+		<string id="STR_UI_PARTS_OF" value=" of " />
+		<string id="STR_UI_PARTS_UNKNOWN" value="?" />
+		<string id="STR_UI_PARTS_VERSION" value="Version: " />
+		<string id="STR_UI_PARTS_DEVICE" value="Device: " />
+		<string id="STR_UI_GOTOPAGE" value="PAGE" />
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="Invalid Page!" />
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="Protected Page!" />
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="Page Error!" />
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="Invalid Format!" />
+		<string id="STR_UI_MESSAGE_FORMATTING" value="Formatting..." />
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="Restricted" />
+		<string id="STR_UI_MESSAGE_DRMFULL" value="Full, viewable" />
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="Memory Card" />
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="Internal Memory" />
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="Expired" />
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="Today" />
+		<string id="STR_UI_MESSAGE_FORMATTINGINTERNALMEMORY" value="Formatting Internal Memory..." />
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="Shutting down..." />
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDYES" value="Authorized for the eBook Store." />
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDNO" value="Not authorized for the eBook Store." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDYES" value="This device is authorized for Adobe DRM protected content." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="This device is not authorized for Adobe DRM protected content." />
+		<string id="STR_UI_MESSAGE_RESTOREDEFAULTSOPERATION" value="Press the XXMARKXX (Bookmark) button to restore default settings." />
+		<string id="STR_UI_MESSAGE_CLEARHISTORYOPERATION" value="Press the XXMARKXX (Bookmark) button to clear history" />
+		<string id="STR_UI_MESSAGE_FORMATOPERATION" value="Press the XXMARKXX (Bookmark) button to format internal memory." />
+		<string id="STR_UI_MESSAGE_DELETEBOOKOPERATION" value="Press the XXMARKXX (Bookmark) button to delete book." />
+		<string id="STR_UI_MESSAGE_REMOVEALLBOOKMARKSOPERATION" value="Press the XXMARKXX (Bookmark) button to remove all Bookmarks" />
+		<string id="STR_UI_MESSAGE_SHUTDOWNOPERATION" value="Press the XXMARKXX (Bookmark) button to shutdown this device." />
+		<string id="STR_UI_MESSAGE_HARDRESET" value="Reset All" />
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="Do you want to DELETE all content, restore all factory settings, and clear the DRM authorization state?&#xA;&#xA;Yes - Press the OPTIONS button&#xA;No - Press the HOME button" />
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="Low Battery!" />
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="No Battery!" />
+		<string id="STR_UI_MESSAGE_LOADING" value="Loading..." />
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 of 1" />
+		<string id="STR_UI_MESSAGE_CANNOTDELETEBOOK" value="Cannot delete book." />
+		<string id="STR_UI_FORMAT_RTF" value="Rich Text Format" />
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF" />
+		<string id="STR_UI_FORMAT_EPUB" value="EPUB document" />
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB Book" />
+		<string id="STR_UI_FORMAT_TXT" value="Plain text" />
+		<string id="STR_UI_TITLESORTLABEL1" value="0-9" />
+		<string id="STR_UI_TITLESORTLABEL2" value="A B C" />
+		<string id="STR_UI_TITLESORTLABEL3" value="D E F" />
+		<string id="STR_UI_TITLESORTLABEL4" value="G H I" />
+		<string id="STR_UI_TITLESORTLABEL5" value="J K L" />
+		<string id="STR_UI_TITLESORTLABEL6" value="M N O" />
+		<string id="STR_UI_TITLESORTLABEL7" value="P Q R S" />
+		<string id="STR_UI_TITLESORTLABEL8" value="T U V" />
+		<string id="STR_UI_TITLESORTLABEL9" value="W X Y Z" />
+		<string id="STR_UI_TITLESORTLABEL10" value="Other" />
+		<string id="STR_VAL_TITLESORTCRITERION1" value="9" />
+		<string id="STR_VAL_TITLESORTCRITERION2" value="C" />
+		<string id="STR_VAL_TITLESORTCRITERION3" value="F" />
+		<string id="STR_VAL_TITLESORTCRITERION4" value="I" />
+		<string id="STR_VAL_TITLESORTCRITERION5" value="L" />
+		<string id="STR_VAL_TITLESORTCRITERION6" value="O" />
+		<string id="STR_VAL_TITLESORTCRITERION7" value="S" />
+		<string id="STR_VAL_TITLESORTCRITERION8" value="V" />
+		<string id="STR_VAL_TITLESORTCRITERION9" value="Z" />
+		<string id="STR_UI_AUTHORSORTLABEL1" value="0-9" />
+		<string id="STR_UI_AUTHORSORTLABEL2" value="A B C" />
+		<string id="STR_UI_AUTHORSORTLABEL3" value="D E F" />
+		<string id="STR_UI_AUTHORSORTLABEL4" value="G H I" />
+		<string id="STR_UI_AUTHORSORTLABEL5" value="J K L" />
+		<string id="STR_UI_AUTHORSORTLABEL6" value="M N O" />
+		<string id="STR_UI_AUTHORSORTLABEL7" value="P Q R S" />
+		<string id="STR_UI_AUTHORSORTLABEL8" value="T U V" />
+		<string id="STR_UI_AUTHORSORTLABEL9" value="W X Y Z" />
+		<string id="STR_UI_AUTHORSORTLABEL10" value="Other" />
+		<string id="STR_VAL_AUTHORSORTCRITERION1" value="9" />
+		<string id="STR_VAL_AUTHORSORTCRITERION2" value="C" />
+		<string id="STR_VAL_AUTHORSORTCRITERION3" value="F" />
+		<string id="STR_VAL_AUTHORSORTCRITERION4" value="I" />
+		<string id="STR_VAL_AUTHORSORTCRITERION5" value="L" />
+		<string id="STR_VAL_AUTHORSORTCRITERION6" value="O" />
+		<string id="STR_VAL_AUTHORSORTCRITERION7" value="S" />
+		<string id="STR_VAL_AUTHORSORTCRITERION8" value="V" />
+		<string id="STR_VAL_AUTHORSORTCRITERION9" value="Z" />
+		<string id="STR_FORMAT_DATE" value="MM/DD/YY" />
+		<string id="STR_UI_MESSAGE_USBDONOT" value="Do not disconnect" />
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="USB connected" />
+		<string id="STR_UI_MESSAGE_LOCKED" value="Device locked" />
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,‘,’,“,”" />
+		<string id="STR_SORT_IGNOREARTICLES" value="a ,an ,the " />
+		<string id="infoTitles" value="Cover,Title,Author,Publisher,Category,eBook ID,Kind,Date,Size,Location,Path,Digital Rights,Expiration Date" />
+		<string id="STR_UPDATE_SUCCESS" value="Updating firmware now..." />
+		<string id="STR_UPDATE_FAIL" value="Firmware update did not complete successfully.  Please try again." />
+		<string id="STR_NODE_TITLE_PREVIOUS_VIEW" value="Previous View" />
+		<string id="STR_NODE_TITLE_NEXT_VIEW" value="Next View" />
+		<string id="STR_NODE_TITLE_WELCOME" value="Welcome!" />
+		<string id="STR_UI_MESSAGE_WELCOME" value="Hello from Sony. What you hold in your hands&#xA;is the future of reading. To experience this&#xA;now, tap anywhere on the screen." />
+		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Menu Language" />
+		<string id="STR_UI_LANG" value="Language" />
+		<string id="STR_UI_LANG_EN" value="English" />
+		<string id="STR_UI_LANG_FR" value="Français" />
+		<string id="STR_UI_LANG_DE" value="Deutsch" />
+		<string id="STR_UI_LANG_NL" value="Nederlands" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="Choose your preferred language and select OK.&#xA;Note:  The device settings can be changed from the Settings menu at a later time." />
+		<string id="STR_UI_PARTS_DELIMITER" value="/" />
+		<string id="STR_UI_MESSAGE_DEMOMODE" value="(Demo Mode)" />
+		<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value="Demo Screensaver" />
+		<string id="STR_NODE_TITLE_HOME" value="Home" />
+		<string id="STR_NODE_TITLE_OPTIONS" value="Options" />
+		<string id="STR_UI_MESSAGE_DELETEALLBOOKMARKS" value="This page includes some bookmark(s) marked in other font sizes or in other devices. Are you sure you want to delete all bookmark(s) in this page?" />
+		<string id="STR_DEMO_NOTAVAILABLE" value="This setting is not available in demo mode. Press the XXRETURNXX(Return) button to return to the previous screen." />
+		<string id="STR_DEMO_TITLE" value="DEMO MODE" />
+		<string id="STR_UI_MESSAGE_REMOVEBOOKMARKSOPERATION" value="Press the XXMARKXX (Bookmark) button to remove  bookmark." />
+		<string id="STR_UI_MESSAGE_NOTE_BOOKMARKOPERATION" value="Note: This page contains a bookmark in more than one text size.  All bookmarks on this page will be removed if you proceed." />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="Title: &quot;XXTITLEXX&quot;" />
+		<string id="STR_NODE_TITLE_REMOVEBOOKMARK" value="Remove Bookmark" />
+		<string id="STR_UI_MESSAGE_MENURETURN" value="Press the XXRETURNXX(Return) button to return" />
+		<string id="STR_NODE_TITLE_DATE_TIME_FORMAT_SETTINGS" value="Date and Time Format" />
+		<string id="STR_UI_DATE" value="Date" />
+		<string id="STR_UI_BUTTON_MMDDYY" value="Month-Day-Year" />
+		<string id="STR_UI_BUTTON_DDMMYY" value="Day-Month-Year" />
+		<string id="STR_UI_TIME" value="Time" />
+		<string id="STR_UI_BUTTON_12HR" value="12 hour" />
+		<string id="STR_UI_BUTTON_24HR" value="24 hour" />
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / " />
+		<string id="STR_UI_MESSAGE_NOTE_DELETE_ALL_CONTENTS" value="Note: All content will be deleted." />
+		<string id="STR_UI_MESSAGE_NOBOOK" value="No book" />
+		<string id="STR_NODE_TITLE_BOOK" value="Books" />
+		<string id="STR_NODE_TITLE_SORTEDBYTITLE" value="Sorted by Title" />
+		<string id="STR_NODE_TITLE_SORTEDBYAUTHOR" value="Sorted by Author" />
+		<string id="STR_NODE_TITLE_SORTEDBYDATE" value="Sorted by Date" />
+		<string id="STR_NODE_TITLE_SORTEDBYORDER" value="Sorted by Order" />
+		<string id="STR_NODE_TITLE_ALLNOTES" value="All Notes" />
+		<string id="STR_NODE_TITLE_SORTEDBYCOMMENT" value="Sorted by Comment" />
+		<string id="STR_NODE_TITLE_SORTEDBYTYPE" value="Sorted by Type" />
+		<string id="STR_NODE_TITLE_SORTEDBYARTIST" value="Sorted by Artist" />
+		<string id="STR_NODE_TITLE_NEXTPAGE" value="Next Page" />
+		<string id="STR_NODE_TITLE_PAGETURNGESTURE" value="Page Turn Gesture" />
+		<string id="STR_NODE_TITLE_ADVANCEDSETTINGS" value="Advanced Settings" />
+		<string id="STR_NODE_TITLE_TOUCHPANEL" value="Calibrate Touch Screen" />
+		<string id="STR_NODE_TITLE_CLEARKEYBOARDHISTORY" value="Clear Keyboard History" />
+		<string id="STR_NODE_TITLE_SEARCHRESULTS" value="Search Results" />
+		<string id="STR_COUNTER_NOTES_N" value=" notes" />
+		<string id="STR_COUNTER_NOTE_1" value="1 note" />
+		<string id="STR_COUNTER_NOTE_0" value="No notes" />
+		<string id="STR_NODE_TITLE_SORTEDBYPAGE" value="Sorted by Page" />
+		<string id="STR_NODE_TITLE_POWERMANAGEMENT" value="Power Management" />
+		<string id="STR_UI_MENU_SORT" value="Sort" />
+		<string id="STR_UI_MENU_BYORDER" value="by Order" />
+		<string id="STR_UI_MENU_BYTITLE" value="by Title" />
+		<string id="STR_UI_MENU_BYAUTHOR" value="by Author" />
+		<string id="STR_UI_MENU_BYDATE" value="by Date" />
+		<string id="STR_UI_MENU_VIEW" value="View" />
+		<string id="STR_UI_MENU_LIST" value="List" />
+		<string id="STR_UI_MENU_THUMBNAIL" value="Thumbnail" />
+		<string id="STR_UI_MENU_NOWPLAYING" value="Now Playing" />
+		<string id="STR_UI_MENU_ORIENTATION" value="Orientation" />
+		<string id="STR_UI_MENU_SEARCHTITLE" value="Search" />
+		<string id="STR_UI_MENU_CLOSETHISBOOK" value="Return to List" />
+		<string id="STR_UI_MENU_GOTOPAGE" value="Go to Page" />
+		<string id="STR_UI_MENU_CREATEEDITNOTES" value="Create/Edit Notes" />
+		<string id="STR_UI_MENU_SHOWNOTES" value="Show Notes" />
+		<string id="STR_UI_MENU_HIDENOTES" value="Hide Notes" />
+		<string id="STR_UI_MENU_TABLEOFCONTENTS" value="Table of Contents" />
+		<string id="STR_UI_MENU_BOOKINFO" value="Info" />
+		<string id="STR_UI_MENU_DELETEBOOK" value="Delete Book" />
+		<string id="STR_UI_MENU_SEARCHAKEYWORD" value="Search" />
+		<string id="STR_UI_MENU_HISTORYJUMP" value="History" />
+		<string id="STR_UI_MENU_CLOSETHISMUSIC" value="Return to List" />
+		<string id="STR_UI_MENU_OFF" value="Off" />
+		<string id="STR_UI_MENU_SONG_1" value="1 Song" />
+		<string id="STR_UI_MENU_SONG_ALL" value="All Songs" />
+		<string id="STR_UI_MENU_SHUFFLEON" value="Shuffle On" />
+		<string id="STR_UI_MENU_SHUFFLEOFF" value="Shuffle Off" />
+		<string id="STR_UI_MENU_CONTINUEREADING" value="Continue Reading" />
+		<string id="STR_UI_MENU_CLOSETHISPICTURE" value="Return to List" />
+		<string id="STR_UI_MENU_SLIDESHOWOFF" value="Slideshow Off" />
+		<string id="STR_UI_MENU_SLIDESHOWON" value="Slideshow On" />
+		<string id="STR_UI_MENU_BYARTIST" value="by Artist" />
+		<string id="STR_UI_MENU_BYPAGE" value="by Page" />
+		<string id="STR_UI_MENU_BYTYPE" value="by Type" />
+		<string id="STR_UI_MENU_BYCOMMENT" value="by Comment" />
+		<string id="STR_UI_MENU_DELETENOTES" value="Delete Notes" />
+		<string id="STR_UI_MESSAGE_RESET" value="Are you sure you want to restore the default settings?" />
+		<string id="STR_UI_MESSAGE_FORMATINTERNALMEMORY" value="Format Internal Memory" />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE" value="Are you sure you want to format the internal memory?&#xA;Warning: All content and notes will be deleted." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_MS" value="Are you sure you want to format the Memory Stick?&#xA;Warning: All content and notes will be deleted." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_SD" value="Are you sure you want to format the SD Card?&#xA;Warning: All content and notes will be deleted." />
+		<string id="STR_UI_MESSAGE_DELETEBOOK" value="Are you sure you want to delete this book?" />
+		<string id="STR_UI_MESSAGE_DELETEBOOKERR" value="Unable to delete book. Press OK to return to the book list." />
+		<string id="STR_UI_MESSAGE_DELETEHISTORICAL" value="Are you sure you want to clear the keyboard history?" />
+		<string id="STR_UI_MESSAGE_DEVICE_SHUTDOWN" value="Are you sure you want to shutdown the device?" />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONSTART" value="Press Yes to start the touch screen calibration." />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONEND" value="Touch screen calibration completed." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_1" value="This setting is not available in demo mode." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_2" value="This feature is not available in demo mode." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_START" value="Using the stylus, tap on the center&#xA;of the target." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_ERR" value="Calibration error detected.&#xA;Please restart calibration process." />
+		<string id="STR_UI_BUTTON_YES" value="Yes" />
+		<string id="STR_UI_BUTTON_NO" value="No" />
+		<string id="STR_UI_BUTTON_ZOOMIN" value="Zoom In" />
+		<string id="STR_UI_BUTTON_SEARCH" value="Search" />
+		<string id="STR_UI_BUTTON_DONE" value="Done" />
+		<string id="STR_UI_BUTTON_GO" value="Go" />
+		<string id="STR_UI_BUTTON_ENTERPAGE" value="Enter Page #" />
+		<string id="STR_UI_BUTTON_NEW" value="New" />
+		<string id="STR_UI_BUTTON_LIST" value="List" />
+		<string id="STR_UI_SHORTCUT_HIGHLIGHT" value="Highlight" />
+		<string id="STR_UI_SHORTCUT_SEARCH" value="Search" />
+		<string id="STR_UI_SHORTCUT_DICTIONARY" value="Dictionary" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING" value="Dictionary" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING_l" value="dictionary" />
+		<string id="STR_DICTIONARY_US" value="New Oxford American Dictionary" />
+		<string id="STR_DICTIONARY_BRITISH" value="Oxford Dictionary of English" />
+		<string id="STR_DICTIONARY_NO" value="None" />
+		<string id="STR_NODE_TITLE_DATEANDTIMEFORMAT_SETTING" value="Date and Time Format" />
+		<string id="STR_UI_PARTS_MONTH" value="Month" />
+		<string id="STR_UI_PARTS_DAY" value="Day" />
+		<string id="STR_UI_PARTS_YEAR" value="Year" />
+		<string id="STR_UI_PARTS_HOUR" value="hour" />
+		<string id="STR_UI_MESSAGE_RESTARTING" value="Restarting..." />
+		<string id="STR_UI_NODE_TITLE_KEYBOARD" value="Keyboard" />
+		<string id="STR_UI_KEYBOARD_US" value="United States" />
+		<string id="STR_UI_KEYBOARD_UK" value="United Kingdom" />
+		<string id="STR_UI_KEYBOARD_FRENCH" value="French" />
+		<string id="STR_UI_KEYBOARD_GERMAN" value="German" />
+		<string id="STR_UI_KEYBOARD_NETHERLANDS" value="Dutch" />
+		<string id="STR_UI_BUTTON_DICTIONARY_LIST" value="List" />
+		<string id="STR_UI_BUTTON_DICTIONARY_DETAIL" value="Detailed" />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP1" value="This page cannot be displayed." />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP2" value="" />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_CANNOT_EDIT" value="This drawing cannot be edited." />
+		<string id="DIALOGMSG_INFORM_SCR_CANNOT_EDIT" value="This memo cannot be edited." />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_FREEHAND" value="New Drawing" />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_TEXT" value="New Memo" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYFREEHAND" value="by Drawing" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYTEXT" value="by Keyboard" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_MS" value="Format Memory Stick" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_SD" value="Format SD Card" />
+		<string id="STR_NODE_TITLE_FORMATDEVICE" value="Format Memory" />
+		<string id="STR_NODE_TITLE_FORMAT_INTERNAL" value="Internal Memory" />
+		<string id="STR_NODE_TITLE_FORMAT_MS" value="Memory Stick" />
+		<string id="STR_NODE_TITLE_FORMAT_SD" value="SD Card" />
+		<string id="STR_UI_FORMAT_INTERNAL_MEMORY" value="Formatting Internal Memory..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_MS" value="Formatting Memory Stick..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_SD" value="Formatting SD Card..." />
+		<string id="STR_WARNING_FORMAT_1" value="Formatting..." />
+		<string id="STR_WARNING_FORMAT_2_MS" value="Do not remove the Memory Stick." />
+		<string id="STR_WARNING_FORMAT_2_SD" value="Do not remove the SD Card." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_1" value="Are you sure you want to delete the bookmark?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_2" value="Note: This page contains a bookmark in more than one text size. All bookmarks on this page will be removed if you proceed." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_1" value="Are you sure you want to delete the bookmark?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_2" value="Note: This page contains a bookmark with a note in more than one text size. All bookmarks and notes on this page will be removed if you proceed." />
+		<string id="STR_FORMAT_NO_MEMORY" value="Memory card not inserted" />
+		<string id="STR_FORMAT_WRITE_PROTECTED" value="Memory card write protected" />
+		<string id="STR_FORMAT_NON_STANDARD" value="Memory card not supported" />
+		<string id="STR_NODE_TITLE_NOTEPAD_FREEHAND" value="Handwriting" />
+		<string id="STR_NODE_TITLE_NOTEPAD_TEXT" value="Text Memo" />
+		<string id="STR_NODE_TITLE_SORTEDBYCREATEDDATE" value="Sorted by Created Date" />
+		<string id="STR_NODE_TITLE_MORE" value="More" />
+		<string id="STR_NODE_TITLE_MORE_FULL" value="More Applications" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK1" value="Are you sure you want to delete the bookmark with a note?" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK2" value="" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT1" value="Are you sure you want to delete the highlight with a note?" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT2" value="" />
+		<string id="DIALOGMSG_INFORM_NOHITS" value="No matches found." />
+		<string id="DIALOGMSG_INFORM_NOMOREHITS" value="Match not found." />
+		<string id="DIALOGMSG_CONFIRM_BACKWARDSEARCH" value="Do you want to continue searching from the end of the book?" />
+		<string id="DIALOGMSG_CONFIRM_FORWARDSEARCH" value="Do you want to continue searching from the beginning of the book?" />
+		<string id="STR_MSG_SEARCHING" value="Searching..." />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK1" value="Are you sure you want to delete the bookmark with a note?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK2" value="" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT1" value="Are you sure you want to delete the highlight with a note?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_CMT_EDIT_QUIT" value="The changes will not be saved if you continue. Are you sure you want to continue?" />
+		<string id="DIALOGMSG_CONFIRM_SCR_EDIT_QUIT" value="The changes will not be saved if you continue. Are you sure you want to continue?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES1" value="All notes will be removed." />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES2" value="Are you sure you want to delete?" />
+		<string id="KBOOK_UI_MYNOTE" value="Notes" />
+		<string id="STR_UI_KEYBOARD_SYMBOL" value="Symbols" />
+		<string id="STR_UI_KEYBOARD_SPACE" value="Space" />
+		<string id="STR_UI_KEYBOARD_ABC" value="Abc" />
+		<string id="STR_UI_KEYBOARD_RETURN" value="Return" />
+		<string id="STR_UI_COMMENTVIEWER_EDIT" value="Edit" />
+		<string id="STR_UI_COMMENTVIEWER_DELETE" value="Delete" />
+		<string id="STR_UI_AUDIO_REPEAT" value="Repeat" />
+		<string id="STR_NODE_TITLE_HOMEPERSONALIZATION" value="Customize Home Menu" />
+		<string id="STR_UI_PARTS_LEFT" value="LEFT" />
+		<string id="STR_UI_PARTS_RIGHT" value="RIGHT" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_FREEHAND" value="Delete Drawing" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_TEXT" value="Delete Memo" />
+		<string id="STR_UI_MENU_CLOSETHISNOTEPAD_FREEHAND" value="Return to List" />
+		<string id="STR_UI_MENU_CLOSETHISNOTEPAD_TEXT" value="Return to List" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND1" value="Are you sure you want to delete this drawing?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND2" value="" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT1" value="Are you sure you want to delete this memo?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT1" value="The changes will not be saved if you continue. Are you sure you want to continue?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT1" value="The changes will not be saved if you continue. Are you sure you want to continue?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT1" value="The drawing will not be saved if you continue. Are you sure you want to continue?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT1" value="The memo will not be saved if you continue. Are you sure you want to continue?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT2" value="" />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_RESULT" value="No definition found." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_INPUT_KEYBOARD" value="Enter a word." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_HEADWORD" value="No entry is found.&#xA;Please check the entered word." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SUPPORTED" value="Dictionary is disabled." />
+		<string id="STR_UI_DICTIONARY_ENTRIES_PAGE" value="Entries, P." />
+		<string id="STR_UI_DICTIONARY_ENTRY_PAGE" value="Entry, P." />
+		<string id="STR_COUNTER_DRAWING_N" value=" drawings" />
+		<string id="STR_COUNTER_DRAWING_1" value="1 drawing" />
+		<string id="STR_COUNTER_DRAWING_0" value="No drawings" />
+		<string id="STR_COUNTER_MEMO_N" value=" memos" />
+		<string id="STR_COUNTER_MEMO_1" value="1 memo" />
+		<string id="STR_COUNTER_MEMO_0" value="No memos" />
+		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="Exceptional internal memory state&#xA;Formatting." />
+	</assets>
+</document>

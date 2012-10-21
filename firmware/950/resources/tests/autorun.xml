@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<import href="autorunAssets.xml"/>
+	</assets>
+
+	<model>
+		<variable id="KEYCHECK" value="Not Yet"/>
+		<variable id="BATTERY_LEVEL" value="Not Yet"/>
+		<variable id="TEMPERATURE_LEVEL" value="Not Yet"/>
+		<variable id="POWEROFF_STATE" value=""/>
+		<variable id="FACTORYINIT_STATE" value=""/>
+		<variable id="VERSION_CHECK_STATE" value=""/>
+		<variable id="WAVEFORM" value=""/>
+		<variable id="DEVICELOCK" value=""/>
+		<variable id="SLIDESHOW_SETTING" value="OFF (GC)"/>
+		<variable id="PLAY_STATE" value="PAUSE"/>
+		<variable id="AUDIO_FILE"/>
+		<variable id="AUDIO_VOLUME" value="5"/>
+		<variable id="AUDIO_PROGRESS" value="0"/>
+		<variable id="LOG_READ" value="Not Yet"/>
+		<variable id="NAND_LOG_READ" value="Not Yet"/>
+		<variable id="SELF_LOG_READ" value="Not Yet"/>
+		<variable id="LOG_CONVERT" value="Not Yet"/>
+		<variable id="MENU_FOCUS" value="1"/>
+		<variable id="BATTERY_LIFE" value="0"/>
+		<variable id="DATA_FOLDER" value="b:/Sony Reader/software/"/>
+		<variable id="INTERNAL_DATA_FOLDER" value="/Data/Sony Reader/software/"/>
+		<variable id="MS_DATA_FOLDER" value="a:/Sony Reader/software/"/>
+		<variable id="VCOM_WRITE" value=""/>
+		<code>
+			<function id="initialized"><![CDATA[
+				if (!kbook.model.getVariable("EXIST_SD_AUTORUN")) {
+					if (kbook.model.getVariable("EXIST_MS_AUTORUN"))
+						this.setVariable("DATA_FOLDER", this.getVariable("MS_DATA_FOLDER"))
+					else if (kbook.model.getVariable("EXIST_INTERNAL_AUTORUN"))
+						this.setVariable("DATA_FOLDER", this.getVariable("INTERNAL_DATA_FOLDER"))
+				}
+				this.syncDeviceLockState()
+				
+				var counterPath = this.getVariable("DATA_FOLDER") + "books/counter"
+				if (FileSystem.getFileInfo(counterPath)) {
+					var stream = new Stream.File(counterPath)
+					if (stream) {
+						this.setVariable("BATTERY_LIFE", stream.readLine())
+						stream.close()
+					}
+				}
+
+				this.setVariable("WAVEFORM", ebook.getWaveformVersion())
+				this.setVariable("VCOM_WRITE", ebook.readVcom());
+				this.container.bubble("processing", 1000)
+			]]></function>
+			<function id="terminating">
+				this.terminateAudio()
+				this.container.bubble("processed", 1000)
+			</function>
+			<function id="startTest" params="file"><![CDATA[
+				this.container.bubble("beginFullScreen");
+				this.container.VIEW.setURI(file)
+				this.container.MENU_VIEW.show(false)
+				if (ebook && "setFlushUpdate" in ebook)
+					ebook.setFlushUpdate()
+			]]></function>
+			<function id="finishTest"><![CDATA[
+				this.container.VIEW.setURI(null)
+				this.container.show(false)
+				this.container.show(true)
+				this.container.MENU_VIEW.show(true)
+				this.setVariable("MENU_FOCUS", 0)
+				this.setVariable("MENU_FOCUS", 1)
+				this.container.bubble("endFullScreen");
+				if (ebook && "setFlushUpdate" in ebook)
+					ebook.setFlushUpdate()
+			]]></function>
+
+			<function id="syncDeviceLockState">
+				var flag = this.container.getVariable("screenLockFlag")
+				var code = this.container.getVariable("screenLockCode")
+				this.setVariable("DEVICELOCK", this.getDeviceLockComment(flag, code))
+			</function>
+			<function id="getDeviceLockComment" params="flag, code"><![CDATA[
+				var comment = flag ? "On - " : "Off - ";
+				if (code > 999)
+					comment += code;
+				else if (code > 99)
+					comment += "0" + code;
+				else if (code > 9)
+					comment += "00" + code;
+				else
+					comment += "000" + code;
+				return comment
+			]]></function>
+			<function id="terminateAudio">
+				this.container.AUDIO.trigger("terminateAudio")
+			</function>
+			<function id="startAudio">
+				this.container.AUDIO.trigger("startAudio")
+			</function>
+			<function id="stopAudio">
+				this.container.AUDIO.trigger("stopAudio")
+			</function>
+			<function id="nextAudio">
+				this.container.AUDIO.trigger("nextAudio")
+			</function>
+			<function id="previousAudio">
+				this.container.AUDIO.trigger("previousAudio")
+			</function>
+
+			<function id="doUpdateWaveformTest"><![CDATA[
+				var dataFolder = this.getVariable("DATA_FOLDER") + "data/"
+				var waveform = dataFolder + "lut.bin"
+				var cmdfile  = dataFolder + "cmd.bin"
+				if (FileSystem.getFileInfo(waveform)) {
+					if (!FileSystem.getFileInfo(cmdfile))
+						cmdfile = undefined
+					if (ebook && "updateWaveform" in ebook)
+						ebook.updateWaveform(waveform, cmdfile)
+					else
+						this.container.bubble("doUpdateWaveform", waveform, cmdfile)
+					
+					this.setVariable("WAVEFORM", ebook.getWaveformVersion())
+					this.changed()
+				}
+			]]></function>
+			<function id="doWriteVcomTest"><![CDATA[
+				var dataFolder = this.getVariable("DATA_FOLDER") + "data/"
+				var szVcomDtFile = dataFolder + "Vcom.dt"
+				if (FileSystem.getFileInfo(szVcomDtFile)) {
+					if (ebook && "writeVcom" in ebook)
+						ebook.writeVcom(szVcomDtFile);
+					else
+						this.container.bubble("doWriteVcomTest", writeVcom);
+
+					this.setVariable("VCOM_WRITE", ebook.readVcom());
+					this.changed()
+				}
+			]]></function>
+			<function id="doBatteryTest"><![CDATA[
+				if (ebook && "getRawBattery" in ebook)
+					this.setVariable("BATTERY_LEVEL", ebook.getRawBattery())
+				else 
+					this.setVariable("BATTERY_LEVEL", Math.floor(Math.random() * 100))
+			]]></function>
+			<function id="doTemperatureTest"><![CDATA[
+				if (ebook && "getEPDTemperature" in ebook)
+					this.setVariable("TEMPERATURE_LEVEL", ebook.getEPDTemperature())
+				else 
+					this.setVariable("TEMPERATURE_LEVEL", Math.floor(Math.random() * 100))
+			]]></function>
+			<function id="doPowerOffTest">
+				this.setVariable("POWEROFF_STATE", "...")
+				this.container.bubble("doQuit")
+			</function>
+			<function id="doFactoryInitializeTest">
+				this.setVariable("FACTORYINIT_STATE", "...")
+				if (ebookConfig)
+					ebookConfig.FactoryDefault(1)
+				this.container.bubble("doQuit")
+			</function>
+			<function id="doResetDeviceLock">
+				this.container.setVariable("screenLockCode", 0);
+				this.container.setVariable("screenLockFlag", 0);
+
+				//write preference file 
+				var device = this.container.getDevice();
+				if ("writeScreenLock" in device)
+				  device.writeScreenLock(kbook.model);
+				
+				//update display for device lock
+				this.syncDeviceLockState()
+			</function>
+			<function id="doSlideShowSetting">
+				var slide = this.getVariable("SLIDESHOW_SETTING")
+				if (slide == "ON (GC)")
+					slide = "ON (GL)"
+				else if (slide == "ON (GL)")
+					slide = "OFF (GC)"
+				else if (slide == "OFF (GC)")
+					slide = "OFF (GL)"
+				else if (slide == "OFF (GL)")
+					slide = "ON (GC)"
+				this.setVariable("SLIDESHOW_SETTING", slide)
+			</function>
+
+			<!-- functions -->
+			<function id="doLogExtract"><![CDATA[
+				try {
+					var chunk = ebook.readLog()
+					var logFolder = this.getVariable("DATA_FOLDER") + "log/"
+					var file =    logFolder + "log.txt";
+					var fileraw = logFolder + "lograw";
+					var convert = logFolder + "log_conv.txt";
+					this.writeRaw(fileraw, chunk)
+					this.writeParse(file, chunk)
+					chunk.free()
+					this.writeConversion(file, convert)
+					this.setVariable("LOG_READ", "Done")
+				}
+				catch (e) {
+				}
+			]]></function>
+			<function id="doNANDLogExtract"><![CDATA[
+				try {
+					var chunk = ebook.readNANDLog()
+					if (chunk) {
+						var logFolder = this.getVariable("DATA_FOLDER") + "log/"
+						var file =    logFolder + "lognand.txt";
+						var fileraw = logFolder + "lognandraw";
+						var convert = logFolder + "lognand_conv.txt";
+						this.writeRaw(fileraw, chunk)
+						this.writeParse(file, chunk)
+						chunk.free()
+						this.writeConversion(file, convert)
+						this.setVariable("NAND_LOG_READ", "Done")
+					}
+				}
+				catch (e) {
+				}
+			]]></function>
+			<function id="doSelfLogExtract"><![CDATA[
+				try {
+					var logFolder = this.getVariable("DATA_FOLDER") + "log/"
+					var file = logFolder + "logself.txt";
+					
+					var fileraw = logFolder + "logself";
+					if (!FileSystem.getFileInfo(fileraw))
+						return
+					var rawstream = new Stream.File(fileraw)
+					var chunk = rawstream.readChunk(rawstream.bytesAvailable)
+					rawstream.close()
+					this.writeParse(file, chunk)
+					chunk.free()
+					
+					var convert = logFolder + "logself_conv.txt";
+					this.writeConversion(file, convert)
+					this.setVariable("SELF_LOG_READ", "Done")
+				}
+				catch (e) {
+				}
+			]]></function>
+			<function id="doLogConvert"><![CDATA[
+				try {
+					var logFolder = this.getVariable("DATA_FOLDER") + "log/"
+					
+					var file = logFolder + "log.txt";
+					var convert = logFolder + "log_conv.txt";
+					this.writeConversion(file, convert)
+
+					var file = logFolder + "lognand.txt";
+					var convert = logFolder + "lognand_conv.txt";
+					this.writeConversion(file, convert)
+
+					var file = logFolder + "logself.txt";
+					var convert = logFolder + "logself_conv.txt"
+					this.writeConversion(file, convert)
+					
+					this.setVariable("LOG_CONVERT", "Done")
+				}
+				catch (e) {
+				}
+			]]></function>
+			<function id="writeRaw" params="fileraw, chunk"><![CDATA[
+				FileSystem.ensureDirectory(fileraw)
+				if (FileSystem.getFileInfo(fileraw))
+					FileSystem.deleteFile(fileraw)
+				var stream = new Stream.File(fileraw, 1)
+				stream.writeChunk(chunk)
+				stream.close()
+			]]></function>
+			<function id="writeParse" params="file, chunk"><![CDATA[
+				FileSystem.ensureDirectory(file)
+				if (FileSystem.getFileInfo(file))
+					FileSystem.deleteFile(file)
+				var stream = new Stream.File(file, 1)
+				ebook.convertLog(stream, chunk)
+				stream.close()
+			]]></function>
+			<function id="writeConversion" params="file, fileOut"><![CDATA[
+				try {
+					if (!FileSystem.getFileInfo(file))
+						return
+					if (FileSystem.getFileInfo(fileOut))
+						FileSystem.deleteFile(fileOut)
+					var root = this.loadDefinition()
+					var stream = new Stream.File(file)
+					var out = new Stream.File(fileOut, 1)
+					var version = 2
+					var string = stream.readLine()
+					var array
+					if (string) {
+						array = string.split(",")
+						if (array[1].length == 4)
+							version = 1
+					}
+					while (string) {
+						var entry = null
+						array = string.split(",")
+						for (var i = 0, l = array.length; i < l; i++) {
+							if ((version == 1 && i == 4) || (version == 2 && i == 3))
+								entry = root
+							if (((version == 1 && i == 5)  || (version == 2 && i == 4)) && Number(array[i]) == -1)
+								out.writeString("Error")
+							else {
+								if (entry)
+									entry = entry.find(Number(array[i]))
+								if (entry) {
+									if (entry.doCommand) {
+										var value = this[entry.doCommand].call(this, Number(array[i]))
+										out.writeString(value)
+									}
+									else
+										out.writeString(entry.name)
+								}
+								else
+									out.writeString(array[i])
+							}
+							if ((version > 1 || i != 1) && i != l - 1) 
+								out.writeString(", ")
+							else if (i == l - 1)
+								out.writeString("\n")
+						}
+						string = stream.readLine()
+					}
+					stream.close()
+					out.close()					
+				}
+				catch (e) {
+				}
+			]]></function>
+			<function id="convertCategory" params="value"><![CDATA[
+				var result = value
+				switch (value) {
+					case 1:
+						result = "System"
+						break
+					case 2:
+						result = "Status"
+						break
+					case 3:
+						result = "Key"
+						break
+					case 4:
+						result = "Battery"
+						break
+					case 5:
+						result = "LED"
+						break
+					case 6:
+						result = "TouchPanel"
+						break
+					case 7:
+						result = "GSensor"
+						break
+				}
+				this.category = value
+				return result
+			]]></function>
+			<function id="convertCommand" params="value"><![CDATA[
+				var result = value
+				switch (value) {
+					case 1:
+						result = "System"
+						break
+					case 2:
+						result = "Status"
+						break
+					case 3:
+						result = "Key"
+						break
+					case 4:
+						result = "Battery"
+						break
+					case 5:
+						result = "LED"
+						break
+					case 6:
+						result = "TouchPanel"
+						break
+					case 7:
+						result = "GSensor"
+						break
+				}
+				return result
+			]]></function>
+			<function id="convertPowerState" params="value"><![CDATA[
+				var result = value
+				switch (value) {
+					case 0:
+						result = "Off"
+						break
+					case 1:
+						result = "Run"
+						break
+					case -1:
+						result = "Sleep"
+						break
+					case 2:
+						result = "TemoraryResume"
+						break
+					case -2:
+						result = "Standby"
+						break
+					case 3:
+						result = "USBRun"
+						break
+					case 4:
+						result = "USBTemoraryResume"
+						break
+					case -4:
+						result = "USBDoze"
+						break
+				}
+				return result
+			]]></function>
+			<function id="convertTaskFunc" params="value"><![CDATA[
+				var result = value
+				switch (value) {
+					case 1:
+						result = "construct"
+						break
+					case 2:
+						result = "start"
+						break
+					case 3:
+						result = "finish"
+						break
+					case 4:
+						result = "cancel"
+						break
+					case 5:
+						result = "future callback"
+						break
+					case 6:
+						result = "http callback"
+						break
+				}
+				return result
+			]]></function>
+
+			<function id="loadDefinition"><![CDATA[
+				var result
+				try {
+					var file = this.mergeURI("logdef.xml").slice(7)
+					if (FileSystem.getFileInfo(file)) {
+						var stream = new Stream.File(file)
+						var string = stream.readString(stream.bytesAvailable)
+						result = ebook.logdef.parse(string)
+						stream.close()
+					}
+				}
+				catch (e) {
+				}
+				return result
+			]]></function>
+		</code>
+	</model>
+
+	<view id="MENU_VIEW" href="650.xml" left="0" right="0" top="0" bottom="0"/>
+
+	<sprite id="AUDIO">
+		<behave like="audio"/>
+		<property id="folder" value="audio/"/>
+		<property id="mimeText" value="audio/"/>
+		<property id="stateVariable" value="PLAY_STATE"/>
+		<property id="fileVariable" value="AUDIO_FILE"/>
+		<property id="volumeVariable" value="AUDIO_VOLUME"/>
+		<property id="progressVariable" value="AUDIO_PROGRESS"/>
+	</sprite>
+
+	<view id="VIEW" left="0" right="0" top="0" bottom="0"/>
+</document>

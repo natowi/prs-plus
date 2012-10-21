@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+######################################################
+ !!! Attension !!!
+ Please Check Common side !!
+######################################################
+-->
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<texture href="kBookNetwork.png">
+			<cutout id="antennaProgress-a" x="0" y="0" width="45" height="30"/>
+			<cutout id="Network3GCheckBox-a" x="0" y="60" width="26" height="30"/>
+			<cutout id="sslIndicator-a" x="26" y="60" width="38" height="30"/>
+			<cutout id="downloadProgress-a" x="0" y="30" width="26" height="30" columns="28"/>
+			<cutout id="icon_callPedia"	x="0" y="90" width="34" height="30"/>
+			
+			<cutout id="ap_signal" x="0" y="215" width="22" height="22"/>
+			<cutout id="ap_protect" x="0" y="240" width="22" height="22"/>
+			
+			<cutout id="wifiSetting" x="0" y="265" width="52" height="52"/>
+		</texture>
+		<texture href="kBookProgressNetwork.png">
+			<!-- progress bar -->
+			<cutout id="prg-l-min"		x="2"	y="3"	width="5"	height="10"/>
+			<cutout id="prg-c-min"		x="10"	y="3"	width="5"	height="10"/>
+			<cutout id="prg-r-min"		x="35"	y="3"	width="5"	height="10"/>
+			<cutout id="prg-l-max"		x="2"	y="33"	width="5"	height="10"/>
+			<cutout id="prg-c-max"		x="10"	y="33"	width="5"	height="10"/>
+			<cutout id="prg-r-max"		x="35"	y="33"	width="5"	height="10"/>
+			<cutout id="prg-c-pos"		x="18"	y="18"	width="5"	height="10"/>
+		</texture>
+
+		<skin id="wifiSettingButton" cutouts="wifiSetting"/>
+		
+		<skin id="timeprogress"
+				cutouts="prg-l-min, prg-c-min, prg-r-min, prg-l-max, prg-c-max, prg-r-max, prg-c-pos"/>
+		
+		<skin id="antennaProgress" 
+				cutouts="antennaProgress-a"/>
+		<skin id="Network3GCheckBox" 
+				cutouts="Network3GCheckBox-a"/>
+		<skin id="sslIndicator" 
+				cutouts="sslIndicator-a"/>
+		<skin id="downloadProgress" 
+				cutouts="downloadProgress-a"/>
+				
+		<skin id="ap_protect"
+			cutouts="ap_protect"/>
+		<skin id="ap_signal"
+			cutouts="ap_signal"/>
+
+		<texture href="kBookIconNetwork.png">
+			<cutout id="kBookVIcon-a" x="0" y="0" width="70" height="70"/>
+			<cutout id="kBookHIcon-a" x="0" y="10" width="70" height="50" lines="70"/>
+			<cutout id="play-a" x="910" y="70" width="70" height="70" lines="0"/>
+			<cutout id="soft-reset-a" x="1820" y="70" width="70" height="70" lines="0"/>
+			<cutout id="hard-reset-a" x="1820" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-flash-a" x="2030" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-internal-a" x="3780" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-ms-a" x="3850" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-sd-a" x="3920" y="70" width="70" height="70" lines="0"/>
+			<cutout id="delete-book-a" x="3010" y="70" width="70" height="70" lines="0"/>
+			<cutout id="device-shutdown-a" x="2170" y="70" width="70" height="70" lines="0"/>
+			<cutout id="kBookNavIcon-a" x="0" y="210" width="30" height="30"/>
+			<cutout id="delete-historical-words-a" x="2800" y="70" width="70" height="70" lines="0"/>
+			<cutout id="display-calibration-a" x="2870" y="70" width="70" height="70" lines="0"/>
+			<cutout id="demo-mode-a" x="0" y="70" width="70" height="70" lines="0"/>
+			<cutout id="kBookVIconForListThumbnail" x="4" y="4" width="62" height="62"/>
+		</texture>
+
+		<texture href="options_itemsNetwork.png">
+			<cutout id="optItem-l" x= "0" y="0" width="67" height="58" columns="100"/>
+			<cutout id="optItem-c" x="67" y="0" width="10" height="58" columns="100"/>
+			<cutout id="optItem-r" x="77" y="0" width="22" height="58" columns="100"/>
+			
+			<!-- Optin change -->
+			<cutout id="dicMenuPrev-c" x= "67"  y= "0"  width="10" height="58"/>
+			<cutout id="dicMenuNext-c" x= "67"  y= "0"  width="10" height="58"/>
+			// temporary. multi delete
+			<cutout id="trash-a"			x="503" y= "0" width="55" height="58"/>
+		</texture>
+
+		<!-- tab bar -->
+		<texture href="kBookTabNetwork.png">
+			<cutout id="tab-l" x="0" y="0" width="30" height="75" columns="0"/>
+			<cutout id="tab-c" x="30" y="0" width="90" height="75" columns="0"/>
+			<cutout id="tab-r" x="120" y="0" width="29" height="75" columns="0"/>
+			<cutout id="tab" x="0" y="0" width="149" height="75" columns="0"/>
+			<cutout id="tab-l_h" x="301" y="0" width="75" height="60" lines="142" columns="0"/>
+			<cutout id="tab-c_h" x="301" y="30" width="75" height="90" lines="142" columns="0"/>
+			<cutout id="tab-r_h" x="301" y="120" width="75" height="22" lines="142" columns="0"/>
+			<cutout id="tab_h" x="301" y="0" width="75" height="142" lines="142" columns="0"/>
+			<cutout id="tabIcon" x="453" y="0" width="44" height="44"/>
+		</texture>
+
+		<texture href="kBookLogosNetwork.png">
+			<cutout id="kBookLogos-a" x="0" y="0" width="210" height="70"/>
+		</texture>
+
+		<texture href="defaultNotepadThumbnailWide.png">
+			<cutout id="defaultNotepadThumbnail"/>
+		</texture>
+		<texture href="defaultNotepadThumbnailDisableWide.png">
+			<cutout id="defaultNotepadThumbnail_disable"/>
+		</texture>
+
+		<texture href="kbookZoomWide.png">
+			<cutout id="pageStyle_normal"		x=   "0" y="0" width="144" height="144"/>
+			<cutout id="pageStyle_marginRemove"	x= "144" y="0" width="144" height="144"/>
+			<cutout id="pageStyle_splitPage2x2"	x= "288" y="0" width="144" height="144"/>
+			<cutout id="pageStyle_splitPage3x2"	x= "432" y="0" width="144" height="144"/>
+			<cutout id="pageStyle_fitPage"		x= "576" y="0" width="144" height="144"/>
+			<cutout id="pageStyle_2PageView"	x= "720" y="0" width="144" height="144"/>
+			<cutout id="splitPageIndicator-a" 	x="864" y="226" width="38" height="30"/>
+			<cutout id="zoomOrientationBtn"		x= "864" y="0" width= "80" height="42"/>
+			<cutout id="zoomFitHeightBtn"		x= "944" y="0" width= "80" height="42"/>
+			<cutout id="zoomFitWidthBtn"		x="1024" y="0" width= "80" height="42"/>
+			<cutout id="zoomLockBtn-l"			x="1104" y="0" width= "42" height="42"/>
+			<cutout id="zoomLockBtn-c"			x="1146" y="0" width= "30" height="42"/>
+			<cutout id="zoomLockBtn-r"			x="1176" y="0" width=  "8" height="42"/>
+			<cutout id="zoomUnlockBtn-l"		x="1184" y="0" width= "42" height="42"/>
+			<cutout id="zoomUnlockBtn-c"		x="1226" y="0" width= "30" height="42"/>
+			<cutout id="zoomUnlockBtn-r"		x="1256" y="0" width=  "8" height="42"/>
+
+			<cutout id="zoomIndicator-lt"		x="864" y="200" width= "2" height= "2"/>
+			<cutout id="zoomIndicator-ct"		x="866" y="200" width="22" height= "2"/>
+			<cutout id="zoomIndicator-rt"		x="888" y="200" width= "2" height= "2"/>
+			<cutout id="zoomIndicator-lm"		x="864" y="202" width= "2" height="22"/>
+			<cutout id="zoomIndicator-cm"		x="866" y="202" width="22" height="22"/>
+			<cutout id="zoomIndicator-rm"		x="888" y="202" width= "2" height="22"/>
+			<cutout id="zoomIndicator-lb"		x="864" y="224" width= "2" height= "2"/>
+			<cutout id="zoomIndicator-cb"		x="866" y="224" width="22" height= "2"/>
+			<cutout id="zoomIndicator-rb"		x="888" y="224" width= "2" height= "2"/>
+		</texture>
+
+		<skin id="pageStyle_2PageView"		cutouts="pageStyle_2PageView"		styles="label-pagestyle-d,label-pagestyle-e"/>
+
+		<!-- Multi Page Dialog -->
+		<texture href="kbookButtons2.png">
+			<cutout id="dialog-textarea-lt" x="0" y="0" width="10" height="10" />
+			<cutout id="dialog-textarea-lc" x="0" y="10" width="10" height="15" />
+			<cutout id="dialog-textarea-lb" x="0" y="25" width="10" height="10" />
+			<cutout id="dialog-textarea-ct" x="10" y="0" width="15" height="10" />
+			<cutout id="dialog-textarea-cc" x="10" y="10" width="15" height="15" />
+			<cutout id="dialog-textarea-cb" x="10" y="25" width="15" height="10" />
+			<cutout id="dialog-textarea-rt" x="25" y="0" width="10" height="10" />
+			<cutout id="dialog-textarea-rc" x="25" y="10" width="10" height="15" />
+			<cutout id="dialog-textarea-rb" x="25" y="25" width="10" height="10" />
+		</texture>
+		<skin id="multipage-text-dialog"
+				cutouts="dialog-textarea-lt,dialog-textarea-ct,dialog-textarea-rt,dialog-textarea-lc,dialog-textarea-cc,dialog-textarea-rc,dialog-textarea-lb,dialog-textarea-cb,dialog-textarea-rb" 
+				styles="kbookMultiDialogMessage,kbookMultiDialogMessage,kbookMultiDialogMessage,kbookMultiDialogMessage"/>
+
+		<!-- Wireless LAN Setting -->
+		<style id="wlansettingsMessageT" halign="left" valign="top" top="0" size="22" style="bold" color="#000000"/>
+		<style id="wlansettingsMessageT_glay" halign="left" valign="top" top="0" size="22" style="bold" color="#808080"/>
+		<style id="wlansettingsMessageC" halign="left" valign="center" top="0" size="22" style="bold" color="#000000"/>
+		<style id="wlansettingsMessageC_glay" halign="left" valign="center" top="0" size="22" style="bold" color="#808080"/>
+
+		<skin id="wlansettingText" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv"
+				styles="wlansettingsMessageT,wlansettingsMessageT,wlansettingsMessageT,wlansettingsMessageT"/>
+		<skin id="wlansettingText_glay" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv"
+				styles="wlansettingsMessageT_glay,wlansettingsMessageT_glay,wlansettingsMessageT_glay,wlansettingsMessageT_glay"/>
+
+		<skin id="wlansettingTextCenter" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv"
+				styles="wlansettingsMessageC,wlansettingsMessageC,wlansettingsMessageC,wlansettingsMessageC"/>
+		<skin id="wlansettingTextCenter_glay" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv"
+				styles="wlansettingsMessageC_glay,wlansettingsMessageC_glay,wlansettingsMessageC_glay,wlansettingsMessageC_glay"/>
+		
+		<!-- for Authentication of Browser-->
+		<style id="AuthenticationCaption" halign="left" valign="center" top="0" size="22" color="#3A3A3A"/>
+		<skin id="AuthenticationCaption" 
+				styles="AuthenticationCaption"/>
+		
+		<style id="InputForBrowser-e" font="Swis721 BT" size="24" halign="left" valign="center" left="7" top="4" right="7" bottom="2"  color="#000000" background="#FFFFFF">
+			<style id="InputForBrowser-d"/>
+			<style id="InputForBrowser-p"/>
+			<style id="InputForBrowser-s" background="#808080"/>
+		</style>
+		
+		<skin id="LineInputForBrowser"
+			cutouts="searchInput-lt,searchInput-ct,searchInput-rt,searchInput-lm,searchInput-cm,searchInput-rm,searchInput-lb,searchInput-cb,searchInput-rb" 
+			styles="InputForBrowser-d,InputForBrowser-e,InputForBrowser-p,InputForBrowser-s"/>
+
+		
+	</assets>
+</document>

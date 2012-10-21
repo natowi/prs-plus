@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<model>
+		<code>
+			<function id="initialized">
+				this.container.PANEL.AUDIO.focus(true)
+				this.container.container.container.AUDIO.trigger("initializeAudio")
+			</function>
+		</code>
+	</model>
+	<group id="PANEL" left="0" right="0" top="0" bottom="0">
+		<code>
+			<function id="doRoot">
+				this.bubble("finishTest")
+			</function>
+			<function id="doNext">
+				this.bubble("nextAudio")
+			</function>
+			<function id="doPrevious">
+				this.bubble("previousAudio")
+			</function>
+			<function id="doOption">
+				this.doCenter()
+			</function>
+			<function id="doQuiet"><![CDATA[
+				var volume = this.getVariable("AUDIO_VOLUME")
+				volume--
+				if (volume >= 0)
+					this.setVariable("AUDIO_VOLUME", volume)
+			]]></function>
+			<function id="doLoud"><![CDATA[
+				var volume = this.getVariable("AUDIO_VOLUME")
+				volume++
+				if (volume <= 10)
+					this.setVariable("AUDIO_VOLUME", volume)
+			]]></function>
+			<function id="doCenter">
+				var state = this.getVariable("PLAY_STATE")
+				if (state == "PLAY")
+					this.bubble("stopAudio")
+				else
+					this.bubble("startAudio")
+			</function>
+		</code>
+		<sprite id="BACKGROUND" left="0" right="0" top="0" bottom="0">
+			<behave like="background"/>
+		</sprite>
+		<sprite id="PLAYPAUSE" width="200" height="200"  skin="playPauseSkin">
+			<behave like="checkbox"/>
+			<property id="variable" value="PLAY_STATE"/>
+			<property id="on" value="PAUSE"/>
+			<code>
+				<function id="hitBounds"/>
+			</code>
+		</sprite>
+		<sprite id="FILENAME" width="500" height="50" top="100" skin="labelSkin">
+			<behave like="label"/>
+			<property id="variable" value="AUDIO_FILE"/>
+			<property id="frame" value="true"/>
+		</sprite>
+		<sprite id="PROGRESS" width="500" height="20" top="550" skin="">
+			<behave like="progress"/>
+			<property id="variable" value="AUDIO_PROGRESS"/>
+		</sprite>
+
+		<sprite id="AUDIO" left="0" right="0" top="0" bottom="0">
+			<script on="mouseUp" params="event">
+				var state = this.getVariable("PLAY_STATE")
+				if (state == "PLAY")
+					this.container.bubble("stopAudio")
+				else
+					this.container.bubble("startAudio")
+			</script>
+		</sprite>
+
+
+		<sprite id="VOL" left="0" width="50" top="650" height="50" skin="labelSkin">
+			<behave like="label"/>
+			<property id="text" value="Vol"/>
+		</sprite>
+		<sprite id="0" left="50" width="50" top="650" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="0"/>
+			<property id="variable" value="AUDIO_VOLUME"/>
+			<property id="on" value="0"/>
+		</sprite>
+		<sprite id="1" left="100" width="50" top="650" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="1"/>
+			<property id="variable" value="AUDIO_VOLUME"/>
+			<property id="on" value="1"/>
+		</sprite>
+		<sprite id="2" left="150" width="50" top="650" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="2"/>
+			<property id="variable" value="AUDIO_VOLUME"/>
+			<property id="on" value="2"/>
+		</sprite>
+		<sprite id="3" left="200" width="50" top="650" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="3"/>
+			<property id="variable" value="AUDIO_VOLUME"/>
+			<property id="on" value="3"/>
+		</sprite>
+		<sprite id="4" left="250" width="50" top="650" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="4"/>
+			<property id="variable" value="AUDIO_VOLUME"/>
+			<property id="on" value="4"/>
+		</sprite>
+		<sprite id="5" left="300" width="50" top="650" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="5"/>
+			<property id="variable" value="AUDIO_VOLUME"/>
+			<property id="on" value="5"/>
+		</sprite>
+		<sprite id="6" left="350" width="50" top="650" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="6"/>
+			<property id="variable" value="AUDIO_VOLUME"/>
+			<property id="on" value="6"/>
+		</sprite>
+		<sprite id="7" left="400" width="50" top="650" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="7"/>
+			<property id="variable" value="AUDIO_VOLUME"/>
+			<property id="on" value="7"/>
+		</sprite>
+		<sprite id="8" left="450" width="50" top="650" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="8"/>
+			<property id="variable" value="AUDIO_VOLUME"/>
+			<property id="on" value="8"/>
+		</sprite>
+		<sprite id="9" left="500" width="50" top="650" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="9"/>
+			<property id="variable" value="AUDIO_VOLUME"/>
+			<property id="on" value="9"/>
+		</sprite>
+		<sprite id="10" left="550" width="50" top="650" height="50" skin="keySkin" skinType="horizontal">
+			<behave like="checkboxText"/>
+			<property id="text" value="10"/>
+			<property id="variable" value="AUDIO_VOLUME"/>
+			<property id="on" value="10"/>
+		</sprite>
+
+	</group>
+</document>

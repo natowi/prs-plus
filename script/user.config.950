@@ -1,0 +1,26 @@
+// This file allows you to move addon's directory anywhere you want.
+// ******************************************************************************************
+// PRS-950:  It MUST be located in folder /Beta/ in the root of IM (rename it to user.config)
+// ******************************************************************************************
+// Note:
+//	/Data - is a root of internal memory
+//
+// Note:
+//	Folder path MUST end with slash!
+
+// where to search for addon resources
+config.addonsPath = "/Data/Beta/addons/";
+// where to search for addon JS files
+//could also be a file, if folder, all .js files will be combined into one
+config.addonsFile = "/Data/Beta/addons/"; 
+// where to search for core resources (namely lang/<language>.js)
+config.corePath = "/Data/Beta/core/";
+// where to search for core js files
+// could also be a file, if folder, all .js files will be combined into one
+config.coreFile = "/Data/Beta/core/";
+// what to log and what not, possible values are: all, trace, info, warn, error
+config.defaultLogLevel = "trace";
+// where to log
+config.logFile = "/Data/prsp_script.log";
+// where to save settings
+config.settingsPath = "/Data/Beta/settings/";

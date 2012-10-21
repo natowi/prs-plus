@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+  		<style font="Swis721 BT" size="15" style="bold">
+			<style id="htext-e" halign="left" left="8" top="8" right="8" bottom="8">
+			<style id="htext-d" color="#959595" background="#6D6D6D"/>
+			<style id="htext-p" background="#B49AFF"/>
+			<style id="htext-s" background="#B49AFF"/>
+		 </style>	
+		</style>
+
+      
+        <style id="control-e" style="normal" size="14" left="25" halign="left">
+			<style id="control-d" color="#6D6D6D"/>
+			<style id="control-p"/>
+			<style id="control-s"/>
+		</style>
+		
+		<style id="button-e" size="21" style="bold" halign="center">
+			<style id="button-d" color="#6D6D6D"/>
+			<style id="button-p"/>
+			<style id="button-s" />
+		</style>	
+		
+		<style font="Swis721 BT" size="30">
+			<style halign="left" left="25" top="0" right="15" bottom="0">
+				<style id="menu_d" color="#6D6D6D"/>
+				<style id="menu_e" color="#000000"/>
+				<style id="menu_p" color="#000000"/>
+				<style id="menu_s" color="#000000"/>
+			</style>
+			<style style="bold" halign="center" left="10" right="6">
+				<style id="menuBar_d" color="#6D6D6D"/>
+				<style id="menuBar_e" color="#000000"/>
+				<style id="menuBar_p" color="#000000"/>
+				<style id="menuBar_s" color="#000000"/>
+			</style>
+		</style>			
+		<style id="dialog" background="#80000000"/>	
+	
+        <texture href="../AppAssets/AppLabels.png">
+			<cutout id="button-l" x="610" y="102" width="16" height="40" lines="60"/>
+			<cutout id="button-c" x="626" y="102" width="20" height="40" lines="60"/>
+			<cutout id="button-r" x="649" y="102" width="16" height="40" lines="60"/>
+		
+			<cutout id="radio-l" x="670" y="219" width="25" height="30" columns="60"/>
+			<cutout id="radio-c" x="695" y="219" width="15" height="30" columns="60"/>
+			<cutout id="radio-r" x="710" y="219" width="20" height="30" columns="60"/>
+						
+			<cutout id="panel-lt" x="646" y="386" width="9" height="9"/>
+			<cutout id="panel-ct" x="655" y="386" width="30" height="9"/>
+			<cutout id="panel-rt" x="685" y="386" width="9" height="9"/>
+			<cutout id="panel-lm" x="646" y="395" width="9" height="30"/>
+			<cutout id="panel-cm" x="655" y="395" width="30" height="30"/>
+			<cutout id="panel-rm" x="685" y="395" width="9" height="30"/>
+			<cutout id="panel-lb" x="646" y="425" width="9" height="9"/>
+			<cutout id="panel-cb" x="655" y="425" width="30" height="9"/>
+			<cutout id="panel-rb" x="685" y="425" width="9" height="9"/>
+		
+			<cutout id="htext-lt" x="305" y="230" width="5" height="5" lines="30"/>
+			<cutout id="htext-ct" x="311" y="230" width="10" height="5" lines="30" />
+			<cutout id="htext-rt" x="325" y="230" width="10" height="5" lines="30"/>
+			<cutout id="htext-lm" x="305" y="240" width="5" height="10" lines="30"/>
+			<cutout id="htext-cm" x="311" y="240" width="10" height="10" lines="30"/>
+			<cutout id="htext-rm" x="325" y="240" width="10" height="10" lines="30"/>
+			<cutout id="htext-lb" x="305" y="250" width="5" height="10" lines="30"/>
+			<cutout id="htext-cb" x="311" y="250" width="10" height="10" lines="30"/>
+			<cutout id="htext-rb" x="325" y="250" width="10" height="10" lines="30"/>		
+
+			<cutout id="AppMainHeader-l" x="0" y="300" width="5" height="70"/>
+			<cutout id="AppMainHeader-c" x="0" y="300" width="50" height="70"/>
+			<cutout id="AppMainHeader-r" x="0" y="0" width="5" height="70"/>
+			<cutout id="AppMainInfo-l" x="0" y="370" width="5" height="10"/>
+			<cutout id="AppMainInfo-c" x="0" y="370" width="50" height="10"/>
+			<cutout id="AppMainInfo-r" x="0" y="370" width="5" height="10"/>
+			<cutout id="AppMainStatus-l" x="0" y="401" width="5" height="34"/>
+			<cutout id="AppMainStatus-c" x="0" y="401" width="50" height="34"/>
+			<cutout id="AppMainStatus-r" x="0" y="401" width="5" height="34"/>
+			
+			<cutout id="popup-tl" x="728" y="51" width="5" heiht="3"/>
+			<cutout id="popup-tc" x="733" y="51" width="42" height="5"/>
+			<cutout id="popup-tr" x="775" y="51" width="5" height="5"/>
+			<cutout id="popup-ml" x="728" y="55" width="5" height="25"/>         
+			<cutout id="popup-mc" x="733" y="55" width="42" height="25"/>
+			<cutout id="popup-mr" x="775" y="55" width="5" height="25"/>
+			<cutout id="popup-bl" x="728" y="81" width="5" height="5"/>
+			<cutout id="popup-bc" x="733" y="81" width="42" height="5"/>
+			<cutout id="popup-br" x="775" y="81" width="5" height="5"/>
+			
+			<cutout id="menu_lt" x="400" y="332" width="20" height="6"/>
+			<cutout id="menu_ct" x="420" y="332" width="20" height="6"/>
+			<cutout id="menu_rt" x="440" y="332" width="20" height="6"/>
+			<cutout id="menu_lu" x="400" y="338" width="20" height="6"/>
+			<cutout id="menu_cu" x="420" y="338" width="20" height="6"/>
+			<cutout id="menu_ru" x="440" y="338" width="20" height="6"/>
+			<cutout id="menu_ls" x="400" y="346" width="20" height="10"/>
+			<cutout id="menu_cs" x="420" y="346" width="20" height="10"/>
+			<cutout id="menu_rs" x="440" y="346" width="20" height="10"/>
+			<cutout id="menu_li" x="400" y="355" width="20" height="38" columns="60"/>
+			<cutout id="menu_ci" x="420" y="355" width="20" height="38" columns="60"/>
+			<cutout id="menu_ri" x="440" y="355" width="20" height="38" columns="60"/>
+			<cutout id="menu_ld" x="400" y="430" width="20" height="6"/>
+			<cutout id="menu_cd" x="420" y="430" width="20" height="6"/>
+			<cutout id="menu_rd" x="440" y="430" width="20" height="6"/>
+			<cutout id="menu_lb" x="400" y="436" width="20" height="8"/>
+			<cutout id="menu_cb" x="420" y="436" width="20" height="8"/>
+			<cutout id="menu_rb" x="440" y="436" width="20" height="8"/>
+
+			<cutout id="background-f" x="650" y="390" width="40" height="40"/>	
+			<cutout id="allBlack_c" x="0" y="305" width="10" height="10"/>	
+			<cutout id="allWhite_c" x="0" y="375" width="10" height="10"/>		
+			<cutout id="null" x="580" y="0" width="1" height="1" lines="1"/>  
+			<cutout id="ntMenuSel_c" x="70" y="370" width="30" height="32"/>
+			
+			<!-- MISCELLANEOUS SPRITES-->
+			<cutout id="congrat" x="160" y="0" width="411" height="142"/>
+			<cutout id="gCursor" x="610" y="0" width="90" height="100"/>
+			<cutout id="colHelp_c" x="20" y="170" width="554" height="52"/>
+			<cutout id="camera_c" x="730" y="5" width="50" height="35"/>
+			
+			<!-- FREECELL SELECTION SPRITES-->
+			<cutout id="selectcard" x="0" y="1" width="73" height="96"/>
+			<cutout id="free" x="73" y="1" width="73" height="96"/>
+			<cutout id="smallselect" x="0" y="102" width="73" height="30"/>
+			
+			<!-- CHESS BOARD-->
+			<cutout id="white" x="232" y="367" width="75" height="75"/>
+			<cutout id="black" x="312" y="367" width="75" height="75"/>
+			
+			<!-- CHESS SELECTION SPRITES-->
+			<cutout id="selectsquare" x="65" y="367" width="75" height="75"/>
+			<cutout id="highlight" x="142" y="367" width="75" height="75"/>
+			
+			<!-- FIVEROW SPRITES-->
+			<cutout id="g1Cursor" x="98" y="298" width="50" height="50"/>
+			<cutout id="g2Cursor" x="168" y="298" width="50" height="50"/>
+			<cutout id="buttons" x="48" y="239" width="50" height="50"/>
+        </texture>
+
+    	<skin id="helpText"
+				cutouts="htext-lt,htext-ct,htext-rt,htext-lm,htext-cm,htext-rm,htext-lb,htext-cb,htext-rb" 
+				styles="htext-e,htext-e,htext-p,htext-s"/>    
+		<skin id="button" 
+				cutouts="button-l,button-c,button-r"
+				styles="button-d,button-e,button-p,button-s"/>	
+		<skin id="default-button" 
+				cutouts="button-l,button-c,button-r"
+				styles="button-d,button-e,button-p,button-s"/>							    
+		<skin id="gridCursor" 		cutouts="gCursor"/>	
+        <skin id="colHelp"	  	cutouts="colHelp_c"/>
+   		<skin id="congrats"		cutouts="congrat"/>
+		<skin id="radio" 
+				cutouts="radio-l,radio-c,radio-r"
+				styles="control-d,control-e,control-p,control-s"/>
+		<skin id="panel" 
+				cutouts="panel-lt,panel-ct,panel-rt,panel-lm,panel-cm,panel-rm,panel-lb,panel-cb,panel-rb"/>
+		<skin id="allBlackPanel"
+				cutouts="allBlack_c,allBlack_c,allBlack_c,allBlack_c,allBlack_c,allBlack_c,allBlack_c,allBlack_c,allBlack_c"/>
+		<skin id="allWhitePanel"
+				cutouts="allWhite_c,allWhite_c,allWhite_c,allWhite_c,allWhite_c,allWhite_c,allWhite_c,allWhite_c,allWhite_c"/>				
+        <skin id="AppMainSkin" 
+	        	cutouts="AppMainHeader-l,AppMainHeader-c, AppMainHeader-r,AppMainInfo-l,AppMainInfo-c,AppMainInfo-r,
+				 		AppMainStatus-l,AppMainStatus-c,AppMainStatus-r"/>
+        <skin id="popup" 
+        		cutouts="popup-tl,popup-tc,popup-tr,popup-ml,popup-mc,popup-mr,popup-bl,popup-bc,popup-br"/>
+		<skin id="menu"
+			cutouts="menu_lt,menu_ct,menu_rt,menu_lu,menu_cu,menu_ru,menu_ls,menu_cs,menu_rs,menu_li,menu_ci,menu_ri,menu_ld,menu_cd,menu_rd,menu_lb,menu_cb,menu_rb"
+			styles="menu_d,menu_e,menu_p,menu_s,menu_d,menu_e,menu_p,menu_s"/>
+		<skin id="mpanel"
+			cutouts="menu_lt,menu_ct,menu_rt,menu_li,menu_ci,menu_ri,menu_lb,menu_cb,menu_rb"/> 
+		<skin id="dialog" 
+				cutouts="menu_lt,menu_ct,menu_rt,menu_ri,menu_rb,menu_cb,menu_lb,menu_li"
+				styles="dialog"/>					
+		<skin id="dlg_background" 
+				cutouts="white"/>							   
+		<skin id="menuBar"
+			cutouts="null,null,null,null"
+			styles="menuBar_d,menuBar_e,menuBar_p,menuBar_s"/>			   				
+		<skin id="ntMenuSel"
+			cutouts="ntMenuSel_c,ntMenuSel_c,ntMenuSel_c"
+			styles="control-d,control-e,control-p,control-s"/>
+	</assets>
+</document>

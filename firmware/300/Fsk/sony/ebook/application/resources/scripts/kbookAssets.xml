@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" href="x-id://model">
+	<assets>
+		<!-- infoTitles string is now stored in language-specific assets.xml file -->
+		<!--string id="infoTitles" value="Cover,Title,Author,Publisher,Category,eBook ID,Kind,Date,Size,Location,File,Digital Rights,Expires"/-->
+		<string id="infoNames" value="AlbumArt,title,author,Publisher,Genre,connect:eBookID,mime,date,size,path,status,expiration"/>
+		<string id="infoFormats" value="thumbnail,string,string,string,string,string,mime,date,size,directory,drm,dateTime"/>
+	
+		<style font="Swis721 BT" truncate="center">
+			<style id="kbookBigTitle" halign="left" size="38" style="bold" color="#FFFFFF"/>
+			<style id="kbookSmallTitle" halign="left" size="4" style="bold" color="#FFFFFF"/>
+			
+			<style id="kbookVBigName" halign="left" valign="top" top="4" size="32" style="bold"/>
+			<style id="kbookVSmallName" halign="left" valign="top" top="4" size="26" style="bold"/>
+			<style id="kbookVSmallNameCenter" halign="center" valign="top" top="4" size="24" style="bold"/>
+			<style id="kbookVComment" halign="right" valign="bottom" bottom="3" size="18" truncate="center"/>
+			<style id="kbookVTab" halign="right" right="7" size="36" style="bold"/>
+			<style id="kbookVMark" halign="right" right="7" size="36" style="bold" color="#FFFFFF"/>
+			<style id="kbookVExpiration" halign="right" valign="top" top="8" size="12"/>
+			<style id="kbookVExpirationBig" halign="right" valign="top" top="4" size="20"/>
+			
+			<style id="kbookHBigName" halign="left" valign="top" top="0" size="28" style="bold"/>
+			<style id="kbookHSmallName" halign="left" valign="top" top="2" size="22" style="bold"/>
+			<style id="kbookHComment" halign="right" valign="bottom" bottom="2" size="16" truncate="center"/>
+			<style id="kbookHTab" halign="right" right="10" size="28" style="bold"/>
+			<style id="kbookHMark" halign="right" right="10" size="28" style="bold" color="#FFFFFF"/>
+			<style id="kbookHExpiration" halign="right" valign="top" top="6"  size="12"/>
+			<style id="kbookHExpirationBig" halign="right" valign="top" top="0" size="20"/>
+			
+			<style id="kbookVName" halign="right" right="10" size="32" style="bold"/>
+			<style id="kbookVValue" halign="center" size="32" style="bold"/>
+			<style id="kbookVSelection" halign="center" size="32" style="bold" color="#FFFFFF"/>
+			<style id="kbookVUnit" halign="left" left="0" size="32" style="bold"/>
+			
+			<style id="kbookHName" halign="right" right="10" size="28" style="bold"/>
+			<style id="kbookHValue" halign="center" size="28" style="bold"/>
+			<style id="kbookHSelection" halign="center" size="28" style="bold" color="#FFFFFF"/>
+			<style id="kbookHUnit" halign="left" left="0" size="28" style="bold"/>
+			
+			<style id="label" size="22" style="bold" color="#FFFFFF" valign="top" top="2"/>
+			<style id="info-n" size="22" valign="top" top="7" bottom="7" halign="right" right="14" style="bold"/>
+			<style id="info-v" size="22" halign="left" top="9"/>
+			
+			<style id="kbookAbout" halign="left" left="10" top="10" right="10" bottom="5" size="18"/>
+			<style id="kbookGuide" halign="left" left="10" top="10" right="10" bottom="5" size="24"/>
+			
+			<style id="kbookMessage" halign="center" valign="top" size="34" style="bold"/>
+			<style id="kbookWelcome" halign="center" valign="top" size="24" style="bold"/>
+		</style>
+		<style font="Courier10 BT">
+			<style id="time" size="22" style="bold" color="#FFFFFF"/>
+		</style>
+		<style font="Dutch801 Rm BT">
+			<style id="text" size="12"/>
+		</style>
+	
+		<texture href="kBookAssets.png">
+			<cutout id="logo" x="0" y="0" width="210" height="70" lines="0"/>
+
+			<cutout id="kbookHeader-l" x="420" y="0" width="70" height="70"/>
+			<cutout id="kbookHeader-c" x="490" y="0" width="70" height="70"/>
+			<cutout id="kbookHeader-r" x="560" y="0" width="70" height="70"/>
+			
+			<cutout id="kbookStatus-l" x="420" y="437" width="70" height="33"/>
+			<cutout id="kbookStatus-c" x="490" y="437" width="70" height="33"/>
+			<cutout id="kbookStatus-r" x="560" y="437" width="70" height="33"/>
+			
+			<cutout id="kbookInfo-l" x="0" y="70" width="0" height="360"/>
+			<cutout id="kbookInfo-c" x="0" y="70" width="50" height="360"/>
+			<cutout id="kbookInfo-r" x="0" y="70" width="0" height="360"/>
+			
+			<cutout id="kbookVMenu-l" x="0" y="70" width="70" height="70" columns="210"/>
+			<cutout id="kbookVMenu-c" x="70" y="70" width="70" height="70" columns="210"/>
+			<cutout id="kbookVMenu-r" x="140" y="70" width="70" height="70" columns="210"/>
+			<cutout id="kbookHMenu-l" x="0" y="280" width="70" height="50" columns="210"/>
+			<cutout id="kbookHMenu-c" x="70" y="280" width="70" height="50" columns="210"/>
+			<cutout id="kbookHMenu-r" x="140" y="280" width="70" height="50" columns="210"/>
+			<cutout id="kbookMenuStatus-l" x="0" y="437" width="70" height="33"/>
+			<cutout id="kbookMenuStatus-c" x="70" y="437" width="70" height="33"/>
+			<cutout id="kbookMenuStatus-r" x="140" y="437" width="70" height="33"/>
+			
+			<cutout id="kbookPage-lt" x="630" y="0" width="8" height="8" lines="140"/>
+			<cutout id="kbookPage-ct" x="638" y="0" width="120" height="8" lines="140"/>
+			<cutout id="kbookPage-rt" x="762" y="0" width="8" height="8" lines="140"/>
+			<cutout id="kbookPage-lm" x="630" y="8" width="8" height="124"/>
+			<cutout id="kbookPage-cm" x="638" y="8" width="124" height="124"/>
+			<cutout id="kbookPage-rm" x="762" y="8" width="8" height="124"/>
+			<cutout id="kbookPage-lb" x="630" y="132" width="8" height="8" lines="140"/>
+			<cutout id="kbookPage-cb" x="638" y="132" width="120" height="8" lines="140"/>
+			<cutout id="kbookPage-rb" x="762" y="132" width="8" height="8" lines="140"/>
+			<cutout id="kbookPageStatus-l" x="0" y="440" width="70" height="30"/>
+			<cutout id="kbookPageStatus-c" x="70" y="440" width="70" height="30"/>
+			<cutout id="kbookPageStatus-r" x="140" y="440" width="70" height="30"/>
+		
+			<cutout id="kbookVSetting-l" x="420" y="70" width="70" height="70"/>
+			<cutout id="kbookVSetting-c" x="490" y="70" width="0" height="70"/>
+			<cutout id="kbookVSetting-r" x="490" y="70" width="70" height="70"/>
+			<cutout id="kbookVField-l" x="420" y="140" width="10" height="70"/>
+			<cutout id="kbookVField-c" x="430" y="140" width="120" height="70"/>
+			<cutout id="kbookVField-r" x="550" y="140" width="10" height="70"/>
+			<cutout id="kbookHSetting-l" x="420" y="280" width="70" height="50"/>
+			<cutout id="kbookHSetting-c" x="490" y="280" width="0" height="50"/>
+			<cutout id="kbookHSetting-r" x="490" y="280" width="70" height="50"/>
+			<cutout id="kbookHField-l" x="420" y="330" width="10" height="50"/>
+			<cutout id="kbookHField-c" x="430" y="330" width="120" height="50"/>
+			<cutout id="kbookHField-r" x="550" y="330" width="10" height="50"/>
+			
+			<cutout id="welcomeButton-lt" x="420" y="219" width="20" height="20"/>
+			<cutout id="welcomeButton-ct" x="440" y="219" width="20" height="20"/>
+			<cutout id="welcomeButton-rt" x="530" y="219" width="30" height="20"/>
+			<cutout id="welcomeButton-lm" x="420" y="240" width="20" height="10"/>
+			<cutout id="welcomeButton-cm" x="440" y="240" width="20" height="10"/>
+			<cutout id="welcomeButton-rm" x="530" y="240" width="30" height="10"/>
+			<cutout id="welcomeButton-lb" x="420" y="250" width="20" height="20"/>
+			<cutout id="welcomeButton-cb" x="440" y="250" width="20" height="20"/>
+			<cutout id="welcomeButton-rb" x="530" y="250" width="30" height="20"/>
+
+			<cutout id="kbookSong-l" x="560" y="70" width="0" height="360"/>
+			<cutout id="kbookSong-c" x="560" y="70" width="70" height="360"/>
+			<cutout id="kbookSong-r" x="560" y="70" width="0" height="360"/>
+
+			<cutout id="imageArrow-l" x="630" y="150" width="35" height="70"/>
+			<cutout id="imageArrow-r" x="735" y="150" width="35" height="70"/>
+			<cutout id="imageArrow-t" x="665" y="150" width="70" height="35"/>
+			<cutout id="imageArrow-b" x="665" y="185" width="70" height="35"/>
+
+			<cutout id="overlap-a" x="630" y="220" width="48" height="51"/>
+			<cutout id="kbookPage-a" x="630" y="280" width="35" height="35"/>
+
+			<cutout id="sl2-gt" x="0" y="0" width="0" height="0"/>
+			<cutout id="sl2-gm" x="0" y="0" width="0" height="0"/>
+			<cutout id="sl2-gb" x="0" y="0" width="0" height="0"/>
+			<cutout id="sl2-tv" x="0" y="0" width="0" height="0"/>
+			<cutout id="sl2-gl" x="700" y="280" width="20" height="20" lines="0"/>
+			<cutout id="sl2-gc" x="720" y="280" width="20" height="20" lines="0"/>
+			<cutout id="sl2-gr" x="740" y="280" width="20" height="20" lines="0"/>
+			<cutout id="sl2-th" x="760" y="280" width="20" height="20" lines="0"/>
+			
+			<cutout id="kBookSourceIcon-a" x="630" y="320" width="30" height="30"/>
+			<cutout id="kBookExpired-a" x="740" y="250" width="20" height="20"/>
+			<cutout id="kBookExpireLater-a" x="760" y="250" width="20" height="20"/>
+			<cutout id="batteryProgress-l" x="630" y="320" width="8" height="30"/>
+			<cutout id="batteryProgress-c" x="638" y="320" width="50" height="30"/>
+			<cutout id="batteryProgress-r" x="688" y="320" width="12" height="30"/>
+			<cutout id="volumeProgress-l" x="700" y="320" width="1" height="30"/>
+			<cutout id="volumeProgress-c" x="701" y="320" width="50" height="30"/>
+			<cutout id="volumeProgress-r" x="751" y="320" width="4" height="30"/>
+			<cutout id="batteryCheckBox-a" x="630" y="410" width="20" height="30" lines="0"/>
+			<cutout id="volumeCheckBox-a" x="700" y="410" width="20" height="30" lines="0"/>
+			<cutout id="blinkCheckBox-a" x="600" y="440" width="30" height="30" lines="0"/>
+			<cutout id="sizeIndicator-a" x="660" y="440" width="30" height="30"/>
+			<cutout id="halfPageIndicator-a" x="210" y="440" width="30" height="30"/>
+			<cutout id="radioSelected" x="782" y="1" width="26" height="26"/>
+			<cutout id="radioButton" x="782" y="27" width="26" height="26"/>
+			<cutout id="radioHighlight" x="782" y="53" width="26" height="26"/>
+			<cutout id="radioHighlightSelected" x="782" y="79" width="26" height="26"/>
+			
+			<cutout id="guideArea-lt" x="782" y="110" width="16" height="12"/>
+			<cutout id="guideArea-ct" x="798" y="110" width="14" height="12"/>
+			<cutout id="guideArea-rt" x="812" y="110" width="16" height="12"/>
+			
+			<cutout id="guideArea-lm" x="782" y="122" width="16" height="213"/>
+			<cutout id="guideArea-cm" x="798" y="122" width="14" height="213"/>
+			<cutout id="guideArea-rm" x="812" y="122" width="16" height="213"/>
+			
+			<cutout id="guideArea-lb" x="782" y="335" width="16" height="12"/>
+			<cutout id="guideArea-cb" x="798" y="335" width="14" height="12"/>
+			<cutout id="guideArea-rb" x="812" y="335" width="16" height="12"/>
+
+		</texture>
+		<!--texture href="kBookDefaultArt.png">
+			<cutout id="defaultArt" x="0" y="0"/>
+		</texture>
+		<texture href="kBookDefaultThumbnail.png">
+			<cutout id="defaultThumbnail" x="0" y="0"/>
+		</texture-->
+		<texture href="defaultBookThumbnail.png">
+			<cutout id="defaultBookCover" x="0" y="0"/>
+		</texture>
+		
+		<texture href="kBookDisk.png">
+			<cutout id="diskSprite-a" x="0" y="0" width="140" height="140"/>
+			<cutout id="diskBackground-a" x="560" y="0" width="140" height="140"/>
+		</texture>
+		<texture href="kBookIcon.png">
+			<cutout id="kBookVIcon-a" x="0" y="0" width="70" height="70"/>
+			<cutout id="kBookHIcon-a" x="0" y="10" width="70" height="50" lines="70"/>
+			<cutout id="play-a" x="910" y="70" width="70" height="70" lines="0"/>
+			<cutout id="soft-reset-a" x="1820" y="70" width="70" height="70" lines="0"/>
+			<cutout id="hard-reset-a" x="1820" y="70" width="70" height="70" lines="0"/>
+			<cutout id="format-flash-a" x="2030" y="70" width="70" height="70" lines="0"/>
+			<cutout id="remove-allbookmarks-a" x="1470" y="70" width="70" height="70" lines="0"/>
+			<cutout id="clear-history-a" x="1400" y="70" width="70" height="70" lines="0"/>
+			<cutout id="delete-book-a" x="2310" y="70" width="70" height="70" lines="0"/>
+			<cutout id="device-shutdown-a" x="2170" y="70" width="70" height="70" lines="0"/>
+			<cutout id="delete-bookmarks-a" x="2660" y="70" width="70" height="70" lines="0"/>
+			<cutout id="demo-mode-a" x="0" y="70" width="70" height="70" lines="0"/>
+		</texture>
+		<texture href="kBookLogos.png">
+			<cutout id="kBookLogos-a" x="0" y="0" width="210" height="70"/>
+		</texture>
+		<texture href="kBookAlertIcon.png">
+			<cutout id="kBookAlertIcon-a" x="0" y="0" width="36" height="36"/>
+		</texture>
+	
+		<skin id="label" 
+				styles="label"/>
+		<skin id="time" 
+				styles="time"/>
+		<skin id="title" 
+				styles="kbookBigTitle"/>
+		<skin id="message" 
+				styles="kbookVBigName"/>
+		<skin id="submessage" 
+				styles="kbookVSmallName"/>
+		<skin id="play" 
+				cutouts="play-a"/>
+		<skin id="soft-reset" 
+				cutouts="soft-reset-a"/>
+		<skin id="hard-reset" 
+				cutouts="hard-reset-a"/>
+		<skin id="format-flash" 
+				cutouts="format-flash-a"/>
+		<skin id="remove-allbookmarks" 
+				cutouts="remove-allbookmarks-a"/>
+		<skin id="clear-history" 
+				cutouts="clear-history-a"/>
+		<skin id="delete-book" 
+				cutouts="delete-book-a"/>
+		<skin id="device-shutdown" 
+				cutouts="device-shutdown-a"/>
+		<skin id="delete-bookmarks" 
+				cutouts="delete-bookmarks-a"/>
+		<skin id="demoSprite" 
+				cutouts="demo-mode-a"/>
+				
+		<skin id="kbookAbout" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kBookVIcon-a,kBookLogos-a"
+				styles="kbookBigTitle,kbookAbout"/>
+				
+		<skin id="kbookInfo" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kBookVIcon-a"
+				styles="kbookBigTitle,info-n,info-v"/>
+				
+		<skin id="kbookMenu" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookVMenu-l,kbookVMenu-c,kbookVMenu-r,kBookVIcon-a,kbookHMenu-l,kbookHMenu-c,kbookHMenu-r,kBookHIcon-a,logo,kBookSourceIcon-a,kBookExpireLater-a,kBookExpired-a"
+				styles="kbookBigTitle,kbookBigTitle,kbookVBigName,kbookVSmallName,kbookVComment,kbookVTab,kbookVMark,kbookVExpiration,kbookVExpirationBig,kbookHBigName,kbookHSmallName,kbookHComment,kbookHTab,kbookHMark,kbookHExpiration,kbookHExpirationBig"/>
+		<skin id="kbookMenuIcon" 
+				cutouts="kBookVIcon-a,kBookHIcon-a"/>
+		<skin id="kbookMenuStatus" 
+				cutouts="kbookMenuStatus-l,kbookMenuStatus-c,kbookMenuStatus-r"/>
+				
+		<skin id="kbookPage"
+				cutouts="kbookPage-lt,kbookPage-ct,kbookPage-rt,kbookPage-lm,kbookPage-cm,kbookPage-rm,kbookPage-lb,kbookPage-cb,kbookPage-rb,kbookPage-a,overlap-a,diskSprite-a" 
+				styles="text,text,text,text"/>
+		<skin id="kbookPageStatus" 
+				cutouts="kbookPageStatus-l,kbookPageStatus-c,kbookPageStatus-r"/>
+				
+		<skin id="kbookReset" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="kbookFormatFlash" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="kbookDeleteBook" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="kbookDeviceShutdown" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="kbookDemoMode" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookInfo-l,kbookInfo-c,kbookInfo-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+
+		<skin id="kbookSetting" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookVSetting-l,kbookVSetting-c,kbookVSetting-r,kBookVIcon-a,kbookVField-l,kbookVField-c,kbookVField-r,kbookHSetting-l,kbookHSetting-c,kbookHSetting-r,kBookHIcon-a,kbookHField-l,kbookHField-c,kbookHField-r,logo,radioButton, radioSelected, radioHighlight, radioHighlightSelected, guideArea-lt,guideArea-ct,guideArea-rt,guideArea-lm,guideArea-cm,guideArea-rm,guideArea-lb,guideArea-cb,guideArea-rb"
+				styles="kbookBigTitle,kbookBigTitle,kbookVName,kbookVValue,kbookVSelection,kbookVUnit,kbookHName,kbookHValue,kbookHSelection,kbookHUnit,kbookGuide"/>
+				
+		<skin id="kbookSong" 
+				cutouts="kbookHeader-l,kbookHeader-c,kbookHeader-r,kbookSong-l,kbookSong-c,kbookSong-r,kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+		<skin id="slider2" 
+				cutouts="sl2-gt,sl2-gm,sl2-gb,sl2-tv,sl2-gl,sl2-gc,sl2-gr,sl2-th"/>]
+				
+		<skin id="kbookStatus" 
+				cutouts="kbookStatus-l,kbookStatus-c,kbookStatus-r"/>
+				
+		<skin id="kbookImage" 
+				cutouts="imageArrow-l,imageArrow-r,imageArrow-t,imageArrow-b"/>
+				
+		<skin id="batteryProgress" 
+				cutouts="batteryProgress-l,batteryProgress-c,batteryProgress-r"/>
+		<skin id="volumeProgress" 
+				cutouts="volumeProgress-l,volumeProgress-c,volumeProgress-r"/>
+		<skin id="batteryCheckBox" 
+				cutouts="batteryCheckBox-a"/>
+		<skin id="volumeCheckBox" 
+				cutouts="volumeCheckBox-a"/>
+		<skin id="blinkCheckBox" 
+				cutouts="blinkCheckBox-a"/>
+		<skin id="sizeIndicator" 
+				cutouts="sizeIndicator-a"/>
+		<skin id="halfPageIndicator" 
+				cutouts="halfPageIndicator-a"/>
+				
+		<skin id="diskBackground" 
+				cutouts="diskBackground-a"/>
+		<skin id="diskSprite" 
+				cutouts="diskSprite-a"/>
+		<skin id="pageSprite"
+				cutouts="kbookPage-lt,kbookPage-ct,kbookPage-rt,kbookPage-lm,kbookPage-cm,kbookPage-rm,kbookPage-lb,kbookPage-cb,kbookPage-rb"/>
+				
+		<skin id="text" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,kBookAlertIcon-a"
+				styles="kbookMessage,kbookMessage,kbookMessage,kbookMessage"/>
+	
+		<skin id="welcomeButton"
+				cutouts="welcomeButton-lt,welcomeButton-ct,welcomeButton-rt,welcomeButton-lm,welcomeButton-cm,welcomeButton-rm,welcomeButton-lb,welcomeButton-cb,welcomeButton-rb"/>
+	
+		<skin id="welcomeText" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,kBookAlertIcon-a"
+				styles="kbookWelcome,kbookWelcome,kbookWelcome,kbookWelcome"/>
+				
+		<skin id="textSubmessage" 
+				cutouts="sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv,sl2-tv"
+				styles="kbookVSmallNameCenter,kbookVSmallNameCenter,kbookVSmallNameCenter,kbookVSmallNameCenter"/>
+				
+	</assets>
+</document>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<keydatas xmlns="http://www.kinoma.com/fskin/1" skin="keyW_H">
+	<set id="ALPHABET" orientation="V">
+		<key text="a" shift="A" left= "10" top="11" width="58" height="58"/>
+		<key text="z" shift="Z" left= "68" top="11" width="58" height="58"/>
+		<key text="e" shift="E" left="126" top="11" width="58" height="58"/>
+		<key text="r" shift="R" left="184" top="11" width="58" height="58"/>
+		<key text="t" shift="T" left="242" top="11" width="58" height="58"/>
+		<key text="y" shift="Y" left="300" top="11" width="58" height="58"/>
+		<key text="u" shift="U" left="358" top="11" width="58" height="58"/>
+		<key text="i" shift="I" left="416" top="11" width="58" height="58"/>
+		<key text="o" shift="O" left="474" top="11" width="58" height="58"/>
+		<key text="p" shift="P" left="532" top="11" width="58" height="58"/>
+
+		<key text="q" shift="Q" left= "10" top="73" width="58" height="58"/>
+		<key text="s" shift="S" left= "68" top="73" width="58" height="58"/>
+		<key text="d" shift="D" left="126" top="73" width="58" height="58"/>
+		<key text="f" shift="F" left="184" top="73" width="58" height="58"/>
+		<key text="g" shift="G" left="242" top="73" width="58" height="58"/>
+		<key text="h" shift="H" left="300" top="73" width="58" height="58"/>
+		<key text="j" shift="J" left="358" top="73" width="58" height="58"/>
+		<key text="k" shift="K" left="416" top="73" width="58" height="58"/>
+		<key text="l" shift="L" left="474" top="73" width="58" height="58"/>
+		<key text="m" shift="M" left="532" top="73" width="58" height="58"/>
+
+		<key caps="shift"	text="" left="10" top="135" width="87" height="58" bit="8" skin="shiftHSMALL"/>
+		<key text="w" shift="W" left="126" top="135" width="58" height="58"/>
+		<key text="x" shift="X" left="184" top="135" width="58" height="58"/>
+		<key text="c" shift="C" left="242" top="135" width="58" height="58"/>
+		<key text="v" shift="V" left="300" top="135" width="58" height="58"/>
+		<key text="b" shift="B" left="358" top="135" width="58" height="58"/>
+		<key text="n" shift="N" left="416" top="135" width="58" height="58"/>
+		<key text="" textCode="8" left="503" top="135" width= "87" height="58" bit="8" skin="bsH"/>
+
+		<key set="SYMBOLS"	text="Symboles"				left= "10" top="197" width="145" height="50" bit="8" skin="keyG"/>
+		<key text="/" shift="/"   		left="155" top="197" width="58" height="50" skin="keyW"/>
+		<key  				text="Espace" textCode="32"	left="212" top="197" width="173" height="50" skin="keyW"/>
+		<key text="." shift="."			left="387" top="197" width="58" height="50" skin="keyW"/>		
+		<key 				text="Précédent" textCode="13"	left="445" top="197" width="145" height="50" bit="8" skin="keyG"/>
+	</set>
+
+	<set id="SYMBOLS" orientation="V">
+		<key text="1" 		shift="&#xB2;" 	left= "10" top="11" width="58" height="58"/>
+		<key text="2" 		shift="~" 		left= "68" top="11" width="58" height="58"/>
+		<key text="3" 		shift="#" 		left="126" top="11" width="58" height="58"/>
+		<key text="4" 		shift="-" 		left="184" top="11" width="58" height="58"/>
+		<key text="5" 		shift="`" 		left="242" top="11" width="58" height="58"/>
+		<key text="6" 		shift="_" 		left="300" top="11" width="58" height="58"/>
+		<key text="7" 		shift="@" 		left="358" top="11" width="58" height="58"/>
+		<key text="8" 		shift="&#xB0;"	left="416" top="11" width="58" height="58"/>
+		<key text="9" 		shift="+"		left="474" top="11" width="58" height="58"/>
+		<key text="0" 		shift="="		left="532" top="11" width="58" height="58"/>
+
+		<key text="&#x26;" 	shift="{"		left= "39" top="73" width="58" height="58"/>
+		<key text="&quot;" 	shift="}"		left= "97" top="73" width="58" height="58"/>
+		<key text="€" 		shift="["		left="155" top="73" width="58" height="58"/>
+		<key text="&#39;"   shift="]"		left="213" top="73" width="58" height="58"/>
+		<key text="(" 		shift="|"		left="271" top="73" width="58" height="58"/>
+		<key text=")"		shift="\"		left="329" top="73" width="58" height="58"/>
+		<key text="&#xA3;"	shift="^"		left="387" top="73" width="58" height="58"/>
+		<key text="%"		shift="¦"		left="445" top="73" width="58" height="58"/>
+		<key text="*"		shift="$"		left="503" top="73" width="58" height="58"/>
+
+		<key caps="caps" 	text="@#$"		left="10" top="135" width="87" height="58" bit="8" skin="keyG_HSMALL"/>
+		<key text="?" 		shift="&lt;" 	left= "97" top="135" width="58" height="58"/>
+		<key text="," 		shift="&gt;" 	left="155" top="135" width="58" height="58"/>
+		<key text="-" 		shift="&#xAB;" 	left="213" top="135" width="58" height="58"/>
+		<key text=";" 		shift="&#xBB;" 	left="271" top="135" width="58" height="58"/>
+		<key text=":"		shift="&#xAC;"	left="329" top="135" width="58" height="58"/>
+		<key text="\"		shift="&#xA7;"	left="387" top="135" width="58" height="58"/>
+		<key text="!"		shift="&#xB5;"	left="445" top="135" width="58" height="58"/>
+		<key text="" textCode="8"		 	left="503" top="135" width= "87" height="58" bit="8" skin="bsH"/>
+
+		<key set="ALPHABET"	text="Abc"					left= "10" top="197" width="145" height="50" bit="8" skin="keyG"/>
+		<key text="/" shift="/"   		left="155" top="197" width="58" height="50" skin="keyW"/>
+		<key  				text="Espace"  textCode="32"	left="212" top="197" width="173" height="50" skin="keyW"/>
+		<key text="." shift="."   		left="387" top="197" width="58" height="50" skin="keyW"/>		
+		<key 				text="Précédent" textCode="13"	left="445" top="197" width="145" height="50" bit="8" skin="keyG"/>
+	</set>
+
+
+	<set id="ALPHABET" orientation="H">
+		<key text="a" shift="A" left= "10" top="10" width="78" height="58"/>
+		<key text="z" shift="Z" left= "88" top="10" width="78" height="58"/>
+		<key text="e" shift="E" left="166" top="10" width="78" height="58"/>
+		<key text="r" shift="R" left="244" top="10" width="78" height="58"/>
+		<key text="t" shift="T" left="322" top="10" width="78" height="58"/>
+		<key text="y" shift="Y" left="400" top="10" width="78" height="58"/>
+		<key text="u" shift="U" left="478" top="10" width="78" height="58"/>
+		<key text="i" shift="I" left="556" top="10" width="78" height="58"/>
+		<key text="o" shift="O" left="634" top="10" width="78" height="58"/>
+		<key text="p" shift="P" left="712" top="10" width="78" height="58"/>
+
+		<key text="q" shift="Q" left= "10" top="72" width="78" height="58"/>
+		<key text="s" shift="S" left= "88" top="72" width="78" height="58"/>
+		<key text="d" shift="D" left="166" top="72" width="78" height="58"/>
+		<key text="f" shift="F" left="244" top="72" width="78" height="58"/>
+		<key text="g" shift="G" left="322" top="72" width="78" height="58"/>
+		<key text="h" shift="H" left="400" top="72" width="78" height="58"/>
+		<key text="j" shift="J" left="478" top="72" width="78" height="58"/>
+		<key text="k" shift="K" left="556" top="72" width="78" height="58"/>
+		<key text="l" shift="L" left="634" top="72" width="78" height="58"/>
+		<key text="m" shift="M" left="712" top="72" width="78" height="58"/>
+
+		<key caps="shift"	text="" left="10"  top="134" width="117" height="58" bit="8" skin="shiftHSMALL"/>
+		<key text="w" shift="W" 	left="166" top="134" width="78"  height="58"/>
+		<key text="x" shift="X" 	left="244" top="134" width="78"  height="58"/>
+		<key text="c" shift="C" 	left="322" top="134" width="78"  height="58"/>
+		<key text="v" shift="V" 	left="400" top="134" width="78"  height="58"/>
+		<key text="b" shift="B" 	left="478" top="134" width="78"  height="58"/>
+		<key text="n" shift="N" 	left="556" top="134" width="78"  height="58"/>
+		<key text="" textCode="8" 	left="673" top="134" width="117" height="58" bit="8" skin="bsH"/>
+
+		<key set="SYMBOLS"	text="Symboles"				left= "10" top="196" width="195" height="50" bit="8" skin="keyG"/>
+		<key text="/" shift="/"   		left="205" top="196" width="78" height="50" skin="keyW"/>
+		<key  				text="Espace"  textCode="32"	left="283" top="196" width="234" height="50" skin="keyW"/>
+		<key text="." shift="."   		left="517" top="196" width="78" height="50" skin="keyW"/>		
+		<key 				text="Précédent" textCode="13"	left="595" top="196" width="195" height="50" bit="8" skin="keyG"/>
+	</set>
+
+	<set id="SYMBOLS" orientation="H">
+		<key text="1" 		shift="&#xB2;" 	left= "10" top="10" width="78" height="58"/>
+		<key text="2" 		shift="~" 		left= "88" top="10" width="78" height="58"/>
+		<key text="3" 		shift="#" 		left="166" top="10" width="78" height="58"/>
+		<key text="4" 		shift="-" 		left="244" top="10" width="78" height="58"/>
+		<key text="5" 		shift="`" 		left="322" top="10" width="78" height="58"/>
+		<key text="6" 		shift="_" 		left="400" top="10" width="78" height="58"/>
+		<key text="7" 		shift="@" 		left="478" top="10" width="78" height="58"/>
+		<key text="8" 		shift="&#xB0;"	left="556" top="10" width="78" height="58"/>
+		<key text="9" 		shift="+"		left="634" top="10" width="78" height="58"/>
+		<key text="0" 		shift="="		left="712" top="10" width="78" height="58"/>
+
+		<key text="&#x26;" 	shift="{"		left= "49" top="72" width="78" height="58"/>
+		<key text="&quot;" 	shift="}"		left="127" top="72" width="78" height="58"/>
+		<key text="€" 		shift="["		left="205" top="72" width="78" height="58"/>
+		<key text="&#39;" 	shift="]"		left="283" top="72" width="78" height="58"/>
+		<key text="(" 		shift="|"		left="361" top="72" width="78" height="58"/>
+		<key text=")"		shift="\"		left="439" top="72" width="78" height="58"/>
+		<key text="&#xA3;"	shift="^"		left="517" top="72" width="78" height="58"/>
+		<key text="%"		shift="¦"	left="595" top="72" width="78" height="58"/>
+		<key text="*"		shift="$"		left="673" top="72" width="78" height="58"/>
+
+		<key caps="caps" 	text="@#$"		 left="10"  top="134" width="116" height="58" bit="8" skin="keyG_HSMALL"/>
+		<key text="?" 		shift="&lt;" 	 left="127" top="134" width="78"  height="58"/>
+		<key text="," 		shift="&gt;" 	 left="205" top="134" width="78"  height="58"/>
+		<key text="." 		shift="&#xAB;" 	 left="283" top="134" width="78"  height="58"/>
+		<key text=";" 		shift="&#xBB;" 	 left="361" top="134" width="78"  height="58"/>
+		<key text=":"		shift="&#xAC;"	 left="439" top="134" width="78"  height="58"/>
+		<key text="/"		shift="&#xA7;"	 left="517" top="134" width="78"  height="58"/>
+		<key text="!"		shift="&#xB5;"	 left="595" top="134" width="78"  height="58"/>
+		<key text="" textCode="8"  left="673" top="134" width="117" height="58" bit="8" skin="bsH"/>
+
+		<key set="ALPHABET"	text="Abc"					left= "10" top="196" width="195" height="50" bit="8" skin="keyG"/>
+		<key text="/" shift="/"   left="205" top="196" width="78" height="50" skin="keyW"/>
+		<key  				text="Espace"  textCode="32"	left="283" top="196" width="234" height="50" skin="keyW"/>
+		<key text="." shift="."   left="517" top="196" width="78" height="50" skin="keyW"/>		
+		<key 				text="Précédent" textCode="13"	left="595" top="196" width="195" height="50" bit="8" skin="keyG"/>
+	</set>
+</keydatas>
+
+

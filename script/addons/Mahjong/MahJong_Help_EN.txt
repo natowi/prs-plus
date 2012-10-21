@@ -1,0 +1,22 @@
+MahJonG 0.94
+
+Find doublettes.  Click on an item to select it.  Then click on a matching item to delete them both.  (Note that clicking on a tile that has just been revealed may not work.  Click on another tile first.)  Tiles can only be removed if they are free to slide either to the left or the right.  The number of remaining tiles / pairs are shown at the top of the display.
+[Note: Comments in Square brackets for non-Touch readers.]
+
+• There are four items of each pattern, except for the 
+   Four Seasons:  I.  II.  III.  IV.  With these any two
+   may be matched.
+• In order to change layout, use the "Previous" and "Next" 
+   buttons. ["Menu" button, move to BILD, then move left or right]
+• To start a new game of the same layout, simply press the 
+   "New layout" button at the top right ["Menu", NEW].  
+   To change the difficulty, toggle with the "Easy/Normal" button 
+   ["Menu", EASY?!].
+• Press the "Home" button to quit ["Menu", QUIT, or "0" button].
+• Press the "Size" button to undo the last delete.
+• Press the "Option" button ["Menu", HELP!] to show this
+   help page.  
+   Press "Option" ["Menu"] again to hide it.
+
+©’08 Clemenseken@t-online.de / clemenseken MobileRead.com
+Adapted by Ben Chenoweth.

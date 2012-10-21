@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1" id="POPUP_MENU_SUB" >
+	<panel id="POPUP_MENU"  skin="popup" left="50" bottom="50" width="0" height="0"  visible="false">
+		<exButton id="CLOSE_BOX" skin="optClose" right="0" top="-62" width="42" height="42" do="doMenu"/>
+		<group id="innerGroup" left="6" right="6" top="6" bottom = "6">
+			<panel id="panel10" skin="popupText" left="0" right="0" height="1" bottom="1" >
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="0" />
+				<button id="0" skin="prspButton" left="0" right="0" top="0" bottom="0" do="doPopupButton"/>
+			</panel>
+			<panel id="panel9" skin="popupText" left="0" right="0" height="1" bottom="1" >
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="9" />
+				<button id="9" skin="prspButton" left="0" right="0" top="0" bottom="0" do="doPopupButton"/>				
+			</panel>
+			<panel id="panel8" skin="popupText" left="0" right="0" height="1" bottom="1" >
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="8" />
+				<button id="8" skin="prspButton" left="0" right="0" top="0" bottom="0" do="doPopupButton"/>
+			</panel>
+			<panel id="panel7" skin="popupText" left="0" right="0" height="1" bottom="1" >
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="7" />
+				<button id="7" skin="prspButton" left="0" right="0" top="0" bottom="0" do="doPopupButton"/>
+			</panel>
+			<panel id="panel6" skin="popupText" left="0" right="0" height="1" bottom="1" >
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="6" />
+				<button id="6" skin="prspButton" left="0" right="0" top="0" bottom="0" do="doPopupButton"/>
+			</panel>
+			<panel id="panel5" skin="popupText" left="0" right="0" height="1" bottom="1" >
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="5" />
+				<button id="5" skin="prspButton" left="0" right="0" top="0" bottom="0" do="doPopupButton"/>
+			</panel>
+			<panel id="panel4" skin="popupText" left="0" right="0" height="1" bottom="1" >
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="4" />
+				<button id="4" skin="prspButton" left="0" right="0" top="0" bottom="0" do="doPopupButton"/>
+			</panel>
+			<panel id="panel3" skin="popupText" left="0" right="0" height="1" bottom="1" >
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="3" />
+				<button id="3" skin="prspButton" left="0" right="0" top="0" bottom="0" do="doPopupButton"/>
+			</panel>
+			<panel id="panel2" skin="popupText" left="0" right="0" height="1" bottom="1" >
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="2" />
+				<button id="2" skin="prspButton" left="0" right="0" top="0" bottom="0" do="doPopupButton"/>				
+			</panel>
+			<panel id="panel1" skin="popupText" left="0" right="0" height="1" bottom="1" >
+				<text id="indicator" skin="popupIndicator" right="0" top="0" bottom="0" width="35" value="1" />
+				<button id="1" skin="prspButton" left="0" right="0" top="0" bottom="0" do="doPopupButton"/>
+			</panel>
+		</group>
+	</panel>
+</document>

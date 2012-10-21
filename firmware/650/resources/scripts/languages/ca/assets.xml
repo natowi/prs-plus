@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="Continuar llegint" />
+		<string id="STR_NODE_TITLE_TOC" value="Index de continguts" />
+		<string id="STR_NODE_TITLE_INFO" value="Informació" />
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="Suprimir llibre" />
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="Col·leccions" />
+		<string id="STR_NODE_TITLE_AUDIO" value="Audio" />
+		<string id="STR_NODE_TITLE_PICTURE" value="Imatges" />
+		<string id="STR_NODE_TITLE_SETTINGS" value="Configuració" />
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="Dia i hora" />
+		<string id="STR_NODE_TITLE_YEAR" value="Any" />
+		<string id="STR_NODE_TITLE_MONTH" value="Mes" />
+		<string id="STR_NODE_TITLE_DATE" value="Dia" />
+		<string id="STR_NODE_TITLE_HOUR" value="Hora" />
+		<string id="STR_NODE_TITLE_MINUTE" value="Minut" />
+		<string id="STR_UI_BUTTON_AM" value="AM" />
+		<string id="STR_UI_BUTTON_PM" value="PM" />
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="Bloquejar l'aparell" />
+		<string id="STR_NODE_TITLE_ENTERCODE" value="Introduir codi" />
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="Diaporama" />
+		<string id="STR_NODE_TITLE_TURN" value="Activar" />
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="Intèrval" />
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="Apagar l'aparell" />
+		<string id="STR_NODE_TITLE_ABOUT" value="sobre" />
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="Restaurar per defecte" />
+		<string id="STR_NODE_TITLE_CODE" value="Codi d'accés" />
+		<string id="#STR_NODE_TITLE_AUTORUN" value="autoRun" />
+		<string id="#STR_NODE_TITLE_HARDRESET" value="hardReset" />
+		<string id="STR_COUNTER_BOOKMARK_N" value=" marcadors" />
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 marcador" />
+		<string id="STR_COUNTER_BOOKMARK_0" value="Cap marcador" />
+		<string id="STR_COUNTER_ITEM_N" value=" elements" />
+		<string id="STR_COUNTER_ITEM_1" value="1 element" />
+		<string id="STR_COUNTER_ITEM_0" value="Cap element" />
+		<string id="STR_COUNTER_BOOK_N" value=" llibres" />
+		<string id="STR_COUNTER_BOOK_1" value="1 llibre" />
+		<string id="STR_COUNTER_BOOK_0" value="Cap llibre" />
+		<string id="STR_COUNTER_COLLECTION_N" value=" col·leccions" />
+		<string id="STR_COUNTER_COLLECTION_1" value="1 col·lecció" />
+		<string id="STR_COUNTER_COLLECTION_0" value="Cap col·lecció" />
+		<string id="STR_COUNTER_SONG_N" value=" cançons" />
+		<string id="STR_COUNTER_SONG_1" value="1 cançó" />
+		<string id="STR_COUNTER_SONG_0" value="Cap cançó" />
+		<string id="STR_COUNTER_PICTURE_N" value=" imatges" />
+		<string id="STR_COUNTER_PICTURE_1" value="1 imatge" />
+		<string id="STR_COUNTER_PICTURE_0" value="Cap imatge" />
+		<string id="STR_COUNTER_SETTING_N" value=" opcions" />
+		<string id="STR_COUNTER_SETTING_1" value="1 opció" />
+		<string id="STR_COUNTER_SETTING_0" value="Cap opció" />
+		<string id="STR_UI_BUTTON_OK" value="OK" />
+		<string id="STR_UI_BUTTON_On" value="Activat" />
+		<string id="STR_UI_BUTTON_Off" value="Desactivat" />
+		<string id="STR_UI_BUTTON_ABLE" value="Si" />
+		<string id="STR_UI_BUTTON_DISABLE" value="No" />
+		<string id="STR_UI_UNITNAME_SECONDS" value="segons" />
+		<string id="STR_UI_UNITNAME_SIZEKB" value="KB" />
+		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
+		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
+		<string id="STR_UI_PARTS_PART" value="Part " />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Pàgina " />
+		<string id="STR_UI_PARTS_OF" value=" de " />
+		<string id="STR_UI_PARTS_TOC_UNKNOWN" value="?" />
+		<string id="STR_UI_PARTS_VERSION" value="Versió" />
+		<string id="STR_UI_PARTS_DEVICE" value="Aparell" />
+		<string id="STR_UI_GOTOPAGE" value="PÀGINA" />
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="Pàgina no vàlida!" />
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="Protegit per la gestió de drets digitals" />
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="Error de pàgina!" />
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="Format no vàlid!" />
+		<string id="STR_UI_MESSAGE_FORMATTING" value="Carregant..." />
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="Restringit" />
+		<string id="STR_UI_MESSAGE_DRMFULL" value="Complet, disponible" />
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="Tarja de memòria" />
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="Expirat" />
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="Avui" />
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="Apagant..." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="Aquest aparell encara no està autoritzat per a contingut Adobe DRM." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZED_READ" value="Aquest aparell està autoritzat per llegir contingut Adobe DRM." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZED_PURCHASE" value="Aquest aparell està autoritzat per llegir i comprar contingut Adobe DRM." />
+		<string id="STR_UI_MESSAGE_HARDRESET" value="Reinicialitzar tot" />
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="Vol SUPRIMIR tot el contingut, restaurar les configuracions de fàbrica i esborrar l'estat d'autorizació DRM?&#xA;&#xA;Sí - Premi el botó “OPTIONS”&#xA;No - Premi el botó “Inici”" />
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="Bateria baixa!" />
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="Bateria esgotada!" />
+		<string id="STR_UI_MESSAGE_LOADING" value="Carregant..." />
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 de 1" />
+		<string id="STR_UI_FORMAT_RTF" value="Rich Text Format" />
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF" />
+		<string id="STR_UI_FORMAT_EPUB" value="Document EPUB" />
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB Book" />
+		<string id="STR_UI_FORMAT_TXT" value="Text sense format" />
+		<string id="STR_UI_MESSAGE_USBDONOT" value="No desconnectar" />
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="USB connectat" />
+		<string id="STR_UI_MESSAGE_LOCKED" value="Aparell bloquejat" />
+		<string id="STR_UI_MESSAGE_CHARGING" value="Carregant bateria" />
+		<string id="STR_UI_MESSAGE_CHARGING_COMPLETE" value="Càrrega finalitzada" />
+		<string id="STR_UI_MESSAGE_CHARGING_NOT_CHARGING" value="Càrrega detinguda" />
+		<string id="STR_UI_USB_MODE_GUIDE_CHECK_CONNECTION" value="El Reader no pot càrregar perquè no detecta cap font d'alimentació. Sisplau, verifiqui que el carregador estigui endollat i encès, o que el cable USB estigui conectat correctament. " />
+		<string id="STR_UI_USB_MODE_GUIDE_TOO_HOT_COLD" value="El Reader està patint temperatures extremes en aquest moment. Sisplau, retorni'l a una temperatura ambient normal i intenti-ho de nou." />
+		<string id="STR_UI_USB_MODE_GUIDE_BROKEN_BAT" value="La bateria recarregable necessita una revisió.&#xA;Sisplau, contacti amb el servei d'atenció al client." />
+		<string id="STR_UI_USB_MODE_GUIDE_OTHER_ERRORS" value="Cal reiniciar el seu Reader. Per fer això, inserti una agulla en l´orifici de Reset i després desplaci i deixi anar l'interruptor d'encesa mecànic. Si encara veu aquest missatge a la pantalla, sisplau, consulti la guia de l'usuari." />
+		<string id="STR_UI_USB_MODE_GUIDE" value="Sisplau, consulti la guia de l'usuari." />
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,„,‘,’,“,”" />
+		<string id="STR_SORT_IGNOREARTICLES" value="el ,la ,els ,les ,un ,una ,uns ,unes " />
+		<string id="infoTitles" value="Coberta, Títol, Títol, data de pub, Autor, Editorial, Categoria, ID eBook, Tipus, Data, Mida, Ubicació, Ruta, Drets Digitals, Data de Caducitat" />
+		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Idioma del menú" />
+		<string id="STR_UI_LANG" value="Idioma" />
+		<string id="STR_UI_LANG_EN" value="English" />
+		<string id="STR_UI_LANG_FR" value="Français" />
+		<string id="STR_UI_LANG_DE" value="Deutsch" />
+		<string id="STR_UI_LANG_NL" value="Nederlands" />
+		<string id="STR_UI_LANG_ES" value="Español" />
+		<string id="STR_UI_LANG_PT" value="Português" />
+		<string id="STR_UI_LANG_IT" value="Italiano" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="Triï l'idioma preferit i seleccioni “OK”.&#xA;Nota:  podrà modificar la configuració de l'aparell més endavant en el menú “configuració”." />
+		<string id="STR_UI_PARTS_DELIMITER" value="/" />
+		<string id="STR_UI_MESSAGE_DEMOMODE" value="(Mode Demo)" />
+		<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value=" estalvi de pantalla de Demo" />
+		<string id="STR_NODE_TITLE_OPTIONS" value="Opcions" />
+		<string id="STR_DEMO_TITLE" value="MODE DEMO" />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="Títol: “XXTITLEXX”" />
+		<string id="STR_UI_DATE" value="Data" />
+		<string id="STR_UI_TIME" value="Hora" />
+		<string id="STR_UI_BUTTON_12HR" value="12 hores" />
+		<string id="STR_UI_BUTTON_24HR" value="24 hores" />
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / " />
+		<string id="STR_UI_MESSAGE_NOBOOK" value="Cap llibre" />
+		<string id="STR_NODE_TITLE_BOOK" value="Llibres" />
+		<string id="STR_NODE_TITLE_SORTEDBYTITLE" value="per títol" />
+		<string id="STR_NODE_TITLE_SORTEDBYAUTHOR" value="per autor" />
+		<string id="STR_NODE_TITLE_SORTEDBYDATE" value="per data" />
+		<string id="STR_NODE_TITLE_SORTEDBYORDER" value="p.Ord.Afegiment" />
+		<string id="STR_NODE_TITLE_ALLNOTES" value="Totes les notes" />
+		<string id="STR_NODE_TITLE_SORTEDBYCOMMENT" value="per coment." />
+		<string id="STR_NODE_TITLE_SORTEDBYTYPE" value="per tipus" />
+		<string id="STR_NODE_TITLE_SORTEDBYARTIST" value="per artista" />
+		<string id="STR_NODE_TITLE_NEXTPAGE" value="Pàgina següent" />
+		<string id="STR_NODE_TITLE_PAGETURNGESTURE" value="Prefer.donar volta a pàgina" />
+		<string id="STR_NODE_TITLE_ADVANCEDSETTINGS" value="Configuració avançada" />
+		<string id="STR_NODE_TITLE_TOUCHPANEL" value="Calibrar la pantalla tàctil" />
+		<string id="STR_NODE_TITLE_CLEARKEYBOARDHISTORY" value="Esborrar historial del teclat" />
+		<string id="STR_NODE_TITLE_SEARCHRESULTS" value="Resultats de cerca" />
+		<string id="STR_COUNTER_NOTES_N" value=" notes" />
+		<string id="STR_COUNTER_NOTE_1" value="1 nota" />
+		<string id="STR_COUNTER_NOTE_0" value="Cap nota" />
+		<string id="STR_NODE_TITLE_SORTEDBYPAGE" value="per pàgina" />
+		<string id="STR_NODE_TITLE_POWERMANAGEMENT" value="Gestió d'energia" />
+		<string id="STR_UI_MENU_SORT" value="Classificar" />
+		<string id="STR_UI_MENU_BYORDER" value="p.Ord.Afegiment" />
+		<string id="STR_UI_MENU_BYTITLE" value="per títol" />
+		<string id="STR_UI_MENU_BYAUTHOR" value="per autor" />
+		<string id="STR_UI_MENU_BYDATE" value="per data" />
+		<string id="STR_UI_MENU_VIEW" value="Veure" />
+		<string id="STR_UI_MENU_LIST" value="Llistat" />
+		<string id="STR_UI_MENU_THUMBNAIL" value="Miniatura" />
+		<string id="STR_UI_MENU_NOWPLAYING" value="Reproduint" />
+		<string id="STR_UI_MENU_RESUMELISTENING" value="Reanudar reproducció" />
+		<string id="STR_NODE_TITLE_SORTEDBYTRACK" value="per pista" />
+		<string id="STR_UI_MENU_ORIENTATION" value="Orientació" />
+		<string id="STR_UI_MENU_SEARCHTITLE" value="Cercar" />
+		<string id="STR_UI_MENU_CLOSETHISBOOK" value="Tornar al llistat" />
+		<string id="STR_UI_MENU_GOTOPAGE" value="anar a la pàgina" />
+		<string id="STR_UI_MENU_CREATEEDITNOTES" value="Crear/Modificar notes" />
+		<string id="STR_UI_MENU_SHOWNOTES" value="Mostrar les notes" />
+		<string id="STR_UI_MENU_HIDENOTES" value="Ocultar les notes" />
+		<string id="STR_UI_MENU_TABLEOFCONTENTS" value="Taula de continguts" />
+		<string id="STR_UI_MENU_BOOKINFO" value="Informació" />
+		<string id="STR_UI_MENU_DELETEBOOK" value="Suprimir llibre" />
+		<string id="STR_UI_MENU_SEARCHAKEYWORD" value="Cercar" />
+		<string id="STR_UI_MENU_HISTORYJUMP" value="Historial" />
+		<string id="STR_UI_MENU_CLOSETHISMUSIC" value="Tornar al llistat" />
+		<string id="STR_UI_MENU_NOTES" value="Notes" />
+		<string id="STR_UI_MENU_DICTIONARY_LOOK_UP_HISTORY" value="Diari de paraules: llibre" />
+		<string id="STR_UI_MENU_OFF" value="Desactivat" />
+		<string id="STR_UI_MENU_SONG_1" value="Una cançó" />
+		<string id="STR_UI_MENU_SONG_ALL" value="Totes les cançons" />
+		<string id="STR_UI_MENU_SHUFFLEON" value="Reproducc. aleatòria activada" />
+		<string id="STR_UI_MENU_SHUFFLEOFF" value="Reproducc. aleatòria desact" />
+		<string id="STR_UI_MENU_CONTINUEREADING" value="Seguir la lectura" />
+		<string id="STR_UI_MENU_CLOSETHISPICTURE" value="Tornar a la llista" />
+		<string id="STR_UI_MENU_SLIDESHOWOFF" value="Diaporama desactivat" />
+		<string id="STR_UI_MENU_SLIDESHOWON" value="Diaporama activat" />
+		<string id="STR_UI_MENU_BYARTIST" value="per artista" />
+		<string id="STR_UI_MENU_BYPAGE" value="per pàgina" />
+		<string id="STR_UI_MENU_BYTYPE" value="per tipus" />
+		<string id="STR_UI_MENU_BYCOMMENT" value="per coment." />
+		<string id="STR_UI_MENU_DELETENOTES" value="Suprimir notes" />
+		<string id="STR_UI_MESSAGE_RESET" value="Està segur de voler restaurar la configuració per defecte?" />
+		<string id="STR_UI_MESSAGE_FORMATINTERNALMEMORY" value="Formatejar la memòria interna" />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE" value="Està segur de voler formatejar la memòria interna?&#xA;Comte: tot el contingut i les notes seràn suprimits." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_MS" value="Està segur de voler formatejar la tarja Memory Stick™?&#xA;Compte: tot el contingut i les notes seràn suprimits." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_SD" value="Està segur de voler formatejar la tarja SD?&#xA;Compte: tot el contingut i les notes seràn suprimits." />
+		<string id="STR_UI_MESSAGE_DELETEBOOK" value="Està segur de voler suprimir aquest llibre?" />
+		<string id="STR_UI_MESSAGE_DELETEBOOKERR" value="No es pot suprimir aquest llibre. Premi “OK” per tornar a la llista de llibres." />
+		<string id="STR_UI_MESSAGE_DELETEHISTORICAL" value="Està segur de voler esborrar l'historial del teclat?" />
+		<string id="STR_UI_MESSAGE_DEVICE_SHUTDOWN" value="Està segur de voler tallar completament l'alimentació de l'aparell (apagar)?" />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONSTART" value="Premi “Si” per a iniciar el calibrat de la pantalla tàctil." />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONEND" value="Calibrat de la pantalla tàctil finalitzada." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_1" value="Aquesta configuració no està disponible en el mode demo." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_2" value="Aquesta funció no està disponible en el mode demo." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_START" value="Faci servir el llapis per tocar el centre del blanc." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_ERR" value="S'ha detectat un error de calibrat. Reiniciar el calibrat." />
+		<string id="STR_UI_BUTTON_YES" value="Si" />
+		<string id="STR_UI_BUTTON_NO" value="No" />
+		<string id="STR_UI_BUTTON_ZOOMIN" value="Engrandir" />
+		<string id="STR_UI_BUTTON_PAGE_STYLE" value="Mode pàgina" />
+		<string id="STR_UI_BUTTON_SEARCH" value="Cercar" />
+		<string id="STR_UI_BUTTON_DONE" value="Fet" />
+		<string id="STR_UI_BUTTON_GO" value="Anar a" />
+		<string id="STR_UI_BUTTON_ENTERPAGE" value="Introd. Núm. Pàg." />
+		<string id="STR_UI_BUTTON_NEW" value="Nou" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING" value="Diccionari" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING_l" value="diccionari" />
+		<string id="STR_DICTIONARY_US" value="New Oxford American Dictionary" />
+		<string id="STR_DICTIONARY_BRITISH" value="Oxford Dictionary of English" />
+		<string id="STR_DICTIONARY_EN_TO_FR" value="Oxford-Hachette French Dictionary (EN-FR)" />
+		<string id="STR_DICTIONARY_FR_TO_EN" value="Oxford-Hachette French Dictionary (FR-EN)" />
+		<string id="STR_DICTIONARY_EN_TO_GM" value="Collins English-German Dictionary" />
+		<string id="STR_DICTIONARY_GM_TO_EN" value="Collins German-English Dictionary" />
+		<string id="STR_DICTIONARY_EN_TO_SP" value="Oxford Spanish Dictionary (EN-ES)" />
+		<string id="STR_DICTIONARY_SP_TO_EN" value="Oxford Spanish Dictionary (ES-EN)" />
+		<string id="STR_DICTIONARY_EN_TO_IT" value="Collins English-Italian Dictionary" />
+		<string id="STR_DICTIONARY_IT_TO_EN" value="Collins Italian-English Dictionary" />
+		<string id="STR_DICTIONARY_EN_TO_DT" value="Van Dale Pocketwoordenboek Engels-Nederlands" />
+		<string id="STR_DICTIONARY_DT_TO_EN" value="Van Dale Pocketwoordenboek Nederlands-Engels" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_DICTIONARY" value="Triï el seu diccionari preferit per defecte i seleccioni “OK”.&#xA;Nota:  podrà modificar la configuració de l'aparell més endavant en el menú “configuració”." />
+		<string id="STR_DICTIONARY_NO" value="Cap" />
+		<string id="STR_NODE_TITLE_DATEANDTIMEFORMAT_SETTING" value="Format data i hora" />
+		<string id="STR_UI_PARTS_MONTH" value="Mes" />
+		<string id="STR_UI_PARTS_DAY" value="Dia" />
+		<string id="STR_UI_PARTS_YEAR" value="Any" />
+		<string id="STR_UI_PARTS_HOUR" value="Hora" />
+		<string id="STR_UI_MESSAGE_RESTARTING" value="Reiniciant..." />
+		<string id="STR_UI_NODE_TITLE_KEYBOARD" value="Teclat" />
+		<string id="STR_UI_KEYBOARD_US" value="Estats Units" />
+		<string id="STR_UI_KEYBOARD_UK" value="Regne Unit" />
+		<string id="STR_UI_KEYBOARD_FRENCH" value="Francès" />
+		<string id="STR_UI_KEYBOARD_GERMAN" value="Alemany" />
+		<string id="STR_UI_KEYBOARD_NETHERLANDS" value="Neerlandès" />
+		<string id="STR_UI_KEYBOARD_CANADIAN_FRENCH" value="Francès canadenc" />
+		<string id="STR_UI_KEYBOARD_SPANISH" value="Espanyol" />
+		<string id="STR_UI_KEYBOARD_ITALIAN" value="Italià" />
+		<string id="STR_UI_KEYBOARD_PORTUGUESE" value="Portuguès" />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP1" value="No es pot mostrar aquesta pàgina." />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_CANNOT_EDIT" value="Aquest dibuix no pot ser modificat." />
+		<string id="DIALOGMSG_INFORM_SCR_CANNOT_EDIT" value="Aquesta anotació no pot ser modificada." />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_FREEHAND" value="Nou Dibuix" />
+		<string id="STR_UI_MENU_NEW_DRAWING" value="Nou Dibuix" />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_TEXT" value="Nova Anotació" />
+		<string id="STR_UI_MENU_NEW_MEMO" value="Nova Anotació" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYFREEHAND" value="per Dibuix" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYTEXT" value="per Teclat" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_MS" value="Formatejar la Memory Stick™" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_SD" value="Formatear la tarja SD" />
+		<string id="STR_NODE_TITLE_FORMATDEVICE" value="Formatejar la memòria" />
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="Memòria interna" />
+		<string id="STR_UI_MESSAGE_LOCATION_MS" value="Memory Stick™" />
+		<string id="STR_UI_MESSAGE_LOCATION_SD" value="Tarja SD" />
+		<string id="STR_UI_FORMAT_INTERNAL_MEMORY" value="Formatejant memòria interna..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_MS" value="Formatejant Memory Stick™..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_SD" value="Formatejant tarjeta SD..." />
+		<string id="STR_WARNING_FORMAT_1" value="Formatejant..." />
+		<string id="STR_WARNING_FORMAT_2_MS" value="No tregui la tarja Memory Stick™." />
+		<string id="STR_WARNING_FORMAT_2_SD" value="No tregui la tarja SD." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_1" value="Està segur de voler suprimir el marcador?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_2" value="Nota: aquesta pàgina conté un marcador de més d'una mida de text. S'eliminaran tots els marcadors d'aquesta pàgina si vostè continua endavant." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_1" value="Està segur de voler suprimir el marcador?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_2" value="Nota: aquesta pàgina conté un marcador amb una nota de més d'una mida de text. S'eliminaran tots els marcadors i les notes d'aquesta pàgina si vostè continua endavant." />
+		<string id="STR_FORMAT_NO_MEMORY" value="No hi ha cap tarja de memòria insertada." />
+		<string id="STR_FORMAT_WRITE_PROTECTED" value="Tarja de memòria protegida contra l'escriptura" />
+		<string id="STR_FORMAT_NON_STANDARD" value="Tarja de memòria no suportada" />
+		<string id="STR_NODE_TITLE_NOTEPAD_FREEHAND" value="Escriptura a mà" />
+		<string id="STR_NODE_TITLE_NOTEPAD_TEXT" value="Anotacions de text" />
+		<string id="STR_NODE_TITLE_SORTEDBYCREATEDDATE" value="per data de creació" />
+		<string id="STR_NODE_TITLE_MORE" value="" />
+		<string id="STR_NODE_TITLE_MORE_FULL" value="" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK1" value="Està segur de voler suprimir el marcador amb una nota?" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT1" value="Està segur de voler suprimir el subratllat amb una nota?" />
+		<string id="DIALOGMSG_INFORM_NOHITS" value="No s'ha obtingut cap correspondència." />
+		<string id="DIALOGMSG_INFORM_NOMOREHITS" value="Correspondència no obtinguda." />
+		<string id="DIALOGMSG_CONFIRM_BACKWARDSEARCH" value="Vol seguir cercant des del final del contingut?" />
+		<string id="DIALOGMSG_CONFIRM_FORWARDSEARCH" value="Vol seguir cercant des del principi del contingut?" />
+		<string id="STR_MSG_SEARCHING" value="Cercant..." />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK1" value="Està segur de què vol suprimir el marcador amb una nota?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT1" value="Està segur de què vol suprimir el subratllat amb una nota?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_EDIT_QUIT" value="No es desaran els canvis. Seguir de tota manera?" />
+		<string id="DIALOGMSG_CONFIRM_SCR_EDIT_QUIT" value="No es desaran els canvis. Seguir de tota manera?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES1" value="Es suprimiran totes les notes." />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES2" value="Està segur de què vol suprimir?" />
+		<string id="KBOOK_UI_MYNOTE" value="Notes" />
+		<string id="STR_UI_KEYBOARD_SYMBOL" value="Símbols" />
+		<string id="STR_UI_KEYBOARD_SPACE" value="Espai" />
+		<string id="STR_UI_KEYBOARD_ABC" value="Abc" />
+		<string id="STR_UI_KEYBOARD_RETURN" value="Retorn" />
+		<string id="STR_UI_COMMENTVIEWER_EDIT" value="Edició" />
+		<string id="STR_UI_COMMENTVIEWER_DELETE" value="Suprimir" />
+		<string id="STR_UI_AUDIO_REPEAT" value="Repetir" />
+		<string id="STR_NODE_TITLE_HOMEPERSONALIZATION" value="" />
+		<string id="STR_UI_PARTS_LEFT" value="" />
+		<string id="STR_UI_PARTS_RIGHT" value="" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_FREEHAND" value="Suprimir dibuix" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_TEXT" value="Suprimir anotació" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND1" value="Està segur de què vol suprimir aquest dibuix?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT1" value="Està segur de què vol suprimir aquesta anotació?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT1" value="No es guardaran els canvis. Seguir de tota manera?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT1" value="No es guardaran els canvis. Seguir de tota manera?"/>
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT1" value="No es guardaran els canvis. Seguir de tota manera?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT1" value="No es guardaran els canvis. Seguir de tota manera?" />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_RESULT" value="No s'ha trobat cap entrada. Premi XXBUTTONXX per a introduir una paraula manualment o premi “OPTIONS” per seleccionar un altre diccionari." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_INPUT_KEYBOARD" value="Introduir paraula." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_HEADWORD" value="No s'ha trobat cap entrada.&#xA;Sisplau, verifiqui la paraula introduïda." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SUPPORTED" value="Diccionari inactiu." />
+		<string id="STR_UI_DICTIONARY_ENTRIES_PAGE" value="Entrades, P." />
+		<string id="STR_UI_DICTIONARY_ENTRY_PAGE" value="Entrada, P." />
+		<string id="STR_COUNTER_DRAWING_N" value=" dibuixos" />
+		<string id="STR_COUNTER_DRAWING_1" value="1 dibuix" />
+		<string id="STR_COUNTER_DRAWING_0" value="Cap dibuix" />
+		<string id="STR_COUNTER_MEMO_N" value=" anotacions" />
+		<string id="STR_COUNTER_MEMO_1" value="1 anotació" />
+		<string id="STR_COUNTER_MEMO_0" value="Cap anotació" />
+		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="Estat de memòria interna inusual&#xA;Formatejant." />
+		<string id="STR_HOME_TAB_HOME_V" value="Inici" />
+		<string id="STR_HOME_TAB_HOME_H" value="Inici" />
+		<string id="STR_HOME_TAB_STORE_V" value="Botiga" />
+		<string id="STR_HOME_TAB_STORE_H" value="Botiga" />
+		<string id="STR_HOME_TAB_APPLICATIONS_V" value="Aplicacions" />
+		<string id="STR_HOME_TAB_APPLICATIONS_H" value="Apps" />
+		<string id="STR_HOME_TAB_SETTINGS_V" value="Configuració" />
+		<string id="STR_HOME_TAB_SETTINGS_H" value="Configu-&#xA;ració" />
+		<string id="STR_NODE_TITLE_PERIODICALS" value="Diaris" />
+		<string id="STR_NODE_TITLE_NEWDELIVERY" value="Nou lliurament" />
+		<string id="STR_NODE_TITLE_DICTIONARY" value="Diccionari" />
+		<string id="STR_HOME_SEEALL" value="Veure tot" />
+		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Llegit darrerament: " />
+		<string id="STR_COUNTER_PERIODICAL_N" value=" diaris" />
+		<string id="STR_COUNTER_PERIODICAL_1" value="1 diari" />
+		<string id="STR_COUNTER_PERIODICAL_0" value="Cap diari" />
+		<string id="STR_HOME_MESSAGE_ACCESSING" value="" />
+		<string id="STR_UI_BUTTON_RETRY" value="" />
+		<string id="STR_UI_MENU_DELETE_BOOKS" value="Suprimir llibres" />
+		<string id="STR_UI_MENU_PROTECT_BOOKS" value="Protegir llibres" />
+		<string id="STR_UI_MENU_DELETE_ISSUES" value="Suprimir exemplars" />
+		<string id="STR_UI_MENU_PROTECT_ISSUES" value="Protegir exemplars" />
+		<string id="STR_UI_MENU_DELETE_TEXTMEMOS" value="Suprimir anotacions" />
+		<string id="STR_UI_MENU_PROTECT_TEXTMEMOS" value="Protegir anotacions" />
+		<string id="STR_UI_MENU_DELETE_HANDWRITINGS" value="Suprimir dibuixos" />
+		<string id="STR_UI_MENU_PROTECT_HANDWRITINGS" value="Protegir dibuixos" />
+		<string id="STR_UI_MENU_DELETE_AUDIO" value="Suprimir audio" />
+		<string id="STR_UI_MENU_PROTECT_AUDIO" value="Protegir audio" />
+		<string id="STR_UI_MENU_DELETE_PICTURES" value="Suprimir imatges" />
+		<string id="STR_UI_MENU_PROTECT_PICTURES" value="Protegir imatges" />
+		<string id="STR_UI_MENU_EDIT_STANDBY_SCREEN" value="S.pantalla de standby" />
+		<string id="STR_UI_MENU_MANAGE_SUBSCRIPTION" value="Gestionar subscripció" />
+		<string id="STR_UI_MENU_2PAGEVIEW" value="Visualizació de 2 pàgines" />
+		<string id="STR_UI_MENU_1PAGEVIEW" value="Visualizació de 1 pàgina" />
+		<string id="STR_UI_MENU_BYLATESTREAD" value="per darr.lect." />
+		<string id="STR_UI_MENU_BYISSUEDATE" value="per data pub" />
+		<string id="STR_UI_MENU_STORE_HOME" value="" />
+		<string id="STR_UI_MENU_MY_ACCOUNT" value="" />
+		<string id="STR_UI_MENU_HELP_AND_SUPPORT" value="" />
+		<string id="STR_UI_MENU_LEGALINFO" value="" />
+		<string id="STR_UI_MENU_REFRESH_PAGE" value="" />
+		<string id="STR_UI_MENU_DELETEISSUE" value="Suprimir exemplar" />
+		<string id="STR_UI_MENU_SELECT_ALL" value="Seleccionar tot" />
+		<string id="STR_UI_MENU_UNSELECT_ALL" value="Deseleccionar tot" />
+		<string id="STR_UI_MENU_PROTECT_ALL" value="Protegir tot" />
+		<string id="STR_UI_MENU_UNPROTECT_ALL" value="Desprotegir tot" />
+		<string id="STR_UI_BUTTON_ISSUE_HOME" value="Primera pàgina" />
+		<string id="STR_UI_BUTTON_PREVIOUS_SECTION" value="Secció" />
+		<string id="STR_UI_BUTTON_NEXT_SECTION" value="Secció" />
+		<string id="STR_UI_BUTTON_LAST_SECTION" value="Secció" />
+		<string id="STR_UI_BUTTON_SECTION_HOME" value="Inici de la secció" />
+		<string id="STR_UI_BUTTON_PREVIOUS_ARTICLE" value="Article" />
+		<string id="STR_UI_BUTTON_NEXT_ARTICLE" value="Article" />
+		<string id="STR_NODE_TITLE_FRONT_PAGE" value="Primera pàgina" />
+		<string id="STR_NODE_TITLE_SECTION_HOME" value="Inici de la secció XXSECTIONXX" />
+		<string id="STR_NODE_TITLE_SECTION_OTHERS" value="Altre" />
+		<string id="STR_COUNTER_ARTICLE_N" value=" articles" />
+		<string id="STR_COUNTER_ARTICLE_1" value="1 article" />
+		<string id="STR_COUNTER_ARTICLE_0" value="Cap article" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SECTION" value="Secció XXSECTIONXX" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SEPARATE" value=":" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" / " />
+		<string id="STR_NODE_TITLE_DELETEISSUE" value="Suprimir exemplar" />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEISSUE" value="Títol exemplar: &quot;XXTITLEXX&quot;" />
+		<string id="STR_UI_MESSAGE_DELETEISSUE" value="Està segur de què vol suprimir aquesta publicació?" />
+		<string id="STR_UI_MESSAGE_DELETEISSUEERR" value="No es pot suprimir la publicació. Premi “OK” per tornar a la llista de publicacions." />
+		<string id="STR_NODE_TITLE_SORTEDBY_LATESTREAD" value="per Darr.lect." />
+		<string id="STR_NODE_TITLE_SORTEDBY_ISSUEDATE" value="per data pub" />
+		<string id="STR_MONTH_JANUARY" value="Gener" />
+		<string id="STR_MONTH_FEBRUARY" value="Febrer" />
+		<string id="STR_MONTH_MARCH" value="Març" />
+		<string id="STR_MONTH_APRIL" value="Abril" />
+		<string id="STR_MONTH_MAY" value="Maig" />
+		<string id="STR_MONTH_JUNE" value="Juny" />
+		<string id="STR_MONTH_JULY" value="Juliol" />
+		<string id="STR_MONTH_AUGUST" value="Agost" />
+		<string id="STR_MONTH_SEPTEMBER" value="Setembre" />
+		<string id="STR_MONTH_OCTOBER" value="Octubre" />
+		<string id="STR_MONTH_NOVEMBER" value="Novembre" />
+		<string id="STR_MONTH_DECEMBER" value="Desembre" />
+		<string id="STR_DAY_MONDAY_FULL" value="Dilluns" />
+		<string id="STR_DAY_TUESDAY_FULL" value="Dimarts" />
+		<string id="STR_DAY_WEDNESDAY_FULL" value="Dimecres" />
+		<string id="STR_DAY_THURSDAY_FULL" value="Dijous" />
+		<string id="STR_DAY_FRIDAY_FULL" value="Divendres" />
+		<string id="STR_DAY_SATURDAY_FULL" value="Dissabte" />
+		<string id="STR_DAY_SUNDAY_FULL" value="Diumenge" />
+		<string id="STR_DAY_MONDAY_ABB" value="Dll" />
+		<string id="STR_DAY_TUESDAY_ABB" value="Dm" />
+		<string id="STR_DAY_WEDNESDAY_ABB" value="Dx" />
+		<string id="STR_DAY_THURSDAY_ABB" value="Dj" />
+		<string id="STR_DAY_FRIDAY_ABB" value="Dv" />
+		<string id="STR_DAY_SATURDAY_ABB" value="Ds" />
+		<string id="STR_DAY_SUNDAY_ABB" value="Dg" />
+		<string id="STR_NODE_TITLE_UNREAD_BOOKS" value="Llibres no llegits" />
+		<string id="STR_NODE_TITLE_UNREAD_PERIODICALS" value="Diaris no llegits" />
+		<string id="STR_NODE_TITLE_PURCHASED_BOOKS" value="Llibres comprats" />
+		<string id="STR_UI_MENU_NEW_COLLECTION" value="Nova col·lecció" />
+		<string id="STR_UI_MENU_DELETE_COLLECTIONS" value="Suprimir col·leccions" />
+		<string id="STR_NODE_TITLE_ADD_NEW_COLLECTION" value="Nova col·lecció" />
+		<string id="STR_UI_KEYBOARD_COLLECTION_NAME" value="Nom de la col·lecció:" />
+		<string id="DIALOGMSG_COLLECTIONS_WHERE_TO_CREATE" value="Triï on crear una col·lecció:" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_DEVICE" value="Memòria interna" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_MS" value="Memory Stick™" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_SD" value="Tarja SD" />
+		<string id="STR_NODE_TITLE_ADD_BOOKS" value="Afegir llibres" />
+		<string id="STR_NODE_TITLE_SELECT_PERIODICAL" value="Seleccionar diaris" />
+		<string id="STR_NODE_TITLE_ADD_ISSUES" value="Afegir exemplars" />
+		<string id="STR_NODE_TITLE_SELECT_A_COLLECTION" value="Seleccionar una Col·lecció" />
+		<string id="STR_NODE_TITLE_SORTEDBYFILENAME" value="per n.arxiu" />
+		<string id="STR_UI_MENU_BYFILENAME" value="per n.arxiu" />
+		<string id="STR_UI_MENU_TITLEONLYLIST" value="Només títol" />
+		<string id="STR_UI_MENU_ADDBOOKS" value="Llibres" />
+		<string id="STR_UI_MENU_ADDPERIODICALS" value="Diaris" />
+		<string id="STR_UI_MENU_REMOVECONTENT" value="Treure Contingut" />
+		<string id="STR_NODE_TITLE_REMOVE_ITEMS" value="Treure Contingut" />
+		<string id="STR_NODE_TITLE_DELETE_COLLECTIONS" value="Suprimir coleccions" />
+		<string id="STR_NODE_TITLE_DELETE_BOOKS" value="Suprimir llibres" />
+		<string id="STR_NODE_TITLE_DELETE_ISSUES" value="Suprimir exemplars"/>
+		<string id="STR_NODE_TITLE_DELETE_AUDIO" value="Suprimir audio" />
+		<string id="STR_NODE_TITLE_DELETE_PICTURES" value="Suprimir fotos" />
+		<string id="STR_NODE_TITLE_DELETE_HANDWRITINGS" value="Suprimir dibuixos" />
+		<string id="STR_NODE_TITLE_DELETE_TEXTMEMOS" value="Suprimir anotacions" />
+		<string id="STR_NODE_TITLE_DELETE_NOTES" value="Suprimir notes" />
+		<string id="STR_UI_MESSAGE_DELETE_MANUALLY_NORMAL" value="Està segur de què vol suprimir el / els element(s) seleccionat(s)?" />
+		<string id="STR_UI_MESSAGE_DELETE_MANUALLY_SELECTED_AS_STANDBY" value="Està segur de què vol suprimir el / els element(s) seleccionat(s), incloent-hi les fotos especificades per al mode standby?" />
+		<string id="STR_COUNTER_SELECTED" value=" seleccionat" />
+		<string id="STR_COUNTER_PROTECTED" value=" protegit" />
+		<string id="STR_NODE_TITLE_PROTECT_BOOKS" value="Protegir llibres" />
+		<string id="STR_NODE_TITLE_PROTECT_ISSUES" value="Protegir exemplars" />
+		<string id="STR_NODE_TITLE_PROTECT_AUDIO" value="Protegir audio" />
+		<string id="STR_NODE_TITLE_PROTECT_PICTURES" value="Protegir imatges" />
+		<string id="STR_NODE_TITLE_PROTECT_HANDWRITINGS" value="Protegir dibuixos" />
+		<string id="STR_NODE_TITLE_PROTECT_TEXTMEMOS" value="Protegir anotacions" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_BOOK" value="Aquest llibre està protegit. Està segur de què vol suprimir-lo?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_ISSUE" value=" Està segur de què vol suprimir aquest exemplar protegit?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_MEMO" value="Aquesta anotació està protegida. Està segur de què vol suprimir-la?" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_DRAWING" value="Aquest dibuix està protegit. Està segur de què vol suprimir-lo?" />
+		<string id="STR_COUNTER_ISSUE_N" value=" exemplars" />
+		<string id="STR_COUNTER_ISSUE_1" value="1 exemplar" />
+		<string id="STR_COUNTER_ISSUE_0" value="Cap exemplar" />
+		<string id="STR_COUNTER_ISSUE_ALL" value="Tots els exemplars" />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_MAIN" value="Quants exemplars de la seva subscripció vol desar al seu Reader?" />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_NOTE" value="Nota: els exemplars protegits no estàn inclosos en aquest compte." />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_CHECK" value="Suprimir el / els exemplar(s) suplementari(s) ara." />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_NOW" value="Está segur de què vol suprimir el / els exemplar(s) suplementari(s) ara?" />
+		<string id="STR_UI_BUTTON_SAVE" value="Desar" />
+		<string id="STR_UI_BUTTON_CANCEL" value="Cancel·lar" />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_TOOLBAR" value="Aquesta funció està desactivada perquè es veu la barra d'eines “Crear/Modificar notes”. Sisplau, tanqui la barra d'eines per activar aquesta funció." />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_FACING" value="Aquesta funció està desactivada perquè es troba en “Visualizació 2 pàgines”. Sisplau, canviï a “Visualizació 1 página” per activar aquesta funció." />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_TOOLBARFACING" value="Aquesta funció està desactivada perquè es troba en “Visualizació 2 pàgines” i està fent servir la barra d'eines “Crear/Modificar notes”. Sisplau, canviï a “Visualització 1 página” i tanqui aquesta barra d'eines per activar la funció." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SELECTED" value="No hi ha cap diccionari seleccionat. Sisplau, vagi a la pestanya “Configuració”  i seleccioni el seu diccionari." />
+		<string id="STR_UI_BUTTON_OTHERS" value="Altre" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_COMPLETE" value="" />
+		<string id="STR_UI_ABOUT_FREESPACE" value="Espai lliure" />
+		<string id="STR_UI_ABOUT_DEVICEINFO" value="Informació aparell" />
+		<string id="STR_UI_PARTS_IMEI" value="IMEI" />
+		<string id="STR_UI_PARTS_ICCID" value="ICCID" />
+		<string id="STR_UI_PARTS_ADOBE_DRM_AUTH" value="DRM Adobe" />
+		<string id="STR_UI_ABOUT_LEGALINFO" value="Informació legal" />
+		<string id="STR_NODE_TITLE_WIRELESS_SLEEP_MODE" value="Standby inalàmbric" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_WIRELESS" value="" />
+		<string id="STR_UI_SETTING_DIC_EBOOKID" value="ID de l'eBook: " />
+		<string id="STR_NODE_TITLE_TIMEZONE" value="Fus horari" />
+		<string id="STR_UI_SETTING_TZ_EST" value="Fus de l'Est" />
+		<string id="STR_UI_SETTING_TZ_CST" value="Hora del Centre" />
+		<string id="STR_UI_SETTING_TZ_MST" value="Hora de la Muntanya" />
+		<string id="STR_UI_SETTING_TZ_PST" value="Hora del Pacífic" />
+		<string id="STR_UI_SETTING_TZ_AKST" value="Hora d'Alaska" />
+		<string id="STR_UI_SETTING_TZ_HST" value="Hora de Hawai i Aleutianes" />
+		<string id="STR_UI_SETTING_SUMMERTIME_MSG" value="Hora d'estiu" />
+		<string id="DIALOGMSG_INFORM_RESTART_TIMEZONE" value="Aplicant la configuració del fus horari..." />
+		<string id="DIALOGMSG_INFORM_RESTART_WIZARD" value="Aplicant la configuració..." />
+		<string id="DIALOGMSG_NOT_AVAILABLE_WHILE_DOWNLOADING" value="" />
+		<string id="STR_UI_SETTING_RANGE_HOUR" value="(00 - 23)" />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_1" value="" />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_2" value="" />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_3" value="" />
+		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_1" value="" />
+		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_3" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_1" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_2" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_1" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_2" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_1" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_2" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_4_1" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_4_2" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_5_1" value="" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_5_2" value="" />
+		<string id="STR_UI_MESSAGE_NETWORK_OTHER_ERROR_1" value="" />
+		<string id="STR_UI_MESSAGE_NETWORK_DOWNLOAD_DELAY" value="" />
+		<string id="STR_UI_MESSAGE_NETWORK_OTHER_ERROR_3" value="" />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_1_MS" value="Aquesta tarja Memory Stick™ no es pot fer servir. Sisplau, intenti-ho amb una altra tarja Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_1_SD" value="Aquesta tarja SD no es pot fer servir. Sisplau, intenti-ho amb una altra tarja SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_2_MS" value="El Reader no pot guardar les seves  dades de lectura a causa d'un error de la tarja Memory Stick™. Sisplau, intenti-ho amb una altra tarja Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_2_SD" value="El Reader no pot guardar les seves dades de lectura a causa d'un error de la tarja SD. Sisplau, intenti-ho amb una altra tarja SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_3_MS" value="La tarja Memory Stick™ està en mode només de lectura i el Reader no pot desar les seves dades. Sisplau, intenti-ho amb una altra tarja Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_4_MS" value="El Reader no pot desar les seves dades de lectura per causa d'un error de la tarja Memory Stick™. Sisplau, intenti-ho amb una altra tarja Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_4_SD" value="El Reader no pot guardar les seves dades de lectura a causa de un error de la tarja SD. Sisplau, intenti-ho amb una altra tarja SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_6_MS" value="Cal formatejar la tarja Memory Stick™. Sisplau, vagi a la pestanya de Configuració i formategi la tarja Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_6_SD" value="Cal  formatejar la tarja SD. Sisplau, vagi a la pestanya de Configuració i formategi la tarja SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_7" value="L'arxiu està corrupte i no es pot obrir." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_8_MS" value="El Reader no pot guardar les seves  dades de lectura perquè la tarja Memory Stick™ està bloquejada. Sisplau, tregui la tarja Memory Stick™, desbloquegi-la i inserti-la un altre cop." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_8_SD" value="El Reader no pot guardar les seves dades de lectura perquè la tarja SD està bloquejada. Sisplau, tregui la tarja SD, desbloquegi-la i inserti-la un altre cop." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_9" value="No hi ha cap tarja de memòria insertada." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_10" value="No hi ha prou espai disponible per guardar les seves dades de lectura. Sisplau, suprimeixi un o diversos arxius i intenti-ho un altre cop." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_13_OPEN" value="No es pot obrir l'arxiu perquè les dades són incompatibles." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_13_PLAY" value="No es pot llegir l'arxiu perquè les dades són  incompatibles." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_16_17_MS" value="Aquesta tarja Memory Stick™ està protegida. Sisplau, intenti-ho amb una altra tarja Memory Stick™." />
+		<string id="STR_UI_MESSAGE_DEAD_BATTERY_ERR_1" value="" />
+		<string id="STR_UI_MESSAGE_DEAD_BATTERY_ERR_2" value="" />
+		<string id="STR_UI_MESSAGE_BATTERY_REMOVED_ERR_1" value="" />
+		<string id="STR_UI_MESSAGE_BATTERY_REMOVED_ERR_2" value="" />
+		<string id="STR_UI_MESSAGE_RECOMMEND_EPUB" value="" />
+		<string id="STR_UI_BUTTON_ENTER" value="Intro" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_POWERMANAGEMENT" value="Quan està configurat en “Si”, el Reader es posa en mode repòs després de 10 minuts d'inactivitat i s'apaga després de 2 dies en mode standby continu." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_PAGETURNGESTURE" value="Seleccioni el gest per avançar les pàgines. L'opció a l'esquerra significa fer lliscar un dit cap a l'esquerra per sobre  de la pantalla tàctil,mentre que l'opció a la dreta, implica lliscar un dit cap a la dreta." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_SLIDESHOW" value="Es pot configurar l'intèrval fins a 60 segons. El menú diaporama es pot trobar prement &quot;OPTIONS&quot; en l'aplicació Fotos." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_DEVICELOCK" value="Quan el bloqueig de l'aparell està configurat en “Si”, cal introduir el codi d'accés quan el Reader està encès. Aseguri's d'apagar “Bloquejar l'aparell” abans de conectar-lo al seu PC." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_PERIODICALS" value="" />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_BROKENFILE" value="Aquest dibuix està danyat." />
+		<string id="STR_UI_MENU_CHANG_TONE_CURVE" value="Ajustar visualització" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_ORIGINAL" value="Original" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_PROMINENT" value="Saturat" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_DETAILED" value="Detalls" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_DARKER" value="Més fosc" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_LIGHTER" value="Més brillant" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_CUSTOM" value="A mida" />
+		<string id="STR_UI_TEXT_TONE_CURVE_CONTRAST" value="Contrast" />
+		<string id="STR_UI_TEXT_TONE_CURVE_BRIGHTNESS" value="Claror" />
+		<string id="STR_UI_BUTTON_TONE_CURVE_RESET" value="Restablir" />
+		<string id="STR_UI_BUTTON_PAGE_LOCK" value="Bloquejar" />
+		<string id="STR_UI_BUTTON_UNLOCK" value="Desbloq." />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_ORIGINAL" value="Original" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_MARGIN_CUT" value="Márges retallats" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_2COLUMN_SPLIT" value="Divisió en 2 columnes" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_3COLUMN_SPLIT" value="Divisió en 3 columnes" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_FULL_PAGE" value="Pàgina sencera" />
+		<string id="STR_UI_MESSAGE_STANDBY" value="El Reader està en mode de repòs. Faci lliscar i deixi anar l'interruptor d'encesa mecànic per engegar." />
+		<string id="STR_UI_MESSAGE_PAGE_STYLE_CHANGE_TO_ORIGINAL" value="El “Mode pàgina” es restablirà en “Original”. " />
+		<string id="STR_UI_MESSAGE_PAGE_STYLE_CHANGE_WITH_TOOLBAR_DISPLAYED" value="La pantalla “Crear/Modificar les notes” es tancarà." />
+		<string id="STR_NODE_TITLE_GENERAL" value="Configuració general" />
+		<string id="STR_NODE_TITLE_APPLICATIONS" value="Preferències d'aplicació" />
+		<string id="STR_NODE_TITLE_SYSTEM" value="Gestió del sistema" />
+		<string id="STR_NODE_TITLE_INITIALIZATION" value="Inicialització" />
+		<string id="STR_NODE_TITLE_ORIENTATIONTOROTATE" value="Orientació de la pantalla" />
+		<string id="STR_UI_SETTING_ROTATETORIGHT" value="Rotació a la dreta" />
+		<string id="STR_UI_SETTING_ROTATETOLEFT" value="Rotació a l'esquerra" />
+		<string id="STR_NODE_TITLE_STANDBYSCREEN" value="Pantalla de standby" />
+		<string id="STR_UI_SETTING_SHOW_PICTURE" value="Mostrar imatge" />
+		<string id="STR_UI_SETTING_SHOW_MESSAGE" value="Mostrar missatge" />
+		<string id="STR_UI_SETTING_STANDBY_GUIDE" value="Quan seleccioni “Si” en Mostrar imatge, la imatge que vostè ha seleccionat es mostrarà en el mode de repòs. Quan seleccioni “Si” en Mostrar missatge, el missatge sobre com engegar el Reader es mostrarà." />
+		<string id="STR_UI_SETTING_PICTURE" value="Imatge" />
+		<string id="STR_UI_SETTING_TEXT" value="Missatge" />
+		<string id="STR_UI_SETTING_ROTATETO" value="Rotació cap a " />
+		<string id="STR_UI_SETTING_ROTATETO_GUIDE" value="Seleccioni la direcció de rotació de la pantalla quan “Orientació” estigui seleccionat en el menú &quot;OPTIONS&quot;." />
+		<string id="STR_UI_MESSAGE_COLLECTION_NAME_ALREADY_EXISTS" value="El nom de colecció especificat ja existeix. Sisplau, especifiqui un altre nom." />
+		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION" value="Està segur de què vol procedir? El contingut en si es quedarà sense suprimir." />
+		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION_CONTENT" value="Està segur de què vol procedir? El contingut en si es quedarà sense suprimir." />
+		<string id="DIALOGMSG_CONFIRM_DIRECTORY_CHANGE" value="El diccionari seleccionat es canviarà&#xA;De:&#xA;%CUR_DIC%&#xA;A:&#xA;%NEW_DIC%" />
+		<string id="DIALOG_CONFIRM_DICTIONARY_CHANGE_CURRENT_DIC" value="%CUR_DIC%" />
+		<string id="DIALOG_CONFIRM_DICTIONARY_CHANGE_NEW_DIC" value="%NEW_DIC%" />
+		<string id="STR_UI_PARTS_UNKNOWN" value="Desconegut" />
+		<string id="DIALOGMSG_APPLYING_SETTINGS" value="Aplicant la configuració...&#xA; Sisplau, esperi uns segons." />
+		<string id="STR_UI_MENU_ADD" value="Afegir contingut" />
+		<string id="STR_UI_MENU_RENAMECOLLECTION" value="Reanomenar col·lecció" />
+		<string id="STR_UI_MENU_ADD_BOOKMARK" value="Afegir marcador" />
+		<string id="STR_UI_MENU_REMOVE_BOOKMARK" value="Treure marcador" />
+		<string id="STR_UI_MENU_GO_TO" value="Anar a" />
+		<string id="STR_UI_MENU_PREVIOUS_VIEW" value="Vista anterior" />
+		<string id="STR_UI_MENU_SELECT_PAGE" value="Seleccionar pàgina" />
+		<string id="STR_UI_MENU_LIST" value="Llista" />
+		<string id="STR_UI_MENU_CREATE_EDIT" value="Crear/Modificar" />
+		<string id="STR_UI_MENU_HIDE" value="Ocultar" />
+		<string id="STR_UI_MENU_SHOW" value="Mostrar" />
+		<string id="STR_UI_MENU_ADD_TO_COLLECTION" value="Agregar a la Col·lecció" />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS" value="No es pot seleccionar perquè s'ha arribat al màxim de 99 imatges que es poden seleccionar en la tarja Memory Stick™.&#xA;Sisplau, deseleccioni una imatge de la tarja Memory Stick™ i seleccioni-la un altra cop.  " />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_SD" value="No es pot seleccionar perquè s'ha arribat al màxim de 99 imatges que es poden seleccionar en la tarjeta SD. Sisplau, deseleccioni una imatge de la tarja SD i seleccioni aquesta un altre cop.  " />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_INTERNAL_MEMORY" value="No es pot seleccionar perquè s'ha arribat al màxim de 99 imatges que es poden seleccionar a la memòria interna. Sisplau, deseleccioni una imatge a la memòria interna i seleccioni aquesta imatge un altra cop.  " />
+		<string id="STR_UI_MESSAGE_THERE_IS_NO_ITEM_REFER_TO_UG" value="No hi ha cap element en aquesta llista. Sisplau, si és necessari, consulti la guia de l'usuari sobre com s'afegeix contingut." />
+		<string id="STR_UI_MESSAGE_THERE_IS_NO_ITEM" value="No hi ha cap element en aquesta llista." />
+		<string id="STR_NODE_TITLE_DICTIONARY_LOOK_UP_HISTORY" value="Diari de paraules: diccio." />
+		<string id="STR_NODE_TITLE_WORD_LOGS_BOOK" value="Diari de paraules: llibre" />
+		<string id="STR_NODE_TITLE_WORD_LOGS_PERIODICAL" value="Diari de paraules: diari" />
+		<string id="STR_UI_MENU_WORD_LOGS_PERIODICAL" value="Diari de paraules: diari" />
+		<string id="STR_UI_MENU_DELETE_HISTORIES" value="Suprim.diari paraul." />
+		<string id="STR_NODE_TITLE_DELETE_HISTORIES" value="Suprim.diari paraul." />
+		<string id="STR_UI_MENU_SORT_SELECTED" value="Classificar:" />
+		<string id="STR_UI_MENU_VIEW_SELECTED" value="Veure:" />
+		<string id="DIALOGMSG_WHETHER_SHOW_NOTES" value="Aquesta operació és incorrecta perquè aquest llibre està configurat per ocultar les notes.Vol mostrar les notes?" />
+		<string id="STR_UI_MESSAGE_TO_CHANGE_DICTIONARY" value="Polsi &quot;OPTIONS&quot; per seleccionar un altre diccionari." />
+		<string id="STR_UI_MENU_CHANGE_DICTIONARY" value="Canviar de diccionari" />
+		<string id="STR_UI_MENU_VIEW_SEARCH_HISTORY" value="Diari de paraul.: diccio." />
+		<string id="STR_UI_MESSAGE_NO_ENTRY_FOUND" value="No s'ha trobat cap mot." />
+		<string id="STR_UI_MESSAGE_NO_DEFINITION" value="No s'ha trobat cap entrada. Polsi XXBUTTON1XX per la cerca manual XXBUTTON2XX per cercar en un altre diccionari." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_SD" value="No es pot seleccionar perquè s'ha arribat al màxim de 99 imatges que es poden seleccionar en cada una de les targes Memory Stick™ i SD." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_INTERNAL_MEMORY" value="No es pot seleccionar perquè s'ha arribat al màxim de 99 imatges que es poden seleccionar en cada una de les memòries Memory Stick™ i M.Interna." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_SD_INTERNAL_MEMORY" value= "No es pot seleccionar perquè s'ha arribat al màxim de 99 imatges que es poden seleccionar en cada una de les memòries Memòria Interna i SD." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_SD_INTERNAL_MEMORY" value= "No es pot seleccionar perquè s'ha arribat al màxim de 99 imatges que es poden seleccionar en cada una de les targes Memory Stick™ i SD." />
+		<string id="DIALOGMSG_DELETING" value="Suprimint..." />
+		<string id="DIALOGMSG_REMOVING" value="Treient..." />
+		<string id="DIALOGMSG_ADDING" value="Afegint..." />
+		<string id="STR_UI_BUTTON_STOP" value="Aturar" />
+		<string id="STR_UI_MESSAGE_UNPROTECT_CONTENT" value="Aquest contingut està protegit. Desprotegir contingut abans de suprimir." />
+		<string id="DIALOGMSG_NO_CONTENT_IN_COLLECTION_LOCATION" value="No hi ha contingut on és emmagatzemada la col·lecció especificada.&#xA;Tant la ubicació física del contingut com la de la colecció han de ser idèntiques per afegir contingut." />
+	</assets>
+</document>

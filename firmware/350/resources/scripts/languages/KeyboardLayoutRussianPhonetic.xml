@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<keydatas xmlns="http://www.kinoma.com/fskin/1" skin="keyW_H">
+	<set id="ENG_ABC" orientation="V">
+		<key text="q" shift="Q"   left= "10" top="11" width="58" height="58"/>
+		<key text="w" shift="W"   left= "68" top="11" width="58" height="58"/>
+		<key text="e" shift="E"   left="126" top="11" width="58" height="58"/>
+		<key text="r" shift="R"   left="184" top="11" width="58" height="58"/>
+		<key text="t" shift="T"   left="242" top="11" width="58" height="58"/>
+		<key text="y" shift="Y"   left="300" top="11" width="58" height="58"/>
+		<key text="u" shift="U"   left="358" top="11" width="58" height="58"/>
+		<key text="i" shift="I"   left="416" top="11" width="58" height="58"/>
+		<key text="o" shift="O"   left="474" top="11" width="58" height="58"/>
+		<key text="p" shift="P"   left="532" top="11" width="58" height="58"/>
+
+		<key text="a" shift="A"   left= "39" top="73" width="58" height="58"/>
+		<key text="s" shift="S"   left= "97" top="73" width="58" height="58"/>
+		<key text="d" shift="D"   left="155" top="73" width="58" height="58"/>
+		<key text="f" shift="F"   left="213" top="73" width="58" height="58"/>
+		<key text="g" shift="G"   left="271" top="73" width="58" height="58"/>
+		<key text="h" shift="H"   left="329" top="73" width="58" height="58"/>
+		<key text="j" shift="J"   left="387" top="73" width="58" height="58"/>
+		<key text="k" shift="K"   left="445" top="73" width="58" height="58"/>
+		<key text="l" shift="L"   left="503" top="73" width="58" height="58"/>
+
+		<key caps="shift" text="" left="10"  top="135" width="87" height="58" bit="8" skin="shiftHSMALL"/>
+		<key text="z" shift="Z"   left="97"  top="135" width="58" height="58"/>
+		<key text="x" shift="X"   left="155" top="135" width="58" height="58"/>
+		<key text="c" shift="C"   left="213" top="135" width="58" height="58"/>
+		<key text="v" shift="V"   left="271" top="135" width="58" height="58"/>
+		<key text="b" shift="B"   left="329" top="135" width="58" height="58"/>
+		<key text="n" shift="N"   left="387" top="135" width="58" height="58"/>
+		<key text="m" shift="M"   left="445" top="135" width="58" height="58"/>
+		<key text="" textCode="8" left="503" top="135" width="87" height="58" bit="8" skin="bsH"/>
+
+		<key set="ALPHABET"	text="Абв" left= "10" top="197" width="87" height="50" bit="8" skin="keyG"/>
+		<key set="SYMBOLS"	text="123" left= "97" top="197" width="87" height="50" bit="8" skin="keyG"/>
+		<key  				text="Space" textCode="32"	left="184" top="197" width="261" height="50" skin="keyW"/>
+		<key   opt="ignore"  			text="Return" textCode="13"		left="445" top="197" width="145" height="50" bit="8" skin="keyG"/>
+	</set>
+	<set id="SYMBOLS" orientation="V">
+		<key text="1" 	  shift="~" 		left= "10" top="11" width="58" height="58"/>
+		<key text="2" 	  shift="&#x25;" 		left= "68" top="11" width="58" height="58"/>
+		<key text="3" 	  shift="#" 		left="126" top="11" width="58" height="58"/>
+		<key text="4" 	  shift="$" 		left="184" top="11" width="58" height="58"/>
+		<key text="5" 	  shift="^" 		left="242" top="11" width="58" height="58"/>
+		<key text="6" 	  shift="-" 		left="300" top="11" width="58" height="58"/>
+		<key text="7" 	  shift="`" 		left="358" top="11" width="58" height="58"/>
+		<key text="8" 	  shift="=" 		left="416" top="11" width="58" height="58"/>
+		<key text="9" 	  shift="{"			left="474" top="11" width="58" height="58"/>
+		<key text="0" 	  shift="}"			left="532" top="11" width="58" height="58"/>
+
+		<key text="@" shift="&#xAC;"	left= "39" top="73" width="58" height="58"/>
+		<key text="&#x26;" shift="£"		left= "97" top="73" width="58" height="58"/>
+		<key text="*" 	   shift="€"	left="155" top="73" width="58" height="58"/>
+		<key text="(" 	   shift="&#xA7;"	left="213" top="73" width="58" height="58"/>
+		<key text=")" 	   shift="&#xA6;"	left="271" top="73" width="58" height="58"/>
+		<key text="_"	   shift="["			left="329" top="73" width="58" height="58"/>
+		<key text="+"	   shift="]"			left="387" top="73" width="58" height="58"/>
+		<key text=";"	   shift="|"			left="445" top="73" width="58" height="58"/>
+		<key text=":"	   shift="\"			left="503" top="73" width="58" height="58"/>
+
+		<key caps="caps" text="&#x25;#$"					 	left="10"  top="135" width="87" height="58" bit="8" skin="keyG_HSMALL"/>
+		<key text="!" 		shift="&#xB2;"	left= "97" top="135" width="58" height="58"/>
+		<key text="?" 		shift="&#xB0;" 	left="155" top="135" width="58" height="58"/>
+		<key text="&quot;"  shift="&#xB5;"	left="213" top="135" width="58" height="58"/>
+		<key text="&apos;" 	shift="&#xAB;"	left="271" top="135" width="58" height="58"/>
+		<key text=","		shift="&#xBB;"	left="329" top="135" width="58" height="58"/>
+		<key text="."		shift="&lt;" 	left="387" top="135" width="58" height="58"/>
+		<key text="/"		shift="&gt;" 	left="445" top="135" width="58" height="58"/>
+		<key text="" 		textCode="8" 	left="503" top="135" width="87" height="58" bit="8" skin="bsH"/>
+
+		<key set="ALPHABET"	text="Абв" left= "10" top="197" width="87" height="50" bit="8" skin="keyG"/>
+		<key set="ENG_ABC"	text="Abc" left= "97" top="197" width="87" height="50" bit="8" skin="keyG"/>
+		<key  				text="Space" textCode="32"	left="184" top="197" width="261" height="50" skin="keyW"/>
+		<key   opt="ignore"  			text="Return" textCode="13"		left="445" top="197" width="145" height="50" bit="8" skin="keyG"/>
+		
+	</set>
+	
+	<set id="ALPHABET" orientation="V">
+		<key text="я" shift="Я" left= "6" top="11" width="49" height="58"/>
+		<key text="в" shift="В" left= "55" top="11" width="49" height="58"/>
+		<key text="е" shift="Е" left="104" top="11" width="49" height="58"/>
+		<key text="р" shift="Р" left="153" top="11" width="49" height="58"/>
+		<key text="т" shift="Т" left="202" top="11" width="49" height="58"/>
+		<key text="ы" shift="Ы" left="251" top="11" width="49" height="58"/>
+		<key text="у" shift="У" left="300" top="11" width="49" height="58"/>
+		<key text="и" shift="И" left="349" top="11" width="49" height="58"/>
+		<key text="о" shift="О" left="398" top="11" width="49" height="58"/>
+		<key text="п" shift="П" left="447" top="11" width="49" height="58"/>
+		<key text="ш" shift="Ш" left="496" top="11" width="49" height="58"/>
+		<key text="щ" shift="Щ" left="545" top="11" width="49" height="58"/>
+		
+		<key text="а" shift="А" left= "6" top="73" width="49" height="58"/>
+		<key text="с" shift="С" left= "55" top="73" width="49" height="58"/>
+		<key text="д" shift="Д" left="104" top="73" width="49" height="58"/>
+		<key text="ф" shift="Ф" left="153" top="73" width="49" height="58"/>
+		<key text="г" shift="Г" left="202" top="73" width="49" height="58"/>
+		<key text="ч" shift="Ч" left="251" top="73" width="49" height="58"/>
+		<key text="й" shift="Й" left="300" top="73" width="49" height="58"/>
+		<key text="к" shift="К" left="349" top="73" width="49" height="58"/>
+		<key text="л" shift="Л" left="398" top="73" width="49" height="58"/>
+		<key text="ь" shift="Ь" left="447" top="73" width="49" height="58"/>
+		<key text="э" shift="Э" left="496" top="73" width="49" height="58"/>
+		<key text="ё" shift="Ё" left="545" top="73" width="49" height="58"/>
+		
+		<key caps="shift"	text="" left="6" top="135" width="73" height="58" bit="8" skin="shiftHSMALL"/>
+		<key text="з" shift="З" left= "79" top="135" width="49" height="58"/>
+		<key text="х" shift="Х" left= "128" top="135" width="49" height="58"/>
+		<key text="ц" shift="Ц" left="177" top="135" width="49" height="58"/>
+		<key text="ж" shift="Ж" left="226" top="135" width="49" height="58"/>
+		<key text="б" shift="Б" left="275" top="135" width="49" height="58"/>
+		<key text="н" shift="Н" left="324" top="135" width="49" height="58"/>
+		<key text="м" shift="М" left="373" top="135" width="49" height="58"/>
+		<key text="ъ" shift="Ъ" left="422" top="135" width="49" height="58"/>
+		<key text="ю" shift="Ю" left="471" top="135" width="49" height="58"/>
+		<key text="" textCode="8" left="520" top="135" width= "74" height="58" bit="8" skin="bsH"/>
+
+		<key set="ENG_ABC"	text="Abc" left= "10" top="197" width="87" height="50" bit="8" skin="keyG"/>
+		<key set="SYMBOLS"	text="123" left= "97" top="197" width="87" height="50" bit="8" skin="keyG"/>
+		<key  				text="Пробел" textCode="32"	left="184" top="197" width="261" height="50" skin="keyW"/>
+		<key   opt="ignore"  			text="Ввод" textCode="13"		left="445" top="197" width="145" height="50" bit="8" skin="keyG"/>
+	</set>
+
+	<set id="ENG_ABC" orientation="H">
+		<key text="q" shift="Q" left= "10" top="10" width="78" height="58"/>
+		<key text="w" shift="W" left= "88" top="10" width="78" height="58"/>
+		<key text="e" shift="E" left="166" top="10" width="78" height="58"/>
+		<key text="r" shift="R" left="244" top="10" width="78" height="58"/>
+		<key text="t" shift="T" left="322" top="10" width="78" height="58"/>
+		<key text="y" shift="Y" left="400" top="10" width="78" height="58"/>
+		<key text="u" shift="U" left="478" top="10" width="78" height="58"/>
+		<key text="i" shift="I" left="556" top="10" width="78" height="58"/>
+		<key text="o" shift="O" left="634" top="10" width="78" height="58"/>
+		<key text="p" shift="P" left="712" top="10" width="78" height="58"/>
+
+		<key text="a" shift="A" left= "49" top="72" width="78" height="58"/>
+		<key text="s" shift="S" left="127" top="72" width="78" height="58"/>
+		<key text="d" shift="D" left="205" top="72" width="78" height="58"/>
+		<key text="f" shift="F" left="283" top="72" width="78" height="58"/>
+		<key text="g" shift="G" left="361" top="72" width="78" height="58"/>
+		<key text="h" shift="H" left="439" top="72" width="78" height="58"/>
+		<key text="j" shift="J" left="517" top="72" width="78" height="58"/>
+		<key text="k" shift="K" left="595" top="72" width="78" height="58"/>
+		<key text="l" shift="L" left="673" top="72" width="78" height="58"/>
+		
+		<key caps="shift"	text="" left="10" top="134" width="117" height="58" bit="8" skin="shiftHSMALL"/>
+		<key text="z" shift="Z" left="127" top="134" width="78" height="58"/>
+		<key text="x" shift="X" left="205" top="134" width="78" height="58"/>
+		<key text="c" shift="C" left="283" top="134" width="78" height="58"/>
+		<key text="v" shift="V" left="361" top="134" width="78" height="58"/>
+		<key text="b" shift="B" left="439" top="134" width="78" height="58"/>
+		<key text="n" shift="N" left="517" top="134" width="78" height="58"/>
+		<key text="m" shift="M" left="595" top="134" width="78" height="58"/>
+		<key text="" textCode="8" left="673" top="134" width= "117" height="58" bit="8" skin="bsH"/>
+
+		<key set="ALPHABET"	text="Абв" left= "10" top="196" width="117" height="50" bit="8" skin="keyG"/>
+		<key set="SYMBOLS"	text="123" left= "127" top="196" width="117" height="50" bit="8" skin="keyG"/>
+		<key  				text="Space" textCode="32"	left="244" top="196" width="351" height="50" skin="keyW"/>
+		<key   opt="ignore"  			text="Return" textCode="13"		left="595" top="196" width="195" height="50" bit="8" skin="keyG"/>
+	</set>
+
+	<set id="SYMBOLS" orientation="H">
+		<key text="1" 	  shift="~" 		left= "10" top="10" width="78" height="58"/>
+		<key text="2" 	  shift="&#x25;" 		left= "88" top="10" width="78" height="58"/>
+		<key text="3" 	  shift="#" 		left="166" top="10" width="78" height="58"/>
+		<key text="4" 	  shift="$" 		left="244" top="10" width="78" height="58"/>
+		<key text="5" 	  shift="^" 		left="322" top="10" width="78" height="58"/>
+		<key text="6" 	  shift="-" 		left="400" top="10" width="78" height="58"/>
+		<key text="7" 	  shift="`" 		left="478" top="10" width="78" height="58"/>
+		<key text="8" 	  shift="=" 		left="556" top="10" width="78" height="58"/>
+		<key text="9" 	  shift="{"			left="634" top="10" width="78" height="58"/>
+		<key text="0" 	  shift="}"			left="712" top="10" width="78" height="58"/>
+
+		<key text="@" shift="&#xAC;"	left= "49" top="72" width="78" height="58"/>
+		<key text="&#x26;" shift="£"		left="127" top="72" width="78" height="58"/>
+		<key text="*" 	   shift="€"	left="205" top="72" width="78" height="58"/>
+		<key text="(" 	   shift="&#xA7;"	left="283" top="72" width="78" height="58"/>
+		<key text=")" 	   shift="&#xA6;"	left="361" top="72" width="78" height="58"/>
+		<key text="_"	   shift="["			left="439" top="72" width="78" height="58"/>
+		<key text="+"	   shift="]"			left="517" top="72" width="78" height="58"/>
+		<key text=";"	   shift="|"			left="595" top="72" width="78" height="58"/>
+		<key text=":"	   shift="\"			left="673" top="72" width="78" height="58"/>
+
+		<key caps="caps" text="&#x25;#$"			left="10"  top="134" width="116" height="58" bit="8" skin="keyG_HSMALL"/>
+		<key text="!" 		shift="&#xB2;"	left="127" top="134" width="78"  height="58"/>
+		<key text="?" 		shift="&#xB0;" 	left="205" top="134" width="78"  height="58"/>
+		<key text="&quot;" shift="&#xB5;"	left="283" top="134" width="78"  height="58"/>
+		<key text="&apos;" 	shift="&#xAB;"	left="361" top="134" width="78"  height="58"/>
+		<key text=","		shift="&#xBB;"	left="439" top="134" width="78"  height="58"/>
+		<key text="."		shift="&lt;" 	left="517" top="134" width="78"  height="58"/>
+		<key text="/"		shift="&gt;" 	left="595" top="134" width="78"  height="58"/>
+		<key 			 text="" textCode="8"	left="673" top="134" width="117" height="58" bit="8" skin="bsH"/>
+
+		<key set="ALPHABET"	text="Абв" left= "10" top="196" width="117" height="50" bit="8" skin="keyG"/>
+		<key set="ENG_ABC"	text="Abc" left= "127" top="196" width="117" height="50" bit="8" skin="keyG"/>
+		<key  				text="Space" textCode="32"	left="244" top="196" width="351" height="50" skin="keyW"/>
+		<key   opt="ignore"  			text="Return" textCode="13"		left="595" top="196" width="195" height="50" bit="8" skin="keyG"/>
+		
+	</set>
+	
+	<set id="ALPHABET" orientation="H">
+		<key text="я" shift="Я" left= "10" top="10" width="65" height="58"/>
+		<key text="в" shift="В" left= "75" top="10" width="65" height="58"/>
+		<key text="е" shift="Е" left="140" top="10" width="65" height="58"/>
+		<key text="р" shift="Р" left="205" top="10" width="65" height="58"/>
+		<key text="т" shift="Т" left="270" top="10" width="65" height="58"/>
+		<key text="ы" shift="Ы" left="335" top="10" width="65" height="58"/>
+		<key text="у" shift="У" left="400" top="10" width="65" height="58"/>
+		<key text="и" shift="И" left="465" top="10" width="65" height="58"/>
+		<key text="о" shift="О" left="530" top="10" width="65" height="58"/>
+		<key text="п" shift="П" left="595" top="10" width="65" height="58"/>
+		<key text="ш" shift="Ш" left="660" top="10" width="65" height="58"/>
+		<key text="щ" shift="Щ" left="725" top="10" width="65" height="58"/>
+		
+		<key text="а" shift="А" left= "10" top="72" width="65" height="58"/>
+		<key text="с" shift="С" left= "75" top="72" width="65" height="58"/>
+		<key text="д" shift="Д" left="140" top="72" width="65" height="58"/>
+		<key text="ф" shift="Ф" left="205" top="72" width="65" height="58"/>
+		<key text="г" shift="Г" left="270" top="72" width="65" height="58"/>
+		<key text="ч" shift="Ч" left="335" top="72" width="65" height="58"/>
+		<key text="й" shift="Й" left="400" top="72" width="65" height="58"/>
+		<key text="к" shift="К" left="465" top="72" width="65" height="58"/>
+		<key text="л" shift="Л" left="530" top="72" width="65" height="58"/>
+		<key text="ь" shift="Ь" left="595" top="72" width="65" height="58"/>
+		<key text="э" shift="Э" left="660" top="72" width="65" height="58"/>
+		<key text="ё" shift="Ё" left="725" top="72" width="65" height="58"/>
+		
+		<key caps="shift"	text="" left="10" top="134" width="102" height="58" bit="8" skin="shiftHSMALL"/>
+		<key text="з" shift="З" left= "112" top="134" width="65" height="58"/>
+		<key text="х" shift="Х" left= "177" top="134" width="65" height="58"/>
+		<key text="ц" shift="Ц" left="242" top="134" width="65" height="58"/>
+		<key text="ж" shift="Ж" left="307" top="134" width="65" height="58"/>
+		<key text="б" shift="Б" left="372" top="134" width="65" height="58"/>
+		<key text="н" shift="Н" left="437" top="134" width="65" height="58"/>
+		<key text="м" shift="М" left="502" top="134" width="65" height="58"/>
+		<key text="ъ" shift="Ъ" left="567" top="134" width="65" height="58"/>
+		<key text="ю" shift="Ю" left="632" top="134" width="65" height="58"/>
+		<key text="" textCode="8" left="697" top="134" width= "103" height="58" bit="8" skin="bsH"/>
+
+		<key set="ENG_ABC"	text="Abc" left= "10" top="196" width="117" height="50" bit="8" skin="keyG"/>
+		<key set="SYMBOLS"	text="123" left= "127" top="196" width="117" height="50" bit="8" skin="keyG"/>
+		<key  				text="Пробел" textCode="32"	left="244" top="196" width="351" height="50" skin="keyW"/>
+		<key    opt="ignore" 			text="Ввод" textCode="13"		left="595" top="196" width="195" height="50" bit="8" skin="keyG"/>
+	</set>
+
+</keydatas>
+
+

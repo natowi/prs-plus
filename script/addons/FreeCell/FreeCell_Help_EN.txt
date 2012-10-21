@@ -1,0 +1,24 @@
+Free Cell
+
+Move all cards onto the foundation cells (the four cells at the top right of the display). Buildup in suit from Ace to King. The four cells at the top left are known as the open cells. You can only place one card in each open cell. The 8 tableau piles can be built downwards in cascades alternating by colour. Any open cell card or top card of any cascade may be moved to build on a tableau, or moved to an empty open cell, an empty cascade, or its foundation.
+[Note: Comments in Square brackets for non-Touch readers.]
+
+• Click on a card to select it.
+   [Use the up, down, left, right buttons to move the hand,
+    or use digit-key to select column.
+    Up/down after click selects multiple cards]
+
+• Then click on the place you want to move it to.
+   [Press the center button to click.]
+
+• Cards that are no longer needed will be automatically
+   moved to their foundation.
+
+• To restart the current game, click the "Restart" button at
+   the top right. To Start a completely new game, click 
+   the "New Deal" button. To quit, click the "Quit" button.
+
+• Press the "Option" button ["Menu" button] to show and hide 
+   this help page.
+
+©2010 Ben Chenoweth.

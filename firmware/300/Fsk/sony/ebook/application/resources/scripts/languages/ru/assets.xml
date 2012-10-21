@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="Продолжить чтение" />
+		<string id="STR_NODE_TITLE_BEGIN" value="В начало" />
+		<string id="STR_NODE_TITLE_END" value="В конец" />
+		<string id="STR_NODE_TITLE_BOOKMARKS" value="Закладки" />
+		<string id="STR_NODE_TITLE_TOC" value="Содержание" />
+		<string id="STR_NODE_TITLE_HISTORY" value="Журнал" />
+		<string id="STR_NODE_TITLE_INFO" value="Информация" />
+		<string id="STR_NODE_TITLE_UTILITIES" value="Инструменты" />
+		<string id="STR_NODE_TITLE_REMOVEALLBOOKMARKS" value="Удалить все закладки" />
+		<string id="STR_NODE_TITLE_CLEARHISTORY" value="Очистить журнал" />
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="Удалить книгу" />
+		<string id="STR_NODE_TITLE_CONTINUEREADING" value="Продолжить чтение" />
+		<string id="STR_NODE_TITLE_BOOKSBYTITLE" value="Книги по названию" />
+		<string id="STR_NODE_TITLE_BOOKSBYAUTHOR" value="Книги по автору" />
+		<string id="STR_NODE_TITLE_BOOKSBYDATE" value="Книги по дате загрузки" />
+		<string id="STR_NODE_TITLE_TODAY" value="Сегодня" />
+		<string id="STR_NODE_TITLE_EARLIERTHISWEEK" value="С начала недели" />
+		<string id="STR_NODE_TITLE_LASTWEEK" value="За прошлую неделю" />
+		<string id="STR_NODE_TITLE_EARLIERTHISMONTH" value="С начала месяца" />
+		<string id="STR_NODE_TITLE_LASTMONTH" value="За прошлый месяц" />
+		<string id="STR_NODE_TITLE_EARLIERTHISQUARTER" value="С начала квартала" />
+		<string id="STR_NODE_TITLE_LASTQUARTER" value="За прошлый квартал" />
+		<string id="STR_NODE_TITLE_EARLIERTHISYEAR" value="С начала года" />
+		<string id="STR_NODE_TITLE_LASTYEAR" value="За прошлый год" />
+		<string id="STR_NODE_TITLE_OLDER" value="Еще ранее" />
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="Коллекции" />
+		<string id="STR_NODE_TITLE_ALLBOOKMARKS" value="Все закладки" />
+		<string id="STR_NODE_TITLE_NOWPLAYING" value="Сейчас в эфире" />
+		<string id="STR_NODE_TITLE_AUDIO" value="Аудио" />
+		<string id="STR_NODE_TITLE_PICTURE" value="Фотографии" />
+		<string id="STR_NODE_TITLE_SETTINGS" value="Настройки" />
+		<string id="STR_NODE_TITLE_ORIENTATION" value="Ориентация" />
+		<string id="STR_NODE_COMMENT_HORIZONTAL" value="Альбомная" />
+		<string id="STR_NODE_COMMENT_VERTICAL" value="Книжная" />
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="Дата и время" />
+		<string id="STR_NODE_TITLE_YEAR" value="Год" />
+		<string id="STR_NODE_TITLE_MONTH" value="Месяц" />
+		<string id="STR_NODE_TITLE_DATE" value="Число" />
+		<string id="STR_NODE_TITLE_HOUR" value="Час" />
+		<string id="STR_NODE_TITLE_MINUTE" value="Минуты" />
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="Защитить паролем" />
+		<string id="STR_NODE_TITLE_ENTERCODE" value="Введите код" />
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="Слайд-шоу" />
+		<string id="STR_NODE_TITLE_TURN" value="Переключить" />
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="Интервал" />
+		<string id="STR_NODE_TITLE_SLEEPMODE" value="Спящий режим" />
+		<string id="STR_NODE_TITLE_ADBANCEDSETTINGS" value="Дополн. установки" />
+		<string id="STR_NODE_TITLE_FORMATINTERNALMEMORY" value="Форматирование" />
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="Полное отключение" />
+		<string id="STR_NODE_TITLE_ABOUT" value="Об устройстве" />
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="Сброс всех настроек" />
+		<string id="STR_NODE_TITLE_CODE" value="Код" />
+		<string id="#STR_NODE_TITLE_AUTORUN" value="autoRun" />
+		<string id="#STR_NODE_TITLE_HARDRESET" value="hardReset" />
+		<string id="STR_COUNTER_BOOKMARK_N" value=" закл." />
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 закладка" />
+		<string id="STR_COUNTER_BOOKMARK_0" value="Пусто" />
+		<string id="STR_COUNTER_ITEM_N" value=" элем." />
+		<string id="STR_COUNTER_ITEM_1" value="1 элемент" />
+		<string id="STR_COUNTER_ITEM_0" value="Пусто" />
+		<string id="STR_COUNTER_PAGE_N" value=" стр." />
+		<string id="STR_COUNTER_PAGE_1" value="1 страница" />
+		<string id="STR_COUNTER_PAGE_0" value="Пусто" />
+		<string id="STR_COUNTER_UTILITIES_N" value=" инстр." />
+		<string id="STR_COUNTER_UTILITIES_1" value="1 инструмент" />
+		<string id="STR_COUNTER_UTILITIES_0" value="Пусто" />
+		<string id="STR_COUNTER_BOOK_N" value=" книг" />
+		<string id="STR_COUNTER_BOOK_1" value="1 книга" />
+		<string id="STR_COUNTER_BOOK_0" value="Пусто" />
+		<string id="STR_COUNTER_COLLECTION_N" value=" коллекц." />
+		<string id="STR_COUNTER_COLLECTION_1" value="1 коллекция" />
+		<string id="STR_COUNTER_COLLECTION_0" value="Пусто" />
+		<string id="STR_COUNTER_SONG_N" value=" треков" />
+		<string id="STR_COUNTER_SONG_1" value="1 трек" />
+		<string id="STR_COUNTER_SONG_0" value="Пусто" />
+		<string id="STR_COUNTER_NOSONG" value="Пусто" />
+		<string id="STR_COUNTER_PICTURE_N" value=" фото" />
+		<string id="STR_COUNTER_PICTURE_1" value="1 фото" />
+		<string id="STR_COUNTER_PICTURE_0" value="Пусто" />
+		<string id="STR_COUNTER_SETTING_N" value=" устан." />
+		<string id="STR_COUNTER_SETTING_1" value="1 установка" />
+		<string id="STR_COUNTER_SETTING_0" value="Пусто" />
+		<string id="STR_UI_BUTTON_OK" value="OK" />
+		<string id="STR_UI_BUTTON_On" value="Вкл." />
+		<string id="STR_UI_BUTTON_Off" value="Выкл." />
+		<string id="STR_UI_BUTTON_ABLE" value="Да" />
+		<string id="STR_UI_BUTTON_DISABLE" value="Нет" />
+		<string id="STR_UI_UNITNAME_SECONDS" value="сек." />
+		<string id="STR_UI_UNITNAME_SIZEKB" value="KB" />
+		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
+		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
+		<string id="STR_UI_DELIMITER_POINT" value="," />
+		<string id="STR_UI_PARTS_PART" value="Часть" />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Стр." />
+		<string id="STR_UI_PARTS_OF" value=" из " />
+		<string id="STR_UI_PARTS_UNKNOWN" value="?" />
+		<string id="STR_UI_PARTS_VERSION" value="Версия:" />
+		<string id="STR_UI_PARTS_DEVICE" value="Устройство.:" />
+		<string id="STR_UI_GOTOPAGE" value="СТР." />
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="Страница запорчена!" />
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="Страница защищена!" />
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="Ошибка на странице!" />
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="Необходим формат!" />
+		<string id="STR_UI_MESSAGE_FORMATTING" value="Форматирую…" />
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="Запрещено" />
+		<string id="STR_UI_MESSAGE_DRMFULL" value="Заполнено, просмотр" />
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="Карта памяти" />
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="Внутр. память" />
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="Истекло" />
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="Сегодня" />
+		<string id="STR_UI_MESSAGE_FORMATTINGINTERNALMEMORY" value="Форматирование…" />
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="Отключение…" />
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDYES" value="Авторизовано для eBook Store." />
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDNO" value="Не авторизовано для eBook Store." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDYES" value="Авторизовано для  Adobe DRM." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="Не авторизовано для Adobe DRM." />
+		<string id="STR_UI_MESSAGE_RESTOREDEFAULTSOPERATION" value="Нажмите XXMARKXX (Закладка) чтобы восстановить установки по умолчанию." />
+		<string id="STR_UI_MESSAGE_CLEARHISTORYOPERATION" value="Нажмите XXMARKXX (Закладка) чтобы очистить журнал." />
+		<string id="STR_UI_MESSAGE_FORMATOPERATION" value="Нажмите XXMARKXX (Закладка) чтобы отформатировать внутреннюю память." />
+		<string id="STR_UI_MESSAGE_DELETEBOOKOPERATION" value="Нажмите XXMARKXX (Закладка) чтобы удалить книгу." />
+		<string id="STR_UI_MESSAGE_REMOVEALLBOOKMARKSOPERATION" value="Нажмите XXMARKXX (Закладка) чтобы удалить все закладки." />
+		<string id="STR_UI_MESSAGE_SHUTDOWNOPERATION" value="Нажмите XXMARKXX (Закладка) чтобы полностью отключить устройство." />
+		<string id="STR_UI_MESSAGE_HARDRESET" value="Полный сброс" />
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="Хотите ли вы УДАЛИТЬ все книги, восстановить установки по умолчанию и очистить авторизацию DRM?&#xA;&#xA;Да - нажмите 5&#xA;Нет - нажмите XXRETURNXX(Возврат)" />
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="Батарея почти разряжена!" />
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="Батарея полностью разряжена!" />
+		<string id="STR_UI_MESSAGE_LOADING" value="Загрузка…" />
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 из 1" />
+		<string id="STR_UI_MESSAGE_CANNOTDELETEBOOK" value="Не могу удалить книгу." />
+		<string id="STR_UI_FORMAT_RTF" value="Rich Text Format" />
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF" />
+		<string id="STR_UI_FORMAT_EPUB" value="EPUB-документ" />
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB Book" />
+		<string id="STR_UI_FORMAT_TXT" value="Текст" />
+		<string id="STR_UI_TITLESORTLABEL1" value="0-9, A-Z" />
+		<string id="STR_UI_TITLESORTLABEL2" value="А Б В" />
+		<string id="STR_UI_TITLESORTLABEL3" value="Г Д Е Ж" />
+		<string id="STR_UI_TITLESORTLABEL4" value="З И Й К" />
+		<string id="STR_UI_TITLESORTLABEL5" value="Л М Н" />
+		<string id="STR_UI_TITLESORTLABEL6" value="О П Р" />
+		<string id="STR_UI_TITLESORTLABEL7" value="С Т У" />
+		<string id="STR_UI_TITLESORTLABEL8" value="Ф Х Ц Ч" />
+		<string id="STR_UI_TITLESORTLABEL9" value="Ш Щ Э Ю Я" />
+		<string id="STR_UI_TITLESORTLABEL10" value="Прочие" />
+		<string id="STR_VAL_TITLESORTCRITERION1" value="Ͽ" />
+		<string id="STR_VAL_TITLESORTCRITERION2" value="В" />
+		<string id="STR_VAL_TITLESORTCRITERION3" value="Ж" />
+		<string id="STR_VAL_TITLESORTCRITERION4" value="К" />
+		<string id="STR_VAL_TITLESORTCRITERION5" value="Н" />
+		<string id="STR_VAL_TITLESORTCRITERION6" value="Р" />
+		<string id="STR_VAL_TITLESORTCRITERION7" value="У" />
+		<string id="STR_VAL_TITLESORTCRITERION8" value="Ч" />
+		<string id="STR_VAL_TITLESORTCRITERION9" value="Я" />
+		<string id="STR_UI_AUTHORSORTLABEL1" value="0-9, A-Z" />
+		<string id="STR_UI_AUTHORSORTLABEL2" value="А Б В" />
+		<string id="STR_UI_AUTHORSORTLABEL3" value="Г Д Е Ж" />
+		<string id="STR_UI_AUTHORSORTLABEL4" value="З И Й К" />
+		<string id="STR_UI_AUTHORSORTLABEL5" value="Л М Н" />
+		<string id="STR_UI_AUTHORSORTLABEL6" value="О П Р" />
+		<string id="STR_UI_AUTHORSORTLABEL7" value="С Т У" />
+		<string id="STR_UI_AUTHORSORTLABEL8" value="Ф Х Ц Ч" />
+		<string id="STR_UI_AUTHORSORTLABEL9" value="Ш Щ Э Ю Я" />
+		<string id="STR_UI_AUTHORSORTLABEL10" value="Прочие" />
+		<string id="STR_VAL_AUTHORSORTCRITERION1" value="Ͽ" />
+		<string id="STR_VAL_AUTHORSORTCRITERION2" value="В" />
+		<string id="STR_VAL_AUTHORSORTCRITERION3" value="Ж" />
+		<string id="STR_VAL_AUTHORSORTCRITERION4" value="К" />
+		<string id="STR_VAL_AUTHORSORTCRITERION5" value="Н" />
+		<string id="STR_VAL_AUTHORSORTCRITERION6" value="Р" />
+		<string id="STR_VAL_AUTHORSORTCRITERION7" value="У" />
+		<string id="STR_VAL_AUTHORSORTCRITERION8" value="Ч" />
+		<string id="STR_VAL_AUTHORSORTCRITERION9" value="Я" />
+		<string id="STR_FORMAT_DATE" value="DD.MM.YY" />
+		<string id="STR_UI_MESSAGE_USBDONOT" value="Не отключайте USB!" />
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="Подключение USB" />
+		<string id="STR_UI_MESSAGE_LOCKED" value="Ридер под замком" />
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,„,‘,’,“,”,«,»" />
+		<string id="STR_SORT_IGNOREARTICLES" value="a ,an ,the "/>
+		<string id="infoTitles" value="Обложка,Название,Автор,Издательство,Жанр,eBook ID,Формат,Дата,Размер файла,Имя файла,Права,Истекает" />
+		<string id="STR_UPDATE_SUCCESS" value="Обновление прошивки…" />
+		<string id="STR_UPDATE_FAIL" value="Обновление прошивки не сработало. Попробуйте еще раз." />
+		<string id="STR_NODE_TITLE_PREVIOUS_VIEW" value="Назад" />
+		<string id="STR_NODE_TITLE_NEXT_VIEW" value="Вперед" />
+		<string id="STR_NODE_TITLE_WELCOME" value="Добро пожаловать!" />
+		<string id="STR_UI_MESSAGE_WELCOME" value="Привет от Sony!&#xA;В ваших руках будущее электронного чтения.&#xA;Нажмите Enter и приступайте." />
+		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Язык меню" />
+		<string id="STR_UI_LANG" value="Язык" />
+		<string id="STR_UI_LANG_EN" value="English" />
+		<string id="STR_UI_LANG_FR" value="Français" />
+		<string id="STR_UI_LANG_DE" value="Deutsch" />
+		<string id="STR_UI_LANG_NL" value="Русский" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="Выберите язык и нажмите OK.&#xA;Внимание:  Установки можно позже поменять через меню." />
+		<string id="STR_UI_PARTS_DELIMITER" value="/" />
+		<string id="STR_UI_MESSAGE_DEMOMODE" value="(Демо-режим)" />
+		<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value="Демо скринсэйвер" />
+		<string id="STR_NODE_TITLE_HOME" value="Главное меню" />
+		<string id="STR_NODE_TITLE_OPTIONS" value="Настройки" />
+		<string id="STR_UI_MESSAGE_DELETEALLBOOKMARKS" value="На этой странице есть закладки, сохраненные в других размерах шрифта или на других устройствах. Вы уверены, что хотите удалить все закладки?" />
+		<string id="STR_DEMO_NOTAVAILABLE" value="Опция не доступна в Демо-режиме. Нажмите XXRETURNXX(Возврат) чтобы вернуться назад." />
+		<string id="STR_DEMO_TITLE" value="ДЕМОНСТРАЦИЯ" />
+		<string id="STR_UI_MESSAGE_REMOVEBOOKMARKSOPERATION" value="Нажмите XXMARKXX (Закладка) чтобы удалить закладку." />
+		<string id="STR_UI_MESSAGE_NOTE_BOOKMARKOPERATION" value="Внимание: Закладки на этой странице сохранены в нескольких размерах шрифта. Все закладки на этой странице будут удалены." />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="Название: &quot;XXTITLEXX&quot;" />
+		<string id="STR_NODE_TITLE_REMOVEBOOKMARK" value="Удалить закладку" />
+		<string id="STR_UI_MESSAGE_MENURETURN" value="Нажмите кнопку XXRETURNXX(Возврат) чтобы вернуться" />
+		<string id="STR_NODE_TITLE_DATE_TIME_FORMAT_SETTINGS" value="Формат даты и времени" />
+		<string id="STR_UI_DATE" value="Дата" />
+		<string id="STR_UI_BUTTON_MMDDYY" value="Месяц-День-Год" />
+		<string id="STR_UI_BUTTON_DDMMYY" value="День-Месяц-Год" />
+		<string id="STR_UI_TIME" value="Время" />
+		<string id="STR_UI_BUTTON_12HR" value="12 часов" />
+		<string id="STR_UI_BUTTON_24HR" value="24 часа" />
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / " />
+		<string id="STR_UI_MESSAGE_NOTE_DELETE_ALL_CONTENTS" value="Внимание: все книги будут удалены" />
+		<string id="STR_UI_MESSAGE_NOBOOK" value="Пусто" />
+	</assets>
+</document>

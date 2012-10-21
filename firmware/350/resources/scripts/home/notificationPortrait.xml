@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+
+	<group left="0" right="0" top="0" bottom="0">
+		<!-- New Delivery -->
+		<group left="5" right="5" top="5" height="188">
+			<sprite skin="shortcutNewDeliveryButton" left="10" top="5" width="50" height="50" active="false"/>
+			<kbookLabel skin="title" active="false" left="70" right="0" top="13" height="30" textresource="STR_NODE_TITLE_NEWDELIVERY"/>
+			<!-- title -->
+			<kbookLogoImage left="77" width="240" top="93" height="37" align="left" href="x-id://notifiableLogoData"/>
+			
+			<kbookLabelBookAll skin="continueReadingBookAllNewDelivery" title1="24" author1="78" date1="78" title2="40" author2="78" date2="78" active="false" top="69" height="90" left="77" right="231" align="left" variable="NOTIFICATION_LOGO" continueAuthor="NOTIFICATION_PUBLICATION_DATE" continueDate=""/>
+			
+			<!--kbookLabel2Line skin="continueReadingTitle" active="false" top="59" height="90" left="19" width="320" align="left" variable="NOTIFICATION_LOGO"/-->
+			<!--kbookLabel skin="continueReadingAuthor" active="false" top="150" height="30" left="19" right="226" align="left" variable="NOTIFICATION_PUBLICATION_DATE"/-->
+			<!-- thumbnail -->
+			<kbookThumbnailImage skin="kbookHomeThumbnail" top="19" right="51" width="117" height="150" href="x-id://notifiableThumbnailData" />
+			<kbookHotspot do="doGoToNotification" left="0" top="0" right="0" bottom="0" />
+		</group>
+		<fillBackground color="#646464" left="18" right="18" top="197" height="1"/>
+		<!-- Continue Reading -->
+		<group left="5" right="5" top="202" height="71">
+			<sprite skin="shortcutContinueButton" left="10" top="10" width="50" height="50" active="false"/>
+			<kbookLabel skin="title" active="false" left="71" right="0" top="8" height="30" textresource="STR_NODE_TITLE_CONTINUEREADINGBOOK"/>
+			<kbookLabel skin="comment" active="false" bottom="13" height="20" left="71" right="42" align="left" variable="CONTINUE_COMMENT"/>
+			<kbookHotspot do="doGoToContinueReading" left="0" top="0" right="0" bottom="0" />
+		</group>
+	</group>
+</document>

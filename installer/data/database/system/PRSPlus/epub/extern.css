@@ -1,0 +1,19 @@
+div, div[class], p, p[class],  html, span, ol, ul, li, table, td, th, TheAntiquaB-W5Plain_95 {font-size: placeholder !important;} /* MARKER MFONTSIZE 0*/
+div, div[class], p, p[class], html, span, ol, ul, li, table, td, th, TheAntiquaB-W5Plain_95  {line-height: placeholder !important} /* MARKER MLINEHEIGHT 1*/
+body, div, p, html, span, table, TheAntiquaB-W5Plain_95  {margin: placeholder !important;} /* MARKER MMARGIN 2*/
+@page {margin: placeholder !important;} /* MARKER MMARGIN 2*/
+div, p, html, span, TheAntiquaB-W5Plain_95 {text-align: placeholder !important} /* MARKER MALIGN 4*/
+div, div[class] ,p, p[class], html, span, TheAntiquaB-W5Plain_95  {text-indent: placeholder !important} /* MARKER MTEXTINDENT 5*/
+@page, body, div, p, html, span, TheAntiquaB-W5Plain_95  {padding: placeholder !important;} /* MARKER MPADDING 6*/
+div, p, html, span, ol, ul, li, table, td, th, TheAntiquaB-W5Plain_95, body.calibre, body.calibre1, body.calibre2, body.calibre3, body.book, .mainBody {font-family: serif !important;} /* 7*/ 
+#
+#
+#
+#Instruction: feel free to add/remove CSS-tags. Do not change line-numbers!! Use Unix-style LF only!!
+#Fontsize (Line 1)
+#Lineheight (Line 2)
+#Page-Margins (Line 3&4)
+#Text-Allign (Line 5)
+#Indent (Line 6)
+#Padding (Line 7)
+#Serif Fonts (Line 8)

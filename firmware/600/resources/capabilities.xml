@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<capabilities xmlns="http://www.sony.com/xmlns/product/prs/device/1">
+	<mediaTypes>
+		<mime version="2">application/x-sony-bbeb</mime>
+		<mime>application/pdf</mime>
+		<mime>application/epub+zip</mime>
+		<mime>application/rtf</mime>
+		<mime>text/plain</mime>
+	</mediaTypes>
+	<text>
+		<layoutCache external="true" />
+		<markupTypes>
+			<markup type="bookmark2" commentSize="2000" freehandComment="true" />
+			<markup type="annotation" commentSize="2000" freehandComment="true" />
+			<markup type="freehand" />
+		</markupTypes>
+		<scale min="0" max="4" />
+		<view width="584" height="754" />
+	</text>
+	<notepad supported="true" />
+	<hardware>
+		<screen width="600" height="800" dpi="167" />
+	</hardware>
+</capabilities>

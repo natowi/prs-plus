@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<import href="../US/assets.xml"/>
+
+		<string id="name" value="Canada"/>
+	</assets>
+</document>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<model>
+		<variable id ="COORDINATE"/>
+		<code>
+			<function id="initialized">
+				this.container.PANEL.CANVAS.focus(true)
+			</function>
+		</code>
+	</model>
+	<group id="PANEL" left="0" right="0" top="0" bottom="0">
+		<code>
+			<function id="doRoot">
+				this.bubble("finishTest")
+			</function>
+		</code>
+		<sprite id="CANVAS" left="0" right="0" top="0" bottom="0" canFocus="true">
+			<property id="points"/>
+			<property id="bounds"/>
+			<property id="size" value="4"/>
+			<code>
+				<function id="addPoint" params="x, y">
+					if (!this.points.value)
+						this.points.value = new Array
+					this.points.value.push(new Point(x, y))
+				</function>
+			</code>
+			<script on="initialized">
+				var bounds = this.bounds.value = new Rectangle
+				bounds.width = Number(this.size.value)
+				bounds.height = Number(this.size.value)
+			</script>
+			<script on="mouseDown" params="event">
+				var window = this.getWindow()
+				var bounds = this.bounds.value
+				bounds.x = event.x
+				bounds.y = event.y
+				this.addPoint(event.x, event.y)
+				window.invalidate(bounds)
+			</script>
+			<script on="mouseMoved" params="event">
+				var window = this.getWindow()
+				var bounds = this.bounds.value
+				bounds.x = event.x
+				bounds.y = event.y
+				this.addPoint(event.x, event.y)
+				window.invalidate(bounds)
+			</script>
+			<script on="mouseUp" params="event">
+				var window = this.getWindow()
+				var bounds = this.bounds.value
+				bounds.x = event.x
+				bounds.y = event.y
+				this.addPoint(event.x, event.y)
+				window.invalidate(bounds)
+			</script>
+
+			<script on="draw" params="window, index, u, v, x, y, width, height"><![CDATA[
+				var array = this.points.value
+				if (!array.length) {
+					window.setPenColor(Color.white)
+					window.fillRectangle(this)
+				}
+				else {
+					window.setPenColor(Color.black)
+					var point = array[array.length - 1]
+					var size = Number(this.size.value)
+					window.fillRectangle(point.x, point.y, size, size)
+				}
+			]]></script>
+		</sprite>
+	</group>
+</document>

@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="utf-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="Συνέχεια ανάγνωσης" />
+		<string id="STR_NODE_TITLE_TOC" value="Πίνακας περιεχομένων" />
+		<string id="STR_NODE_TITLE_INFO" value="Πληροφορίες" />
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="Διαγραφή βιβλίου" />
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="Συλλογές" />
+		<string id="STR_NODE_TITLE_AUDIO" value="Ήχος" />
+		<string id="STR_NODE_TITLE_PICTURE" value="Εικόνες" />
+		<string id="STR_NODE_TITLE_SETTINGS" value="Ρυθμίσεις" />
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="Ημερομηνία και Ώρα" />
+		<string id="STR_NODE_TITLE_YEAR" value="Έτος" />
+		<string id="STR_NODE_TITLE_MONTH" value="Μήνας" />
+		<string id="STR_NODE_TITLE_DATE" value="Μέρα" />
+		<string id="STR_NODE_TITLE_HOUR" value="Ώρα" />
+		<string id="STR_NODE_TITLE_MINUTE" value="Λεπτό" />
+		<string id="STR_UI_BUTTON_AM" value="πμ" />
+		<string id="STR_UI_BUTTON_PM" value="μμ" />
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="Κλείδωμα συσκευής" />
+		<string id="STR_NODE_TITLE_ENTERCODE" value="Εισαγωγή κωδικού" />
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="Προβολή διαφανειών" />
+		<string id="STR_NODE_TITLE_TURN" value="Ενεργοποίηση" />
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="Διάρκεια διαφάνειας" />
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="Τερματισμός λειτουργίας συσκευής" />
+		<string id="STR_NODE_TITLE_ABOUT" value="Σχετικά" />
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="Επαναφορά προεπιλογών" />
+		<string id="STR_NODE_TITLE_CODE" value="Κωδικός εισόδου" />
+		<string id="#STR_NODE_TITLE_AUTORUN" value="autoRun" />
+		<string id="#STR_NODE_TITLE_HARDRESET" value="hardReset" />
+		<string id="STR_COUNTER_BOOKMARK_N" value=" σελιδοδείκτες" />
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 σελιδοδείκτης" />
+		<string id="STR_COUNTER_BOOKMARK_0" value="Κανένας σελιδοδείκτης" />
+		<string id="STR_COUNTER_ITEM_N" value=" στοιχεία" />
+		<string id="STR_COUNTER_ITEM_1" value="1 στοιχείο" />
+		<string id="STR_COUNTER_ITEM_0" value="Κανένα στοιχείο" />
+		<string id="STR_COUNTER_BOOK_N" value=" βιβλία" />
+		<string id="STR_COUNTER_BOOK_1" value="1 βιβλίο" />
+		<string id="STR_COUNTER_BOOK_0" value="Κανένα βιβλίο" />
+		<string id="STR_COUNTER_COLLECTION_N" value=" συλλογές" />
+		<string id="STR_COUNTER_COLLECTION_1" value="1 συλλογή" />
+		<string id="STR_COUNTER_COLLECTION_0" value="Καμία συλλογή" />
+		<string id="STR_COUNTER_SONG_N" value=" τραγούδια" />
+		<string id="STR_COUNTER_SONG_1" value="1 τραγούδι" />
+		<string id="STR_COUNTER_SONG_0" value="Κανένα τραγούδι" />
+		<string id="STR_COUNTER_PICTURE_N" value=" εικόνες" />
+		<string id="STR_COUNTER_PICTURE_1" value="1 εικόνα" />
+		<string id="STR_COUNTER_PICTURE_0" value="Καμία εικόνα" />
+		<string id="STR_COUNTER_SETTING_N" value=" ρυθμίσεις" />
+		<string id="STR_COUNTER_SETTING_1" value="1 ρύθμιση" />
+		<string id="STR_COUNTER_SETTING_0" value="0 ρύθμιση" />
+		<string id="STR_UI_BUTTON_OK" value="Εντάξει" />
+		<string id="STR_UI_BUTTON_On" value="Ενεργό" />
+		<string id="STR_UI_BUTTON_Off" value="Ανενεργό" />
+		<string id="STR_UI_BUTTON_ABLE" value="Ενεργό" />
+		<string id="STR_UI_BUTTON_DISABLE" value="Ανενεργό" />
+		<string id="STR_UI_UNITNAME_SECONDS" value="δευτερόλεπτα" />
+		<string id="STR_UI_UNITNAME_SIZEKB" value="KB" />
+		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
+		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
+		<string id="STR_UI_PARTS_PART" value="Μέρος " />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="Σελίδα " />
+		<string id="STR_UI_PARTS_OF" value=" από " />
+		<string id="STR_UI_PARTS_TOC_UNKNOWN" value=";" />
+		<string id="STR_UI_PARTS_VERSION" value="Έκδοση" />
+		<string id="STR_UI_PARTS_DEVICE" value="Συσκευή" />
+		<string id="STR_UI_GOTOPAGE" value="ΣΕΛΙΔΑ" />
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="Άκυρη σελίδα!" />
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="Προστατεύεται από τη Διαχείριση Ψηφιακών Δικαιωμάτων (DRM)" />
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="Σφάλμα σελίδας!" />
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="Άκυρη μορφή!" />
+		<string id="STR_UI_MESSAGE_FORMATTING" value="Φόρτωση..." />
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="Περιορισμένο" />
+		<string id="STR_UI_MESSAGE_DRMFULL" value="Πλήρης, προβαλλόμενο" />
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="Κάρτα μνήμης" />
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="Έχει λήξει" />
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="Σήμερα" />
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="Τερματισμός λειτουργίας..." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="Αυτή η συσκευή δεν είναι ακόμα εξουσιοδοτημένη για περιεχόμενο Adobe DRM." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZED_READ" value="Αυτή η συσκευή είναι εξουσιοδοτημένη για ανάγνωση περιεχομένου Adobe DRM." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZED_PURCHASE" value="Αυτή η συσκευή είναι εξουσιοδοτημένη για ανάγνωση και αγορά περιεχομένου Adobe DRM." />
+		<string id="STR_UI_MESSAGE_HARDRESET" value="Πλήρης επαναφορά" />
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="Θέλετε να ΔΙΑΓΡΑΨΕΤΕ όλο το περιεχόμενο, να επαναφέρετε όλες τις εργοστασιακές ρυθμίσεις και να απαλείψετε την κατάσταση εξουσιοδότησης DRM; &#xA;&#xA;Ναι – Πατήστε το πλήκτρο &quot;OPTIONS&quot; &#xA;Όχι – Πατήστε το πλήκτρο &quot;HOME&quot;" />
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="Χαμηλή μπαταρία!" />
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="Καθόλου μπαταρία!" />
+		<string id="STR_UI_MESSAGE_LOADING" value="Φόρτωση..." />
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 από 1" />
+		<string id="STR_UI_FORMAT_RTF" value="Rich Text Format" />
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF" />
+		<string id="STR_UI_FORMAT_EPUB" value="Έγγραφο EPUB" />
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="Βιβλίο BBeB" />
+		<string id="STR_UI_FORMAT_TXT" value="Απλό κείμενο" />
+		<string id="STR_UI_MESSAGE_USBDONOT" value="Μην αποσυνδέσετε" />
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="USB συνδεδεμένο" />
+		<string id="STR_UI_MESSAGE_LOCKED" value="Συσκευή κλειδωμένη" />
+		<string id="STR_UI_MESSAGE_CHARGING" value="Φόρτιση μπαταρίας" />
+		<string id="STR_UI_MESSAGE_CHARGING_COMPLETE" value="Η φόρτιση ολοκληρώθηκε" />
+		<string id="STR_UI_MESSAGE_CHARGING_NOT_CHARGING" value="Η φόρτιση σταμάτησε" />
+		<string id="STR_UI_USB_MODE_GUIDE_CHECK_CONNECTION" value="Η συσκευή δεν μπορεί να φορτιστεί, καθώς δεν εντοπίζεται παροχή ενέργειας. Παρακαλώ ελέγξτε ότι ο φορτιστής είναι συνδεδεμένος και ενεργοποιημένος ή ότι το καλώδιο USB είναι σωστά συνδεδεμένο." />
+		<string id="STR_UI_USB_MODE_GUIDE_TOO_HOT_COLD" value="Η συσκευή αντιμετωπίζει αυτή τη στιγμή ακραίες θερμοκρασίες και δεν μπορεί να φορτιστεί. Παρακαλώ επιστρέψετε τη συσκευή σε κανονική θερμοκρασία δωματίου και δοκιμάστε ξανά." />
+		<string id="STR_UI_USB_MODE_GUIDE_BROKEN_BAT" value="Η επαναφορτιζόμενη μπαταρία απαιτεί τεχνική υποστήριξη.&#xA;Παρακαλώ επικοινωνήστε με την εξυπηρέτηση πελατών." />
+		<string id="STR_UI_USB_MODE_GUIDE_OTHER_ERRORS" value="Η συσκευή σας πρέπει να επανεκκινήσει. Για να το κάνετε αυτό, εισάγετε μια καρφίδα στην εισδοχή Reset και ακολούθως σύρετε και αφήστε τον διακόπτη ενέργειας. Αν συνεχίζετε να βλέπετε αυτό το μήνυμα στην οθόνη, παρακαλώ επικοινωνήστε με την εξυπηρέτηση πελατών." />
+		<string id="STR_UI_USB_MODE_GUIDE" value=" συνεχίζετε να βλέπετε αυτό το μήνυμα στην οθόνη, παρακαλώ επικοινωνήστε με την εξυπηρέτηση πελατών." />
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value="------------------------------------------------------------------" />
+		<string id="STR_SORT_IGNOREARTICLES" value="a ,an ,the " />
+		<string id="infoTitles" value="Εξώφυλλο,Τίτλος,Τίτλος,Ημερομηνία έκδοσης,Συγγραφέας,Εκδότης,Κατηγορία,Αναγνωριστικό ηλεκτρονικού βιβλίου,Τύπος αρχείου,Ημερομηνία,Μέγεθος,Τοποθεσία,Προορισμός,Ψηφιακά πνευματικά δικαιώματα,Ημερομηνία λήξης" />
+		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Γλώσσα μενού" />
+		<string id="STR_UI_LANG" value="Γλώσσα" />
+		<string id="STR_UI_LANG_EN" value="English" />
+		<string id="STR_UI_LANG_FR" value="Français" />
+		<string id="STR_UI_LANG_DE" value="Deutsch" />
+		<string id="STR_UI_LANG_NL" value="Nederlands" />
+		<string id="STR_UI_LANG_ES" value="Español" />
+		<string id="STR_UI_LANG_PT" value="Português" />
+		<string id="STR_UI_LANG_IT" value="Italiano" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="Επιλέξτε την προτιμώμενή σας γλώσσα και πατήστε &quot;Εντάξει&quot;.&#xA;Σημείωση: Οι ρυθμίσεις της συσκευής μπορούν να αλλαχθούν από το μενού &quot;Ρυθμίσεις&quot; αργότερα." />
+		<string id="STR_UI_PARTS_DELIMITER" value="/" />
+		<string id="STR_UI_MESSAGE_DEMOMODE" value="(Λειτουργία επίδειξης)" />
+		<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value="Επίδειξη προστασίας οθόνης" />
+		<string id="STR_NODE_TITLE_OPTIONS" value="Επιλογές" />
+		<string id="STR_DEMO_TITLE" value="ΛΕΙΤΟΥΡΓΙΑ ΕΠΙΔΕΙΞΗΣ" />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="Τίτλος: &quot;XXTITLEXX&quot;" />
+		<string id="STR_UI_DATE" value="Ημερομηνία" />
+		<string id="STR_UI_TIME" value="Χρόνος" />
+		<string id="STR_UI_BUTTON_12HR" value="12 ώρες" />
+		<string id="STR_UI_BUTTON_24HR" value="24 ώρες" />
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / " />
+		<string id="STR_UI_MESSAGE_NOBOOK" value="Κανένα βιβλίο" />
+		<string id="STR_NODE_TITLE_BOOK" value="Βιβλία" />
+		<string id="STR_NODE_TITLE_SORTEDBYTITLE" value="κατά τίτλο" />
+		<string id="STR_NODE_TITLE_SORTEDBYAUTHOR" value="κατά συγγραφέα" />
+		<string id="STR_NODE_TITLE_SORTEDBYDATE" value="κατά ημερομηνία" />
+		<string id="STR_NODE_TITLE_SORTEDBYORDER" value="κατά σειρά προσθήκης" />
+		<string id="STR_NODE_TITLE_ALLNOTES" value="Όλες οι σημειώσεις" />
+		<string id="STR_NODE_TITLE_SORTEDBYCOMMENT" value="κατά σχόλιο" />
+		<string id="STR_NODE_TITLE_SORTEDBYTYPE" value="κατά τύπο" />
+		<string id="STR_NODE_TITLE_SORTEDBYARTIST" value="κατά καλλιτέχνη" />
+		<string id="STR_NODE_TITLE_NEXTPAGE" value="Επόμενη σελίδα" />
+		<string id="STR_NODE_TITLE_PAGETURNGESTURE" value="Προτίμηση γυρίσματος σελίδας " />
+		<string id="STR_NODE_TITLE_ADVANCEDSETTINGS" value="Προηγμένες ρυθμίσεις" />
+		<string id="STR_NODE_TITLE_TOUCHPANEL" value="Ρύθμιση οθόνης αφής" />
+		<string id="STR_NODE_TITLE_CLEARKEYBOARDHISTORY" value="Καθαρισμός ιστορικού πληκτρολογίου" />
+		<string id="STR_NODE_TITLE_SEARCHRESULTS" value="Αποτελέσματα αναζήτησης" />
+		<string id="STR_COUNTER_NOTES_N" value=" σημειώσεις" />
+		<string id="STR_COUNTER_NOTE_1" value="1 σημείωση" />
+		<string id="STR_COUNTER_NOTE_0" value="Καμία σημείωση" />
+		<string id="STR_NODE_TITLE_SORTEDBYPAGE" value="κατά σελίδα" />
+		<string id="STR_NODE_TITLE_POWERMANAGEMENT" value="Διαχείριση ενέργειας" />
+		<string id="STR_UI_MENU_SORT" value="Ταξινόμηση" />
+		<string id="STR_UI_MENU_BYORDER" value="κατά σειρά προσθήκης" />
+		<string id="STR_UI_MENU_BYTITLE" value="κατά τίτλο" />
+		<string id="STR_UI_MENU_BYAUTHOR" value="κατά συγγραφέα" />
+		<string id="STR_UI_MENU_BYDATE" value="κατά ημερομηνία" />
+		<string id="STR_UI_MENU_VIEW" value="Προβολή" />
+		<string id="STR_UI_MENU_LIST" value="Λίστα" />
+		<string id="STR_UI_MENU_THUMBNAIL" value="Μικρογραφία" />
+		<string id="STR_UI_MENU_NOWPLAYING" value="Παίζει τώρα" />
+		<string id="STR_UI_MENU_RESUMELISTENING" value="Συνέχεια αναπαραγωγής" />
+		<string id="STR_NODE_TITLE_SORTEDBYTRACK" value="κατά κομμάτι ήχου" />
+		<string id="STR_UI_MENU_ORIENTATION" value="Προσανατολισμός" />
+		<string id="STR_UI_MENU_SEARCHTITLE" value="Αναζήτηση" />
+		<string id="STR_UI_MENU_CLOSETHISBOOK" value="Επιστροφή στη λίστα" />
+		<string id="STR_UI_MENU_GOTOPAGE" value="Μετάβαση στη σελίδα" />
+		<string id="STR_UI_MENU_CREATEEDITNOTES" value="Δημιουργία/Επεξεργασία σημειώσεων" />
+		<string id="STR_UI_MENU_SHOWNOTES" value="Προβολή σημειώσεων" />
+		<string id="STR_UI_MENU_HIDENOTES" value="Απόκρυψη σημειώσεων" />
+		<string id="STR_UI_MENU_TABLEOFCONTENTS" value="Πίνακας περιεχομένων" />
+		<string id="STR_UI_MENU_BOOKINFO" value="Πληροφορίες" />
+		<string id="STR_UI_MENU_DELETEBOOK" value="Διαγραφή βιβλίου" />
+		<string id="STR_UI_MENU_SEARCHAKEYWORD" value="Αναζήτηση" />
+		<string id="STR_UI_MENU_HISTORYJUMP" value="Ιστορικό" />
+		<string id="STR_UI_MENU_CLOSETHISMUSIC" value="Επιστροφή στη λίστα" />
+		<string id="STR_UI_MENU_NOTES" value="Σημειώσεις" />
+		<string id="STR_UI_MENU_DICTIONARY_LOOK_UP_HISTORY" value="Καταγραφές λέξεων: Βιβλίο" />
+		<string id="STR_UI_MENU_OFF" value="Ανενεργό" />
+		<string id="STR_UI_MENU_SONG_1" value="Ένα τραγούδι" />
+		<string id="STR_UI_MENU_SONG_ALL" value="Όλα τα τραγούδια" />
+		<string id="STR_UI_MENU_SHUFFLEON" value="Τυχαία σειρά ενεργοποιημένη" />
+		<string id="STR_UI_MENU_SHUFFLEOFF" value=" Τυχαία σειρά απενεργοποιημένη" />
+		<string id="STR_UI_MENU_CONTINUEREADING" value="Συνέχεια ανάγνωσης" />
+		<string id="STR_UI_MENU_CLOSETHISPICTURE" value="Επιστροφή στη λίστα" />
+		<string id="STR_UI_MENU_SLIDESHOWOFF" value="Προβολή διαφανειών απενεργοποιημένη" />
+		<string id="STR_UI_MENU_SLIDESHOWON" value="Προβολή διαφανειών ενεργοποιημένη" />
+		<string id="STR_UI_MENU_BYARTIST" value="κατά καλλιτέχνη" />
+		<string id="STR_UI_MENU_BYPAGE" value="κατά σελίδα" />
+		<string id="STR_UI_MENU_BYTYPE" value="κατά τύπο" />
+		<string id="STR_UI_MENU_BYCOMMENT" value="κατά σχόλιο" />
+		<string id="STR_UI_MENU_DELETENOTES" value="Διαγραφή σημειώσεων" />
+		<string id="STR_UI_MESSAGE_RESET" value="Σίγουρα θέλετε να επαναφέρετε τις προεπιλεγμένες ρυθμίσεις;" />
+		<string id="STR_UI_MESSAGE_FORMATINTERNALMEMORY" value="Διαμόρφωση εσωτερικής μνήμης" />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE" value="Σίγουρα θέλετε να διαμορφώσετε την εσωτερική μνήμη;&#xA;Προειδοποίηση: Όλο το περιεχόμενο και οι σημειώσεις θα διαγραφούν." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_MS" value="Σίγουρα θέλετε να διαμορφώσετε το Memory Stick™;&#xA;Προειδοποίηση: Όλο το περιεχόμενο και οι σημειώσεις θα διαγραφούν." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_SD" value="Σίγουρα θέλετε να διαμορφώσετε την κάρτα SD;&#xA;Προειδοποίηση: Όλο το περιεχόμενο και οι σημειώσεις θα διαγραφούν." />
+		<string id="STR_UI_MESSAGE_DELETEBOOK" value="Σίγουρα θέλετε να &#xA;διαγράψετε αυτό το βιβλίο;" />
+		<string id="STR_UI_MESSAGE_DELETEBOOKERR" value="Αδύνατη η διαγραφή του βιβλίου. Πατήστε &quot;Εντάξει&quot; για να επιστρέψετε στη λίστα βιβλίων." />
+		<string id="STR_UI_MESSAGE_DELETEHISTORICAL" value="Σίγουρα θέλετε να διαγράψετε το ιστορικό του πληκτρολογίου;" />
+		<string id="STR_UI_MESSAGE_DEVICE_SHUTDOWN" value="Σίγουρα θέλετε να τερματίσετε ολοκληρωτικά τη λειτουργία της συσκευής;" />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONSTART" value="Πατήστε &quot;Ναι&quot; για να ξεκινήσετε τη ρύθμιση της οθόνης αφής." />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONEND" value="Η ρύθμιση της οθόνης αφής ολοκληρώθηκε." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_1" value="Αυτή η ρύθμιση δεν είναι διαθέσιμη στη λειτουργία επίδειξης." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_2" value="Αυτή η λειτουργία δεν είναι διαθέσιμη στη λειτουργία επίδειξης." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_START" value="Χρησιμοποιώντας τη γραφίδα, πατήστε στο κέντρο του στόχου. " />
+		<string id="STR_UI_MESSAGE_CALIBRATION_ERR" value="Εντοπίστηκε σφάλμα στη ρύθμιση της οθόνης. Παρακαλώ ξεκινήστε ξανά τη διαδικασία ρύθμισης οθόνης." />
+		<string id="STR_UI_BUTTON_YES" value="Ναι" />
+		<string id="STR_UI_BUTTON_NO" value="Όχι" />
+		<string id="STR_UI_BUTTON_ZOOMIN" value="Μεγέθυνση" />
+		<string id="STR_UI_BUTTON_PAGE_STYLE" value="Μορφή σελίδας" />
+		<string id="STR_UI_BUTTON_SEARCH" value="Αναζήτηση" />
+		<string id="STR_UI_BUTTON_DONE" value="Ολοκληρώθηκε" />
+		<string id="STR_UI_BUTTON_GO" value="Μετάβαση" />
+		<string id="STR_UI_BUTTON_ENTERPAGE" value="Εισάγετε αρ. σελίδας" />
+		<string id="STR_UI_BUTTON_NEW" value="Νέο" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING" value="Λεξικό" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING_l" value="λεξικό" />
+		<string id="STR_DICTIONARY_US" value="New Oxford American Dictionary" />
+		<string id="STR_DICTIONARY_BRITISH" value="Oxford Dictionary of English" />
+		<string id="STR_DICTIONARY_EN_TO_FR" value="Oxford-Hachette French Dictionary (EN-FR)" />
+		<string id="STR_DICTIONARY_FR_TO_EN" value="Oxford-Hachette French Dictionary (FR-EN)" />
+		<string id="STR_DICTIONARY_EN_TO_GM" value="Collins English-German Dictionary" />
+		<string id="STR_DICTIONARY_GM_TO_EN" value="Collins German-English Dictionary" />
+		<string id="STR_DICTIONARY_EN_TO_SP" value="Oxford Spanish Dictionary (EN-ES)" />
+		<string id="STR_DICTIONARY_SP_TO_EN" value="Oxford Spanish Dictionary (ES-EN)" />
+		<string id="STR_DICTIONARY_EN_TO_IT" value="Collins English-Italian Dictionary" />
+		<string id="STR_DICTIONARY_IT_TO_EN" value="Collins Italian-English Dictionary" />
+		<string id="STR_DICTIONARY_EN_TO_DT" value="Van Dale Pocketwoordenboek Engels-Nederlands" />
+		<string id="STR_DICTIONARY_DT_TO_EN" value="Van Dale Pocketwoordenboek Nederlands-Engels" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_DICTIONARY" value="Επιλέξτε το προτιμώμενό σας προεπιλεγμένο λεξικό και πατήστε &quot;Εντάξει&quot;.&#xA;Σημείωση: Οι ρυθμίσεις της συσκευής μπορούν να αλλαχθούν από το μενού &quot;Ρυθμίσεις&quot; αργότερα.&#xA;" />
+		<string id="STR_DICTIONARY_NO" value="Κανένα" />
+		<string id="STR_NODE_TITLE_DATEANDTIMEFORMAT_SETTING" value="Μορφή ημερομηνίας και ώρας" />
+		<string id="STR_UI_PARTS_MONTH" value="Μήνας" />
+		<string id="STR_UI_PARTS_DAY" value="Μέρα" />
+		<string id="STR_UI_PARTS_YEAR" value="Έτος" />
+		<string id="STR_UI_PARTS_HOUR" value="ώρα" />
+		<string id="STR_UI_MESSAGE_RESTARTING" value="Επανεκκίνηση..." />
+		<string id="STR_UI_NODE_TITLE_KEYBOARD" value="Πληκτρολόγιο" />
+		<string id="STR_UI_KEYBOARD_US" value="United States" />
+		<string id="STR_UI_KEYBOARD_UK" value="United Kingdom" />
+		<string id="STR_UI_KEYBOARD_FRENCH" value="French" />
+		<string id="STR_UI_KEYBOARD_GERMAN" value="German" />
+		<string id="STR_UI_KEYBOARD_NETHERLANDS" value="Dutch" />
+		<string id="STR_UI_KEYBOARD_CANADIAN_FRENCH" value="Canadian French" />
+		<string id="STR_UI_KEYBOARD_SPANISH" value="Spanish" />
+		<string id="STR_UI_KEYBOARD_ITALIAN" value="Italian" />
+		<string id="STR_UI_KEYBOARD_PORTUGUESE" value="Portuguese" />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP1" value="Αυτή η σελίδα δεν μπορεί να προβληθεί." />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_CANNOT_EDIT" value="Δεν είναι δυνατή η επεξεργασία αυτής της ζωγραφιάς." />
+		<string id="DIALOGMSG_INFORM_SCR_CANNOT_EDIT" value="Δεν είναι δυνατή η επεξεργασία αυτού του υπομνήματος." />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_FREEHAND" value="Νέα ζωγραφιά" />
+		<string id="STR_UI_MENU_NEW_DRAWING" value="Νέα ζωγραφιά" />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_TEXT" value="Νέο υπόμνημα" />
+		<string id="STR_UI_MENU_NEW_MEMO" value="Νέο υπόμνημα" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYFREEHAND" value="με ζωγραφιά" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYTEXT" value="με πληκτρολόγιο" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_MS" value="Διαμόρφωση Memory Stick™" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_SD" value="Διαμόρφωση κάρτας SD" />
+		<string id="STR_NODE_TITLE_FORMATDEVICE" value="Διαμόρφωση μνήμης" />
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="Εσωτερική μνήμη" />
+		<string id="STR_UI_MESSAGE_LOCATION_MS" value="Memory Stick™" />
+		<string id="STR_UI_MESSAGE_LOCATION_SD" value="Κάρτα SD" />
+		<string id="STR_UI_FORMAT_INTERNAL_MEMORY" value="Διαμόρφωση εσωτερικής μνήμης..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_MS" value="Διαμόρφωση Memory Stick™..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_SD" value="Διαμόρφωση κάρτας SD..." />
+		<string id="STR_WARNING_FORMAT_1" value="Διαμόρφωση..." />
+		<string id="STR_WARNING_FORMAT_2_MS" value="Μην αφαιρέσετε το Memory Stick™." />
+		<string id="STR_WARNING_FORMAT_2_SD" value="Μην αφαιρέσετε την κάρτα SD." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_1" value="Σίγουρα θέλετε να διαγράψετε το σελιδοδείκτη;" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_2" value="Σημείωση: Αυτή η σελίδα περιέχει ένα σελιδοδείκτη σε περισσότερα από ένα μεγέθη κειμένου. Όλοι οι σελιδοδείκτες σε αυτή τη σελίδα θα αφαιρεθούν αν προχωρήσετε." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_1" value="Σίγουρα θέλετε να διαγράψετε το σελιδοδείκτη;" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_2" value="Σημείωση: Αυτή η σελίδα περιέχει ένα σελιδοδείκτη με μια σημείωση σε περισσότερα από ένα μεγέθη κειμένου. Όλοι οι σελιδοδείκτες και οι σημειώσεις σε αυτή τη σελίδα θα αφαιρεθούν αν προχωρήσετε." />
+		<string id="STR_FORMAT_NO_MEMORY" value="Δεν έχει εισαχθεί κάρτα μνήμης." />
+		<string id="STR_FORMAT_WRITE_PROTECTED" value="Κάρτα μνήμης με προστασία εγγραφής" />
+		<string id="STR_FORMAT_NON_STANDARD" value="Η κάρτα μνήμης δεν υποστηρίζεται" />
+		<string id="STR_NODE_TITLE_NOTEPAD_FREEHAND" value="Χειρόγραφο" />
+		<string id="STR_NODE_TITLE_NOTEPAD_TEXT" value="Υπόμνημα κειμένου" />
+		<string id="STR_NODE_TITLE_SORTEDBYCREATEDDATE" value="κατά ημερομηνία δημιουργίας" />
+		<string id="STR_NODE_TITLE_MORE" value="Περισσότερα" />
+		<string id="STR_NODE_TITLE_MORE_FULL" value="Περισσότερες εφαρμογές" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK1" value="Σίγουρα θέλετε να διαγράψετε το σελιδοδείκτη και τη συσχετισμένη σημείωση;" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT1" value="Σίγουρα θέλετε να διαγράψετε την επισήμανση και τη συσχετισμένη σημείωση;" />
+		<string id="DIALOGMSG_INFORM_NOHITS" value="Δε βρέθηκαν αποτελέσματα." />
+		<string id="DIALOGMSG_INFORM_NOMOREHITS" value="Δε βρέθηκε αποτέλεσμα." />
+		<string id="DIALOGMSG_CONFIRM_BACKWARDSEARCH" value="Θέλετε να συνεχιστεί η αναζήτηση από το τέλος του περιεχομένου;" />
+		<string id="DIALOGMSG_CONFIRM_FORWARDSEARCH" value=" Θέλετε να συνεχιστεί η αναζήτηση από την αρχή του περιεχομένου;" />
+		<string id="STR_MSG_SEARCHING" value="Αναζήτηση..." />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK1" value="Σίγουρα θέλετε να διαγράψετε το σελιδοδείκτη και τη συσχετισμένη σημείωση;" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT1" value="Σίγουρα θέλετε να διαγράψετε την επισήμανση και τη συσχετισμένη σημείωση;" />
+		<string id="DIALOGMSG_CONFIRM_CMT_EDIT_QUIT" value="Οι αλλαγές δεν θα αποθηκευτούν. Συνέχεια;" />
+		<string id="DIALOGMSG_CONFIRM_SCR_EDIT_QUIT" value="Οι αλλαγές δεν θα αποθηκευτούν. Συνέχεια;" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES1" value="Όλες οι σημειώσεις θα αφαιρεθούν." />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES2" value="Σίγουρα θέλετε να διαγράψετε;" />
+		<string id="KBOOK_UI_MYNOTE" value="Σημειώσεις" />
+		<string id="STR_UI_KEYBOARD_SYMBOL" value="Σύμβολα" />
+		<string id="STR_UI_KEYBOARD_SPACE" value="Διάστημα" />
+		<string id="STR_UI_KEYBOARD_ABC" value="Αβγ" />
+		<string id="STR_UI_KEYBOARD_RETURN" value="Επιστροφή" />
+		<string id="STR_UI_COMMENTVIEWER_EDIT" value="Επεξεργασία" />
+		<string id="STR_UI_COMMENTVIEWER_DELETE" value="Διαγραφή" />
+		<string id="STR_UI_AUDIO_REPEAT" value="Επανάληψη" />
+		<string id="STR_NODE_TITLE_HOMEPERSONALIZATION" value="Διαμόρφωση Αρχικού Μενού" />
+		<string id="STR_UI_PARTS_LEFT" value="ΑΡΙΣΤΕΡΑ" />
+		<string id="STR_UI_PARTS_RIGHT" value="ΔΕΞΙΑ" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_FREEHAND" value="Διαγραφή ζωγραφιάς" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_TEXT" value="Διαγραφή υπομνήματος" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND1" value="Σίγουρα θέλετε να διαγράψετε αυτή τη ζωγραφιά;" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT1" value="Σίγουρα θέλετε να διαγράψετε αυτό το υπόμνημα;" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT1" value="Οι αλλαγές δεν θα αποθηκευτούν. Συνέχεια;" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT1" value="Οι αλλαγές δεν θα αποθηκευτούν. Συνέχεια;" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT1" value="Οι αλλαγές δεν θα αποθηκευτούν. Συνέχεια;" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT1" value="Οι αλλαγές δεν θα αποθηκευτούν. Συνέχεια;" />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_RESULT" value="Δε βρέθηκε καμιά καταχώρηση. Πατήστε XXBUTTONXX για να εισάγετε μια λέξη χειροκίνητα ή πατήστε &quot;OPTIONS&quot; για να επιλέξετε ένα άλλο λεξικό." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_INPUT_KEYBOARD" value="Εισάγετε μια λέξη." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_HEADWORD" value="Δε βρέθηκε καμιά καταχώρηση.&#xA;Παρακαλώ ελέγξτε την λέξη που εισήχθηκε." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SUPPORTED" value="Το λεξικό είναι απενεργοποιημένο." />
+		<string id="STR_UI_DICTIONARY_ENTRIES_PAGE" value="Καταχωρήσεις, σελ." />
+		<string id="STR_UI_DICTIONARY_ENTRY_PAGE" value="Καταχώρηση, σελ." />
+		<string id="STR_COUNTER_DRAWING_N" value=" ζωγραφιές" />
+		<string id="STR_COUNTER_DRAWING_1" value="1 ζωγραφιά" />
+		<string id="STR_COUNTER_DRAWING_0" value="Καμιά ζωγραφιά" />
+		<string id="STR_COUNTER_MEMO_N" value=" υπομνήματα" />
+		<string id="STR_COUNTER_MEMO_1" value="1 υπόμνημα" />
+		<string id="STR_COUNTER_MEMO_0" value="Κανένα υπόμνημα" />
+		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="Εξαιρετική κατάσταση εσωτερικής μνήμης&#xA;Διαμόρφωση." />
+		<string id="STR_HOME_TAB_HOME_V" value="Αρχική" />
+		<string id="STR_HOME_TAB_HOME_H" value="Αρχική" />
+		<string id="STR_HOME_TAB_STORE_V" value="Κατάστημα" />
+		<string id="STR_HOME_TAB_STORE_H" value="Κατάστημα" />
+		<string id="STR_HOME_TAB_APPLICATIONS_V" value="Εφαρμογές" />
+		<string id="STR_HOME_TAB_APPLICATIONS_H" value="Εφαρμογές" />
+		<string id="STR_HOME_TAB_SETTINGS_V" value="Ρυθμίσεις" />
+		<string id="STR_HOME_TAB_SETTINGS_H" value="Ρυθμίσεις" />
+		<string id="STR_NODE_TITLE_PERIODICALS" value="Περιοδικά" />
+		<string id="STR_NODE_TITLE_NEWDELIVERY" value="Νέα παράδοση" />
+		<string id="STR_NODE_TITLE_DICTIONARY" value="Λεξικό" />
+		<string id="STR_HOME_SEEALL" value="Δέστε τα όλα" />
+		<string id="STR_HOME_CONTINUEREADING_LASTREAD" value="Τελευταία ανάγνωση: " />
+		<string id="STR_COUNTER_PERIODICAL_N" value=" περιοδικά" />
+		<string id="STR_COUNTER_PERIODICAL_1" value="1 περιοδικό" />
+		<string id="STR_COUNTER_PERIODICAL_0" value="Κανένα περιοδικό" />
+		<string id="STR_HOME_MESSAGE_ACCESSING" value="Πρόσβαση..." />
+		<string id="STR_UI_BUTTON_RETRY" value="Δοκιμή ξανά" />
+		<string id="STR_UI_MENU_DELETE_BOOKS" value="Διαγραφή βιβλίων" />
+		<string id="STR_UI_MENU_PROTECT_BOOKS" value="Προστασία βιβλίων" />
+		<string id="STR_UI_MENU_DELETE_ISSUES" value="Διαγραφή τευχών" />
+		<string id="STR_UI_MENU_PROTECT_ISSUES" value="Προστασία τευχών" />
+		<string id="STR_UI_MENU_DELETE_TEXTMEMOS" value="Διαγραφή υπομνημάτων" />
+		<string id="STR_UI_MENU_PROTECT_TEXTMEMOS" value="Προστασία υπομνημάτων" />
+		<string id="STR_UI_MENU_DELETE_HANDWRITINGS" value="Διαγραφή ζωγραφιών" />
+		<string id="STR_UI_MENU_PROTECT_HANDWRITINGS" value="Προστασία ζωγραφιών" />
+		<string id="STR_UI_MENU_DELETE_AUDIO" value="Διαγραφή ήχου" />
+		<string id="STR_UI_MENU_PROTECT_AUDIO" value="Προστασία ήχου" />
+		<string id="STR_UI_MENU_DELETE_PICTURES" value="Διαγραφή εικόνων" />
+		<string id="STR_UI_MENU_PROTECT_PICTURES" value="Προστασία εικόνων" />
+		<string id="STR_UI_MENU_EDIT_STANDBY_SCREEN" value="Επιλογή οθόνης κατάστασης αναμονής" />
+		<string id="STR_UI_MENU_MANAGE_SUBSCRIPTION" value="Διαχείριση συνδρομής" />
+		<string id="STR_UI_MENU_2PAGEVIEW" value="Προβολή 2 σελίδων" />
+		<string id="STR_UI_MENU_1PAGEVIEW" value="Προβολή 1 σελίδας" />
+		<string id="STR_UI_MENU_BYLATESTREAD" value="πιο πρόσφατα αναγνωσμένο" />
+		<string id="STR_UI_MENU_BYISSUEDATE" value="κατά ημερομηνία έκδοσης" />
+		<string id="STR_UI_MENU_STORE_HOME" value="Αρχική καταστήματος" />
+		<string id="STR_UI_MENU_MY_ACCOUNT" value="Ο λογαριασμός μου" />
+		<string id="STR_UI_MENU_HELP_AND_SUPPORT" value="Βοήθεια και Εξυπηρέτηση"/>
+		<string id="STR_UI_MENU_LEGALINFO" value="Νομικές πληροφορίες" />
+		<string id="STR_UI_MENU_REFRESH_PAGE" value="Ανανέωση σελίδας" />
+		<string id="STR_UI_MENU_DELETEISSUE" value="Διαγραφή τεύχους" />
+		<string id="STR_UI_MENU_SELECT_ALL" value="Επιλογή όλων " />
+		<string id="STR_UI_MENU_UNSELECT_ALL" value="Κατάργηση επιλογής όλων" />
+		<string id="STR_UI_MENU_PROTECT_ALL" value="Προστασία όλων" />
+		<string id="STR_UI_MENU_UNPROTECT_ALL" value="Κατάργηση προστασίας όλων" />
+		<string id="STR_UI_BUTTON_ISSUE_HOME" value="Πρώτη σελίδα" />
+		<string id="STR_UI_BUTTON_PREVIOUS_SECTION" value="Ενότητα" />
+		<string id="STR_UI_BUTTON_NEXT_SECTION" value="Ενότητα" />
+		<string id="STR_UI_BUTTON_LAST_SECTION" value="Ενότητα" />
+		<string id="STR_UI_BUTTON_SECTION_HOME" value="Αρχή ενότητας" />
+		<string id="STR_UI_BUTTON_PREVIOUS_ARTICLE" value="Άρθρο" />
+		<string id="STR_UI_BUTTON_NEXT_ARTICLE" value="Άρθρο" />
+		<string id="STR_NODE_TITLE_FRONT_PAGE" value="Πρώτη σελίδα" />
+		<string id="STR_NODE_TITLE_SECTION_HOME" value="Αρχή ενότητας XXSECTIONXX" />
+		<string id="STR_NODE_TITLE_SECTION_OTHERS" value="Άλλα" />
+		<string id="STR_COUNTER_ARTICLE_N" value=" άρθρα" />
+		<string id="STR_COUNTER_ARTICLE_1" value="1 άρθρο" />
+		<string id="STR_COUNTER_ARTICLE_0" value="Κανένα άρθρο" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SECTION" value="Ενότητα XXSECTIONXX" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_SEPARATE" value=":" />
+		<string id="STR_UI_NEWSPAPER_PARTS_HEADER_DELIMITER" value=" / " />
+		<string id="STR_NODE_TITLE_DELETEISSUE" value="Διαγραφή τεύχους" />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEISSUE" value="Τίτλος τεύχους: &quot;XXTITLEXX&quot;" />
+		<string id="STR_UI_MESSAGE_DELETEISSUE" value="Σίγουρα θέλετε να διαγράψετε αυτό το τεύχος;" />
+		<string id="STR_UI_MESSAGE_DELETEISSUEERR" value="Αδύνατη η διαγραφή του τεύχους. Πατήστε &quot;Εντάξει&quot; για να επιστρέψετε στη λίστα τευχών." />
+		<string id="STR_NODE_TITLE_SORTEDBY_LATESTREAD" value="πιο πρόσφατα αναγνωσμένο" />
+		<string id="STR_NODE_TITLE_SORTEDBY_ISSUEDATE" value="κατά ημερομηνία έκδοσης" />
+		<string id="STR_MONTH_JANUARY" value="Ιανουάριος" />
+		<string id="STR_MONTH_FEBRUARY" value="Φεβρουάριος" />
+		<string id="STR_MONTH_MARCH" value="Μάρτιος" />
+		<string id="STR_MONTH_APRIL" value="Απρίλιος" />
+		<string id="STR_MONTH_MAY" value="Μάιος" />
+		<string id="STR_MONTH_JUNE" value="Ιούνιος" />
+		<string id="STR_MONTH_JULY" value="Ιούλιος" />
+		<string id="STR_MONTH_AUGUST" value="Αύγουστος" />
+		<string id="STR_MONTH_SEPTEMBER" value="Σεπτέμβριος" />
+		<string id="STR_MONTH_OCTOBER" value="Οκτώβριος" />
+		<string id="STR_MONTH_NOVEMBER" value="Νοέμβριος" />
+		<string id="STR_MONTH_DECEMBER" value="Δεκέμβριος" />
+		<string id="STR_DAY_MONDAY_FULL" value="Δευτέρα " />
+		<string id="STR_DAY_TUESDAY_FULL" value="Τρίτη" />
+		<string id="STR_DAY_WEDNESDAY_FULL" value="Τετάρτη" />
+		<string id="STR_DAY_THURSDAY_FULL" value="Πέμπτη" />
+		<string id="STR_DAY_FRIDAY_FULL" value="Παρασκευή" />
+		<string id="STR_DAY_SATURDAY_FULL" value="Σάββατο" />
+		<string id="STR_DAY_SUNDAY_FULL" value="Κυριακή" />
+		<string id="STR_DAY_MONDAY_ABB" value="Δευ" />
+		<string id="STR_DAY_TUESDAY_ABB" value="Τρι" />
+		<string id="STR_DAY_WEDNESDAY_ABB" value="Τετ" />
+		<string id="STR_DAY_THURSDAY_ABB" value="Πεμ" />
+		<string id="STR_DAY_FRIDAY_ABB" value="Παρ" />
+		<string id="STR_DAY_SATURDAY_ABB" value="Σαβ" />
+		<string id="STR_DAY_SUNDAY_ABB" value="Κυρ" />
+		<string id="STR_NODE_TITLE_UNREAD_BOOKS" value="Μη αναγνωσμένα βιβλία" />
+		<string id="STR_NODE_TITLE_UNREAD_PERIODICALS" value="Μη αναγνωσμένα περιοδικά" />
+		<string id="STR_NODE_TITLE_PURCHASED_BOOKS" value="Αγορασμένα βιβλία" />
+		<string id="STR_UI_MENU_NEW_COLLECTION" value="Νέα συλλογή" />
+		<string id="STR_UI_MENU_DELETE_COLLECTIONS" value="Διαγραφή συλλογών" />
+		<string id="STR_NODE_TITLE_ADD_NEW_COLLECTION" value="Νέα συλλογή" />
+		<string id="STR_UI_KEYBOARD_COLLECTION_NAME" value="Όνομα συλλογής:" />
+		<string id="DIALOGMSG_COLLECTIONS_WHERE_TO_CREATE" value="Επιλέξτε πού να δημιουργηθεί η συλλογή:" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_DEVICE" value="Εσωτερική μνήμη" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_MS" value="Memory Stick™" />
+		<string id="STR_UI_RADIOBUTTON_COLLECTIONS_SD" value="Κάρτα SD" />
+		<string id="STR_NODE_TITLE_ADD_BOOKS" value="Προσθήκη βιβλίων" />
+		<string id="STR_NODE_TITLE_SELECT_PERIODICAL" value="Επιλέξτε περιοδικό" />
+		<string id="STR_NODE_TITLE_ADD_ISSUES" value="Προσθήκη τευχών" />
+		<string id="STR_NODE_TITLE_SELECT_A_COLLECTION" value="Επιλέξτε μια συλλογή" />
+		<string id="STR_NODE_TITLE_SORTEDBYFILENAME" value="κατά όνομα αρχείου" />
+		<string id="STR_UI_MENU_BYFILENAME" value="κατά όνομα αρχείου" />
+		<string id="STR_UI_MENU_TITLEONLYLIST" value="Μόνο τίτλος" />
+		<string id="STR_UI_MENU_ADDBOOKS" value="Βιβλία" />
+		<string id="STR_UI_MENU_ADDPERIODICALS" value="Περιοδικά" />
+		<string id="STR_UI_MENU_REMOVECONTENT" value="Αφαίρεση περιεχομένου" />
+		<string id="STR_NODE_TITLE_REMOVE_ITEMS" value="Αφαίρεση περιεχομένου" />
+		<string id="STR_NODE_TITLE_DELETE_COLLECTIONS" value="Διαγραφή συλλογών" />
+		<string id="STR_NODE_TITLE_DELETE_BOOKS" value="Διαγραφή βιβλίων" />
+		<string id="STR_NODE_TITLE_DELETE_ISSUES" value="Διαγραφή τευχών" />
+		<string id="STR_NODE_TITLE_DELETE_AUDIO" value="Διαγραφή ήχου" />
+		<string id="STR_NODE_TITLE_DELETE_PICTURES" value="Διαγραφή εικόνων" />
+		<string id="STR_NODE_TITLE_DELETE_HANDWRITINGS" value="Διαγραφή ζωγραφιών" />
+		<string id="STR_NODE_TITLE_DELETE_TEXTMEMOS" value="Διαγραφή υπομνημάτων" />
+		<string id="STR_NODE_TITLE_DELETE_NOTES" value="Διαγραφή σημειώσεων" />
+		<string id="STR_UI_MESSAGE_DELETE_MANUALLY_NORMAL" value="Σίγουρα θέλετε να διαγράψετε το επιλεγμένο στοιχείο/-α;" />
+		<string id="STR_UI_MESSAGE_DELETE_MANUALLY_SELECTED_AS_STANDBY" value="Σίγουρα θέλετε να διαγράψετε το επιλεγμένο στοιχείο/-α, συμπεριλαμβανομένων των εικόνων που έχουν επιλεχθεί για προβολή στην οθόνη κατάστασης αναμονής;" />
+		<string id="STR_COUNTER_SELECTED" value=" επιλεγμένα" />
+		<string id="STR_COUNTER_PROTECTED" value=" προστατευμένα" />
+		<string id="STR_NODE_TITLE_PROTECT_BOOKS" value="Προστασία βιβλίων Books" />
+		<string id="STR_NODE_TITLE_PROTECT_ISSUES" value="Προστασία τευχών" />
+		<string id="STR_NODE_TITLE_PROTECT_AUDIO" value="Προστασία ήχου" />
+		<string id="STR_NODE_TITLE_PROTECT_PICTURES" value="Προστασία εικόνων" />
+		<string id="STR_NODE_TITLE_PROTECT_HANDWRITINGS" value="Προστασία ζωγραφιών" />
+		<string id="STR_NODE_TITLE_PROTECT_TEXTMEMOS" value="Προστασία υπομνημάτων" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_BOOK" value="Αυτό το βιβλίο είναι προστατευμένο. Σίγουρα θέλετε να διαγράψετε αυτό το βιβλίο;" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_ISSUE" value="Σίγουρα θέλετε να διαγράψετε αυτό το προστατευμένο τεύχος;" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_MEMO" value="Αυτό το υπόμνημα είναι προστατευμένο. Σίγουρα θέλετε να διαγράψετε αυτό το υπόμνημα;" />
+		<string id="STR_UI_MESSAGE_DELETE_PROTECTED_DRAWING" value="Αυτή η ζωγραφιά είναι προστατευμένη. Σίγουρα θέλετε να διαγράψετε αυτή τη ζωγραφιά;" />
+		<string id="STR_COUNTER_ISSUE_N" value=" τεύχη" />
+		<string id="STR_COUNTER_ISSUE_1" value="1 τεύχος" />
+		<string id="STR_COUNTER_ISSUE_0" value="Κανένα τεύχος" />
+		<string id="STR_COUNTER_ISSUE_ALL" value="Όλα τα τεύχη" />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_MAIN" value="Πόσα τεύχη από αυτή τη συνδρομή θέλετε να κρατήσετε στη συσκευή σας;" />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_NOTE" value="Σημείωση: Τα προστατευμένα τεύχη δεν περιλαμβάνονται σε αυτή τη μέτρηση." />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_CHECK" value="Διαγραφή επιπλέον τεύχους/-ών τώρα." />
+		<string id="STR_UI_MESSAGE_DELETE_PERIODICALLY_NOW" value="Σίγουρα θέλετε να διαγράψετε το επιπλέον τεύχος/-η τώρα;" />
+		<string id="STR_UI_BUTTON_SAVE" value="Αποθήκευση" />
+		<string id="STR_UI_BUTTON_CANCEL" value="Άκυρο" />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_TOOLBAR" value="Αυτή η λειτουργία είναι απενεργοποιημένη επειδή προβάλλεται η γραμμή εργαλείων &quot;Δημιουργία/Επεξεργασία σημειώσεων&quot;. Παρακαλώ κλείστε αυτή τη γραμμή εργαλείων για να ενεργοποιήσετε αυτή τη λειτουργία." />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_FACING" value="Αυτή η λειτουργία είναι απενεργοποιημένη επειδή βρίσκεστε στην &quot;Προβολή 2 σελίδων&quot;. Παρακαλώ αλλάξτε στην &quot;Προβολή 1 σελίδας&quot; για να ενεργοποιήσετε αυτή τη λειτουργία." />
+		<string id="DIALOGMSG_INFORM_CANTMARGINREMOVE_TOOLBARFACING" value="Αυτή η λειτουργία είναι απενεργοποιημένη επειδή βρίσκεστε στην &quot;Προβολή 2 σελίδων&quot; και χρησιμοποιείτε τη γραμμή εργαλείων &quot;Δημιουργία/Επεξεργασία σημειώσεων&quot;. Παρακαλώ αλλάξτε στην &quot;Προβολή 1 σελίδας&quot; κλείστε τη γραμμή εργαλείων για να ενεργοποιήσετε αυτή τη λειτουργία." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SELECTED" value="Δεν έχει επιλεχθεί λεξικό. Παρακαλώ μεταβείτε στην καρτέλα &quot;Ρυθμίσεις&quot; και επιλέξτε το λεξικό σας." />
+		<string id="STR_UI_BUTTON_OTHERS" value="Άλλα" />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_COMPLETE" value="Η λήψη ολοκληρώθηκε" />
+		<string id="STR_UI_ABOUT_FREESPACE" value="Διαθέσιμος χώρος" />
+		<string id="STR_UI_ABOUT_DEVICEINFO" value="Πληροφορίες συσκευής" />
+		<string id="STR_UI_PARTS_IMEI" value="IMEI" />
+		<string id="STR_UI_PARTS_ICCID" value="ICCID" />
+		<string id="STR_UI_PARTS_ADOBE_DRM_AUTH" value="Adobe DRM" />
+		<string id="STR_UI_ABOUT_LEGALINFO" value="Νομικές πληροφορίες" />
+		<string id="STR_NODE_TITLE_WIRELESS_SLEEP_MODE" value="Wi-Fi σε κατάσταση αναμονής" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_WIRELESS" value="Η επιλογή &quot;Wi-Fi σε κατάσταση αναμονής&quot; βάζει τη λειτουργία ασύρματου δικτύου σε &quot;κατάσταση αναμονής&quot; όταν το δίκτυο είναι αδρανές για δέκα λεπτά. Επιλέξτε &quot;Ενεργό&quot; για να αυξήσετε τη διάρκεια ζωής της μπαταρίας και &quot;Ανενεργό&quot; για να βελτιώσετε το χρόνο σύνδεσης." />
+		<string id="STR_UI_SETTING_DIC_EBOOKID" value="Αναγνωριστικό ηλεκτρονικού βιβλίου: " />
+		<string id="STR_NODE_TITLE_TIMEZONE" value="Ζώνη ώρας" />
+		<string id="STR_UI_SETTING_TZ_EST" value="Ώρα Ανατολικών ΗΠΑ" />
+		<string id="STR_UI_SETTING_TZ_CST" value="Ώρα Κεντρικών ΗΠΑ" />
+		<string id="STR_UI_SETTING_TZ_MST" value="Ώρα Ορεινών ΗΠΑ" />
+		<string id="STR_UI_SETTING_TZ_PST" value="Ώρα Ειρηνικού" />
+		<string id="STR_UI_SETTING_TZ_AKST" value="Ώρα Αλάσκας" />
+		<string id="STR_UI_SETTING_TZ_HST" value="Ώρα Χαβάης" />
+		<string id="STR_UI_SETTING_SUMMERTIME_MSG" value="Θερινή ώρα" />
+		<string id="DIALOGMSG_INFORM_RESTART_TIMEZONE" value="Εφαρμογή ρύθμισης ζώνης ώρας..." />
+		<string id="DIALOGMSG_INFORM_RESTART_WIZARD" value="Εφαρμογή ρυθμίσεων..." />
+		<string id="DIALOGMSG_NOT_AVAILABLE_WHILE_DOWNLOADING" value="Αυτή η λειτουργία δεν είναι διαθέσιμη κατά τη λήψη περιεχομένου. Παρακαλώ επιλέξτε την ξανά μετά την ολοκλήρωση της λήψης." />
+		<string id="STR_UI_SETTING_RANGE_HOUR" value="(00 - 23)" />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_1" value="Αδύνατη η πρόσβαση στο κατάστημα Reader Store επειδή ο διακόπτης ασύρματου δικτύου &quot;WIRELESS&quot; είναι απενεργοποιημένος. Παρακαλώ ενεργοποιήστε τον και δοκιμάστε ξανά." />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_2" value="Αδύνατη η πρόσβαση στο κατάστημα Reader Store επειδή το δίκτυο δεν είναι συνδεδεμένο. Παρακαλώ δοκιμάστε ξανά με μετά τη σύνδεση." />
+		<string id="STR_UI_MESSAGE_BROWSE_ERROR_3" value=" Αδύνατη η πρόσβαση στο κατάστημα Reader Store επειδή η ρύθμιση &quot;Ημερομηνία και Ώρα&quot; ή η ρύθμιση &quot;Ζώνη ώρας&quot; είναι λανθασμένες. Παρακαλώ διορθώστε τις από την καρτέλα &quot;Ρυθμίσεις&quot; και δοκιμάστε ξανά." />
+		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_1" value="Η κάρτα SIM σας δεν αναγνωρίζεται. Παρακαλώ τερματίστε τη λειτουργία της συσκευής σας, επανεισάγετε την κάρτα SIM σας και επανεκκινήστε τη συσκευή σας. Αν αυτό το πρόβλημα συνεχιστεί, Παρακαλώ επικοινωνήστε με την Εξυπηρέτηση Πελατών της Sony." />
+		<string id="STR_UI_MESSAGE_SIMCARD_ERROR_3" value="Αυτή η κάρτα SIM είναι κλειδωμένη με κωδικό PIN ή PUK. Παρακαλώ ξεκλειδώστε τη χρησιμοποιώντας μια άλλη ηλεκτρονική συσκευή και δοκιμάστε ξανά ή επικοινωνήστε με την Εξυπηρέτηση Πελατών της Sony." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_1" value="Η λήψη περιεχομένου στη συσκευή ήταν αδύνατη επειδή ο διακόπτης ασύρματού δικτύου &quot;WIRELESS&quot; είναι απενεργοποιημένος." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_1_2" value="Παρακαλώ ενεργοποιήστε τον και, αφού συνδεθείτε στο δίκτυο, μπορείτε να ξεκινήσετε τη λήψη ξανά από τη σελίδα &quot;Ο λογαριασμός μου&quot; στο κατάστημα Reader Store." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_1" value="Η λήψη περιεχομένου στη συσκευή ήταν αδύνατη επειδή το δίκτυο δεν είναι συνδεδεμένο." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_2_2" value="Αφού συνδεθείτε στο δίκτυο, μπορείτε να ξεκινήσετε τη λήψη ξανά από τη σελίδα &quot;Ο λογαριασμός μου&quot; στο κατάστημα Reader Store." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_1" value="Η σύνδεση της συσκευής ήταν αδύνατη επειδή η ρύθμιση &quot;Ημερομηνία και Ώρα&quot; ή η ρύθμιση &quot;Ζώνη ώρας&quot; είναι λανθασμένες." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_3_2" value="Παρακαλώ διορθώστε τις από την καρτέλα &quot;Ρυθμίσεις&quot; και αφού συνδεθείτε στο δίκτυο, μπορείτε να ξεκινήσετε τη λήψη ξανά από τη σελίδα &quot;Ο λογαριασμός μου&quot; στο κατάστημα Reader Store." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_4_1" value="Η λήψη περιεχομένου στη συσκευή ήταν αδύνατη επειδή δεν υπάρχει επαρκής χώρος στην εσωτερική μνήμη." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_4_2" value="Προκειμένου να λάβετε νέο περιεχόμενο, πρέπει να διαγράψετε αρχεία από την εσωτερική μνήμη. Αφού θα έχετε δημιουργήσει αρκετό χώρο, να ξεκινήσετε τη λήψη ξανά από τη σελίδα &quot;Ο λογαριασμός μου&quot; στο κατάστημα Reader Store." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_5_1" value=" Η λήψη περιεχομένου στη συσκευή ήταν αδύνατη." />
+		<string id="STR_UI_MESSAGE_DOWNLOAD_ERROR_5_2" value="Παρακαλώ δοκιμάστε τη λήψη ξανά από τη σελίδα &quot;Ο λογαριασμός μου&quot; στο κατάστημα Reader Store.&#xA;(Κωδικός σφάλματος: XXCODEXX)" />
+		<string id="STR_UI_MESSAGE_NETWORK_OTHER_ERROR_1" value="Προέκυψε ένα σφάλμα κατά την πρόσβαση της λειτουργίας ασύρματου δικτύου. Παρακαλώ τερματίστε τη λειτουργία της συσκευής, πατώντας το πλήκτρο &quot;RESET&quot; στο κάτω μέρος της συσκευής και ενεργοποιήστε την ξανά." />
+		<string id="STR_UI_MESSAGE_NETWORK_DOWNLOAD_DELAY" value="Η συσκευή συνδέεται στο δίκτυο και ακολούθως θα ξεκινήσει η λήψη. " />
+		<string id="STR_UI_MESSAGE_NETWORK_OTHER_ERROR_3" value="Προέκυψε ένα σφάλμα κατά την πρόσβαση της λειτουργίας ασύρματου δικτύου.&#xA;Παρακαλώ περιμένετε στη θέση του εικονιδίου κατάστασης ασύρματου δικτύου στη γραμμή κατάστασης να εμφανιστεί η ένδειξη &quot;STBY&quot;, ακολούθως απενεργοποιήστε το διακόπτη ασύρματου δικτύου WIRELESS και μετά ενεργοποιήστε τον ξανά." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_1_MS" value="Αυτό το Memory Stick™ μπορεί να έχει καταστραφεί. Παρακαλώ δοκιμάστε ένα άλλο Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_1_SD" value="Αυτή η κάρτα SD μπορεί να έχει καταστραφεί. Παρακαλώ δοκιμάστε μια άλλη κάρτα SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_2_MS" value="Εξαιτίας ενός σφάλματος στο Memory Stick™, το προφίλ Αναγνώστη δεν μπορεί να αποθηκευτεί στη συσκευή. Παρακαλώ δοκιμάστε ένα άλλο Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_2_SD" value="Εξαιτίας ενός σφάλματος στην κάρτα SD, το προφίλ Αναγνώστη δεν μπορεί να αποθηκευτεί στη συσκευή. Παρακαλώ δοκιμάστε μια άλλη κάρτα SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_3_MS" value="Το Memory Stick™ είναι μόνο για ανάγνωση και το προφίλ Αναγνώστη δεν μπορεί να αποθηκευτεί στη συσκευή. Παρακαλώ δοκιμάστε ένα άλλο Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_4_MS" value="Εξαιτίας ενός σφάλματος στο Memory Stick™, το προφίλ Αναγνώστη δεν μπορεί να αποθηκευτεί στη συσκευή. Παρακαλώ δοκιμάστε ένα άλλο Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_4_SD" value="Εξαιτίας ενός σφάλματος στην κάρτα SD, το προφίλ Αναγνώστη δεν μπορεί να αποθηκευτεί στη συσκευή. Παρακαλώ δοκιμάστε μια άλλη κάρτα SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_6_MS" value="Το Memory Stick™ πρέπει να διαμορφωθεί. Παρακαλώ μεταβείτε στην καρτέλα Ρυθμίσεις και διαμορφώστε το Memory Stick™." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_6_SD" value="Η κάρτα SD ρέπει να διαμορφωθεί. Παρακαλώ μεταβείτε στην καρτέλα Ρυθμίσεις και διαμορφώστε την κάρτα SD." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_7" value="Αυτό το αρχείο είναι κατεστραμμένο και δεν μπορεί να ανοιχτεί." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_8_MS" value="Επειδή το Memory Stick™ είναι κλειδωμένο, το προφίλ Αναγνώστη δεν μπορεί να αποθηκευτεί στη συσκευή. Παρακαλώ εξάγετε το Memory Stick™, ξεκλειδώστε το και επανεισάγετέ το." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_8_SD" value="Επειδή η κάρτα SD είναι κλειδωμένη, το προφίλ Αναγνώστη δεν μπορεί να αποθηκευτεί στη συσκευή. Παρακαλώ εξάγετε την κάρτα SD, ξεκλειδώστε την και επανεισάγετέ την." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_9" value="Δεν έχει εισαχθεί καμιά κάρτα μνήμης." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_10" value="Δεν υπάρχει διαθέσιμος επαρκής ελεύθερος χώρος για να αποθηκευτεί το προφίλ Αναγνώστη στη συσκευή σας. Παρακαλώ διαγράψτε ένα ή περισσότερα αρχεία και δοκιμάστε ξανά." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_13_OPEN" value="Το αρχείο δεν μπορεί να ανοιχτεί. Η μορφή αρχείου δεν υποστηρίζεται." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_13_PLAY" value="Το αρχείο δεν μπορεί να αναπαραχθεί. Η μορφή αρχείου δεν υποστηρίζεται." />
+		<string id="STR_UI_MESSAGE_EXTMEM_ERROR_1_16_17_MS" value="Αυτό το Memory Stick™ είναι προστατευμένο. Παρακαλώ δοκιμάστε ένα άλλο Memory Stick™." />
+		<string id="STR_UI_MESSAGE_DEAD_BATTERY_ERR_1" value="Η συσκευή έχει εντοπίσει ένα σφάλμα με την μπαταρία και δεν μπορεί πλέον να φορτιστεί. Η λειτουργία της συσκευής θα τερματιστεί τώρα.  Παρακαλώ αντικαταστήστε την με μια νέα μπαταρία και ενεργοποιήστε το διακόπτη &quot;POWER&quot;." />
+		<string id="STR_UI_MESSAGE_DEAD_BATTERY_ERR_2" value="Αν αυτό το μήνυμα συνεχίζει να προβάλλεται μετά την αλλαγή της μπαταρίας, παρακαλώ επικοινωνήστε με την Εξυπηρέτηση Πελατών της Sony." />
+		<string id="STR_UI_MESSAGE_BATTERY_REMOVED_ERR_1" value="Η συσκευή έχει εντοπίσει ότι η μπαταρία έχει αφαιρεθεί και η λειτουργία της θα τερματιστεί τώρα. Παρακαλώ εισάγετε τη μπαταρία και ενεργοποιήστε το διακόπτη &quot;POWER&quot;." />
+		<string id="STR_UI_MESSAGE_BATTERY_REMOVED_ERR_2" value="" />
+		<string id="STR_UI_MESSAGE_RECOMMEND_EPUB" value="Το βιβλίο δεν μπορεί να ανοιχτεί σε αυτή τη συσκευή λόγω ζητημάτων με τη Διαχείριση Ψηφιακών Δικαιωμάτων (DRM). Αν έχετε αγοράσει αυτό το βιβλίο προηγουμένως, παρακαλώ επαναλάβετε τη λήψη του από τη σελίδα &quot;Ο λογαριασμός μου&quot; στο κατάστημα Reader Store." />
+		<string id="STR_UI_BUTTON_ENTER" value="Εισαγωγή" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_POWERMANAGEMENT" value="Όταν είναι &quot;ενεργό&quot;, η συσκευή εισέρχεται σε κατάσταση αναμονής μετά από 10 λεπτά αδράνειας και η λειτουργία της τερματίζεται μετά από 2 μέρες συνεχούς κατάστασης αναμονής." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_PAGETURNGESTURE" value="Επιλέξτε την προτιμώμενή σας μέθοδο γυρίσματος σελίδας. Το βέλος που δείχνει αριστερά σημαίνει ότι σύρετε στην οθόνη αφής προς τα αριστερά, ενώ το βέλος που δείχνει δεξιά σημαίνει ότι σύρετε στην οθόνη αφής προς τα δεξιά." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_SLIDESHOW" value="Η διάρκεια προβολής διαφάνειας μπορεί να οριστεί μέχρι τα 60 δευτερόλεπτα. Το μενού προβολής διαφανειών μπορείτε να το βρείτε πατώντας &quot;OPTIONS&quot; μέσα στην εφαρμογή Εικόνες." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_DEVICELOCK" value="Όταν το κλείδωμα συσκευής είναι &quot;ενεργό&quot;, απαιτείται η εισαγωγή του κωδικού πρόσβασης όποτε ενεργοποιείται η συσκευή. Σιγουρευτείτε το &quot;Κλείδωμα συσκευής&quot; είναι ανενεργό πριν συνδέσετε τη συσκευή με έναν υπολογιστή." />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_PERIODICALS" value="Δεβν έχετε περιοδικά στη συσκευή σας. Πατήστε την καρτέλα &quot;Κατάστημα&quot; για να περιηγηθείτε και να αγοράσετε περιοδικά." />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_BROKENFILE" value="Αυτή η ζωγραφιά έχει καταστραφεί και δεν μπορεί να ανοιχτεί." />
+		<string id="STR_UI_MENU_CHANG_TONE_CURVE" value="Προσαρμογή προβολής" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_ORIGINAL" value="Αρχικό" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_PROMINENT" value="Κορεσμένο" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_DETAILED" value="Λεπτομέρειες" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_DARKER" value="Σκοτεινότερο" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_LIGHTER" value="Φωτεινότερο" />
+		<string id="STR_UI_RADIOBUTTON_TONE_CURVE_CUSTOM" value="Προσαρμοσμένο" />
+		<string id="STR_UI_TEXT_TONE_CURVE_CONTRAST" value="Αντίθεση" />
+		<string id="STR_UI_TEXT_TONE_CURVE_BRIGHTNESS" value="Φωτεινότητα" />
+		<string id="STR_UI_BUTTON_TONE_CURVE_RESET" value="Επαναφορά" />
+		<string id="STR_UI_BUTTON_PAGE_LOCK" value="Κλείδωμα" />
+		<string id="STR_UI_BUTTON_UNLOCK" value="Ξεκλείδωμα" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_ORIGINAL" value="Αρχικό" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_MARGIN_CUT" value="Αποκοπή περιθωρίων" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_2COLUMN_SPLIT" value="Σε 2 στήλες" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_3COLUMN_SPLIT" value="Σε 3 στήλες" />
+		<string id="STR_UI_RADIOBUTTON_PAGE_STYLE_FULL_PAGE" value="Πλήρης σελίδα" />
+		<string id="STR_UI_MESSAGE_STANDBY" value="Η συσκευή βρίσκεται σε κατάσταση αναμονής. Σύρετε και αφήστε το διακόπτη ενέργειας για έξοδο από την κατάσταση αναμονής." />
+		<string id="STR_UI_MESSAGE_PAGE_STYLE_CHANGE_TO_ORIGINAL" value="Η &quot;Μορφή σελίδας&quot; θα επανέρθει στο &quot;Αρχικό&quot;." />
+		<string id="STR_UI_MESSAGE_PAGE_STYLE_CHANGE_WITH_TOOLBAR_DISPLAYED" value="Η οθόνη &quot;Δημιουργία/Επεξεργασία σημειώσεων&quot; θα κλείσει." />
+		<string id="STR_NODE_TITLE_GENERAL" value="Γενικές ρυθμίσεις" />
+		<string id="STR_NODE_TITLE_APPLICATIONS" value="Προτιμήσεις εφαρμογών" />
+		<string id="STR_NODE_TITLE_SYSTEM" value="Διαχείριση συστήματος" />
+		<string id="STR_NODE_TITLE_INITIALIZATION" value="Προετοιμασία" />
+		<string id="STR_NODE_TITLE_ORIENTATIONTOROTATE" value="Προσανατολισμός οθόνης" />
+		<string id="STR_UI_SETTING_ROTATETORIGHT" value="Περιστροφή δεξιά" />
+		<string id="STR_UI_SETTING_ROTATETOLEFT" value="Περιστροφή αριστερά" />
+		<string id="STR_NODE_TITLE_STANDBYSCREEN" value="Οθόνη κατάστασης αναμονής" />
+		<string id="STR_UI_SETTING_SHOW_PICTURE" value="Προβολή εικόνας" />
+		<string id="STR_UI_SETTING_SHOW_MESSAGE" value="Προβολή μηνύματος" />
+		<string id="STR_UI_SETTING_STANDBY_GUIDE" value="Επιλέγοντας &quot;Ενεργό&quot; στην &quot;Προβολή εικόνας&quot;, οι επιλεγμένες εικόνες προβάλλονται στην κατάσταση αναμονής. Επιλέγοντας &quot;Ενεργό&quot; στην &quot;Προβολή μηνύματος&quot;, προβάλλεται μήνυμα για έξοδο της συσκευής από την κατάσταση αναμονής." />
+		<string id="STR_UI_SETTING_PICTURE" value="Εικόνα" />
+		<string id="STR_UI_SETTING_TEXT" value="Μήνυμα" />
+		<string id="STR_UI_SETTING_ROTATETO" value="Περιστροφή προς " />
+		<string id="STR_UI_SETTING_ROTATETO_GUIDE" value="Επιλέξτε την κατεύθυνση περιστροφής της οθόνης, όταν η &quot;Περιστροφή&quot; επιλέγεται στο μενού &quot;OPTIONS&quot;." />
+		<string id="STR_UI_MESSAGE_COLLECTION_NAME_ALREADY_EXISTS" value="Το καθορισμένο όνομα συλλογής υπάρχει ήδη. Παρακαλώ εισάγετε ένα άλλο όνομα." />
+		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION" value="Σίγουρα θέλετε να προχωρήσετε; Το περιεχόμενο δεν θα διαγραφεί." />
+		<string id="STR_UI_MESSAGE_COLLECTION_DELETE_CONFIRMATION_CONTENT" value="Σίγουρα θέλετε να προχωρήσετε; Το περιεχόμενο δεν θα διαγραφεί." />
+		<string id="DIALOGMSG_CONFIRM_DIRECTORY_CHANGE" value="Το επιλεγμένο λεξικό θα αλλαχθεί &#xA;Από:&#xA;%CUR_DIC%&#xA;Σε:&#xA;%NEW_DIC%" />
+		<string id="DIALOG_CONFIRM_DICTIONARY_CHANGE_CURRENT_DIC" value="%CUR_DIC%" />
+		<string id="DIALOG_CONFIRM_DICTIONARY_CHANGE_NEW_DIC" value="%NEW_DIC%" />
+		<string id="STR_UI_PARTS_UNKNOWN" value="Άγνωστο" />
+		<string id="DIALOGMSG_APPLYING_SETTINGS" value="Εφαρμογή ρυθμίσεων...&#xA;Παρακαλώ περιμένετε." />
+		<string id="STR_UI_MENU_ADD" value="Προσθήκη περιεχομένου" />
+		<string id="STR_UI_MENU_RENAMECOLLECTION" value="Μετονομασία συλλογής" />
+		<string id="STR_UI_MENU_ADD_BOOKMARK" value="Προσθήκη σελιδοδείκτη" />
+		<string id="STR_UI_MENU_REMOVE_BOOKMARK" value="Αφαίρεση σελιδοδείκτη" />
+		<string id="STR_UI_MENU_GO_TO" value="Μετάβαση σε" />
+		<string id="STR_UI_MENU_PREVIOUS_VIEW" value="Προηγούμενη προβολή" />
+		<string id="STR_UI_MENU_SELECT_PAGE" value="Επιλογή σελίδας" />
+		<string id="STR_UI_MENU_LIST" value="Λίστα" />
+		<string id="STR_UI_MENU_CREATE_EDIT" value="Δημιουργία/Επεξεργασία" />
+		<string id="STR_UI_MENU_HIDE" value="Απόκρυψη" />
+		<string id="STR_UI_MENU_SHOW" value="Προβολή " />
+		<string id="STR_UI_MENU_ADD_TO_COLLECTION" value="Προσθήκη σε συλλογή" />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS" value="Αδύνατη η επιλογή επειδή έχει εξαντληθεί το μέγιστο όριο των 99 εικόνων που μπορούν να επιλεχθούν στο Memory Stick™.&#xA;Παρακαλώ καταργήστε την επιλογή μιας άλλης εικόνας στο Memory Stick™ και επιλέξτε αυτή τη φωτογραφία ξανά.&#xA;" />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_SD" value="Αδύνατη η επιλογή επειδή έχει εξαντληθεί το μέγιστο όριο των 99 εικόνων που μπορούν να επιλεχθούν στην κάρτα SD.&#xA;Παρακαλώ καταργήστε την επιλογή μιας άλλης εικόνας στην κάρτα SD και επιλέξτε αυτή τη φωτογραφία ξανά.&#xA;" />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_INTERNAL_MEMORY" value="Αδύνατη η επιλογή επειδή έχει εξαντληθεί το μέγιστο όριο των 99 εικόνων που μπορούν να επιλεχθούν στην εσωτερική μνήμη.&#xA;Παρακαλώ καταργήστε την επιλογή μιας άλλης εικόνας στην εσωτερική μνήμη και επιλέξτε αυτή τη φωτογραφία ξανά.&#xA;" />
+		<string id="STR_UI_MESSAGE_THERE_IS_NO_ITEM_REFER_TO_UG" value="Δεν υπάρχουν στοιχεία σε αυτή τη λίστα. Παρακαλώ ανατρέξτε στον Οδηγό χρήσης για πληροφορίες σχετικά με την προσθήκη περιεχομένου." />
+		<string id="STR_UI_MESSAGE_THERE_IS_NO_ITEM" value="Δεν υπάρχουν στοιχεία σε αυτή τη λίστα." />
+		<string id="STR_NODE_TITLE_DICTIONARY_LOOK_UP_HISTORY" value="Καταχωρήσεις λέξεων: Λεξικό" />
+		<string id="STR_NODE_TITLE_WORD_LOGS_BOOK" value="Καταχωρήσεις λέξεων: Βιβλίο" />
+		<string id="STR_NODE_TITLE_WORD_LOGS_PERIODICAL" value="Καταχωρήσεις λέξεων: Περιοδικό" />
+		<string id="STR_UI_MENU_WORD_LOGS_PERIODICAL" value="Καταχωρήσεις λέξεων: Περιοδικό" />
+		<string id="STR_UI_MENU_DELETE_HISTORIES" value="Διαγραφή καταχωρήσεων λέξεων" />
+		<string id="STR_NODE_TITLE_DELETE_HISTORIES" value="Διαγραφή καταχωρήσεων λέξεων" />
+		<string id="STR_UI_MENU_SORT_SELECTED" value="Ταξινόμηση:" />
+		<string id="STR_UI_MENU_VIEW_SELECTED" value="Προβολή:" />
+		<string id="DIALOGMSG_WHETHER_SHOW_NOTES" value="Αυτό το βιβλίο είναι καθορισμένο αυτή τη στιγμή να αποκρύπτει τις σημειώσεις.&#xA;Θέλετε να προβληθούν οι σημειώσεις;" />
+		<string id="STR_UI_MESSAGE_TO_CHANGE_DICTIONARY" value="Πατήστε &quot;OPTIONS&quot; για να επιλέξετε ένα άλλο λεξικό." />
+		<string id="STR_UI_MENU_CHANGE_DICTIONARY" value="Αλλαγή λεξικού" />
+		<string id="STR_UI_MENU_VIEW_SEARCH_HISTORY" value="Καταχωρήσεις λέξεων: Λεξικό" />
+		<string id="STR_UI_MESSAGE_NO_ENTRY_FOUND" value="Δε βρέθηκε καμιά καταχώρηση." />
+		<string id="STR_UI_MESSAGE_NO_DEFINITION" value="Δε βρέθηκε καμιά καταχώρηση. Πατήστε XXBUTTON1XX για χειροκίνητη αναζήτηση ή για αναζήτηση σε ένα άλλο λεξικό." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_SD" value="Αδύνατη η επιλογή επειδή έχει εξαντληθεί το μέγιστο όριο των 99 εικόνων που μπορούν να επιλεχθούν στο καθένα από τα ακόλουθα: Memory Stick™ και κάρτα SD." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_INTERNAL_MEMORY" value="Αδύνατη η επιλογή επειδή έχει εξαντληθεί το μέγιστο όριο των 99 εικόνων που μπορούν να επιλεχθούν στο καθένα από τα ακόλουθα: Memory Stick™ και εσωτερική μνήμη." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_SD_INTERNAL_MEMORY" value="Αδύνατη η επιλογή επειδή έχει εξαντληθεί το μέγιστο όριο των 99 εικόνων που μπορούν να επιλεχθούν στο καθένα από τα ακόλουθα: κάρτα SD και εσωτερική μνήμη." />
+		<string id="DIALOGMSG_STANDBY_PICTURE_MAX_MS_SD_INTERNAL_MEMORY" value="Αδύνατη η επιλογή επειδή έχει εξαντληθεί το μέγιστο όριο των 99 εικόνων που μπορούν να επιλεχθούν στο καθένα από τα ακόλουθα: Memory Stick™, κάρτα SD και εσωτερική μνήμη." />
+		<string id="DIALOGMSG_DELETING" value="Διαγραφή..." />
+		<string id="DIALOGMSG_REMOVING" value="Αφαίρεση..." />
+		<string id="DIALOGMSG_ADDING" value="Προσθήκη..." />
+		<string id="STR_UI_BUTTON_STOP" value="Διακοπή" />
+		<string id="STR_UI_MESSAGE_UNPROTECT_CONTENT" value="Αυτό το περιεχόμενο προστατεύεται. Καταργήστε την προστασία του περιεχομένου πριν από τη διαγραφή." />
+		<string id="DIALOGMSG_NO_CONTENT_IN_COLLECTION_LOCATION" value="Δεν υπάρχει περιεχόμενο στη μνήμη όπου βρίσκεται η καθορισμένη συλλογή.&#xA;Για να προσθέσετε περιεχόμενο, η φυσική θέση του περιεχομένου και της συλλογής πρέπει να είναι η ίδια." />
+	</assets>
+</document>

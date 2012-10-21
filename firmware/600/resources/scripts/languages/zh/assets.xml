@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="继续阅读" />
+		<string id="STR_NODE_TITLE_BEGIN" value="首页" />
+		<string id="STR_NODE_TITLE_END" value="末页" />
+		<string id="STR_NODE_TITLE_BOOKMARKS" value="书签" />
+		<string id="STR_NODE_TITLE_TOC" value="目录" />
+		<string id="STR_NODE_TITLE_HISTORY" value="历史" />
+		<string id="STR_NODE_TITLE_INFO" value="书籍信息" />
+		<string id="STR_NODE_TITLE_UTILITIES" value="工具" />
+		<string id="STR_NODE_TITLE_REMOVEALLBOOKMARKS" value="删除所有书签" />
+		<string id="STR_NODE_TITLE_CLEARHISTORY" value="删除历史记录" />
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="删除书籍" />
+		<string id="STR_NODE_TITLE_CONTINUEREADING" value="继续阅读" />
+		<string id="STR_NODE_TITLE_BOOKSBYTITLE" value="按标题排序" />
+		<string id="STR_NODE_TITLE_BOOKSBYAUTHOR" value="按作者排序" />
+		<string id="STR_NODE_TITLE_BOOKSBYDATE" value="按日期排序" />
+		<string id="STR_NODE_TITLE_TODAY" value="今天读过的书" />
+		<string id="STR_NODE_TITLE_EARLIERTHISWEEK" value="本周读过的书" />
+		<string id="STR_NODE_TITLE_LASTWEEK" value="上周读过的书" />
+		<string id="STR_NODE_TITLE_EARLIERTHISMONTH" value="本月读过的书" />
+		<string id="STR_NODE_TITLE_LASTMONTH" value="上个月读过的书" />
+		<string id="STR_NODE_TITLE_EARLIERTHISQUARTER" value="本季度读过的书" />
+		<string id="STR_NODE_TITLE_LASTQUARTER" value="上季度读过的书" />
+		<string id="STR_NODE_TITLE_EARLIERTHISYEAR" value="今年读过的书" />
+		<string id="STR_NODE_TITLE_LASTYEAR" value="去年读过的书" />
+		<string id="STR_NODE_TITLE_OLDER" value="更早读过的书" />
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="藏书系列" />
+		<string id="STR_NODE_TITLE_ALLBOOKMARKS" value="所有书签" />
+		<string id="STR_NODE_TITLE_NOWPLAYING" value="正在播放曲目" />
+		<string id="STR_NODE_TITLE_AUDIO" value="音乐" />
+		<string id="STR_NODE_TITLE_PICTURE" value="图片" />
+		<string id="STR_NODE_TITLE_SETTINGS" value="设置" />
+		<string id="STR_NODE_TITLE_ORIENTATION" value="显示方向" />
+		<string id="STR_NODE_COMMENT_HORIZONTAL" value="水平" />
+		<string id="STR_NODE_COMMENT_VERTICAL" value="垂直" />
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="日期和时间" />
+		<string id="STR_NODE_TITLE_YEAR" value="年" />
+		<string id="STR_NODE_TITLE_MONTH" value="月" />
+		<string id="STR_NODE_TITLE_DATE" value="日" />
+		<string id="STR_NODE_TITLE_HOUR" value="小时" />
+		<string id="STR_NODE_TITLE_MINUTE" value="分钟" />
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="锁定" />
+		<string id="STR_NODE_TITLE_ENTERCODE" value="输入密码" />
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="播放幻灯片" />
+		<string id="STR_NODE_TITLE_TURN" value="翻页" />
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="幻灯片间隔" />
+		<string id="STR_NODE_TITLE_SLEEPMODE" value="休眠" />
+		<string id="STR_NODE_TITLE_ADBANCEDSETTINGS" value="高级设置" />
+		<string id="STR_NODE_TITLE_FORMATINTERNALMEMORY" value="格式化内部存储空间" />
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="关机" />
+		<string id="STR_NODE_TITLE_ABOUT" value="关于" />
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="恢复默认设置" />
+		<string id="STR_NODE_TITLE_CODE" value="密码" />
+		<string id="#STR_NODE_TITLE_AUTORUN" value="自动运行" />
+		<string id="#STR_NODE_TITLE_HARDRESET" value="强制重设" />
+		<string id="STR_COUNTER_BOOKMARK_N" value=" bookmarks" />
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 bookmark" />
+		<string id="STR_COUNTER_BOOKMARK_0" value="无书签" />
+		<string id="STR_COUNTER_ITEM_N" value=" 项目" />
+		<string id="STR_COUNTER_ITEM_1" value="1 项目" />
+		<string id="STR_COUNTER_ITEM_0" value="无项目" />
+		<string id="STR_COUNTER_PAGE_N" value=" 页" />
+		<string id="STR_COUNTER_PAGE_1" value="1 页" />
+		<string id="STR_COUNTER_PAGE_0" value="无页面" />
+		<string id="STR_COUNTER_UTILITIES_N" value=" utilities" />
+		<string id="STR_COUNTER_UTILITIES_1" value="1 utility" />
+		<string id="STR_COUNTER_UTILITIES_0" value="No utilities" />
+		<string id="STR_COUNTER_BOOK_N" value=" 书籍" />
+		<string id="STR_COUNTER_BOOK_1" value="1书籍" />
+		<string id="STR_COUNTER_BOOK_0" value="无书籍" />
+		<string id="STR_COUNTER_COLLECTION_N" value=" 藏书系列" />
+		<string id="STR_COUNTER_COLLECTION_1" value="1 藏书系列" />
+		<string id="STR_COUNTER_COLLECTION_0" value="无藏书系列" />
+		<string id="STR_COUNTER_SONG_N" value=" 歌曲" />
+		<string id="STR_COUNTER_SONG_1" value="1 歌曲" />
+		<string id="STR_COUNTER_SONG_0" value="无歌曲" />
+		<string id="STR_COUNTER_NOSONG" value="无歌曲" />
+		<string id="STR_COUNTER_PICTURE_N" value=" 莆田" />
+		<string id="STR_COUNTER_PICTURE_1" value="1 图片" />
+		<string id="STR_COUNTER_PICTURE_0" value="无图片" />
+		<string id="STR_COUNTER_SETTING_N" value=" 设置" />
+		<string id="STR_COUNTER_SETTING_1" value="1设置" />
+		<string id="STR_COUNTER_SETTING_0" value="0设置" />
+		<string id="STR_UI_BUTTON_OK" value="OK" />
+		<string id="STR_UI_BUTTON_On" value="开启" />
+		<string id="STR_UI_BUTTON_Off" value="关闭" />
+		<string id="STR_UI_BUTTON_ABLE" value="开启" />
+		<string id="STR_UI_BUTTON_DISABLE" value="禁用" />
+		<string id="STR_UI_UNITNAME_SECONDS" value="秒" />
+		<string id="STR_UI_UNITNAME_SIZEKB" value="KB" />
+		<string id="STR_UI_UNITNAME_SIZEMB" value="MB" />
+		<string id="STR_UI_UNITNAME_SIZEGB" value="GB" />
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--" />
+		<string id="STR_UI_DELIMITER_POINT" value="." />
+		<string id="STR_UI_PARTS_PART" value="部分 " />
+		<string id="STR_UI_PARTS_DIVIDER" value=" - " />
+		<string id="STR_UI_PARTS_PAGE" value="页码 " />
+		<string id="STR_UI_PARTS_OF" value=" of " />
+		<string id="STR_UI_PARTS_UNKNOWN" value="?" />
+		<string id="STR_UI_PARTS_VERSION" value="版本: " />
+		<string id="STR_UI_PARTS_DEVICE" value="设备: " />
+		<string id="STR_UI_GOTOPAGE" value="页码" />
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="无效页面!" />
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="受保护的页面!" />
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="页面错误!" />
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="无效的格式!" />
+		<string id="STR_UI_MESSAGE_FORMATTING" value="排版中..." />
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="访问受限" />
+		<string id="STR_UI_MESSAGE_DRMFULL" value="完整，可阅读" />
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="外置存储卡" />
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="内部存储空间" />
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="过期" />
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="今天" />
+		<string id="STR_UI_MESSAGE_FORMATTINGINTERNALMEMORY" value="正在格式化内部存储空间..." />
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="正在关机..." />
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDYES" value="此设备通过 eBook Store 授权." />
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDNO" value="此设备未通过 eBook Store 授权." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDYES" value="此设备被授权查看 Adobe DRM 保护内容." />
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="此设备未被授权查看 Adobe DRM 保护内容." />
+		<string id="STR_UI_MESSAGE_RESTOREDEFAULTSOPERATION" value="按 XXMARKXX (Bookmark) 键恢复所有默认设置." />
+		<string id="STR_UI_MESSAGE_CLEARHISTORYOPERATION" value="按 XXMARKXX (Bookmark) 键清楚历史记录." />
+		<string id="STR_UI_MESSAGE_FORMATOPERATION" value="按 XXMARKXX (Bookmark) 键格式化内部存储空间." />
+		<string id="STR_UI_MESSAGE_DELETEBOOKOPERATION" value="按 XXMARKXX (Bookmark) 键删除书籍." />
+		<string id="STR_UI_MESSAGE_REMOVEALLBOOKMARKSOPERATION" value="按 XXMARKXX (Bookmark) 键删除所有书签." />
+		<string id="STR_UI_MESSAGE_SHUTDOWNOPERATION" value="按 XXMARKXX (Bookmark) 键关机." />
+		<string id="STR_UI_MESSAGE_HARDRESET" value="全部重设" />
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="确定要删除所有内容, 恢复所有出厂设置, 并清除DRM版权保护状态?&#xA;&#xA;是 - 请按 设置(OPTIONS) 键&#xA;否 - 请按 HOME 键" />
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="电量过低!" />
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="电量耗尽!" />
+		<string id="STR_UI_MESSAGE_LOADING" value="加载中..." />
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 of 1" />
+		<string id="STR_UI_MESSAGE_CANNOTDELETEBOOK" value="无法删除电子书." />
+		<string id="STR_UI_FORMAT_RTF" value="RTF格式" />
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF格式" />
+		<string id="STR_UI_FORMAT_EPUB" value="EPUB格式" />
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB格式" />
+		<string id="STR_UI_FORMAT_TXT" value="纯文本格式" />
+		<string id="STR_UI_TITLESORTLABEL1" value="0-9" />
+		<string id="STR_UI_TITLESORTLABEL2" value="A B C" />
+		<string id="STR_UI_TITLESORTLABEL3" value="D E F" />
+		<string id="STR_UI_TITLESORTLABEL4" value="G H I" />
+		<string id="STR_UI_TITLESORTLABEL5" value="J K L" />
+		<string id="STR_UI_TITLESORTLABEL6" value="M N O" />
+		<string id="STR_UI_TITLESORTLABEL7" value="P Q R S" />
+		<string id="STR_UI_TITLESORTLABEL8" value="T U V" />
+		<string id="STR_UI_TITLESORTLABEL9" value="W X Y Z" />
+		<string id="STR_UI_TITLESORTLABEL10" value="其他" />
+		<string id="STR_VAL_TITLESORTCRITERION1" value="9" />
+		<string id="STR_VAL_TITLESORTCRITERION2" value="C" />
+		<string id="STR_VAL_TITLESORTCRITERION3" value="F" />
+		<string id="STR_VAL_TITLESORTCRITERION4" value="I" />
+		<string id="STR_VAL_TITLESORTCRITERION5" value="L" />
+		<string id="STR_VAL_TITLESORTCRITERION6" value="O" />
+		<string id="STR_VAL_TITLESORTCRITERION7" value="S" />
+		<string id="STR_VAL_TITLESORTCRITERION8" value="V" />
+		<string id="STR_VAL_TITLESORTCRITERION9" value="Z" />
+		<string id="STR_UI_AUTHORSORTLABEL1" value="0-9" />
+		<string id="STR_UI_AUTHORSORTLABEL2" value="A B C" />
+		<string id="STR_UI_AUTHORSORTLABEL3" value="D E F" />
+		<string id="STR_UI_AUTHORSORTLABEL4" value="G H I" />
+		<string id="STR_UI_AUTHORSORTLABEL5" value="J K L" />
+		<string id="STR_UI_AUTHORSORTLABEL6" value="M N O" />
+		<string id="STR_UI_AUTHORSORTLABEL7" value="P Q R S" />
+		<string id="STR_UI_AUTHORSORTLABEL8" value="T U V" />
+		<string id="STR_UI_AUTHORSORTLABEL9" value="W X Y Z" />
+		<string id="STR_UI_AUTHORSORTLABEL10" value="Other" />
+		<string id="STR_VAL_AUTHORSORTCRITERION1" value="9" />
+		<string id="STR_VAL_AUTHORSORTCRITERION2" value="C" />
+		<string id="STR_VAL_AUTHORSORTCRITERION3" value="F" />
+		<string id="STR_VAL_AUTHORSORTCRITERION4" value="I" />
+		<string id="STR_VAL_AUTHORSORTCRITERION5" value="L" />
+		<string id="STR_VAL_AUTHORSORTCRITERION6" value="O" />
+		<string id="STR_VAL_AUTHORSORTCRITERION7" value="S" />
+		<string id="STR_VAL_AUTHORSORTCRITERION8" value="V" />
+		<string id="STR_VAL_AUTHORSORTCRITERION9" value="Z" />
+		<string id="STR_FORMAT_DATE" value="MM/DD/YY" />
+		<string id="STR_UI_MESSAGE_USBDONOT" value="请勿断开连接" />
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="已连接USB" />
+		<string id="STR_UI_MESSAGE_LOCKED" value="设备已锁定" />
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,‘,’,“,”" />
+		<string id="STR_SORT_IGNOREARTICLES" value="a ,an ,the " />
+		<string id="infoTitles" value="Cover,Title,Author,Publisher,Category,eBook ID,Kind,Date,Size,Location,Path,Digital Rights,Expiration Date" />
+		<string id="STR_UPDATE_SUCCESS" value="更新firmware中..." />
+		<string id="STR_UPDATE_FAIL" value="更新firmware失败，请重试" />
+		<string id="STR_NODE_TITLE_PREVIOUS_VIEW" value="前一视图" />
+		<string id="STR_NODE_TITLE_NEXT_VIEW" value="下一视图" />
+		<string id="STR_NODE_TITLE_WELCOME" value="欢迎!" />
+		<string id="STR_UI_MESSAGE_WELCOME" value="来自Sony的问候. 您手持的&#xA;是阅读的未来趋势. 请点击触摸屏任何部位&#xA;开始新的阅读体验." />
+		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="菜单语言" />
+		<string id="STR_UI_LANG" value="语言" />
+		<string id="STR_UI_LANG_EN" value="English" />
+		<string id="STR_UI_LANG_FR" value="Français" />
+		<string id="STR_UI_LANG_DE" value="Deutsch" />
+		<string id="STR_UI_LANG_NL" value="Nederlands" />
+		<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="选择您需要的语言，并选择 OK.&#xA;注意: 设备设置可稍后在 设置 菜单项更改." />
+		<string id="STR_UI_PARTS_DELIMITER" value="/" />
+		<string id="STR_UI_MESSAGE_DEMOMODE" value="(演示模式)" />
+		<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value="演示屏保" />
+		<string id="STR_NODE_TITLE_HOME" value="Home" />
+		<string id="STR_NODE_TITLE_OPTIONS" value="选项" />
+		<string id="STR_UI_MESSAGE_DELETEALLBOOKMARKS" value="该页面包含以其他的字体大小或其他设备上的字体标记的书签. 确定要删除本页面的所有书签?" />
+		<string id="STR_DEMO_NOTAVAILABLE" value="此设置在演示模式中无法使用. 按 XXRETURNXX(Return) 键返回前一视图." />
+		<string id="STR_DEMO_TITLE" value="DEMO MODE" />
+		<string id="STR_UI_MESSAGE_REMOVEBOOKMARKSOPERATION" value="按 XXMARKXX (Bookmark) 键删除书签." />
+		<string id="STR_UI_MESSAGE_NOTE_BOOKMARKOPERATION" value="注意: 此页面包含用多种字体标记的书签.  如果继续, 所有书签都会被删除." />
+		<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="标题: &quot;XXTITLEXX&quot;" />
+		<string id="STR_NODE_TITLE_REMOVEBOOKMARK" value="删除书签" />
+		<string id="STR_UI_MESSAGE_MENURETURN" value="按 XXRETURNXX(Return) 键返回" />
+		<string id="STR_NODE_TITLE_DATE_TIME_FORMAT_SETTINGS" value="日期及时间模式" />
+		<string id="STR_UI_DATE" value="日" />
+		<string id="STR_UI_BUTTON_MMDDYY" value="月-日－年" />
+		<string id="STR_UI_BUTTON_DDMMYY" value="日-月-年" />
+		<string id="STR_UI_TIME" value="时间" />
+		<string id="STR_UI_BUTTON_12HR" value="12小时制" />
+		<string id="STR_UI_BUTTON_24HR" value="24小时制" />
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / " />
+		<string id="STR_UI_MESSAGE_NOTE_DELETE_ALL_CONTENTS" value="注意：所有内容都会被删除." />
+		<string id="STR_UI_MESSAGE_NOBOOK" value="没有找到书籍" />
+		<string id="STR_NODE_TITLE_BOOK" value="书籍" />
+		<string id="STR_NODE_TITLE_SORTEDBYTITLE" value="按标题排序" />
+		<string id="STR_NODE_TITLE_SORTEDBYAUTHOR" value="按作者排序" />
+		<string id="STR_NODE_TITLE_SORTEDBYDATE" value="按日期排序" />
+		<string id="STR_NODE_TITLE_SORTEDBYORDER" value="Sorted by Order" />
+		<string id="STR_NODE_TITLE_ALLNOTES" value="所有笔记" />
+		<string id="STR_NODE_TITLE_SORTEDBYCOMMENT" value="按评语排序" />
+		<string id="STR_NODE_TITLE_SORTEDBYTYPE" value="按类型排序" />
+		<string id="STR_NODE_TITLE_SORTEDBYARTIST" value="按作者排序" />
+		<string id="STR_NODE_TITLE_NEXTPAGE" value="下一页" />
+		<string id="STR_NODE_TITLE_PAGETURNGESTURE" value="翻页手势" />
+		<string id="STR_NODE_TITLE_ADVANCEDSETTINGS" value="高级设置" />
+		<string id="STR_NODE_TITLE_TOUCHPANEL" value="校准屏幕" />
+		<string id="STR_NODE_TITLE_CLEARKEYBOARDHISTORY" value="清楚键盘输入历史" />
+		<string id="STR_NODE_TITLE_SEARCHRESULTS" value="搜索历史" />
+		<string id="STR_COUNTER_NOTES_N" value=" notes" />
+		<string id="STR_COUNTER_NOTE_1" value="1 note" />
+		<string id="STR_COUNTER_NOTE_0" value="无笔记" />
+		<string id="STR_NODE_TITLE_SORTEDBYPAGE" value="按页面排序" />
+		<string id="STR_NODE_TITLE_POWERMANAGEMENT" value="电源管理" />
+		<string id="STR_UI_MENU_SORT" value="分类" />
+		<string id="STR_UI_MENU_BYORDER" value="按次序" />
+		<string id="STR_UI_MENU_BYTITLE" value="按标题" />
+		<string id="STR_UI_MENU_BYAUTHOR" value="按作者" />
+		<string id="STR_UI_MENU_BYDATE" value="按日期" />
+		<string id="STR_UI_MENU_VIEW" value="阅读" />
+		<string id="STR_UI_MENU_LIST" value="列表" />
+		<string id="STR_UI_MENU_THUMBNAIL" value="缩略图" />
+		<string id="STR_UI_MENU_NOWPLAYING" value="正在播放" />
+		<string id="STR_UI_MENU_ORIENTATION" value="视图方向" />
+		<string id="STR_UI_MENU_SEARCHTITLE" value="搜索" />
+		<string id="STR_UI_MENU_CLOSETHISBOOK" value="返回列表" />
+		<string id="STR_UI_MENU_GOTOPAGE" value="转到页面" />
+		<string id="STR_UI_MENU_CREATEEDITNOTES" value="创建/编辑笔记" />
+		<string id="STR_UI_MENU_SHOWNOTES" value="显示笔记" />
+		<string id="STR_UI_MENU_HIDENOTES" value="隐藏笔记" />
+		<string id="STR_UI_MENU_TABLEOFCONTENTS" value="目录" />
+		<string id="STR_UI_MENU_BOOKINFO" value="书籍信息" />
+		<string id="STR_UI_MENU_DELETEBOOK" value="删除书籍" />
+		<string id="STR_UI_MENU_SEARCHAKEYWORD" value="搜索" />
+		<string id="STR_UI_MENU_HISTORYJUMP" value="历史" />
+		<string id="STR_UI_MENU_CLOSETHISMUSIC" value="返回列表" />
+		<string id="STR_UI_MENU_OFF" value="关闭" />
+		<string id="STR_UI_MENU_SONG_1" value="一首歌曲" />
+		<string id="STR_UI_MENU_SONG_ALL" value="全部歌曲" />
+		<string id="STR_UI_MENU_SHUFFLEON" value="开启随机播放模式" />
+		<string id="STR_UI_MENU_SHUFFLEOFF" value="关闭随机播放模式" />
+		<string id="STR_UI_MENU_CONTINUEREADING" value="继续阅读" />
+		<string id="STR_UI_MENU_CLOSETHISPICTURE" value="返回列表" />
+		<string id="STR_UI_MENU_SLIDESHOWOFF" value="关闭幻灯片模式" />
+		<string id="STR_UI_MENU_SLIDESHOWON" value="开启幻灯片模式" />
+		<string id="STR_UI_MENU_BYARTIST" value="按作者" />
+		<string id="STR_UI_MENU_BYPAGE" value="按页面" />
+		<string id="STR_UI_MENU_BYTYPE" value="按类型" />
+		<string id="STR_UI_MENU_BYCOMMENT" value="按评语" />
+		<string id="STR_UI_MENU_DELETENOTES" value="删除笔记" />
+		<string id="STR_UI_MESSAGE_RESET" value="确定恢复所有默认设置?" />
+		<string id="STR_UI_MESSAGE_FORMATINTERNALMEMORY" value="正在格式化内部存储空间" />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE" value="确定格式化内部存储空间?&#xA;警告: 所有内容及笔记都会被删除." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_MS" value="确定要格式化记忆棒?&#xA;警告: 所有内容及笔记都会被删除." />
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_SD" value="确定要格式化SD卡?&#xA;警告: 所有内容及笔记都会被删除." />
+		<string id="STR_UI_MESSAGE_DELETEBOOK" value="确定要删除本书?" />
+		<string id="STR_UI_MESSAGE_DELETEBOOKERR" value="无法删除书籍. 按 OK 返回书籍列表." />
+		<string id="STR_UI_MESSAGE_DELETEHISTORICAL" value="确定要清除键盘输入历史?" />
+		<string id="STR_UI_MESSAGE_DEVICE_SHUTDOWN" value="确定要关机?" />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONSTART" value="按 确定 开始校准触摸屏." />
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONEND" value="触摸屏校准结束." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_1" value="此设置在演示模式中无法使用." />
+		<string id="STR_UI_MESSAGE_DEMO_MODE_2" value="此特性在演示模式中无法使用." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_START" value="使用触控笔，点击目标的中心." />
+		<string id="STR_UI_MESSAGE_CALIBRATION_ERR" value="校准发生错误.&#xA;请重新校准." />
+		<string id="STR_UI_BUTTON_YES" value="确定" />
+		<string id="STR_UI_BUTTON_NO" value="否" />
+		<string id="STR_UI_BUTTON_ZOOMIN" value="放大" />
+		<string id="STR_UI_BUTTON_SEARCH" value="搜索" />
+		<string id="STR_UI_BUTTON_DONE" value="完成" />
+		<string id="STR_UI_BUTTON_GO" value="Go" />
+		<string id="STR_UI_BUTTON_ENTERPAGE" value="输入页码" />
+		<string id="STR_UI_BUTTON_NEW" value="新建" />
+		<string id="STR_UI_BUTTON_LIST" value="列表" />
+		<string id="STR_UI_SHORTCUT_HIGHLIGHT" value="高亮" />
+		<string id="STR_UI_SHORTCUT_SEARCH" value="搜索" />
+		<string id="STR_UI_SHORTCUT_DICTIONARY" value="字典" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING" value="字典" />
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING_l" value="字典" />
+		<string id="STR_DICTIONARY_US" value="新牛津美语字典" />
+		<string id="STR_DICTIONARY_BRITISH" value="牛津英语字典" />
+		<string id="STR_DICTIONARY_NO" value="无字典" />
+		<string id="STR_NODE_TITLE_DATEANDTIMEFORMAT_SETTING" value="日期及时间格式" />
+		<string id="STR_UI_PARTS_MONTH" value="月" />
+		<string id="STR_UI_PARTS_DAY" value="日" />
+		<string id="STR_UI_PARTS_YEAR" value="年" />
+		<string id="STR_UI_PARTS_HOUR" value="时" />
+		<string id="STR_UI_MESSAGE_RESTARTING" value="重启中..." />
+		<string id="STR_UI_NODE_TITLE_KEYBOARD" value="键盘" />
+		<string id="STR_UI_KEYBOARD_US" value="United States" />
+		<string id="STR_UI_KEYBOARD_UK" value="United Kingdom" />
+		<string id="STR_UI_KEYBOARD_FRENCH" value="French" />
+		<string id="STR_UI_KEYBOARD_GERMAN" value="German" />
+		<string id="STR_UI_KEYBOARD_NETHERLANDS" value="Dutch" />
+		<string id="STR_UI_BUTTON_DICTIONARY_LIST" value="列表" />
+		<string id="STR_UI_BUTTON_DICTIONARY_DETAIL" value="详细" />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP1" value="该页无法显示." />
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP2" value="" />
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_CANNOT_EDIT" value="该绘图无法编辑." />
+		<string id="DIALOGMSG_INFORM_SCR_CANNOT_EDIT" value="该备忘录无法编辑." />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_FREEHAND" value="新的绘图" />
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_TEXT" value="新的备忘录" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYFREEHAND" value="按绘图" />
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYTEXT" value="按键盘输入" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_MS" value="格式化记忆棒" />
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_SD" value="格式化SD卡" />
+		<string id="STR_NODE_TITLE_FORMATDEVICE" value="格式化设备" />
+		<string id="STR_NODE_TITLE_FORMAT_INTERNAL" value="格式化内部存储空间" />
+		<string id="STR_NODE_TITLE_FORMAT_MS" value="记忆棒" />
+		<string id="STR_NODE_TITLE_FORMAT_SD" value="SD卡" />
+		<string id="STR_UI_FORMAT_INTERNAL_MEMORY" value="正在格式化内部存储空间..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_MS" value="正在格式化记忆棒..." />
+		<string id="STR_UI_FORMAT_EXTERNAL_SD" value="正在格式化SD卡..." />
+		<string id="STR_WARNING_FORMAT_1" value="正在格式化..." />
+		<string id="STR_WARNING_FORMAT_2_MS" value="请不要移除记忆棒." />
+		<string id="STR_WARNING_FORMAT_2_SD" value="请不要移除SD卡." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_1" value="确定要删除书签?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_2" value="注意: 此页面包含以多种字体标记的书签. 如果继续, 所有书签都会被删除." />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_1" value="确定要删除书签?" />
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_2" value="注意: 此页面包含以多种字体标注的书签. 如果继续, 所有书签都会被删除." />
+		<string id="STR_FORMAT_NO_MEMORY" value="记忆卡未插入" />
+		<string id="STR_FORMAT_WRITE_PROTECTED" value="记忆卡写保护" />
+		<string id="STR_FORMAT_NON_STANDARD" value="记忆卡类型不支持" />
+		<string id="STR_NODE_TITLE_NOTEPAD_FREEHAND" value="手写" />
+		<string id="STR_NODE_TITLE_NOTEPAD_TEXT" value="备忘录" />
+		<string id="STR_NODE_TITLE_SORTEDBYCREATEDDATE" value="按创建日期分类" />
+		<string id="STR_NODE_TITLE_MORE" value="更多" />
+		<string id="STR_NODE_TITLE_MORE_FULL" value="更多应用程序" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK1" value="确定要删除此包含笔记的书签?" />
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK2" value="" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT1" value="确定要删除此包含笔记的高亮?" />
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT2" value="" />
+		<string id="DIALOGMSG_INFORM_NOHITS" value="没有找到匹配项." />
+		<string id="DIALOGMSG_INFORM_NOMOREHITS" value="没有找到匹配项." />
+		<string id="DIALOGMSG_CONFIRM_BACKWARDSEARCH" value="是否从书籍末页继续搜索?" />
+		<string id="DIALOGMSG_CONFIRM_FORWARDSEARCH" value="是否从书籍首页继续搜索?" />
+		<string id="STR_MSG_SEARCHING" value="Searching..." />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK1" value="确定要删除此包含笔记的书签?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK2" value="" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT1" value="确定要删除此包含笔记的高亮?" />
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_CMT_EDIT_QUIT" value="如果继续，此改动将无法保存. 确定要继续?" />
+		<string id="DIALOGMSG_CONFIRM_SCR_EDIT_QUIT" value="如果继续，此改动将无法保存. 确定要继续?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES1" value="所有笔记都会被删除." />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES2" value="确定要删除?" />
+		<string id="KBOOK_UI_MYNOTE" value="笔记" />
+		<string id="STR_UI_KEYBOARD_SYMBOL" value="符号" />
+		<string id="STR_UI_KEYBOARD_SPACE" value="空白" />
+		<string id="STR_UI_KEYBOARD_ABC" value="Abc" />
+		<string id="STR_UI_KEYBOARD_RETURN" value="返回" />
+		<string id="STR_UI_COMMENTVIEWER_EDIT" value="编辑" />
+		<string id="STR_UI_COMMENTVIEWER_DELETE" value="删除" />
+		<string id="STR_UI_AUDIO_REPEAT" value="重复" />
+		<string id="STR_NODE_TITLE_HOMEPERSONALIZATION" value="定制Home菜单" />
+		<string id="STR_UI_PARTS_LEFT" value="左" />
+		<string id="STR_UI_PARTS_RIGHT" value="右" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_FREEHAND" value="删除绘图" />
+		<string id="STR_UI_MENU_DELETENOTEPAD_TEXT" value="删除备忘录" />
+		<string id="STR_UI_MENU_CLOSETHISNOTEPAD_FREEHAND" value="返回列表" />
+		<string id="STR_UI_MENU_CLOSETHISNOTEPAD_TEXT" value="返回列表" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND1" value="确定要删除该绘图?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND2" value="" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT1" value="确定要删除该备忘录?" />
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT1" value="如果继续，此项改动将无法保存. 是否要继续?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT1" value="如果继续，此项改动将无法保存. 是否要继续?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT1" value="如果继续，此绘图将无法保存. 是否要继续?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT2" value="" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT1" value="如果继续，此备忘录将无法保存. 是否要继续?" />
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT2" value="" />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_RESULT" value="没有找到定义." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_INPUT_KEYBOARD" value="输入一个单词." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_HEADWORD" value="没有找到词条.&#xA;请检查输入的单词." />
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SUPPORTED" value="字典已被禁用." />
+		<string id="STR_UI_DICTIONARY_ENTRIES_PAGE" value="词条, P." />
+		<string id="STR_UI_DICTIONARY_ENTRY_PAGE" value="词条, P." />
+		<string id="STR_COUNTER_DRAWING_N" value=" drawings" />
+		<string id="STR_COUNTER_DRAWING_1" value="1绘图" />
+		<string id="STR_COUNTER_DRAWING_0" value="无绘图" />
+		<string id="STR_COUNTER_MEMO_N" value=" memos" />
+		<string id="STR_COUNTER_MEMO_1" value="1备忘录" />
+		<string id="STR_COUNTER_MEMO_0" value="无备忘录" />
+		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="内部存储空间异常&#xA;正在格式化." />
+	</assets>
+</document>
