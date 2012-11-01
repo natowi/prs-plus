@@ -10,6 +10,7 @@
 //	2011-11-26 Ben Chenoweth - Added "addons2" folder
 //	2011-01-19 Ben Chenoweth - Added "addons3" folder
 //	2012-03-17 Mark Nord - Fixed #322 - core1 / load addons# in a loop
+//	2012-11-01 Mark Nord - addons4
 
 if (!FileSystem.getFileInfo(System.applyEnvironment("[prspSafeModeFile]"))) {
 	var bootLog;
@@ -145,7 +146,7 @@ if (!FileSystem.getFileInfo(System.applyEnvironment("[prspSafeModeFile]"))) {
 			try {
 				log = Core.log.getLogger("addons");
 				i = - 1;
-				for (i; i<4; i++) {
+				for (i; i<5; i++) {
 					switch (i) {
 					case -1:
 						addonsPath = config.coreFile;
@@ -157,7 +158,7 @@ if (!FileSystem.getFileInfo(System.applyEnvironment("[prspSafeModeFile]"))) {
 						break;
 					default:
 						addonsPath = config.addonsFile;
-						idx = ""+i; //idx = i.toSting(); 
+						idx = i.toString(); 
 					}
 					lenDiff = addonsPath.length - jsPostfix.length;
 					if (addonsPath.indexOf(jsPostfix) === lenDiff) {

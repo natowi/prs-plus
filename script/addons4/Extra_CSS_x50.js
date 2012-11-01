@@ -2,18 +2,22 @@
 // Author: ANALOGUS; Mark Nord
 
 // History:
-// 	Initial version: 2012-10-01
+//	Initial version: 2012-10-07 for 600/x50 models
 //	2012-10-07 Mark Nord - PopUpMenu on middle button
+//	2012-10-27 Mark Nord - 600: kbook.radio2icon.stylesOffset; kbook.radio2icon.modified_kbook_draw; kbook.radio2icon.draw;
+//	2012-10-28 Mark Nord - 600: just set align0.stylesOffset = 2; to fix icon-offset, manual creation of radio-button-control-variables
+//	2012-10-30 Mark Nord - 600: moved - backported x50th stylesOffset for radio2icon button - to 600_bootstrap, merged code for x50/600
 
 tmp = function() 
 {
 	var	myFineFontSize,
 		myLineHeight,
 		myAlign,
-		PATH_SIZEOVERLAY = kbook.model.container.sandbox.SIZE_OVERLAY_GROUP.sandbox.VIEW.sandbox.SIZE_OVERLAY,
-		PATH_SIZEOVERLAYSANDBOX = kbook.model.container.sandbox.SIZE_OVERLAY_GROUP.sandbox.VIEW.sandbox.SIZE_OVERLAY.sandbox,
-		NAME = "Extra_CSS_x50",
-		L = Core.lang.getLocalizer("ViewerSettings_x50"),
+		// path to SIZE_OVERLAY set model-specific
+		PATH_SIZEOVERLAY,
+		PATH_SIZEOVERLAYSANDBOX,
+		NAME = 'Extra_CSS_x50',
+		L = Core.lang.getLocalizer('ViewerSettings_x50'),
 		log = Core.log.getLogger(NAME),
 		exec = Core.shell.exec,
 		isEpub,
@@ -32,10 +36,10 @@ tmp = function()
 		externCSS,
 		userStyleexternCSS = ['','','','','','',''],
 		cssMenu,
-		
+
 	handleExtraCSS = function (index, value) {
 		var currentPage;
-		if (value !== "default") {
+		if (value !== 'default') {
 			userStyleexternCSS[index] = externCSS[index].replace(/placeholder/, value);
 			if (index  === 2) { // workaround handle @page {margin: }
 				userStyleexternCSS[index+1] = externCSS[index+1].replace(/placeholder/, value);
@@ -45,42 +49,69 @@ tmp = function()
 			if (index  === 2) { // workaround handle @page {margin: }
 				userStyleexternCSS[index+1] = '';
 			}
-		};
+		}
 		Core.addonByName.EpubUserStyle.reloadBook(userStyleexternCSS);
 		return true;
 	},
 
 	ResetCss = function ()	{
-		Extra_CSS_x50.options.Option_Fontsize = '0';
-		Extra_CSS_x50.options.Option_Lineheight = '0';
-		Extra_CSS_x50.options.Option_Pagemargin = '0';
-		Extra_CSS_x50.options.Option_Textalign = '0';
-		Extra_CSS_x50.options.Option_Textindent = '0';					
-		Extra_CSS_x50.options.Option_Padding = '0';
+		var options = Extra_CSS_x50.options;
+		options.Option_Fontsize = '0';
+		options.Option_Lineheight = '0';
+		options.Option_Pagemargin = '0';
+		options.Option_Textalign = '0';
+		options.Option_Textindent = '0';
+		options.Option_Padding = '0';
 		Core.settings.saveOptions(Extra_CSS_x50);
 		userStyleexternCSS = ['','','','','','',''];
 		Core.addonByName.EpubUserStyle.reloadBook(userStyleexternCSS);
 	};
 
+	if (Core.config.model === '600') {
+		PATH_SIZEOVERLAY = kbook.model.container.sandbox.SIZE_OVERLAY;
+		PATH_SIZEOVERLAYSANDBOX = kbook.model.container.sandbox.SIZE_OVERLAY.sandbox;
+	} else {// x50
+		PATH_SIZEOVERLAY = kbook.model.container.sandbox.SIZE_OVERLAY_GROUP.sandbox.VIEW.sandbox.SIZE_OVERLAY;
+		PATH_SIZEOVERLAYSANDBOX = kbook.model.container.sandbox.SIZE_OVERLAY_GROUP.sandbox.VIEW.sandbox.SIZE_OVERLAY.sandbox;
+	}
+		
 	oldInitSizeMenu = pageSizeOverlayModel.initSizeMenu;
 
 	pageSizeOverlayModel.initSizeMenu = function () {
+		var i, n,
+		sizeVsb = PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox,
+		sizeHsb = PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox,
 		myFineFontSize = Extra_CSS_x50.options.Option_Fontsize * 1;
 		myLineHeight = Extra_CSS_x50.options.Option_Lineheight * 1;
 		myAlign = Extra_CSS_x50.options.Option_Textalign * 1;
 		try{
-			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox.FONTSIZEFINE.sandbox.ff_title, 'text', L('OPTION_FONTSIZE'));
-			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox.LINEHEIGHT.sandbox.lh_title, 'text', L('OPTION_LINEHEIGHT'));
-			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox.ALIGN.sandbox.lh_align, 'text', L('OPTION_TEXTALIGN'));
-			PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox.FONTSIZE.sandbox.varBtn.setText(L('MORE_CSS'));
-			PATH_SIZEOVERLAYSANDBOX.sizeV.sandbox.FONTSIZE.sandbox.varBtn.canCommand = 'isEpub'; // fix for missing property in xml
+			if (Core.config.model === '600') {// model-sniffing; set styleOffset manually for 600
+				n = 5;
+				for (i = 0; i<n; i++)	{
+					sizeVsb.FONTSIZE.sandbox['font'+i].stylesOffset = 2;
+					sizeHsb.FONTSIZE.sandbox['font'+i].stylesOffset = 2;
+					sizeVsb.LINEHEIGHT.sandbox['line'+i].stylesOffset = 2;
+					sizeHsb.LINEHEIGHT.sandbox['line'+i].stylesOffset = 2;
+					sizeVsb.FONTSIZEFINE.sandbox['ffont'+i].stylesOffset = 2;
+					sizeHsb.FONTSIZEFINE.sandbox['ffont'+i].stylesOffset = 2;
+				}
+				sizeVsb.ALIGN.sandbox.align0.stylesOffset = 2;
+				sizeHsb.ALIGN.sandbox.align0.stylesOffset = 2;
+			}
+			
+			sizeVsb.FONTSIZEFINE.sandbox.ff_title.setValue(L('OPTION_FONTSIZE'));
+			sizeVsb.LINEHEIGHT.sandbox.lh_title.setValue(L('OPTION_LINEHEIGHT'));
+			sizeVsb.ALIGN.sandbox.lh_align.setValue(L('OPTION_TEXTALIGN'));
+			sizeVsb.FONTSIZE.sandbox.varBtn.setText(L('MORE_CSS'));
+		//	sizeVsb.FONTSIZE.sandbox.varBtn.canCommand = 'isEpub'; // fix for missing property in 600 main.xml
 
-			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox.FONTSIZEFINE.sandbox.ff_title, 'text', L('OPTION_FONTSIZE'));
-			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox.LINEHEIGHT.sandbox.lh_title, 'text', L('OPTION_LINEHEIGHT'));
-			Core.system.setSoValue(PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox.ALIGN.sandbox.lh_align, 'text', L('OPTION_TEXTALIGN'));
-			PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox.FONTSIZE.sandbox.varBtn.setText(L('MORE_CSS'));
-			PATH_SIZEOVERLAYSANDBOX.sizeH.sandbox.FONTSIZE.sandbox.varBtn.canCommand = 'isEpub';
-		} catch (e) { log.trace('writing to sandbox-values e: '+e) 
+			sizeHsb.FONTSIZEFINE.sandbox.ff_title.setValue(L('OPTION_FONTSIZE'));
+			sizeHsb.LINEHEIGHT.sandbox.lh_title.setValue(L('OPTION_LINEHEIGHT'));
+			sizeHsb.ALIGN.sandbox.lh_align.setValue(L('OPTION_TEXTALIGN'));
+			sizeHsb.FONTSIZE.sandbox.varBtn.setText(L('MORE_CSS'));
+		//	sizeHsb.FONTSIZE.sandbox.varBtn.canCommand = 'isEpub';
+		} catch (e) { 
+			log.trace('writing to sandbox-values e: '+e);
 		}
 		PATH_SIZEOVERLAY.setVariable('VAR_RADIO_LINEHEIGHT', myLineHeight);
 		PATH_SIZEOVERLAY.setVariable('VAR_RADIO_FONTSIZEFINE', myFineFontSize);
@@ -88,10 +119,6 @@ tmp = function()
 		oldInitSizeMenu.apply(this, arguments);
 	};
 
-//---------taking commands from/functions for Font_Size_Overlay-buttons:--------------------------------
-	
-	//Fontsize-Changing over Font_Size_Overlay:
-	//doFontSize: own variable to be found in sizeOverlay.xml:
 	doFineFontSize = function (sender) {
 		var id;
 		id = sender.id.substring(5,6);
@@ -101,44 +128,40 @@ tmp = function()
 		Core.settings.saveOptions(Extra_CSS_x50);
 	};
 
-
-	//Lineheight-Changing over Font_Size_Overlay
-	//doLineHeight: to be found in sizeOverlay.xml:
 	doLineHeight = function (sender) {
 		var id;
 		id = sender.id.substring(4,5);
 		myLineHeight = id * 1;	
 		handleExtraCSS(1, t_lheight[myLineHeight]);
-		Extra_CSS_x50.options.Option_Lineheight = myLineHeight.toString();	
+		Extra_CSS_x50.options.Option_Lineheight = myLineHeight.toString();
 		Core.settings.saveOptions(Extra_CSS_x50);
 	};
 
-	//doAlign: to be found in sizeOverlay.xml:
 	doAlign = function (sender) {
 		var id;
 		id = sender.id.substring(5,6);
 		myAlign = id * 1;	
 		handleExtraCSS(4, t_align[myAlign]);
-		Extra_CSS_x50.options.Option_Textalign = myAlign.toString();	
+		Extra_CSS_x50.options.Option_Textalign = myAlign.toString();
 		Core.settings.saveOptions(Extra_CSS_x50);
 	};
 
 	loadExtraCSS = function () {
 		var filePath, content, lines, path, i, n;
 		// load externCSS
-			filePath = Core.config.userCSSPath + "extern.css";
+			filePath = Core.config.userCSSPath + 'extern.css';
 			content = Core.io.getFileContent(filePath, null);
 			if (content !== null) {
 				externCSS = [];
-				lines = content.split("\n");
+				lines = content.split('\n');
 				if (lines) {
 					i = 0;
 					n = lines.length;
 						for (i; i < n; i++) {
-							if ((lines[i].indexOf("#")) === -1 && (lines[i].length)) {
+							if ((lines[i].indexOf('#')) === -1 && (lines[i].length)) {
 								externCSS.push(lines[i]);
 							}
-						}	
+						}
 					}
 			} else {
 				externCSS = ['','','','','','',''];
@@ -148,7 +171,7 @@ tmp = function()
 	buildMoreCSSMenu = function () {
 		// PopUpMenu definition
 		var cssMargin, cssPadding, cssIndent, 
-		LSA = Core.lang.getLocalizer("StandardActions"),
+		LSA = Core.lang.getLocalizer('StandardActions'),
 		createMenuItem = Core.popup.createMenuItem; // not to type Core.popup X times
 
 		// Root menu for epubs
@@ -160,7 +183,7 @@ tmp = function()
 		// Submenus
 		cssMargin = createMenuItem(L('OPTION_PAGEMARGIN'));
 		cssPadding = createMenuItem(L('OPTION_PADDING'));
-		cssIndent = createMenuItem(L('OPTION_TEXTINDENT')),
+		cssIndent = createMenuItem(L('OPTION_TEXTINDENT'));
 		cssMenu.addChild(cssIndent);
 		cssMenu.addChild(cssMargin);
 		cssMenu.addChild(cssPadding);
@@ -233,7 +256,21 @@ tmp = function()
 
 	PATH_SIZEOVERLAYSANDBOX.isEpub = isEpub;
 
-	/*/Activates Zoom-Lock (former: normal zoom-mode) over Font_Size_Overlay		
+	if (Core.config.model === '600') { // model-sniffing;  manual creation of radio-button-control-variables
+		var VAR_RADIO_LINEHEIGHT = xs.newInstanceOf(Fskin.modelVariable);
+		VAR_RADIO_LINEHEIGHT.id = 'VAR_RADIO_LINEHEIGHT';
+		VAR_RADIO_LINEHEIGHT.construct(kbook.model);
+
+		var VAR_RADIO_FONTSIZEFINE = xs.newInstanceOf(Fskin.modelVariable);
+		VAR_RADIO_FONTSIZEFINE.id = 'VAR_RADIO_FONTSIZEFINE';
+		VAR_RADIO_FONTSIZEFINE.construct(kbook.model);
+
+		var VAR_RADIO_ALIGN = xs.newInstanceOf(Fskin.modelVariable);
+		VAR_RADIO_ALIGN.id = 'VAR_RADIO_ALIGN';
+		VAR_RADIO_ALIGN.construct(kbook.model); 
+	}
+
+	/*/Activates Zoom-Lock (former: normal zoom-mode) over Font_Size_Overlay
 	PATH_SIZEOVERLAYSANDBOX.goZoomMode = function () {
 		Core.addonByName.TouchSettings.actions[2].action();
 	}; */
@@ -241,9 +278,9 @@ tmp = function()
 	Extra_CSS_x50 = 
 	{
 		name: NAME,
-		settingsGroup: "fonts", 
-		title: L("GROUP_BOOK_FORMAT"),	
-		icon: "BOOKOPEN", 		
+		settingsGroup: 'fonts',
+		title: L('GROUP_BOOK_FORMAT'),
+		icon: 'BOOKOPEN',
 		optionDefs:
 		[
 			//Group 1
@@ -254,7 +291,7 @@ tmp = function()
 			optionDefs: 
 				[
 					{
-						name: 'Option_Fontsize',	
+						name: 'Option_Fontsize',
 						title: L('OPTION_FONTSIZE'),
 						icon: 'FONT',
 						//helpText: L('HELP_FONTSIZE'),
@@ -262,8 +299,8 @@ tmp = function()
 						values: ['0', '1', '2', '3', '4'],
 						valueTitles: 
 							{
-							'0': t_ffont[0], 
-							'1': t_ffont[1],	
+							'0': t_ffont[0],
+							'1': t_ffont[1],
 							'2': t_ffont[2],
 							'3': t_ffont[3],
 							'4': t_ffont[4]
@@ -271,7 +308,7 @@ tmp = function()
 					},
 					
 					{
-						name: 'Option_Lineheight',	
+						name: 'Option_Lineheight',
 						title: L('OPTION_LINEHEIGHT'),
 						icon: 'FONT',
 						//helpText: L('HELP_LINEHEIGHT'),
@@ -288,7 +325,7 @@ tmp = function()
 					},
 					
 					{
-						name: 'Option_Pagemargin',	
+						name: 'Option_Pagemargin',
 						title: L('OPTION_PAGEMARGIN'),
 						icon: 'FONT',
 						//helpText: L('HELP_PAGEMARGIN'),
@@ -297,14 +334,14 @@ tmp = function()
 						valueTitles: 
 							{
 							'0': t_margin[0], 
-							'1': t_margin[1], //no margins					
+							'1': t_margin[1], //no margins
 							'2': t_margin[2],
 							'3': t_margin[3]
 							}
 					},
 					
 					{
-						name: 'Option_Padding',	
+						name: 'Option_Padding',
 						title: L('OPTION_PADDING'),
 						icon: 'FONT',
 						//helpText: L('HELP_PADDING'),
@@ -313,14 +350,14 @@ tmp = function()
 						valueTitles: 
 							{
 							'0': t_margin[0], 
-							'1':   t_margin[1], //no margins					
-							'2':   t_margin[2],
-							'3':   t_margin[3]
+							'1': t_margin[1], //no margins
+							'2': t_margin[2],
+							'3': t_margin[3]
 							}		
-					},					
-										
+					},
+
 					{
-						name: 'Option_Textalign',	
+						name: 'Option_Textalign',
 						title: L('OPTION_TEXTALIGN'),
 						icon: 'FONT',
 						//helpText: L('HELP_PAGEMARGIN'),
@@ -337,7 +374,7 @@ tmp = function()
 					},
 					
 					{
-						name: 'Option_Textindent',	
+						name: 'Option_Textindent',
 						title: L('OPTION_TEXTINDENT'),
 						icon: 'FONT',
 						//helpText: L('HELP_PAGEMARGIN'),
@@ -353,7 +390,7 @@ tmp = function()
 					},
 
 					{
-						name: 'Reset_CSS',	
+						name: 'Reset_CSS',
 						title: L('RESET_CSS'),
 						icon: 'BACK',
 						helpText: L('HELP_RESET_CSS'),
@@ -390,28 +427,28 @@ tmp = function()
 			switch (propertyName) 
 			{
 				case 'Option_Fontsize':
-						handleExtraCSS(0, t_ffont[newValue]) ;	
+						handleExtraCSS(0, t_ffont[newValue]);	
 					break ;
 				case 'Option_Lineheight':
-						handleExtraCSS(1, t_lheight[newValue]) ;
+						handleExtraCSS(1, t_lheight[newValue]);
 					break ;
 				case 'Option_Pagemargin':
-						handleExtraCSS(2, t_margin[newValue]) ;
+						handleExtraCSS(2, t_margin[newValue]);
 					break ;
 				case 'Option_Padding':
-						handleExtraCSS(6, t_margin[newValue]) ;
+						handleExtraCSS(6, t_margin[newValue]);
 					break ;
 				case 'Option_Textalign':
-						handleExtraCSS(4, t_align[newValue]) ;
+						handleExtraCSS(4, t_align[newValue]);
 					break ;
 				case 'Option_Textindent':
-						handleExtraCSS(5, t_indent[newValue]) ;
+						handleExtraCSS(5, t_indent[newValue]);
 					break;
 			/*	case 'LrfFont':
 						LrfFontFunction (newValue) ;	
 					break ;  */
 				case 'Reset_CSS':
-						ResetCss ();
+						ResetCss();
 					break ;
 			/*	case 'Option_Edit_Tags':
 						EditTagsFunction(newValue); 
@@ -430,5 +467,5 @@ try
 } catch (e) 
 {
 	// Core's log
-	log.error("in Extra_CSS_x50.js", e);
+	log.error('in Extra_CSS_x50.js', e);
 }
