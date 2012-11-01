@@ -42,9 +42,21 @@
 				this.drawText(this.text.value, v, x, y, width, this.getDefaultHeight())
 			</script>
 		</behavior>
+
 		<style id="popupText" halign="left" valign="top" top="8" left="10" size="30" style="bold"/>
 		<style id="popupTextWhite" halign="left" valign="top" top="8" left="10" size="30" style="bold" color="#FFFFFF"/>
-						  
+		<style id="fSize-e" font="Swis721 BT" color="#000000" style="bold" valign="center" halign="center" size="28">
+			<style id="fSize-d" color="#FFFFFF"/>
+			<style id="fSize-p" color="#000000"/>
+			<style id="fSize-s" color="#FFFFFF"/>
+		</style>	
+
+		<style id="moreBtn-e" font="Swis721 BT" color="#000000" style="bold" valign="center"  halign="center" bottom="1" size="22">
+			<style id="moreBtn-d" color="#999999"/>
+			<style id="moreBtn-p" color="#000000"/>
+			<style id="moreBtn-s" color="#FFFFFF"/>
+		</style>
+							  
         <texture href="prspAssets.png">			
 			<cutout id="whiteBox" x="50" y="180" width="35" height="48" columns="0" lines="0" />
 			<cutout id="blackBox" x="50" y="332" width="35" height="48" columns="0" lines="0" />
@@ -93,6 +105,31 @@
 			<cutout id="menuArrows-r" x="30" y="95"  width="15" height="80" columns="0" lines="0"/>
 			<cutout id="menuArrows-u" x="50" y="90"  width="25" height="22" columns="0" lines="0"/>
 			<cutout id="menuArrows-d" x="50" y="115" width="25" height="22" columns="0" lines="0"/>
+
+			<!-- Additional Font Size Buttons; Cutouts: 36x23  -->
+			<cutout id="alignLeft" x="640" y="100" width="36" height="23"/>
+			<cutout id="alignCenter" x="714" y="100" width="36" height="23"/>
+			<cutout id="alignRight"	x="788" y="100" width="36" height="23"/>
+			<cutout id="alignJustify" x="862" y="100" width="36" height="23"/>
+
+			<!-- Home-Button: Analogus. -->
+			<cutout id="button_home" x="315" y="80" width="61" height="61"/>
+		</texture>
+					
+		<texture href="../scripts/options_items.png">
+			<!-- radio-buttons like fontsize-menu-->
+			<cutout id="fSizeL-l" 	x="370" y="233" width="9" height="53" columns="24"/>
+			<cutout id="fSizeL-c" 	x="379" y="233" width="7" height="53" columns="24"/>
+			<cutout id="fSizeL-r" 	x="386" y="233" width="8" height="53" columns="24"/>
+			<cutout id="fSizeC-l" 	x="419" y="233" width="8" height="53" columns="24"/>
+			<cutout id="fSizeC-c" 	x="427" y="233" width="8" height="53" columns="24"/>
+			<cutout id="fSizeC-r" 	x="435" y="233" width="8" height="53" columns="24"/>
+			<cutout id="fSizeR-l" 	x="468" y="233" width="7" height="53" columns="24"/>
+			<cutout id="fSizeR-c" 	x="475" y="233" width="4" height="53" columns="24"/>
+			<cutout id="fSizeR-r" 	x="479" y="233" width="13" height="53" columns="24"/>			
+			<cutout id="moreBtn-l"	x="198" y="233" width="12" height="50" columns="30"/>
+			<cutout id="moreBtn-c"	x="210" y="233" width= "6" height="50" columns="30"/>
+			<cutout id="moreBtn-r"	x="216" y="233" width="12" height="50" columns="30"/>
 		</texture>
 
 		<skin id="popup"
@@ -123,5 +160,23 @@
 			cutouts="menuArrows-u"/>
 		<skin id="menuArrows-d"
 			cutouts="menuArrows-d"/>
+		<skin id="button_home" 
+			cutouts="button_home"/>
+		<skin id="alignLeft"
+			cutouts="fSizeC-l,fSizeC-c,fSizeC-r,alignLeft" styles="fSize-d,fSize-e,fSize-p,fSize-s"/>
+		<skin id="alignCenter"
+			cutouts="fSizeC-l,fSizeC-c,fSizeC-r,alignCenter" styles="fSize-d,fSize-e,fSize-p,fSize-s"/>
+		<skin id="alignRight"
+			cutouts="fSizeC-l,fSizeC-c,fSizeC-r,alignRight" styles="fSize-d,fSize-e,fSize-p,fSize-s"/>			
+		<skin id="alignJustify"
+			cutouts="fSizeR-l,fSizeR-c,fSizeR-r,alignJustify" styles="fSize-d,fSize-e,fSize-p,fSize-s"/>			
+		<skin id="fontSizeL"
+			cutouts="fSizeL-l,fSizeL-c,fSizeL-r" styles="fSize-d,fSize-e,fSize-p,fSize-s"/>
+		<skin id="fontSizeC"
+			cutouts="fSizeC-l,fSizeC-c,fSizeC-r" styles="fSize-d,fSize-e,fSize-p,fSize-s"/>	
+		<skin id="fontSizeR"
+			cutouts="fSizeR-l,fSizeR-c,fSizeR-r" styles="fSize-d,fSize-e,fSize-p,fSize-s"/>	
+		<skin id="moreBtn"	
+				cutouts="moreBtn-l,moreBtn-c,moreBtn-r"	styles="moreBtn-d,moreBtn-e,moreBtn-p,moreBtn-s"/>		
     </assets>	
 </document>

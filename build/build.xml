@@ -6,6 +6,7 @@ History:
 	2011-09-30 kartu - Added Unix support
 	2011-12-12 kartu - Fixed runonce.sh (removed "archive" attribute)
 	2012-03-17 Mark Nord - core1
+	2012-11-01 Mark Nord - addons4; exclude core__keyboard for touch-models
 -->
 <project default="buildAll">
 	<!--======================================================================== 
@@ -63,6 +64,7 @@ History:
 		<exclude name="TextEncoding.js" />
 		<exclude name="TextScale.js" />
 		<exclude name="ViewerSettings.js" />
+		<exclude name="core__keyboard.js" />		
 	</patternset>
 	<patternset id="addons_300">
 		<patternset refid="addons_300_505" />
@@ -77,7 +79,6 @@ History:
 		<exclude name="BookManagement_x50.js" />
 		<exclude name="TouchSettings_x50.js" />
 		<exclude name="DictionaryOptions_x50.js" />
-		<exclude name="Extra_CSS_x50.js" />
 		<exclude name="Interface_x50.js" />		
 	</patternset>
 	<patternset id="addons_350" >
@@ -203,6 +204,7 @@ History:
 		<concat encoding="UTF-8" destfile="${CORE}/core1.js">
 			<fileset dir="${SRC.CORE}1">
 				<include name="*.js" />
+				<patternset refid="addons_${model}" />
 			</fileset>
 		</concat>		
 		<echo>Copying compat/bootstrap &amp; prsp.js</echo>
@@ -261,6 +263,7 @@ History:
 		<mkdir dir="${beta}/addons1"/>
 		<mkdir dir="${beta}/addons2"/>
 		<mkdir dir="${beta}/addons3"/>
+		<mkdir dir="${beta}/addons4"/>
 		<mkdir dir="${beta}/core"/>
 		<mkdir dir="${beta}/core1"/>
 		
@@ -285,13 +288,20 @@ History:
 			 	<patternset refid="addons_${model}" />
 			</fileset>
 		</copy>
-		
+		<copy todir="${beta}/addons4">
+			<fileset dir="${src}/addons4" >
+			 	<patternset refid="addons_${model}" />
+			</fileset>
+		</copy>
+				
 		<echo>Copying core</echo>
 		<copy todir="${beta}/core">
 			<fileset dir="${src}/core"/>
 		</copy>
 		<copy todir="${beta}/core1">
-			<fileset dir="${src}/core1"/>
+			<fileset dir="${src}/core1">
+			 	<patternset refid="addons_${model}"  />
+			</fileset>
 		</copy>
 		<copy todir="${beta}" file="../script/prsp.js"/>
 		<copy tofile="${beta}/user.config" file="${src}/user.config.${model}"/>		
@@ -380,7 +390,18 @@ History:
 				</fileset>
 			</intersect>
 		</concat>
-		
+		<!-- addons 4 folder -->
+		<concat destfile="${prsp.dir}/addons4.js" encoding="UTF-8">
+			<intersect>
+				<fileset dir="${SRC.ADDONS}4">
+					<patternset refid="addons_${model}" />
+				</fileset>
+				<fileset dir="${SRC.ADDONS}4">
+					<include name="*.js"/>
+				</fileset>
+			</intersect>
+		</concat>		
+
 		<echo>Optimizing addon files</echo>
 		<optimize.yui folder="${prsp.dir}"/>
 		

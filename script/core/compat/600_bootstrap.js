@@ -38,6 +38,7 @@
 //	2012-02-24 quisvir - Moved sub-collection support to addon
 //	2012-07-22 Mark Nord - "/" and "." extendes hold-key support (2 new keys left/right frim spacebar);
 //	2012-08-12 Mark Nord - added custom FskCache.diskSupport.ignoreDirs -> moved to BrowseFolders-Addon
+//	2012-10-30 Mark Nord - backport x50th stylesOffset for radio2icon button - copy 'n past from 650th kbook.xs
 //
 //-----------------------------------------------------------------------------------------------------
 // Localization related code is model specific.  
@@ -470,6 +471,50 @@ var tmp = function() {
 		this.actions.push(BookUtil.tapAndHoldAction);
 		oldGestureBaseInit.apply(this, arguments);
 	};	
+
+	// backport x50th stylesOffset for radio2icon button - copy 'n past from 650th kbook.xs
+	kbook.radio2icon.stylesOffset = 0;
+
+	kbook.radio2icon.modified_kbook_draw = function () {
+		var value, state, left, window, center, right, style;
+		value = this.value;
+		state = this.state;
+		left = this.skin.cutouts[0];
+		window = this.root.window;
+		left.draw(window, value, state, this.x, this.y, left.width, left.height);
+		if (this.skin.cutouts.length > 1) {
+			center = this.skin.cutouts[1];
+			right = this.skin.cutouts[2];
+			style = this.skin.styles[this.stylesOffset * value + state];
+			center.fillHorizontal(window, value, state, this.x + left.width, this.y, this.width - left.width - right.width, center.height);
+			right.draw(window, value, state, this.x + this.width - right.width, this.y, right.width, right.height);
+			style.draw(this.root.window, this.text, this.x, this.y, this.width, center.height);
+		}
+	};
+
+	kbook.radio2icon.draw = function () {
+		var value, window, state, icon, bitmap, r;
+		if (this.stylesOffset == 0) {
+			Fskin.radio.draw.call(this);
+		}
+		else {
+			this.modified_kbook_draw();
+		}
+		if (this.skin.cutouts.length > 3) {
+			value = this.value;
+			window = this.root.window;
+			state = this.state;
+			icon = this.skin.cutouts[3];
+			// remember DeFSK dosn't output parentheses () in calculations !!
+			icon.draw(window, value, state, this.x + (this.width - icon.width) / 2, this.y + (this.height - icon.height) / 2, icon.width, icon.height);
+		}
+		if (this.state == 3) {
+			window = this.getWindow();
+			bitmap = window.getBitmap();
+			r = kbook.invalidMonoButtonBounds(this, this);
+			BookUtil.convertMonochrome(bitmap, this.threshold, r);	
+		}
+	};
 };
 
 try {
