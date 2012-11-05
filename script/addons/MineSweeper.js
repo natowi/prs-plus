@@ -2,14 +2,16 @@
    Original code (c) D. Shep Poor
    adapted for Sony PRS by Mark Nord
    Initial version: April 2011
+   2012-11-05 drMerry added localization and added title to actions
 */
 
 tmp = function() {
-	var appIcon = (Core.config.compat.NodeKinds.BOMB == "undefined") ? "GAME" : "BOMB";
+	var appIcon = (Core.config.compat.NodeKinds.BOMB == "undefined") ? "GAME" : "BOMB",
+	L = Core.lang.getLocalizer("Minesweep");
 	var MineSweeper = {
 		name: "MineSweeper",
-		title: "MineSweeper",
-		description: "Game",
+		title: L("TITLE"),
+		description: L("MSG"),
 		icon: appIcon,
 		activate: function () {
 		   try {
@@ -27,6 +29,7 @@ tmp = function() {
 		},
 		actions: [{
 			name: "MineSweeper",
+			title: L("TITLE"),
 			group: "Games",
 			icon: appIcon,
 			action: function () {

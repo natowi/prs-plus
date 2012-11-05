@@ -6,12 +6,14 @@
 // History:
 //	2010-06-05 Mark Nord - initial release
 //	2010-12-05 Mark Nord - prepared for PRS+ 2.0.x
+//	2012	drMerry - added title to actions so it can be added to custom actions
+//	2012-11-05 drMerry - changed added C_TITLE to make less requests
 
 tmp = function() {
-	var L = Core.lang.getLocalizer("Calc");
+	var L = Core.lang.getLocalizer("Calc"), C_TITLE = L("TITLE");
 	var Calc = {
 		name: "Calculator",
-		title: L("TITLE"),
+		title: C_TITLE,
 		//description: L("DESCRIPTION"),	// to be added to language asset
 		description: "Scientific calculator",
 		icon: "CALC",
@@ -26,7 +28,7 @@ tmp = function() {
 		},
 		actions: [{
 			name: "Calc",
-			title: L("TITLE"),
+			title: C_TITLE,
 			group: "Utils",
 			icon: "CALC",
 			action: function () {
