@@ -29,7 +29,7 @@
 //	2012-08-24 Ben Chenoweth - Fixed two minor regressions
 //	2012-09-08 Mark Nord - fix #345 PRS 300/505 - No White/Black Stand-By-Screen when rotated 90° 
 //	2012-09-09 Ben Chenoweth - Allow events to be hidden in calendar mode
-
+//	2012-11-05 drMerry - some code improvement
 var tmp = function() {
 	var L, LX, log, orgOrientation, shutdown, oldStandbyImageDraw, getBookCover, usbConnected, standbyState,
 	oldSuspend, oldResume, oldDoDeviceShutdown, oldDoQuit, getBookCoverNew, getBookCoverOld;
@@ -213,6 +213,7 @@ var tmp = function() {
 		default:
 			standbyImage = {};
 			getBookCover = getBookCoverOld;
+			break;
 	}
 	
 	standbyImage.draw = function () {
@@ -306,6 +307,7 @@ var tmp = function() {
 						width = w;
 						height = h;
 						x = y = 0;
+						break;
 				}
 				if (opt.dither === 'true') bitmap = bitmap.dither(true);
 				win.drawBitmap(bitmap, x, y, width, height);
@@ -335,7 +337,11 @@ var tmp = function() {
 					lines = content.split('\n');
 					match = (shutdown) ? 'Enter Shutdown Text below this line' : 'Enter Standby Text below this line';
 					i = 0;
-					for (i; i < lines.length - 1 && lines[i].indexOf(match) === -1; i++);
+					for (i; i < lines.length - 1 && lines[i].indexOf(match) === -1; i++)
+					{
+						//TODO drMerry asks: Is this empty by purpose? In that case, there must be a smarter way to archive this (I think)
+						
+					}
 					if (i !== lines.length - 1) customText = lines[i+1].replace('\r','');
 				}
 				if (!customText || customText === '') customText = L('CUSTOM_TEXT_NOT_FOUND');
@@ -400,14 +406,14 @@ var tmp = function() {
 			return;
 		}
 		USBDispatcher.onConnected();
-	};
+	},
 
-	var onUSBDisconnect = function () {
+	onUSBDisconnect = function () {
 		usbConnected = false;
 		ebook.setUsbCharge(false);
-	}
+	},
 	
-	var StandbyImage = {
+	StandbyImage = {
 		name: "StandbyImage",
 		title: L("TITLE"),
 		icon: "STANDBY",
@@ -602,14 +608,14 @@ var tmp = function() {
 					"20": LX("MINUTES", 20),
 					"30": LX("MINUTES", 30),
 					"60": LX("MINUTES", 60),
-					"120": LX("MINUTES", 120),
+					"120": LX("MINUTES", 120)
 				}
 			}
 		],
 		hiddenOptions: [
 			{
 				name: 'orgOrientation',
-				defaultValue: '',
+				defaultValue: ''
 			}
 		],
 		onPreInit: function () {
@@ -652,10 +658,11 @@ var tmp = function() {
 								"96": LX("HOURS", 96),
 								"120": LX("HOURS", 120),
 								"144": LX("HOURS", 144),
-								"168": LX("HOURS", 168),
+								"168": LX("HOURS", 168)
 							}
 						}
 					);
+					break;
 			}
 		},
 		onInit: function () {
@@ -707,7 +714,7 @@ var tmp = function() {
 				}
 			}
 		}
-	}
+	};
 
 	Core.addAddon(StandbyImage);
 };

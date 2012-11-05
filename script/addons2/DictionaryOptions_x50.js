@@ -17,6 +17,7 @@
 //	2012-02-28 quisvir - Fixed #301 'Pop-up dictionary demands to be closed and opened again to look up'
 //	2012-03-08 quisvir - Added FR 'Keeping track of which dictionary was used with which book'
 //	2012-03-23 Ben Chenoweth - Added FR 'Save Words to TXT File'
+//	2012-11-05 drMerry - some code improvement
 
 tmp = function() {
 
@@ -39,10 +40,10 @@ tmp = function() {
 			target.invalidate();
 			target.terminateCoordinates(target.root, target.container);
 		}
-	}
+	},
 	
 	// General function to recursively initialize coordinates of container content
-	var doInitializeCoordinates = function (target, first) {
+	doInitializeCoordinates = function (target, first) {
 		var i, c;
 		c = target.contents;
 		if (!first) {
@@ -54,10 +55,10 @@ tmp = function() {
 				doInitializeCoordinates(c[i], false);
 			}
 		}
-	}
+	},
 	
 	// Function to modify Dictionary Popup size & position
-	var modifyDictPopup = function (toTop, button) {
+	modifyDictPopup = function (toTop, button) {
 		var h, target;
 		h = opt.popupLines * 23;
 		target = kbook.model.container.sandbox.SHORTCUT_OVERLAY.sandbox.VIEW_SHORTCUT;
@@ -71,7 +72,7 @@ tmp = function() {
 		if (button) {
 			target.sandbox.DIC_BTN.changeLayout(14, undefined, 14, undefined, h + 10, 2);
 		}
-	}
+	};
 	
 	// Function for next/previous dictionary entry buttons in popup
 	kbook.model.container.sandbox.SHORTCUT_OVERLAY.sandbox.VIEW_SHORTCUT.sandbox.doNextPrevDicEntry = function (button) {
@@ -87,7 +88,7 @@ tmp = function() {
 		data.simpleRecord.setMode('simple');
 		this.setVariable('VAR_UPDATE', false);
 		this.setVariable('VAR_UPDATE', true);
-	}
+	};
 	
 	// Show/hide next/previous buttons in popup depending on dictionary results
 	var oldOpenShortcut2 = pageShortcutOverlayModel.openShortcut2;
@@ -97,7 +98,7 @@ tmp = function() {
 		show = kbook.dictionaryData.countSimpleRecords() ? true : false;
 		this.container.sandbox.VIEW_SHORTCUT.sandbox.VIEW_SHORTCUT2.sandbox.BTN_PREVDICENTRY.show(show);
 		this.container.sandbox.VIEW_SHORTCUT.sandbox.VIEW_SHORTCUT2.sandbox.BTN_NEXTDICENTRY.show(show);
-	}
+	};
 	
 	// Save Words to TXT File & Disable dictionary by DoubleTap
 	var oldDoSelectWord = kbook.kbookPage.doSelectWord;
@@ -159,7 +160,7 @@ tmp = function() {
 		if (opt.disableDictDoubleTap !== 'true') {
 			return oldDoSelectWord.apply(this, arguments);
 		}
-	}
+	};
 	
 	// Move dictionary popup to top if selected text is in bottom of the screen (and vice versa)
 	var preventPopupOverlap = function (y) {
@@ -172,13 +173,13 @@ tmp = function() {
 		} else if (target.y !== 0) {
 			modifyDictPopup(true, false);
 		}
-	}
+	},
 	
-	var oldMouseUp = kbook.kbookPage.readingTracker.mouseUp;
+	oldMouseUp = kbook.kbookPage.readingTracker.mouseUp;
 	kbook.kbookPage.readingTracker.mouseUp = function (target, event) {
 		if (event.clickCount === 2) preventPopupOverlap(event.y);
 		oldMouseUp.apply(this, arguments);
-	}
+	};
 	
 	// Close dictionary popup and cancel selection by tapping page
 	pageShortcutOverlayModel.doTap = function (x, y) {
@@ -217,7 +218,7 @@ tmp = function() {
 			arguments[7] = opt.popupLines;
 		}
 		return oldSetRenderParameter.apply(this, arguments);
-	}
+	};
 	
 	// Set dictionary popup size on first book load (onInit is too soon)
 	var initPopupSize = function () {
@@ -227,9 +228,9 @@ tmp = function() {
 			modifyDictPopup(false, true);
 		}
 		Core.events.unsubscribe(Core.events.EVENTS.BOOK_CHANGED, initPopupSize);
-	}
+	},
 	
-	var trimDicHistories = function (max) {
+	trimDicHistories = function (max) {
 		var cb, hist, db, i, r, dict;
 		// Current book
 		cb = kbook.model.currentBook;
@@ -260,11 +261,11 @@ tmp = function() {
 				hist.length = max;
 			}
 		}
-	}
+	},
 	
-	var clearDicHists = function () {
+	clearDicHists = function () {
 		if (opt.clearDicHistsOnShutdown === 'true') trimDicHistories(0);
-	}
+	};
 	
 	// Keep text selection on entering dictionary from popup
 	pageShortcutOverlayModel.doShortcutDictionary = function () {
@@ -287,15 +288,15 @@ tmp = function() {
 				kbook.model.setDictionary(id);
 			}
 		}
-	}
+	},
 	
-	var saveToValueTitles = {
+	saveToValueTitles = {
 		"a:/": LL("MEMORY_STICK"),
 		"b:/": LL("SD_CARD"),
 		"/Data/": LL("INTERNAL_MEMORY")
-	}
+	},
 	
-	var DictionaryOptions = {
+	DictionaryOptions = {
 		name: 'DictionaryOptions',
         title: L('TITLE'),
 		icon: 'DICTIONARY',

@@ -17,7 +17,7 @@
 //	2012-09-01 - 2012-10-02 Mark Nord - PopUpMenu on doSize - epub CSS tweaking (credits to Analogus)
 //	
 //	ToDo - marginCut: add to Book-Menu; possible enhancements: 4-quadrants view, ...
-
+//	2012-11-05 drMerry - some code improvement
 
 var tmp = function() {
 
@@ -27,7 +27,7 @@ var tmp = function() {
 	LX = Core.lang.LX;
 	log = Core.log.getLogger('ViewerSettings');
 
-	var autoPageTimer, oldRender, myRender, setMarginCut, resetMarginCut, rotateMarginCut, myBounds, myHBounds, 
+	var autoPageTimer, oldRender, myRender, resetMarginCut, rotateMarginCut, myBounds, myHBounds, //drMerry removed setMarginCut (otherwise redeclarated in line 43)
 	dx, dy, hdx, hdy,  myWidth, myHeight, externCSS, delayTimer,
 	marginCut = false, 
 	mcLandscape = false,
@@ -322,7 +322,7 @@ var tmp = function() {
 			if (index  === 2) { // workaround handle @page {margin: }
 				userStyleexternCSS[index+1] = '';
 			}
-		};
+		}
 		currentPage = page.data.get(Document.Property.page);
 		Core.addonByName.EpubUserStyle.reloadBook(userStyleexternCSS);
 		page.data.set(Document.Property.page, currentPage);
@@ -363,7 +363,7 @@ var tmp = function() {
 
 	buildDoSizeMenus = function () {
 		// PopUpMenu definition
-		LTS = Core.lang.getLocalizer("TextScale"),
+		var LTS = Core.lang.getLocalizer("TextScale"),
 		LSA = Core.lang.getLocalizer("StandardActions");
 		sizeActions = [];
 		sizeTitles = [LTS('VALUE_SMALL'), LTS('VALUE_MEDIUM'), LTS('VALUE_LARGE'), LSA('ACTION_doRotate'), L('MARGINCUT')];
@@ -383,10 +383,10 @@ var tmp = function() {
 		sizeMenu.addChild(createMenuItem(LTS('VALUE_LARGE'), function () {myDoSize('L');}  )); 
 		sizeMenu.addChild(createMenuItem(LSA('ACTION_doRotate'), function () {ebook.rotate();} )); 
 		sizeMenu.addChild(createMenuItem(L('MARGINCUT'), function () {callDelayed('setMarginCut');} )); 
-		sizeMenu.addChild(createMenuItem(L('CHANGEFONT'), function () {callDelayed('cssFont')} )); 
+		sizeMenu.addChild(createMenuItem(L('CHANGEFONT'), function () {callDelayed('cssFont');} )); 
 		// Submenus - TODO Localize
 	
-		cssFontSizeMenu = createMenuItem(L('OPTION_FONTSIZE')),
+		var cssFontSizeMenu = createMenuItem(L('OPTION_FONTSIZE')),
 		cssLineHightMenu = createMenuItem(L('OPTION_LINEHEIGHT')),
 		cssIndent = createMenuItem(L('OPTION_TEXTINDENT')),
 		cssMargin = createMenuItem(L('OPTION_PAGEMARGIN'));
