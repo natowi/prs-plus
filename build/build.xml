@@ -7,8 +7,6 @@ History:
 	2011-12-12 kartu - Fixed runonce.sh (removed "archive" attribute)
 	2012-03-17 Mark Nord - core1
 	2012-11-01 Mark Nord - addons4; exclude core__keyboard for touch-models
-	2012-11-05 Mark Nord - lines 207ff disabled exclude core__keyboard for touch-models, throws 
-							unable to resolve addons_${model} !? working with build.beta !!??!!
 -->
 <project default="buildAll">
 	<!--======================================================================== 
@@ -204,17 +202,10 @@ History:
 		</concat>
 		<mkdir dir="${CORE}1" />
 		<concat encoding="UTF-8" destfile="${CORE}/core1.js">
-				<fileset dir="${SRC.CORE}1">
-					<include name="*.js"/>
-				</fileset>
-			<!--intersect>
-				<fileset dir="${SRC.CORE}1">
-					<patternset refid='addons_${model}' />
-				</fileset>
-				<fileset dir="${SRC.CORE}1">
-					<include name="*.js"/>
-				</fileset>
-			</intersect-->
+			<fileset dir="${SRC.CORE}1">
+				<include name="*.js" />
+				<!--		<patternset refid="addons_${model}" /> -->
+			</fileset>
 		</concat>		
 		<echo>Copying compat/bootstrap &amp; prsp.js</echo>
 		<copy todir="${CORE}">
@@ -305,12 +296,12 @@ History:
 				
 		<echo>Copying core</echo>
 		<copy todir="${beta}/core">
-			<fileset dir="${src}/core"/>
+			<fileset dir="${src}/core" />
 		</copy>
 		<copy todir="${beta}/core1">
-			<fileset dir="${src}/core1">
-			 	<patternset refid="addons_${model}"  />
-			</fileset>
+			<fileset dir="${src}/core1" />
+				<!--			 	<patternset refid="addons_${model}"  /> 
+			</fileset>-->
 		</copy>
 		<copy todir="${beta}" file="../script/prsp.js"/>
 		<copy tofile="${beta}/user.config" file="${src}/user.config.${model}"/>		
