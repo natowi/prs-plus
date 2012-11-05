@@ -63,6 +63,7 @@
 //	2012-06-23 drMerry - Added Global translation
 //	2012-08-12 Mark Nord - moved custom FskCache.diskSupport.ignoreDirs froms bootstrap
 //	2012-08-13 drMerry - Updated some code (combination of speed-up and minimize of code)
+//	2012-11-05 drMerry - some code improvement
 var tmp = function() {
 	var log, L, LG, startsWith, trim, BrowseFolders, TYPE_SORT_WEIGHTS, compare, sorter, folderConstruct, 
 		createFolderNode, createMediaNode, favourites, loadFavFolders, folderRootConstruct,
@@ -1343,6 +1344,7 @@ var tmp = function() {
 			} else {
 				this.shuffleList.initialize(this.nodes.length);
 			}
+			break;
 		}
 	};
 	
@@ -1432,7 +1434,7 @@ var tmp = function() {
 				folderConstruct.call(this);
 				return;
 			} else {
-			  i = 0
+			  i = 0;
 			  n = roots.length;
 				for (i, n; i < n; i++) {
 					if (FileSystem.getFileInfo(roots[i] + "/")) {
@@ -1448,8 +1450,7 @@ var tmp = function() {
 							L("NODE_SD_CARD_MOUNT"), 
 							this, 
 							"SD",
-							Core.shell.SD
-						));
+							Core.shell.SD));
 					}
 					if (FileSystem.getFileInfo("a:/")) {
 						nodes.push(createFolderNode(
@@ -1457,8 +1458,7 @@ var tmp = function() {
 							L("NODE_MEMORY_STICK_MOUNT"), 
 							this, 
 							"MS",
-							Core.shell.MS
-						));
+							Core.shell.MS));
 					}
 
 				}
@@ -1630,6 +1630,7 @@ var tmp = function() {
 				imageZoomOverlayModel.doNext = imageZoomOverlayModel_doNext;
 				kbook.model.doGotoPreviousSong = newDoGotoPreviousSong;
 				kbook.model.doGotoFirstSong = newDoGotoFirstSong;
+				break;
 			}
 		},
 		

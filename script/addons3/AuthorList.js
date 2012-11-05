@@ -11,6 +11,7 @@
 //	2011-11-20 quisvir - Minor changes
 //	2011-11-24 quisvir - Fixed deleting books opened from Author List
 //	2012-02-24 quisvir - Enabled #-Z navbar
+//	2012-11-05 drMerry - some code improvement
 
 tmp = function() {
 
@@ -61,7 +62,7 @@ tmp = function() {
 					comment: LX('BOOKS', books),
 					construct: authorConstruct,
 					icon: 'COLLECTION'
-				})
+				});
 				node.onSearch = 'onSearchDefault';
 				node.match = function (term) {
 					return this.name.toLowerCase().indexOf(term) !== -1;
@@ -99,8 +100,8 @@ tmp = function() {
 				name: 'MinimumBooks',
 				title: L('MINIMUM_BOOKS_PER_AUTHOR'),
 				defaultValue: '2',
-				values: ['1', '2', '3', '4', '5', '10', '15', '20', '25'],
-			},
+				values: ['1', '2', '3', '4', '5', '10', '15', '20', '25']
+			}
 		],
 		getAddonNode: function () {
 			if (authorsNode === null) {
@@ -113,7 +114,7 @@ tmp = function() {
 				});
 			}
 			return authorsNode;
-		},
+		}
 	};
 
 	Core.addAddon(AuthorList);

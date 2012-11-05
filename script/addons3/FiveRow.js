@@ -4,14 +4,16 @@
 	History:
 	2010-12-03 Mark Nord - startup Code for PRS+
 	2011-02-28 Ben Chenoweth - Changed addon name to CamelCase
+	2012-11-05 drMerry Added localized title (Both for Group and actions)
 */
 
 tmp = function() {
-	var appIcon = (Core.config.compat.NodeKinds.FIVEROW == "undefined") ? "GAME" : "FIVEROW";
-	var FiveRow = {
+	var appIcon = (Core.config.compat.NodeKinds.FIVEROW == "undefined") ? "GAME" : "FIVEROW",
+	L = Core.lang.getLocalizer('FiveRow'),
+	FiveRow = {
 		name: "FiveRow",
-		title: "Five In A Row",
-		description: "Game",
+		title: L("TITLE"),
+		description: L("MSG"),
 		icon: appIcon,
 		activate: function () {
 		   try {
@@ -26,6 +28,7 @@ tmp = function() {
 		},
 		actions: [{
 			name: "FiveInARow",
+			title: L("TITLE"),
 			group: "Games",
 			icon: appIcon,
 			action: function () {

@@ -1,6 +1,7 @@
 /* Name: Calendar app
    Original code (c) Ben Chenoweth
    Initial version: July 2011
+//	2012-11-05 drMerry - some code improvement
 */
 
 tmp = function() {
@@ -68,12 +69,12 @@ tmp = function() {
 					if ((events[i][2] == day) && (events[i][1] == month) && (events[i][3] <= year)) numevents++;
 				}
 				else if (events[i][0] == "F") {
-					if ((events[i][1] == 3) && (events[i][2] == 0) && (events[i][3] == 0) ) {
+					if ((events[i][1] === 3) && (events[i][2] === 0) && (events[i][3] === 0) ) {
 						Calendar.easter(year);
 						if (easterday == day && eastermonth == month) numevents++;
 					} else {
 						floater = Calendar.floatingholiday(year,events[i][1],events[i][2],events[i][3]);
-						if ((month == 5) && (events[i][1] == 5) && (events[i][2] == 4) && (events[i][3] == 2)) {
+						if ((month === 5) && (events[i][1] === 5) && (events[i][2] === 4) && (events[i][3] == 2)) {
 							if ((floater + 7 <= 31) && (day == floater + 7)) {
 								numevents++;
 							} else if ((floater + 7 > 31) && (day == floater)) numevents++;
@@ -156,7 +157,7 @@ tmp = function() {
 			
 			if (weekBeginsWith=="Mon") {
 				todaysDay = today.getDay();
-				if (todaysDay==0) todaysDay=7;
+				if (todaysDay===0) todaysDay=7;
 			}
 			
 			if (showcalendar) {
@@ -238,7 +239,7 @@ tmp = function() {
 					}
 				}
 				if (events[j][0] == "F") {
-					if ((events[j][1] == 3) && (events[j][2] == 0) && (events[j][3] == 0) ) {
+					if ((events[j][1] === 3) && (events[j][2] === 0) && (events[j][3] === 0) ) {
 						Calendar.easter(todaysYear);
 						if (easterday == todaysDate && eastermonth == todaysMonth) {
 							todayevents.push(events[j][5]);
@@ -266,7 +267,7 @@ tmp = function() {
 						}
 					}
 				}
-				if (events[j][0] == "") {
+				if (events[j][0] === "") {
 					if ((events[j][2] == todaysDate) && (events[j][1] == todaysMonth) && (events[j][3] == todaysYear)) {
 						todayevents.push(events[j][5]);
 					}
@@ -314,9 +315,10 @@ tmp = function() {
 				firstDay = firstDate.getDay() + 1;
 				var daycounter = 0;
 				var eventtype;
-				var numevents
+				var numevents;
 				thisDate = 1;
-				for (var i = 1; i <= 6; i++) {
+				var i = 0;
+				for (i = 1; i <= 6; i++) {
 					for (var x = 1; x <= 7; x++) {
 						if (weekBeginsWith=="Sun") {
 							daycounter = (thisDate - firstDay)+1;
@@ -417,7 +419,7 @@ tmp = function() {
 					// output future events
 					win.setTextStyle(1);
 					win.setTextAlignment(0, 0);
-					if (i==0) {
+					if (i===0) {
 						win.drawText(L("FUTURE_EVENTS"), 50, 582+hdiff, w-107, 23);
 					} else {
 						win.drawText(L("FUTURE_EVENTS"), 50, (i-1)*23+630+hdiff, w-107, 23);
@@ -444,7 +446,7 @@ tmp = function() {
 								// just in case: use 'Day-Month-Year'
 								datestring = futureevents[j-i][2]+"/"+futureevents[j-i][1]+"/"+futureevents[j-i][3];
 						}
-						if (i==0) {
+						if (i===0) {
 							win.drawText(" "+datestring+" - "+futureevents[j-i][5], 50, (j-1)*23+630+hdiff, w-107, 23);
 						} else {
 							win.drawText(" "+datestring+" - "+futureevents[j-i][5], 50, (j-0)*23+630+hdiff, w-107, 23);
@@ -484,20 +486,22 @@ tmp = function() {
 			return dayofmonth;
 		},
 		getevent: function (day,month,year,week,dayofweek) {
-			var altdayofweek;
+			var altdayofweek, i;
 			
 			altdayofweek = dayofweek+1;
 			if (altdayofweek==8) altdayofweek=1;
-			for (var i = 0; i < events.length; i++) {
+			i = 0;
+			for (i; i < events.length; i++) {
 				if (events[i][0] == "Y") {
 					if ((events[i][2] == day) && (events[i][1] == month) && (events[i][3] <= year)) {
 						return events[i][4];
 					}
 				}
 			}
-			for ( i = 0; i < events.length; i++) {
+			i = 0;
+			for (i; i < events.length; i++) {
 				if (events[i][0] == "F") {
-					if ((events[i][1] == 3) && (events[i][2] == 0) && (events[i][3] == 0) ) {
+					if ((events[i][1] == 3) && (events[i][2] === 0) && (events[i][3] === 0) ) {
 						if (easterday == day && eastermonth == month) {
 							return events[i][4];
 						} 
@@ -516,21 +520,24 @@ tmp = function() {
 					}
 				}
 			}
-			for ( i = 0; i < events.length; i++) {
-				if (events[i][0] == "") {
+			i = 0;
+			for (i; i < events.length; i++) {
+				if (events[i][0] === "") {
 					if ((events[i][2] == day) && (events[i][1] == month) && (events[i][3] == year)) {
 						return events[i][4];
 					}
 				}
-			}		
-			for ( i = 0; i < events.length; i++) {
+			}
+			i = 0;
+			for (i; i < events.length; i++) {
 				if (events[i][0] == "M") {
 					if ((events[i][2] == day) && (events[i][3] <= year)) {
 						return events[i][4];
 					}
 				}
 			}
-			for ( i = 0; i < events.length; i++) {
+			i = 0;
+			for (i; i < events.length; i++) {
 				if (events[i][0] == "W") {
 					if (weekBeginsWith=="Sun") {
 						if ((events[i][3] == dayofweek)) {
