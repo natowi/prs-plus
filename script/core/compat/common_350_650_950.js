@@ -301,9 +301,10 @@ var tmp = function () {
 		keyboardTypes = [
 				"English-US", 
 				"English-UK", 
+				"Greek-Greece", 
 				"French-France", 
 				"French-Canada",
-				"German-Germany", 
+				"German-Germany", 				
 				"Dutch-Netherlands",
 				"Sapanish-Spain", 
 				"Italian-Italy",
@@ -315,7 +316,8 @@ var tmp = function () {
 		];
 		keyboardNames = {
 			"German-Germany": "Deutsch",
-			"Sapanish-Spain": "Español", 
+			"Greek-Greece": "ελληνικά",
+			"Sapanish-Spain": "Español", 			
 			"French-France": "Français",
 			"French-Canada": "Français canadien",
 			"Italian-Italy": "Italiano",
@@ -389,7 +391,8 @@ var tmp = function () {
 				"Portuguese-Portugal": "KeyboardLayout275.xml",
 				"Russian": "languages/KeyboardLayoutRussian.xml",
 				"Russian-Phonetic": "languages/KeyboardLayoutRussianPhonetic.xml",
-				"Georgian": "languages/KeyboardLayoutGeorgian.xml"
+				"Georgian": "languages/KeyboardLayoutGeorgian.xml",
+				"Greek-Greece": "languages/KeyboardLayoutGreek.xml"
 			};
 			
 			keyboardPath = keyboardPaths[langType]; 

@@ -37,8 +37,9 @@
 //	2012-12-05 quisvir - Added tapAndHoldAction to available actions
 //	2012-02-24 quisvir - Moved sub-collection support to addon
 //	2012-07-22 Mark Nord - "/" and "." extendes hold-key support (2 new keys left/right frim spacebar);
-//	2012-08-12 Mark Nord - added custom FskCache.diskSupport.ignoreDirs -> moved to BrowseFolders-Addon
-//	2012-10-30 Mark Nord - backport x50th stylesOffset for radio2icon button - copy 'n past from 650th kbook.xs
+//	2012-08-12 Mark Nord - Added custom FskCache.diskSupport.ignoreDirs -> moved to BrowseFolders-Addon
+//	2012-10-30 Mark Nord - Backport x50th stylesOffset for radio2icon button - copy 'n past from 650th kbook.xs
+//	2012-11-14 kartu - Added Lithuanian locale
 //
 //-----------------------------------------------------------------------------------------------------
 // Localization related code is model specific.  
@@ -54,7 +55,7 @@ var tmp = function() {
 				node, langFile;
 			currentLang = kbook.model.language;
 			settingsNode = kbook.root.nodes[6].nodes[2];
-			languages = ["ca", "cs", "en", "es", "de", "fr", "it", "nl", "ka", "pt", "ru", "tr", "zh"];
+			languages = ["ca", "cs", "en", "es", "de", "fr", "it", "nl", "ka", "lt", "pt", "ru", "tr", "zh"];
 			langNames = {
 				ca: "Català",
 				cs: "Český",
@@ -64,6 +65,7 @@ var tmp = function() {
 				fr: "Français", 
 				it: "Italiano",
 				ka: "ქართული",
+				lt; "Lithuanian",
 				nl: "Nederlands",
 				pt: "Português",
 				ru: "Русский",

@@ -1,0 +1,422 @@
+<document xmlns="http://www.kinoma.com/fskin/1">
+	<assets>
+		<string id="STR_NODE_TITLE_CONTINUEREADINGBOOK" value="Tęsti skaitymą"/>
+		<string id="STR_NODE_TITLE_BEGIN" value="Pradėti"/>
+		<string id="STR_NODE_TITLE_END" value="Baigti"/>
+		<string id="STR_NODE_TITLE_BOOKMARKS" value="Žymekliai"/>
+		<string id="STR_NODE_TITLE_TOC" value="Turinys"/>
+		<string id="STR_NODE_TITLE_HISTORY" value="Istorija"/>
+		<string id="STR_NODE_TITLE_INFO" value="Info"/>
+		<string id="STR_NODE_TITLE_UTILITIES" value="Programėlės"/>
+		<string id="STR_NODE_TITLE_REMOVEALLBOOKMARKS" value="Ištrinti visus žymeklius"/>
+		<string id="STR_NODE_TITLE_CLEARHISTORY" value="Išvalyti istoriją"/>
+		<string id="STR_NODE_TITLE_DELETEBOOK" value="Ištrinti knygą"/>
+		<string id="STR_NODE_TITLE_CONTINUEREADING" value="Tęsti skaitymą"/>
+		<string id="STR_NODE_TITLE_BOOKSBYTITLE" value="Knygos pagal pavadinimą"/>
+		<string id="STR_NODE_TITLE_BOOKSBYAUTHOR" value="Knygos pagal autorių"/>
+		<string id="STR_NODE_TITLE_BOOKSBYDATE" value="Knygos pagal datą"/>
+		<string id="STR_NODE_TITLE_TODAY" value="Šiandien"/>
+		<string id="STR_NODE_TITLE_EARLIERTHISWEEK" value="Anksčiau šią savaitę"/>
+		<string id="STR_NODE_TITLE_LASTWEEK" value="Praėjusią savaitę"/>
+		<string id="STR_NODE_TITLE_EARLIERTHISMONTH" value="Anksčiau šį mėnesį"/>
+		<string id="STR_NODE_TITLE_LASTMONTH" value="Praėjusį mėnesį"/>
+		<string id="STR_NODE_TITLE_EARLIERTHISQUARTER" value="Anksčiau šį ketvirtį"/>
+		<string id="STR_NODE_TITLE_LASTQUARTER" value="Praėjusį ketvirtį"/>
+		<string id="STR_NODE_TITLE_EARLIERTHISYEAR" value="Anksčiau šiais metais"/>
+		<string id="STR_NODE_TITLE_LASTYEAR" value="Praėjusiais metais"/>
+		<string id="STR_NODE_TITLE_OLDER" value="Senesni"/>
+		<string id="STR_NODE_TITLE_COLLECTIONS" value="Kolekcijos"/>
+		<string id="STR_NODE_TITLE_ALLBOOKMARKS" value="Visi žymekliai"/>
+		<string id="STR_NODE_TITLE_NOWPLAYING" value="Dabar grojama"/>
+		<string id="STR_NODE_TITLE_AUDIO" value="Audio"/>
+		<string id="STR_NODE_TITLE_PICTURE" value="Paveikslėliai"/>
+		<string id="STR_NODE_TITLE_SETTINGS" value="Nuostatos"/>
+		<string id="STR_NODE_TITLE_ORIENTATION" value="Orientacija"/>
+		<string id="STR_NODE_COMMENT_HORIZONTAL" value="Horizontali"/>
+		<string id="STR_NODE_COMMENT_VERTICAL" value="Vertikali"/>
+		<string id="STR_NODE_TITLE_DATEANDTIME" value="Data ir Laikas"/>
+		<string id="STR_NODE_TITLE_YEAR" value="Metai"/>
+		<string id="STR_NODE_TITLE_MONTH" value="Mėnuo"/>
+		<string id="STR_NODE_TITLE_DATE" value="Diena"/>
+		<string id="STR_NODE_TITLE_HOUR" value="Valanda"/>
+		<string id="STR_NODE_TITLE_MINUTE" value="Minutė"/>
+		<string id="STR_NODE_TITLE_DEVICELOCK" value="Užrakinti įrenginį"/>
+		<string id="STR_NODE_TITLE_ENTERCODE" value="Įvesti kodą"/>
+		<string id="STR_NODE_TITLE_SLIDESHOW" value="Skaidrių demonstracija"/>
+		<string id="STR_NODE_TITLE_TURN" value="Versti"/>
+		<string id="STR_NODE_TITLE_SLIDEDURATION" value="Skaidrės rodymo trukmė"/>
+		<string id="STR_NODE_TITLE_SLEEPMODE" value="Miego režimas"/>
+		<string id="STR_NODE_TITLE_ADBANCEDSETTINGS" value="Sudėtingesnės nuostatos"/>
+		<string id="STR_NODE_TITLE_FORMATINTERNALMEMORY" value="Formatuoti vidinę atmintį"/>
+		<string id="STR_NODE_TITLE_DEVICESHUTDOWN" value="Įrenginio išjungimas"/>
+		<string id="STR_NODE_TITLE_ABOUT" value="Apie"/>
+		<string id="STR_NODE_TITLE_RESTOREDEFAULTS" value="Atstatyti gamyklinę sąranką"/>
+		<string id="STR_NODE_TITLE_CODE" value="Kodas"/>
+		<string id="#STR_NODE_TITLE_AUTORUN" value="autoRun"/>
+		<string id="#STR_NODE_TITLE_HARDRESET" value="hardReset"/>
+		<string id="STR_COUNTER_BOOKMARK_N" value=" žymeklių"/>
+		<string id="STR_COUNTER_BOOKMARK_1" value="1 žymeklis"/>
+		<string id="STR_COUNTER_BOOKMARK_0" value="Žymeklių nėra"/>
+		<string id="STR_COUNTER_ITEM_N" value=" elementai"/>
+		<string id="STR_COUNTER_ITEM_1" value="1 elementas"/>
+		<string id="STR_COUNTER_ITEM_0" value="Elememntų nėra"/>
+		<string id="STR_COUNTER_PAGE_N" value=" puslapiai"/>
+		<string id="STR_COUNTER_PAGE_1" value="1 puslapis"/>
+		<string id="STR_COUNTER_PAGE_0" value="Puslapių nėra"/>
+		<string id="STR_COUNTER_UTILITIES_N" value=" programėlės"/>
+		<string id="STR_COUNTER_UTILITIES_1" value="1 programėlė"/>
+		<string id="STR_COUNTER_UTILITIES_0" value="Programėlių nėra"/>
+		<string id="STR_COUNTER_BOOK_N" value=" knygos"/>
+		<string id="STR_COUNTER_BOOK_1" value="1 knyga"/>
+		<string id="STR_COUNTER_BOOK_0" value="Knygų nėra"/>
+		<string id="STR_COUNTER_COLLECTION_N" value=" kolekcijos"/>
+		<string id="STR_COUNTER_COLLECTION_1" value="1 kolekcija"/>
+		<string id="STR_COUNTER_COLLECTION_0" value="Kolekcijų nėra"/>
+		<string id="STR_COUNTER_SONG_N" value=" dainos"/>
+		<string id="STR_COUNTER_SONG_1" value="1 daina"/>
+		<string id="STR_COUNTER_SONG_0" value="Dainų nėra"/>
+		<string id="STR_COUNTER_NOSONG" value="Dainų nėra"/>
+		<string id="STR_COUNTER_PICTURE_N" value=" paveikslėliai"/>
+		<string id="STR_COUNTER_PICTURE_1" value="1 paveikslėlis"/>
+		<string id="STR_COUNTER_PICTURE_0" value="Paveikslėlių nėra"/>
+		<string id="STR_COUNTER_SETTING_N" value=" nuostatos"/>
+		<string id="STR_COUNTER_SETTING_1" value="1 nuostata"/>
+		<string id="STR_COUNTER_SETTING_0" value="0 nuostatų"/>
+		<string id="STR_UI_BUTTON_OK" value="OK"/>
+		<string id="STR_UI_BUTTON_On" value="Įjungti"/>
+		<string id="STR_UI_BUTTON_Off" value="Išjungti"/>
+		<string id="STR_UI_BUTTON_ABLE" value="Įjungti"/>
+		<string id="STR_UI_BUTTON_DISABLE" value="Išjungti"/>
+		<string id="STR_UI_UNITNAME_SECONDS" value="sekundžių"/>
+		<string id="STR_UI_UNITNAME_SIZEKB" value="KB"/>
+		<string id="STR_UI_UNITNAME_SIZEMB" value="MB"/>
+		<string id="STR_UI_UNITNAME_SIZEGB" value="GB"/>
+		<string id="STR_UI_UNITNAME_SIZEUNKNOWN" value="--"/>
+		<string id="STR_UI_DELIMITER_POINT" value="."/>
+		<string id="STR_UI_PARTS_PART" value="Dalis "/>
+		<string id="STR_UI_PARTS_DIVIDER" value=" - "/>
+		<string id="STR_UI_PARTS_PAGE" value="Puslapis "/>
+		<string id="STR_UI_PARTS_OF" value=" iš "/>
+		<string id="STR_UI_PARTS_UNKNOWN" value="?"/>
+		<string id="STR_UI_PARTS_VERSION" value="Versija: "/>
+		<string id="STR_UI_PARTS_DEVICE" value="Įrenginys: "/>
+		<string id="STR_UI_GOTOPAGE" value="Puslapis"/>
+		<string id="STR_UI_MESSAGE_INVALIDPAGE" value="Neteisingas puslapis!"/>
+		<string id="STR_UI_MESSAGE_PROTECTEDPAGE" value="Apsaugotas puslapis!"/>
+		<string id="STR_UI_MESSAGE_ERRORPAGE" value="Puslapio klaida!"/>
+		<string id="STR_UI_MESSAGE_INVALIDFORMAT" value="Neteisingas formatas!"/>
+		<string id="STR_UI_MESSAGE_FORMATTING" value="Formatuojama..."/>
+		<string id="STR_UI_MESSAGE_DRMRESTRICTED" value="Draudžiama"/>
+		<string id="STR_UI_MESSAGE_DRMFULL" value="Pilnas, peržiūrimas"/>
+		<string id="STR_UI_MESSAGE_LOCATIONMEMORYCARD" value="Atminties kortelė"/>
+		<string id="STR_UI_MESSAGE_LOCATIONINTERNAL" value="Vidinė atmintis"/>
+		<string id="STR_UI_MESSAGE_DRMEXPIRED" value="Baigėsi galiojimas"/>
+		<string id="STR_UI_MESSAGE_DRMTODAY" value="Šiandien"/>
+		<string id="STR_UI_MESSAGE_FORMATTINGINTERNALMEMORY" value="Formatuojama vidinė atmintis..."/>
+		<string id="STR_UI_MESSAGE_SHUTTINGDOWN" value="Išjungiama..."/>
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDYES" value="Autorizuota eKnygų parduotuvei."/>
+		<string id="STR_UI_MESSAGE_SONYAUTHORIZEDNO" value="Neautorizuota eKnygų parduotuvei."/>
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDYES" value="Šis įrenginys autorizuotas turiniui, apsaugotam Adobe DRM."/>
+		<string id="STR_UI_MESSAGE_ADOBEAUTHORIZEDNO" value="Šis įrenginys neautorizuotas turiniui, apsaugotam Adobe DRM."/>
+		<string id="STR_UI_MESSAGE_RESTOREDEFAULTSOPERATION" value="Spauskite XXMARKXX (Žymeklis) mygtuką, kad atstatyti numatytas nuostatas."/>
+		<string id="STR_UI_MESSAGE_CLEARHISTORYOPERATION" value="Spauskite XXMARKXX (Žymeklis) mygtuką, kad išvalyti atmintį"/>
+		<string id="STR_UI_MESSAGE_FORMATOPERATION" value="Spauskite XXMARKXX (Žymeklis) mygtuką, kad formatuoti vidinę atmintį."/>
+		<string id="STR_UI_MESSAGE_DELETEBOOKOPERATION" value="Spauskite XXMARKXX (Žymeklis) mygtuką, kad ištrinti knygą."/>
+		<string id="STR_UI_MESSAGE_REMOVEALLBOOKMARKSOPERATION" value="Spauskite XXMARKXX (Žymeklis) mygtuką, kad ištrinti visus žymeklius"/>
+		<string id="STR_UI_MESSAGE_SHUTDOWNOPERATION" value="Spauskite XXMARKXX (Žymeklis) mygtuką, kad išjungti įrenginį."/>
+		<string id="STR_UI_MESSAGE_HARDRESET" value="Atstatyti visas gamyklines reikšmes."/>
+		<string id="STR_UI_MESSAGE_HARDRESETOPERATION" value="Ar tikrai norite IŠTRINTI visą turinį, atstatyti visas gamyklines reikšmes ir ištrinti DRM autorizacijos būseną?
+
+Taip - spauskite NUOSTATŲ mygtuką
+Ne - spauskite NAMŲ mygtuką"/>
+		<string id="STR_UI_MESSAGE_LOWBATTERY" value="Baterija silpna!"/>
+		<string id="STR_UI_MESSAGE_NOBATTERY" value="Baterija išsikrovusi!"/>
+		<string id="STR_UI_MESSAGE_LOADING" value="Kraunama..."/>
+		<string id="STR_UI_MESSAGE_SINGLEPAGE" value="1 of 1"/>
+		<string id="STR_UI_MESSAGE_CANNOTDELETEBOOK" value="Negalima ištrinti knygos."/>
+		<string id="STR_UI_FORMAT_RTF" value="Rich Text Format"/>
+		<string id="STR_UI_FORMAT_PDF" value="Adobe PDF"/>
+		<string id="STR_UI_FORMAT_EPUB" value="EPUB dokumentas"/>
+		<string id="STR_UI_FORMAT_BBEBBOOK" value="BBeB Book"/>
+		<string id="STR_UI_FORMAT_TXT" value="Paprastas tekstas"/>
+		<string id="STR_UI_TITLESORTLABEL1" value="0-9"/>
+		<string id="STR_UI_TITLESORTLABEL2" value="A B C"/>
+		<string id="STR_UI_TITLESORTLABEL3" value="D E F"/>
+		<string id="STR_UI_TITLESORTLABEL4" value="G H I"/>
+		<string id="STR_UI_TITLESORTLABEL5" value="J K L"/>
+		<string id="STR_UI_TITLESORTLABEL6" value="M N O"/>
+		<string id="STR_UI_TITLESORTLABEL7" value="P Q R S"/>
+		<string id="STR_UI_TITLESORTLABEL8" value="T U V"/>
+		<string id="STR_UI_TITLESORTLABEL9" value="W X Y Z"/>
+		<string id="STR_UI_TITLESORTLABEL10" value="Other"/>
+		<string id="STR_VAL_TITLESORTCRITERION1" value="9"/>
+		<string id="STR_VAL_TITLESORTCRITERION2" value="C"/>
+		<string id="STR_VAL_TITLESORTCRITERION3" value="F"/>
+		<string id="STR_VAL_TITLESORTCRITERION4" value="I"/>
+		<string id="STR_VAL_TITLESORTCRITERION5" value="L"/>
+		<string id="STR_VAL_TITLESORTCRITERION6" value="O"/>
+		<string id="STR_VAL_TITLESORTCRITERION7" value="S"/>
+		<string id="STR_VAL_TITLESORTCRITERION8" value="V"/>
+		<string id="STR_VAL_TITLESORTCRITERION9" value="Z"/>
+		<string id="STR_UI_AUTHORSORTLABEL1" value="0-9"/>
+		<string id="STR_UI_AUTHORSORTLABEL2" value="A B C"/>
+		<string id="STR_UI_AUTHORSORTLABEL3" value="D E F"/>
+		<string id="STR_UI_AUTHORSORTLABEL4" value="G H I"/>
+		<string id="STR_UI_AUTHORSORTLABEL5" value="J K L"/>
+		<string id="STR_UI_AUTHORSORTLABEL6" value="M N O"/>
+		<string id="STR_UI_AUTHORSORTLABEL7" value="P Q R S"/>
+		<string id="STR_UI_AUTHORSORTLABEL8" value="T U V"/>
+		<string id="STR_UI_AUTHORSORTLABEL9" value="W X Y Z"/>
+		<string id="STR_UI_AUTHORSORTLABEL10" value="Kita"/>
+		<string id="STR_VAL_AUTHORSORTCRITERION1" value="9"/>
+		<string id="STR_VAL_AUTHORSORTCRITERION2" value="C"/>
+		<string id="STR_VAL_AUTHORSORTCRITERION3" value="F"/>
+		<string id="STR_VAL_AUTHORSORTCRITERION4" value="I"/>
+		<string id="STR_VAL_AUTHORSORTCRITERION5" value="L"/>
+		<string id="STR_VAL_AUTHORSORTCRITERION6" value="O"/>
+		<string id="STR_VAL_AUTHORSORTCRITERION7" value="S"/>
+		<string id="STR_VAL_AUTHORSORTCRITERION8" value="V"/>
+		<string id="STR_VAL_AUTHORSORTCRITERION9" value="Z"/>
+		<string id="STR_FORMAT_DATE" value="YY/MM/DD"/>
+		<string id="STR_UI_MESSAGE_USBDONOT" value="Neatjungti"/>
+		<string id="STR_UI_MESSAGE_USBCONNECTED" value="Prijungta prie USB"/>
+		<string id="STR_UI_MESSAGE_LOCKED" value="Įrenginys užrakintas"/>
+		<string id="STR_SORT_IGNORESPACEANDPUNCTUATIONS" value=" ,',&quot;,‘,’,“,”"/>
+		<string id="STR_SORT_IGNOREARTICLES" value="a ,an ,the "/>
+		<string id="infoTitles" value="Cover,Title,Author,Publisher,Category,eBook ID,Kind,Date,Size,Location,Path,Digital Rights,Expiration Date"/>
+		<string id="STR_UPDATE_SUCCESS" value="Atnaujinama programinė įranga..."/>
+		<string id="STR_UPDATE_FAIL" value="Programinės įrangos atnuajinimas nepavyko. Prašome pamėginti dar kartą."/>
+		<string id="STR_NODE_TITLE_PREVIOUS_VIEW" value="Ankstesnis vaizdas"/>
+		<string id="STR_NODE_TITLE_NEXT_VIEW" value="Kitas vaizdas"/>
+		<string id="STR_NODE_TITLE_WELCOME" value="Sveiki!"/>
+		<string id="STR_UI_MESSAGE_WELCOME" value="Sveikinimai iš Sony. Savo rankose jūs laikote skaitymo ateitį. Norėdami tai patirti, 
+		palieskite ekraną."/>
+		<string id="STR_NODE_TITLE_LANG_SETTINGS" value="Meniu kalba"/>
+		<string id="STR_UI_LANG" value="Kalba"/>
+		<string id="STR_UI_LANG_EN" value="English"/>
+		<string id="STR_UI_LANG_FR" value="Français"/>
+		<string id="STR_UI_LANG_DE" value="Deutsch"/>
+		<string id="STR_UI_LANG_NL" value="Nederlands"/>
+		<string id="STR_UI_MESSAGE_GUIDEAREA_LANG" value="Pasirinkite norimą kalbą ir spauskite OK.
+Pastaba: Įrenginio nuostatos gali būti vėliau bet kada pakeistos."/>
+		<string id="STR_UI_PARTS_DELIMITER" value="/"/>
+		<string id="STR_UI_MESSAGE_DEMOMODE" value="(Demo režimas)"/>
+		<string id="STR_UI_MESSAGE_DEMOSCR_SAVER" value="Demo Ekrano užsklanda"/>
+		<string id="STR_NODE_TITLE_HOME" value="Namai"/>
+		<string id="STR_NODE_TITLE_OPTIONS" value="Nuostatos"/>
+		<string id="STR_UI_MESSAGE_DELETEALLBOOKMARKS" value="Šiame puslapyje yra žymeklių, pažymėtų kito šrifto dydžio režimu ar kituose įrenginiuose. Ar tikrai norite ištrinti visus žymeklius šiame puslapyje?"/>
+		<string id="STR_DEMO_NOTAVAILABLE" value="Šiuos nuostatos neprieinamos demo režimu. Spauskite XXRETURNXX(Grįžti) mygtuką, norėdami grįžti į ankstesnįjį puslapį."/>
+		<string id="STR_DEMO_TITLE" value="DEMO REŽIMAS"/>
+		<string id="STR_UI_MESSAGE_REMOVEBOOKMARKSOPERATION" value="Spauskite XXMARKXX (Žymeklis) mygtuką, norėdami pašalinti žymeklį."/>
+		<string id="STR_UI_MESSAGE_NOTE_BOOKMARKOPERATION" value="Pastaba: Puslapyje yra žymeklių daugiau nei vienu teksto dydžiu. Jei tęsite, visi žymekliai bus ištrinti."/>
+		<string id="STR_UI_MESSAGE_TITLE_DELETEBOOK" value="Pavadinimas: &quot;XXTITLEXX&quot;"/>
+		<string id="STR_NODE_TITLE_REMOVEBOOKMARK" value="Ištrinti žymeklį"/>
+		<string id="STR_UI_MESSAGE_MENURETURN" value="Spauskite XXRETURNXX(Grįžti) mygtuką, norėdami grįžti"/>
+		<string id="STR_NODE_TITLE_DATE_TIME_FORMAT_SETTINGS" value="Datos ir laiko formatas"/>
+		<string id="STR_UI_DATE" value="Data"/>
+		<string id="STR_UI_BUTTON_MMDDYY" value="Mėnuo-Diena-Metai"/>
+		<string id="STR_UI_BUTTON_DDMMYY" value="Diena-Mėnuo-Metai"/>
+		<string id="STR_UI_TIME" value="Laikas"/>
+		<string id="STR_UI_BUTTON_12HR" value="12 hour"/>
+		<string id="STR_UI_BUTTON_24HR" value="24 hour"/>
+		<string id="STR_UI_BOOKMARKS_PARTS_DIVIDER" value=" / "/>
+		<string id="STR_UI_MESSAGE_NOTE_DELETE_ALL_CONTENTS" value="Pastaba: Visas turinys bus ištrintas."/>
+		<string id="STR_UI_MESSAGE_NOBOOK" value="Knygų nėra"/>
+		<string id="STR_NODE_TITLE_BOOK" value="Knygos"/>
+		<string id="STR_NODE_TITLE_SORTEDBYTITLE" value="Rūšiuota pagal pavadinimą"/>
+		<string id="STR_NODE_TITLE_SORTEDBYAUTHOR" value="Rūšiuota pagal autorių"/>
+		<string id="STR_NODE_TITLE_SORTEDBYDATE" value="Rūšiuota pagal datą"/>
+		<string id="STR_NODE_TITLE_SORTEDBYORDER" value="Rūšiuota pagal tvarką"/>
+		<string id="STR_NODE_TITLE_ALLNOTES" value="Visos pastabos"/>
+		<string id="STR_NODE_TITLE_SORTEDBYCOMMENT" value="Rūšiuota pagal komentarus"/>
+		<string id="STR_NODE_TITLE_SORTEDBYTYPE" value="Rūšiuota pagal tipą"/>
+		<string id="STR_NODE_TITLE_SORTEDBYARTIST" value="Rūšiuota pagal atlikėją"/>
+		<string id="STR_NODE_TITLE_NEXTPAGE" value="Kitas puslapis"/>
+		<string id="STR_NODE_TITLE_PAGETURNGESTURE" value="Puslapio pervertimo gestas"/>
+		<string id="STR_NODE_TITLE_ADVANCEDSETTINGS" value="Sudėtingesnės nuostatos"/>
+		<string id="STR_NODE_TITLE_TOUCHPANEL" value="Kalibruoti 'touchscreen' ekraną" />
+		<string id="STR_NODE_TITLE_CLEARKEYBOARDHISTORY" value="Valyti klaviatūros istoriją"/>
+		<string id="STR_NODE_TITLE_SEARCHRESULTS" value="Paieškos rezultatai"/>
+		<string id="STR_COUNTER_NOTES_N" value=" pastabos"/>
+		<string id="STR_COUNTER_NOTE_1" value="1 pastaba"/>
+		<string id="STR_COUNTER_NOTE_0" value="Nėra pastabų"/>
+		<string id="STR_NODE_TITLE_SORTEDBYPAGE" value="Rūšiuota pagal puslapius"/>
+		<string id="STR_NODE_TITLE_POWERMANAGEMENT" value="Energijos valdymas"/>
+		<string id="STR_UI_MENU_SORT" value="Rūšiuoti"/>
+		<string id="STR_UI_MENU_BYORDER" value="pagal Tvarką"/>
+		<string id="STR_UI_MENU_BYTITLE" value="pagal Pavadinimą"/>
+		<string id="STR_UI_MENU_BYAUTHOR" value="pagal Autorių"/>
+		<string id="STR_UI_MENU_BYDATE" value="pagal Datą"/>
+		<string id="STR_UI_MENU_VIEW" value="Žiūrėti"/>
+		<string id="STR_UI_MENU_LIST" value="Sąrašas"/>
+		<string id="STR_UI_MENU_THUMBNAIL" value="Miniatiūros"/>
+		<string id="STR_UI_MENU_NOWPLAYING" value="Dabar grojama"/>
+		<string id="STR_UI_MENU_ORIENTATION" value="Orientacija"/>
+		<string id="STR_UI_MENU_SEARCHTITLE" value="Paieška"/>
+		<string id="STR_UI_MENU_CLOSETHISBOOK" value="Grįžti į sąrašą"/>
+		<string id="STR_UI_MENU_GOTOPAGE" value="Eiti į puslapį"/>
+		<string id="STR_UI_MENU_CREATEEDITNOTES" value="Kurti/Redaguoti pastabas"/>
+		<string id="STR_UI_MENU_SHOWNOTES" value="Rodyti pastabas"/>
+		<string id="STR_UI_MENU_HIDENOTES" value="Slėpti pastabas"/>
+		<string id="STR_UI_MENU_TABLEOFCONTENTS" value="Turinys"/>
+		<string id="STR_UI_MENU_BOOKINFO" value="Info"/>
+		<string id="STR_UI_MENU_DELETEBOOK" value="Trinti knygą"/>
+		<string id="STR_UI_MENU_SEARCHAKEYWORD" value="Ieškoti"/>
+		<string id="STR_UI_MENU_HISTORYJUMP" value="Istorija"/>
+		<string id="STR_UI_MENU_CLOSETHISMUSIC" value="Grįžti į sąrašą"/>
+		<string id="STR_UI_MENU_OFF" value="Išjungti"/>
+		<string id="STR_UI_MENU_SONG_1" value="1 daina"/>
+		<string id="STR_UI_MENU_SONG_ALL" value="Visos dainos"/>
+		<string id="STR_UI_MENU_SHUFFLEON" value="Įjungti maišymą ('Shuffle')"/>
+		<string id="STR_UI_MENU_SHUFFLEOFF" value="Išungti maišymą ('Shuffle')"/>
+		<string id="STR_UI_MENU_CONTINUEREADING" value="Tęsti skaitymą"/>
+		<string id="STR_UI_MENU_CLOSETHISPICTURE" value="Grįžti į sąrašą"/>
+		<string id="STR_UI_MENU_SLIDESHOWOFF" value="Išjungti skaidrių peržiūrą"/>
+		<string id="STR_UI_MENU_SLIDESHOWON" value="Įjungti skaidrių peržiūrą"/>
+		<string id="STR_UI_MENU_BYARTIST" value="Pagal atlikėją"/>
+		<string id="STR_UI_MENU_BYPAGE" value="pagal Puslapį"/>
+		<string id="STR_UI_MENU_BYTYPE" value="pagal Tipą"/>
+		<string id="STR_UI_MENU_BYCOMMENT" value="pagal Komentarus"/>
+		<string id="STR_UI_MENU_DELETENOTES" value="Trinti pastabas"/>
+		<string id="STR_UI_MESSAGE_RESET" value="Ar tikrai norite gražinti numatytąsias nuostatas?"/>
+		<string id="STR_UI_MESSAGE_FORMATINTERNALMEMORY" value="Formatuoti vidinę atmintį"/>
+		<string id="STR_UI_MESSAGE_FORMATDEVICE" value="Ar tikrai norite formatuoti vidinę atmintį?
+Įspėjimas: Visas turinys ir pastabos bus ištrintos."/>
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_MS" value="Ar tikrai norite formatuoti Memory Stick?
+Įspėjimas: Visas turinys ir pastabos bus ištrintos."/>
+		<string id="STR_UI_MESSAGE_FORMATDEVICE_SD" value="Ar tikrai norite formatuoti SD kortelę?
+Įspėjimas: Visas turinys ir pastabos bus ištrintos."/>
+		<string id="STR_UI_MESSAGE_DELETEBOOK" value="Ar tikrai norite ištrinti šią knygą?"/>
+		<string id="STR_UI_MESSAGE_DELETEBOOKERR" value="Knygos ištrinti nepavyko. Spauskite OK, kad grįžti į knygų sąrašą."/>
+		<string id="STR_UI_MESSAGE_DELETEHISTORICAL" value="Ar tikrai norite valyti klaviatūros istoriją?"/>
+		<string id="STR_UI_MESSAGE_DEVICE_SHUTDOWN" value="Ar tikrai norite išjungti įrenginį?"/>
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONSTART" value="Spauskite TAIP, kad pradėtumėt ekrano kalibravimą."/>
+		<string id="STR_UI_MESSAGE_DISPLAY_CALIBRATIONEND" value="Ekrano kalibravimas baigtas."/>
+		<string id="STR_UI_MESSAGE_DEMO_MODE_1" value="Demo režimu ši nuostata nepasiekiama."/>
+		<string id="STR_UI_MESSAGE_DEMO_MODE_2" value="Demo režimu ši galimybė neįmanoma."/>
+		<string id="STR_UI_MESSAGE_CALIBRATION_START" value="Naudodami žymeklį, bakstelėkite į kryželio centrą."/>
+		<string id="STR_UI_MESSAGE_CALIBRATION_ERR" value="Aptikta kalibravimo klaida.
+Pakartokite kalibravimo procesą."/>
+		<string id="STR_UI_BUTTON_YES" value="Taip"/>
+		<string id="STR_UI_BUTTON_NO" value="Ne"/>
+		<string id="STR_UI_BUTTON_ZOOMIN" value="Padidinti"/>
+		<string id="STR_UI_BUTTON_SEARCH" value="Ieškoti"/>
+		<string id="STR_UI_BUTTON_DONE" value="Atlikta"/>
+		<string id="STR_UI_BUTTON_GO" value="Eiti"/>
+		<string id="STR_UI_BUTTON_ENTERPAGE" value="Įveskite puslapį #"/>
+		<string id="STR_UI_BUTTON_NEW" value="Naujas"/>
+		<string id="STR_UI_BUTTON_LIST" value="Sąrašas"/>
+		<string id="STR_UI_SHORTCUT_HIGHLIGHT" value="Paryškinti"/>
+		<string id="STR_UI_SHORTCUT_SEARCH" value="Ieškoti"/>
+		<string id="STR_UI_SHORTCUT_DICTIONARY" value="Žodynas"/>
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING" value="Žodynas"/>
+		<string id="STR_NODE_TITLE_DICTIONARY_SETTING_l" value="žodynas"/>
+		<string id="STR_DICTIONARY_US" value="New Oxford American Dictionary"/>
+		<string id="STR_DICTIONARY_BRITISH" value="Oxford Dictionary of English"/>
+		<string id="STR_DICTIONARY_NO" value="Jokio"/>
+		<string id="STR_NODE_TITLE_DATEANDTIMEFORMAT_SETTING" value="Datos ir laiko formatas"/>
+		<string id="STR_UI_PARTS_MONTH" value="Mėnuo"/>
+		<string id="STR_UI_PARTS_DAY" value="Diena"/>
+		<string id="STR_UI_PARTS_YEAR" value="Metai"/>
+		<string id="STR_UI_PARTS_HOUR" value="valanda"/>
+		<string id="STR_UI_MESSAGE_RESTARTING" value="Perkraunama..."/>
+		<string id="STR_UI_NODE_TITLE_KEYBOARD" value="Klaviatūra"/>
+		<string id="STR_UI_KEYBOARD_US" value="United States"/>
+		<string id="STR_UI_KEYBOARD_UK" value="United Kingdom"/>
+		<string id="STR_UI_KEYBOARD_FRENCH" value="French"/>
+		<string id="STR_UI_KEYBOARD_GERMAN" value="German"/>
+		<string id="STR_UI_KEYBOARD_NETHERLANDS" value="Dutch"/>
+		<string id="STR_UI_BUTTON_DICTIONARY_LIST" value="Sąrašas"/>
+		<string id="STR_UI_BUTTON_DICTIONARY_DETAIL" value="Detaliau"/>
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP1" value="Šis puslapis negali būti parodytas."/>
+		<string id="DIALOGMSG_INFORM_CANNOT_SHOW_MARKUP2" value=""/>
+		<string id="DIALOGMSG_INFORM_NOTEPAD_FREEHAND_CANNOT_EDIT" value="Šis brėžinys negali būti redaguojamas."/>
+		<string id="DIALOGMSG_INFORM_SCR_CANNOT_EDIT" value="Ši pastaba negali būti redaguojama."/>
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_FREEHAND" value="Naujas brėžinys"/>
+		<string id="STR_NODE_TITLE_ADDNEWNOTEPAD_TEXT" value="Nauja pastaba"/>
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYFREEHAND" value="pagal Brėžinį"/>
+		<string id="STR_UI_SHORTCUT_ANNOTATION_BYTEXT" value="pagal Klaviatūrą"/>
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_MS" value="Formatuoti Memory Stick"/>
+		<string id="STR_UI_MESSAGE_FORMATEXTERNALMEMORY_SD" value="Formatuoti SD kortelę"/>
+		<string id="STR_NODE_TITLE_FORMATDEVICE" value="Formatuoti atmintį"/>
+		<string id="STR_NODE_TITLE_FORMAT_INTERNAL" value="Vidinė atmintis"/>
+		<string id="STR_NODE_TITLE_FORMAT_MS" value="Memory Stick"/>
+		<string id="STR_NODE_TITLE_FORMAT_SD" value="SD Kortelė"/>
+		<string id="STR_UI_FORMAT_INTERNAL_MEMORY" value="Formatuojama vidinė atmintis..."/>
+		<string id="STR_UI_FORMAT_EXTERNAL_MS" value="Formatuojamas Memory Stick..."/>
+		<string id="STR_UI_FORMAT_EXTERNAL_SD" value="Formatuojama SD Kortelė..."/>
+		<string id="STR_WARNING_FORMAT_1" value="Formatuojama..."/>
+		<string id="STR_WARNING_FORMAT_2_MS" value="Neišimkite Memory Stick."/>
+		<string id="STR_WARNING_FORMAT_2_SD" value="Neišimkite SD Kortelės."/>
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_1" value="Ar tikrai norite ištrinti šį žymeklį?"/>
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_MES_2" value="Pastaba: Šiame puslapyje yra žymeklių, pažymėtų kito šrifto dydžio režimu. Ar tikrai norite ištrinti visus žymeklius šiame puslapyje?"/>
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_1" value="Ar tikrai norite ištrinti žymeklį?"/>
+		<string id="STR_UI_DELETEBOOKMARKS_ON_PAGE_W_COM_MES_2" value="Pastaba: Šiame puslapyje yra žymeklių su pastabomis, pažymėtų kito šrifto dydžio režimu. Visi žymekliai bei pastabos bus ištrinti, jei tęsite."/>
+		<string id="STR_FORMAT_NO_MEMORY" value="Neįdėta atminties kortelė"/>
+		<string id="STR_FORMAT_WRITE_PROTECTED" value="Atminties kortelė apsaugota nuo rašymo"/>
+		<string id="STR_FORMAT_NON_STANDARD" value="Nepalaikoma atminties kortelė"/>
+		<string id="STR_NODE_TITLE_NOTEPAD_FREEHAND" value="Rankraštis"/>
+		<string id="STR_NODE_TITLE_NOTEPAD_TEXT" value="Tekstinė žinutė"/>
+		<string id="STR_NODE_TITLE_SORTEDBYCREATEDDATE" value="Rūšiuota pagal sukūrimo datą"/>
+		<string id="STR_NODE_TITLE_MORE" value="Daugiau"/>
+		<string id="STR_NODE_TITLE_MORE_FULL" value="Daugiau programėlių"/>
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK1" value="Ar tikrai norite ištrinti šį žymeklį su pastaba?"/>
+		<string id="DIALOGMSG_CONFIRM_DELETEBOOKMARK2" value=""/>
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT1" value="Ar tikrai norite ištrinti šį paryškinimą su pastaba?"/>
+		<string id="DIALOGMSG_CONFIRM_DELETEHIGHLIGHT2" value=""/>
+		<string id="DIALOGMSG_INFORM_NOHITS" value="Reikšmių nerasta."/>
+		<string id="DIALOGMSG_INFORM_NOMOREHITS" value="Reikšmių nerasta."/>
+		<string id="DIALOGMSG_CONFIRM_BACKWARDSEARCH" value="Ar tęsti paiešką nuo knygos galo?"/>
+		<string id="DIALOGMSG_CONFIRM_FORWARDSEARCH" value="Ar tęsti paiešką nuo knygos pradžios?"/>
+		<string id="STR_MSG_SEARCHING" value="Ieškoma..."/>
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK1" value="Ar tikrai norite ištrinti žymeklį su pastaba?"/>
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_BOOKMARK2" value=""/>
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT1" value="Ar tikrai norite ištrinti paryškinimą su pastaba?"/>
+		<string id="DIALOGMSG_CONFIRM_CMT_DELETE_HIGHLIGHT2" value=""/>
+		<string id="DIALOGMSG_CONFIRM_CMT_EDIT_QUIT" value="Jei tęsite, pakeitimai nebus išsaugoti. Ar tikrai norite tęsti?"/>
+		<string id="DIALOGMSG_CONFIRM_SCR_EDIT_QUIT" value="Jei tęsite, pakeitimai nebus išsaugoti. Ar tikrai norite tęsti?"/>
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES1" value="Visos pastabos bus ištrintos."/>
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_ALLMYNOTES2" value="Ar tikrai norite ištrinti?"/>
+		<string id="KBOOK_UI_MYNOTE" value="Pastabos"/>
+		<string id="STR_UI_KEYBOARD_SYMBOL" value="Simboliai"/>
+		<string id="STR_UI_KEYBOARD_SPACE" value="Tarpas"/>
+		<string id="STR_UI_KEYBOARD_ABC" value="Abc"/>
+		<string id="STR_UI_KEYBOARD_RETURN" value="Grįžti"/>
+		<string id="STR_UI_COMMENTVIEWER_EDIT" value="Taisyti"/>
+		<string id="STR_UI_COMMENTVIEWER_DELETE" value="Trinti"/>
+		<string id="STR_UI_AUDIO_REPEAT" value="Kartoti"/>
+		<string id="STR_NODE_TITLE_HOMEPERSONALIZATION" value="Tinkinti NAMŲ meniu"/>
+		<string id="STR_UI_PARTS_LEFT" value="KAIRĖN"/>
+		<string id="STR_UI_PARTS_RIGHT" value="DEŠINĖN"/>
+		<string id="STR_UI_MENU_DELETENOTEPAD_FREEHAND" value="Trinti brėžinį"/>
+		<string id="STR_UI_MENU_DELETENOTEPAD_TEXT" value="Trinti pastabą"/>
+		<string id="STR_UI_MENU_CLOSETHISNOTEPAD_FREEHAND" value="Grįžti į sąrašą"/>
+		<string id="STR_UI_MENU_CLOSETHISNOTEPAD_TEXT" value="Grįžti į sąrašą"/>
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND1" value="Ar tikrai norite ištrinti šį brėžinį?"/>
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_FREEHAND2" value=""/>
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT1" value="Ar tikrai norite ištrinti šią pastabą?"/>
+		<string id="DIALOGMSG_CONFIRM_OPT_DELETE_NOTEPAD_TEXT2" value=""/>
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT1" value="Jei tęsite, pakeitimai nebus išsaugoti. Ar tikrai norite tęsti?"/>
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_EDIT_QUIT2" value=""/>
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT1" value="Jei tęsite, pakeitimai nebus išsaugoti. Ar tikrai norite tęsti?"/>
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_EDIT_QUIT2" value=""/>
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT1" value="Jei tęsite, brėžinys nebus išsaugotas. Ar tikrai norite tęsti?"/>
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_FREEHAND_NEW_QUIT2" value=""/>
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT1" value="Jei tęsite, pastaba nebus išsaugotas. Ar tikrai norite tęsti?"/>
+		<string id="DIALOGMSG_CONFIRM_NOTEPAD_TEXT_NEW_QUIT2" value=""/>
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_RESULT" value="Reikšmių nerasta."/>
+		<string id="STR_UI_MESSAGE_DICTIONARY_INPUT_KEYBOARD" value="Įveskite žodį."/>
+		<string id="STR_UI_MESSAGE_DICTIONARY_NO_HEADWORD" value="Įrašų nerasta.
+Patikrinkite įvestą žodį."/>
+		<string id="STR_UI_MESSAGE_DICTIONARY_NOT_SUPPORTED" value="Žodynas nepalaikomas."/>
+		<string id="STR_UI_DICTIONARY_ENTRIES_PAGE" value="Įrašai, P."/>
+		<string id="STR_UI_DICTIONARY_ENTRY_PAGE" value="Įrašai, P."/>
+		<string id="STR_COUNTER_DRAWING_N" value=" brėžiniai"/>
+		<string id="STR_COUNTER_DRAWING_1" value="1 brėžinys"/>
+		<string id="STR_COUNTER_DRAWING_0" value="Brėžinių nėra"/>
+		<string id="STR_COUNTER_MEMO_N" value=" pastabos"/>
+		<string id="STR_COUNTER_MEMO_1" value="1 pastaba"/>
+		<string id="STR_COUNTER_MEMO_0" value="Pastabų nėra"/>
+		<string id="STR_UI_CONFIRM_INVALIDFORMAT" value="Išimtinis vidinės atminties būklės formatavimas."/>
+	</assets>
+</document>
