@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <language xmlns="http://www.kinoma.com/fskin/1">
-	<name>English</name>
-	<txtWelcome>Hello from Sony. What you hold in your hands&#xA;is the future of reading. To experience this&#xA;now, tap anywhere on the screen.</txtWelcome>
-	<txtGuideAreaLang>Choose your preferred language and select &quot;OK&quot;.&#xA;Note:  The device settings can be changed from the &quot;Settings&quot; menu at a later time.</txtGuideAreaLang>
-	<txtCalibration1>Using the stylus, tap on the center&#xA;of the target.</txtCalibration1>
-	<txtCalibration2>Calibration error detected.&#xA;Please restart calibration process.</txtCalibration2>
+	<name>Ελληνικά</name>
+	<txtWelcome>Γεια σας από τη Sony. Αυτό που κρατάτε στα χέρια σας&#xA;είναι το μέλλον της ανάγνωσης. Για να το ζήσετε&#xA;τώρα, πατήστε οπουδήποτε στην οθόνη.</txtWelcome>
+	<txtGuideAreaLang>Επιλέξτε την προτιμώμενή σας γλώσσα και πατήστε &quot;Εντάξει&quot;.&#xA;Σημείωση: Οι ρυθμίσεις της συσκευής μπορούν να αλλαχθούν από το μενού &quot;Ρυθμίσεις&quot; αργότερα.</txtGuideAreaLang>
+	<txtCalibration1>Χρησιμοποιώντας τη γραφίδα, πατήστε στο κέντρο&#xA;του στόχου.</txtCalibration1>
+	<txtCalibration2>Εντοπίστηκε σφάλμα στη ρύθμιση.&#xA;Παρακαλώ επανεκκινήστε τη διαδικασία ρύθμισης της οθόνης.</txtCalibration2>
 </language>
