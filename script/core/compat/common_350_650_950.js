@@ -43,6 +43,7 @@
 //	2012-02-16 quisvir - Fixed 'latest read' sorting being lost on reboot (Sony bug)
 //	2012-07-19 kartu	- Added Greek locale 
 //	2012-07-22 Mark Nord - "/" and "." extendes hold-key support (2 new keys left/right from spacebar for 350/650);
+//	2012-11-18 Mark Nord -  Fix for EN-RU and RU-EN dictionary titles and keyboard
 var tmp = function () {
 	var localizeKeyboardPopups, updateSiblings, localize, localizeKeyboard, oldSetLocale, 
 		oldChangeKeyboardType, oldReadPreference, oldCallback, makeRootNodesMovable, bootLog,
@@ -420,6 +421,7 @@ var tmp = function () {
 			makeRootNodesMovable();
 			PARAMS.loadAddons();
 			PARAMS.Core.init();
+			fixRuDict();
 		} catch (e) {
 			bootLog("in overriden readPreference " + e);
 		}
@@ -777,6 +779,29 @@ var tmp = function () {
 		var date = (this.currentPosition) ? this.currentPosition.date : 0;
 		index.handle(date, id);
 	};
+
+	// Fix Russian Dictionary - if any
+	var fixRuDict = function () {
+		var dictionaries = kbook.model.dictionaries,
+			LD = Core.lang.getLocalizer('Dictionary'),
+			i = 0,
+			dict;
+		while (i < dictionaries.length) {
+			dict = dictionaries[i];
+			switch (dict.contentsID) {
+			case 'CDUS125D0000E': // RU-EN
+				dict.title = LD(dict.contentsID);
+				dict.keyboard = 'Russian';
+				break;
+			case 'CDUS125D0000D': // EN-RU
+				dict.title = LD(dict.contentsID);
+				dict.keyboard = 'English-UK';
+				break;
+			}
+			i++;
+		}
+	};
+	
 };
 
 try {
