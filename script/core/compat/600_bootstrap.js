@@ -40,6 +40,7 @@
 //	2012-08-12 Mark Nord - Added custom FskCache.diskSupport.ignoreDirs -> moved to BrowseFolders-Addon
 //	2012-10-30 Mark Nord - Backport x50th stylesOffset for radio2icon button - copy 'n past from 650th kbook.xs
 //	2012-11-14 kartu - Added Lithuanian locale
+//	2012-11-19 kartu - Fixed typo
 //
 //-----------------------------------------------------------------------------------------------------
 // Localization related code is model specific.  
@@ -65,7 +66,7 @@ var tmp = function() {
 				fr: "Français", 
 				it: "Italiano",
 				ka: "ქართული",
-				lt; "Lithuanian",
+				lt: "Lietuvių",
 				nl: "Nederlands",
 				pt: "Português",
 				ru: "Русский",
