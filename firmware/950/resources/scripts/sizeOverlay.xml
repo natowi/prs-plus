@@ -74,7 +74,7 @@
 			<group id="FONTSIZE" top="0" bottom="0" left="0" right="0">
 				<button2icon id="zoomBtn" skin="zoomBtn" text="fskin:/l/strings/STR_UI_BUTTON_ZOOMIN"   left="24" top="6" width="181" height="50" do="goZoomMode" can="canZoomMode" bw1y="4" bw2y="4"/>
 				<button2icon id="varBtn" skin="styleBtn" 	text=" " 										 right="215" top= "6" width="172" 	height="50" do="doVariable" 						bw="4"	bw1y="4" bw2y="4"/>
-				<button2icon id="StyleBtn" skin="styleBtn" text="fskin:/l/strings/STR_UI_BUTTON_PAGE_STYLE" right="94" top= "6" width="190" height="50" do="doSelectStyle" can="canStyleMode" bw="4" bw1y="4" bw2y="4"/>
+				<button2icon id="StyleBtn" skin="styleBtn" text="fskin:/l/strings/STR_UI_BUTTON_PAGE_STYLE" right="30" top= "6" width="190" height="50" do="doSelectStyle" can="canStyleMode" bw="4" bw1y="4" bw2y="4"/>
 
 				<!--Sony Size-Buttons: -->
 				<radio2icon id="font0" text="XS" skin="fontSizeL" stylesOffset="2" bottom="9" left= "24" width="91" height="53" on="0" variable="VAR_RADIO_FONTSIZE" variableUpdate="VAR_UPDATE_FONTSIZE" do="changeFontSize" can="canFontSize0" bw1x="2" bw1y="6" bw2y="5"/>
