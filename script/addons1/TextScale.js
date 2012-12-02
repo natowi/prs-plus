@@ -9,17 +9,17 @@
 //				Fixed === 0 bugs introduced in previous commit.
 //	2012-06-23 drMerry - Added Global translation
 //	2012-06-23 drMerry - Added var declaration at top of file
+//	2012-12-02 Mark Nord - removed skip size (replaced by doSize-PopUp), removed Fskin.kbookPage.doSize() reassign
 //
 // Note(s):
 //	- Reassigns original kbook.model.onChangeBookCallback()
-//	- Reassigns original Fskin.kbookPage.doSize()
 //
 // TODO:
 //	- Add TEXT_SCALE icon (ex. magnifier)
 
 tmp = function() {
 	// declare var
-	var log, getSoValue, setSoValue, getFastBookMedia, L, LG, SCALE_SMALL, SCALE_MEDIUM, SCALE_LARGE, TextScale, SMALL, ENABLED, DISABLED, MEDIUM, LARGE, oldOnChangeBookCallback, onChangeBookCallback, doSize, areSettingsDefault, doHook;
+	var log, getSoValue, setSoValue, getFastBookMedia, L, LG, SCALE_SMALL, SCALE_MEDIUM, SCALE_LARGE, TextScale, SMALL, ENABLED, DISABLED, MEDIUM, LARGE, oldOnChangeBookCallback, onChangeBookCallback,  areSettingsDefault, doHook;
 	// Shortcuts
 	log = Core.log.getLogger("TextScale");
 	getSoValue = Core.system.getSoValue;
@@ -58,39 +58,6 @@ tmp = function() {
 				1: MEDIUM,
 				2: LARGE
 			}
-		},
-		{
-			name: "0",
-			title: SMALL,
-			icon: "TEXT_SCALE",
-			defaultValue: 1,
-			values:	[1, 0],
-			valueTitles: {
-				1: ENABLED,
-				0: DISABLED
-			}
-		},
-		{
-			name: "1",
-			title: MEDIUM,
-			icon: "TEXT_SCALE",
-			defaultValue: 1,
-			values:	[1, 0],
-			valueTitles: {
-				1: ENABLED,
-				0: DISABLED
-			}
-		},
-		{
-			name: "2",
-			title: LARGE,
-			icon: "TEXT_SCALE",
-			defaultValue: 1,
-			values:	[1, 0],
-			valueTitles: {
-				1: ENABLED,
-				0: DISABLED
-			}
 		}]
 	};
 
@@ -112,41 +79,15 @@ tmp = function() {
 		oldOnChangeBookCallback.apply(this, arguments);
 	};
 	
-	doSize = function () {
-		try {
-			var media, current, next, browseTo;
-			media = getFastBookMedia(kbook.model.currentBook);
-			//NOTE Original handler used kbook.bookData.textScale but it looks like the same
-			current = getSoValue(media, "scale");
-			// Find next enabled scale...
-			next = (current == 2) ? 0 : current + 1; // get next
-			if (TextScale.options[next] == 0) { // next is disabled
-				next = (next == 2) ? 0 : next + 1; // get next
-				if (TextScale.options[next] == 0) { // next is disabled
-					// No more enabled scales
-					return;
-				}
-			}
-			// Set new scale
-			browseTo = getSoValue(media, "browseTo");
-			browseTo.call(media, kbook.bookData, undefined, undefined, undefined, next);
-		} catch (e) {
-			log.error("doSize(): " + e);
-		}
-	};
-	
 	// Hooks doSize and onChangeBookCallback
 	// Is safe to call more than once
 	doHook = function() {
-		var kbookPage = getSoValue("Fskin.kbookPage");
-		kbookPage.doSize = doSize;
 		kbook.model.onChangeBookCallback = onChangeBookCallback;
 	};
 	
 	areSettingsDefault = function() {
 		var options = TextScale.options;
-		return options !== undefined && options.scaleDefault == SCALE_SMALL && 
-			options[0] == 1 && options[1] == 1 && options[2] == 1;
+		return options !== undefined && options.scaleDefault == SCALE_SMALL;
 	};
 
 	TextScale.onInit = function() {
@@ -161,29 +102,7 @@ tmp = function() {
 		}
 		if (propertyName === "scaleDefault") {
 			this.options[newValue] = 1;
-		} else {
-			// "0" | "1" | "2"
-			var next, current;
-			if (!newValue) { // current is disabled
-				// Check up at least one scale is enabled and default scale is enabled...
-				current = Number(propertyName);
-				if (this.options[0] == 0 && this.options[1] == 0 && this.options[2] == 0) {
-					// all are disabled
-					next = (current == 2) ? 0 : current + 1; // get next
-					this.options[next] = 1; // enable next
-					this.options.scaleDefault = next; // default next
-				} else {
-					if (this.options.scaleDefault == current) { // current is default
-						next = (current == 2) ? 0 : current + 1;  // get next
-						if (this.options[next] == 0) { // next is disabled
-							next = (next == 2) ? 0 : next + 1; // get next
-						}
-						this.options.scaleDefault = next; // default it
-					}
-				}
-			}
-		}
-		
+		} 
 		if (!areSettingsDefault()) {
 			doHook();
 		}
