@@ -35,7 +35,7 @@
     		
     		// Main
 			OdfSpreadsheetDocument ods = OdfSpreadsheetDocument.loadDocument(LANG_FILE);
-			OdfTable sheet = ods.getTableByName("PRS_");
+			OdfTable sheet = ods.getTableByName("PRS+");
 			
 			for (OdfTable t: ods.getTableList()) {
 				System.out.println(t.getTableName());
