@@ -7,6 +7,7 @@ History:
 	2011-12-12 kartu - Fixed runonce.sh (removed "archive" attribute)
 	2012-03-17 Mark Nord - core1
 	2012-11-01 Mark Nord - addons4; exclude core__keyboard for touch-models
+	2012-12-09 Mark Nord - 950 exclude all Apps beside CLI;
 -->
 <project default="buildAll">
 	<!--======================================================================== 
@@ -52,6 +53,9 @@ History:
 		<exclude name="DictionaryOptions_x50.js" />
 		<exclude name="Extra_CSS_x50.js" />
 		<exclude name="Interface_x50.js" />		
+		<exclude name="Calendar" />
+		<exclude name="Calendar/**/*" />	
+		<exclude name="MerryActions.js" />	
 	</patternset>
 	<patternset id="addons_600_x50">
 		<include name="**/*" />
@@ -64,7 +68,9 @@ History:
 		<exclude name="TextEncoding.js" />
 		<exclude name="TextScale.js" />
 		<exclude name="ViewerSettings.js" />
-		<exclude name="core__keyboard.js" />		
+		<exclude name="core__keyboard.js" />
+		<exclude name="Calendar_nt" />
+		<exclude name="Calendar_nt/**/*" />		
 	</patternset>
 	<patternset id="addons_300">
 		<patternset refid="addons_300_505" />
@@ -98,6 +104,46 @@ History:
 		<exclude name="BookManagement.js" />
 		<exclude name="ViewerSettings_600.js" />
 		<exclude name="TouchSettings_600.js" />
+		<exclude name="Calc" />
+		<exclude name="Calc/**/*" />
+		<exclude name="Calc.js" />		
+		<exclude name="Calendar" />
+		<exclude name="Calendar/**/*" />
+		<exclude name="Calendar.js" />	
+		<exclude name="Chess" />
+		<exclude name="Chess/**/*" />
+		<exclude name="Chess.js" />	
+		<exclude name="Draughts" />
+		<exclude name="Draughts/**/*" />
+		<exclude name="Draughts.js" />	
+		<exclude name="FiveBalls" />
+		<exclude name="FiveBalls/**/*" />
+		<exclude name="FiveBalls.js" />			
+		<exclude name="FiveRow" />
+		<exclude name="FiveRow/**/*" />
+		<exclude name="FiveRow.js" />			
+		<exclude name="FreeCell" />
+		<exclude name="FreeCell/**/*" />
+		<exclude name="FreeCell.js" />			
+		<exclude name="IntFic" />
+		<exclude name="IntFic/**/*" />
+		<exclude name="IntFic.js" />	
+		<exclude name="Mahjong" />
+		<exclude name="Mahjong/**/*" />
+		<exclude name="Mahjong.js" />	
+		<exclude name="MineSweeper" />
+		<exclude name="MineSweeper/**/*" />
+		<exclude name="MineSweeper.js" />	
+		<exclude name="Solitaire" />
+		<exclude name="Solitaire/**/*" />
+		<exclude name="Solitaire.js" />	
+		<exclude name="Sudoku" />
+		<exclude name="Sudoku/**/*" />
+		<exclude name="Sudoku.js" />	
+		<exclude name="XOCubed" />
+		<exclude name="XOCubed/**/*" />
+		<exclude name="XOCubed.js" />	
+		<exclude name="MerryActions.js" />	
 	</patternset>
 	
 	<!--======================================================================== 
