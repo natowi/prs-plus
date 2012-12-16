@@ -1,4 +1,4 @@
-=== 2.1.0 ? ===
+=== 2.1.02alpha ===
  * ALL: core__popup.js changes to resources and code to show button-response
  * ALL: Added sub-collection support (max 1 sub-level, using | as separator)
  * ALL: Calculator now saves and loads memory cells
@@ -16,6 +16,9 @@
  * 600/x50: Added Save Notepad Data addon
  * x50: Added Touch Settings addon (Tap, Swipe & Zoom options)
  * x50: Home menu booklist: Added 'Select Collection' option & action
+ * 650/350: Added PRS+ dictionary (still work in progress, but mostly functional) (put prspdict files into \database\system\PRSPlus\dictionary\ 
+	in the root drive. Use XDXF to PRS+ dictionary conveter to convert from XDXF visual format (available in downloads section). 
+	Use makedict (utility external to PRS+) to convert form many formats into XDXF visual format.
 
 === 2.0.18 ===
  * ALL: Added scaling option to Standby Image

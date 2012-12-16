@@ -7,7 +7,8 @@ History:
 	2011-12-12 kartu - Fixed runonce.sh (removed "archive" attribute)
 	2012-03-17 Mark Nord - core1
 	2012-11-01 Mark Nord - addons4; exclude core__keyboard for touch-models
-	2012-12-09 Mark Nord - 950 exclude all Apps beside CLI;
+	2012-12-09 Mark Nord - 950 exclude all Apps beside CLI
+	2012-12-16 kartu - added Dictionary to x50/600
 -->
 <project default="buildAll">
 	<!--======================================================================== 
@@ -56,6 +57,7 @@ History:
 		<exclude name="Calendar" />
 		<exclude name="Calendar/**/*" />	
 		<exclude name="MerryActions.js" />	
+		<exclude name="Dictionary_x50.js" />
 	</patternset>
 	<patternset id="addons_600_x50">
 		<include name="**/*" />
