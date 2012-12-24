@@ -7,6 +7,7 @@
 //	2012-10-27 Mark Nord - 600: kbook.radio2icon.stylesOffset; kbook.radio2icon.modified_kbook_draw; kbook.radio2icon.draw;
 //	2012-10-28 Mark Nord - 600: just set align0.stylesOffset = 2; to fix icon-offset, manual creation of radio-button-control-variables
 //	2012-10-30 Mark Nord - 600: moved - backported x50th stylesOffset for radio2icon button - to 600_bootstrap, merged code for x50/600
+//	2012-12-23 Mark Nord - extra-button caption, enable the use of all 4 values for margin, fix a error in changeValueTitles
 
 tmp = function() 
 {
@@ -30,7 +31,7 @@ tmp = function()
 		changeValueTitles,
 		t_align = ['default', 'left', 'center', 'right', 'justify'],
 		t_ffont = ['default', '1.033em', '1.066em', '1.10em', '1.20em'],
-		t_lheight = ['default', '1.0em', '1.25em', '1.5em', '2.0em'],
+		t_lheight = ['default', '1.00em', '1.25em', '1.50em', '2.00em'],
 		t_indent = ['default', '0em', '1.0em', '1.5em', '2.0em'],
 		t_margin = ['default', '0em', '0.5em', '1.0em', '1.5em'],
 		externCSS,
@@ -103,13 +104,20 @@ tmp = function()
 			sizeVsb.LINEHEIGHT.sandbox.lh_title.setValue(L('OPTION_LINEHEIGHT'));
 			sizeVsb.ALIGN.sandbox.lh_align.setValue(L('OPTION_TEXTALIGN'));
 			sizeVsb.FONTSIZE.sandbox.varBtn.setText(L('MORE_CSS'));
-		//	sizeVsb.FONTSIZE.sandbox.varBtn.canCommand = 'isEpub'; // fix for missing property in 600 main.xml
 
 			sizeHsb.FONTSIZEFINE.sandbox.ff_title.setValue(L('OPTION_FONTSIZE'));
 			sizeHsb.LINEHEIGHT.sandbox.lh_title.setValue(L('OPTION_LINEHEIGHT'));
 			sizeHsb.ALIGN.sandbox.lh_align.setValue(L('OPTION_TEXTALIGN'));
 			sizeHsb.FONTSIZE.sandbox.varBtn.setText(L('MORE_CSS'));
-		//	sizeHsb.FONTSIZE.sandbox.varBtn.canCommand = 'isEpub';
+
+			// LineHeight Button-Caption
+			n = 5;
+			for (i = 1; i < n; i++) {	
+				sizeVsb.LINEHEIGHT.sandbox['line'+i].setText(t_lheight[i].substring(0, 4));
+				sizeHsb.LINEHEIGHT.sandbox['line'+i].setText(t_lheight[i].substring(0, 4));
+				sizeVsb.FONTSIZEFINE.sandbox['ffont'+i].setText(t_ffont[i].substring(0, 4));
+				sizeHsb.FONTSIZEFINE.sandbox['ffont'+i].setText(t_ffont[i].substring(0, 4));
+			}
 		} catch (e) { 
 			log.trace('writing to sandbox-values e: '+e);
 		}
@@ -199,11 +207,13 @@ tmp = function()
 		cssMargin.addChild(createMenuItem(t_margin[1], function() {return handleExtraCSS(2, t_margin[1]);}  ));
 		cssMargin.addChild(createMenuItem(t_margin[2], function() {return handleExtraCSS(2, t_margin[2]);}  ));
 		cssMargin.addChild(createMenuItem(t_margin[3], function() {return handleExtraCSS(2, t_margin[3]);}  ));
+		cssMargin.addChild(createMenuItem(t_margin[3], function() {return handleExtraCSS(2, t_margin[4]);}  ));
 
 		cssPadding.addChild(createMenuItem(t_margin[0], function() {return handleExtraCSS(6, t_margin[0]);}  ));
 		cssPadding.addChild(createMenuItem(t_margin[1], function() {return handleExtraCSS(6, t_margin[1]);}  ));
 		cssPadding.addChild(createMenuItem(t_margin[2], function() {return handleExtraCSS(6, t_margin[2]);}  ));
 		cssPadding.addChild(createMenuItem(t_margin[3], function() {return handleExtraCSS(6, t_margin[3]);}  ));
+		cssPadding.addChild(createMenuItem(t_margin[3], function() {return handleExtraCSS(6, t_margin[4]);}  ));
 	};
 
 	isEpub = function () {
@@ -215,27 +225,27 @@ tmp = function()
 		var i, n, optionDefs = Extra_CSS_x50.optionDefs[0];
 		n = t_ffont.length;
 		for (i=0; i<n; i++) {	
-			optionDefs.optionDefs[0].valueTitles[i.toSting()] = t_ffont[i];
+			optionDefs.optionDefs[0].valueTitles[i.toString()] = t_ffont[i];
 		}
 		n = t_lheight.length;
 		for (i=0; i<n; i++) {	
-			optionDefs.optionDefs[1].valueTitles[i.toSting()] = t_lheight[i];
+			optionDefs.optionDefs[1].valueTitles[i.toString()] = t_lheight[i];
 		}
 		n = t_margin.length;
 		for (i=0; i<n; i++) {	
-			optionDefs.optionDefs[2].valueTitles[i.toSting()] = t_margin[i];
+			optionDefs.optionDefs[2].valueTitles[i.toString()] = t_margin[i];
 		}
 		n = t_margin.length;
 		for (i=0; i<n; i++) {	
-			optionDefs.optionDefs[3].valueTitles[i.toSting()] = t_margin[i];
+			optionDefs.optionDefs[3].valueTitles[i.toString()] = t_margin[i];
 		}
 		n = t_align.length;
 		for (i=0; i<n; i++) {	
-			optionDefs.optionDefs[4].valueTitles[i.toSting()] = t_align[i];
+			optionDefs.optionDefs[4].valueTitles[i.toString()] = t_align[i];
 		}
-		n = t_intend.length;
+		n = t_indent.length;
 		for (i=0; i<n; i++) {	
-			optionDefs.optionDefs[5].valueTitles[i.toSting()] = t_intend[i];
+			optionDefs.optionDefs[5].valueTitles[i.toString()] = t_indent[i];
 		}
 	};
 
@@ -243,7 +253,7 @@ tmp = function()
 		pageSizeOverlayModel.closeCurrentOverlay();
 		if (isEpub) {
 			Core.popup.showMenu(cssMenu);
-		} /* else { show anothet menu if we like } */
+		} /* else { show another menu if we like } */
 	};
 
 	PATH_SIZEOVERLAYSANDBOX.doVariable = doVariable;
@@ -330,13 +340,14 @@ tmp = function()
 						icon: 'FONT',
 						//helpText: L('HELP_PAGEMARGIN'),
 						defaultValue: '0',
-						values: ['0', '1', '2', '3'],
+						values: ['0', '1', '2', '3', '4'],
 						valueTitles: 
 							{
 							'0': t_margin[0], 
 							'1': t_margin[1], //no margins
 							'2': t_margin[2],
-							'3': t_margin[3]
+							'3': t_margin[3],
+							'4': t_margin[4],
 							}
 					},
 					
@@ -346,13 +357,14 @@ tmp = function()
 						icon: 'FONT',
 						//helpText: L('HELP_PADDING'),
 						defaultValue: '0',
-						values: ['0', '1', '2', '3'],
+						values: ['0', '1', '2', '3', '4'],
 						valueTitles: 
 							{
 							'0': t_margin[0], 
 							'1': t_margin[1], //no margins
 							'2': t_margin[2],
-							'3': t_margin[3]
+							'3': t_margin[3],
+							'4': t_margin[4]
 							}		
 					},
 
@@ -379,13 +391,14 @@ tmp = function()
 						icon: 'FONT',
 						//helpText: L('HELP_PAGEMARGIN'),
 						defaultValue: '0',
-						values: ['0', '1', '2', '3'],
+						values: ['0', '1', '2', '3', '4'],
 						valueTitles: 
 							{
 							'0': t_indent[0], 
 							'1': t_indent[1],
 							'2': t_indent[2], 
-							'3': t_indent[3]
+							'3': t_indent[3],
+							'4': t_indent[4]
 							}
 					},
 
@@ -413,7 +426,7 @@ tmp = function()
 			buildMoreCSSMenu();
 			// load userCSSValues - if any
 			result = Core.system.callScript(Core.config.userCSSValues, log);
-			if (result) { 
+		if (result) { 
 				t_ffont = result.t_ffont;
 				t_lheight = result.t_lheight;
 				t_indent = result.t_indent;
@@ -444,15 +457,9 @@ tmp = function()
 				case 'Option_Textindent':
 						handleExtraCSS(5, t_indent[newValue]);
 					break;
-			/*	case 'LrfFont':
-						LrfFontFunction (newValue) ;	
-					break ;  */
 				case 'Reset_CSS':
 						ResetCss();
 					break ;
-			/*	case 'Option_Edit_Tags':
-						EditTagsFunction(newValue); 
-					break ; */
 			} 
 		}
 	};
