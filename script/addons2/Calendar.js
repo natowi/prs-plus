@@ -1,7 +1,7 @@
 /* Name: Calendar app
    Original code (c) Ben Chenoweth
    Initial version: July 2011
-//	2012-11-05 drMerry - some code improvement
+//	2013-02-24 Ben Chenoweth - fix for Easter Sunday
 */
 
 tmp = function() {
@@ -69,9 +69,9 @@ tmp = function() {
 					if ((events[i][2] == day) && (events[i][1] == month) && (events[i][3] <= year)) numevents++;
 				}
 				else if (events[i][0] == "F") {
-					if ((events[i][1] === 3) && (events[i][2] === 0) && (events[i][3] === 0) ) {
+					if ((events[i][1] == 3) && (events[i][2] == 0) && (events[i][3] == 0) ) {
 						Calendar.easter(year);
-						if (easterday == day && eastermonth == month) numevents++;
+						if ((easterday === day) && (eastermonth === month)) numevents++;
 					} else {
 						floater = Calendar.floatingholiday(year,events[i][1],events[i][2],events[i][3]);
 						if ((month === 5) && (events[i][1] === 5) && (events[i][2] === 4) && (events[i][3] == 2)) {
@@ -239,13 +239,13 @@ tmp = function() {
 					}
 				}
 				if (events[j][0] == "F") {
-					if ((events[j][1] === 3) && (events[j][2] === 0) && (events[j][3] === 0) ) {
+					if ((events[j][1] == 3) && (events[j][2] == 0) && (events[j][3] == 0) ) {
 						Calendar.easter(todaysYear);
-						if (easterday == todaysDate && eastermonth == todaysMonth) {
+						if ((easterday === todaysDate) && (eastermonth === todaysMonth)) {
 							todayevents.push(events[j][5]);
 						}
 						// add easter event to future events if easter is next month or coming up in this month 
-						if ((todaysMonth < eastermonth) || ((todaysMonth == eastermonth) && (todaysDate < easterday))) {
+						if ((todaysMonth < eastermonth) || ((todaysMonth === eastermonth) && (todaysDate < easterday))) {
 							futureevents.push(["", eastermonth, easterday, todaysYear, events[j][4], events[j][5]]);
 						}
 					} else {
@@ -456,22 +456,20 @@ tmp = function() {
 			}
 		},
 		easter: function (year) {
-			var a = year % 19;
-			var b = Math.floor(year/100);
-			var c = year % 100;
-			var d = Math.floor(b/4);
-			var e = b % 4;
-			var f = Math.floor((b+8) / 25);
-			var g = Math.floor((b-f+1) / 3);
-			var h = (19*a + b - d - g + 15) % 30;
-			var i = Math.floor(c/4);
-			var j = c % 4;
-			var k = (32 + 2*e + 2*i - h - j) % 7;
-			var m = Math.floor((a + 11*h + 22*k) / 451);
-			var month = Math.floor((h + k - 7*m + 114) / 31);
-			var day = ((h + k - 7*m +114) % 31) + 1;
-			eastermonth = month;
-			easterday = day;
+			var ea = year % 19;
+			var eb = Math.floor(year/100);
+			var ec = year % 100;
+			var ed = Math.floor(eb/4);
+			var ee = eb % 4;
+			var ef = Math.floor((eb+8) / 25);
+			var eg = Math.floor((eb-ef+1) / 3);
+			var eh = (19*ea + eb - ed - eg + 15) % 30;
+			var ei = Math.floor(ec/4);
+			var ej = ec % 4;
+			var ek = (32 + 2*ee + 2*ei - eh - ej) % 7;
+			var em = Math.floor((ea + 11*eh + 22*ek) / 451);
+			eastermonth = Math.floor((eh + ek - 7*em + 114) / 31);
+			easterday = ((eh + ek - 7*em + 114) % 31) + 1;
 		},
 		floatingholiday: function (targetyr,targetmo,cardinaloccurrence,targetday) {
 			var firstdate = new Date(targetyr, targetmo-1, 1);
@@ -501,8 +499,9 @@ tmp = function() {
 			i = 0;
 			for (i; i < events.length; i++) {
 				if (events[i][0] == "F") {
-					if ((events[i][1] == 3) && (events[i][2] === 0) && (events[i][3] === 0) ) {
-						if (easterday == day && eastermonth == month) {
+					if ((events[i][1] == 3) && (events[i][2] == 0) && (events[i][3] == 0) ) {
+						Calendar.easter(year);
+						if ((easterday === day) && (eastermonth === month)) {
 							return events[i][4];
 						} 
 					} else {
