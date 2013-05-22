@@ -18,6 +18,7 @@
 //	2012-03-13 Ben Chenoweth - Fix for issue #321
 //	2012-04-23 drMerry - Moved shutdown and standby to System folder (actions)
 //	2012-08-14 drMerry - Minimized some code
+//	2013-05-22 Ben Chenoweth - Added Show Direct Page Jump Dialog
 
 var tmp = function() {
 	var L, log, NAME, StandardActions, model, book, doHistory, isBookEnabled, addBubbleActions, addOptionalActions,
@@ -590,6 +591,16 @@ var tmp = function() {
 				icon: "NOTES",
 				action: function() {
 					pageOptionToolbarOverlayModel.onOptionToolbar();
+				}
+			},
+			{
+				name: "ShowDirectJump",
+				title: L("ACTION_SHOW_DIRECTJUMP"),
+				group: "Book",
+				icon: "CONTINUE",
+				action: function() {
+					pageOptionJumpbarOverlayModel.onOptionJumpbar();
+					pageOptionJumpbarOverlayModel.doDirectJump();
 				}
 			},
 			{
