@@ -30,6 +30,7 @@
 //			changed doCenterF from if into case switches
 //			removed a unused var
 //			faster start of games that have only useFrotz set to true
+//	2013-05-26 Ben Chenoweth - Added a filename label
 
 var tmp = function () {
 	
@@ -571,6 +572,9 @@ var tmp = function () {
 				// clear textbox
 				tempOutput = "";
 				
+				// update filename label
+				this.filenameLabel.setValue(lowerGameTitle);
+				
 				this.getResponse();
 			} catch(e) {
 				//tempOutput = tempOutput + "\nError " + e + " initialising game "+GAMETITLE;
@@ -824,14 +828,14 @@ var tmp = function () {
 		
 		result = getFileContent(INTFICOUT, "222");
 		if (result !== "222") {
-			/*/ output files for debugging
+			// output files for debugging
 			if (FileSystem.getFileInfo("/Data/frotz0.out")) {
 				cmd = "cp "+INTFICOUT+" /Data/frotz1.out";
 				shellExec(cmd);
 			} else {
 				cmd = "cp "+INTFICOUT+" /Data/frotz0.out";
 				shellExec(cmd);
-			}*/
+			}
 			
 			// output
 			if (tempOutput === "") {
