@@ -10,6 +10,7 @@
           <style id="klWeis" size="18" style="bold" color="#FFFFFF" align="center"/>
           <style id="touchText" size="12" style="bold" color="#000000"/>
 			<style id="copyText" size="11" style="" color="#BBBBBB"/>
+			<style id="fileText" size="18" style="bold" color="#FFFFFF"/>
 			<style id="tinyText" size="10" style="bold" color="#000000"/>
 			<style id="versText" size="40" style="bold" color="#FFFFFF"/>
 
@@ -38,6 +39,7 @@
         <skin id="touchText" styles="touchText"/>
 		<skin id="tinyText" styles="tinyText"/>
 		<skin id="copyText" styles="copyText"/>
+		<skin id="fileText" styles="fileText"/>
       	<skin id="eventText"
 				cutouts="htext-lt,htext-ct,htext-rt,htext-lm,htext-cm,htext-rm,htext-lb,htext-cb,htext-rb" 
 				styles="etext-e,etext-e,etext-p,etext-s"/>
@@ -129,6 +131,7 @@
         	<sprite id="appIcon" skin="kbookMenuIcon" left="0" width="70" top="-70" height="70" u="0" v="1" canFocus="true" />
 			<label id="appTitle" skin="title" left="70" right="0" top="-78" height="70" align="left" text="Interactive Fiction"/>
 			<label id="copyright" skin="copyText" left="70" right="0" top="-20" height="20" align="left" text="(C) Ben Chenoweth 2012"/>
+			<label id="filenameLabel" skin="fileText" left="0" right="10" top="-30" height="30" align="right" text=""/>
 			
             <code>
 				<function id="doLeft">		this.moveCursor("left");	</function>
