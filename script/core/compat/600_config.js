@@ -229,6 +229,7 @@ return {
 			{ name: "AuthorList", parent: "more" },
 			{ name: "games", parent: "more" },
 			{ name: "Chess", parent: "games" },
+			{ name: "CrossWord", parent: "games" },
 			{ name: "Draughts", parent: "games" },
 			{ name: "FiveBalls", parent: "games" },	
 			{ name: "FiveRow", parent: "games" },	
