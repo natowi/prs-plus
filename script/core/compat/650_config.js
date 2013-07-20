@@ -267,6 +267,7 @@ return {
 			{ name: "StandardActions", parent: "more" },
 			{ name: "AuthorList", parent: "more" },
 			{ name: "Chess", parent: "games" },
+			{ name: "CrossWord", parent: "games" },
 			{ name: "Draughts", parent: "games" },
 			{ name: "FiveBalls", parent: "games" },	
 			{ name: "FiveRow", parent: "games" },	

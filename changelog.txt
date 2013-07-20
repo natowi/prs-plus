@@ -14,6 +14,7 @@
  * 600/x50: Added Author List addon
  * 600/x50: Added Auto Standby/Shutdown Time options
  * 600/x50: Added Save Notepad Data addon
+ * 600/x50: Added CrossWord App
  * x50: Added Touch Settings addon (Tap, Swipe & Zoom options)
  * x50: Home menu booklist: Added 'Select Collection' option & action
  * 650/350: Added PRS+ dictionary (still work in progress, but mostly functional) (put prspdict files into \database\system\PRSPlus\dictionary\ 

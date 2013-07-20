@@ -58,6 +58,8 @@ History:
 		<exclude name="Calendar/**/*" />	
 		<exclude name="MerryActions.js" />	
 		<exclude name="Dictionary_x50.js" />
+		<exclude name="CrossWord" />
+		<exclude name="CrossWord/**/*" />
 	</patternset>
 	<patternset id="addons_600_x50">
 		<include name="**/*" />
