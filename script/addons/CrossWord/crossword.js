@@ -5,6 +5,7 @@
 // History: 
 //	06/09/2012	Dan Genin - alpha release
 //	20/07/2013	Ben Chenoweth - added keyboard switch button for non-950 readers; various fixes; loading errors output to clue box; remembers current puzzle; check for win; non-menu version
+//	21/07/2013	Ben Chenoweth - various fixes; better handle different crossword types
 
 var tmp = function() {
 	//
@@ -94,14 +95,31 @@ var tmp = function() {
 		target['sq' + pad(currCell, 3)].u = 0;
 		currCell = nextCell;
 		target['sq' + pad(currCell, 3)].u = 2;
-
+		
+		var i = currCell % cwdWidth;
+		var j = Math.floor(currCell/cwdHeight);
+		//target.bubble("tracelog","cwdGrid.charAt(currCell-1)="+cwdGrid.charAt(currCell*1-1)+", cwdGrid.charAt(currCell+1)="+cwdGrid.charAt(currCell*1+1));
+		
 		if (direction == 0) {
-			// go backward horizontally until a black square is encountered
-			// to obtain the linear index of the current clue 
-			target.clueText.setValue(acrossNumberMap[pad(currCell, 3)] + " across: " + cwdClues[acrossClueMap[pad(currCell, 3)]]);
+			if (((i==0) || (cwdGrid.charAt(currCell*1-1) == ".")) && ((i==cwdWidth*1-1) || (cwdGrid.charAt(currCell*1+1) == "."))) {
+				//need to switch direction and output down clue
+				direction = (direction + 1) % 2;
+				msg = (direction == 0) ? "MODE: Across" : "MODE: Down";
+				target.Touch.mode.setValue(msg);
+				target.clueText.setValue(downNumberMap[pad(currCell, 3)] + " down: " + cwdClues[downClueMap[pad(currCell, 3)]]);
+			} else {
+				target.clueText.setValue(acrossNumberMap[pad(currCell, 3)] + " across: " + cwdClues[acrossClueMap[pad(currCell, 3)]]);
+			}
 		} else {
-			// go upward until a black square is encountered
-			target.clueText.setValue(downNumberMap[pad(currCell, 3)] + " down: " + cwdClues[downClueMap[pad(currCell, 3)]]);
+			if (((j==0) || (cwdGrid.charAt(currCell*1-cwdWidth*1) == ".")) && ((j==cwdHeight*1-1) || (cwdGrid.charAt(currCell*1+cwdWidth*1) == "."))) {
+				//need to switch direction and output across clue
+				direction = (direction + 1) % 2;
+				msg = (direction == 0) ? "MODE: Across" : "MODE: Down";
+				target.Touch.mode.setValue(msg);
+				target.clueText.setValue(acrossNumberMap[pad(currCell, 3)] + " across: " + cwdClues[acrossClueMap[pad(currCell, 3)]]);
+			} else {
+				target.clueText.setValue(downNumberMap[pad(currCell, 3)] + " down: " + cwdClues[downClueMap[pad(currCell, 3)]]);
+			}
 		}
 
 	}
@@ -190,30 +208,32 @@ var tmp = function() {
 			// and if it is first in a column or follows a black square vertically
 			var num = 1;
 			var clue = 0;
-			var numAssigned = 0;
+			var numAssigned;
 			var pIndex = 0;
 			var i, j;
 			for (j = 0; j < cwdHeight; j++) {
 				for (i = 0; i < cwdWidth; i++) {
-					numAssigned = 0;
-					pIndex = i + j * cwdHeight;
+					numAssigned = false;
+					pIndex = i + j * cwdWidth;
 					if (cwdGrid.charAt(pIndex) != '.') {
 						// scan for numbered squares horizontally
-						if (i == 0 || (i > 0) && (i < (cwdWidth - 1)) && (cwdGrid.charAt(pIndex - 1) == '.') && (cwdGrid.charAt(pIndex + 1) != '.')) {
-							acrossNumberMap[pad(pIndex, 3)] = num;
-							acrossClueMap[pad(pIndex, 3)] = clue;
-							clue = clue + 1;
-							numAssigned = 1;
+						if ((i == 0) || (cwdGrid.charAt(pIndex - 1) == '.')) {
+							if ((i < (cwdWidth - 1)) && (cwdGrid.charAt(pIndex + 1) != '.')) {
+								acrossNumberMap[pad(pIndex, 3)] = num;
+								acrossClueMap[pad(pIndex, 3)] = clue;
+								clue += 1;
+								numAssigned = true;
+							}
 						}
-						
 						// scan for numbered squares vertically
-						if (j == 0 || (j > 0 && j < (cwdHeight - 1) && cwdGrid.charAt(pIndex - cwdHeight) == '.' && cwdGrid.charAt(pIndex + cwdHeight) != '.')) {
-							downNumberMap[pad(pIndex, 3)] = num;
-							downClueMap[pad(pIndex, 3)] = clue;
-							clue += 1;
-							numAssigned = 1;
+						if ((j == 0) || (cwdGrid.charAt(pIndex - cwdWidth) == '.')) {
+							if ((j < (cwdHeight - 1)) && (cwdGrid.charAt(pIndex + cwdWidth) != '.')) {
+								downNumberMap[pad(pIndex, 3)] = num;
+								downClueMap[pad(pIndex, 3)] = clue;
+								clue += 1;
+								numAssigned = true;
+							}
 						}
-						
 						if (numAssigned) num++;  
 					}
 				}
@@ -262,18 +282,18 @@ var tmp = function() {
 		for(i = 0; i < cwdWidth*cwdHeight; i++) {
 			acrossClueMap[pad(i,3)] = 0;
 			acrossNumberMap[pad(i,3)] = 0;
-			}
+		}
 			
 		for(i = 0; i < cwdWidth*cwdHeight; i++) {
 			downClueMap[pad(i,3)] = 0;
 			downNumberMap[pad(i,3)] = 0;
-			}
+		}
 			
 
 		// setup the crossword grid and compute the mapping between numbered grid squares and clues
 		var num = 1;
 		var clue = 0;
-		var numAssigned = 0;
+		var numAssigned;
 		var pIndex = 0;
 		for (j = 0; j < cwdHeight; j++) {
 			for (i = 0; i < cwdWidth; i++) {
@@ -299,23 +319,27 @@ var tmp = function() {
 				// this information is not explicitly provided in the .puz format but rather has to be inferred from the grid layout
 				// a square is given a number if it is first in a row or follows a black square horizontally
 				// and if it is first in a column or follows a black square vertically 
-				numAssigned = 0;
+				numAssigned = false;
 				pIndex = i + j * (cwdHeight);
 				if (cwdGrid.charAt(pIndex) != '.') {
 					// scan for numbered squares horizontally
-					if(i == 0 || (i > 0 && cwdGrid.charAt(pIndex - 1) == '.')) {
-						acrossNumberMap[pad(pIndex, 3)] = num;
-						acrossClueMap[pad(pIndex, 3)] = clue;
-						clue += 1;
-						numAssigned = 1;
+					if ((i == 0) || (cwdGrid.charAt(pIndex - 1) == '.')) {
+							if ((i < (cwdWidth - 1)) && (cwdGrid.charAt(pIndex + 1) != '.')) {
+							acrossNumberMap[pad(pIndex, 3)] = num;
+							acrossClueMap[pad(pIndex, 3)] = clue;
+							clue += 1;
+							numAssigned = true;
+						}
 					}
 					
 					// scan for numbered squares vertically
-					if(j == 0 || (j > 0 && cwdGrid.charAt(pIndex - (cwdHeight)) == '.')) {
-						downNumberMap[pad(pIndex, 3)] = num;
-						downClueMap[pad(pIndex, 3)] = clue;
-						clue += 1;
-						numAssigned = 1;
+					if ((j == 0) || (cwdGrid.charAt(pIndex - cwdWidth) == '.')) {
+						if ((j < (cwdHeight - 1)) && (cwdGrid.charAt(pIndex + cwdWidth) != '.')) {
+							downNumberMap[pad(pIndex, 3)] = num;
+							downClueMap[pad(pIndex, 3)] = clue;
+							clue += 1;
+							numAssigned = true;
+						}
 					}
 
 					// display numbers
@@ -776,67 +800,45 @@ var tmp = function() {
 		switch (x) {
 			// check that the letter in the current cell is correct
 			case 0: {
-				if (target['cell' + pad(currCell, 3)].getValue() != "" && target['cell' + pad(currCell, 3)].getValue() != cwdSolution.charAt(currCell))
+				if (target['cell' + pad(currCell, 3)].getValue() != "" && target['cell' + pad(currCell, 3)].getValue() != cwdSolution.charAt(currCell)) {
 					target['sq' + pad(currCell, 3)].u = 3;
+				}
 				break;
 			}
 			// check that the current word is correct
 			case 1: {
 				if (direction == 0) {
-					//*****this is no longer necessary since *NumberMap[currCell] now carries the array index of the numbered square
-					//*****actually *NumberMap[currCell] now carries the number of the clue in the corresponding orientation
 					// go backward horizontally until a black square is encountered to get to the beginning of the current word 
 					for (i = currCell; (i % cwdWidth) != 0 && cwdGrid.charAt(i - 1) != '.'; i--);
 					// go forward checking each letter
-					//target.bubble('tracelog','in hint: check slot ' + acrossNumberMap[pad(currCell, 3)]);
-					//for (j = acrossNumberMap[pad(currCell, 3)]; cwdGrid.charAt(j) != '.'; j++)
-						//target.bubble('tracelog', 'in hint: checking slot ' + j);
-					//for (j = acrossNumberMap[pad(currCell, 3)] * 1; cwdGrid.charAt(j) != '.' && j < (acrossNumberMap[pad(currCell, 3)]/cwdWidth)*(cwdWidth+1); j++) {
 					for (j = i; cwdGrid.charAt(j) != '.' && j < (Math.floor(i/cwdWidth) * cwdWidth + cwdWidth); j++) {
-						//target.bubble('tracelog', 'in hint: checking slot ' + j + ' ' + target['cell' + pad(j, 3)].getValue() + ' ' + cwdSolution.charAt(j));
-						if (target['cell' + pad(j, 3)].getValue() != "" && target['cell' + pad(j, 3)].getValue() != cwdSolution.charAt(j))
+						if (target['cell' + pad(j, 3)].getValue() != "" && target['cell' + pad(j, 3)].getValue() != cwdSolution.charAt(j)) {
 							target['sq' + pad(j, 3)].u = 3;
 						}
+					}
 				} else {
 					// go upward until a black square is encountered to get to the beginning of the word
 					for (i = currCell; i >= 0 && cwdGrid.charAt(i - cwdWidth) != '.'; i = i - cwdWidth);
 					if (i < 0) i = i + cwdWidth;
 					// go forward checking each letter
-					//for (j = downNumberMap[pad(currCell, 3)]; cwdGrid.charAt(j) != '.' && j <= (cwdWidth*(cwdHeight-1) + downNumberMap[pad(currCell, 3)]); j = j + cwdWidth * 1)
-					for (j = i; cwdGrid.charAt(j) != '.' && j < (cwdWidth*cwdHeight); j = j + cwdWidth)
-						if (target['cell' + pad(j, 3)].getValue() != "" && target['cell' + pad(j, 3)].getValue() != cwdSolution.charAt(j))
+					for (j = i; cwdGrid.charAt(j) != '.' && j < (cwdWidth*cwdHeight); j = j + cwdWidth) {
+						if (target['cell' + pad(j, 3)].getValue() != "" && target['cell' + pad(j, 3)].getValue() != cwdSolution.charAt(j)) {
 							target['sq' + pad(j, 3)].u = 3;
+						}
+					}
 				}
 				break;
 			}
-			// check the whole puzzle
 			case 2: {
-				for ( var i = 0; i < cwdGrid.length; i++)
-					if (target['cell' + pad(i, 3)].getValue() != ""	&& target['cell' + pad(i, 3)].getValue() != cwdSolution.charAt(i))
-						target['sq' + pad(i, 3)].u = 3;
+				target.doCheckPuzzle();
 				break;
 			}
-			// reveal current letter
 			case 4: {
-				target['cell' + pad(currCell, 3)].setValue(cwdSolution.charAt(currCell));
+				target.doRevealLetter();
 				break;
 			}
-			// reveal current word
 			case 5: {
-				if (direction == 0) {
-					// go backward horizontally until a black square is encountered to get to the beginning of the current word 
-					for (i = currCell; (i % cwdWidth) != 0 && cwdGrid.charAt(i - 1) != '.'; i--);
-					// go forward checking each letter
-					for (j = i; cwdGrid.charAt(j) != '.' && j < (Math.floor(i/cwdWidth) * cwdWidth + cwdWidth); j++)
-						target['cell' + pad(j, 3)].setValue(cwdSolution.charAt(j));
-				} else {
-					// go upward until a black square is encountered to get to the beginning of the word
-					for (i = currCell; i >= 0 && cwdGrid.charAt(i - cwdWidth) != '.'; i = i - cwdWidth);
-					if (i < 0) i = i + cwdWidth;
-					// go forward checking each letter
-					for (j = i; cwdGrid.charAt(j) != '.' && j < (cwdWidth*cwdHeight); j = j + cwdWidth)
-						target['cell' + pad(j, 3)].setValue(cwdSolution.charAt(j));
-				}
+				target.doRevealWord();
 				break;
 			}
 			default : target.bubble('tracelog','in hint: switch default');
@@ -888,19 +890,21 @@ var tmp = function() {
 	}
 	
 	target.doRevealWord = function(sender) {
+		var i;
 		if (direction == 0) {
 			// go backward horizontally until a black square is encountered to get to the beginning of the current word 
 			for (i = currCell; (i % cwdWidth) != 0 && cwdGrid.charAt(i - 1) != '.'; i--);
 			// go forward checking each letter
-			for (j = i; cwdGrid.charAt(j) != '.' && j < (Math.floor(i/cwdWidth) * cwdWidth + cwdWidth); j++)
+			for (j=i; cwdGrid.charAt(j) != '.' && j < (Math.floor(i/cwdWidth) * cwdWidth + cwdWidth); j++)
 				target['cell' + pad(j, 3)].setValue(cwdSolution.charAt(j));
 		} else {
 			// go upward until a black square is encountered to get to the beginning of the word
 			for (i = currCell; i >= 0 && cwdGrid.charAt(i - cwdWidth) != '.'; i = i - cwdWidth);
 			if (i < 0) i = i + cwdWidth;
 			// go forward checking each letter
-			for (j = i; cwdGrid.charAt(j) != '.' && j < (cwdWidth*cwdHeight); j = j + cwdWidth)
+			for (j=i*1; (cwdGrid.charAt(j) != '.') && (j < (cwdWidth*cwdHeight)); j = j + cwdWidth) {
 				target['cell' + pad(j, 3)].setValue(cwdSolution.charAt(j));
+			}
 		}
 		this.checkForAWin();
 		return;
