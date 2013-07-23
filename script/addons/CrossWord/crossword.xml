@@ -16,11 +16,6 @@
 			this.bubble("doGridClick",this);
 		</script>
 	</behavior>
-	<behavior id="closeSprite">
-		<script on="mouseUp" params="event">
-				this.bubble("showHelp");
-		</script>
-	</behavior>
 			
 	<style font="Swis721 BT">
 		<style id="swis24gry" size="24" style="" right="15" halign="right" top="5" color="#6D6D6D"/>
@@ -29,6 +24,7 @@
 		<style id="swis16blk" size="16" style="" color="#000000"/>
 		<style id="digits" size="22" style="bold" color="#000000"/>
 		<style id="copynote" size="14" style="italic" color="#707070"/>
+		<style id="copyText" size="11" style="" color="#BBBBBB"/>
 		<style id="touchText" size="12" style="bold" color="#000000"/>
 		<style id="tinyText" size="10" style="bold" color="#000000"/>
 	</style>
@@ -46,7 +42,7 @@
 <texture href="cwskins/cw_labels.png">
 	<cutout id="square_c" x="51" y="1" width="33" height="33"/>	
 	<cutout id="null" x="0" y="70" width="1" height="1" lines="1"/>
-	<cutout id="null32h" x="370" y="32" width="1" height="32" lines="1"/>
+	<cutout id="null32h" x="980" y="32" width="1" height="32" lines="1"/>
 </texture>
 
 <skin id="swis16blk" styles="swis16blk"/>	
@@ -56,7 +52,7 @@
 <skin id="swis32blk" styles="swis32blk"/>	
 <skin id="touchText" styles="touchText"/>
 <skin id="tinyText"  styles="tinyText"/>
-<skin id="cellText"	 styles="swis24blk"/>	
+<skin id="copyText" styles="copyText"/>
 
 <skin id="frame1"
 		cutouts="null,null,null,null,null,null,null,null,null"/>		
@@ -162,6 +158,7 @@
     <group id="AUTORUN" width="600" top="70" bottom="33">
 	   	<sprite id="appIcon" skin="kbookMenuIcon" left="0" width="70" top="-70" height="70" active="false" u="38" v="1"/>   
 		<label id="appTitle" skin="title" left="70" right="0" top="-70" height="70" align="left" text="CrossWord"/>
+		<label id="copyright" skin="copyText" left="70" right="0" top="-20" height="20" align="left" text="(C) Daniel Genin 2012"/>
 		
 		<code>
          <function id="doRoot">
@@ -170,676 +167,402 @@
       	</code>
 		
 		<group id="Touch" width="600" top="0" bottom="0">
-			<!--menuBar id="MENUBAR" alignment="left" left="3" width="600" top="3" height="32">
-				<menu title="GAME">
-					<item title="Select puzzle"   do="switchPuzzle" can="always" />
-					<item title="Next puzzle" do="switchPuzzle" can="always" />
-					<separator/>
-					<item title="Clear word" do="clearWord" can="always" />
-					<item title="Clear puzzle" do="clearPuzzle" can="always" />
-				</menu>
-				<menu title="CHECK" >
-					<item title="Check letter" do="hint" can="always" />
-					<item title="Check word"   do="hint" can="always" />
-					<item title="Check puzzle" do="hint" can="always" />
-					<separator/>
-					<item title="Reveal letter"   do="hint" can="always" />
-					<item title="Reveal word"   do="hint" can="always" />
-				</menu>
-				<menu title="HELP" >
-					<item title="Instructions" do="doShowHelp" can="always" />
-					<separator/>
-					<item title="About" do="doAbout" can="always" />
-				</menu>
-			</menuBar-->
-			
-		<label id="mode" skin="swis20blk" left="350" width="250" top="3" height="32" text="MODE: Across" />
-		<button id="changeMode" left="450" width="150" top="3" height="30" active="true" visible="false" do="changeDirection" />
+			<label id="mode" skin="swis20blk" left="350" width="250" top="3" height="32" text="MODE: Across" />
+			<button id="changeMode" left="380" width="220" top="3" height="30" active="true" visible="false" do="changeDirection" />
 		</group>
 	
-		<label id="cwdTitle" skin="swis16blk" left="100" top="60" width="400" height="20" text="Crossword"/>
- 		<label id="cwdAuthor" skin="swis16blk" left="100" top="80" width="400" height="20" text="by Author"/>
+		<label id="cwdTitle" skin="swis16blk" left="100" top="60" width="400" height="20" text=""/>
+ 		<label id="cwdAuthor" skin="swis16blk" left="100" top="80" width="400" height="20" text=""/>
 	
-	<panel id="frame2" skin="frame1" left="151" top="110" width="298" height="298"/>
-	<sprite skin="square" id="sq000" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq001" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq002" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq003" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq004" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq005" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq006" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq007" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq008" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq009" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq010" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq011" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq012" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq013" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq014" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq015" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq016" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq017" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq018" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq019" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq020" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq021" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq022" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq023" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq024" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq025" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq026" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq027" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq028" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq029" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq030" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq031" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq032" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq033" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq034" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq035" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq036" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq037" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq038" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq039" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq040" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq041" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq042" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq043" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq044" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq045" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq046" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq047" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq048" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq049" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq050" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq051" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq052" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq053" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq054" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq055" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq056" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq057" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq058" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq059" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq060" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq061" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq062" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq063" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq064" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq065" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq066" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq067" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq068" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq069" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq070" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq071" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq072" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq073" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq074" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq075" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq076" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq077" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq078" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq079" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq080" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq081" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq082" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq083" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq084" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq085" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq086" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq087" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq088" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq089" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq090" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq091" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq092" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq093" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq094" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq095" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq096" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq097" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq098" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq099" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq100" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq101" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq102" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq103" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq104" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq105" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq106" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq107" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq108" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq109" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq110" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq111" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq112" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq113" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq114" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq115" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq116" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq117" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq118" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq119" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq120" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq121" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq122" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq123" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq124" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq125" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq126" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq127" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq128" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq129" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq130" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq131" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq132" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq133" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq134" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq135" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq136" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq137" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq138" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq139" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq140" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq141" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq142" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq143" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq144" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq145" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq146" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq147" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq148" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq149" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq150" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq151" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq152" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq153" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq154" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq155" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq156" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq157" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq158" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq159" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq160" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq161" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq162" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq163" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq164" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq165" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq166" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq167" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq168" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq169" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq170" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq171" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq172" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq173" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq174" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq175" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq176" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq177" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq178" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq179" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq180" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq181" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq182" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq183" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq184" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq185" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq186" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq187" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq188" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq189" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq190" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq191" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq192" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq193" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq194" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq195" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq196" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq197" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq198" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq199" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq200" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq201" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq202" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq203" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq204" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq205" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq206" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq207" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq208" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq209" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq210" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq211" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq212" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq213" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq214" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq215" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
-	<sprite skin="square" id="sq216" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq217" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq218" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq219" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq220" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq221" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq222" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq223" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
-	<sprite skin="square" id="sq224" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<panel id="frame2" skin="frame1" left="151" top="110" width="298" height="298"/>
+		<sprite skin="square" id="sq000" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq001" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq002" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq003" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq004" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq005" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq006" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq007" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq008" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq009" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq010" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq011" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq012" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq013" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq014" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq015" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq016" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq017" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq018" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq019" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq020" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq021" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq022" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq023" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq024" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq025" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq026" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq027" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq028" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq029" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq030" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq031" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq032" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq033" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq034" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq035" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq036" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq037" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq038" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq039" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq040" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq041" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq042" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq043" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq044" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq045" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq046" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq047" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq048" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq049" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq050" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq051" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq052" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq053" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq054" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq055" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq056" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq057" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq058" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq059" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq060" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq061" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq062" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq063" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq064" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq065" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq066" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq067" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq068" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq069" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq070" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq071" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq072" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq073" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq074" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq075" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq076" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq077" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq078" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq079" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq080" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq081" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq082" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq083" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq084" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq085" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq086" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq087" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq088" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq089" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq090" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq091" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq092" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq093" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq094" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq095" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq096" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq097" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq098" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq099" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq100" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq101" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq102" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq103" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq104" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq105" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq106" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq107" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq108" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq109" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq110" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq111" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq112" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq113" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq114" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq115" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq116" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq117" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq118" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq119" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq120" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq121" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq122" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq123" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq124" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq125" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq126" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq127" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq128" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq129" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq130" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq131" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq132" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq133" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq134" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq135" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq136" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq137" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq138" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq139" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq140" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq141" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq142" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq143" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq144" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq145" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq146" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq147" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq148" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq149" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq150" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq151" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq152" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq153" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq154" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq155" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq156" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq157" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq158" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq159" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq160" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq161" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq162" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq163" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq164" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq165" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq166" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq167" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq168" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq169" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq170" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq171" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq172" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq173" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq174" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq175" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq176" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq177" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq178" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq179" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq180" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq181" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq182" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq183" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq184" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq185" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq186" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq187" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq188" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq189" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq190" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq191" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq192" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq193" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq194" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq195" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq196" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq197" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq198" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq199" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq200" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq201" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq202" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq203" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq204" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq205" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq206" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq207" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq208" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq209" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq210" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq211" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq212" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq213" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq214" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq215" active="true" canFocus="true"><behave like="gridSprite"/></sprite>	
+		<sprite skin="square" id="sq216" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq217" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq218" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq219" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq220" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq221" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq222" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq223" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
+		<sprite skin="square" id="sq224" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
 
-<!-- ******************************** cell labels **************************************************************************************** -->
-	<label skin="cellText" id="cell000" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell001" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell002" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell003" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell004" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell005" width="32" height="16" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell006" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell007" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell008" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell009" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell010" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell011" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell012" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell013" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell014" width="32" height="16" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell015" width="32" height="16" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell016" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell017" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell018" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell019" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell020" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell021" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell022" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell023" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell024" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell025" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell026" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell027" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell028" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell029" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell030" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell031" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell032" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell033" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell034" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell035" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell036" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell037" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell038" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell039" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell040" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell041" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell042" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell043" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell044" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell045" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell046" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell047" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell048" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell049" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell050" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell051" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell052" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell053" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell054" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell055" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell056" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell057" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell058" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell059" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell060" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell061" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell062" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell063" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell064" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell065" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell066" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell067" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell068" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell069" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell070" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell071" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell072" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell073" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell074" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell075" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell076" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell077" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell078" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell079" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell080" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell081" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell082" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell083" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell084" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell085" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell086" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell087" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell088" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell089" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell090" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell091" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell092" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell093" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell094" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell095" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell096" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell097" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell098" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell099" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell100" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell101" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell102" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell103" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell104" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell105" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell106" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell107" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell108" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell109" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell110" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell111" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell112" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell113" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell114" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell115" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell116" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell117" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell118" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell119" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell120" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell121" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell122" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell123" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell124" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell125" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell126" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell127" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell128" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell129" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell130" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell131" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell132" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell133" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell134" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell135" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell136" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell137" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell138" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell139" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell140" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell141" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell142" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell143" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell144" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell145" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell146" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell147" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell148" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell149" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell150" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell151" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell152" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell153" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell154" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell155" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell156" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell157" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell158" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell159" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell160" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell161" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell162" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell163" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell164" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell165" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell166" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell167" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell168" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell169" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell170" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell171" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell172" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell173" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell174" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell175" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell176" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell177" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell178" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell179" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell180" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell181" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell182" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell183" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell184" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell185" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell186" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell187" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell188" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell189" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell190" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell191" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell192" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell193" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell194" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell195" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell196" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell197" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell198" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell199" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell200" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell201" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell202" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell203" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell204" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell205" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell206" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell207" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell208" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell209" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell210" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell211" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell212" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell213" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell214" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell215" width="32" height="32" halign="center" valign="top" text=""/>	
-	<label skin="cellText" id="cell216" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell217" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell218" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell219" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell220" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell221" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell222" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell223" width="32" height="32" halign="center" valign="top" text=""/>
-	<label skin="cellText" id="cell224" width="32" height="32" halign="center" valign="top" text=""/>
-		 
+		<label id="num0" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num1" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num2" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num3" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num4" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num5" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num6" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num7" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num8" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num9" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num10" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num11" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num12" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num13" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num14" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num15" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num16" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num17" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num18" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num19" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num20" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num21" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num22" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num23" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num24" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num25" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num26" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num27" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num28" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num29" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num30" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num31" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num32" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num33" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num34" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num35" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num36" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num37" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num38" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num39" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num40" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num41" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num42" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num43" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num44" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num45" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num46" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num47" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num48" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num49" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num50" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num51" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num52" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num53" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num54" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num55" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num56" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num57" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num58" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num59" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num60" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num61" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num62" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num63" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num64" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num65" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num66" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num67" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num68" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num69" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num70" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num71" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num72" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num73" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num74" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num75" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num76" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num77" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num78" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
+		<label id="num79" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
 
-	<label id="num0" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num1" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num2" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num3" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num4" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num5" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num6" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num7" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num8" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num9" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num10" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num11" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num12" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num13" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num14" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num15" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num16" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num17" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num18" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num19" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num20" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num21" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num22" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num23" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num24" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num25" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num26" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num27" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num28" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num29" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num30" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num31" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num32" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num33" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num34" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num35" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num36" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num37" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num38" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num39" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num40" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num41" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num42" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num43" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num44" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num45" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num46" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num47" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num48" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num49" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num50" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num51" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num52" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num53" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num54" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num55" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num56" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num57" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num58" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num59" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num60" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num61" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num62" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num63" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num64" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num65" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num66" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num67" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num68" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num69" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num70" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num71" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num72" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num73" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num74" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num75" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num76" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num77" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num78" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	<label id="num79" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
-	
-    <text id='helpText' skin='helpText' left='5' right='10' top='5' bottom='500' active='false' visible='false'/>	
-	<sprite skin='square' id='closeHelpText' right='20' top='15' u='4' visible='false' active='false'><behave
-    like="closeSprite"/></sprite>
-	<text id="clueText" skin="helpText" left="50" top="630" width="500" height="56" active="false"/>
-	
-	<button id="BUTTON_Q"	active="true" text="Q" left="040" width="40" bottom="170" height="40" do="doButtonClick"/>
-   	<button id="BUTTON_W"	active="true" text="W" left="090" width="40" bottom="170" height="40" do="doButtonClick"/>
-   	<button id="BUTTON_E"	active="true" text="E" left="140" width="40" bottom="170" height="40" do="doButtonClick"/>   	
-	<button id="BUTTON_R" 	active="true" text="R" left="190" width="40" bottom="170" height="40" do="doButtonClick"/>
-    <button id="BUTTON_T"	active="true" text="T" left="240" width="40" bottom="170" height="40" do="doButtonClick"/>		
-    <button id="BUTTON_Y"	active="true" text="Y" left="290" width="40" bottom="170" height="40" do="doButtonClick"/>
-    <button id="BUTTON_U"	active="true" text="U" left="340" width="40" bottom="170" height="40" do="doButtonClick"/>    		
-    <button id="BUTTON_I"	active="true" text="I" left="390" width="40" bottom="170" height="40" do="doButtonClick"/>    		
-    <button id="BUTTON_O"	active="true" text="O" left="440" width="40" bottom="170" height="40" do="doButtonClick"/> 
-    <button id="BUTTON_P"	active="true" text="P" left="490" width="40" bottom="170" height="40" do="doButtonClick"/>  
-      
-	<button id="BUTTON_A"	active="true" text="A" left="040" width="40" bottom="120" height="40" do="doButtonClick"/>
-   	<button id="BUTTON_S"	active="true" text="S" left="090" width="40" bottom="120" height="40" do="doButtonClick"/>
-   	<button id="BUTTON_D"	active="true" text="D" left="140" width="40" bottom="120" height="40" do="doButtonClick"/>   	
-	<button id="BUTTON_F" 	active="true" text="F" left="190" width="40" bottom="120" height="40" do="doButtonClick"/>
-    <button id="BUTTON_G" 	active="true" text="G" left="240" width="40" bottom="120" height="40" do="doButtonClick"/>		
-    <button id="BUTTON_H" 	active="true" text="H" left="290" width="40" bottom="120" height="40" do="doButtonClick"/>
-    <button id="BUTTON_J"	active="true" text="J" left="340" width="40" bottom="120" height="40" do="doButtonClick"/>    		
-    <button id="BUTTON_K"	active="true" text="K" left="390" width="40" bottom="120" height="40" do="doButtonClick"/> 
-    <button id="BUTTON_L"	active="true" text="L" left="440" width="40" bottom="120" height="40" do="doButtonClick"/> 
-	
-   	<button id="BUTTON_Z"	active="true" text="Z" left="040" width="40" bottom="070" height="40" do="doButtonClick"/>
-   	<button id="BUTTON_X"	active="true" text="X" left="090" width="40" bottom="070" height="40" do="doButtonClick"/>
-   	<button id="BUTTON_C"	active="true" text="C" left="140" width="40" bottom="070" height="40" do="doButtonClick"/>   	
-	<button id="BUTTON_V" 	active="true" text="V" left="190" width="40" bottom="070" height="40" do="doButtonClick"/>
-    <button id="BUTTON_B" 	active="true" text="B" left="240" width="40" bottom="070" height="40" do="doButtonClick"/>		
-    <button id="BUTTON_N" 	active="true" text="N" left="290" width="40" bottom="070" height="40" do="doButtonClick"/>		
-    <button id="BUTTON_M" 	active="true" text="M" left="340" width="40" bottom="070" height="40" do="doButtonClick"/>
-    <button id="BUTTON_ " 	active="true" text=" " left="390" width="40" bottom="070" height="40" do="doButtonClick"/>
+		<text id="clueText" skin="helpText" left="50" top="630" width="500" height="56" active="false"/>
 
-	<button id="BUTTON_1" 	active="true" text=" " left="010" width="40" bottom="305" height="40" do="doSwitchKeyboard"/>
-	<button id="BUTTON_2" 	active="true" text="L" left="550" width="40" bottom="355" height="40" do="doRevealLetter"/>
-	<button id="BUTTON_3" 	active="true" text="W" left="550" width="40" bottom="305" height="40" do="doRevealWord"/>
-	<button id="BUTTON_4" 	active="true" text="Check" left="130" width="100" top="5" height="40" do="doCheckPuzzle"/>
-	<button id="BUTTON_5" 	active="true" text="Puzzle" left="010" width="100" top="5" height="40" do="doShowPuzzleDialog"/>
-	
-	<button id="btn_Exit" left="0" top="-70" height="70" width="70" active="true" visible="false" do="doRoot"/>
-	
-	<label id='touchButtons4'   skin='touchText'    left='550' width='50' bottom='400' height='15' align='left' text='Reveal:'/>
-	<!--label id='touchButtons5'   skin='touchText'    left='285' right='0' bottom='3' height='15' align='left' text='Quit'/-->
-	    
-	<dialog id="ABOUT_DIALOG" width="450" height="250" visible="false">
-		<code>
-         	<function id="doCenter">
-         		this.doOK();
-	         </function>		
-			<function id="doOK">
-				this.show(false)
-			</function>
-			<function id="open">
-				this.show(true)
-			</function>
-		</code>
-		<background skin="dlg_background" left="0" right="0" top="0" bottom="0"/>
-		<label skin="swis32blk" text="CrossWord" align="center" left="28" right="28" top="10" height="35"/>
-		<label skin="swis24blk" text="written in JavaScript" align="center" left="28" right="28" top="42" height="28"/>
-		<label skin="swis16blk" text="This version was written 2011-2012 by Daniel Genin" align="center" left="28" right="28" top="70" height="28"/>
-		<default-button id="OK" text="Ok" width="70" bottom="10" do="doOK"/>
-	</dialog>
-
-	<dialog id="WIN_DIALOG"  width="450" height="140" visible="false">
-		<code>
-         	<function id="doCenter">
-         		this.doOK();
-	         </function>				
-			<function id="doOK">
-				this.show(false)
-			</function>
-			<function id="open">
-				this.show(true)
-			</function>
-		</code>
-		<background skin="dlg_background" left="0" right="0" top="0" bottom="0"/>
-		<label skin="swis32blk" active="false" text="CORRECT!" align="center" left="28" right="28" top="30" height="35"/>
-		<default-button id="OK" text="Ok" width="70" bottom="10" do="doOK"/>
-	</dialog>
-
-	<dialog id="PUZZLE_DIALOG" width="450" height="250" visible="false">
-		<code>
-			<function id="doLoad">
-				this.show(false);
-				this.container.loadCrossword();
-			</function>
-			<function id="doClose">
-				this.show(false);
-				this.closeDlg();
-			</function>
-		</code>
-		<background skin="dlg_background" left="0" right="0" top="0" bottom="0"/>
-		<label skin="swis32blk" active="false" text="Choose a puzzle:" align="center" left="28" right="28" top="20" height="38"/>
-		<text id="puzzleName" skin="customText" active="false" variable="fileName" left="160" width="262" top="67" height="41"/>
-		<button id="prevPuzzle" skin="nullButton" left="100" top="67" width="50" heigth="28" text="-" do="doPrevNextPuzzle"/>
-		<button id="nextPuzzle" skin="nullButton" left="410" top="67" width="50" heigth="28" text="+" do="doPrevNextPuzzle"/>
+		<button id="BUTTON_Q"	active="true" text="Q" left="040" width="40" bottom="170" height="40" do="doButtonClick"/>
+		<button id="BUTTON_W"	active="true" text="W" left="090" width="40" bottom="170" height="40" do="doButtonClick"/>
+		<button id="BUTTON_E"	active="true" text="E" left="140" width="40" bottom="170" height="40" do="doButtonClick"/>   	
+		<button id="BUTTON_R" 	active="true" text="R" left="190" width="40" bottom="170" height="40" do="doButtonClick"/>
+		<button id="BUTTON_T"	active="true" text="T" left="240" width="40" bottom="170" height="40" do="doButtonClick"/>		
+		<button id="BUTTON_Y"	active="true" text="Y" left="290" width="40" bottom="170" height="40" do="doButtonClick"/>
+		<button id="BUTTON_U"	active="true" text="U" left="340" width="40" bottom="170" height="40" do="doButtonClick"/>    		
+		<button id="BUTTON_I"	active="true" text="I" left="390" width="40" bottom="170" height="40" do="doButtonClick"/>    		
+		<button id="BUTTON_O"	active="true" text="O" left="440" width="40" bottom="170" height="40" do="doButtonClick"/> 
+		<button id="BUTTON_P"	active="true" text="P" left="490" width="40" bottom="170" height="40" do="doButtonClick"/>  
+		  
+		<button id="BUTTON_A"	active="true" text="A" left="040" width="40" bottom="120" height="40" do="doButtonClick"/>
+		<button id="BUTTON_S"	active="true" text="S" left="090" width="40" bottom="120" height="40" do="doButtonClick"/>
+		<button id="BUTTON_D"	active="true" text="D" left="140" width="40" bottom="120" height="40" do="doButtonClick"/>   	
+		<button id="BUTTON_F" 	active="true" text="F" left="190" width="40" bottom="120" height="40" do="doButtonClick"/>
+		<button id="BUTTON_G" 	active="true" text="G" left="240" width="40" bottom="120" height="40" do="doButtonClick"/>		
+		<button id="BUTTON_H" 	active="true" text="H" left="290" width="40" bottom="120" height="40" do="doButtonClick"/>
+		<button id="BUTTON_J"	active="true" text="J" left="340" width="40" bottom="120" height="40" do="doButtonClick"/>    		
+		<button id="BUTTON_K"	active="true" text="K" left="390" width="40" bottom="120" height="40" do="doButtonClick"/> 
+		<button id="BUTTON_L"	active="true" text="L" left="440" width="40" bottom="120" height="40" do="doButtonClick"/> 
 		
-		<default-button id="btn_Ok" text="Load" width="70" bottom="10" do="doLoad"/>
-		<button id="btn_Cancel" text="Cancel" width="100" left ="270" bottom="10" do="doClose"/>		
-	</dialog>
-		 
-  </group>
+		<button id="BUTTON_Z"	active="true" text="Z" left="040" width="40" bottom="070" height="40" do="doButtonClick"/>
+		<button id="BUTTON_X"	active="true" text="X" left="090" width="40" bottom="070" height="40" do="doButtonClick"/>
+		<button id="BUTTON_C"	active="true" text="C" left="140" width="40" bottom="070" height="40" do="doButtonClick"/>   	
+		<button id="BUTTON_V" 	active="true" text="V" left="190" width="40" bottom="070" height="40" do="doButtonClick"/>
+		<button id="BUTTON_B" 	active="true" text="B" left="240" width="40" bottom="070" height="40" do="doButtonClick"/>		
+		<button id="BUTTON_N" 	active="true" text="N" left="290" width="40" bottom="070" height="40" do="doButtonClick"/>		
+		<button id="BUTTON_M" 	active="true" text="M" left="340" width="40" bottom="070" height="40" do="doButtonClick"/>
+		<button id="BUTTON_ " 	active="true" text=" " left="390" width="40" bottom="070" height="40" do="doButtonClick"/>
+
+		<button id="BUTTON_1" 	active="true" text=" " left="010" width="40" bottom="305" height="40" do="doSwitchKeyboard"/>
+		<button id="BUTTON_2" 	active="true" text="L" left="550" width="40" bottom="355" height="40" do="doRevealLetter"/>
+		<button id="BUTTON_3" 	active="true" text="W" left="550" width="40" bottom="305" height="40" do="doRevealWord"/>
+		<button id="BUTTON_4" 	active="true" text="Check" left="130" width="100" top="5" height="40" do="doCheckPuzzle"/>
+		<button id="BUTTON_5" 	active="true" text="Puzzle" left="010" width="100" top="5" height="40" do="doShowPuzzleDialog"/>
+		<button id="BUTTON_6" 	active="true" text="P" left="010" width="40" top="70" height="40" do="doClearPuzzle"/>
+		<button id="btn_Exit" left="0" top="-70" height="70" width="70" active="true" visible="false" do="doRoot"/>
+		
+		<label id='touchButtons3'   skin='touchText'    left='12' width='50' top='53' height='15' align='left' text='Clear:'/>
+		<label id='touchButtons4'   skin='touchText'    left='550' width='50' bottom='400' height='15' align='left' text='Reveal:'/>
+
+		<dialog id="WIN_DIALOG"  width="450" height="140" visible="false">
+			<code>
+				<function id="doCenter">
+					this.doOK();
+				 </function>				
+				<function id="doOK">
+					this.show(false)
+				</function>
+				<function id="open">
+					this.show(true)
+				</function>
+			</code>
+			<background skin="dlg_background" left="0" right="0" top="0" bottom="0"/>
+			<label skin="swis32blk" active="false" text="CORRECT!" align="center" left="28" right="28" top="30" height="35"/>
+			<default-button id="OK" text="Ok" width="70" bottom="10" do="doOK"/>
+		</dialog>
+
+		<dialog id="PUZZLE_DIALOG" width="450" height="250" visible="false">
+			<code>
+				<function id="doLoad">
+					this.show(false);
+					this.container.loadCrossword();
+				</function>
+				<function id="doClose">
+					this.show(false);
+					this.closeDlg();
+				</function>
+			</code>
+			<background skin="dlg_background" left="0" right="0" top="0" bottom="0"/>
+			<label skin="swis32blk" active="false" text="Choose a puzzle:" align="center" left="28" right="28" top="20" height="38"/>
+			<text id="puzzleName" skin="customText" active="false" variable="fileName" left="160" width="262" top="67" height="41"/>
+			<button id="prevPuzzle" skin="nullButton" left="100" top="67" width="50" heigth="28" text="-" do="doPrevNextPuzzle"/>
+			<button id="nextPuzzle" skin="nullButton" left="410" top="67" width="50" heigth="28" text="+" do="doPrevNextPuzzle"/>
+			
+			<default-button id="btn_Ok" text="Load" width="70" bottom="10" do="doLoad"/>
+			<button id="btn_Cancel" text="Cancel" width="100" left ="270" bottom="10" do="doClose"/>		
+		</dialog>
+	</group>
 </group>
 
 </document>
