@@ -7,6 +7,7 @@
 //	20/07/2013	Ben Chenoweth - added keyboard switch button for non-950 readers; various fixes; loading errors output to clue box; remembers current puzzle; check for win; non-menu version
 //	21/07/2013	Ben Chenoweth - various fixes; better handle different crossword types
 //	23/07/2013	Ben Chenoweth - more fixes; code cleaning; reduce size of xml file
+//	24/07/2013	Ben Chenoweth - minor fixes; different selection sprite
 
 var tmp = function() {
 	//
@@ -17,13 +18,13 @@ var tmp = function() {
 	gridTop = 131,
 	gridLeft,
 	getSoValue = kbook.autoRunRoot.getSoValue,
+	setSoValue = kbook.autoRunRoot.setSoValue,
 	listFiles = kbook.autoRunRoot.listFiles,
 	datPath = kbook.autoRunRoot.gamesSavePath + 'CrossWord/puzzles/',
 	//datPath = target.crosswordRoot + 'puzzles/',
 	//settingsPath  = target.crosswordRoot + 'settings.dat',
 	settingsPath = kbook.autoRunRoot.gamesSavePath + 'CrossWord/settings.dat',
 
-	width = [ 230, 280, 230 ], // [inherited from minesweeper. dig]
 	direction = 0,
 	currCell = 0, // linear position (left to right and top to bottom) of the currently focused cell
 
@@ -67,20 +68,21 @@ var tmp = function() {
 	};
 	
 	// highlights the given cell and displays the corresponding clue
-	var activateCell = function(cell) {
+	var activateCell = function(nextCell) {
 		// cell to be highlighted
-		var i, j, msg, nextCell = cell;
-
+		var i, j, msg;
+		//target.bubble('tracelog','currCell='+currCell+",nextCell="+nextCell);
 		// if the cell is out of range or is blacked out do nothing 
 		if (nextCell > cwdGrid.length || cwdGrid.charAt(nextCell) == '.')
 			return;	
-		
-		target['sq' + pad(currCell, 3)].v = 0;
+
 		currCell = nextCell;
-		target['sq' + pad(currCell, 3)].v = 1;
 		
 		i = currCell % cwdWidth;
 		j = Math.floor(currCell/cwdHeight);
+		
+		//move selection
+		target.selection.changeLayout(gridLeft + i * 32,32, uD, gridTop + j * 32, 32, uD);
 		
 		if (direction == 0) {
 			if (((i==0) || (cwdGrid.charAt(currCell*1-1) == ".")) && ((i==cwdWidth*1-1) || (cwdGrid.charAt(currCell*1+1) == "."))) {
@@ -265,18 +267,18 @@ var tmp = function() {
 				this['sq' + pIndex].changeLayout(gridLeft + i * 32,32, uD, gridTop + j * 32, 32, uD);
 				switch (cwdGrid.charAt(pIndex)) { //previously "charAt(i + j * cwdHeight)"
 				case '-': {
-					this['sq' + pIndex].u = 0;
-					this['sq' + pIndex].v = 0;
+					target['sq' + pIndex].u = 0;
+					if (getSoValue(target['sq' + pIndex], "v") != 0) target['sq' + pIndex].v = 0;
 					break;
 					}
 				case '.': {
-					this['sq' + pIndex].u = 1;
-					this['sq' + pIndex].v = 0;
+					target['sq' + pIndex].u = 1;
+					if (getSoValue(target['sq' + pIndex], "v") != 0) target['sq' + pIndex].v = 0;
 					break;
 					}
 				default: {
-					this['sq' + pIndex].u = letterToNum(cwdGrid.charAt(pIndex)) + 1; //previously "charAt(i + j * cwdHeight)"
-					this['sq' + pIndex].v = 0;
+					target['sq' + pIndex].u = letterToNum(cwdGrid.charAt(pIndex)) + 1; //previously "charAt(i + j * cwdHeight)"
+					if (getSoValue(target['sq' + pIndex], "v") != 0) target['sq' + pIndex].v = 0;
 					}
 				};
 
@@ -464,7 +466,7 @@ var tmp = function() {
 	// updates current puzzle state
 	// only gets called externally
 	target.doButtonClick = function(sender) {
-		var id, letter, nextCell;
+		var id, letter;
 
 		id = getSoValue(sender, "id");
 		letter = id.substring(7, 8);
@@ -472,15 +474,29 @@ var tmp = function() {
 		// use blank to erase letters from the grid
 		if (letter != ' ') {
 			target['sq' + pad(currCell, 3)].u = letterToNum(letter) + 1;
-			target['sq' + pad(currCell, 3)].v = 0;
+			if (getSoValue(target['sq' + pad(currCell, 3)], "v") != 0) target['sq' + pad(currCell, 3)].v = 0;
+			if (!this.checkForAWin()) this.moveToNextCell();
 		} else {
 			target['sq' + pad(currCell, 3)].u = 0;
-			target['sq' + pad(currCell, 3)].v = 0;
+			if (getSoValue(target['sq' + pad(currCell, 3)], "v") != 0) target['sq' + pad(currCell, 3)].v = 0;
 		}
-		
-		this.checkForAWin();
-		
-		nextCell = currCell;
+	};
+	
+	target.checkForAWin = function() {
+		var alldone = true, i;
+		for (i = 0; i < cwdGrid.length; i++) {
+			if (cwdSolution.charAt(i) != "." && numToLetter(getSoValue(target['sq' + pad(i, 3)], "u")) != cwdSolution.charAt(i)) {
+				alldone = false;
+			}
+		}
+		if (alldone) {
+			target.WIN_DIALOG.open();
+		}
+		return alldone;
+	};
+	
+	target.moveToNextCell = function() {
+		var nextCell = currCell;
 		
 		if (direction == 0) {
 			if ((++nextCell) * 1 < cwdGrid.length) {
@@ -505,20 +521,7 @@ var tmp = function() {
 				return;
 			}
 		}	
-	};
-	
-	target.checkForAWin = function() {
-		var alldone = true, i;
-		for (i = 0; i < cwdGrid.length; i++) {
-			if (cwdSolution.charAt(i) != "." && numToLetter(getSoValue(target['sq' + pad(i, 3)], "u")) != cwdSolution.charAt(i)) {
-				alldone = false;
-			}
-		}
-		if (alldone) {
-			target.WIN_DIALOG.open();
-		}
-		return;
-	};
+	}
 	
 	target.doSwitchKeyboard = function(sender) {
 		if (keyboardLow) {
@@ -606,6 +609,7 @@ var tmp = function() {
 	target.doShowPuzzleDialog = function(sender) {
 		this.saveCrossword();
 		prevPuzzleIndex = currPuzzleIndex;
+		setSoValue(target.PUZZLE_DIALOG['btn_Cancel'],"visible",true);
 		target.PUZZLE_DIALOG.show(true);
 		return;
 	};
@@ -614,6 +618,10 @@ var tmp = function() {
 		if (currPuzzleIndex != prevPuzzleIndex) {
 			target.loadCrossword();
 		}
+	};
+	
+	target.PUZZLE_DIALOG.cancelDlg = function() {
+		currPuzzleIndex = prevPuzzleIndex;
 	};
 	 
 	target.PUZZLE_DIALOG.doPrevNextPuzzle = function(sender){
@@ -640,6 +648,10 @@ var tmp = function() {
 		this.container.setVariable("fileName", puzzleNames[currPuzzleIndex]);
 	};
 
+	target.PUZZLE_DIALOG.doRoot = function(sender) {
+		target.exitQuit();
+	};
+	
 	// Returns the index of the documents image pointing to cell at given
 	// x,y coords (on 0..n-1 scale)
 	var imageIndexOf = function(x, y) {
@@ -666,7 +678,7 @@ var tmp = function() {
 		for (i = 0; i < cwdGrid.length; i++) {
 			if (getSoValue(target['sq' + pad(i, 3)], "u") != 1) {
 				target['sq' + pad(i, 3)].u = 0;
-				target['sq' + pad(i, 3)].v = 0;
+				if (getSoValue(target['sq' + pad(i, 3)], "v") != 0) target['sq' + pad(i, 3)].v = 0;
 			}
 		}
 	};
@@ -676,26 +688,26 @@ var tmp = function() {
 		for (i = 0; i < cwdGrid.length; i++) {
 			letter = numToLetter(getSoValue(target['sq' + pad(i, 3)], "u"));
 			if (letter != "" && letter != cwdSolution.charAt(i)) {
-				target['sq' + pad(i, 3)].v = 2;
+				target['sq' + pad(i, 3)].v = 1;
 			}
 		}
 	};
 	
 	target.doRevealLetter = function(sender) {
 		target['sq' + pad(currCell, 3)].u = letterToNum(cwdSolution.charAt(currCell)) + 1;
-		target['sq' + pad(currCell, 3)].v = 0;
-		this.checkForAWin();
+		if (getSoValue(target['sq' + pad(currCell, 3)], "v") != 0) target['sq' + pad(currCell, 3)].v = 0;
+		if (!this.checkForAWin()) this.moveToNextCell();
 	};
 	
 	target.doRevealWord = function(sender) {
-		var i, j;
+		var i, j, dummy;
 		if (direction == 0) {
 			// go backward horizontally until a black square is encountered to get to the beginning of the current word 
 			for (i = currCell; (i % cwdWidth) != 0 && cwdGrid.charAt(i - 1) != '.'; i--);
 			// go forward checking each letter
 			for (j = i; cwdGrid.charAt(j) != '.' && j < (Math.floor(i/cwdWidth) * cwdWidth + cwdWidth); j++) {
 				target['sq' + pad(j, 3)].u = letterToNum(cwdSolution.charAt(j)) + 1;
-				target['sq' + pad(j, 3)].v = 0;
+				if (getSoValue(target['sq' + pad(j, 3)], "v") != 0) target['sq' + pad(j, 3)].v = 0;
 			}
 		} else {
 			// go upward until a black square is encountered to get to the beginning of the word
@@ -706,10 +718,10 @@ var tmp = function() {
 			// go forward checking each letter
 			for (j = i*1; (cwdGrid.charAt(j) != '.') && (j < (cwdWidth*cwdHeight)); j = j + cwdWidth) {
 				target['sq' + pad(j, 3)].u = letterToNum(cwdSolution.charAt(j)) + 1;
-				target['sq' + pad(j, 3)].v = 0;
+				if (getSoValue(target['sq' + pad(j, 3)], "v") != 0) target['sq' + pad(j, 3)].v = 0;
 			}
 		}
-		this.checkForAWin();
+		dummy = this.checkForAWin();
 		return;
 	}
 }; // end of tmp
