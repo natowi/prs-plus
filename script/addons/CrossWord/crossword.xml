@@ -40,6 +40,7 @@
 	<style id="dialog" background="#80000000"/>
 
 <texture href="cwskins/cw_labels.png">
+	<cutout id="select_c" x="1" y="1" width="33" height="33"/>
 	<cutout id="square_c" x="51" y="1" width="33" height="33"/>	
 	<cutout id="null" x="0" y="70" width="1" height="1" lines="1"/>
 	<cutout id="null32h" x="980" y="32" width="1" height="32" lines="1"/>
@@ -59,6 +60,9 @@
 
 <skin id="square" 
 		cutouts="square_c"/>
+
+<skin id="select" 
+		cutouts="select_c"/>
 
 <skin id="customText"
 		cutouts="htext-lt,htext-ct,htext-rt,htext-lm,htext-cm,htext-rm,htext-lb,htext-cb,htext-rb" 
@@ -162,7 +166,7 @@
 		
 		<code>
          <function id="doRoot">
-            this.exitQuit();
+            this.doRoot();
          </function>
       	</code>
 		
@@ -482,6 +486,7 @@
 		<label id="num78" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
 		<label id="num79" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
 
+		<sprite skin="select" id="selection" active="true" canFocus="true"/>
 		<text id="clueText" skin="helpText" left="50" top="630" width="500" height="56" active="false"/>
 
 		<button id="BUTTON_Q"	active="true" text="Q" left="040" width="40" bottom="170" height="40" do="doButtonClick"/>
@@ -526,10 +531,7 @@
 		<label id='touchButtons4'   skin='touchText'    left='550' width='50' bottom='400' height='15' align='left' text='Reveal:'/>
 
 		<dialog id="WIN_DIALOG"  width="450" height="140" visible="false">
-			<code>
-				<function id="doCenter">
-					this.doOK();
-				 </function>				
+			<code>				
 				<function id="doOK">
 					this.show(false)
 				</function>
@@ -546,21 +548,24 @@
 			<code>
 				<function id="doLoad">
 					this.show(false);
-					this.container.loadCrossword();
+					this.closeDlg();
 				</function>
+			 <function id="doRoot">
+				this.doRoot();
+			 </function>
 				<function id="doClose">
 					this.show(false);
-					this.closeDlg();
+					this.cancelDlg();
 				</function>
 			</code>
 			<background skin="dlg_background" left="0" right="0" top="0" bottom="0"/>
 			<label skin="swis32blk" active="false" text="Choose a puzzle:" align="center" left="28" right="28" top="20" height="38"/>
 			<text id="puzzleName" skin="customText" active="false" variable="fileName" left="160" width="262" top="67" height="41"/>
-			<button id="prevPuzzle" skin="nullButton" left="100" top="67" width="50" heigth="28" text="-" do="doPrevNextPuzzle"/>
-			<button id="nextPuzzle" skin="nullButton" left="410" top="67" width="50" heigth="28" text="+" do="doPrevNextPuzzle"/>
+			<button id="prevPuzzle" skin="nullButton" left="100" top="67" width="50" height="28" text="-" do="doPrevNextPuzzle"/>
+			<button id="nextPuzzle" skin="nullButton" left="410" top="67" width="50" height="28" text="+" do="doPrevNextPuzzle"/>
 			
-			<default-button id="btn_Ok" text="Load" width="70" bottom="10" do="doLoad"/>
-			<button id="btn_Cancel" text="Cancel" width="100" left ="270" bottom="10" do="doClose"/>		
+			<default-button id="btn_Ok" text="Load" width="100" bottom="10" do="doLoad"/>
+			<button id="btn_Cancel" text="Cancel" width="100" left ="290" bottom="10" do="doClose" visible="false"/>		
 		</dialog>
 	</group>
 </group>
