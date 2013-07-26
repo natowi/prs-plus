@@ -8,6 +8,7 @@
 //	21/07/2013	Ben Chenoweth - various fixes; better handle different crossword types
 //	23/07/2013	Ben Chenoweth - more fixes; code cleaning; reduce size of xml file
 //	24/07/2013	Ben Chenoweth - minor fixes; different selection sprite
+//	26/07/2013	Ben Chenoweth - prevent saving over puzzles when there is an error loading new puzzle; various fixes
 
 var tmp = function() {
 	//
@@ -49,6 +50,7 @@ var tmp = function() {
 	strUnShift = "\u2193", //down arrow
 	keyboardLow = true,
 	puzzleNames,
+	ableToSavePuzzle = false,
 	currPuzzleIndex = 0,
 	prevPuzzleIndex = -1;
 	
@@ -71,7 +73,7 @@ var tmp = function() {
 	var activateCell = function(nextCell) {
 		// cell to be highlighted
 		var i, j, msg;
-		//target.bubble('tracelog','currCell='+currCell+",nextCell="+nextCell);
+
 		// if the cell is out of range or is blacked out do nothing 
 		if (nextCell > cwdGrid.length || cwdGrid.charAt(nextCell) == '.')
 			return;	
@@ -130,7 +132,9 @@ var tmp = function() {
 		var stream, inpLine, test, nextField, chunk, size,
 		fileName = puzzleNames[currPuzzleIndex],
 		num = 1, clue = 0, numAssigned, pIndex = 0, i, j;
-			
+		
+		ableToSavePuzzle = false;
+		
 		try {
 			if(FileSystem.getFileInfo(datPath+fileName)) {
 				stream = new Stream.File(datPath+fileName);
@@ -142,14 +146,14 @@ var tmp = function() {
 			size = stream.bytesAvailable;
 			if (size > 4096) {
 				target.clueText.setValue("ERROR: Puzzle file is too big.");
-				return;
+				return(-1);
 			}
 			
 			chunk = stream.readChunk(stream.bytesAvailable);
 			
 			if (getString(chunk,2,11) != "ACROSS&DOWN") {
 				target.clueText.setValue("ERROR: The file does not appear to be an AcrossLite format puzzle.");
-				return;
+				return(-1);
 			};
 			
 			cwdWidth = chunk.peek(44);
@@ -161,6 +165,8 @@ var tmp = function() {
 				target.clueText.setValue("ERROR: Puzzles larger than 15x15 not supported.");
 				return(-1);
 			}
+			
+			ableToSavePuzzle = true;
 			
 			//seems to mistake unscrambled solutions for scrambled
 			//if (chunk.peek(30)+chunk.peek(31)*256 == 0) {
@@ -192,8 +198,8 @@ var tmp = function() {
 					pIndex = imageIndexOf(i,j);
 					if (cwdGrid.charAt(pIndex) != '.') {
 						// scan for numbered squares horizontally
-						if ((i == 0) || (cwdGrid.charAt(pIndex - 1) == '.')) {
-							if ((i < (cwdWidth - 1)) && (cwdGrid.charAt(pIndex + 1) != '.')) {
+						if ((i == 0) || (cwdGrid.charAt(pIndex*1 - 1) == '.')) {
+							if ((i < (cwdWidth - 1)) && (cwdGrid.charAt(pIndex*1 + 1) != '.')) {
 								acrossNumberMap[pad(pIndex, 3)] = num;
 								acrossClueMap[pad(pIndex, 3)] = clue;
 								clue += 1;
@@ -201,8 +207,8 @@ var tmp = function() {
 							}
 						}
 						// scan for numbered squares vertically
-						if ((j == 0) || (cwdGrid.charAt(pIndex - cwdWidth) == '.')) {
-							if ((j < (cwdHeight - 1)) && (cwdGrid.charAt(pIndex + cwdWidth) != '.')) {
+						if ((j == 0) || (cwdGrid.charAt(pIndex*1 - cwdWidth*1) == '.')) {
+							if ((j < (cwdHeight - 1)) && (cwdGrid.charAt(pIndex*1 + cwdWidth*1) != '.')) {
 								downNumberMap[pad(pIndex, 3)] = num;
 								downClueMap[pad(pIndex, 3)] = clue;
 								clue += 1;
@@ -230,12 +236,30 @@ var tmp = function() {
 		}
 	};
 	
+	function realTypeOf(obj) {
+		return Object.prototype.toString.call(obj).slice(8, -1);
+	}
+	
 	// loads the puzzle data from the puzzleNames[currPuzzleIndex] file and sets up the puzzle field
 	target.loadCrossword = function() {
 		var num = 1, clue = 0, numAssigned, pIndex = 0, i, j;
 		
-		if (loadCrosswordFile() < 0) {
+		if (loadCrosswordFile() == -1) {
 			//target.bubble('tracelog','failed to load the puzzle file');
+			// hide squares
+			for (i = 0; i <= maxSquares; i++) {
+				this['sq' + pad(i, 3)].changeLayout(0, 0, uD, 0, 0, uD);
+			}
+			
+			// hide numbers
+			for (i = 0; i <= 79; i++) {
+				this['num' + i].setValue("");
+			}
+			
+			// hide selection, previous title & author
+			target.selection.changeLayout(0, 0, uD, 0, 0, uD);
+			target.cwdTitle.setValue("");
+			target.cwdAuthor.setValue("");
 			return;
 		}
 		
@@ -263,7 +287,7 @@ var tmp = function() {
 		// setup the crossword grid and compute the mapping between numbered grid squares and clues
 		for (j = 0; j < cwdHeight; j++) {
 			for (i = 0; i < cwdWidth; i++) {
-				pIndex = imageIndexOf(i, j);
+				pIndex = imageIndexOf(i, j); //padded
 				this['sq' + pIndex].changeLayout(gridLeft + i * 32,32, uD, gridTop + j * 32, 32, uD);
 				switch (cwdGrid.charAt(pIndex)) { //previously "charAt(i + j * cwdHeight)"
 				case '-': {
@@ -287,11 +311,10 @@ var tmp = function() {
 				// a square is given a number if it is first in a row or follows a black square horizontally
 				// and if it is first in a column or follows a black square vertically 
 				numAssigned = false;
-				pIndex = i + j * (cwdHeight);
 				if (cwdGrid.charAt(pIndex) != '.') {
 					// scan for numbered squares horizontally
-					if ((i == 0) || (cwdGrid.charAt(pIndex - 1) == '.')) {
-							if ((i < (cwdWidth - 1)) && (cwdGrid.charAt(pIndex + 1) != '.')) {
+					if ((i == 0) || (cwdGrid.charAt(pIndex*1 - 1) == '.')) {
+							if ((i < (cwdWidth - 1)) && (cwdGrid.charAt(pIndex*1 + 1) != '.')) {
 							acrossNumberMap[pad(pIndex, 3)] = num;
 							acrossClueMap[pad(pIndex, 3)] = clue;
 							clue += 1;
@@ -300,8 +323,8 @@ var tmp = function() {
 					}
 					
 					// scan for numbered squares vertically
-					if ((j == 0) || (cwdGrid.charAt(pIndex - cwdWidth) == '.')) {
-						if ((j < (cwdHeight - 1)) && (cwdGrid.charAt(pIndex + cwdWidth) != '.')) {
+					if ((j == 0) || (cwdGrid.charAt(pIndex*1 - cwdWidth*1) == '.')) {
+						if ((j < (cwdHeight - 1)) && (cwdGrid.charAt(pIndex*1 + cwdWidth*1) != '.')) {
 							downNumberMap[pad(pIndex, 3)] = num;
 							downClueMap[pad(pIndex, 3)] = clue;
 							clue += 1;
@@ -325,19 +348,19 @@ var tmp = function() {
 			if(acrossClueMap[pad(i,3)] == 0) acrossClueMap[pad(i,3)] = acrossClueMap[pad(i-1,3)];
 		}
 			
-		for(i = cwdWidth; i < cwdWidth*cwdHeight; i++) {
+		for(i = cwdWidth*1; i < cwdWidth*cwdHeight; i++) {
 			if(downNumberMap[pad(i,3)] == 0) downNumberMap[pad(i,3)] = downNumberMap[pad(i-cwdWidth,3)];
 			if(downClueMap[pad(i,3)] == 0) downClueMap[pad(i,3)] = downClueMap[pad(i-cwdWidth,3)];
 		}
 
 		// hide unused squares
-		for (i = (cwdWidth) * (cwdHeight); i <= maxSquares; i++) {
+		for (i = cwdWidth*cwdHeight; i <= maxSquares; i++) {
 			this['sq' + pad(i, 3)].changeLayout(0, 0, uD, 0, 0, uD);
 		}
 		
 		// hide unused numbers
 		for (i = num; i <= 79; i++) {
-			this['num' + num].setValue("");
+			this['num' + i].setValue("");
 		}
 		
 		activateCell(0);
@@ -346,7 +369,9 @@ var tmp = function() {
 	// save the current crossword
 	target.saveCrossword = function() {
 		var i, stream, chunk, cwdSaveGrid = "";
-
+		
+		if (!ableToSavePuzzle) return;
+		
 		if(FileSystem.getFileInfo(datPath + puzzleNames[currPuzzleIndex])) {
 			stream = new Stream.File(datPath+puzzleNames[currPuzzleIndex]);
 		} else {
