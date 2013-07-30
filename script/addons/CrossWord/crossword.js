@@ -9,6 +9,7 @@
 //	23/07/2013	Ben Chenoweth - more fixes; code cleaning; reduce size of xml file
 //	24/07/2013	Ben Chenoweth - minor fixes; different selection sprite
 //	26/07/2013	Ben Chenoweth - prevent saving over puzzles when there is an error loading new puzzle; various fixes
+//	30/07/2013	Ben Chenoweth - resize dialogs; switch keyboard to lower position on new puzzle; added clear word button
 
 var tmp = function() {
 	//
@@ -242,7 +243,7 @@ var tmp = function() {
 	
 	// loads the puzzle data from the puzzleNames[currPuzzleIndex] file and sets up the puzzle field
 	target.loadCrossword = function() {
-		var num = 1, clue = 0, numAssigned, pIndex = 0, i, j;
+		var num = 1, clue = 0, numAssigned, pIndex = 0, i, j, firstClue = 0, foundFirstClue = false, msg;
 		
 		if (loadCrosswordFile() == -1) {
 			//target.bubble('tracelog','failed to load the puzzle file');
@@ -319,6 +320,10 @@ var tmp = function() {
 							acrossClueMap[pad(pIndex, 3)] = clue;
 							clue += 1;
 							numAssigned = true;
+							if (!foundFirstClue) {
+								firstClue = pIndex;
+								foundFirstClue = true;
+							}
 						}
 					}
 					
@@ -329,6 +334,10 @@ var tmp = function() {
 							downClueMap[pad(pIndex, 3)] = clue;
 							clue += 1;
 							numAssigned = true;
+							if (!foundFirstClue) {
+								firstClue = pIndex;
+								foundFirstClue = true;
+							}
 						}
 					}
 
@@ -363,7 +372,17 @@ var tmp = function() {
 			this['num' + i].setValue("");
 		}
 		
-		activateCell(0);
+		// change to Across mode
+		if (direction != 0) {
+			direction = (direction + 1) % 2;
+			msg = (direction == 0) ? "MODE: Across" : "MODE: Down";
+			target.Touch.mode.setValue(msg);
+		}
+		
+		// move keyboard down if it's up
+		if (!keyboardLow) target.doSwitchKeyboard();
+		
+		activateCell(firstClue);
 	};
 
 	// save the current crossword
@@ -504,6 +523,7 @@ var tmp = function() {
 		} else {
 			target['sq' + pad(currCell, 3)].u = 0;
 			if (getSoValue(target['sq' + pad(currCell, 3)], "v") != 0) target['sq' + pad(currCell, 3)].v = 0;
+			this.moveToNextCell();
 		}
 	};
 	
@@ -706,6 +726,35 @@ var tmp = function() {
 				if (getSoValue(target['sq' + pad(i, 3)], "v") != 0) target['sq' + pad(i, 3)].v = 0;
 			}
 		}
+	};
+	
+	target.doClearWord = function(sender) {
+		var i, j, dummy;
+		if (direction == 0) {
+			// go backward horizontally until a black square is encountered to get to the beginning of the current word 
+			for (i = currCell; (i % cwdWidth) != 0 && cwdGrid.charAt(i - 1) != '.'; i--);
+			// go forward checking each letter
+			for (j = i; cwdGrid.charAt(j) != '.' && j < (Math.floor(i/cwdWidth) * cwdWidth + cwdWidth); j++) {
+				if (getSoValue(target['sq' + pad(j, 3)], "u") != 1) {
+					target['sq' + pad(j, 3)].u = 0;
+					if (getSoValue(target['sq' + pad(j, 3)], "v") != 0) target['sq' + pad(j, 3)].v = 0;
+				}
+			}
+		} else {
+			// go upward until a black square is encountered to get to the beginning of the word
+			for (i = currCell; i >= 0 && cwdGrid.charAt(i - cwdWidth) != '.'; i = i - cwdWidth);
+			if (i < 0) {
+				i = i + cwdWidth;
+			}
+			// go forward checking each letter
+			for (j = i*1; (cwdGrid.charAt(j) != '.') && (j < (cwdWidth*cwdHeight)); j = j + cwdWidth) {
+				if (getSoValue(target['sq' + pad(j, 3)], "u") != 1) {
+					target['sq' + pad(j, 3)].u = 0;
+					if (getSoValue(target['sq' + pad(j, 3)], "v") != 0) target['sq' + pad(j, 3)].v = 0;
+				}
+			}
+		}
+		return;
 	};
 	
 	target.doCheckPuzzle = function(sender) {

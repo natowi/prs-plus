@@ -175,8 +175,8 @@
 			<button id="changeMode" left="380" width="220" top="3" height="30" active="true" visible="false" do="changeDirection" />
 		</group>
 	
-		<label id="cwdTitle" skin="swis16blk" left="100" top="60" width="400" height="20" text=""/>
- 		<label id="cwdAuthor" skin="swis16blk" left="100" top="80" width="400" height="20" text=""/>
+		<label id="cwdTitle" skin="swis16blk" left="120" top="60" width="460" height="20" text=""/>
+ 		<label id="cwdAuthor" skin="swis16blk" left="120" top="80" width="460" height="20" text=""/>
 	
 		<panel id="frame2" skin="frame1" left="151" top="110" width="298" height="298"/>
 		<sprite skin="square" id="sq000" active="true" canFocus="true"><behave like="gridSprite"/></sprite>
@@ -525,12 +525,13 @@
 		<button id="BUTTON_4" 	active="true" text="Check" left="130" width="100" top="5" height="40" do="doCheckPuzzle"/>
 		<button id="BUTTON_5" 	active="true" text="Puzzle" left="010" width="100" top="5" height="40" do="doShowPuzzleDialog"/>
 		<button id="BUTTON_6" 	active="true" text="P" left="010" width="40" top="70" height="40" do="doClearPuzzle"/>
+		<button id="BUTTON_7" 	active="true" text="W" left="060" width="40" top="70" height="40" do="doClearWord"/>
 		<button id="btn_Exit" left="0" top="-70" height="70" width="70" active="true" visible="false" do="doRoot"/>
 		
 		<label id='touchButtons3'   skin='touchText'    left='12' width='50' top='53' height='15' align='left' text='Clear:'/>
 		<label id='touchButtons4'   skin='touchText'    left='550' width='50' bottom='400' height='15' align='left' text='Reveal:'/>
 
-		<dialog id="WIN_DIALOG"  width="450" height="140" visible="false">
+		<dialog id="WIN_DIALOG"  width="350" height="140" visible="false">
 			<code>				
 				<function id="doOK">
 					this.show(false)
@@ -544,7 +545,7 @@
 			<default-button id="OK" text="Ok" width="70" bottom="10" do="doOK"/>
 		</dialog>
 
-		<dialog id="PUZZLE_DIALOG" width="450" height="250" visible="false">
+		<dialog id="PUZZLE_DIALOG" width="350" height="175" visible="false">
 			<code>
 				<function id="doLoad">
 					this.show(false);
@@ -560,12 +561,12 @@
 			</code>
 			<background skin="dlg_background" left="0" right="0" top="0" bottom="0"/>
 			<label skin="swis32blk" active="false" text="Choose a puzzle:" align="center" left="28" right="28" top="20" height="38"/>
-			<text id="puzzleName" skin="customText" active="false" variable="fileName" left="160" width="262" top="67" height="41"/>
-			<button id="prevPuzzle" skin="nullButton" left="100" top="67" width="50" height="28" text="-" do="doPrevNextPuzzle"/>
-			<button id="nextPuzzle" skin="nullButton" left="410" top="67" width="50" height="28" text="+" do="doPrevNextPuzzle"/>
+			<text id="puzzleName" skin="customText" active="false" variable="fileName" left="40" width="267" top="67" height="41"/>
+			<button id="prevPuzzle" skin="nullButton" left="-10" top="67" width="50" height="28" text="-" do="doPrevNextPuzzle"/>
+			<button id="nextPuzzle" skin="nullButton" left="310" top="67" width="50" height="28" text="+" do="doPrevNextPuzzle"/>
 			
 			<default-button id="btn_Ok" text="Load" width="100" bottom="10" do="doLoad"/>
-			<button id="btn_Cancel" text="Cancel" width="100" left ="290" bottom="10" do="doClose" visible="false"/>		
+			<button id="btn_Cancel" text="Cancel" width="100" left ="235" bottom="10" do="doClose" visible="false"/>		
 		</dialog>
 	</group>
 </group>
