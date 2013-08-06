@@ -11,6 +11,7 @@
 //	26/07/2013	Ben Chenoweth - prevent saving over puzzles when there is an error loading new puzzle; various fixes
 //	30/07/2013	Ben Chenoweth - resize dialogs; switch keyboard to lower position on new puzzle; added clear word button
 //	05/08/2013	Mark Nord - introduced a hardware-timer to call initial PuzzleDlg, Home-Button should work now
+//	06/08/2013	Ben Chenoweth - added 'Quit' label
 
 var tmp = function() {
 	//
@@ -480,16 +481,17 @@ var tmp = function() {
 		// display the puzzle load dialog box
 		target.setVariable("fileName", puzzleNames[currPuzzleIndex]);
 		target.focus(true);
-				try {
-					timer = this.timer = new HardwareTimer(); //x50
-				} catch(isIgnore) {}
-				timer.target = this;
-				timer.onCallback = PzlDlg_onCallback;
-				timer.schedule(100);
-	//	target.PUZZLE_DIALOG.show(true);
+		try {
+				timer = this.timer = new HardwareTimer(); //x50
+		} catch(isIgnore) {
+			target.PUZZLE_DIALOG.show(true);
+		}
+		timer.target = this;
+		timer.onCallback = PzlDlg_onCallback;
+		timer.schedule(10);
 	};
 	
-	PzlDlg_onCallback = function () {
+	var PzlDlg_onCallback = function () {
 		var target;
 		target = this.target;
 		target.timer = null;
@@ -502,10 +504,10 @@ var tmp = function() {
 	
 	// saves current progress and exits
 	target.exitQuit = function() {
-	try {	
-		this.saveCrossword();
-		this.saveSettings(); }
-	catch (e) {}	
+		try {	
+			this.saveCrossword();
+			this.saveSettings();
+		} catch (e) {}	
 		kbook.autoRunRoot.exitIf(kbook.model);
 	};
 	
