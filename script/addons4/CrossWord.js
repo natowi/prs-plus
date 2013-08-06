@@ -15,6 +15,7 @@ tmp = function() {
 				kbook.autoRunRoot.sandbox._icon =  Core.config.compat.NodeKinds.getIcon(appIcon,0);
 				kbook.autoRunRoot.sandbox._title = CrossWord.title;		   
 				kbook.autoRunRoot.sandbox.getSoValue = Core.system.getSoValue;
+				kbook.autoRunRoot.sandbox.setSoValue = Core.system.setSoValue;
 				kbook.autoRunRoot.sandbox.listFiles = Core.io.listFiles;
 				kbook.autoRunRoot.sandbox.gamesSavePath = Core.config.userGamesSavePath;
 				kbook.autoRunRoot.path = Core.config.addonsPath + "CrossWord/crossword.xml";

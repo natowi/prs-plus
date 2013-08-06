@@ -487,7 +487,7 @@
 		<label id="num79" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
 
 		<sprite skin="select" id="selection" active="true" canFocus="true"/>
-		<text id="clueText" skin="helpText" left="50" top="630" width="500" height="56" active="false"/>
+		<text id="clueText" skin="helpText" left="50" top="628" width="500" height="56" active="false"/>
 
 		<button id="BUTTON_Q"	active="true" text="Q" left="040" width="40" bottom="170" height="40" do="doButtonClick"/>
 		<button id="BUTTON_W"	active="true" text="W" left="090" width="40" bottom="170" height="40" do="doButtonClick"/>
@@ -528,6 +528,7 @@
 		<button id="BUTTON_7" 	active="true" text="W" left="060" width="40" top="70" height="40" do="doClearWord"/>
 		<button id="btn_Exit" left="0" top="-70" height="70" width="70" active="true" visible="false" do="doRoot"/>
 		
+		<label id='touchButtons2'   skin='touchText'    left='285' right='0' bottom='0' height='15' align='left' text='Quit'/>
 		<label id='touchButtons3'   skin='touchText'    left='12' width='50' top='53' height='15' align='left' text='Clear:'/>
 		<label id='touchButtons4'   skin='touchText'    left='550' width='50' bottom='400' height='15' align='left' text='Reveal:'/>
 
