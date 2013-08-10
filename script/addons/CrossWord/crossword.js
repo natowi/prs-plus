@@ -12,6 +12,7 @@
 //	30/07/2013	Ben Chenoweth - resize dialogs; switch keyboard to lower position on new puzzle; added clear word button
 //	05/08/2013	Mark Nord - introduced a hardware-timer to call initial PuzzleDlg, Home-Button should work now
 //	06/08/2013	Ben Chenoweth - added 'Quit' label
+//	10/08/2013	Ben Chenoweth - added 'Change Mode' using Prev/Next buttons; minor fixes
 
 var tmp = function() {
 	//
@@ -500,7 +501,15 @@ var tmp = function() {
 		
 	target.doRoot = function (sender) {
 		this.exitQuit();
-	}; 
+	};
+	
+	target.doPrev = function (sender) {
+		this.changeDirection();
+	};
+	
+	target.doNext = function (sender) {
+		this.changeDirection();
+	};
 	
 	// saves current progress and exits
 	target.exitQuit = function() {
@@ -559,16 +568,25 @@ var tmp = function() {
 	};
 	
 	target.moveToNextCell = function() {
-		var nextCell = currCell;
+		var i, j, nextCell = currCell;
+		
+		j = Math.floor(currCell/cwdHeight);
 		
 		if (direction == 0) {
-			if ((++nextCell) * 1 < cwdGrid.length) {
+			nextCell++;
+			i = nextCell - j * cwdWidth;
+			if (i < cwdWidth) {
 				// skip over blacked out squares
-				while (cwdGrid.charAt(nextCell) == '.' && nextCell * 1 < cwdGrid.length) {
-					(++nextCell) * 1;
+				while (cwdGrid.charAt(nextCell) == '.' && i < cwdWidth) {
+					nextCell++;
+					i = nextCell - j * cwdWidth;
 				}
 				// focus on the next cell horizontally
-				activateCell(nextCell);
+				if (i < cwdWidth) {
+					activateCell(nextCell);
+				} else {
+					return;
+				}
 			} else {
 				return;
 			}
@@ -579,7 +597,11 @@ var tmp = function() {
 					nextCell = nextCell * 1 + cwdWidth * 1;
 				}
 				// focus on the next cell vertically
-				activateCell(nextCell);
+				if (nextCell < cwdGrid.length) {
+					activateCell(nextCell);
+				} else {
+					return;
+				}
 			} else {
 				return;
 			}
