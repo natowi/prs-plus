@@ -4,7 +4,7 @@
 */
 
 tmp = function() {
-	var appIcon = "GAME";
+	var appIcon = (Core.config.compat.NodeKinds.CROSSWORD == "undefined") ? "GAME" : "CROSSWORD";
 	var CrossWord = {
 		name: "CrossWord",
 		title: "CrossWord",

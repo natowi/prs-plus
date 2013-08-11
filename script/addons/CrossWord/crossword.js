@@ -13,6 +13,7 @@
 //	05/08/2013	Mark Nord - introduced a hardware-timer to call initial PuzzleDlg, Home-Button should work now
 //	06/08/2013	Ben Chenoweth - added 'Quit' label
 //	10/08/2013	Ben Chenoweth - added 'Change Mode' using Prev/Next buttons; minor fixes
+//	11/08/2013	Ben Chenoweth - fix for non-square puzzles; and allow for CROSSWORD icon
 
 var tmp = function() {
 	//
@@ -85,7 +86,7 @@ var tmp = function() {
 		currCell = nextCell;
 		
 		i = currCell % cwdWidth;
-		j = Math.floor(currCell/cwdHeight);
+		j = Math.floor(currCell/cwdWidth);
 		
 		//move selection
 		target.selection.changeLayout(gridLeft + i * 32,32, uD, gridTop + j * 32, 32, uD);
@@ -570,7 +571,7 @@ var tmp = function() {
 	target.moveToNextCell = function() {
 		var i, j, nextCell = currCell;
 		
-		j = Math.floor(currCell/cwdHeight);
+		j = Math.floor(currCell/cwdWidth);
 		
 		if (direction == 0) {
 			nextCell++;
@@ -678,6 +679,7 @@ var tmp = function() {
 		var id, sq;
 		id = getSoValue(sender, "id");
 		sq = id.substring(2, 5);
+		//target.bubble("tracelog","id="+id+", sq="+sq);
 		activateCell(sq);
 	};
 
