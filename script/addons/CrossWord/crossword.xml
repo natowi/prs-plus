@@ -553,9 +553,10 @@
 					this.show(false);
 					this.closeDlg();
 				</function>
-			 <function id="doRoot">
-				this.doRoot();
-			 </function>
+				 <function id="doRoot">
+					this.show(false);
+					this.cancelDlg();
+				 </function>
 				<function id="doClose">
 					this.show(false);
 					this.cancelDlg();
@@ -568,7 +569,7 @@
 			<button id="nextPuzzle" skin="nullButton" left="310" top="67" width="50" height="28" text="+" do="doPrevNextPuzzle"/>
 			
 			<default-button id="btn_Ok" text="Load" width="100" bottom="10" do="doLoad"/>
-			<button id="btn_Cancel" text="Cancel" width="100" left ="235" bottom="10" do="doClose" visible="false"/>		
+			<button id="btn_Cancel" text="Cancel" width="100" left ="235" bottom="10" do="doClose"/>		
 		</dialog>
 	</group>
 </group>
