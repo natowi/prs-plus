@@ -14,6 +14,7 @@
 //	06/08/2013	Ben Chenoweth - added 'Quit' label
 //	10/08/2013	Ben Chenoweth - added 'Change Mode' using Prev/Next buttons; minor fixes
 //	11/08/2013	Ben Chenoweth - fix for non-square puzzles; and allow for CROSSWORD icon
+//	14/08/2013	Ben Chenoweth - autoload current puzzle on startup; handle no puz files
 
 var tmp = function() {
 	//
@@ -134,17 +135,18 @@ var tmp = function() {
 	
 	// loads the crossword data from the file puzzleNames[currPuzzleIndex]
 	var loadCrosswordFile = function() {
-		var stream, inpLine, test, nextField, chunk, size,
+		var stream, nextField, chunk, size,
 		fileName = puzzleNames[currPuzzleIndex],
 		num = 1, clue = 0, numAssigned, pIndex = 0, i, j;
 		
 		ableToSavePuzzle = false;
 		
 		try {
-			if(FileSystem.getFileInfo(datPath+fileName)) {
+			if (FileSystem.getFileInfo(datPath+fileName)) {
 				stream = new Stream.File(datPath+fileName);
 			}
 			else {
+				target.clueText.setValue("ERROR: Puzzle file is missing.");
 				return(-1);
 			}
 				
@@ -167,7 +169,7 @@ var tmp = function() {
 			//target.bubble("tracelog","cwdHeight = "+cwdHeight);
 			
 			if (cwdWidth > 15 || cwdHeight > 15) {
-				target.clueText.setValue("ERROR: Puzzles larger than 15x15 not supported.");
+				target.clueText.setValue("ERROR: Puzzles larger than 15x15 are not supported.");
 				return(-1);
 			}
 			
@@ -237,13 +239,13 @@ var tmp = function() {
 			chunk.free();
 			stream.close();
 		} catch (e) {
-			target.bubble('tracelog', 'failed while loading puzzle'+e);
+			target.clueText.setValue("ERROR: Failed while loading puzzle.");
 		}
 	};
 	
-	function realTypeOf(obj) {
+	/*function realTypeOf(obj) {
 		return Object.prototype.toString.call(obj).slice(8, -1);
-	}
+	}*/
 	
 	// loads the puzzle data from the puzzleNames[currPuzzleIndex] file and sets up the puzzle field
 	target.loadCrossword = function() {
@@ -480,9 +482,17 @@ var tmp = function() {
 			}
 		} catch (e) {}
 		
-		// display the puzzle load dialog box
-		target.setVariable("fileName", puzzleNames[currPuzzleIndex]);
 		target.focus(true);
+		if (puzzleNames.length > 0) {
+			target.setVariable("fileName", puzzleNames[currPuzzleIndex]);
+		} else {
+			target.setVariable("fileName", "No puzzle files!");
+		}
+		target.loadCrossword();
+		
+		/*/ display the puzzle load dialog box
+		target.setVariable("fileName", puzzleNames[currPuzzleIndex]);
+		
 		try {
 				timer = this.timer = new HardwareTimer(); //x50
 		} catch(isIgnore) {
@@ -490,15 +500,15 @@ var tmp = function() {
 		}
 		timer.target = this;
 		timer.onCallback = PzlDlg_onCallback;
-		timer.schedule(10);
+		timer.schedule(10);*/
 	};
 	
-	var PzlDlg_onCallback = function () {
+	/*var PzlDlg_onCallback = function () {
 		var target;
 		target = this.target;
 		target.timer = null;
 		target.PUZZLE_DIALOG.show(true);
-	};
+	};*/
 		
 	target.doRoot = function (sender) {
 		this.exitQuit();
@@ -696,7 +706,7 @@ var tmp = function() {
 	target.doShowPuzzleDialog = function(sender) {
 		this.saveCrossword();
 		prevPuzzleIndex = currPuzzleIndex;
-		setSoValue(target.PUZZLE_DIALOG['btn_Cancel'],"visible",true);
+		//setSoValue(target.PUZZLE_DIALOG['btn_Cancel'],"visible",true);
 		target.PUZZLE_DIALOG.show(true);
 		return;
 	};
@@ -733,10 +743,6 @@ var tmp = function() {
 		};
 
 		this.container.setVariable("fileName", puzzleNames[currPuzzleIndex]);
-	};
-
-	target.PUZZLE_DIALOG.doRoot = function(sender) {
-		target.exitQuit();
 	};
 	
 	// Returns the index of the documents image pointing to cell at given
