@@ -15,6 +15,7 @@
 //	10/08/2013	Ben Chenoweth - added 'Change Mode' using Prev/Next buttons; minor fixes
 //	11/08/2013	Ben Chenoweth - fix for non-square puzzles; and allow for CROSSWORD icon
 //	14/08/2013	Ben Chenoweth - autoload current puzzle on startup; handle no puz files
+//	14/09/2013	Ben Chenoweth - added filename label
 
 var tmp = function() {
 	//
@@ -267,6 +268,7 @@ var tmp = function() {
 			target.selection.changeLayout(0, 0, uD, 0, 0, uD);
 			target.cwdTitle.setValue("");
 			target.cwdAuthor.setValue("");
+			target.filenameLabel.setValue("");
 			return;
 		}
 		
@@ -279,6 +281,9 @@ var tmp = function() {
 		// display the title and author of the puzzle
 		target.cwdTitle.setValue(cwdTitle);
 		target.cwdAuthor.setValue(cwdAuthor);
+		
+		// update filename label
+		target.filenameLabel.setValue(puzzleNames[currPuzzleIndex]);
 
 		//initialize the clue mapping arrays
 		for(i = 0; i < cwdWidth*cwdHeight; i++) {

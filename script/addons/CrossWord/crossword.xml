@@ -25,6 +25,7 @@
 		<style id="digits" size="22" style="bold" color="#000000"/>
 		<style id="copynote" size="14" style="italic" color="#707070"/>
 		<style id="copyText" size="11" style="" color="#BBBBBB"/>
+		<style id="fileText" size="18" style="bold" color="#FFFFFF"/>
 		<style id="touchText" size="12" style="bold" color="#000000"/>
 		<style id="tinyText" size="10" style="bold" color="#000000"/>
 	</style>
@@ -54,6 +55,7 @@
 <skin id="touchText" styles="touchText"/>
 <skin id="tinyText"  styles="tinyText"/>
 <skin id="copyText" styles="copyText"/>
+<skin id="fileText" styles="fileText"/>
 
 <skin id="frame1"
 		cutouts="null,null,null,null,null,null,null,null,null"/>		
@@ -163,6 +165,7 @@
 	   	<sprite id="appIcon" skin="kbookMenuIcon" left="0" width="70" top="-70" height="70" active="false" u="38" v="1"/>   
 		<label id="appTitle" skin="title" left="70" right="0" top="-70" height="70" align="left" text="CrossWord"/>
 		<label id="copyright" skin="copyText" left="70" right="0" top="-20" height="20" align="left" text="(C) Daniel Genin 2012"/>
+		<label id="filenameLabel" skin="fileText" left="0" right="10" top="-30" height="30" align="right" text=""/>
 		
 		<code>
 			<function id="doRoot">	this.doRoot();	</function>
