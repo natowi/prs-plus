@@ -10,6 +10,7 @@
 //	2012-04-26 drMerry - more optimizations applied
 //		Chosen for speed over readability
 //	2012-05-30 Mark Nord - fixed target.moveCursor now moves as expected
+//	2013-11-24 Mark Nord - fixed problem suppressing 1st number of the int-part of the result (29/7 = .1428)
 
 var tmp = function () {
 	// GLOBAL VARIABLES
@@ -157,7 +158,7 @@ var tmp = function () {
 					if (value < 0) { value = -value; valNeg = true; }
 					valInt = Math.floor(value);
 					valFrac = value - valInt;
-					prec = digitsMaximum - String(valInt).length - 1;	// how many digits available after period
+					prec = digitsMaximum - String(valInt).length - 2; // how many digits available after period (-2 to fix error)
 					if (!isItThere && fixed > 0) { prec = fixed; }
 					mult = " 1000000000000000000".substring(1, prec + 2);
 					frac = Math.floor(valFrac * mult + 0.5);
