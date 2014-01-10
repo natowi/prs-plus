@@ -1,7 +1,7 @@
 /* Name: Calendar app
    Original code (c) Ben Chenoweth
    Initial version: July 2011
-//	2013-02-24 Ben Chenoweth - fix for Easter Sunday
+   2014-01-10 Ben Chenoweth - fix so Easter Sunday only shows up one month beforehand
 */
 
 tmp = function() {
@@ -245,7 +245,7 @@ tmp = function() {
 							todayevents.push(events[j][5]);
 						}
 						// add easter event to future events if easter is next month or coming up in this month 
-						if ((todaysMonth < eastermonth) || ((todaysMonth === eastermonth) && (todaysDate < easterday))) {
+						if ((todaysMonth == eastermonth - 1) || ((todaysMonth === eastermonth) && (todaysDate < easterday))) {
 							futureevents.push(["", eastermonth, easterday, todaysYear, events[j][4], events[j][5]]);
 						}
 					} else {
