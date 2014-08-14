@@ -16,6 +16,7 @@
 //	11/08/2013	Ben Chenoweth - fix for non-square puzzles; and allow for CROSSWORD icon
 //	14/08/2013	Ben Chenoweth - autoload current puzzle on startup; handle no puz files
 //	14/09/2013	Ben Chenoweth - added filename label
+//	14/08/2014	Ben Chenoweth - change 'space' to 'backspace'; clicking on current cell toggles direction
 
 var tmp = function() {
 	//
@@ -55,6 +56,7 @@ var tmp = function() {
 	
 	strShift = "\u2191", //up arrow
 	strUnShift = "\u2193", //down arrow
+	strBack = "\u2190", //left arrow
 	keyboardLow = true,
 	puzzleNames,
 	ableToSavePuzzle = false,
@@ -463,6 +465,7 @@ var tmp = function() {
 		this.appTitle.setValue(kbook.autoRunRoot._title);
 		this.appIcon.u = kbook.autoRunRoot._icon;
 		this['BUTTON_1'].setText(strShift); // up arrow on keyboard switch button
+		this['BUTTON_ '].setText(strBack); // back arrow 
 		
 		if (kbook.autoRunRoot.model=="950") {
 			// don't need to be able to switch keyboard, since it fits underneath crossword area
@@ -564,9 +567,15 @@ var tmp = function() {
 			if (getSoValue(target['sq' + pad(currCell, 3)], "v") != 0) target['sq' + pad(currCell, 3)].v = 0;
 			if (!this.checkForAWin()) this.moveToNextCell();
 		} else {
-			target['sq' + pad(currCell, 3)].u = 0;
-			if (getSoValue(target['sq' + pad(currCell, 3)], "v") != 0) target['sq' + pad(currCell, 3)].v = 0;
-			this.moveToNextCell();
+			if (getSoValue(target['sq' + pad(currCell, 3)], "u") != 0) {
+				target['sq' + pad(currCell, 3)].u = 0;
+				if (getSoValue(target['sq' + pad(currCell, 3)], "v") != 0) target['sq' + pad(currCell, 3)].v = 0;
+			} else {
+				this.moveToPrevCell();
+				target['sq' + pad(currCell, 3)].u = 0;
+				if (getSoValue(target['sq' + pad(currCell, 3)], "v") != 0) target['sq' + pad(currCell, 3)].v = 0;
+			}
+			//this.moveToNextCell();
 		}
 	};
 	
@@ -615,6 +624,47 @@ var tmp = function() {
 				// focus on the next cell vertically
 				if (nextCell < cwdGrid.length) {
 					activateCell(nextCell);
+				} else {
+					return;
+				}
+			} else {
+				return;
+			}
+		}	
+	}
+	
+	target.moveToPrevCell = function() {
+		var i, j, prevCell = currCell;
+		
+		j = Math.floor(currCell/cwdWidth);
+		
+		if (direction == 0) {
+			prevCell--;
+			i = prevCell - j * cwdWidth;
+			if (i < cwdWidth) {
+				// skip over blacked out squares
+				while (cwdGrid.charAt(prevCell) == '.' && i >= 0) {
+					prevCell--;
+					i = prevCell - j * cwdWidth;
+				}
+				// focus on the next cell horizontally
+				if (i >= 0) {
+					activateCell(prevCell);
+				} else {
+					return;
+				}
+			} else {
+				return;
+			}
+		} else {
+			if ((prevCell = prevCell * 1 - cwdWidth * 1) >= 0) {
+				// skip over blacked out squares
+				while (cwdGrid.charAt(prevCell) == '.' && prevCell * 1 > 0) {
+					prevCell = prevCell * 1 - cwdWidth * 1;
+				}
+				// focus on the next cell vertically
+				if (prevCell >= 0) {
+					activateCell(prevCell);
 				} else {
 					return;
 				}
