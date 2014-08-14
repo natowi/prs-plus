@@ -16,7 +16,12 @@
 			this.bubble("doGridClick",this);
 		</script>
 	</behavior>
-			
+	<behavior id="selectionSprite">
+		<script on="mouseUp" params="event">
+			this.bubble("changeDirection",this);
+		</script>
+	</behavior>
+	
 	<style font="Swis721 BT">
 		<style id="swis24gry" size="24" style="" right="15" halign="right" top="5" color="#6D6D6D"/>
 		<style id="swis32blk" size="32" style="" color="#000000"/>
@@ -489,7 +494,7 @@
 		<label id="num78" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
 		<label id="num79" skin="tinyText" width="32" height="16" halign="left" valign="top" text=""/>
 
-		<sprite skin="select" id="selection" active="true" canFocus="true"/>
+		<sprite skin="select" id="selection" active="true" canFocus="true"><behave like="selectionSprite"/></sprite>
 		<text id="clueText" skin="helpText" left="50" top="628" width="500" height="56" active="false"/>
 
 		<button id="BUTTON_Q"	active="true" text="Q" left="040" width="40" bottom="170" height="40" do="doButtonClick"/>
