@@ -1,3 +1,5 @@
+Partial mirror from https://code.google.com/archive/p/prs-plus/downloads
+
 File 	Summary + Labels 	Uploaded 	Size
 PrspDictionaryConverter_1.06b.zip 	PRS+ dictionary converter (supports XDXF, Stardict) 1.06b  Featured  Type-Archive 	Jan 24, 2013 	663.04KB
 PrspDictionaryConverter_1.05b.zip 	PRS+ dictionary converter (supports XDXF, Stardict) 1.05b  Featured  Type-Archive  Deprecated 	Jan 20, 2013 	663.02KB
