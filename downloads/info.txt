@@ -1,0 +1,28 @@
+File 	Summary + Labels 	Uploaded 	Size
+PrspDictionaryConverter_1.06b.zip 	PRS+ dictionary converter (supports XDXF, Stardict) 1.06b  Featured  Type-Archive 	Jan 24, 2013 	663.04KB
+PrspDictionaryConverter_1.05b.zip 	PRS+ dictionary converter (supports XDXF, Stardict) 1.05b  Featured  Type-Archive  Deprecated 	Jan 20, 2013 	663.02KB
+PrspDictionaryConverter_1.04b.zip 	PRS+ dictionary converter (supports XDXF, Stardict) 1.04b  Featured  Deprecated 	Dec 22, 2012 	661.62KB
+PrspDictionaryConverter_1.03b.zip 	PRS+ dictionary converter (supports XDXF, Stardict) 1.03b  Featured  Deprecated 	Dec 21, 2012 	661.52KB
+PrspDictionaryConverter_1.02b.zip 	PRS+ dictionary converter (supports XDXF, Stardict) 1.02b  Featured  Type-Archive  Deprecated 	Dec 20, 2012 	661.53KB
+xdxfToPrsp_1.01b.zip 	PRS+ dictionary converter 1.01b  Type-Archive  Deprecated 	Dec 18, 2012 	635.69KB
+xdxfToPrsp_1.0b.zip 	XDXF to PRS+ dictionary conveter 1.0b  Type-Archive  OpSys-All  Deprecated 	Dec 17, 2012 	619.98KB
+makedict 	(Linux only!!!) Many to XDXF converter  Type-Executable  OpSys-Linux 	Dec 17, 2012 	1.1MB
+PRSP_650_2.1.02alpha.zip 	PRS+ 2.1.02 alpha for 650  Featured  Type-Archive 	Dec 17, 2012 	22.18MB
+PRSP_350_2.1.02alpha.zip 	PRS+ 2.1.02 alpha for 350  Featured  Type-Archive 	Dec 17, 2012 	22.05MB
+xdxfToPrsp_0.9b.zip 	XDXF to PRS+ dictionary conveter  Type-Archive  Deprecated 	Sep 16, 2012 	619.25KB
+PRSP_650_2.1.xxAngelos_Installer.zip 	Temporary download to refine Greek localization  Deprecated 	Jul 20, 2012 	4.3MB
+dosfsck.950 	dosfsck for 600/x50  Deprecated 	Feb 26, 2012 	108.98KB
+PRSP_950_2.1.01alpha.zip 	PRS+ 2.1 alpha for 950 	Feb 26, 2012 	57.35MB
+PRSP_650_2.1.01alpha.zip 	PRS+ 2.1 alpha for 650  Deprecated 	Feb 26, 2012 	19.48MB
+PRSP_350_2.1.01alpha.zip 	PRS+ 2.1 alpha for 350  Deprecated 	Feb 26, 2012 	19.35MB
+PRSP_600_2.1.01alpha.zip 	PRS+ 2.1 alpha for 600 	Feb 26, 2012 	17.2MB
+PRSP_505_2.1.01alpha.zip 	PRS+ 2.1 alpha for 505 	Feb 26, 2012 	16.09MB
+PRSP_300_2.1.01alpha.zip 	PRS+ 2.1 alpha for 300 	Feb 26, 2012 	7.86MB
+PRSP_950_2.0.18.zip 	PRS+ 2.0 "LeChuck" for 950  Featured 	Feb 9, 2012 	56.04MB
+
+Uninstaller_300.zip 	"Uninstaller" of PRS+ for 300 by surquizu  Type-Archive  OpSys-All 	Aug 29, 2011 	13.82MB
+Uninstaller_950.exe 	"Uninstaller" of PRS+ for 950, installs standard sony firmware 2.0.00.11300  Type-Executable  OpSys-Windows 	Jun 14, 2011 	49.56MB
+Uninstaller_650.exe 	"Uninstaller" of PRS+ for 650, installs standard sony firmware 1.0.00.14080  Type-Executable  OpSys-Windows 	Jun 14, 2011 	14.09MB
+Uninstaller_600.exe 	"Uninstaller" of PRS+ for 600, installs standard sony firmware 1.0.01.08040  Type-Executable  OpSys-Windows 	Jun 14, 2011 	18.02MB
+Uninstaller_505.exe 	"Uninstaller" of PRS+ for 505, installs standard sony firmware 1.1.00.18040  Type-Executable  OpSys-Windows 	Jun 14, 2011 	18.36MB
+Uninstaller_350.exe 	"Uninstaller" of PRS+ for 350, installs standard sony firmware 1.0.00.14080  Type-Executable  OpSys-Windows 	Jun 14, 2011 	13.97MB
