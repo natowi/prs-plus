@@ -1,5 +1,5 @@
 This project has been automatically exported from code.google.com/p/prs-plus
-It seems to be no longer under active development.
+It is no longer under active development.
 Many thanks to all contributors who made this project possible.
 
 Owners of supported devices can find the code, issues, installer, uninstaller and help files here.
